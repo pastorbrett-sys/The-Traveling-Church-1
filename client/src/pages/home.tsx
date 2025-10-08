@@ -5,6 +5,7 @@ import JourneyGallery from "@/components/journey-gallery";
 import ValuesSection from "@/components/values-section";
 import PastorSection from "@/components/pastor-section";
 import BlogSection from "@/components/blog-section";
+import { MapSection } from "@/components/map-section";
 import ContactForm from "@/components/contact-form";
 import Footer from "@/components/footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <ValuesSection />
       <PastorSection />
       <BlogSection />
+      <MapSection />
       <ContactForm />
       <Footer />
     </div>
