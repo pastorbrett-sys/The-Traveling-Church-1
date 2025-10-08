@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,8 +38,22 @@ export default function Navigation() {
         top: offsetPosition,
         behavior: "smooth",
       });
+      
+      setMobileMenuOpen(false);
     }
   };
+
+  const navItems = [
+    { id: "mission", label: "Mission" },
+    { id: "journey", label: "Journey" },
+    { id: "values", label: "Values" },
+    { id: "pastor", label: "Pastor" },
+    { id: "blog", label: "Journal" },
+    { id: "map", label: "Map" },
+    { id: "events", label: "Events" },
+    { id: "testimonials", label: "Stories" },
+    { id: "contact", label: "Contact" },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
@@ -45,95 +61,58 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           <button
             onClick={() => handleNavClick("home")}
-            className="text-lg font-semibold text-primary"
+            className="text-lg font-semibold text-primary whitespace-nowrap"
             data-testid="link-home"
           >
             The Traveling Church
           </button>
-          <div className="flex gap-3 md:gap-4 text-xs md:text-sm">
-            <button
-              onClick={() => handleNavClick("mission")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "mission" ? "active" : ""
-              }`}
-              data-testid="link-mission"
-            >
-              Mission
-            </button>
-            <button
-              onClick={() => handleNavClick("journey")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "journey" ? "active" : ""
-              }`}
-              data-testid="link-journey"
-            >
-              Journey
-            </button>
-            <button
-              onClick={() => handleNavClick("values")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "values" ? "active" : ""
-              }`}
-              data-testid="link-values"
-            >
-              Values
-            </button>
-            <button
-              onClick={() => handleNavClick("pastor")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "pastor" ? "active" : ""
-              }`}
-              data-testid="link-pastor"
-            >
-              Pastor
-            </button>
-            <button
-              onClick={() => handleNavClick("blog")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "blog" ? "active" : ""
-              }`}
-              data-testid="link-blog"
-            >
-              Journal
-            </button>
-            <button
-              onClick={() => handleNavClick("map")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "map" ? "active" : ""
-              }`}
-              data-testid="link-map"
-            >
-              Map
-            </button>
-            <button
-              onClick={() => handleNavClick("events")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "events" ? "active" : ""
-              }`}
-              data-testid="link-events"
-            >
-              Events
-            </button>
-            <button
-              onClick={() => handleNavClick("testimonials")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "testimonials" ? "active" : ""
-              }`}
-              data-testid="link-testimonials"
-            >
-              Stories
-            </button>
-            <button
-              onClick={() => handleNavClick("contact")}
-              className={`nav-link text-muted-foreground font-medium ${
-                activeSection === "contact" ? "active" : ""
-              }`}
-              data-testid="link-contact"
-            >
-              Contact
-            </button>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex gap-4 text-sm">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
+                  activeSection === item.id ? "text-primary" : ""
+                }`}
+                data-testid={`link-${item.id}`}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-foreground"
+            data-testid="button-mobile-menu"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4">
+            <div className="flex flex-col gap-3">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
+                    activeSection === item.id ? "bg-muted text-primary" : ""
+                  }`}
+                  data-testid={`link-${item.id}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
