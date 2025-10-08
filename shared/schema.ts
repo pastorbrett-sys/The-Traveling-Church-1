@@ -67,6 +67,8 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
 
 export const insertEventSchema = createInsertSchema(events).omit({
   id: true,
+}).extend({
+  date: z.string().or(z.date()).transform((val) => new Date(val)),
 });
 
 export const insertTestimonialSchema = createInsertSchema(testimonials).omit({

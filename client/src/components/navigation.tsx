@@ -5,7 +5,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "mission", "journey", "values", "pastor", "blog", "map", "contact"];
+      const sections = ["home", "mission", "journey", "values", "pastor", "blog", "map", "events", "contact"];
       let currentSection = "home";
 
       for (const sectionId of sections) {
@@ -104,6 +104,15 @@ export default function Navigation() {
               data-testid="link-map"
             >
               Map
+            </button>
+            <button
+              onClick={() => handleNavClick("events")}
+              className={`nav-link text-muted-foreground font-medium ${
+                activeSection === "events" ? "active" : ""
+              }`}
+              data-testid="link-events"
+            >
+              Events
             </button>
             <button
               onClick={() => handleNavClick("contact")}
