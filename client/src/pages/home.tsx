@@ -7,6 +7,7 @@ import PastorSection from "@/components/pastor-section";
 import BlogSection from "@/components/blog-section";
 import { MapSection } from "@/components/map-section";
 import { EventCalendar } from "@/components/event-calendar";
+import { TestimonialsSection } from "@/components/testimonials-section";
 import ContactForm from "@/components/contact-form";
 import Footer from "@/components/footer";
 
@@ -22,6 +23,7 @@ export default function Home() {
       <BlogSection />
       <MapSection />
       <EventCalendar />
+      <TestimonialsSection />
       <ContactForm />
       <Footer />
     </div>
