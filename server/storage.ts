@@ -201,6 +201,127 @@ async function initializeStorage(): Promise<DbStorage> {
     console.log("Database seeded with initial locations");
   }
 
+  // Check if blog posts already exist
+  const existingPosts = await storage.getAllBlogPosts();
+
+  if (existingPosts.length === 0) {
+    // Seed initial blog posts
+    const initialPosts: InsertBlogPost[] = [
+      {
+        title: "Finding Faith in Athens",
+        content: "Today I walked the same paths where the Apostle Paul once preached to the Athenians. Standing on Mars Hill, looking out over this ancient city, I was reminded that the message of God's love is timeless. The seekers I met in the streets and cafes were hungry for spiritual truth, just as they were 2000 years ago.\n\nWe don't need grand temples or ornate robes to share the gospel. All we need is an open heart and a willingness to meet people where they are. That's what the early apostles did, and that's what we're called to do today.",
+        imageUrl: "https://images.unsplash.com/photo-1555993539-1732b0258235?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        locationId: null
+      },
+      {
+        title: "Lessons from the Mountains",
+        content: "In the highlands of Nepal, I've learned that faith transcends language and culture. Yesterday, I sat with a group of Buddhist monks, and we discovered that our different paths all lead toward the same divine truth: love, compassion, and service to others.\n\nThis is what being a traveling church means—not converting people, but connecting with them. Sharing the light of Christ doesn't mean dimming other lights. It means adding to the collective brightness of human spirituality.",
+        imageUrl: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        locationId: null
+      },
+      {
+        title: "The Modern Mission Field",
+        content: "Tokyo's neon-lit streets might seem worlds away from ancient Jerusalem, but the hunger for meaning is the same. I've met young professionals who work 80-hour weeks, searching for something more than material success.\n\nOur mission isn't to judge their lifestyle or demand they change everything overnight. It's to show them that God's love meets them right where they are—in the subway, in the coffee shop, in the late-night ramen bar. The church isn't a building they need to enter. It's a community they're already invited to join.",
+        imageUrl: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        locationId: null
+      }
+    ];
+
+    for (const post of initialPosts) {
+      await storage.createBlogPost(post);
+    }
+
+    console.log("Database seeded with initial blog posts");
+  }
+
+  // Check if events already exist
+  const existingEvents = await storage.getAllEvents();
+
+  if (existingEvents.length === 0) {
+    // Seed initial events
+    const initialEvents: InsertEvent[] = [
+      {
+        title: "Online Global Gathering",
+        description: "Join us for a virtual worship service connecting our global community. Share testimonies, prayer requests, and celebrate our worldwide fellowship.",
+        date: new Date("2025-10-15T18:00:00Z"),
+        location: "Online (Zoom)",
+        type: "online"
+      },
+      {
+        title: "Community Gathering in Lisbon",
+        description: "In-person gathering for fellowship, worship, and sharing a meal together. All are welcome to join us by the waterfront.",
+        date: new Date("2025-10-22T17:00:00Z"),
+        location: "Lisbon, Portugal",
+        type: "in-person"
+      },
+      {
+        title: "Prayer Circle - Americas",
+        description: "Virtual prayer circle for members across North and South America. Bring your prayer requests and join in collective intercession.",
+        date: new Date("2025-10-29T20:00:00Z"),
+        location: "Online (Zoom)",
+        type: "online"
+      },
+      {
+        title: "Street Ministry in Bangkok",
+        description: "Join Pastor Brett for street outreach, sharing food and faith with those in need. Volunteer opportunities available.",
+        date: new Date("2025-11-05T14:00:00Z"),
+        location: "Bangkok, Thailand",
+        type: "in-person"
+      }
+    ];
+
+    for (const event of initialEvents) {
+      await storage.createEvent(event);
+    }
+
+    console.log("Database seeded with initial events");
+  }
+
+  // Check if testimonials already exist
+  const existingTestimonials = await storage.getAllTestimonials();
+
+  if (existingTestimonials.length === 0) {
+    // Seed initial testimonials
+    const initialTestimonials: InsertTestimonial[] = [
+      {
+        name: "Maria Santos",
+        location: "São Paulo, Brazil",
+        content: "I found this community when I was at my lowest point. Pastor Brett's message that God loves me exactly as I am changed everything. I don't have to pretend to be perfect. I just have to be open."
+      },
+      {
+        name: "Yuki Tanaka",
+        location: "Tokyo, Japan",
+        content: "Growing up, I thought Christianity was just a Western religion. But through this traveling church, I discovered that God's love knows no borders. It's universal, and it speaks to my Japanese heart just as powerfully."
+      },
+      {
+        name: "Ahmed Hassan",
+        location: "Cairo, Egypt",
+        content: "I was skeptical at first—another religious group claiming to have all the answers. But this community is different. They listen more than they preach. They respect my journey while sharing theirs. That's real faith."
+      },
+      {
+        name: "Sophie Martin",
+        location: "Paris, France",
+        content: "After years of feeling disconnected from my childhood faith, I found a home in this global community. We're not bound by buildings or traditions. We're bound by love, and that makes all the difference."
+      },
+      {
+        name: "David Okonkwo",
+        location: "Lagos, Nigeria",
+        content: "This church embodies what Christianity should be—grassroots, inclusive, and focused on service. We don't wait for people to come to us. We go to them, wherever they are."
+      },
+      {
+        name: "Elena Petrova",
+        location: "Moscow, Russia",
+        content: "In a world full of division, this community showed me that faith can unite us. Every online gathering reminds me that God's family extends across every border and boundary."
+      }
+    ];
+
+    for (const testimonial of initialTestimonials) {
+      await storage.createTestimonial(testimonial);
+    }
+
+    console.log("Database seeded with initial testimonials");
+  }
+
   return storage;
 }
 
