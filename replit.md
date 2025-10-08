@@ -2,7 +2,14 @@
 
 ## Overview
 
-The Traveling Church is a full-stack web application showcasing a global, traveling ministry. The application presents information about a faith-based organization that reaches people worldwide, featuring travel locations, mission statements, values, and pastoral information. Built with a modern React frontend and Express backend, it serves as an informational platform for this unique ministry approach.
+The Traveling Church is a full-stack web application showcasing a global, traveling ministry. The application presents information about a faith-based organization that reaches people worldwide. Built with a modern React frontend and Express backend, it serves as a comprehensive platform featuring:
+
+- **Travel locations** with interactive world map
+- **Pastor's journal** for sharing reflections and updates
+- **Event calendar** for upcoming gatherings (online and in-person)
+- **Testimonials** from congregation members worldwide
+- **Contact form** for inquiries and connection
+- **Mission statement** and core values presentation
 
 ## User Preferences
 
@@ -37,8 +44,13 @@ Preferred communication style: Simple, everyday language.
 **Database Schema**:
 - **Users table**: Stores user authentication data (id, username, password)
 - **Locations table**: Stores travel location information (id, name, country, imageUrl, description)
+- **Blog Posts table**: Stores Pastor Brett's journal entries (id, title, content, locationId, imageUrl, createdAt)
+- **Events table**: Stores upcoming and past gatherings (id, title, description, date, location, type)
+- **Testimonials table**: Stores congregation member stories (id, name, location, content, createdAt)
+- **Contact Submissions table**: Stores contact form submissions (id, name, email, message, createdAt)
 - Schema definitions in `shared/schema.ts` using Drizzle ORM with Zod validation
 - UUID primary keys generated via PostgreSQL's `gen_random_uuid()`
+- Date coercion in schemas handles both string and Date inputs for timestamp fields
 
 **Data Flow**:
 1. Frontend components use TanStack Query to fetch data from API endpoints
@@ -115,3 +127,53 @@ Preferred communication style: Simple, everyday language.
 - **clsx** & **tailwind-merge**: Conditional className utilities
 - **nanoid**: Unique ID generation
 - **connect-pg-simple**: PostgreSQL session store for Express (prepared for authentication)
+
+## Recent Changes
+
+### Completed Features (October 2025)
+All core features have been implemented and tested:
+
+1. **Contact Form** (`client/src/components/contact-form.tsx`)
+   - Full validation with Zod schema
+   - Success/error toast notifications
+   - Stores submissions in PostgreSQL database
+   - Mobile-responsive design
+
+2. **Pastor's Journal/Blog** (`client/src/components/blog-section.tsx`)
+   - Displays blog posts with images, dates, and content
+   - Supports multi-line content formatting
+   - Date handling for both string and Date formats
+   - Loading and empty states
+
+3. **Interactive Map** (`client/src/components/map-section.tsx`)
+   - OpenStreetMap embed showing world view
+   - Locations list with descriptions
+   - Error handling for failed API requests
+   - Responsive layout (side-by-side on desktop, stacked on mobile)
+
+4. **Event Calendar** (`client/src/components/event-calendar.tsx`)
+   - Upcoming and past events separation
+   - Event type indicators (online/in-person)
+   - Date and time formatting with date-fns
+   - Schema date coercion for API compatibility
+   - Responsive grid layout
+
+5. **Testimonials Section** (`client/src/components/testimonials-section.tsx`)
+   - Global testimonials from congregation members
+   - Quote decoration on cards
+   - Name, location, and testimony display
+   - Responsive grid layout
+
+### Navigation
+Updated navigation (`client/src/components/navigation.tsx`) includes:
+- Mission, Journey, Values, Pastor, Journal, Map, Events, Stories (Testimonials), Contact
+- Smooth scroll behavior with active section tracking
+- Mobile-responsive navigation bar
+
+### API Endpoints
+All CRUD operations implemented in `server/routes.ts`:
+- `/api/locations` - GET locations for map
+- `/api/blog` - GET/POST blog posts
+- `/api/events` - GET/POST events
+- `/api/testimonials` - GET/POST testimonials
+- `/api/contact` - POST contact submissions
