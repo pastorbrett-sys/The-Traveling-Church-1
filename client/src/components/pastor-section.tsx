@@ -1,3 +1,5 @@
+import pastorImage from "@assets/IMG_0047_1760166184856.jpg";
+
 export default function PastorSection() {
   return (
     <section id="pastor" className="py-12 md:py-16 px-4 bg-muted">
@@ -13,10 +15,11 @@ export default function PastorSection() {
           <div className="md:flex">
             <div className="md:w-2/5">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+                src={pastorImage}
                 alt="Pastor Brett"
                 className="w-full h-64 md:h-full object-cover"
                 data-testid="img-pastor"
+                loading="lazy"
               />
             </div>
             <div className="p-6 md:p-8 md:w-3/5">
