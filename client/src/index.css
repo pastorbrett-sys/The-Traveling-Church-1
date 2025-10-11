@@ -38,6 +38,7 @@
   --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
+  --font-heading: 'Playfair Display', Georgia, serif;
   --radius: 0.75rem;
 }
 
@@ -74,6 +75,10 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 }
 
