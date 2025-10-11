@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,6 +41,7 @@
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --font-heading: 'Playfair Display', Georgia, serif;
+  --font-logo: 'BBH Sans Bartle', sans-serif;
   --radius: 0.75rem;
 }
 
