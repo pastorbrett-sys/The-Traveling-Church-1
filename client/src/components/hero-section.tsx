@@ -15,7 +15,7 @@ export default function HeroSection() {
       <div className="hero-overlay absolute inset-0"></div>
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
         <h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+          className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
           data-testid="text-hero-title"
         >
           The Traveling Church

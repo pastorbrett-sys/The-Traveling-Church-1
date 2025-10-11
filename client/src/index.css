@@ -121,4 +121,8 @@
   .nav-link.active::after {
     width: 100%;
   }
+
+  .hero-title {
+    font-size: calc(1em * 1.12);
+  }
 }
