@@ -62,7 +62,7 @@ export default function Navigation() {
           <button
             onClick={() => handleNavClick("home")}
             className="text-lg font-semibold text-primary whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-heading)' }}
+            style={{ fontFamily: 'var(--font-heading)', fontSize: '1.35rem' }}
             data-testid="link-home"
           >
             The Traveling Church
