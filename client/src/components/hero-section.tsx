@@ -1,3 +1,5 @@
+import redSeaImage from "@assets/Red-Sea_1760165635786.jpg";
+
 export default function HeroSection() {
   return (
     <section
@@ -5,8 +7,8 @@ export default function HeroSection() {
       className="relative h-screen max-h-[600px] min-h-[400px] flex items-center justify-center overflow-hidden"
     >
       <img
-        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-        alt="Sunrise over mountain road"
+        src={redSeaImage}
+        alt="Red Sea beach with thatched shelter"
         className="absolute inset-0 w-full h-full object-cover"
         data-testid="img-hero"
       />
