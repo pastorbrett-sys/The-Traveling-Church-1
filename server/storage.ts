@@ -157,40 +157,40 @@ async function initializeStorage(): Promise<DbStorage> {
     // Seed initial locations
     const initialLocations: InsertLocation[] = [
       {
-        name: "Athens, Greece",
-        country: "Greece",
-        imageUrl: "https://images.unsplash.com/photo-1555993539-1732b0258235?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "Walking the ancient paths where early apostles preached, sharing the timeless message of hope with modern seekers among historic ruins."
+        name: "Jerusalem",
+        country: "Israel",
+        imageUrl: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        description: "Walking the holy streets where Jesus walked, sharing His message of love and redemption in the city that holds the heart of our faith."
       },
       {
-        name: "Nepal Highlands",
-        country: "Nepal",
-        imageUrl: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "High in the mountains, finding common ground between faiths and sharing Christ's message of universal love with humble mountain communities."
+        name: "Egypt",
+        country: "Egypt",
+        imageUrl: "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        description: "Following the path of the Holy Family, bringing hope and healing to ancient lands where biblical history comes alive."
       },
       {
-        name: "Tokyo, Japan",
-        country: "Japan",
-        imageUrl: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "In the heart of the bustling metropolis, connecting with seekers in coffee shops and parks, bridging ancient faith with modern life."
+        name: "Thailand",
+        country: "Thailand",
+        imageUrl: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        description: "Among golden temples and gentle people, sharing Christ's love with open hearts in a land rich with spiritual seeking."
       },
       {
-        name: "Marrakech, Morocco",
-        country: "Morocco",
-        imageUrl: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "Among the vibrant souks and diverse cultures, sharing stories of faith and finding beauty in our shared humanity and God's love."
+        name: "Cambodia",
+        country: "Cambodia",
+        imageUrl: "https://images.unsplash.com/photo-1604467794349-0b74285de7e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        description: "Ministering to communities rising from hardship, bringing the light of hope to those who have walked through darkness."
       },
       {
-        name: "Algarve, Portugal",
-        country: "Portugal",
-        imageUrl: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "Like the first disciples who were fishermen, meeting with coastal communities and sharing the gospel by the sea where Jesus once walked."
+        name: "Ethiopia",
+        country: "Ethiopia",
+        imageUrl: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        description: "In the cradle of ancient Christianity, connecting with believers who have kept the faith through centuries, strengthening our global family."
       },
       {
-        name: "Sedona, Arizona",
-        country: "United States",
-        imageUrl: "https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "In the vast desert, finding quiet moments of prayer and reflection, and encountering souls seeking spiritual awakening in the wilderness."
+        name: "Bethlehem",
+        country: "Palestine",
+        imageUrl: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        description: "Standing where our Savior was born, sharing the timeless message of peace and goodwill to all who seek the light."
       }
     ];
 
