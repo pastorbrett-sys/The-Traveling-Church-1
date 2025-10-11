@@ -123,6 +123,18 @@
   }
 
   .hero-title {
-    font-size: calc(1em * 1.12);
+    font-size: 2.8125rem !important; /* 45px - 25% larger than 36px (text-4xl) */
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.75rem !important; /* 60px - 25% larger than 48px (text-5xl) */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 4.6875rem !important; /* 75px - 25% larger than 60px (text-6xl) */
+    }
   }
 }
