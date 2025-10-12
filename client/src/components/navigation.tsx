@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logoImage from "@assets/Traveling Church Logo_1760305238166.png";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
@@ -61,11 +62,14 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           <button
             onClick={() => handleNavClick("home")}
-            className="text-lg font-semibold text-primary whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-heading)', fontSize: '1.35rem' }}
+            className="flex items-center"
             data-testid="link-home"
           >
-            The Traveling Church
+            <img 
+              src={logoImage} 
+              alt="The Traveling Church" 
+              className="h-7"
+            />
           </button>
           
           {/* Desktop Navigation */}
