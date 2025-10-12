@@ -68,7 +68,7 @@ export default function Navigation() {
             <img 
               src={logoImage} 
               alt="The Traveling Church" 
-              className="h-5"
+              className="h-7"
             />
           </button>
           
