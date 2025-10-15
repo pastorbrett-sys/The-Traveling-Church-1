@@ -18,8 +18,8 @@ export default function Home() {
       <HeroSection />
       <MissionSection />
       <WhatsAppSection />
-      <JourneyGallery />
       <ValuesSection />
+      <JourneyGallery />
       <PastorSection />
       <BlogSection />
       <EventCalendar />
