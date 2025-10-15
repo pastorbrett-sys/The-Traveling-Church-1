@@ -8,7 +8,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "mission", "journey", "values", "pastor", "blog", "map", "events", "testimonials", "contact"];
+      const sections = ["home", "mission", "journey", "values", "pastor", "blog", "events", "testimonials", "contact"];
       let currentSection = "home";
 
       for (const sectionId of sections) {
@@ -50,7 +50,6 @@ export default function Navigation() {
     { id: "values", label: "Values" },
     { id: "pastor", label: "Pastor" },
     { id: "blog", label: "Journal" },
-    { id: "map", label: "Map" },
     { id: "events", label: "Events" },
     { id: "testimonials", label: "Stories" },
     { id: "contact", label: "Contact" },

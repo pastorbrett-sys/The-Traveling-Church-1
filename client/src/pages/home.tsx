@@ -5,7 +5,6 @@ import JourneyGallery from "@/components/journey-gallery";
 import ValuesSection from "@/components/values-section";
 import PastorSection from "@/components/pastor-section";
 import BlogSection from "@/components/blog-section";
-import { MapSection } from "@/components/map-section";
 import { EventCalendar } from "@/components/event-calendar";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import ContactForm from "@/components/contact-form";
@@ -21,7 +20,6 @@ export default function Home() {
       <ValuesSection />
       <PastorSection />
       <BlogSection />
-      <MapSection />
       <EventCalendar />
       <TestimonialsSection />
       <ContactForm />
