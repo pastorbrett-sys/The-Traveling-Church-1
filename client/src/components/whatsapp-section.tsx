@@ -27,7 +27,7 @@ export default function WhatsAppSection() {
           data-testid="button-whatsapp-join"
         >
           <MessageCircle className="w-5 h-5" />
-          Join WhatsApp Community
+          Join Whatsapp
         </a>
       </div>
     </section>

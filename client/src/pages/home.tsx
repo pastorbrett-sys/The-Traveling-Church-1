@@ -17,9 +17,9 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <MissionSection />
+      <WhatsAppSection />
       <JourneyGallery />
       <ValuesSection />
-      <WhatsAppSection />
       <PastorSection />
       <BlogSection />
       <EventCalendar />
