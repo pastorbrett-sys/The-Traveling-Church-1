@@ -145,30 +145,49 @@ All core features have been implemented and tested:
    - Date handling for both string and Date formats
    - Loading and empty states
 
-3. **Interactive Map** (`client/src/components/map-section.tsx`)
-   - OpenStreetMap embed showing world view
-   - Locations list with descriptions
-   - Error handling for failed API requests
-   - Responsive layout (side-by-side on desktop, stacked on mobile)
-
-4. **Event Calendar** (`client/src/components/event-calendar.tsx`)
+3. **Event Calendar** (`client/src/components/event-calendar.tsx`)
    - Upcoming and past events separation
    - Event type indicators (online/in-person)
    - Date and time formatting with date-fns
    - Schema date coercion for API compatibility
    - Responsive grid layout
 
-5. **Testimonials Section** (`client/src/components/testimonials-section.tsx`)
+4. **Testimonials Section** (`client/src/components/testimonials-section.tsx`)
    - Global testimonials from congregation members
    - Quote decoration on cards
    - Name, location, and testimony display
    - Responsive grid layout
 
-### Navigation
-Updated navigation (`client/src/components/navigation.tsx`) includes:
-- Mission, Journey, Values, Pastor, Journal, Map, Events, Stories (Testimonials), Contact
-- Smooth scroll behavior with active section tracking
-- Mobile-responsive navigation bar
+5. **WhatsApp Community Section** (`client/src/components/whatsapp-section.tsx`) - NEW
+   - Call-to-action section positioned after Values (upper half of page)
+   - WhatsApp green icon and branding
+   - Heading: "Join Our Global Community"
+   - Descriptive text about connecting with global believers
+   - Button links to WhatsApp group: https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc
+   - Opens in new tab with security attributes
+   - Fully responsive for mobile and desktop
+   - Gradient background with primary/secondary colors
+
+### Branding & Navigation Updates
+- **Logo**: Replaced text logo with custom image logo (`attached_assets/Traveling Church Logo_1760305502132.png`)
+  - Logo displays at h-7 (28px) height
+  - Vertically centered in navigation bar
+  - Clickable to scroll to home section
+  
+- **Navigation** (`client/src/components/navigation.tsx`):
+  - Mission, Journey, Values, Pastor, Journal, Events, Stories (Testimonials), Contact
+  - Removed "Map" navigation link (map section removed from site)
+  - Smooth scroll behavior with active section tracking
+  - Mobile-responsive navigation bar with hamburger menu
+
+### Journey Locations Update
+Updated to feature 6 specific locations with working Unsplash images:
+1. **Jerusalem, Israel** - Western Wall
+2. **Egypt** - Cairo mosque and cityscape
+3. **Thailand** - Tropical beach with traditional boats
+4. **Cambodia** - Angkor Wat temple complex
+5. **Ethiopia** - Rock-hewn churches
+6. **Bethlehem, Palestine** - Middle Eastern architecture
 
 ### API Endpoints
 All CRUD operations implemented in `server/routes.ts`:
