@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, Clock, Globe, Users, Loader2 } from "lucide-react";
-import { format, isPast, isFuture } from "date-fns";
+import { format, isFuture } from "date-fns";
 import type { Event } from "@shared/schema";
 
 export function EventCalendar() {
@@ -39,9 +39,8 @@ export function EventCalendar() {
     return dateA.getTime() - dateB.getTime();
   }) || [];
 
-  // Separate upcoming and past events
+  // Filter upcoming events only
   const upcomingEvents = sortedEvents.filter(event => isFuture(new Date(event.date)));
-  const pastEvents = sortedEvents.filter(event => isPast(new Date(event.date)));
 
   return (
     <section id="events" className="py-16 md:py-24 bg-muted/30">
@@ -66,32 +65,17 @@ export function EventCalendar() {
             No events scheduled yet. Check back soon for upcoming gatherings!
           </div>
         ) : (
-          <div className="space-y-12">
+          <div>
             {/* Upcoming Events */}
-            {upcomingEvents.length > 0 && (
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-6">
-                  Coming Soon
-                </h3>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {upcomingEvents.map((event) => (
-                    <EventCard key={event.id} event={event} />
-                  ))}
-                </div>
+            {upcomingEvents.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {upcomingEvents.map((event) => (
+                  <EventCard key={event.id} event={event} />
+                ))}
               </div>
-            )}
-
-            {/* Past Events */}
-            {pastEvents.length > 0 && (
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-6">
-                  Past Gatherings
-                </h3>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {pastEvents.map((event) => (
-                    <EventCard key={event.id} event={event} isPast />
-                  ))}
-                </div>
+            ) : (
+              <div className="text-center text-muted-foreground">
+                No upcoming events scheduled. Check back soon!
               </div>
             )}
           </div>
@@ -101,14 +85,12 @@ export function EventCalendar() {
   );
 }
 
-function EventCard({ event, isPast = false }: { event: Event; isPast?: boolean }) {
+function EventCard({ event }: { event: Event }) {
   const eventDate = new Date(event.date);
   
   return (
     <article
-      className={`bg-card rounded-lg overflow-hidden shadow-md border border-border hover:border-primary transition-colors ${
-        isPast ? "opacity-70" : ""
-      }`}
+      className="bg-card rounded-lg overflow-hidden shadow-md border border-border hover:border-primary transition-colors"
       data-testid={`card-event-${event.id}`}
     >
       <div className="p-6">
@@ -126,9 +108,6 @@ function EventCard({ event, isPast = false }: { event: Event; isPast?: boolean }
               {event.type}
             </span>
           </div>
-          {isPast && (
-            <span className="text-xs text-muted-foreground">Past</span>
-          )}
         </div>
 
         <h3 

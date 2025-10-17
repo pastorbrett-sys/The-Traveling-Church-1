@@ -5,11 +5,12 @@
 The Traveling Church is a full-stack web application showcasing a global, traveling ministry. The application presents information about a faith-based organization that reaches people worldwide. Built with a modern React frontend and Express backend, it serves as a comprehensive platform featuring:
 
 - **Travel locations** with interactive world map
-- **Pastor's journal** for sharing reflections and updates
-- **Event calendar** for upcoming gatherings (online and in-person)
-- **Testimonials** from congregation members worldwide
+- **Event calendar** for upcoming gatherings (online recurring events)
 - **Contact form** for inquiries and connection
 - **Mission statement** and core values presentation
+- **Church leadership** section with photos and roles
+- **Resources for Men** section with link to external platform
+- **WhatsApp community** call-to-action for joining the online community
 
 ## User Preferences
 
@@ -143,11 +144,13 @@ All core features have been implemented and tested:
    - Mobile-responsive design
 
 2. **Event Calendar** (`client/src/components/event-calendar.tsx`)
-   - Upcoming and past events separation
+   - Displays upcoming events only (past events hidden)
    - Event type indicators (online/in-person)
    - Date and time formatting with date-fns
    - Schema date coercion for API compatibility
    - Responsive grid layout
+   - Recurring events use scheduleLabel and timeLabel fields for custom display
+   - Current events: Mens Group (Every Friday, 8-9pm EDT) and International Vibe Service (Every Week Sunday, Noon-1:30PM EDT)
 
 3. **WhatsApp Community Section** (`client/src/components/whatsapp-section.tsx`)
    - Call-to-action section positioned after Mission section
@@ -199,10 +202,15 @@ All core features have been implemented and tested:
   
 - **Navigation** (`client/src/components/navigation.tsx`):
   - Mission, Journey, Values, Pastor, Resources, Events, Contact
-  - Removed "Map", "Journal" (Pastor's Journal), and "Stories" (Testimonials) navigation links
+  - Removed "Map", "Journal" (Pastor's Journal/Blog), and "Stories" (Testimonials) navigation links
   - Added "Resources" link for Men's Resources section
   - Smooth scroll behavior with active section tracking
   - Mobile-responsive navigation bar with hamburger menu
+
+### Removed Sections (October 2025)
+- **Pastor's Journal/Blog**: Removed blog section and all related components
+- **Testimonials**: Removed testimonials section and all related components  
+- **Past Gatherings**: Removed past events display from Event Calendar - only upcoming events shown now
 
 ### Journey Locations Update
 Updated to feature 6 specific locations with custom images, ordered by displayOrder:
@@ -214,7 +222,11 @@ Updated to feature 6 specific locations with custom images, ordered by displayOr
 6. **Ethiopia** - Ancient Christianity cradle
 
 ### API Endpoints
-All CRUD operations implemented in `server/routes.ts`:
+Active endpoints implemented in `server/routes.ts`:
 - `/api/locations` - GET locations for journey section
-- `/api/events` - GET/POST events
+- `/api/events` - GET events (upcoming only displayed)
 - `/api/contact` - POST contact submissions
+
+Removed endpoints:
+- `/api/blog` - Removed (Pastor's Journal/Blog feature removed)
+- `/api/testimonials` - Removed (Testimonials feature removed)
