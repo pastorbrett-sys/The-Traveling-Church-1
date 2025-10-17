@@ -167,6 +167,15 @@ All core features have been implemented and tested:
    - Positioned after Values section
    - Responsive with lazy-loaded images
 
+5. **Resources for Men Section** (`client/src/components/men-resources-section.tsx`)
+   - Dedicated section for men's ministry resources
+   - Centered content with Users icon from lucide-react
+   - Heading: "Resources for Men"
+   - Message about Men of God platform supporting men who carry burdens
+   - CTA button linking to Men of God platform (https://www.menofgod.com)
+   - Positioned after Leadership section
+   - Warm, supportive messaging aligned with ministry focus
+
 ### Branding & Navigation Updates
 - **Logo**: Replaced text logo with custom image logo (`attached_assets/Traveling Church Logo_1760305502132.png`)
   - Logo displays at h-7 (28px) height
@@ -174,8 +183,9 @@ All core features have been implemented and tested:
   - Clickable to scroll to home section
   
 - **Navigation** (`client/src/components/navigation.tsx`):
-  - Mission, Journey, Values, Pastor, Events, Contact
+  - Mission, Journey, Values, Pastor, Resources, Events, Contact
   - Removed "Map", "Journal" (Pastor's Journal), and "Stories" (Testimonials) navigation links
+  - Added "Resources" link for Men's Resources section
   - Smooth scroll behavior with active section tracking
   - Mobile-responsive navigation bar with hamburger menu
 
