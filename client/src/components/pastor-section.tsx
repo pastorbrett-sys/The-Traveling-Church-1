@@ -1,4 +1,4 @@
-import pastorImage from "@assets/IMG_0047_1760166184856.jpg";
+import pastorImage from "@assets/Pastor Brett_1760674999817.png";
 
 export default function PastorSection() {
   return (
