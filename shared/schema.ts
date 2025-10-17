@@ -34,6 +34,8 @@ export const events = pgTable("events", {
   date: timestamp("date").notNull(),
   location: text("location").notNull(),
   type: text("type").notNull(),
+  scheduleLabel: text("schedule_label"),
+  timeLabel: text("time_label"),
 });
 
 export const testimonials = pgTable("testimonials", {

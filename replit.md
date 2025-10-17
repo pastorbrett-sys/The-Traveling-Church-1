@@ -45,7 +45,9 @@ Preferred communication style: Simple, everyday language.
 - **Users table**: Stores user authentication data (id, username, password)
 - **Locations table**: Stores travel location information (id, name, country, imageUrl, description, displayOrder)
 - **Blog Posts table**: Stores Pastor Brett's journal entries (id, title, content, locationId, imageUrl, createdAt)
-- **Events table**: Stores upcoming and past gatherings (id, title, description, date, location, type)
+- **Events table**: Stores upcoming and past gatherings (id, title, description, date, location, type, scheduleLabel, timeLabel)
+  - `scheduleLabel` (optional): Custom display for recurring events (e.g., "Every Friday")
+  - `timeLabel` (optional): Custom time range display (e.g., "8-9pm EDT")
 - **Testimonials table**: Stores congregation member stories (id, name, location, content, createdAt)
 - **Contact Submissions table**: Stores contact form submissions (id, name, email, message, createdAt)
 - Schema definitions in `shared/schema.ts` using Drizzle ORM with Zod validation

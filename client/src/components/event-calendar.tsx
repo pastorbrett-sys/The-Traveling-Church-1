@@ -152,13 +152,13 @@ function EventCard({ event, isPast = false }: { event: Event; isPast?: boolean }
               dateTime={typeof event.date === 'string' ? event.date : event.date.toISOString()}
               data-testid={`text-event-date-${event.id}`}
             >
-              {format(eventDate, "EEEE, MMMM d, yyyy")}
+              {event.scheduleLabel || format(eventDate, "EEEE, MMMM d, yyyy")}
             </time>
           </div>
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4" />
             <span data-testid={`text-event-time-${event.id}`}>
-              {format(eventDate, "h:mm a")}
+              {event.timeLabel || format(eventDate, "h:mm a")}
             </span>
           </div>
           <div className="flex items-center gap-2">
