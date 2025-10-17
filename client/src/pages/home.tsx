@@ -20,9 +20,9 @@ export default function Home() {
       <MissionSection />
       <WhatsAppSection />
       <ValuesSection />
+      <PastorSection />
       <LeadershipSection />
       <JourneyGallery />
-      <PastorSection />
       <BlogSection />
       <EventCalendar />
       <TestimonialsSection />
