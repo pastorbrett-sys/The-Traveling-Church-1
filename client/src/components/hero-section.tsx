@@ -48,7 +48,11 @@ export default function HeroSection() {
           {animateTitle()}
         </h1>
         <p 
-          className="text-lg md:text-xl text-white/95 leading-relaxed font-light"
+          className="text-lg md:text-xl text-white/95 leading-relaxed font-light animate-fade-up opacity-0"
+          style={{
+            animationDelay: '1s',
+            animationFillMode: 'forwards'
+          }}
           data-testid="text-hero-mission"
         >
           A global, traveling ministry, comprised of people all over the world. We reach out to people where they are to spread the gospel and love of Jesus. Our goal is to create the largest and most powerful spiritual revival on planet Earth.

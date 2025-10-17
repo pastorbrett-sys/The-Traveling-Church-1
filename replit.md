@@ -182,12 +182,18 @@ All core features have been implemented and tested:
   - Vertically centered in navigation bar
   - Clickable to scroll to home section
 
-- **Hero Title Animation**: 
-  - "The Traveling Church" title animates on page load
-  - Letter-by-letter fade-in effect from left to right
-  - Each letter fades in with 0.05s delay stagger
-  - Smooth 0.3s fade-in with upward movement (translateY)
-  - Animation runs once on initial page load
+- **Hero Section Animations**: 
+  - **Title**: "The Traveling Church" animates on page load
+    - Letter-by-letter fade-in effect from left to right
+    - Each letter fades in with 0.05s delay stagger
+    - Smooth 0.3s fade-in with upward movement (translateY)
+    - "Church" appears on its own line
+  - **Mission Text**: Fades in after title completes
+    - Starts at 1s delay with 0% opacity
+    - Floats up from bottom (30px translateY) to normal position
+    - 0.8s fade-in duration with ease-out easing
+    - Reaches full opacity when complete
+  - Total animation sequence: ~1.8 seconds
   
 - **Navigation** (`client/src/components/navigation.tsx`):
   - Mission, Journey, Values, Pastor, Resources, Events, Contact
