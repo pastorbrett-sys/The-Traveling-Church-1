@@ -187,10 +187,10 @@ async function initializeStorage(): Promise<DbStorage> {
         description: "In the cradle of ancient Christianity, connecting with believers who have kept the faith through centuries, strengthening our global family."
       },
       {
-        name: "Bethlehem",
-        country: "Palestine",
-        imageUrl: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "Standing where our Savior was born, sharing the timeless message of peace and goodwill to all who seek the light."
+        name: "The Jordan River",
+        country: "Israel",
+        imageUrl: "/attached_assets/IMG_1160_1760675635817.JPG",
+        description: "Baptizing believers in the same waters where John baptized Jesus, continuing the sacred tradition of faith and renewal."
       }
     ];
 
