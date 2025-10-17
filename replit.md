@@ -140,26 +140,14 @@ All core features have been implemented and tested:
    - Stores submissions in PostgreSQL database
    - Mobile-responsive design
 
-2. **Pastor's Journal/Blog** (`client/src/components/blog-section.tsx`)
-   - Displays blog posts with images, dates, and content
-   - Supports multi-line content formatting
-   - Date handling for both string and Date formats
-   - Loading and empty states
-
-3. **Event Calendar** (`client/src/components/event-calendar.tsx`)
+2. **Event Calendar** (`client/src/components/event-calendar.tsx`)
    - Upcoming and past events separation
    - Event type indicators (online/in-person)
    - Date and time formatting with date-fns
    - Schema date coercion for API compatibility
    - Responsive grid layout
 
-4. **Testimonials Section** (`client/src/components/testimonials-section.tsx`)
-   - Global testimonials from congregation members
-   - Quote decoration on cards
-   - Name, location, and testimony display
-   - Responsive grid layout
-
-5. **WhatsApp Community Section** (`client/src/components/whatsapp-section.tsx`)
+3. **WhatsApp Community Section** (`client/src/components/whatsapp-section.tsx`)
    - Call-to-action section positioned after Mission section
    - WhatsApp green icon and branding
    - Heading: "Join Our Global Community"
@@ -170,7 +158,7 @@ All core features have been implemented and tested:
    - Fully responsive for mobile and desktop
    - Gradient background with primary/secondary colors
 
-6. **Church Leadership Section** (`client/src/components/leadership-section.tsx`) - NEW
+4. **Church Leadership Section** (`client/src/components/leadership-section.tsx`)
    - Displays church leadership team
    - Two-column grid layout (desktop), stacked on mobile
    - Features Daniel and Josh Casillio
@@ -186,8 +174,8 @@ All core features have been implemented and tested:
   - Clickable to scroll to home section
   
 - **Navigation** (`client/src/components/navigation.tsx`):
-  - Mission, Journey, Values, Pastor, Journal, Events, Stories (Testimonials), Contact
-  - Removed "Map" navigation link (map section removed from site)
+  - Mission, Journey, Values, Pastor, Events, Contact
+  - Removed "Map", "Journal" (Pastor's Journal), and "Stories" (Testimonials) navigation links
   - Smooth scroll behavior with active section tracking
   - Mobile-responsive navigation bar with hamburger menu
 
@@ -202,8 +190,6 @@ Updated to feature 6 specific locations with custom images, ordered by displayOr
 
 ### API Endpoints
 All CRUD operations implemented in `server/routes.ts`:
-- `/api/locations` - GET locations for map
-- `/api/blog` - GET/POST blog posts
+- `/api/locations` - GET locations for journey section
 - `/api/events` - GET/POST events
-- `/api/testimonials` - GET/POST testimonials
 - `/api/contact` - POST contact submissions
