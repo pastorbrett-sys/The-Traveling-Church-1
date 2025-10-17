@@ -26,15 +26,13 @@ export default function MenResourcesSection() {
           and regain their strength!
         </p>
 
-        <a
-          href="https://www.menofgod.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-primary/90 transition-colors"
+        <button
+          className="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium cursor-default opacity-75"
           data-testid="button-men-of-god"
+          disabled
         >
-          Visit Men of God Platform
-        </a>
+          Coming Soon
+        </button>
       </div>
     </section>
   );
