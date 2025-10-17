@@ -15,6 +15,7 @@ export const locations = pgTable("locations", {
   country: text("country").notNull(),
   imageUrl: text("image_url").notNull(),
   description: text("description").notNull(),
+  displayOrder: text("display_order").notNull().default('999'),
 });
 
 export const blogPosts = pgTable("blog_posts", {

@@ -43,7 +43,7 @@ Preferred communication style: Simple, everyday language.
 
 **Database Schema**:
 - **Users table**: Stores user authentication data (id, username, password)
-- **Locations table**: Stores travel location information (id, name, country, imageUrl, description)
+- **Locations table**: Stores travel location information (id, name, country, imageUrl, description, displayOrder)
 - **Blog Posts table**: Stores Pastor Brett's journal entries (id, title, content, locationId, imageUrl, createdAt)
 - **Events table**: Stores upcoming and past gatherings (id, title, description, date, location, type)
 - **Testimonials table**: Stores congregation member stories (id, name, location, content, createdAt)
@@ -51,6 +51,7 @@ Preferred communication style: Simple, everyday language.
 - Schema definitions in `shared/schema.ts` using Drizzle ORM with Zod validation
 - UUID primary keys generated via PostgreSQL's `gen_random_uuid()`
 - Date coercion in schemas handles both string and Date inputs for timestamp fields
+- Locations ordered by displayOrder column for consistent presentation sequence
 
 **Data Flow**:
 1. Frontend components use TanStack Query to fetch data from API endpoints
@@ -191,13 +192,13 @@ All core features have been implemented and tested:
   - Mobile-responsive navigation bar with hamburger menu
 
 ### Journey Locations Update
-Updated to feature 6 specific locations with working Unsplash images:
-1. **Jerusalem, Israel** - Western Wall
-2. **Egypt** - Cairo mosque and cityscape
-3. **Thailand** - Tropical beach with traditional boats
-4. **Cambodia** - Angkor Wat temple complex
-5. **Ethiopia** - Rock-hewn churches
-6. **Bethlehem, Palestine** - Middle Eastern architecture
+Updated to feature 6 specific locations with custom images, ordered by displayOrder:
+1. **The Jordan River, Israel** - Baptism site where John baptized Jesus
+2. **Jerusalem, Israel** - Walking the holy streets
+3. **Cambodia** - Ministering to communities rising from hardship
+4. **Thailand** - Sharing Christ's love among golden temples
+5. **Egypt** - Following the path of the Holy Family
+6. **Ethiopia** - Ancient Christianity cradle
 
 ### API Endpoints
 All CRUD operations implemented in `server/routes.ts`:

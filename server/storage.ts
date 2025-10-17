@@ -77,7 +77,7 @@ export class DbStorage implements IStorage {
 
   // Locations
   async getAllLocations(): Promise<Location[]> {
-    return await db.select().from(schema.locations);
+    return await db.select().from(schema.locations).orderBy(schema.locations.displayOrder);
   }
 
   async getLocation(id: string): Promise<Location | undefined> {
