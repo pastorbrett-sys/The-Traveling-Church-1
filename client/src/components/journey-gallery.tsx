@@ -54,6 +54,13 @@ export default function JourneyGallery() {
     );
   }
 
+  const desiredOrder = ['The Jordan River', 'Jerusalem', 'Cambodia', 'Thailand', 'Egypt', 'Ethiopia'];
+  const sortedLocations = locations?.sort((a, b) => {
+    const indexA = desiredOrder.indexOf(a.name);
+    const indexB = desiredOrder.indexOf(b.name);
+    return indexA - indexB;
+  });
+
   return (
     <section id="journey" className="py-12 md:py-16 px-4 bg-muted">
       <div className="max-w-6xl mx-auto">
@@ -71,7 +78,7 @@ export default function JourneyGallery() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {locations?.map((location) => (
+          {sortedLocations?.map((location) => (
             <div
               key={location.id}
               className="gallery-card bg-card rounded-lg overflow-hidden shadow-md"
