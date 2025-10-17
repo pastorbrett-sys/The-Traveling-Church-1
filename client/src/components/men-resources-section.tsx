@@ -1,5 +1,4 @@
 import { Users } from "lucide-react";
-import { Link } from "wouter";
 
 export default function MenResourcesSection() {
   return (
@@ -27,14 +26,13 @@ export default function MenResourcesSection() {
           and regain their strength!
         </p>
 
-        <Link href="/counseling">
-          <a
-            className="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-primary/90 transition-colors"
-            data-testid="button-men-of-god"
-          >
-            Learn More
-          </a>
-        </Link>
+        <button
+          className="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium cursor-default opacity-75"
+          data-testid="button-men-of-god"
+          disabled
+        >
+          Coming Soon
+        </button>
       </div>
     </section>
   );
