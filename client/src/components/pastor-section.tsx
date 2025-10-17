@@ -39,9 +39,6 @@ export default function PastorSection() {
                 <p>
                   Inspired by the early apostles who walked from town to town, Pastor Brett left behind the comforts of conventional ministry to become a traveling messenger of God's love. His mission is simple: meet people where they are, share the gospel without judgment, and build a global community united by faith and compassion.
                 </p>
-                <p>
-                  With a background in theology, interfaith dialogue, and community building, Pastor Brett brings both knowledge and humility to his work. He believes that the church shouldn't be a building—it should be the people, gathering wherever they are, connected by love and purpose.
-                </p>
                 <p className="text-secondary font-medium">
                   "We don't need fancy robes or grand cathedrals. We need open hearts and willing hands. Come as you are, and let the Spirit do the rest."
                 </p>
