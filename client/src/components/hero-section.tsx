@@ -1,6 +1,5 @@
-import redSeaImage from "@assets/Red-Sea_1760165635786.jpg";
-
 export default function HeroSection() {
+  const redSeaImage = "/public-objects/Red-Sea_1760165635786.jpg";
   const titleParts = ["The Traveling", "Church"];
   
   const animateTitle = () => {

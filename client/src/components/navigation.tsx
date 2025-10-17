@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import logoImage from "@assets/Traveling Church Logo_1760305502132.png";
 
 export default function Navigation() {
+  const logoImage = "/public-objects/Traveling Church Logo_1760305502132.png";
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

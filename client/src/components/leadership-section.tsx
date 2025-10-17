@@ -1,7 +1,7 @@
-import danielImage from "@assets/Daniel_1760680915194.jpg";
-import joshImage from "@assets/Josh_1760681040173.jpg";
-
 export default function LeadershipSection() {
+  const danielImage = "/public-objects/Daniel_1760680915194.jpg";
+  const joshImage = "/public-objects/Josh_1760681040173.jpg";
+  
   const leaders = [
     {
       name: "Daniel Stockdale",
