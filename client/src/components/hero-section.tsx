@@ -1,19 +1,29 @@
 import redSeaImage from "@assets/Red-Sea_1760165635786.jpg";
 
 export default function HeroSection() {
-  const title = "The Traveling Church";
+  const titleParts = ["The Traveling", "Church"];
   
   const animateTitle = () => {
-    return title.split("").map((char, index) => (
-      <span
-        key={index}
-        className="inline-block animate-fade-in opacity-0"
-        style={{
-          animationDelay: `${index * 0.05}s`,
-          animationFillMode: 'forwards'
-        }}
-      >
-        {char === " " ? "\u00A0" : char}
+    let charIndex = 0;
+    
+    return titleParts.map((part, partIndex) => (
+      <span key={partIndex} className="block">
+        {part.split("").map((char, index) => {
+          const currentDelay = charIndex * 0.05;
+          charIndex++;
+          return (
+            <span
+              key={index}
+              className="inline-block animate-fade-in opacity-0"
+              style={{
+                animationDelay: `${currentDelay}s`,
+                animationFillMode: 'forwards'
+              }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          );
+        })}
       </span>
     ));
   };
