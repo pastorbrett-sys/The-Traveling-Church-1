@@ -5,11 +5,13 @@ export default function LeadershipSection() {
   const leaders = [
     {
       name: "Daniel",
+      title: "Treasurer",
       image: danielImage,
       description: "Dedicated to spreading faith and building community through servant leadership and compassion.",
     },
     {
       name: "Josh Casillio",
+      title: "Community Growth",
       image: joshImage,
       description: "Passionate about connecting cultures and bringing people together in faith and fellowship.",
     },
@@ -45,11 +47,17 @@ export default function LeadershipSection() {
                   />
                 </div>
                 <h3
-                  className="text-2xl md:text-3xl font-semibold mb-3"
+                  className="text-2xl md:text-3xl font-semibold mb-2"
                   data-testid={`text-leader-name-${slug}`}
                 >
                   {leader.name}
                 </h3>
+                <p
+                  className="text-sm md:text-base text-primary font-medium mb-3"
+                  data-testid={`text-leader-title-${slug}`}
+                >
+                  {leader.title}
+                </p>
                 <p
                   className="text-muted-foreground max-w-md"
                   data-testid={`text-leader-description-${slug}`}
