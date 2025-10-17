@@ -23,7 +23,7 @@ export default function WhatsAppSection() {
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
+          className="inline-flex items-center gap-3 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
           data-testid="button-whatsapp-join"
         >
           <MessageCircle className="w-5 h-5" />

@@ -169,4 +169,23 @@
   .animate-fade-up {
     animation: fadeUp 0.8s ease-out;
   }
+
+  @keyframes bounceRotate {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-8px) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(3deg);
+    }
+    75% {
+      transform: translateY(-8px) rotate(-3deg);
+    }
+  }
+
+  .animate-bounce-rotate {
+    animation: bounceRotate 2s ease-in-out infinite;
+  }
 }
