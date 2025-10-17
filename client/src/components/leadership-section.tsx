@@ -4,13 +4,13 @@ import joshImage from "@assets/Josh_1760673949210.png";
 export default function LeadershipSection() {
   const leaders = [
     {
-      name: "Daniel",
+      name: "Daniel Stockdale",
       title: "Treasurer",
       image: danielImage,
       description: "Dedicated to spreading faith and building community through servant leadership and compassion.",
     },
     {
-      name: "Josh Casillio",
+      name: "Josh Castillo",
       title: "Community Growth",
       image: joshImage,
       description: "Passionate about connecting cultures and bringing people together in faith and fellowship.",
