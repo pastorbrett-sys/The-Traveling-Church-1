@@ -132,6 +132,16 @@ Preferred communication style: Simple, everyday language.
 - **nanoid**: Unique ID generation
 - **connect-pg-simple**: PostgreSQL session store for Express (prepared for authentication)
 
+### Object Storage
+- **Google Cloud Storage**: Backend for Replit Object Storage service
+  - Bucket ID: `replit-objstore-6182a29a-cb59-40ea-ab48-48f4335a5691`
+  - Public directory: `/replit-objstore-6182a29a-cb59-40ea-ab48-48f4335a5691/public`
+  - All custom images (hero, pastor, leadership, locations) stored in object storage
+  - Images accessible via `/public-objects/{filename}` route in both dev and production
+  - Object storage service implemented in `server/objectStorage.ts`
+  - Public asset serving route in `server/routes.ts`
+  - 24 images uploaded including: hero image, logo, pastor photo, leadership photos, and location images
+
 ## Recent Changes
 
 ### Completed Features (October 2025)
@@ -206,6 +216,15 @@ All core features have been implemented and tested:
   - Added "Resources" link for Men's Resources section
   - Smooth scroll behavior with active section tracking
   - Mobile-responsive navigation bar with hamburger menu
+
+### Object Storage Implementation (October 2025)
+- **Migrated all images to Replit Object Storage** for consistent hosting across dev/production
+  - Created object storage service with Google Cloud Storage backend
+  - Uploaded 24 custom images from `attached_assets` to object storage
+  - Updated all image URLs in database and frontend components
+  - Images now served via `/public-objects/{filename}` route
+  - E2E tests confirm all images loading successfully
+  - Production-ready: images will work identically when published
 
 ### Removed Sections (October 2025)
 - **Pastor's Journal/Blog**: Removed blog section and all related components
