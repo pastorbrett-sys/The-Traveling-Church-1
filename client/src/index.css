@@ -180,6 +180,6 @@
   }
 
   .animate-bounce-rotate {
-    animation: sharpBounce 2.5s ease-in-out infinite;
+    animation: sharpBounce 5s ease-in-out infinite;
   }
 }
