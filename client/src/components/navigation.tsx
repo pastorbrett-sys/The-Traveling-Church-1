@@ -8,7 +8,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "mission", "journey", "values", "pastor", "men-resources", "events", "contact"];
+      const sections = ["home", "mission", "community", "values", "pastor", "leadership", "men-resources", "journey", "events", "contact"];
       let currentSection = "home";
 
       for (const sectionId of sections) {
