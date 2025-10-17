@@ -1,0 +1,84 @@
+⚠️⚠️⚠️ READ CAREFULLY REPLIT ⚠️⚠️⚠️
+DO NOT DEVIATE FROM THESE INSTRUCTIONS.
+DO NOT ADD MOCK DATA OR SIMULATED USERS.
+ONLY USE REAL INTEGRATIONS AND DEFAULT EMPTY STATES.
+REPEAT: DO NOT DO ANYTHING OTHER THAN EXACTLY WHAT IS WRITTEN BELOW.
+
+⸻
+
+This platform connects men with spiritual counselors for honest, faith-based conversations about the issues men face.
+
+Three subscription tiers:
+	•	Basic: $50 per month, 1 session
+	•	Standard: $100 per month, 2 sessions
+	•	Premium: $200 per month, 3 sessions
+
+The system must be automated, low maintenance, and mobile-friendly. Everything should function without manual intervention once deployed.
+
+User flow:
+	1.	Landing page shows the mission “Meet with spiritual men who get it.” and the three subscription options.
+	2.	Each tier has a “Join Now” button linking directly to Stripe Checkout.
+	3.	After payment, user automatically receives a welcome email with a booking link (Calendly or TidyCal) and an optional intake form (Google Form or Typeform).
+	4.	User books a session via Calendly. Calendly generates a Zoom or Google Meet link and syncs with the counselor’s Google Calendar.
+	5.	Stripe renews payments monthly. Zapier sends automated reminder emails telling the user to book their next session.
+	6.	Optionally, the user receives a Telegram or Discord group invite after their first payment.
+
+Tech stack to use:
+	•	Frontend: Carrd.co or a minimal React site (dark, mobile-optimized).
+	•	Payments and billing: Stripe Checkout + Stripe Billing for recurring subscriptions.
+	•	Scheduling: Calendly or TidyCal integrated with Google Calendar.
+	•	Email automation: MailerLite or ConvertKit for welcome and reminder emails.
+	•	Automation layer: Zapier or Make to connect Stripe → Email → Booking.
+	•	Video calls: Zoom or Google Meet.
+	•	Optional community: Telegram or Discord.
+	•	Optional backend: Node.js Express API only if needed for webhooks.
+
+Automation flows:
+	1.	Stripe → Welcome Email
+	•	Trigger: successful Stripe payment.
+	•	Actions: add user to MailerLite list, send welcome email with booking link, send Telegram or Discord invite.
+	2.	Stripe → Monthly Reminder
+	•	Trigger: Stripe subscription renewal.
+	•	Actions: send reminder email with booking link.
+	3.	Booking Confirmation
+	•	Trigger: user books via Calendly.
+	•	Actions: auto-generate meeting link, send confirmation to user and counselor.
+
+Website structure:
+	•	Hero section with headline “Meet With Spiritual Men Who Get It.” and button “Join Now.”
+	•	Tier section showing $50 / $100 / $200 options, each linking to Stripe Checkout.
+	•	Optional testimonials section with placeholder quotes.
+	•	FAQ section covering how sessions work, cancellation (allowed anytime), and rescheduling (via booking link).
+	•	Footer with contact email and copyright.
+
+Technical notes:
+	•	Do not build a complex backend. Use hosted Stripe checkout, Calendly, and MailerLite.
+	•	Keep frontend static and fast. If React is used, deploy via Vercel or Replit hosting.
+	•	Optional webhook endpoint: /api/webhooks/stripe to handle checkout.session.completed, invoice.payment_succeeded, and customer.subscription.deleted events.
+	•	Store subscription status in a lightweight JSON file or simple database such as Supabase or Firebase.
+
+Development tasks:
+	•	Build landing page with Stripe buttons.
+	•	Configure Stripe recurring plans.
+	•	Add Calendly or TidyCal booking link.
+	•	Set up automation flow Stripe → MailerLite → Email via Zapier.
+	•	Optionally add Telegram invite step.
+	•	Test payment, email, and booking automation.
+	•	Deploy to live domain.
+
+Deployment plan:
+	•	Host site on Replit, Vercel, or Carrd.
+	•	Connect custom domain and enable SSL.
+	•	Test Stripe sandbox payments and verify emails.
+	•	Launch with live Stripe keys once tested.
+
+Rules for Replit:
+	1.	Do not hardcode fake users or mock bookings.
+	2.	Do not add demo payments. Use Stripe test mode only for verification.
+	3.	Do not build dashboards or admin panels.
+	4.	All automations must function without manual edits.
+	5.	Store all API keys in the .env file.
+
+Deliverables:
+	1.	Functional MVP with landing page, Stripe integration, automated emails, and booking system.
+	2.	Documentation including README setup guide, environment variable list, and instructions on updating prices or URLs.
