@@ -1,4 +1,4 @@
-import danielImage from "@assets/Daniel_1760673949210.png";
+import danielImage from "@assets/Daniel_1760680915194.jpg";
 import joshImage from "@assets/Josh_1760673949210.png";
 
 export default function LeadershipSection() {

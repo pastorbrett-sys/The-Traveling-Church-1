@@ -161,9 +161,9 @@ All core features have been implemented and tested:
 4. **Church Leadership Section** (`client/src/components/leadership-section.tsx`)
    - Displays church leadership team
    - Two-column grid layout (desktop), stacked on mobile
-   - Features Daniel and Josh Casillio
-   - Each leader has: circular profile image, name, and short description
-   - Images: Daniel_1760673949210.png and Josh_1760673949210.png
+   - Features Daniel Stockdale (Treasurer) and Josh Castillo (Community Growth)
+   - Each leader has: circular profile image, name, title, and short description
+   - Images: Daniel_1760680915194.jpg and Josh_1760673949210.png
    - Positioned after Values section
    - Responsive with lazy-loaded images
 
