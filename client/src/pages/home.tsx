@@ -4,6 +4,7 @@ import MissionSection from "@/components/mission-section";
 import JourneyGallery from "@/components/journey-gallery";
 import ValuesSection from "@/components/values-section";
 import WhatsAppSection from "@/components/whatsapp-section";
+import LeadershipSection from "@/components/leadership-section";
 import PastorSection from "@/components/pastor-section";
 import BlogSection from "@/components/blog-section";
 import { EventCalendar } from "@/components/event-calendar";
@@ -19,6 +20,7 @@ export default function Home() {
       <MissionSection />
       <WhatsAppSection />
       <ValuesSection />
+      <LeadershipSection />
       <JourneyGallery />
       <PastorSection />
       <BlogSection />

@@ -158,15 +158,25 @@ All core features have been implemented and tested:
    - Name, location, and testimony display
    - Responsive grid layout
 
-5. **WhatsApp Community Section** (`client/src/components/whatsapp-section.tsx`) - NEW
-   - Call-to-action section positioned after Values (upper half of page)
+5. **WhatsApp Community Section** (`client/src/components/whatsapp-section.tsx`)
+   - Call-to-action section positioned after Mission section
    - WhatsApp green icon and branding
    - Heading: "Join Our Global Community"
    - Descriptive text about connecting with global believers
-   - Button links to WhatsApp group: https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc
+   - Button text: "Join Whatsapp"
+   - Links to WhatsApp group: https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc
    - Opens in new tab with security attributes
    - Fully responsive for mobile and desktop
    - Gradient background with primary/secondary colors
+
+6. **Church Leadership Section** (`client/src/components/leadership-section.tsx`) - NEW
+   - Displays church leadership team
+   - Two-column grid layout (desktop), stacked on mobile
+   - Features Daniel and Josh Casillio
+   - Each leader has: circular profile image, name, and short description
+   - Images: Daniel_1760673949210.png and Josh_1760673949210.png
+   - Positioned after Values section
+   - Responsive with lazy-loaded images
 
 ### Branding & Navigation Updates
 - **Logo**: Replaced text logo with custom image logo (`attached_assets/Traveling Church Logo_1760305502132.png`)
