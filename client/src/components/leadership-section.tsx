@@ -1,5 +1,5 @@
 import danielImage from "@assets/Daniel_1760680915194.jpg";
-import joshImage from "@assets/Josh_1760673949210.png";
+import joshImage from "@assets/Josh_1760681040173.jpg";
 
 export default function LeadershipSection() {
   const leaders = [

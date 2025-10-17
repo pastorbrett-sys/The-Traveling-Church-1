@@ -163,7 +163,7 @@ All core features have been implemented and tested:
    - Two-column grid layout (desktop), stacked on mobile
    - Features Daniel Stockdale (Treasurer) and Josh Castillo (Community Growth)
    - Each leader has: circular profile image, name, title, and short description
-   - Images: Daniel_1760680915194.jpg and Josh_1760673949210.png
+   - Images: Daniel_1760680915194.jpg and Josh_1760681040173.jpg
    - Positioned after Values section
    - Responsive with lazy-loaded images
 
