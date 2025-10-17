@@ -171,15 +171,15 @@
   }
 
   @keyframes sharpBounce {
-    0%, 100% {
+    0%, 10%, 20%, 30%, 100% {
       transform: translateY(0);
     }
-    50% {
+    5%, 15%, 25% {
       transform: translateY(-10px);
     }
   }
 
   .animate-bounce-rotate {
-    animation: sharpBounce 0.6s ease-in-out infinite;
+    animation: sharpBounce 2.5s ease-in-out infinite;
   }
 }
