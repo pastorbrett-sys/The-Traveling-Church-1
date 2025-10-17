@@ -181,6 +181,13 @@ All core features have been implemented and tested:
   - Logo displays at h-7 (28px) height
   - Vertically centered in navigation bar
   - Clickable to scroll to home section
+
+- **Hero Title Animation**: 
+  - "The Traveling Church" title animates on page load
+  - Letter-by-letter fade-in effect from left to right
+  - Each letter fades in with 0.05s delay stagger
+  - Smooth 0.3s fade-in with upward movement (translateY)
+  - Animation runs once on initial page load
   
 - **Navigation** (`client/src/components/navigation.tsx`):
   - Mission, Journey, Values, Pastor, Resources, Events, Contact

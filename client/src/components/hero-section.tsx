@@ -1,6 +1,23 @@
 import redSeaImage from "@assets/Red-Sea_1760165635786.jpg";
 
 export default function HeroSection() {
+  const title = "The Traveling Church";
+  
+  const animateTitle = () => {
+    return title.split("").map((char, index) => (
+      <span
+        key={index}
+        className="inline-block animate-fade-in opacity-0"
+        style={{
+          animationDelay: `${index * 0.05}s`,
+          animationFillMode: 'forwards'
+        }}
+      >
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+  };
+
   return (
     <section
       id="home"
@@ -18,7 +35,7 @@ export default function HeroSection() {
           className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
           data-testid="text-hero-title"
         >
-          The Traveling Church
+          {animateTitle()}
         </h1>
         <p 
           className="text-lg md:text-xl text-white/95 leading-relaxed font-light"
