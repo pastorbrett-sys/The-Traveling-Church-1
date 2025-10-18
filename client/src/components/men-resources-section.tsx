@@ -22,13 +22,13 @@ export default function MenResourcesSection() {
           data-testid="text-men-resources-description"
         >
           Men of God often suffer in silence, burdened by their responsibilities and the weight that they carry. 
-          Check out the "Men of God" platform, a resource just for men who need a place to be open and honest 
+          Check out the "Iron Men" platform, a resource just for men who need a place to be open and honest 
           and regain their strength!
         </p>
 
         <button
           className="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium cursor-default opacity-75"
-          data-testid="button-men-of-god"
+          data-testid="button-iron-men"
           disabled
         >
           Coming Soon
