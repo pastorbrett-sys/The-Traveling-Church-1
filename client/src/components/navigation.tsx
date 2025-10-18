@@ -92,10 +92,10 @@ export default function Navigation() {
             data-testid="button-mobile-menu"
             aria-label="Toggle menu"
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-5 flex flex-col justify-center">
-              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-[4px]' : 'mb-1.5'}`}></span>
-              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : 'mb-1.5'}`}></span>
-              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-[4px]' : ''}`}></span>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-5 flex flex-col justify-center items-center gap-1.5">
+              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 origin-center ${mobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0 scale-0' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 origin-center ${mobileMenuOpen ? '-rotate-45 -translate-y-[5px]' : ''}`}></span>
             </div>
           </button>
         </div>
