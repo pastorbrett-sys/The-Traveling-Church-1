@@ -176,7 +176,7 @@ All core features have been implemented and tested:
 4. **Church Leadership Section** (`client/src/components/leadership-section.tsx`)
    - Displays church leadership team
    - Two-column grid layout (desktop), stacked on mobile
-   - Features Daniel Stockdale (Treasurer) and Joshua Castillo (Community Growth)
+   - Features Daniel Stockdale (Treasurer) and Josh Castillo (Community Growth)
    - Each leader has: circular profile image, name, title, and short description
    - Images: Daniel_1760680915194.jpg and Josh_1760681040173.jpg
    - Positioned after Values section
@@ -186,8 +186,8 @@ All core features have been implemented and tested:
    - Dedicated section for men's ministry resources
    - Centered content with Users icon from lucide-react
    - Heading: "Resources for Men"
-   - References "Iron Men" platform supporting men who carry burdens
-   - CTA button displays "Coming Soon" (currently disabled)
+   - Message about Men of God platform supporting men who carry burdens
+   - CTA button linking to Men of God platform (https://www.menofgod.com)
    - Positioned after Leadership section
    - Warm, supportive messaging aligned with ministry focus
 
@@ -215,14 +215,7 @@ All core features have been implemented and tested:
   - Removed "Map", "Journal" (Pastor's Journal/Blog), and "Stories" (Testimonials) navigation links
   - Added "Resources" link for Men's Resources section
   - Smooth scroll behavior with active section tracking
-  - Mobile-responsive navigation bar with animated hamburger menu
-  - **Mobile Menu Animations**:
-    - Hamburger icon smoothly transforms into X (300ms transition)
-    - Top line rotates 45° and translates down
-    - Middle line fades out (opacity: 0)
-    - Bottom line rotates -45° and translates up
-    - Menu items slide in with staggered animation (0.05s delay per item)
-    - Each item fades in from top with translateY animation (0.2s duration)
+  - Mobile-responsive navigation bar with hamburger menu
 
 ### Object Storage Implementation (October 2025)
 - **Migrated all images to Replit Object Storage** for consistent hosting across dev/production

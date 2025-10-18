@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const logoImage = "/public-objects/Traveling Church Logo_1760305502132.png";
@@ -88,15 +89,11 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground relative w-10 h-10"
+            className="lg:hidden p-2 text-foreground"
             data-testid="button-mobile-menu"
             aria-label="Toggle menu"
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-5 flex flex-col justify-center items-center gap-1.5">
-              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 origin-center ${mobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''}`}></span>
-              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0 scale-0' : ''}`}></span>
-              <span className={`block h-0.5 w-6 bg-current transition-all duration-300 origin-center ${mobileMenuOpen ? '-rotate-45 -translate-y-[5px]' : ''}`}></span>
-            </div>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -104,14 +101,13 @@ export default function Navigation() {
         {mobileMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4">
             <div className="flex flex-col gap-3">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-slide-in ${
+                  className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
                     activeSection === item.id ? "bg-muted text-primary" : ""
                   }`}
-                  style={{ animationDelay: `${index * 0.05}s` }}
                   data-testid={`link-${item.id}`}
                 >
                   {item.label}
