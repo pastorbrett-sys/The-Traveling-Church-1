@@ -10,7 +10,7 @@ export default function LeadershipSection() {
       description: "Dedicated to spreading faith and building community through servant leadership and compassion.",
     },
     {
-      name: "Josh Castillo",
+      name: "Joshua Castillo",
       title: "Community Growth",
       image: joshImage,
       description: "Passionate about connecting cultures and bringing people together in faith and fellowship.",
