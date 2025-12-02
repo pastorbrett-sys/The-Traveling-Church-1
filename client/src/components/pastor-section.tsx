@@ -1,3 +1,5 @@
+import { SiInstagram, SiTiktok } from "react-icons/si";
+
 export default function PastorSection() {
   const pastorImage = "/public-objects/Pastor Brett_1760674999817.png";
   return (
@@ -21,7 +23,7 @@ export default function PastorSection() {
                 loading="lazy"
               />
             </div>
-            <div className="p-6 md:p-8 md:w-3/5">
+            <div className="p-6 md:p-8 md:w-3/5 flex flex-col">
               <h3 
                 className="text-xl md:text-2xl font-semibold text-foreground mb-4"
                 data-testid="text-pastor-subtitle"
@@ -29,7 +31,7 @@ export default function PastorSection() {
                 A Journey of Faith and Service
               </h3>
               <div 
-                className="space-y-4 text-muted-foreground leading-relaxed"
+                className="space-y-4 text-muted-foreground leading-relaxed flex-grow"
                 data-testid="text-pastor-biography"
               >
                 <p>
@@ -41,6 +43,28 @@ export default function PastorSection() {
                 <p className="text-secondary font-medium">
                   "We don't need fancy robes or grand cathedrals. We need open hearts and willing hands. Come as you are, and let the Spirit do the rest."
                 </p>
+              </div>
+              <div className="flex gap-4 mt-6 pt-4 border-t border-border">
+                <a
+                  href="https://www.instagram.com/the_bcuz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-pink-500 transition-colors"
+                  data-testid="link-pastor-instagram"
+                  aria-label="Follow Pastor Brett on Instagram"
+                >
+                  <SiInstagram className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@the_bcuz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  data-testid="link-pastor-tiktok"
+                  aria-label="Follow Pastor Brett on TikTok"
+                >
+                  <SiTiktok className="w-6 h-6" />
+                </a>
               </div>
             </div>
           </div>
