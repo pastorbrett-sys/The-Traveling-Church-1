@@ -56,7 +56,7 @@ export default function PastorSection() {
                   <SiInstagram className="w-6 h-6" />
                 </a>
                 <a
-                  href="https://www.tiktok.com/@the_bcuz"
+                  href="https://www.tiktok.com/@pastorbrett"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
