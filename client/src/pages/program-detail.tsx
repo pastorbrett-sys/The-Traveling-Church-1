@@ -166,7 +166,7 @@ export default function ProgramDetail() {
                   data-testid="button-donate-program"
                 >
                   <Heart className="w-5 h-5" />
-                  Give to This Program
+                  Give Now
                 </a>
               </div>
             </div>
