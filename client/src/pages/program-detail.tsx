@@ -63,7 +63,7 @@ export default function ProgramDetail() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
       
-      <main className="pt-2 pb-16">
+      <main className="pt-5 pb-16">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <Link
             href="/programs"
