@@ -1,5 +1,6 @@
+import heroVideo from "@assets/Man_on_Mountain_Spinning_Fast_1_1766872397132.mp4";
+
 export default function HeroSection() {
-  const redSeaImage = "/public-objects/Red-Sea_1760165635786.jpg";
   const titleParts = ["The Traveling", "Church"];
   
   const animateTitle = () => {
@@ -32,11 +33,14 @@ export default function HeroSection() {
       id="home"
       className="relative h-screen max-h-[600px] min-h-[400px] flex items-center justify-center overflow-hidden"
     >
-      <img
-        src={redSeaImage}
-        alt="Red Sea beach with thatched shelter"
+      <video
+        src={heroVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        data-testid="img-hero"
+        data-testid="video-hero"
       />
       <div className="hero-overlay absolute inset-0"></div>
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
