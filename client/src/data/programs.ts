@@ -52,7 +52,7 @@ export const programs: Program[] = [
     id: "3",
     slug: "global-itinerant-ministry",
     title: "Global Ministry & Presence Program",
-    shortDescription: "Carrying the Gospel through physical presence and relational ministry across diverse global locations.",
+    shortDescription: "Carrying the Gospel to places others won't go through physical presence and in-person ministry across diverse global locations.",
     purpose: "The Global Ministry & Presence Program exists to carry the message of the Gospel in person across diverse global locations. Modeled after the early apostles, this program emphasizes going where God leads rather than operating from a fixed location.",
     activities: [
       "International and domestic travel by the Senior Pastor to locations of spiritual need or opportunity",
