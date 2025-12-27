@@ -1,8 +1,16 @@
 import { Link } from "wouter";
 import { programs } from "@/data/programs";
-import { Heart, ArrowRight } from "lucide-react";
+import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+
+const iconMap: Record<string, typeof Shield> = {
+  shield: Shield,
+  "hand-heart": HandHeart,
+  globe: Globe,
+  utensils: Utensils,
+  briefcase: Briefcase,
+};
 
 export default function Programs() {
   return (
@@ -31,31 +39,37 @@ export default function Programs() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {programs.map((program) => (
-              <Link
-                key={program.id}
-                href={`/programs/${program.slug}`}
-                className="group block bg-card rounded-lg shadow-md border border-border p-6 hover:shadow-lg transition-shadow"
-                data-testid={`card-program-${program.slug}`}
-              >
-                <h2 
-                  className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors"
-                  data-testid={`heading-program-${program.slug}`}
+            {programs.map((program) => {
+              const IconComponent = iconMap[program.icon] || Heart;
+              return (
+                <Link
+                  key={program.id}
+                  href={`/programs/${program.slug}`}
+                  className="group block bg-card rounded-lg shadow-md border border-border p-6 hover:shadow-lg transition-shadow"
+                  data-testid={`card-program-${program.slug}`}
                 >
-                  {program.title}
-                </h2>
-                <p 
-                  className="text-muted-foreground mb-4 line-clamp-3"
-                  data-testid={`text-program-${program.slug}`}
-                >
-                  {program.shortDescription}
-                </p>
-                <div className="flex items-center text-primary font-medium">
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                    <IconComponent className="w-6 h-6 text-primary" />
+                  </div>
+                  <h2 
+                    className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors"
+                    data-testid={`heading-program-${program.slug}`}
+                  >
+                    {program.title}
+                  </h2>
+                  <p 
+                    className="text-muted-foreground mb-4 line-clamp-3"
+                    data-testid={`text-program-${program.slug}`}
+                  >
+                    {program.shortDescription}
+                  </p>
+                  <div className="flex items-center text-primary font-medium">
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </main>

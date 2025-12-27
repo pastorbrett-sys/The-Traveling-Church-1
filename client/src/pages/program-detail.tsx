@@ -1,8 +1,16 @@
 import { useParams, Link } from "wouter";
 import { programs, DONATE_LINK } from "@/data/programs";
-import { Heart, ArrowLeft, CheckCircle } from "lucide-react";
+import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+
+const iconMap: Record<string, typeof Shield> = {
+  shield: Shield,
+  "hand-heart": HandHeart,
+  globe: Globe,
+  utensils: Utensils,
+  briefcase: Briefcase,
+};
 
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -49,9 +57,14 @@ export default function ProgramDetail() {
 
           <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
             <div className="bg-gradient-to-br from-primary/10 to-secondary/10 p-8 md:p-12 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full animate-pink-pulse mb-6">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
+              {(() => {
+                const IconComponent = iconMap[program.icon] || Heart;
+                return (
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary mb-6">
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                );
+              })()}
               <h1 
                 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
                 data-testid="heading-program-title"
