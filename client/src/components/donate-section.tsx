@@ -1,8 +1,7 @@
 import { Heart } from "lucide-react";
+import { Link } from "wouter";
 
 export default function DonateSection() {
-  const donateLink = "https://donate.stripe.com/dRm9AVakieMSgJX6WP4wM00";
-
   return (
     <section id="donate" className="py-16 md:py-24 bg-gradient-to-br from-secondary/5 to-primary/5">
       <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
@@ -19,16 +18,14 @@ export default function DonateSection() {
           Every donation makes a difference in reaching more communities with God's love.
         </p>
         
-        <a
-          href={donateLink}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/programs"
           className="inline-flex items-center gap-3 bg-[#0077B6] hover:bg-[#00B4D8] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
           data-testid="button-donate"
         >
           <Heart className="w-5 h-5" />
           Give Now
-        </a>
+        </Link>
       </div>
     </section>
   );
