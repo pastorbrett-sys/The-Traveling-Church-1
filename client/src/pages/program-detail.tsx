@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link } from "wouter";
-import { programs, DONATE_LINK } from "@/data/programs";
+import { programs } from "@/data/programs";
 import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -159,7 +159,7 @@ export default function ProgramDetail() {
                   Your generosity makes this program possible.
                 </p>
                 <a
-                  href={DONATE_LINK}
+                  href={program.donateLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-[#0077B6] hover:bg-[#00B4D8] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"

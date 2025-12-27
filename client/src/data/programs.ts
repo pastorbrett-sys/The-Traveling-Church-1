@@ -9,6 +9,7 @@ export interface Program {
   oversight: string;
   icon: string;
   image: string;
+  donateLink: string;
 }
 
 export const programs: Program[] = [
@@ -28,7 +29,8 @@ export const programs: Program[] = [
     useOfFunds: "Each donation will sponsor men in need of these resources, providing access to support groups, counseling services, and educational materials.",
     oversight: "This program is overseen by the Senior Pastor and male leadership within the church.",
     icon: "shield",
-    image: "iron-men"
+    image: "iron-men",
+    donateLink: "https://donate.stripe.com/eVq28t786cEK79n5SL4wM06"
   },
   {
     id: "2",
@@ -46,7 +48,8 @@ export const programs: Program[] = [
     useOfFunds: "Funds are used for humanitarian assistance, food and basic necessities, temporary lodging, travel support, communication tools, and other lawful aid consistent with the protection and well-being of persecuted Christians.",
     oversight: "This program is overseen by the Senior Pastor, with careful attention to legal compliance, safety considerations, and appropriate stewardship of resources.",
     icon: "hand-heart",
-    image: "persecuted-christians"
+    image: "persecuted-christians",
+    donateLink: ""
   },
   {
     id: "3",
@@ -64,7 +67,8 @@ export const programs: Program[] = [
     useOfFunds: "Program funds are used for travel expenses, lodging, meals, local transportation, communication tools, and ministry-related materials necessary to support itinerant ministry activities.",
     oversight: "This program is overseen directly by the Senior Pastor.",
     icon: "globe",
-    image: "global-ministry"
+    image: "global-ministry",
+    donateLink: ""
   },
   {
     id: "4",
@@ -82,7 +86,8 @@ export const programs: Program[] = [
     useOfFunds: "Funds are used for food purchases, meals, essential goods, travel assistance, lodging support, and other direct aid consistent with the mission of compassionate service.",
     oversight: "This program is overseen by the Senior Pastor, with financial accountability maintained through standard church recordkeeping.",
     icon: "utensils",
-    image: "community-feeding"
+    image: "community-feeding",
+    donateLink: ""
   },
   {
     id: "5",
@@ -100,8 +105,9 @@ export const programs: Program[] = [
     useOfFunds: "Funds are allocated toward business investments, operational support, professional services, and related expenses. Business activities are structured to comply with applicable laws and maintain appropriate separation between nonprofit and for-profit operations.",
     oversight: "This program operates in coordination with our business arm and is overseen by the Senior Pastor and Treasurer or their appointed designee.",
     icon: "briefcase",
-    image: "economic-empowerment"
+    image: "economic-empowerment",
+    donateLink: ""
   }
 ];
 
-export const DONATE_LINK = "https://donate.stripe.com/eVq28t786cEK79n5SL4wM06";
+export const DONATE_LINK = "https://donate.stripe.com/dRm9AVakieMSgJX6WP4wM00";
