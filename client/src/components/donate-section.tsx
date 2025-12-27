@@ -6,7 +6,7 @@ export default function DonateSection() {
   return (
     <section id="donate" className="py-16 md:py-24 bg-gradient-to-br from-secondary/5 to-primary/5">
       <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#FF0381] hover:bg-[#FF69B4] transition-colors mb-6">
+        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full animate-pink-pulse mb-6">
           <Heart className="w-8 h-8 md:w-10 md:h-10 text-white" />
         </div>
         

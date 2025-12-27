@@ -182,4 +182,17 @@
   .animate-bounce-rotate {
     animation: sharpBounce 2.5s ease-in-out infinite;
   }
+
+  @keyframes pinkPulse {
+    0%, 100% {
+      background-color: #FF0381;
+    }
+    50% {
+      background-color: #FF69B4;
+    }
+  }
+
+  .animate-pink-pulse {
+    animation: pinkPulse 2s ease-in-out infinite;
+  }
 }
