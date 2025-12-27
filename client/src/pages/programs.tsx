@@ -18,7 +18,7 @@ export default function Programs() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
       
-      <main className="pt-14">
+      <main>
         <div className="relative">
           <div className="w-full h-48 md:h-64 lg:h-80 overflow-hidden">
             <img
