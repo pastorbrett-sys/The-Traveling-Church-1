@@ -104,4 +104,4 @@ export const programs: Program[] = [
   }
 ];
 
-export const DONATE_LINK = "https://donate.stripe.com/dRm9AVakieMSgJX6WP4wM00";
+export const DONATE_LINK = "https://donate.stripe.com/eVq28t786cEK79n5SL4wM06";
