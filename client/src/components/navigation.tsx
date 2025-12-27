@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
-import logoImage from "@assets/Traveling_Church_Logo_Lockup_1766868168920.png";
+import logoImage from "@assets/Traveling_Church_Logo_Black_Text_1766868484383.png";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
