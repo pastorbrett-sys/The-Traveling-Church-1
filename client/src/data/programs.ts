@@ -14,9 +14,9 @@ export const programs: Program[] = [
   {
     id: "1",
     slug: "iron-men",
-    title: "IRON MEN Program",
+    title: "Iron Men Program",
     shortDescription: "Providing men of faith with resources to navigate the modern world through support and spiritual counseling.",
-    purpose: "The IRON MEN Program exists to provide men of faith resources to navigate the modern world. This program recognizes the unique challenges men face and offers a supportive community for growth and accountability.",
+    purpose: "The Iron Men Program exists to provide men of faith resources to navigate the modern world. This program recognizes the unique challenges men face and offers a supportive community for growth and accountability.",
     activities: [
       "Support groups for men facing life's challenges",
       "Media and content created specifically for men of faith",
