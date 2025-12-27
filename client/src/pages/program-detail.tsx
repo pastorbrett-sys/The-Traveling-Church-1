@@ -63,11 +63,11 @@ export default function ProgramDetail() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
       
-      <main className="pt-16 pb-16">
+      <main className="pt-2 pb-16">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <Link
             href="/programs"
-            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
+            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-4 transition-colors"
             data-testid="link-back-programs"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
