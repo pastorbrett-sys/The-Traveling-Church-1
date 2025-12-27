@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "wouter";
 import { programs, DONATE_LINK } from "@/data/programs";
 import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
@@ -29,6 +30,10 @@ const imageMap: Record<string, string> = {
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
   const program = programs.find((p) => p.slug === slug);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!program) {
     return (
