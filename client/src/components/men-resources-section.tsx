@@ -23,7 +23,7 @@ export default function MenResourcesSection() {
           data-testid="text-men-resources-description"
         >
           Men of God often suffer in silence, burdened by their responsibilities and the weight that they carry. 
-          Check out the "Iron Men" platform, a resource just for men who need a place to be open and honest 
+          Learn more about the up and coming "Iron Men" program, a resource just for men who need a place to be open and honest 
           and regain their strength!
         </p>
 
