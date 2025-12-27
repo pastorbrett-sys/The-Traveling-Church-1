@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { programs } from "@/data/programs";
 import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
@@ -14,6 +15,10 @@ const iconMap: Record<string, typeof Shield> = {
 };
 
 export default function Programs() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
