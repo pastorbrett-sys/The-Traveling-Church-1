@@ -76,24 +76,28 @@ export default function ProgramDetail() {
 
           <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
             {imageMap[program.image] && (
-              <div className="w-full h-48 md:h-64 overflow-hidden">
-                <img
-                  src={imageMap[program.image]}
-                  alt={program.title}
-                  className="w-full h-full object-cover"
-                  data-testid="img-program-banner"
-                />
+              <div className="relative">
+                <div className="w-full h-48 md:h-64 overflow-hidden">
+                  <img
+                    src={imageMap[program.image]}
+                    alt={program.title}
+                    className="w-full h-full object-cover"
+                    data-testid="img-program-banner"
+                  />
+                </div>
+                <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 z-10">
+                  {(() => {
+                    const IconComponent = iconMap[program.icon] || Heart;
+                    return (
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary shadow-lg">
+                        <IconComponent className="w-8 h-8 text-white" />
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
             )}
-            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 p-8 md:p-12 text-center">
-              {(() => {
-                const IconComponent = iconMap[program.icon] || Heart;
-                return (
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary mb-6">
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
-                );
-              })()}
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 pt-12 pb-8 px-8 md:px-12 text-center">
               <h1 
                 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
                 data-testid="heading-program-title"
