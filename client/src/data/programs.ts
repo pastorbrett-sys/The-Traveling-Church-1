@@ -8,6 +8,7 @@ export interface Program {
   useOfFunds: string;
   oversight: string;
   icon: string;
+  image: string;
 }
 
 export const programs: Program[] = [
@@ -26,7 +27,8 @@ export const programs: Program[] = [
     ],
     useOfFunds: "Each donation will sponsor men in need of these resources, providing access to support groups, counseling services, and educational materials.",
     oversight: "This program is overseen by the Senior Pastor and male leadership within the church.",
-    icon: "shield"
+    icon: "shield",
+    image: "iron-men"
   },
   {
     id: "2",
@@ -43,7 +45,8 @@ export const programs: Program[] = [
     ],
     useOfFunds: "Funds are used for humanitarian assistance, food and basic necessities, temporary lodging, travel support, communication tools, and other lawful aid consistent with the protection and well-being of persecuted Christians.",
     oversight: "This program is overseen by the Senior Pastor, with careful attention to legal compliance, safety considerations, and appropriate stewardship of resources.",
-    icon: "hand-heart"
+    icon: "hand-heart",
+    image: "persecuted-christians"
   },
   {
     id: "3",
@@ -60,7 +63,8 @@ export const programs: Program[] = [
     ],
     useOfFunds: "Program funds are used for travel expenses, lodging, meals, local transportation, communication tools, and ministry-related materials necessary to support itinerant ministry activities.",
     oversight: "This program is overseen directly by the Senior Pastor.",
-    icon: "globe"
+    icon: "globe",
+    image: "global-ministry"
   },
   {
     id: "4",
@@ -77,7 +81,8 @@ export const programs: Program[] = [
     ],
     useOfFunds: "Funds are used for food purchases, meals, essential goods, travel assistance, lodging support, and other direct aid consistent with the mission of compassionate service.",
     oversight: "This program is overseen by the Senior Pastor, with financial accountability maintained through standard church recordkeeping.",
-    icon: "utensils"
+    icon: "utensils",
+    image: "community-feeding"
   },
   {
     id: "5",
@@ -94,7 +99,8 @@ export const programs: Program[] = [
     ],
     useOfFunds: "Funds are allocated toward business investments, operational support, professional services, and related expenses. Business activities are structured to comply with applicable laws and maintain appropriate separation between nonprofit and for-profit operations.",
     oversight: "This program operates in coordination with our business arm and is overseen by the Senior Pastor and Treasurer or their appointed designee.",
-    icon: "briefcase"
+    icon: "briefcase",
+    image: "economic-empowerment"
   }
 ];
 

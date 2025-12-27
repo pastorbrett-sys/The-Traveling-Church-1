@@ -4,12 +4,26 @@ import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Brie
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
+import ironMenImage from "@assets/generated_images/men's_support_group_meeting.png";
+import persecutedChristiansImage from "@assets/generated_images/christians_receiving_humanitarian_aid.png";
+import globalMinistryImage from "@assets/generated_images/traveling_minister_meeting_people.png";
+import communityFeedingImage from "@assets/generated_images/community_food_distribution_volunteers.png";
+import economicEmpowermentImage from "@assets/generated_images/business_training_entrepreneurs_workshop.png";
+
 const iconMap: Record<string, typeof Shield> = {
   shield: Shield,
   "hand-heart": HandHeart,
   globe: Globe,
   utensils: Utensils,
   briefcase: Briefcase,
+};
+
+const imageMap: Record<string, string> = {
+  "iron-men": ironMenImage,
+  "persecuted-christians": persecutedChristiansImage,
+  "global-ministry": globalMinistryImage,
+  "community-feeding": communityFeedingImage,
+  "economic-empowerment": economicEmpowermentImage,
 };
 
 export default function ProgramDetail() {
@@ -56,6 +70,16 @@ export default function ProgramDetail() {
           </Link>
 
           <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
+            {imageMap[program.image] && (
+              <div className="w-full h-48 md:h-64 overflow-hidden">
+                <img
+                  src={imageMap[program.image]}
+                  alt={program.title}
+                  className="w-full h-full object-cover"
+                  data-testid="img-program-banner"
+                />
+              </div>
+            )}
             <div className="bg-gradient-to-br from-primary/10 to-secondary/10 p-8 md:p-12 text-center">
               {(() => {
                 const IconComponent = iconMap[program.icon] || Heart;
