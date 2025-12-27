@@ -1,4 +1,5 @@
-import { Twitter, Facebook, Instagram } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -18,12 +19,14 @@ export default function Footer() {
         </p>
         <div className="flex justify-center gap-6 mb-6">
           <a
-            href="#"
+            href="https://www.tiktok.com/@pastorbrett"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-            data-testid="link-twitter"
-            aria-label="Follow us on Twitter"
+            data-testid="link-tiktok"
+            aria-label="Follow us on TikTok"
           >
-            <Twitter className="w-6 h-6" />
+            <SiTiktok className="w-6 h-6" />
           </a>
           <a
             href="#"
@@ -34,7 +37,9 @@ export default function Footer() {
             <Facebook className="w-6 h-6" />
           </a>
           <a
-            href="#"
+            href="https://www.instagram.com/the_bcuz"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             data-testid="link-instagram"
             aria-label="Follow us on Instagram"
