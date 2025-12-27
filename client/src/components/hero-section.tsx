@@ -1,4 +1,4 @@
-import heroVideo from "@assets/Man_on_Mountain_Spinning_Fast_1_1766872397132.mp4";
+import heroVideo from "@assets/Man_on_mountain_top_face_to_the_right_1766873172033.mp4";
 
 export default function HeroSection() {
   const titleParts = ["The Traveling", "Church"];
