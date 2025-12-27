@@ -10,6 +10,7 @@ import DonateSection from "@/components/donate-section";
 import { EventCalendar } from "@/components/event-calendar";
 import ContactForm from "@/components/contact-form";
 import Footer from "@/components/footer";
+import FloatingDonateButton from "@/components/floating-donate-button";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <EventCalendar />
       <ContactForm />
       <Footer />
+      <FloatingDonateButton />
     </div>
   );
 }
