@@ -51,7 +51,7 @@ export const programs: Program[] = [
   {
     id: "3",
     slug: "global-itinerant-ministry",
-    title: "Global Itinerant Ministry & Presence Program",
+    title: "Global Ministry & Presence Program",
     shortDescription: "Carrying the Gospel through physical presence and relational ministry across diverse global locations.",
     purpose: "The Global Itinerant Ministry & Presence Program exists to carry the message of the Gospel through physical presence, relational ministry, and spiritual conversation across diverse global locations. Modeled after the itinerant ministry of the early apostles, this program emphasizes going where God leads rather than operating from a fixed location.",
     activities: [
