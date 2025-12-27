@@ -1,0 +1,149 @@
+/* ========================================================================
+   READ THIS CAREFULLY — FOR REPLIT ONLY
+   ========================================================================
+   DO NOT APPLY THIS TO ALL BUTTONS.
+   DO NOT APPLY THIS TO ALL DONATION BUTTONS.
+   DO NOT APPLY THIS GLOBALLY.
+   DO NOT REFACTOR OTHER COMPONENTS.
+
+   THIS EFFECT IS ONLY FOR:
+   → THE FLOATING DONATION BUTTON
+   → ON THE HOME PAGE ONLY
+
+   NOTHING ELSE.
+
+   ========================================================================
+
+GOAL:
+Animate the FLOATING DONATION BUTTON on the HOME PAGE ONLY
+to match this CodePen exactly:
+https://codepen.io/Volorf/pen/qopzaQ
+
+WHAT THE EFFECT IS:
+1) Animated gradient background (moving gradient via background-position)
+2) A blurred glowing aura behind the button using the same gradient
+3) Smooth infinite animation
+4) Button remains clickable, accessible, and performant
+
+---------------------------------------------------------------------------
+SCOPE (VERY IMPORTANT)
+---------------------------------------------------------------------------
+
+- This animation must ONLY apply to:
+  → The floating donation button
+  → On the HOME PAGE
+- No other buttons should receive this animation.
+- No other pages should receive this animation.
+
+If needed, gate this by:
+- A unique class name
+- OR a home-page–only wrapper
+- OR a route-level condition
+
+---------------------------------------------------------------------------
+IMPLEMENTATION
+---------------------------------------------------------------------------
+
+1) Identify the FLOATING DONATION BUTTON component
+   (the button that floats / is fixed-position on the home page).
+
+2) Add a UNIQUE class to that button ONLY, for example:
+   className="floatingDonateBtn"
+
+DO NOT reuse this class anywhere else.
+
+---------------------------------------------------------------------------
+REACT MARKUP (EXAMPLE)
+---------------------------------------------------------------------------
+
+<button className="floatingDonateBtn">
+  Donate
+  <span className="floatingDonateBtnGlow" aria-hidden="true"></span>
+</button>
+
+- The <span> is ONLY for the glow layer.
+- Do NOT change button text or behavior.
+
+---------------------------------------------------------------------------
+CSS (APPLIES ONLY TO THE FLOATING BUTTON)
+---------------------------------------------------------------------------
+
+.floatingDonateBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.95);
+
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 16s linear infinite;
+
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.floatingDonateBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.24);
+}
+
+.floatingDonateBtn:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+.floatingDonateBtn:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.65);
+  outline-offset: 4px;
+}
+
+/* Glow layer */
+.floatingDonateBtnGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 16s linear infinite;
+
+  filter: blur(26px);
+  opacity: 0.75;
+
+  z-index: -1;
+  transform: scale(1.12);
+}
+
+/* Gradient animation */
+@keyframes floatingDonateGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+---------------------------------------------------------------------------
+IMPORTANT CONSTRAINTS
+---------------------------------------------------------------------------
+
+- DO NOT apply this CSS globally.
+- DO NOT attach this class to other buttons.
+- DO NOT change existing button styles elsewhere.
+- If using CSS Modules, scope accordingly.
+- If using Tailwind, DO NOT recreate this with utility classes —
+  add this CSS exactly as written.
+
+THIS IS ONLY FOR THE FLOATING DONATION BUTTON ON THE HOME PAGE.
+NO OTHER ELEMENTS.
+=========================================================================== */

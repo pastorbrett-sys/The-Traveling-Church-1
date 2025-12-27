@@ -196,3 +196,60 @@
     animation: pinkPulse 2s ease-in-out infinite;
   }
 }
+
+/* =========================================================================
+   FLOATING DONATION BUTTON - ANIMATED GRADIENT
+   This applies ONLY to the floating donation button on the home page.
+   ========================================================================= */
+
+.floatingDonateBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.95);
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 16s linear infinite;
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.floatingDonateBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.24);
+}
+
+.floatingDonateBtn:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+.floatingDonateBtn:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.65);
+  outline-offset: 4px;
+}
+
+.floatingDonateBtnGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 16s linear infinite;
+  filter: blur(26px);
+  opacity: 0.75;
+  z-index: -1;
+  transform: scale(1.12);
+}
+
+@keyframes floatingDonateGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
