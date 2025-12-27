@@ -5,8 +5,25 @@ export default function DonateSection() {
 
   return (
     <section id="donate" className="py-16 md:py-24 bg-gradient-to-br from-secondary/5 to-primary/5">
+      <style>{`
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+          background: linear-gradient(270deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(346, 77%, 50%), hsl(var(--primary)));
+          background-size: 300% 300%;
+          animation: gradient-shift 4s ease infinite;
+        }
+        .animate-gradient-icon {
+          background: linear-gradient(270deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(346, 77%, 50%), hsl(var(--primary)));
+          background-size: 300% 300%;
+          animation: gradient-shift 4s ease infinite;
+        }
+      `}</style>
       <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary mb-6">
+        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full animate-gradient-icon mb-6">
           <Heart className="w-8 h-8 md:w-10 md:h-10 text-white" />
         </div>
         
@@ -23,7 +40,7 @@ export default function DonateSection() {
           href={donateLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
+          className="inline-flex items-center gap-3 animate-gradient text-white px-8 py-4 rounded-full font-medium text-lg animate-bounce-rotate"
           data-testid="button-donate"
         >
           <Heart className="w-5 h-5" />
