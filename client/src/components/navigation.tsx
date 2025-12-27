@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
   const logoImage = "/public-objects/Traveling Church Logo_1760305502132.png";
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+  const isHomePage = location === "/";
 
   useEffect(() => {
+    if (!isHomePage) return;
+    
     const handleScroll = () => {
-      const sections = ["home", "mission", "community", "values", "pastor", "leadership", "men-resources", "journey", "events", "contact"];
+      const sections = ["home", "mission", "community", "values", "pastor", "men-resources", "journey", "events", "contact"];
       let currentSection = "home";
 
       for (const sectionId of sections) {
@@ -26,9 +31,14 @@ export default function Navigation() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   const handleNavClick = (sectionId: string) => {
+    if (!isHomePage) {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       const headerOffset = 60;
@@ -45,13 +55,13 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { id: "mission", label: "Mission" },
-    { id: "journey", label: "Journey" },
-    { id: "values", label: "Values" },
-    { id: "pastor", label: "Pastor" },
-    { id: "men-resources", label: "Resources" },
-    { id: "events", label: "Events" },
-    { id: "contact", label: "Contact" },
+    { id: "mission", label: "Mission", type: "scroll" },
+    { id: "journey", label: "Journey", type: "scroll" },
+    { id: "values", label: "Values", type: "scroll" },
+    { id: "pastor", label: "Pastor", type: "scroll" },
+    { id: "programs", label: "Programs", type: "link", href: "/programs" },
+    { id: "events", label: "Events", type: "scroll" },
+    { id: "contact", label: "Contact", type: "scroll" },
   ];
 
   return (
@@ -73,16 +83,29 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex gap-4 text-sm">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
-                  activeSection === item.id ? "text-primary" : ""
-                }`}
-                data-testid={`link-${item.id}`}
-              >
-                {item.label}
-              </button>
+              item.type === "link" ? (
+                <Link
+                  key={item.id}
+                  href={item.href!}
+                  className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
+                    location.startsWith("/programs") && item.id === "programs" ? "text-primary" : ""
+                  }`}
+                  data-testid={`link-${item.id}`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
+                    activeSection === item.id && isHomePage ? "text-primary" : ""
+                  }`}
+                  data-testid={`link-${item.id}`}
+                >
+                  {item.label}
+                </button>
+              )
             ))}
           </div>
 
@@ -102,16 +125,30 @@ export default function Navigation() {
           <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4">
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
-                    activeSection === item.id ? "bg-muted text-primary" : ""
-                  }`}
-                  data-testid={`link-${item.id}`}
-                >
-                  {item.label}
-                </button>
+                item.type === "link" ? (
+                  <Link
+                    key={item.id}
+                    href={item.href!}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
+                      location.startsWith("/programs") && item.id === "programs" ? "bg-muted text-primary" : ""
+                    }`}
+                    data-testid={`link-${item.id}`}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
+                      activeSection === item.id && isHomePage ? "bg-muted text-primary" : ""
+                    }`}
+                    data-testid={`link-${item.id}`}
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
             </div>
           </div>
