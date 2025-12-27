@@ -238,7 +238,7 @@
   background-size: 600% 600%;
   animation: floatingDonateGradient 16s linear infinite;
   filter: blur(26px);
-  opacity: 0.75;
+  opacity: 0.50;
   z-index: -1;
   transform: scale(1.12);
 }
