@@ -3,6 +3,7 @@ import { programs } from "@/data/programs";
 import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import programsHeroImage from "@assets/generated_images/global_ministry_helping_community.png";
 
 const iconMap: Record<string, typeof Shield> = {
   shield: Shield,
@@ -17,26 +18,41 @@ export default function Programs() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
       
-      <main className="pt-20 pb-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full animate-pink-pulse mb-6">
+      <main className="pt-16">
+        <div className="relative">
+          <div className="w-full h-48 md:h-64 lg:h-80 overflow-hidden">
+            <img
+              src={programsHeroImage}
+              alt="Our ministry programs helping communities worldwide"
+              className="w-full h-full object-cover"
+              data-testid="img-programs-hero"
+            />
+          </div>
+          
+          <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 z-10">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full animate-pink-pulse shadow-lg">
               <Heart className="w-8 h-8 text-white" />
             </div>
-            <h1 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-              data-testid="heading-programs"
-            >
-              Our Programs
-            </h1>
-            <p 
-              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
-              data-testid="text-programs-description"
-            >
-              Support the work of The Traveling Church through our dedicated ministry programs. 
-              Each program serves a unique purpose in spreading God's love around the world.
-            </p>
           </div>
+        </div>
+        
+        <div className="pt-12 pb-16">
+          <div className="max-w-6xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-12">
+              <h1 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+                data-testid="heading-programs"
+              >
+                Our Programs
+              </h1>
+              <p 
+                className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+                data-testid="text-programs-description"
+              >
+                Support the work of The Traveling Church through our dedicated ministry programs. 
+                Each program serves a unique purpose in spreading God's love around the world.
+              </p>
+            </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {programs.map((program) => {
@@ -70,6 +86,7 @@ export default function Programs() {
                 </Link>
               );
             })}
+            </div>
           </div>
         </div>
       </main>
