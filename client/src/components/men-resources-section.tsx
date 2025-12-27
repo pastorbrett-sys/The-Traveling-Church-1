@@ -29,7 +29,7 @@ export default function MenResourcesSection() {
 
         <Link
           href="/programs/iron-men"
-          className="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-primary/90 transition-colors"
+          className="inline-block text-white px-8 py-4 rounded-full font-medium hover:bg-primary/90 transition-colors bg-[#463e39]"
           data-testid="button-iron-men"
         >
           Learn More
