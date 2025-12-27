@@ -11,7 +11,7 @@ export default function FloatingDonateButton() {
       data-testid="button-floating-donate"
     >
       <Heart className="w-5 h-5" />
-      Donate Now
+      Give Now
     </a>
   );
 }

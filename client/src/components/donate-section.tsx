@@ -27,7 +27,7 @@ export default function DonateSection() {
           data-testid="button-donate"
         >
           <Heart className="w-5 h-5" />
-          Donate Now
+          Give Now
         </a>
       </div>
     </section>
