@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/abolition-test');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -123,6 +125,7 @@
   }
 
   .hero-title {
+    font-family: 'Abolition Test', sans-serif !important;
     font-size: 2.8125rem !important; /* 45px - 25% larger than 36px (text-4xl) */
   }
 
