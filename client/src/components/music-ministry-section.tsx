@@ -2,7 +2,7 @@ import edmBanner from "@assets/EDM_BANNER_1_1766962031883.png";
 
 export default function MusicMinistrySection() {
   return (
-    <section id="music" className="py-16 md:py-24 bg-background">
+    <section id="music" className="pt-12 md:pt-18 pb-16 md:pb-24 bg-background">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4" data-testid="heading-music-ministry">
           Global Music Ministry
