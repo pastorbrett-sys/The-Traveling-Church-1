@@ -253,3 +253,15 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
 }
+
+/* Donate Section Button - Gradient only (keeps existing bounce animation) */
+.donateSectionBtn {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 13.6s linear infinite, sharpBounce 2.5s ease-in-out infinite;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+}
+
+.donateSectionBtn:hover {
+  box-shadow: 0 14px 40px rgba(0,0,0,0.24);
+}

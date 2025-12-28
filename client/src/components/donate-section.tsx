@@ -20,7 +20,7 @@ export default function DonateSection() {
         
         <Link
           href="/programs"
-          className="inline-flex items-center gap-3 bg-[#0077B6] hover:bg-[#00B4D8] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
+          className="donateSectionBtn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
           data-testid="button-donate"
         >
           <Heart className="w-5 h-5" />
