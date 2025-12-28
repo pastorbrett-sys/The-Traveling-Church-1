@@ -3,7 +3,7 @@ import { SiTiktok } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground py-8 px-4">
+    <footer className="text-primary-foreground py-8 px-4 bg-[#bf8e00]">
       <div className="max-w-4xl mx-auto text-center">
         <h3 
           className="text-xl font-semibold mb-3"
