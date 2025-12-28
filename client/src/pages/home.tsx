@@ -21,11 +21,11 @@ export default function Home() {
       <MissionSection />
       <WhatsAppSection />
       <ValuesSection />
-      <LeadershipSection />
       <PastorSection />
       <MenResourcesSection />
       <DonateSection />
       <JourneyGallery />
+      <LeadershipSection />
       <EventCalendar />
       <ContactForm />
       <Footer />
