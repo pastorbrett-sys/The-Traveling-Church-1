@@ -8,6 +8,7 @@ import {
   insertContactSubmissionSchema,
 } from "@shared/schema";
 import { ObjectStorageService } from "./objectStorage";
+import { sendContactEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Public assets from Object Storage - from blueprint:javascript_object_storage
@@ -153,6 +154,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
+      
+      // Send email notification
+      try {
+        await sendContactEmail(validatedData.name, validatedData.email, validatedData.message);
+      } catch (emailError) {
+        console.error("Failed to send contact email:", emailError);
+      }
+      
       res.status(201).json(submission);
     } catch (error) {
       res.status(400).json({ message: "Invalid contact submission data" });
