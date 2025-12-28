@@ -9,7 +9,7 @@ export default function Footer() {
         <img 
           src={footerLogo}
           alt="The Traveling Church"
-          className="h-8 mx-auto mb-3"
+          className="h-14 mx-auto mb-3"
           data-testid="img-footer-logo"
         />
         <p 
