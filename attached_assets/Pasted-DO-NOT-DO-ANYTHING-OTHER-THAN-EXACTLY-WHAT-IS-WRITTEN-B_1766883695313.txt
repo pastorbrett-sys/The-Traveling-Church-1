@@ -1,0 +1,112 @@
+DO NOT DO ANYTHING OTHER THAN EXACTLY WHAT IS WRITTEN BELOW.
+DO NOT ADD EXTRA FEATURES. DO NOT REFACTOR. DO NOT CHANGE STYLING SITEWIDE.
+DO NOT TOUCH ANY OTHER PAGES EXCEPT WHAT I SPECIFY.
+ONLY IMPLEMENT THE DAF GIVING PAGE + THE SMALL PROGRAMS PAGE SECTION + OPTIONAL HEADER/FOOTER LINK.
+REPEAT: ONLY THESE CHANGES.
+
+GOAL
+Create a dedicated “DAF Giving” page for The Traveling Church (Donor-Advised Funds), and add a small, clean section on the existing Programs page that links to it. This is NOT a new program. It is a giving method page.
+
+SCOPE (REQUIRED)
+1) Create new page route: /donor-advised-funds
+   - (Optional alias route if easy): /daf
+2) Update Programs page (/programs) ONLY:
+   - Add a small section near the bottom titled “Donor-Advised Funds (DAF)”
+   - 1–2 sentence blurb + a single CTA button linking to /donor-advised-funds
+   - DO NOT add a new program tile/card
+3) Optional (nice-to-have, only if trivial):
+   - Add a simple footer link “DAF Giving” -> /donor-advised-funds
+   - Do NOT add to main nav unless we already have a nav pattern for “Ways to Give”
+
+DESIGN REQUIREMENTS
+- Must match existing site look and feel (fonts, spacing, colors, button style).
+- Keep it “corporate clean” and minimal.
+- Mobile-first, responsive.
+- No long walls of text. Use short paragraphs + bullet lists.
+- Add a small Traveling Church icon watermark/placement if we already do this elsewhere; if not, skip.
+- Absolutely no popups.
+
+CONTENT REQUIREMENTS (PAGE COPY — INCLUDE EXACTLY THIS STRUCTURE)
+
+PAGE TITLE (H1)
+“Give Through a Donor-Advised Fund (DAF)”
+
+SUBHEAD (1 sentence)
+“The Traveling Church gratefully accepts grants from Donor-Advised Funds, including Fidelity, Schwab, Vanguard, and Christian foundations.”
+
+SECTION 1: “How to Give” (this must be above the fold if possible)
+Show as a numbered list (3 steps):
+1. “Log into your Donor-Advised Fund provider and recommend a grant to The Traveling Church.”
+2. “Use the details below to ensure your grant is directed correctly.”
+3. “Optionally add a note to designate a program (e.g., ‘Persecuted Christians Support & Relief’) or choose ‘Fuel the Mission’ for where most needed.”
+
+SECTION 2: “Organization Details” (boxed card, easy to copy)
+Include these fields with labels and copy-friendly formatting:
+
+- Legal Name: [INSERT LEGAL ENTITY NAME EXACTLY]
+- EIN: [INSERT EIN]
+- Mailing Address: [INSERT ADDRESS]
+- Website: thetravelingchurch.com
+- Contact Email (for grant questions): [INSERT EMAIL]
+
+IMPORTANT:
+- If we don’t have legal name/EIN/address/email ready, render placeholders exactly like:
+  “[ADD LEGAL NAME]”, “[ADD EIN]”, “[ADD MAILING ADDRESS]”, “[ADD CONTACT EMAIL]”
+- Do NOT invent or guess these values.
+
+SECTION 3: “Designate Your Gift” (program list)
+Add a short line:
+“DAF donors may recommend grants to one of the programs below, or choose Fuel the Mission for general support.”
+
+Then list programs as bullet points (exact names):
+- Fuel the Mission (general support)
+- Iron Men Program
+- Persecuted Christians Support & Relief Program
+- Global Ministry & Presence Program
+- Community Feeding & Direct Aid Program
+- Economic Empowerment & Business Stewardship Program
+
+SECTION 4: “Notes for Your Provider” (short, compliance-friendly)
+Add 2–3 bullets:
+- “Please make checks payable to: [INSERT LEGAL ENTITY NAME EXACTLY]”
+- “Include ‘DAF Grant’ and your program designation (if any) in the memo line.”
+- “No goods or services are provided in exchange for charitable contributions.”
+
+SECTION 5: “Questions?”
+One sentence + contact button:
+“If your DAF provider needs verification or a letter of good standing, email us and we’ll respond quickly.”
+Button: “Email Us” -> mailto:[INSERT EMAIL]
+
+PROGRAMS PAGE UPDATE (/programs)
+Add a small section near bottom (above footer):
+
+Heading: “Donor-Advised Funds (DAF)”
+Body (1–2 sentences):
+“Want to give through a Donor-Advised Fund? We accept DAF grants and can direct your gift to a specific program or where most needed.”
+Button: “DAF Giving Instructions” -> /donor-advised-funds
+
+SEO / META (REQUIRED)
+For /donor-advised-funds:
+- Title tag: “DAF Giving | The Traveling Church”
+- Meta description: “Give to The Traveling Church through your Donor-Advised Fund (DAF). Find our EIN, mailing details, and program designation options.”
+
+ACCESSIBILITY (REQUIRED)
+- Proper headings in order (H1, H2).
+- Buttons must have clear labels.
+- Ensure good contrast.
+
+IMPLEMENTATION NOTES
+- Use existing routing system (Next.js/React Router/etc).
+- Reuse existing components: Page layout wrapper, Section, Card, Button.
+- Keep changes isolated. Do not refactor unrelated code.
+- Commit changes with a clear message: “Add DAF giving page and Programs page CTA”
+
+DELIVERABLES
+1) New page live at /donor-advised-funds
+2) Programs page updated with DAF section + CTA link
+3) Optional footer link if trivial
+4) Provide me the exact file paths changed + screenshot links or preview URLs.
+
+STOP CONDITIONS
+- If any required org details (legal name/EIN/address/email) are unknown, DO NOT GUESS.
+- Leave placeholders and tell me where to fill them in.

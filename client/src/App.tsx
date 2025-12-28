@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Programs from "@/pages/programs";
 import ProgramDetail from "@/pages/program-detail";
+import DafGiving from "@/pages/daf-giving";
 
 function Router() {
   return (
@@ -14,6 +15,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/programs" component={Programs} />
       <Route path="/programs/:slug" component={ProgramDetail} />
+      <Route path="/donor-advised-funds" component={DafGiving} />
+      <Route path="/daf" component={DafGiving} />
       <Route component={NotFound} />
     </Switch>
   );

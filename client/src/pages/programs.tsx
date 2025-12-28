@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { programs } from "@/data/programs";
-import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
+import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase, FileText } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import programsHeroImage from "@assets/generated_images/global_ministry_helping_community.png";
@@ -91,6 +91,34 @@ export default function Programs() {
                 </Link>
               );
             })}
+            </div>
+
+            <div className="mt-16 pt-12 border-t border-border">
+              <div className="bg-muted rounded-lg p-6 md:p-8 text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                  <FileText className="w-6 h-6 text-primary" />
+                </div>
+                <h2 
+                  className="text-2xl font-semibold mb-3"
+                  data-testid="heading-daf-section"
+                >
+                  Donor-Advised Funds (DAF)
+                </h2>
+                <p 
+                  className="text-muted-foreground mb-6 max-w-xl mx-auto"
+                  data-testid="text-daf-section"
+                >
+                  Want to give through a Donor-Advised Fund? We accept DAF grants and can direct your gift to a specific program or where most needed.
+                </p>
+                <Link
+                  href="/donor-advised-funds"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium transition-colors"
+                  data-testid="button-daf-instructions"
+                >
+                  DAF Giving Instructions
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

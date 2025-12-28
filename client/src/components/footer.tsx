@@ -18,6 +18,15 @@ export default function Footer() {
         >
           A global ministry reaching hearts worldwide
         </p>
+        <div className="flex justify-center gap-4 mb-4 text-sm">
+          <a
+            href="/donor-advised-funds"
+            className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+            data-testid="link-daf-giving"
+          >
+            DAF Giving
+          </a>
+        </div>
         <div className="flex justify-center gap-6 mb-6">
           <a
             href="https://www.tiktok.com/@pastorbrett"
