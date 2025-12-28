@@ -89,7 +89,7 @@ export default function ProgramDetail() {
                   {(() => {
                     const IconComponent = iconMap[program.icon] || Heart;
                     return (
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary shadow-lg">
+                      <div className="programDetailIcon inline-flex items-center justify-center w-16 h-16 rounded-full shadow-lg">
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
                     );
