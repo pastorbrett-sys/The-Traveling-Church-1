@@ -171,35 +171,40 @@ export default function DafGiving() {
                   </li>
                   <li className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                    <a href="/programs/iron-men" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+                    <span className="md:hidden">Iron Men Program</span>
+                    <a href="/programs/iron-men" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors hidden md:flex items-center gap-1">
                       Iron Men Program
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                    <a href="/programs/persecuted-christians" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+                    <span className="md:hidden">Persecuted Christians Support & Relief Program</span>
+                    <a href="/programs/persecuted-christians" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors hidden md:flex items-center gap-1">
                       Persecuted Christians Support & Relief Program
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                    <a href="/programs/global-itinerant-ministry" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+                    <span className="md:hidden">Global Ministry & Presence Program</span>
+                    <a href="/programs/global-itinerant-ministry" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors hidden md:flex items-center gap-1">
                       Global Ministry & Presence Program
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                    <a href="/programs/community-feeding" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+                    <span className="md:hidden">Community Feeding & Direct Aid Program</span>
+                    <a href="/programs/community-feeding" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors hidden md:flex items-center gap-1">
                       Community Feeding & Direct Aid Program
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                    <a href="/programs/economic-empowerment" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+                    <span className="md:hidden">Economic Empowerment & Business Stewardship Program</span>
+                    <a href="/programs/economic-empowerment" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors hidden md:flex items-center gap-1">
                       Economic Empowerment & Business Stewardship Program
                       <ExternalLink className="w-3 h-3" />
                     </a>
