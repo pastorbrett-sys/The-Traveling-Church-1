@@ -40,23 +40,32 @@ async function getResendClient() {
 }
 
 export async function sendContactEmail(name: string, email: string, message: string) {
-  const { client, fromEmail } = await getResendClient();
+  console.log('[Email] Starting to send contact email...');
   
-  const result = await client.emails.send({
-    from: fromEmail,
-    to: 'pastorbrett@thetravelingchurch.com',
-    subject: `New Contact Form Message from ${name}`,
-    html: `
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
-      <hr>
-      <p style="color: #666; font-size: 12px;">This message was sent from The Traveling Church website contact form.</p>
-    `,
-    replyTo: email
-  });
-  
-  return result;
+  try {
+    const { client, fromEmail } = await getResendClient();
+    console.log('[Email] Got Resend client, fromEmail:', fromEmail);
+    
+    const result = await client.emails.send({
+      from: fromEmail,
+      to: 'pastorbrett@thetravelingchurch.com',
+      subject: `New Contact Form Message from ${name}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <hr>
+        <p style="color: #666; font-size: 12px;">This message was sent from The Traveling Church website contact form.</p>
+      `,
+      replyTo: email
+    });
+    
+    console.log('[Email] Send result:', JSON.stringify(result));
+    return result;
+  } catch (error) {
+    console.error('[Email] Error sending email:', error);
+    throw error;
+  }
 }
