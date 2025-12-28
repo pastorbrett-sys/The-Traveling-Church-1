@@ -272,3 +272,15 @@
   background-size: 600% 600%;
   animation: floatingDonateGradient 13.6s linear infinite;
 }
+
+/* Program Detail Page Give Now Button - Gradient + bounce */
+.programGiveNowBtn {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 13.6s linear infinite, sharpBounce 2.5s ease-in-out infinite;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+}
+
+.programGiveNowBtn:hover {
+  box-shadow: 0 14px 40px rgba(0,0,0,0.24);
+}

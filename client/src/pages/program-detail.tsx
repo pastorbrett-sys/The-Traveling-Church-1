@@ -162,7 +162,7 @@ export default function ProgramDetail() {
                   href={program.donateLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-[#0077B6] hover:bg-[#00B4D8] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
+                  className="programGiveNowBtn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
                   data-testid="button-donate-program"
                 >
                   <Heart className="w-5 h-5" />
