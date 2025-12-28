@@ -65,7 +65,7 @@ export default function JourneyGallery() {
     <section id="journey" className="py-12 md:py-16 px-4 bg-muted">
       <div className="max-w-6xl mx-auto">
         <h2 
-          className="md:text-3xl font-semibold mb-3 text-center text-[36px] text-[#463e39]"
+          className="text-2xl md:text-3xl font-semibold text-primary mb-3 text-center"
           data-testid="text-journey-title"
         >
           The Journey
