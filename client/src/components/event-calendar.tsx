@@ -23,7 +23,7 @@ export function EventCalendar() {
   ];
 
   return (
-    <section id="events" className="py-16 md:py-24 bg-muted/30">
+    <section id="events" className="pt-12 md:pt-18 pb-16 md:pb-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 
