@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { ArrowLeft, Copy, FileText, Mail, ExternalLink, Heart } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import dafBannerImage from "@assets/generated_images/hands_united_in_charitable_giving.png";
+import dafBannerImage from "@assets/generated_images/community_hands_joined_in_unity.png";
 
 export default function DafGiving() {
   useEffect(() => {
