@@ -13,11 +13,11 @@ export default function MusicMinistrySection() {
           streaming continuously to believers around the world.
         </p>
 
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl max-w-3xl mx-auto">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl max-w-3xl mx-auto bg-transparent">
           <img
             src={edmBanner}
             alt="After The Fire - Electronic Music Ministry"
-            className="w-full h-auto object-cover"
+            className="w-full h-auto object-cover block"
             data-testid="img-music-banner"
             loading="lazy"
           />
