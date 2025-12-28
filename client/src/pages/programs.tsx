@@ -112,11 +112,11 @@ export default function Programs() {
                 </p>
                 <Link
                   href="/donor-advised-funds"
-                  className="programsHeroIcon inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-medium transition-colors"
+                  className="dafBtn inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-medium"
                   data-testid="button-daf-instructions"
                 >
                   DAF Giving Instructions
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 dafArrow" />
                 </Link>
               </div>
             </div>
