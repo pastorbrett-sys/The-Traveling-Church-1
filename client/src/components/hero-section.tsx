@@ -43,7 +43,7 @@ export default function HeroSection() {
         data-testid="video-hero"
       />
       <div className="hero-overlay absolute inset-0"></div>
-      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto -mt-[50px] md:mt-0">
         <h1 
           className="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
           data-testid="text-hero-title"
