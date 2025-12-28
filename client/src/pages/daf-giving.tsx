@@ -166,7 +166,7 @@ export default function DafGiving() {
               </li>
               <li className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="/programs/global-ministry" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
+                <a href="/programs/global-itinerant-ministry" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-1">
                   Global Ministry & Presence Program
                   <ExternalLink className="w-3 h-3" />
                 </a>
