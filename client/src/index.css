@@ -211,9 +211,9 @@
   color: rgba(255,255,255,0.95);
   background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   background-size: 600% 600%;
-  animation: floatingDonateGradient 13.6s linear infinite;
+  animation: floatingDonateGradient 13.6s linear infinite, floatingBobble 3s ease-in-out infinite;
   box-shadow: 0 10px 30px rgba(0,0,0,0.20);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: box-shadow 180ms ease;
 }
 
 .floatingDonateBtn:hover {
@@ -247,4 +247,9 @@
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingBobble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
