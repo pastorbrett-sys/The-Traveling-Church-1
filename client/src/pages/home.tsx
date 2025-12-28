@@ -6,7 +6,6 @@ import ValuesSection from "@/components/values-section";
 import LeadershipSection from "@/components/leadership-section";
 import WhatsAppSection from "@/components/whatsapp-section";
 import PastorSection from "@/components/pastor-section";
-import MenResourcesSection from "@/components/men-resources-section";
 import DonateSection from "@/components/donate-section";
 import { EventCalendar } from "@/components/event-calendar";
 import ContactForm from "@/components/contact-form";
@@ -22,7 +21,6 @@ export default function Home() {
       <WhatsAppSection />
       <ValuesSection />
       <PastorSection />
-      <MenResourcesSection />
       <DonateSection />
       <JourneyGallery />
       <LeadershipSection />
