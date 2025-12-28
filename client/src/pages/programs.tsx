@@ -35,7 +35,7 @@ export default function Programs() {
           </div>
           
           <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 z-10">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full animate-pink-pulse shadow-lg">
+            <div className="programsHeroIcon inline-flex items-center justify-center w-16 h-16 rounded-full shadow-lg">
               <Heart className="w-8 h-8 text-white" />
             </div>
           </div>

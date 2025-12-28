@@ -265,3 +265,10 @@
 .donateSectionBtn:hover {
   box-shadow: 0 14px 40px rgba(0,0,0,0.24);
 }
+
+/* Programs Page Hero Icon - Gradient animation */
+.programsHeroIcon {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 13.6s linear infinite;
+}
