@@ -20,6 +20,7 @@ export default function DonateSection() {
         
         <Link
           href="/programs"
+          onClick={() => window.scrollTo(0, 0)}
           className="donateSectionBtn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
           data-testid="button-donate"
         >
