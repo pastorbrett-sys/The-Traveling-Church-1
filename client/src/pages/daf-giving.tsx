@@ -73,10 +73,10 @@ export default function DafGiving() {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm text-muted-foreground">Legal Name</p>
-                  <p className="font-medium">[ADD LEGAL NAME]</p>
+                  <p className="font-medium">The Traveling Church Global</p>
                 </div>
                 <button 
-                  onClick={() => copyToClipboard("[ADD LEGAL NAME]")}
+                  onClick={() => copyToClipboard("The Traveling Church Global")}
                   className="text-muted-foreground hover:text-foreground p-1"
                   aria-label="Copy legal name"
                 >
@@ -86,10 +86,10 @@ export default function DafGiving() {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm text-muted-foreground">EIN</p>
-                  <p className="font-medium">[ADD EIN]</p>
+                  <p className="font-medium">41-3093491</p>
                 </div>
                 <button 
-                  onClick={() => copyToClipboard("[ADD EIN]")}
+                  onClick={() => copyToClipboard("41-3093491")}
                   className="text-muted-foreground hover:text-foreground p-1"
                   aria-label="Copy EIN"
                 >
@@ -99,10 +99,10 @@ export default function DafGiving() {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm text-muted-foreground">Mailing Address</p>
-                  <p className="font-medium">[ADD MAILING ADDRESS]</p>
+                  <p className="font-medium">2499 Blue Heron Dr. Hudson, OH 44236</p>
                 </div>
                 <button 
-                  onClick={() => copyToClipboard("[ADD MAILING ADDRESS]")}
+                  onClick={() => copyToClipboard("2499 Blue Heron Dr. Hudson, OH 44236")}
                   className="text-muted-foreground hover:text-foreground p-1"
                   aria-label="Copy mailing address"
                 >
@@ -125,10 +125,10 @@ export default function DafGiving() {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm text-muted-foreground">Contact Email (for grant questions)</p>
-                  <p className="font-medium">[ADD CONTACT EMAIL]</p>
+                  <p className="font-medium">pastorbrett@thetravelingchurch.com</p>
                 </div>
                 <button 
-                  onClick={() => copyToClipboard("[ADD CONTACT EMAIL]")}
+                  onClick={() => copyToClipboard("pastorbrett@thetravelingchurch.com")}
                   className="text-muted-foreground hover:text-foreground p-1"
                   aria-label="Copy contact email"
                 >
@@ -180,7 +180,7 @@ export default function DafGiving() {
             <ul className="space-y-2 text-muted-foreground" data-testid="list-provider-notes">
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
-                <span>Please make checks payable to: [ADD LEGAL NAME]</span>
+                <span>Please make checks payable to: The Traveling Church Global</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
@@ -201,7 +201,7 @@ export default function DafGiving() {
               If your DAF provider needs verification or a letter of good standing, email us and we'll respond quickly.
             </p>
             <a
-              href="mailto:[ADD CONTACT EMAIL]"
+              href="mailto:pastorbrett@thetravelingchurch.com"
               className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium transition-colors"
               data-testid="button-email-us"
             >
