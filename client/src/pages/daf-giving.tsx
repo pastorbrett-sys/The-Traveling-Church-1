@@ -70,15 +70,15 @@ export default function DafGiving() {
                 </h2>
                 <ol className="space-y-3 text-muted-foreground" data-testid="list-how-to-give">
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium">1</span>
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium leading-none">1</span>
                     <span>Log into your Donor-Advised Fund provider and recommend a grant to The Traveling Church.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium">2</span>
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium leading-none">2</span>
                     <span>Use the details below to ensure your grant is directed correctly.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium">3</span>
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium leading-none">3</span>
                     <span>Optionally add a note to designate a program (e.g., "Persecuted Christians Support & Relief") or choose "Fuel the Mission" for where most needed.</span>
                   </li>
                 </ol>
