@@ -211,7 +211,7 @@
   color: rgba(255,255,255,0.95);
   background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   background-size: 600% 600%;
-  animation: floatingDonateGradient 16s linear infinite;
+  animation: floatingDonateGradient 13.6s linear infinite;
   box-shadow: 0 10px 30px rgba(0,0,0,0.20);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
@@ -236,7 +236,7 @@
   border-radius: inherit;
   background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   background-size: 600% 600%;
-  animation: floatingDonateGradient 16s linear infinite;
+  animation: floatingDonateGradient 13.6s linear infinite;
   filter: blur(26px);
   opacity: 0.05;
   z-index: -1;
