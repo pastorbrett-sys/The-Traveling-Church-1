@@ -13,7 +13,7 @@ export default function MissionSection() {
             className="text-base md:text-lg text-muted-foreground leading-relaxed"
             data-testid="text-mission-description"
           >
-            The Traveling Church is redefining what it means to be a congregation. We're not bound by walls or traditions—we're a movement of faith that meets people exactly where they are. Through digital gatherings and real-world encounters across the globe, we're building a community united by love, acceptance, and the transformative power of the gospel.
+            The Traveling Church is redefining what it means to be a congregation. We're not bound by walls or traditions, we're a movement of faith that meets people exactly where they are. Through digital gatherings and real-world encounters across the globe, we're building a community united by love, acceptance, and the transformative power of the gospel.
           </p>
         </div>
       </div>
