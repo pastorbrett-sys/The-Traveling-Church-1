@@ -9,11 +9,11 @@ export default function FloatingDonateButton() {
         href={DONATE_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="floatingDonateBtn flex md:hidden fixed bottom-6 right-6 z-50 items-center justify-center w-12 h-12"
+        className="floatingDonateBtn flex md:hidden fixed bottom-6 right-6 z-50 items-center justify-center w-[62px] h-[62px]"
         data-testid="button-floating-donate-mobile"
         aria-label="Give Now"
       >
-        <Heart className="w-5 h-5" fill="white" />
+        <Heart className="w-[26px] h-[26px]" fill="white" />
         <span className="floatingDonateBtnGlow" aria-hidden="true"></span>
       </a>
       
