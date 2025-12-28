@@ -98,90 +98,65 @@ export default function DafGiving() {
                       <p className="text-sm text-muted-foreground">Legal Name</p>
                       <p className="font-medium">The Traveling Church Global</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {copiedField === "legalName" && (
-                        <span className="text-xs text-primary animate-in fade-in slide-in-from-right-2 duration-200">Copied!</span>
-                      )}
-                      <button 
-                        onClick={() => copyToClipboard("The Traveling Church Global", "legalName")}
-                        className="text-muted-foreground hover:text-foreground p-1 transition-colors"
-                        aria-label="Copy legal name"
-                      >
-                        {copiedField === "legalName" ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
+                    <button 
+                      onClick={() => copyToClipboard("The Traveling Church Global", "legalName")}
+                      className="text-muted-foreground hover:text-foreground p-1 transition-colors"
+                      aria-label="Copy legal name"
+                    >
+                      {copiedField === "legalName" ? <Check className="w-4 h-4 text-primary animate-in zoom-in duration-200" /> : <Copy className="w-4 h-4" />}
+                    </button>
                   </div>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm text-muted-foreground">EIN</p>
                       <p className="font-medium">41-3093491</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {copiedField === "ein" && (
-                        <span className="text-xs text-primary animate-in fade-in slide-in-from-right-2 duration-200">Copied!</span>
-                      )}
-                      <button 
-                        onClick={() => copyToClipboard("41-3093491", "ein")}
-                        className="text-muted-foreground hover:text-foreground p-1 transition-colors"
-                        aria-label="Copy EIN"
-                      >
-                        {copiedField === "ein" ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
+                    <button 
+                      onClick={() => copyToClipboard("41-3093491", "ein")}
+                      className="text-muted-foreground hover:text-foreground p-1 transition-colors"
+                      aria-label="Copy EIN"
+                    >
+                      {copiedField === "ein" ? <Check className="w-4 h-4 text-primary animate-in zoom-in duration-200" /> : <Copy className="w-4 h-4" />}
+                    </button>
                   </div>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm text-muted-foreground">Mailing Address</p>
                       <p className="font-medium">2499 Blue Heron Dr. Hudson, OH 44236</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {copiedField === "address" && (
-                        <span className="text-xs text-primary animate-in fade-in slide-in-from-right-2 duration-200">Copied!</span>
-                      )}
-                      <button 
-                        onClick={() => copyToClipboard("2499 Blue Heron Dr. Hudson, OH 44236", "address")}
-                        className="text-muted-foreground hover:text-foreground p-1 transition-colors"
-                        aria-label="Copy mailing address"
-                      >
-                        {copiedField === "address" ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
+                    <button 
+                      onClick={() => copyToClipboard("2499 Blue Heron Dr. Hudson, OH 44236", "address")}
+                      className="text-muted-foreground hover:text-foreground p-1 transition-colors"
+                      aria-label="Copy mailing address"
+                    >
+                      {copiedField === "address" ? <Check className="w-4 h-4 text-primary animate-in zoom-in duration-200" /> : <Copy className="w-4 h-4" />}
+                    </button>
                   </div>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm text-muted-foreground">Website</p>
                       <p className="font-medium">thetravelingchurch.com</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {copiedField === "website" && (
-                        <span className="text-xs text-primary animate-in fade-in slide-in-from-right-2 duration-200">Copied!</span>
-                      )}
-                      <button 
-                        onClick={() => copyToClipboard("thetravelingchurch.com", "website")}
-                        className="text-muted-foreground hover:text-foreground p-1 transition-colors"
-                        aria-label="Copy website"
-                      >
-                        {copiedField === "website" ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
+                    <button 
+                      onClick={() => copyToClipboard("thetravelingchurch.com", "website")}
+                      className="text-muted-foreground hover:text-foreground p-1 transition-colors"
+                      aria-label="Copy website"
+                    >
+                      {copiedField === "website" ? <Check className="w-4 h-4 text-primary animate-in zoom-in duration-200" /> : <Copy className="w-4 h-4" />}
+                    </button>
                   </div>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm text-muted-foreground">Contact Email (for grant questions)</p>
                       <p className="font-medium">pastorbrett@thetravelingchurch.com</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {copiedField === "email" && (
-                        <span className="text-xs text-primary animate-in fade-in slide-in-from-right-2 duration-200">Copied!</span>
-                      )}
-                      <button 
-                        onClick={() => copyToClipboard("pastorbrett@thetravelingchurch.com", "email")}
-                        className="text-muted-foreground hover:text-foreground p-1 transition-colors"
-                        aria-label="Copy contact email"
-                      >
-                        {copiedField === "email" ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
+                    <button 
+                      onClick={() => copyToClipboard("pastorbrett@thetravelingchurch.com", "email")}
+                      className="text-muted-foreground hover:text-foreground p-1 transition-colors"
+                      aria-label="Copy contact email"
+                    >
+                      {copiedField === "email" ? <Check className="w-4 h-4 text-primary animate-in zoom-in duration-200" /> : <Copy className="w-4 h-4" />}
+                    </button>
                   </div>
                 </div>
               </section>
