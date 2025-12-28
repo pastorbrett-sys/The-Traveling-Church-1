@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero-section";
 import MissionSection from "@/components/mission-section";
 import JourneyGallery from "@/components/journey-gallery";
 import ValuesSection from "@/components/values-section";
+import LeadershipSection from "@/components/leadership-section";
 import WhatsAppSection from "@/components/whatsapp-section";
 import PastorSection from "@/components/pastor-section";
 import MenResourcesSection from "@/components/men-resources-section";
@@ -20,6 +21,7 @@ export default function Home() {
       <MissionSection />
       <WhatsAppSection />
       <ValuesSection />
+      <LeadershipSection />
       <PastorSection />
       <MenResourcesSection />
       <DonateSection />
