@@ -284,3 +284,19 @@
 .programGiveNowBtn:hover {
   box-shadow: 0 14px 40px rgba(0,0,0,0.24);
 }
+
+/* Learn More Button - Subtle hover bounce */
+.learnMoreBtn {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.learnMoreBtn:hover {
+  animation: subtleHoverBounce 0.4s ease;
+  background-color: #5a504a;
+}
+
+@keyframes subtleHoverBounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-4px); }
+  60% { transform: translateY(-2px); }
+}
