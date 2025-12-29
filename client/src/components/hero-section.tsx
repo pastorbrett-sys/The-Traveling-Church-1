@@ -46,11 +46,12 @@ export default function HeroSection() {
     >
       <video
         ref={videoRef}
-        src={heroVideo}
+        src={`${heroVideo}#t=0.001`}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
         data-testid="video-hero"
       />
