@@ -1,18 +1,7 @@
-import { useEffect, useRef } from "react";
 import heroVideo from "@assets/Man_on_Mountain_Spinning_Fast_1_1766872397132.mp4";
 
 export default function HeroSection() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const titleParts = ["The Traveling", "Church"];
-  
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.play().catch(() => {
-        // Autoplay was prevented, but muted videos should work
-      });
-    }
-  }, []);
   
   const animateTitle = () => {
     let charIndex = 0;
@@ -45,13 +34,11 @@ export default function HeroSection() {
       className="relative h-screen max-h-[600px] min-h-[400px] flex items-center justify-center overflow-hidden"
     >
       <video
-        ref={videoRef}
-        src={`${heroVideo}#t=0.001`}
+        src={heroVideo}
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
         data-testid="video-hero"
       />
