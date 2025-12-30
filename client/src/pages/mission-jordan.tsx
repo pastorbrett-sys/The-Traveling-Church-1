@@ -4,8 +4,8 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/IMG_1159_1767129664291.JPG?url";
-import baptismReach from "@assets/IMG_1160_1767129664288.JPG?url";
+import embraceImage from "@assets/IMG_1159_1767129664291.JPG?url";
+import heroImage from "@assets/IMG_1160_1767129664288.JPG?url";
 import baptismQuiet from "@assets/IMG_1161_1767129664288.JPG?url";
 import baptismCelebration from "@assets/IMG_1162_1767129664288.JPG?url";
 import riverView from "@assets/WhatsApp_Image_2025-12-30_at_4.09.02_PM_1767129664289.jpeg";
@@ -23,6 +23,12 @@ interface GalleryImage {
 const galleryImages: GalleryImage[] = [
   {
     src: heroImage,
+    alt: "Reaching hands during baptism",
+    caption: "The sacred moment of baptism - reaching out in faith in the Jordan River",
+    featured: true
+  },
+  {
+    src: embraceImage,
     alt: "Embrace after baptism in the Jordan River",
     caption: "A moment of pure joy and spiritual rebirth - embracing after baptism in the same waters where Jesus was baptized",
     featured: true
@@ -30,13 +36,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: baptismCelebration,
     alt: "Celebration after baptism",
-    caption: "Pastor Brett and a new brother in Christ celebrating the moment of baptism",
-    featured: true
-  },
-  {
-    src: baptismReach,
-    alt: "Reaching hands during baptism",
-    caption: "The sacred moment of baptism - reaching out in faith in the Jordan River"
+    caption: "Pastor Brett and a new brother in Christ celebrating the moment of baptism"
   },
   {
     src: baptismQuiet,
@@ -79,7 +79,7 @@ export default function MissionJordan() {
         <div className="relative h-[50vh] min-h-[300px] max-h-[500px]">
           <img
             src={heroImage}
-            alt="Embrace after baptism in the Jordan River"
+            alt="Reaching hands during baptism in the Jordan River"
             className="w-full h-full object-cover"
             data-testid="img-jordan-hero"
           />
