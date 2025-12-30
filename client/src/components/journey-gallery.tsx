@@ -8,6 +8,10 @@ const missionLinks: Record<string, string> = {
   "Jerusalem": "/missions/jerusalem"
 };
 
+const displayNames: Record<string, string> = {
+  "Jerusalem": "Israel"
+};
+
 export default function JourneyGallery() {
   const { data: locations, isLoading, error } = useQuery<Location[]>({
     queryKey: ["/api/locations"],
@@ -86,6 +90,7 @@ export default function JourneyGallery() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {sortedLocations?.map((location) => {
             const missionLink = missionLinks[location.name];
+            const displayName = displayNames[location.name] || location.name;
             const CardWrapper = missionLink ? Link : 'div';
             const cardProps = missionLink 
               ? { href: missionLink, className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md block cursor-pointer hover:shadow-lg transition-shadow" }
@@ -110,7 +115,7 @@ export default function JourneyGallery() {
                       className="text-sm font-medium text-secondary"
                       data-testid={`text-location-name-${location.id}`}
                     >
-                      {location.name}
+                      {displayName}
                     </span>
                   </div>
                   <p 

@@ -138,7 +138,7 @@ const galleryImages: GalleryImage[] = [
 export default function MissionJerusalem() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Jerusalem Mission | The Traveling Church";
+    document.title = "Israel | The Traveling Church";
   }, []);
 
   return (
@@ -164,7 +164,7 @@ export default function MissionJerusalem() {
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2"
                 data-testid="heading-jerusalem-title"
               >
-                Jerusalem Mission
+                Israel
               </h1>
               <p className="text-white/90 text-lg md:text-xl max-w-2xl">
                 Walking the holy streets where history and eternity meet
