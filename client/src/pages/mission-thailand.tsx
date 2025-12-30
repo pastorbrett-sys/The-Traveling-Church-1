@@ -18,16 +18,20 @@ import rockFormations from "@assets/IMG_9923_1767128055584.jpg";
 import jungleFloating from "@assets/IMG_9938_1767128055584.jpg";
 import bambooRaft from "@assets/IMG_9949_1767128055585.jpg";
 
-import video1 from "@assets/IMG_5046_1767130079431.MOV?url";
-import video2 from "@assets/IMG_5062_1767130079430.MOV?url";
-import video3 from "@assets/IMG_5067_1767130079430.MOV?url";
-import video4 from "@assets/IMG_5080_1767130079430.MOV?url";
+import video1 from "@assets/IMG_0109_1767130315169.MOV?url";
+import video2 from "@assets/IMG_0110_1767130315169.MOV?url";
+import video3 from "@assets/IMG_5046_1767130079431.MOV?url";
+import video4 from "@assets/IMG_5062_1767130079430.MOV?url";
+import video5 from "@assets/IMG_5067_1767130079430.MOV?url";
+import video6 from "@assets/IMG_5080_1767130079430.MOV?url";
 
 const videos = [
-  { src: video1, title: "Elephant Sanctuary Visit" },
-  { src: video2, title: "Feeding the Elephants" },
-  { src: video3, title: "Elephants at Play" },
-  { src: video4, title: "Walking with Giants" }
+  { src: video1, title: "Khao Sok Adventure" },
+  { src: video2, title: "Nature's Beauty" },
+  { src: video3, title: "Elephant Sanctuary Visit" },
+  { src: video4, title: "Feeding the Elephants" },
+  { src: video5, title: "Elephants at Play" },
+  { src: video6, title: "Walking with Giants" }
 ];
 
 interface GalleryImage {
