@@ -22,6 +22,10 @@ import video1 from "@assets/IMG_2137_1767119389079.MOV?url";
 import video2 from "@assets/IMG_2138_1767119389079.MOV?url";
 import video3 from "@assets/IMG_2093_1767119389080.mov?url";
 import video4 from "@assets/IMG_1951_1767119419277.MOV?url";
+import video5 from "@assets/IMG_2315_1767119715180.mov?url";
+import video6 from "@assets/IMG_1768_1767119715181.MOV?url";
+import video7 from "@assets/IMG_2176_1767119715181.MOV?url";
+import video8 from "@assets/IMG_2277_1767119715181.MOV?url";
 
 interface GalleryImage {
   src: string;
@@ -121,6 +125,26 @@ const galleryVideos: GalleryVideo[] = [
     src: video4,
     caption: "Journey through the Danakil Depression",
     vertical: false
+  },
+  {
+    src: video5,
+    caption: "Moments from our Ethiopian journey",
+    vertical: true
+  },
+  {
+    src: video6,
+    caption: "Life in the Afar region",
+    vertical: true
+  },
+  {
+    src: video7,
+    caption: "Inside the ancient churches",
+    vertical: true
+  },
+  {
+    src: video8,
+    caption: "Sacred traditions preserved through centuries",
+    vertical: true
   }
 ];
 
@@ -215,7 +239,7 @@ export default function MissionEthiopia() {
                     <video
                       src={video.src}
                       controls
-                      preload="none"
+                      preload="metadata"
                       playsInline
                       className="w-full h-full object-cover bg-black"
                       data-testid={`video-${index}`}
