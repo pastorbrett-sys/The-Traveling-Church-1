@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { programs } from "@/data/programs";
-import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase, FileText } from "lucide-react";
+import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase, FileText, Leaf } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import programsHeroImage from "@assets/generated_images/global_ministry_helping_community.png";
@@ -12,6 +12,7 @@ const iconMap: Record<string, typeof Shield> = {
   globe: Globe,
   utensils: Utensils,
   briefcase: Briefcase,
+  leaf: Leaf,
 };
 
 export default function Programs() {

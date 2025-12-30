@@ -107,6 +107,25 @@ export const programs: Program[] = [
     icon: "briefcase",
     image: "economic-empowerment",
     donateLink: "https://donate.stripe.com/3cIfZjakigV0gJX94X4wM05"
+  },
+  {
+    id: "6",
+    slug: "animal-conservation",
+    title: "Animal Conservation & Creation Care Program",
+    shortDescription: "Protecting and stewarding God's creation by supporting ethical animal care, conservation efforts, and sustainable coexistence between communities and wildlife.",
+    purpose: "The Traveling Church's Animal Conservation & Creation Care Program exists to protect and steward God's creation by supporting ethical animal care, conservation efforts, and sustainable coexistence between communities and wildlife. We believe caring for animals is part of faithful stewardship—honoring life, preserving ecosystems, and acting responsibly toward the world entrusted to us.",
+    activities: [
+      "Support for wildlife protection and habitat preservation",
+      "Aid for animals affected by conflict, disaster, or environmental degradation",
+      "Partnerships with local organizations providing humane animal care",
+      "Education and community initiatives that promote responsible stewardship",
+      "Sustainable practices that protect both people and wildlife"
+    ],
+    useOfFunds: "Donations to the Animal Conservation & Creation Care Program may be used for direct conservation and animal care efforts, emergency response for animals affected by crisis, support of vetted local partners and initiatives, supplies, transport, and basic operational needs related to conservation work. Funds are deployed carefully, transparently, and in alignment with the Traveling Church's mission.",
+    oversight: "This program is overseen by the Senior Pastor, with careful attention to ethical practices, local partnerships, and appropriate stewardship of resources.",
+    icon: "leaf",
+    image: "animal-conservation",
+    donateLink: "https://donate.stripe.com/animal-conservation"
   }
 ];
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams, Link } from "wouter";
 import { programs } from "@/data/programs";
-import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase } from "lucide-react";
+import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase, Leaf } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
@@ -10,6 +10,7 @@ import persecutedChristiansImage from "@assets/generated_images/christians_recei
 import globalMinistryImage from "@assets/generated_images/traveling_minister_meeting_people.png";
 import communityFeedingImage from "@assets/generated_images/community_food_distribution_volunteers.png";
 import economicEmpowermentImage from "@assets/generated_images/business_training_entrepreneurs_workshop.png";
+import animalConservationImage from "@assets/generated_images/animal_conservation_volunteers_caring.png";
 
 const iconMap: Record<string, typeof Shield> = {
   shield: Shield,
@@ -17,6 +18,7 @@ const iconMap: Record<string, typeof Shield> = {
   globe: Globe,
   utensils: Utensils,
   briefcase: Briefcase,
+  leaf: Leaf,
 };
 
 const imageMap: Record<string, string> = {
@@ -25,6 +27,7 @@ const imageMap: Record<string, string> = {
   "global-ministry": globalMinistryImage,
   "community-feeding": communityFeedingImage,
   "economic-empowerment": economicEmpowermentImage,
+  "animal-conservation": animalConservationImage,
 };
 
 export default function ProgramDetail() {
