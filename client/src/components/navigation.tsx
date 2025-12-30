@@ -55,13 +55,9 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { id: "mission", label: "About", type: "scroll" },
+    { id: "home", label: "Home", type: "link", href: "/" },
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
-    { id: "values", label: "Values", type: "scroll" },
-    { id: "pastor", label: "Pastor", type: "scroll" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
-    { id: "events", label: "Events", type: "scroll" },
-    { id: "contact", label: "Contact", type: "scroll" },
   ];
 
   return (
@@ -88,7 +84,7 @@ export default function Navigation() {
                   key={item.id}
                   href={item.href!}
                   className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
-                    (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") ? "text-primary" : ""
+                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -131,7 +127,7 @@ export default function Navigation() {
                     href={item.href!}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
-                      (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") ? "bg-muted text-primary" : ""
+                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") ? "bg-muted text-primary" : ""
                     }`}
                     data-testid={`link-${item.id}`}
                   >
