@@ -75,7 +75,7 @@ export default function Missions() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center px-4">
-              <Globe className="w-12 h-12 md:w-16 md:h-16 text-white mx-auto mb-4" />
+              <Globe className="w-12 h-12 md:w-16 md:h-16 text-white mx-auto mb-4" strokeWidth={1} />
               <h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
                 data-testid="heading-missions-title"
