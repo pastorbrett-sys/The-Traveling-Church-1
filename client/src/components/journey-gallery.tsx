@@ -12,7 +12,7 @@ export default function JourneyGallery() {
       <section id="journey" className="py-12 md:py-16 px-4 bg-muted">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-3 text-center">
-            The Journey
+            Missions
           </h2>
           <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
             Following the footsteps of the apostles, spreading faith across continents
@@ -44,7 +44,7 @@ export default function JourneyGallery() {
       <section id="journey" className="py-12 md:py-16 px-4 bg-muted">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-3 text-center">
-            The Journey
+            Missions
           </h2>
           <div className="text-center text-muted-foreground">
             Unable to load travel locations. Please try again later.
@@ -68,7 +68,7 @@ export default function JourneyGallery() {
           className="text-2xl md:text-3xl font-semibold text-primary mb-3 text-center"
           data-testid="text-journey-title"
         >
-          The Journey
+          Missions
         </h2>
         <p 
           className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto"

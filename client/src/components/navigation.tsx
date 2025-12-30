@@ -55,8 +55,8 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { id: "mission", label: "Mission", type: "scroll" },
-    { id: "journey", label: "Journey", type: "scroll" },
+    { id: "mission", label: "About", type: "scroll" },
+    { id: "journey", label: "Missions", type: "scroll" },
     { id: "values", label: "Values", type: "scroll" },
     { id: "pastor", label: "Pastor", type: "scroll" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
