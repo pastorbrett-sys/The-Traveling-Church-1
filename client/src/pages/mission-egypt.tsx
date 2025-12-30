@@ -4,26 +4,11 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/__Red_Sea_1767124158038.heic?url";
+import heroImage from "@assets/Red-Sea_1760165635786.jpg";
 import caveSelfie from "@assets/IMG_0729_1767124280487.jpg";
 import foodTrays from "@assets/IMG_0746_1767124280488.JPG?url";
 import foodCrate from "@assets/IMG_0747_1767124280489.JPG?url";
-import pyramidArea from "@assets/IMG_0652_1767124280487.HEIC?url";
-import cairoScene from "@assets/IMG_0680_1767124280487.HEIC?url";
-import egyptSite from "@assets/IMG_0743_1767124280488.HEIC?url";
-import templeVisit from "@assets/IMG_0785_1767124280489.HEIC?url";
-import nileCruise from "@assets/IMG_0831_1767124280490.HEIC?url";
-import desertView from "@assets/IMG_0910_1767124280490.HEIC?url";
-import ancientRuins from "@assets/IMG_0317_1767124280490.heic?url";
-import localMarket from "@assets/IMG_0370_1767124280490.HEIC?url";
-import streetScene from "@assets/IMG_0379_1767124280491.heic?url";
-import cairoMosque from "@assets/IMG_0420_1767124280491.HEIC?url";
-import egyptianArt from "@assets/IMG_0427_1767124280491.heic?url";
-import sphinxArea from "@assets/IMG_0443_1767124280491.HEIC?url";
-import gizaView from "@assets/IMG_0445(1)_1767124280492.HEIC?url";
-import riverScene from "@assets/IMG_0530_1767124280492.HEIC?url";
-import sunsetEgypt from "@assets/IMG_0630_1767124280492.heic?url";
-import redSeaCoast from "@assets/IMG_0631_1767124280492.heic?url";
+import egyptLocation from "@assets/Egypt_1760679346019.jpg";
 
 interface GalleryImage {
   src: string;
@@ -51,84 +36,9 @@ const galleryImages: GalleryImage[] = [
     caption: "Exploring the ancient sites where early Christians once gathered"
   },
   {
-    src: pyramidArea,
-    alt: "Near the pyramids",
-    caption: "Standing where Moses once walked - the land of the Exodus"
-  },
-  {
-    src: cairoScene,
-    alt: "Streets of Cairo",
-    caption: "The vibrant energy of Cairo's ancient streets"
-  },
-  {
-    src: egyptSite,
-    alt: "Egyptian historical site",
-    caption: "Walking through millennia of history in this ancient land"
-  },
-  {
-    src: templeVisit,
-    alt: "Visiting Egyptian temple",
-    caption: "Ancient temples that witnessed the rise of civilizations"
-  },
-  {
-    src: nileCruise,
-    alt: "Along the Nile River",
-    caption: "The Nile - lifeline of Egypt for thousands of years"
-  },
-  {
-    src: desertView,
-    alt: "Egyptian desert landscape",
-    caption: "The wilderness where prophets heard God's voice"
-  },
-  {
-    src: ancientRuins,
-    alt: "Ancient Egyptian ruins",
-    caption: "Remnants of a civilization that shaped biblical history"
-  },
-  {
-    src: localMarket,
-    alt: "Egyptian marketplace",
-    caption: "Meeting locals in the bustling markets of Egypt"
-  },
-  {
-    src: streetScene,
-    alt: "Cairo street life",
-    caption: "Everyday moments on the streets where we served"
-  },
-  {
-    src: cairoMosque,
-    alt: "Cairo architecture",
-    caption: "The stunning architecture of Cairo's historic quarter"
-  },
-  {
-    src: egyptianArt,
-    alt: "Egyptian art and carvings",
-    caption: "Ancient artistry that has survived millennia"
-  },
-  {
-    src: sphinxArea,
-    alt: "Near the Sphinx",
-    caption: "The iconic guardians of the Giza plateau"
-  },
-  {
-    src: gizaView,
-    alt: "View of Giza",
-    caption: "The wonders of the ancient world still standing tall"
-  },
-  {
-    src: riverScene,
-    alt: "Nile river scene",
-    caption: "Life along the river that sustained Egypt through the ages"
-  },
-  {
-    src: sunsetEgypt,
-    alt: "Egyptian sunset",
-    caption: "Golden hour over the land of the pharaohs"
-  },
-  {
-    src: redSeaCoast,
-    alt: "Red Sea coastline",
-    caption: "The same waters that parted for Moses and the Israelites"
+    src: egyptLocation,
+    alt: "Egypt landscape",
+    caption: "The land where Moses led his people to freedom"
   }
 ];
 
