@@ -5,7 +5,8 @@ import type { Location } from "@shared/schema";
 
 const missionLinks: Record<string, string> = {
   "Ethiopia": "/missions/ethiopia",
-  "Jerusalem": "/missions/jerusalem"
+  "Jerusalem": "/missions/jerusalem",
+  "Egypt": "/missions/egypt"
 };
 
 const displayNames: Record<string, string> = {
