@@ -11,7 +11,6 @@ import rainbowLake from "@assets/IMG_0079_1767128055581.jpg";
 import dockView from "@assets/IMG_0093_1767128055581.jpg";
 import floatingHouses from "@assets/IMG_0096_1767128055582.jpg";
 import jungleHut from "@assets/IMG_9953_1767128055581.jpg";
-import thaiHillside from "@assets/IMG_9698_1767128055583.jpg";
 import islandPanorama from "@assets/IMG_9838_1767128055583.jpg";
 import boatRide from "@assets/IMG_9922_1767128055583.jpg";
 import rockFormations from "@assets/IMG_9923_1767128055584.jpg";
@@ -103,12 +102,7 @@ const galleryImages: GalleryImage[] = [
     alt: "Relaxing view from the dock",
     caption: "Finding peace and reflection in Thailand's natural beauty"
   },
-  {
-    src: thaiHillside,
-    alt: "Traditional Thai houses on hillside",
-    caption: "Traditional Thai architecture blending with the tropical landscape"
-  },
-  {
+    {
     src: islandPanorama,
     alt: "Panoramic view of islands",
     caption: "The breathtaking islands of Phang Nga Bay"
