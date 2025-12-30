@@ -11,7 +11,8 @@ const missionLinks: Record<string, string> = {
 };
 
 const displayNames: Record<string, string> = {
-  "Jerusalem": "Israel"
+  "Jerusalem": "Israel",
+  "Thailand": "Animal Conservation in Thailand"
 };
 
 export default function JourneyGallery() {
