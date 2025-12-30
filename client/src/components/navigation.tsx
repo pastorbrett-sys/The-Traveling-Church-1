@@ -58,6 +58,7 @@ export default function Navigation() {
     { id: "home", label: "Home", type: "link", href: "/" },
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
+    { id: "contact", label: "Contact", type: "scroll" },
   ];
 
   return (
