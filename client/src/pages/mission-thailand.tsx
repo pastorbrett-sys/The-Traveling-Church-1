@@ -149,12 +149,12 @@ export default function MissionThailand() {
 
         <div className="max-w-4xl mx-auto px-4 md:px-8 pt-8">
           <Link
-            href="/"
+            href="/missions"
             className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
-            data-testid="link-back-home"
+            data-testid="link-back-missions"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
+            Back to Missions
           </Link>
 
           <section className="mb-12">
