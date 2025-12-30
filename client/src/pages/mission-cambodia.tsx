@@ -40,7 +40,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: heroImage,
     alt: "Teaching children in a Cambodian classroom",
-    caption: "Pastor Brett Sharing knowledge with the children of Cambodia",
+    caption: "Pastor Brett sharing knowledge with the children of Cambodia",
     featured: true
   },
   {
