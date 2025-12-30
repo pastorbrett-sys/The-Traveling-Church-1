@@ -27,15 +27,15 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   {
-    src: churchPool,
-    alt: "Ancient rock-hewn church with baptismal pool",
-    caption: "One of Lalibela's ancient rock-hewn churches with its sacred baptismal pool",
-    featured: true
-  },
-  {
     src: childrenBible,
     alt: "Ethiopian children reading the Bible",
     caption: "Local children discovering the Word of God together",
+    featured: true
+  },
+  {
+    src: churchPool,
+    alt: "Ancient rock-hewn church with baptismal pool",
+    caption: "One of Lalibela's ancient rock-hewn churches with its sacred baptismal pool",
     featured: true
   },
   {
