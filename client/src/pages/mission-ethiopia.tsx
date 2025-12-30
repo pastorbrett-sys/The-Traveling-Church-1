@@ -18,6 +18,11 @@ import localGuide from "@assets/IMG_1756_1767118533610.jpg";
 import nightCooking from "@assets/IMG_1767_1767118533610.jpg";
 import expeditionTeam from "@assets/IMG_1843_1767118533610.jpg";
 
+import video1 from "@assets/IMG_2137_1767119389079.MOV?url";
+import video2 from "@assets/IMG_2138_1767119389079.MOV?url";
+import video3 from "@assets/IMG_2093_1767119389080.mov?url";
+import video4 from "@assets/IMG_1951_1767119419277.MOV?url";
+
 interface GalleryImage {
   src: string;
   alt: string;
@@ -87,6 +92,35 @@ const galleryImages: GalleryImage[] = [
     src: nightCooking,
     alt: "Preparing meals in traditional setting",
     caption: "Sharing meals prepared in a traditional Afar dwelling"
+  }
+];
+
+interface GalleryVideo {
+  src: string;
+  caption: string;
+  vertical?: boolean;
+}
+
+const galleryVideos: GalleryVideo[] = [
+  {
+    src: video1,
+    caption: "Exploring the ancient rock-hewn churches of Lalibela",
+    vertical: true
+  },
+  {
+    src: video2,
+    caption: "Walking through sacred grounds",
+    vertical: true
+  },
+  {
+    src: video3,
+    caption: "The stunning landscapes of Ethiopia",
+    vertical: true
+  },
+  {
+    src: video4,
+    caption: "Journey through the Danakil Depression",
+    vertical: false
   }
 ];
 
@@ -162,6 +196,36 @@ export default function MissionEthiopia() {
                 geography. This is what it means to be a traveling church - going where God leads and 
                 finding His family already there.
               </p>
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-videos">
+              Videos
+            </h2>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {galleryVideos.map((video, index) => (
+                <div 
+                  key={index}
+                  className="overflow-hidden rounded-lg shadow-md bg-card"
+                  data-testid={`video-item-${index}`}
+                >
+                  <div className="relative aspect-[9/16]">
+                    <video
+                      src={video.src}
+                      controls
+                      preload="none"
+                      playsInline
+                      className="w-full h-full object-cover bg-black"
+                      data-testid={`video-${index}`}
+                    />
+                  </div>
+                  <div className="p-3 bg-card">
+                    <p className="text-xs text-muted-foreground">{video.caption}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
 
