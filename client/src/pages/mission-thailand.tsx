@@ -18,6 +18,18 @@ import rockFormations from "@assets/IMG_9923_1767128055584.jpg";
 import jungleFloating from "@assets/IMG_9938_1767128055584.jpg";
 import bambooRaft from "@assets/IMG_9949_1767128055585.jpg";
 
+import video1 from "@assets/IMG_5046_1767130079431.MOV?url";
+import video2 from "@assets/IMG_5062_1767130079430.MOV?url";
+import video3 from "@assets/IMG_5067_1767130079430.MOV?url";
+import video4 from "@assets/IMG_5080_1767130079430.MOV?url";
+
+const videos = [
+  { src: video1, title: "Elephant Sanctuary Visit" },
+  { src: video2, title: "Feeding the Elephants" },
+  { src: video3, title: "Elephants at Play" },
+  { src: video4, title: "Walking with Giants" }
+];
+
 interface GalleryImage {
   src: string;
   alt: string;
@@ -167,6 +179,25 @@ export default function MissionThailand() {
                 Supporting animal conservation is an extension of our faith - caring for the 
                 creatures God has entrusted to us and the communities that protect them.
               </p>
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-videos">
+              Videos
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {videos.map((video, index) => (
+                <div key={index} className="relative" data-testid={`video-item-${index}`}>
+                  <video
+                    src={video.src}
+                    controls
+                    preload="metadata"
+                    className="w-full aspect-[9/16] object-cover rounded-lg shadow-md bg-black"
+                    data-testid={`video-${index}`}
+                  />
+                </div>
+              ))}
             </div>
           </section>
 
