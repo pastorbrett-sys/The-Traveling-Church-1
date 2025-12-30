@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import MissionSection from "@/components/mission-section";
@@ -14,6 +15,21 @@ import Footer from "@/components/footer";
 import FloatingDonateButton from "@/components/floating-donate-button";
 
 export default function Home() {
+  useEffect(() => {
+    if (window.location.hash) {
+      const sectionId = window.location.hash.substring(1);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        setTimeout(() => {
+          const headerOffset = 60;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, []);
+
   return (
     <div className="bg-background text-foreground antialiased">
       <Navigation />
