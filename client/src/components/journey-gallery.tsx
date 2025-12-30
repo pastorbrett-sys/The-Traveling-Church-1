@@ -4,7 +4,8 @@ import { MapPin } from "lucide-react";
 import type { Location } from "@shared/schema";
 
 const missionLinks: Record<string, string> = {
-  "Ethiopia": "/missions/ethiopia"
+  "Ethiopia": "/missions/ethiopia",
+  "Jerusalem": "/missions/jerusalem"
 };
 
 export default function JourneyGallery() {
