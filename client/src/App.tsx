@@ -10,7 +10,6 @@ import ProgramDetail from "@/pages/program-detail";
 import DafGiving from "@/pages/daf-giving";
 import MissionEthiopia from "@/pages/mission-ethiopia";
 import MissionJerusalem from "@/pages/mission-jerusalem";
-import MissionEgypt from "@/pages/mission-egypt";
 
 function Router() {
   return (
@@ -22,7 +21,6 @@ function Router() {
       <Route path="/daf" component={DafGiving} />
       <Route path="/missions/ethiopia" component={MissionEthiopia} />
       <Route path="/missions/jerusalem" component={MissionJerusalem} />
-      <Route path="/missions/egypt" component={MissionEgypt} />
       <Route component={NotFound} />
     </Switch>
   );
