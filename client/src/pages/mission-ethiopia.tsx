@@ -29,7 +29,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: childrenBible,
     alt: "Ethiopian children reading the Bible",
-    caption: "Local children discovering the Word of God together",
+    caption: "One of the highlights of the trip was sitting and reading the Bible with a group of Muslim boys.",
     featured: true
   },
   {
