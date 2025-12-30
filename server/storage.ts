@@ -178,7 +178,7 @@ async function initializeStorage(): Promise<DbStorage> {
         name: "Cambodia",
         country: "Cambodia",
         imageUrl: "https://images.unsplash.com/photo-1604467794349-0b74285de7e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        description: "Ministering to communities rising from hardship, bringing the light of hope to those who have walked through darkness."
+        description: "Helping communities, businesses and animals rise up from hardship"
       },
       {
         name: "Ethiopia",
