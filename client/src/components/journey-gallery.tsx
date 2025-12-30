@@ -98,8 +98,8 @@ export default function JourneyGallery() {
             const displayName = displayNames[location.name] || location.name;
             const CardWrapper = missionLink ? Link : 'div';
             const cardProps = missionLink 
-              ? { href: missionLink, className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md block cursor-pointer hover:shadow-lg transition-shadow" }
-              : { className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md" };
+              ? { href: missionLink, className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md block cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group" }
+              : { className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md group" };
             
             return (
               <CardWrapper
@@ -107,12 +107,15 @@ export default function JourneyGallery() {
                 {...cardProps as any}
                 data-testid={`card-location-${location.id}`}
               >
-                <img
-                  src={location.imageUrl}
-                  alt={`${location.name} landscape`}
-                  className="w-full h-48 object-cover"
-                  data-testid={`img-location-${location.id}`}
-                />
+                <div className="relative overflow-hidden">
+                  <img
+                    src={location.imageUrl}
+                    alt={`${location.name} landscape`}
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                    data-testid={`img-location-${location.id}`}
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin className="w-4 h-4 text-secondary" />
