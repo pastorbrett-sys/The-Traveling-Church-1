@@ -8,7 +8,8 @@ const missionLinks: Record<string, string> = {
   "Jerusalem": "/missions/jerusalem",
   "Egypt": "/missions/egypt",
   "Cambodia": "/missions/cambodia",
-  "Thailand": "/missions/thailand"
+  "Thailand": "/missions/thailand",
+  "The Jordan River": "/missions/jordan"
 };
 
 const displayNames: Record<string, string> = {

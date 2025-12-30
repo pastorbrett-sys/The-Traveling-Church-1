@@ -13,6 +13,7 @@ import MissionJerusalem from "@/pages/mission-jerusalem";
 import MissionEgypt from "@/pages/mission-egypt";
 import MissionCambodia from "@/pages/mission-cambodia";
 import MissionThailand from "@/pages/mission-thailand";
+import MissionJordan from "@/pages/mission-jordan";
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/missions/egypt" component={MissionEgypt} />
       <Route path="/missions/cambodia" component={MissionCambodia} />
       <Route path="/missions/thailand" component={MissionThailand} />
+      <Route path="/missions/jordan" component={MissionJordan} />
       <Route component={NotFound} />
     </Switch>
   );
