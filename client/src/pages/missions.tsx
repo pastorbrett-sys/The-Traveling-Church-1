@@ -82,7 +82,7 @@ export default function Missions() {
                 Mission First
               </h1>
               <p className="text-xl md:text-2xl text-white/90 max-w-xl mx-auto">
-                Going into all the world, one journey at a time
+                Go therefore and make disciples of all nations
               </p>
             </div>
           </div>
