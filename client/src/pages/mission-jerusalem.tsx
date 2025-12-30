@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, MapPin } from "lucide-react";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 import heroImage from "@assets/IMG_1239_1767120447756.jpg";
 import westernWall from "@assets/IMG_1138_1767120447756.jpg";
@@ -103,83 +104,117 @@ const galleryImages: GalleryImage[] = [
 export default function MissionJerusalem() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Jerusalem Mission | The Traveling Church";
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Jerusalem - Western Wall and Dome of the Rock"
-          className="w-full h-full object-cover"
-          data-testid="hero-image"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-          <Link href="/#missions">
-            <Button variant="ghost" className="text-white mb-4 hover:bg-white/20" data-testid="back-button">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Missions
-            </Button>
-          </Link>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white font-bold" data-testid="mission-title">
-            Jerusalem, Israel
-          </h1>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <section className="max-w-4xl mx-auto mb-16" data-testid="about-section">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6">
-            About This Mission
-          </h2>
-          <div className="prose prose-lg text-muted-foreground space-y-4">
-            <p>
-              We arrived in Jerusalem as the ceasefire with Iran began, on the very day of a bus shooting, and during the height of the war in Gaza. The news painted a picture of chaos and danger, yet what we found on the ground told a different story.
-            </p>
-            <p>
-              In the midst of sirens and uncertainty, we discovered a city of profound beauty and unexpected peace. Walking the ancient stones where prophets once walked, praying at the Western Wall where millions have poured out their hearts, and standing in the Garden Tomb where resurrection hope was born - we experienced the presence of God in ways that transcended the headlines.
-            </p>
-            <p>
-              We met resilient people carrying on with daily life, sharing meals, making music on street pianos, and extending hospitality to strangers. We saw the "Bring Them Home" posters - reminders to pray for those still in captivity. We witnessed a nation under pressure but not without hope.
-            </p>
-            <p>
-              Jerusalem taught us that peace isn't the absence of conflict - it's the presence of faith that carries you through. In this ancient city where three faiths converge, where history and eternity meet, we found that the Prince of Peace still walks these streets, inviting all who come to find rest for their souls.
-            </p>
-          </div>
-        </section>
-
-        <section data-testid="gallery-section">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-            Photo Gallery
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-            {galleryImages.map((image, index) => (
-              <div
-                key={index}
-                className={`group relative overflow-hidden rounded-lg shadow-md ${
-                  image.featured ? "col-span-2 row-span-2" : ""
-                }`}
-                data-testid={`gallery-item-${index}`}
+    <div className="bg-background text-foreground antialiased min-h-screen">
+      <Navigation />
+      
+      <main className="pb-16">
+        <div className="relative h-[50vh] min-h-[300px] max-h-[500px]">
+          <img
+            src={heroImage}
+            alt="Western Wall and Dome of the Rock in Jerusalem"
+            className="w-full h-full object-cover"
+            data-testid="img-jerusalem-hero"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center gap-2 text-white/80 mb-2">
+                <MapPin className="w-4 h-4" />
+                <span className="text-sm font-medium">Israel</span>
+              </div>
+              <h1 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2"
+                data-testid="heading-jerusalem-title"
               >
-                <div className={`relative ${image.featured ? "aspect-square" : "aspect-square"}`}>
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    data-testid={`gallery-image-${index}`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-xs md:text-sm font-medium">{image.caption}</p>
+                Jerusalem Mission
+              </h1>
+              <p className="text-white/90 text-lg md:text-xl max-w-2xl">
+                Walking the holy streets where history and eternity meet
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 md:px-8 pt-8">
+          <Link
+            href="/"
+            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
+            data-testid="link-back-home"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Home
+          </Link>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-4" data-testid="heading-about">
+              About This Mission
+            </h2>
+            <div className="prose prose-lg text-muted-foreground space-y-4">
+              <p>
+                We arrived in Jerusalem as the ceasefire with Iran began, on the very day of a bus shooting, 
+                and during the height of the war in Gaza. The news painted a picture of chaos and danger, 
+                yet what we found on the ground told a different story.
+              </p>
+              <p>
+                In the midst of sirens and uncertainty, we discovered a city of profound beauty and 
+                unexpected peace. Walking the ancient stones where prophets once walked, praying at the 
+                Western Wall where millions have poured out their hearts, and standing in the Garden Tomb 
+                where resurrection hope was born - we experienced the presence of God in ways that 
+                transcended the headlines.
+              </p>
+              <p>
+                We met resilient people carrying on with daily life, sharing meals, making music on street 
+                pianos, and extending hospitality to strangers. We saw the "Bring Them Home" posters - 
+                reminders to pray for those still in captivity. We witnessed a nation under pressure but 
+                not without hope.
+              </p>
+              <p>
+                Jerusalem taught us that peace isn't the absence of conflict - it's the presence of faith 
+                that carries you through. In this ancient city where three faiths converge, where history 
+                and eternity meet, we found that the Prince of Peace still walks these streets, inviting 
+                all who come to find rest for their souls.
+              </p>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-gallery">
+              Photo Gallery
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {galleryImages.map((image, index) => (
+                <div 
+                  key={index}
+                  className={`group relative overflow-hidden rounded-lg shadow-md bg-card ${
+                    image.featured ? 'md:col-span-2' : ''
+                  }`}
+                  data-testid={`gallery-item-${index}`}
+                >
+                  <div className={`relative ${image.featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <div className="p-4 bg-card">
+                    <p className="text-sm text-muted-foreground">{image.caption}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
