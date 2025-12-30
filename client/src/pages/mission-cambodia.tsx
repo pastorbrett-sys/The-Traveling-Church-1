@@ -5,6 +5,8 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 import heroImage from "@assets/IMG_5162_1767126443573.JPG?url";
+import saiPortrait from "@assets/Sai_and_his_family_made_delicious_spicy_banana_chips,_we_decid_1767126749785.jpg";
+import saiFamily from "@assets/555fa120-a4ec-4871-8819-820a4d27f061_1767126623920.JPG?url";
 import teachingWhiteboard from "@assets/IMG_5178_1767126443572.JPG?url";
 import laughingDuo from "@assets/IMG_5165_1767126443573.JPG?url";
 import holdingCard from "@assets/IMG_5166_1767126443573.JPG?url";
@@ -23,6 +25,18 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
+  {
+    src: saiPortrait,
+    alt: "Sai smiling by the water",
+    caption: "Meet Sai - we provided the seed investment to help him start his banana chip business",
+    featured: true
+  },
+  {
+    src: saiFamily,
+    alt: "Sai with his family celebrating",
+    caption: "Sai and his family celebrating - his banana chip business is thriving",
+    featured: true
+  },
   {
     src: heroImage,
     alt: "Teaching children in a Cambodian classroom",
