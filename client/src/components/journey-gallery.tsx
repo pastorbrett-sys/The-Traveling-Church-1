@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { MapPin } from "lucide-react";
 import type { Location } from "@shared/schema";
+
+const missionLinks: Record<string, string> = {
+  "Ethiopia": "/missions/ethiopia"
+};
 
 export default function JourneyGallery() {
   const { data: locations, isLoading, error } = useQuery<Location[]>({
@@ -78,37 +83,45 @@ export default function JourneyGallery() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {sortedLocations?.map((location) => (
-            <div
-              key={location.id}
-              className="gallery-card bg-card rounded-lg overflow-hidden shadow-md"
-              data-testid={`card-location-${location.id}`}
-            >
-              <img
-                src={location.imageUrl}
-                alt={`${location.name} landscape`}
-                className="w-full h-48 object-cover"
-                data-testid={`img-location-${location.id}`}
-              />
-              <div className="p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="w-4 h-4 text-secondary" />
-                  <span 
-                    className="text-sm font-medium text-secondary"
-                    data-testid={`text-location-name-${location.id}`}
+          {sortedLocations?.map((location) => {
+            const missionLink = missionLinks[location.name];
+            const CardWrapper = missionLink ? Link : 'div';
+            const cardProps = missionLink 
+              ? { href: missionLink, className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md block cursor-pointer hover:shadow-lg transition-shadow" }
+              : { className: "gallery-card bg-card rounded-lg overflow-hidden shadow-md" };
+            
+            return (
+              <CardWrapper
+                key={location.id}
+                {...cardProps as any}
+                data-testid={`card-location-${location.id}`}
+              >
+                <img
+                  src={location.imageUrl}
+                  alt={`${location.name} landscape`}
+                  className="w-full h-48 object-cover"
+                  data-testid={`img-location-${location.id}`}
+                />
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="w-4 h-4 text-secondary" />
+                    <span 
+                      className="text-sm font-medium text-secondary"
+                      data-testid={`text-location-name-${location.id}`}
+                    >
+                      {location.name}
+                    </span>
+                  </div>
+                  <p 
+                    className="text-sm text-muted-foreground leading-relaxed"
+                    data-testid={`text-location-description-${location.id}`}
                   >
-                    {location.name}
-                  </span>
+                    {location.description}
+                  </p>
                 </div>
-                <p 
-                  className="text-sm text-muted-foreground leading-relaxed"
-                  data-testid={`text-location-description-${location.id}`}
-                >
-                  {location.description}
-                </p>
-              </div>
-            </div>
-          ))}
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
     </section>
