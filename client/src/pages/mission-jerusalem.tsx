@@ -79,11 +79,6 @@ const galleryImages: GalleryImage[] = [
     caption: "The golden dome rising above the ancient city walls"
   },
   {
-    src: cityView,
-    alt: "Jerusalem skyline",
-    caption: "A panoramic view of Jerusalem's timeless landscape"
-  },
-  {
     src: templeMountArea,
     alt: "Temple Mount area at dusk",
     caption: "Ancient walls bathed in the golden light of dusk"
@@ -132,6 +127,11 @@ const galleryImages: GalleryImage[] = [
     src: youthOnStreet,
     alt: "Youth on the streets of Jerusalem",
     caption: "Everyday moments of connection on Jerusalem's ancient stones"
+  },
+  {
+    src: cityView,
+    alt: "Jerusalem skyline",
+    caption: "A panoramic view of Jerusalem's timeless landscape"
   }
 ];
 
