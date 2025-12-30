@@ -11,6 +11,7 @@ import DafGiving from "@/pages/daf-giving";
 import MissionEthiopia from "@/pages/mission-ethiopia";
 import MissionJerusalem from "@/pages/mission-jerusalem";
 import MissionEgypt from "@/pages/mission-egypt";
+import MissionCambodia from "@/pages/mission-cambodia";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/missions/ethiopia" component={MissionEthiopia} />
       <Route path="/missions/jerusalem" component={MissionJerusalem} />
       <Route path="/missions/egypt" component={MissionEgypt} />
+      <Route path="/missions/cambodia" component={MissionCambodia} />
       <Route component={NotFound} />
     </Switch>
   );
