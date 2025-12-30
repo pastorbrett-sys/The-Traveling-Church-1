@@ -213,6 +213,14 @@ export default function DafGiving() {
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </li>
+                  <li className="flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="md:hidden">Animal Conservation & Creation Care Program</span>
+                    <a href="/programs/animal-conservation" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors hidden md:flex items-center gap-1">
+                      Animal Conservation & Creation Care Program
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </li>
                 </ul>
               </section>
 
