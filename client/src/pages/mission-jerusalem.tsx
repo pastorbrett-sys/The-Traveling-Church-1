@@ -74,6 +74,11 @@ const galleryImages: GalleryImage[] = [
     featured: true
   },
   {
+    src: localDriver,
+    alt: "Palestinian Christian friend",
+    caption: "Meeting with the Palestinian Christian that baptized our Pastor"
+  },
+  {
     src: domeOfRock,
     alt: "Dome of the Rock from Mount of Olives",
     caption: "The golden dome rising above the ancient city walls"
@@ -112,11 +117,6 @@ const galleryImages: GalleryImage[] = [
     src: cafeBreak,
     alt: "Cafe break in Jerusalem",
     caption: "Sharing a meal and fellowship in the heart of the city"
-  },
-  {
-    src: localDriver,
-    alt: "Our local guide",
-    caption: "A warm welcome from our local driver and friend"
   },
   {
     src: friendsInCity,
