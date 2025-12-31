@@ -9,7 +9,6 @@ packages = ["ffmpeg", "imagemagick"]
 [deployment]
 deploymentTarget = "cloudrun"
 build = ["npm", "run", "build"]
-publicDir = "dist"
 run = ["sh", "-c", "npm run start"]
 
 [[ports]]
