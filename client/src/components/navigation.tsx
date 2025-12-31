@@ -10,7 +10,7 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
   const isHomePage = location === "/";
-  const { user, isAuthenticated, isLoading: isAuthLoading } = useAuth();
+  const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -128,7 +128,7 @@ export default function Navigation() {
                   type="button"
                   variant="outline"
                   size="sm"
-                  onClick={() => window.location.href = "/api/logout"}
+                  onClick={() => logout()}
                   data-testid="button-logout"
                 >
                   <LogOut className="w-4 h-4 mr-1" />
@@ -212,7 +212,7 @@ export default function Navigation() {
                       type="button"
                       variant="outline"
                       className="w-full justify-start"
-                      onClick={() => window.location.href = "/api/logout"}
+                      onClick={() => logout()}
                       data-testid="button-mobile-logout"
                     >
                       <LogOut className="w-4 h-4 mr-2" />

@@ -263,10 +263,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let userId: string | undefined;
       
       // Check if user is authenticated
-      if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
-        userId = req.user.claims.sub;
+      if ((req.session as any)?.userId) {
+        userId = (req.session as any).userId;
         const user = await storage.getUser(userId);
-        const email = req.user.claims.email || '';
+        const email = user?.email || '';
         
         if (user?.stripeCustomerId) {
           customerId = user.stripeCustomerId;
@@ -332,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get current user's subscription status (requires authentication)
   app.get("/api/stripe/my-subscription", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user?.uid || (req.session as any)?.userId;
       const user = await storage.getUser(userId);
       
       if (!user) {
@@ -364,7 +364,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create customer portal session for authenticated user
   app.post("/api/stripe/my-portal", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user?.uid || (req.session as any)?.userId;
       const user = await storage.getUser(userId);
       
       if (!user?.stripeCustomerId) {

@@ -1,36 +1,57 @@
-import { useEffect } from "react";
-import { Link, useSearch } from "wouter";
-import { ArrowLeft, Mail, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useSearch, useLocation } from "wouter";
+import { ArrowLeft, Mail, Sparkles, Loader2 } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/use-auth";
+import { signInWithGoogle, handleRedirectResult } from "@/lib/firebase";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 export default function Login() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, refetch } = useAuth();
+  const [, setLocation] = useLocation();
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/";
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Sign In | The Traveling Church";
   }, []);
 
   useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      window.location.href = redirectTo;
-    }
-  }, [isLoading, isAuthenticated, redirectTo]);
+    handleRedirectResult().then((user) => {
+      if (user) {
+        refetch();
+      }
+    });
+  }, [refetch]);
 
-  const handleSignIn = () => {
-    const loginUrl = redirectTo && redirectTo !== "/" 
-      ? `/api/login?returnTo=${encodeURIComponent(redirectTo)}`
-      : "/api/login";
-    window.location.href = loginUrl;
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      setLocation(redirectTo);
+    }
+  }, [isLoading, isAuthenticated, redirectTo, setLocation]);
+
+  const handleGoogleSignIn = async () => {
+    setIsSigningIn(true);
+    setError(null);
+    try {
+      const user = await signInWithGoogle();
+      if (user) {
+        await refetch();
+      }
+    } catch (err: any) {
+      console.error("Sign in error:", err);
+      setError(err.message || "Failed to sign in. Please try again.");
+    } finally {
+      setIsSigningIn(false);
+    }
   };
 
   if (isLoading) {
@@ -82,17 +103,29 @@ export default function Login() {
             </CardHeader>
 
             <CardContent className="space-y-4 pt-4">
+              {error && (
+                <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md">
+                  {error}
+                </div>
+              )}
+
               <Button
-                onClick={handleSignIn}
+                onClick={handleGoogleSignIn}
+                disabled={isSigningIn}
                 className="w-full h-12 text-base"
                 data-testid="button-continue-google"
               >
-                <SiGoogle className="w-5 h-5 mr-3" />
+                {isSigningIn ? (
+                  <Loader2 className="w-5 h-5 mr-3 animate-spin" />
+                ) : (
+                  <SiGoogle className="w-5 h-5 mr-3" />
+                )}
                 Continue with Google
               </Button>
 
               <Button
-                onClick={handleSignIn}
+                onClick={handleGoogleSignIn}
+                disabled={isSigningIn}
                 variant="outline"
                 className="w-full h-12 text-base"
                 data-testid="button-continue-email"
@@ -117,11 +150,15 @@ export default function Login() {
                   Create an account to try 10 free AI Pastor messages. Upgrade anytime for unlimited access.
                 </p>
                 <Button
-                  onClick={handleSignIn}
+                  onClick={handleGoogleSignIn}
+                  disabled={isSigningIn}
                   variant="secondary"
                   className="w-full"
                   data-testid="button-create-account"
                 >
+                  {isSigningIn ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : null}
                   Create Free Account
                 </Button>
               </div>

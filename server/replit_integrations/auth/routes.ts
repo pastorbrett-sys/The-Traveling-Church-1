@@ -1,17 +1,15 @@
 import type { Express } from "express";
 import { authStorage } from "./storage";
 
-// Register auth-specific routes
 export function registerAuthRoutes(app: Express): void {
-  // Get current authenticated user - returns 401 if not authenticated (expected by frontend)
   app.get("/api/auth/user", async (req: any, res) => {
     try {
-      // Check if user is authenticated
-      if (!req.isAuthenticated || !req.isAuthenticated() || !req.user?.claims?.sub) {
+      const userId = (req.session as any)?.userId;
+      
+      if (!userId) {
         return res.status(401).json({ message: "Not authenticated" });
       }
       
-      const userId = req.user.claims.sub;
       const user = await authStorage.getUser(userId);
       
       if (!user) {
