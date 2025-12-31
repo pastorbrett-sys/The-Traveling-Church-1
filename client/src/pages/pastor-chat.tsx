@@ -4,7 +4,6 @@ import { Send, MessageCircle, Lock, Sparkles, LogIn } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
@@ -69,10 +68,7 @@ export default function PastorChat() {
 
   useEffect(() => {
     if (scrollAreaRef.current) {
-      const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
-      if (viewport) {
-        viewport.scrollTop = viewport.scrollHeight;
-      }
+      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
   }, [messages]);
 
@@ -245,21 +241,21 @@ export default function PastorChat() {
   const displayMessages = messages.length > 0 ? messages : [systemPrompt];
 
   return (
-    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+    <div className="bg-background text-foreground antialiased h-screen flex flex-col overflow-hidden">
       <Navigation />
 
-      <main className="flex-1 flex flex-col pb-0">
-        <div className="w-full max-w-3xl mx-auto px-4 flex flex-col flex-1">
+      <main className="flex-1 flex flex-col overflow-hidden">
+        <div className="w-full max-w-3xl mx-auto px-4 flex flex-col h-full overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 md:p-6 border-b border-border rounded-t-lg mt-2">
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 md:p-4 border border-border rounded-t-lg mt-2 flex-shrink-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h1 className="text-lg md:text-2xl font-bold text-foreground" data-testid="heading-pastor-chat">
+                    <h1 className="text-lg font-bold text-foreground" data-testid="heading-pastor-chat">
                       AI Pastor Chat
                     </h1>
                     {isPro && (
@@ -269,9 +265,6 @@ export default function PastorChat() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    Spiritual guidance and support
-                  </p>
                 </div>
               </div>
               {!isAuthenticated && (
@@ -289,43 +282,45 @@ export default function PastorChat() {
             </div>
           </div>
 
-          {/* Messages */}
-          <ScrollArea ref={scrollAreaRef} className="flex-1 p-4 bg-card border-x border-border" style={{ minHeight: "calc(100vh - 320px)" }}>
-            <div className="space-y-4">
-              {displayMessages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                >
+          {/* Messages - scrollable area */}
+          <div ref={scrollAreaRef} className="flex-1 overflow-y-auto p-4 bg-card border-x border-border">
+            <div className="flex flex-col justify-end min-h-full">
+              <div className="space-y-4">
+                {displayMessages.map((message, index) => (
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                      message.role === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-foreground"
-                    }`}
-                    data-testid={`message-${message.role}-${index}`}
+                    key={index}
+                    className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                  </div>
-                </div>
-              ))}
-              {isStreaming && messages[messages.length - 1]?.content === "" && (
-                <div className="flex justify-start">
-                  <div className="bg-muted rounded-2xl px-4 py-3">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
+                    <div
+                      className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                        message.role === "user"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted text-foreground"
+                      }`}
+                      data-testid={`message-${message.role}-${index}`}
+                    >
+                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                     </div>
                   </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
+                ))}
+                {isStreaming && messages[messages.length - 1]?.content === "" && (
+                  <div className="flex justify-start">
+                    <div className="bg-muted rounded-2xl px-4 py-3">
+                      <div className="flex gap-1">
+                        <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
+                        <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
+                        <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
             </div>
-          </ScrollArea>
+          </div>
 
-          {/* Sticky Input */}
-          <div className="sticky bottom-0 p-4 border-t border-x border-border bg-card rounded-b-lg">
+          {/* Fixed Input at bottom */}
+          <div className="p-4 border border-border bg-card rounded-b-lg flex-shrink-0">
             {isLimitReached ? (
               <div className="text-center py-2">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
