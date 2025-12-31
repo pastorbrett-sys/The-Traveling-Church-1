@@ -4,7 +4,8 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/IMG_5162_1767126443573.jpg";
+import originalHeroImage from "@assets/IMG_5162_1767126443573.jpg";
+import heroImage from "@assets/generated_images/cambodia_angkor_wat_sunrise_landscape.png";
 import saiPortrait from "@assets/Sai_and_his_family_made_delicious_spicy_banana_chips,_we_decid_1767126749785.jpg";
 import saiFamily from "@assets/555fa120-a4ec-4871-8819-820a4d27f061_1767126623920.jpg";
 import teachingWhiteboard from "@assets/IMG_5178_1767126443572.jpg";
@@ -38,7 +39,7 @@ const galleryImages: GalleryImage[] = [
     featured: true
   },
   {
-    src: heroImage,
+    src: originalHeroImage,
     alt: "Teaching children in a Cambodian classroom",
     caption: "Pastor Brett sharing knowledge with the children of Cambodia",
     featured: true
