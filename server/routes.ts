@@ -292,9 +292,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
 
       res.json({ url: session.url });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Checkout error:", error);
-      res.status(500).json({ message: "Failed to create checkout session" });
+      const errorMessage = error?.message || error?.raw?.message || String(error);
+      res.status(500).json({ message: "Failed to create checkout session", error: errorMessage });
     }
   });
 

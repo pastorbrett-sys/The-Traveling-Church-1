@@ -161,7 +161,17 @@ export default function PastorChat() {
       }
     } catch (error: any) {
       console.error("Checkout error:", error);
-      alert("Checkout failed: " + (error?.message || String(error)));
+      // Try to extract more details from the error
+      let errorDetail = error?.message || String(error);
+      // If the error message contains JSON, try to parse it for more details
+      if (errorDetail.includes("{")) {
+        try {
+          const jsonPart = errorDetail.substring(errorDetail.indexOf("{"));
+          const parsed = JSON.parse(jsonPart);
+          if (parsed.error) errorDetail = parsed.error;
+        } catch {}
+      }
+      alert("Checkout failed: " + errorDetail);
     } finally {
       setIsCheckingOut(false);
     }
