@@ -346,9 +346,13 @@
 }
 
 .animate-float-up {
-  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             floatingDonateGradient 13.6s linear infinite,
+             sharpBounce 2.5s ease-in-out infinite;
 }
 
 .animate-dock-in {
-  animation: dockIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: dockIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             floatingDonateGradient 13.6s linear infinite,
+             sharpBounce 2.5s ease-in-out infinite;
 }
