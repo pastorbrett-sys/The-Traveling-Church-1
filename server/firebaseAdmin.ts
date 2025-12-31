@@ -1,4 +1,4 @@
-import * as admin from "firebase-admin";
+import admin from "firebase-admin";
 import type { RequestHandler } from "express";
 import { authStorage } from "./replit_integrations/auth/storage";
 
