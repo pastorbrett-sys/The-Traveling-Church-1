@@ -75,8 +75,13 @@ export class StripeStorage {
   }
 
   async getCustomerSubscription(customerId: string) {
+    // Prioritize active subscriptions that are NOT pending cancellation
+    // Order by cancel_at_period_end (false first) then by created (newest first)
     const result = await db.execute(
-      sql`SELECT * FROM stripe.subscriptions WHERE customer = ${customerId} AND status IN ('active', 'trialing') LIMIT 1`
+      sql`SELECT * FROM stripe.subscriptions 
+          WHERE customer = ${customerId} AND status IN ('active', 'trialing') 
+          ORDER BY cancel_at_period_end ASC, created DESC 
+          LIMIT 1`
     );
     return result.rows[0] || null;
   }
