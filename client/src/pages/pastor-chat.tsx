@@ -12,11 +12,16 @@ import Footer from "@/components/footer";
 import type { Conversation, Message } from "@shared/schema";
 
 const FREE_MESSAGE_LIMIT = 10;
-const MESSAGE_COUNT_KEY = "pastor_chat_message_count";
 
 interface ChatMessage {
   role: "user" | "assistant";
   content: string;
+}
+
+interface SessionStats {
+  messageCount: number;
+  isPro: boolean;
+  limit: number;
 }
 
 export default function PastorChat() {
@@ -25,22 +30,20 @@ export default function PastorChat() {
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
-  const [messageCount, setMessageCount] = useState(0);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
-  // Initialize message count from localStorage (client-side only)
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem(MESSAGE_COUNT_KEY);
-      if (stored) {
-        setMessageCount(parseInt(stored, 10));
-      }
-    }
-  }, []);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
 
-  const isLimitReached = messageCount >= FREE_MESSAGE_LIMIT;
+  // Fetch session stats from server
+  const { data: sessionStats, refetch: refetchSessionStats } = useQuery<SessionStats>({
+    queryKey: ["/api/chat/session-stats"],
+    refetchOnWindowFocus: false,
+  });
+
+  const messageCount = sessionStats?.messageCount ?? 0;
+  const isPro = sessionStats?.isPro ?? false;
+  const isLimitReached = !isPro && messageCount >= FREE_MESSAGE_LIMIT;
 
   const systemPrompt: ChatMessage = {
     role: "assistant",
@@ -144,25 +147,35 @@ export default function PastorChat() {
     }
 
     const userMessage: ChatMessage = { role: "user", content: input };
+    const savedInput = input;
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsStreaming(true);
-
-    // Increment message count
-    const newCount = messageCount + 1;
-    setMessageCount(newCount);
-    localStorage.setItem(MESSAGE_COUNT_KEY, newCount.toString());
 
     try {
       const response = await fetch(`/api/conversations/${convId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: input }),
+        body: JSON.stringify({ content: savedInput }),
+        credentials: "include",
       });
+
+      // Handle payment required (message limit reached)
+      if (response.status === 402) {
+        const errorData = await response.json();
+        if (errorData.code === "LIMIT_REACHED") {
+          setShowPaywall(true);
+          setMessages((prev) => prev.slice(0, -1));
+          return;
+        }
+      }
 
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
       }
+
+      // Refetch session stats to update message count
+      refetchSessionStats();
 
       const reader = response.body?.getReader();
       if (!reader) {

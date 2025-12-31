@@ -1,13 +1,66 @@
 import type { Express, Request, Response } from "express";
 import OpenAI from "openai";
 import { chatStorage } from "./storage";
+import { nanoid } from "nanoid";
 
 const openai = new OpenAI({
   apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
 });
 
+const FREE_MESSAGE_LIMIT = 10;
+const sessionMessageCounts = new Map<string, number>();
+const proSessions = new Set<string>();
+
+function getSessionId(req: Request, res: Response): string {
+  let sessionId = req.cookies?.pastor_session;
+  if (!sessionId) {
+    sessionId = nanoid();
+    res.cookie("pastor_session", sessionId, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+  }
+  return sessionId;
+}
+
+function getSessionMessageCount(sessionId: string): number {
+  return sessionMessageCounts.get(sessionId) || 0;
+}
+
+function incrementSessionMessageCount(sessionId: string): number {
+  const current = getSessionMessageCount(sessionId);
+  const newCount = current + 1;
+  sessionMessageCounts.set(sessionId, newCount);
+  return newCount;
+}
+
+function isProSession(sessionId: string): boolean {
+  return proSessions.has(sessionId);
+}
+
+export function markSessionAsPro(sessionId: string): void {
+  proSessions.add(sessionId);
+}
+
+export function getSessionStats(sessionId: string): { messageCount: number; isPro: boolean; limit: number } {
+  return {
+    messageCount: getSessionMessageCount(sessionId),
+    isPro: isProSession(sessionId),
+    limit: FREE_MESSAGE_LIMIT,
+  };
+}
+
 export function registerChatRoutes(app: Express): void {
+  // Get session stats for message limit tracking
+  app.get("/api/chat/session-stats", (req: Request, res: Response) => {
+    const sessionId = getSessionId(req, res);
+    const stats = getSessionStats(sessionId);
+    res.json(stats);
+  });
+
   // Get all conversations
   app.get("/api/conversations", async (req: Request, res: Response) => {
     try {
@@ -70,6 +123,25 @@ export function registerChatRoutes(app: Express): void {
       const content = req.body?.content;
       if (typeof content !== "string" || !content.trim()) {
         return res.status(400).json({ error: "Message content is required" });
+      }
+
+      // Check message limit for free users
+      const sessionId = getSessionId(req, res);
+      const messageCount = getSessionMessageCount(sessionId);
+      const isPro = isProSession(sessionId);
+      
+      if (!isPro && messageCount >= FREE_MESSAGE_LIMIT) {
+        return res.status(402).json({ 
+          error: "Message limit reached", 
+          code: "LIMIT_REACHED",
+          messageCount,
+          limit: FREE_MESSAGE_LIMIT,
+        });
+      }
+
+      // Increment message count for free users
+      if (!isPro) {
+        incrementSessionMessageCount(sessionId);
       }
 
       // Save user message
