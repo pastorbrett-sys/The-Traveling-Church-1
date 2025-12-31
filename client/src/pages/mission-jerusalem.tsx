@@ -4,7 +4,7 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/IMG_1239_1767120447756.jpg";
+import heroImage from "@assets/generated_images/jerusalem_western_wall_sunset_view.png";
 
 import soldierVideo from "@assets/soldier_1767121798377.mp4?url";
 import video1 from "@assets/jerusalem_v1_compressed.mp4";

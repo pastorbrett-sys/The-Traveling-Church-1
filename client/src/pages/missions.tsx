@@ -6,7 +6,7 @@ import Footer from "@/components/footer";
 
 import heroVideo from "@assets/text-to-video-ffe46d5c_(1)_1767132632981.mp4?url";
 import jordanHero from "@assets/IMG_1160_1767129664288.jpg";
-import israelHero from "@assets/IMG_1239_1767120447756.jpg";
+import israelHero from "@assets/generated_images/jerusalem_western_wall_sunset_view.png";
 import cambodiaHero from "@assets/IMG_5162_1767126443573.jpg";
 import thailandHero from "@assets/29A7ED8A-129F-4983-AB5E-5D32A7EBD688_1767128055581.jpg";
 import egyptHero from "@assets/__Red_Sea_1767124933007.jpg";
