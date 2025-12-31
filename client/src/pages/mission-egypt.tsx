@@ -25,8 +25,8 @@ import tireKids from "@assets/IMG_0652_1767124933010.jpg";
 import localMeeting from "@assets/IMG_0680_1767124933010.jpg";
 import caveSelfie from "@assets/IMG_0729_1767124933010.jpg";
 
-import video1 from "@assets/IMG_0426_1767125302507.MOV?url";
-import video2 from "@assets/IMG_0665_1767125302507.MOV?url";
+import video1 from "@assets/egypt_street_compressed.mp4";
+import video2 from "@assets/egypt_sinai_compressed.mp4";
 import video3 from "@assets/IMG_0750_1767125302508.MOV?url";
 import video4 from "@assets/IMG_0311_1767125302509.MOV?url";
 
