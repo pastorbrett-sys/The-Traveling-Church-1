@@ -58,6 +58,7 @@ export default function Navigation() {
     { id: "home", label: "Home", type: "link", href: "/" },
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
+    { id: "pastor-chat", label: "AI Pastor", type: "link", href: "/pastor-chat" },
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 
@@ -85,7 +86,7 @@ export default function Navigation() {
                   key={item.id}
                   href={item.href!}
                   className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
-                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") ? "text-primary" : ""
+                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || (location === "/pastor-chat" && item.id === "pastor-chat") ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -128,7 +129,7 @@ export default function Navigation() {
                     href={item.href!}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
-                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") ? "bg-muted text-primary" : ""
+                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || (location === "/pastor-chat" && item.id === "pastor-chat") ? "bg-muted text-primary" : ""
                     }`}
                     data-testid={`link-${item.id}`}
                   >

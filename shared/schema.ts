@@ -101,3 +101,5 @@ export type Testimonial = typeof testimonials.$inferSelect;
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+export * from "./models/chat";

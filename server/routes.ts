@@ -9,8 +9,11 @@ import {
 } from "@shared/schema";
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
+import { registerChatRoutes } from "./replit_integrations/chat";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  registerChatRoutes(app);
+
   // Public assets from Object Storage - from blueprint:javascript_object_storage
   app.get("/public-objects/:filePath(*)", async (req, res) => {
     const filePath = req.params.filePath;
