@@ -5,6 +5,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 import heroImage from "@assets/generated_images/jerusalem_western_wall_sunset_view.png";
+import originalHeroImage from "@assets/IMG_1239_1767120447756.jpg";
 
 import soldierVideo from "@assets/soldier_1767121798377.mp4?url";
 import video1 from "@assets/jerusalem_v1_compressed.mp4";
@@ -62,7 +63,7 @@ const galleryVideos: GalleryVideo[] = [
 
 const galleryImages: GalleryImage[] = [
   {
-    src: heroImage,
+    src: originalHeroImage,
     alt: "Western Wall and Dome of the Rock at sunset",
     caption: "The iconic view of the Western Wall with the golden Dome of the Rock",
     featured: true

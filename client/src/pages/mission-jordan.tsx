@@ -5,7 +5,8 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 import embraceImage from "@assets/IMG_1159_1767129664291.jpg";
-import heroImage from "@assets/IMG_1160_1767129664288.jpg";
+import originalHeroImage from "@assets/IMG_1160_1767129664288.jpg";
+import heroImage from "@assets/generated_images/jordan_river_baptism_site_view.png";
 import baptismQuiet from "@assets/IMG_1161_1767129664288.jpg";
 import baptismCelebration from "@assets/IMG_1162_1767129664288.jpg";
 import riverView from "@assets/WhatsApp_Image_2025-12-30_at_4.09.02_PM_1767129664289.jpeg";
@@ -22,7 +23,7 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   {
-    src: heroImage,
+    src: originalHeroImage,
     alt: "Reaching hands during baptism",
     caption: "The sacred moment of baptism - reaching out in faith in the Jordan River",
     featured: true
