@@ -43,11 +43,13 @@ export async function sendContactEmail(name: string, email: string, message: str
   console.log('[Email] Starting to send contact email...');
   
   try {
-    const { client, fromEmail } = await getResendClient();
-    console.log('[Email] Got Resend client, fromEmail:', fromEmail);
+    const { client } = await getResendClient();
+    // Use Resend's shared domain - no DNS verification required!
+    const sharedFromEmail = 'The Traveling Church <onboarding@resend.dev>';
+    console.log('[Email] Got Resend client, using shared domain');
     
     const result = await client.emails.send({
-      from: fromEmail,
+      from: sharedFromEmail,
       to: 'pastorbrett@thetravelingchurch.com',
       subject: `New Contact Form Message from ${name}`,
       html: `
