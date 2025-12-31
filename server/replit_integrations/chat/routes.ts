@@ -2,6 +2,8 @@ import type { Express, Request, Response } from "express";
 import OpenAI from "openai";
 import { chatStorage } from "./storage";
 import { nanoid } from "nanoid";
+import { storage } from "../../storage";
+import { stripeStorage } from "../../stripeStorage";
 
 const openai = new OpenAI({
   apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
@@ -45,6 +47,26 @@ export function markSessionAsPro(sessionId: string): void {
   proSessions.add(sessionId);
 }
 
+// Check if authenticated user has an active subscription
+async function checkUserProStatus(req: any): Promise<boolean> {
+  // First check if user is authenticated
+  if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
+    const userId = req.user.claims.sub;
+    try {
+      const user = await storage.getUser(userId);
+      if (user?.stripeCustomerId) {
+        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
+        if (subscription?.status === 'active' || subscription?.status === 'trialing') {
+          return true;
+        }
+      }
+    } catch (error) {
+      console.error("Error checking user pro status:", error);
+    }
+  }
+  return false;
+}
+
 export function getSessionStats(sessionId: string): { messageCount: number; isPro: boolean; limit: number } {
   return {
     messageCount: getSessionMessageCount(sessionId),
@@ -55,10 +77,19 @@ export function getSessionStats(sessionId: string): { messageCount: number; isPr
 
 export function registerChatRoutes(app: Express): void {
   // Get session stats for message limit tracking
-  app.get("/api/chat/session-stats", (req: Request, res: Response) => {
+  app.get("/api/chat/session-stats", async (req: Request, res: Response) => {
     const sessionId = getSessionId(req, res);
-    const stats = getSessionStats(sessionId);
-    res.json(stats);
+    
+    // Check authenticated user's subscription status first
+    const isUserPro = await checkUserProStatus(req);
+    const isSessionPro = isProSession(sessionId);
+    const isPro = isUserPro || isSessionPro;
+    
+    res.json({
+      messageCount: getSessionMessageCount(sessionId),
+      isPro,
+      limit: FREE_MESSAGE_LIMIT,
+    });
   });
 
   // Get all conversations
@@ -128,7 +159,11 @@ export function registerChatRoutes(app: Express): void {
       // Check message limit for free users
       const sessionId = getSessionId(req, res);
       const messageCount = getSessionMessageCount(sessionId);
-      const isPro = isProSession(sessionId);
+      
+      // Check both authenticated subscription and session-based pro status
+      const isUserPro = await checkUserProStatus(req);
+      const isSessionPro = isProSession(sessionId);
+      const isPro = isUserPro || isSessionPro;
       
       if (!isPro && messageCount >= FREE_MESSAGE_LIMIT) {
         return res.status(402).json({ 
