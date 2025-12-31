@@ -125,7 +125,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with careful attention to ethical practices, local partnerships, and appropriate stewardship of resources.",
     icon: "leaf",
     image: "animal-conservation",
-    donateLink: "https://donate.stripe.com/animal-conservation"
+    donateLink: "https://donate.stripe.com/8x28wR0JI8ouctH1Cv4wM08"
   }
 ];
 
