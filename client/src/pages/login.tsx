@@ -47,6 +47,9 @@ export default function Login() {
         await refetch();
       }
     } catch (err: any) {
+      if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') {
+        return;
+      }
       console.error("Sign in error:", err);
       setError(err.message || "Failed to sign in. Please try again.");
     } finally {
