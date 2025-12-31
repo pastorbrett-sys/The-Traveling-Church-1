@@ -146,9 +146,9 @@ export default function PastorChat() {
       } else {
         alert("Could not start checkout. Please try again.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Checkout error:", error);
-      alert("An error occurred. Please try again.");
+      alert("Error: " + (error?.message || JSON.stringify(error)));
     } finally {
       setIsCheckingOut(false);
     }
