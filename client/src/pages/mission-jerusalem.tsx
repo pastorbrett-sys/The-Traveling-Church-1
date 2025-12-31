@@ -7,9 +7,9 @@ import Footer from "@/components/footer";
 import heroImage from "@assets/IMG_1239_1767120447756.jpg";
 
 import soldierVideo from "@assets/soldier_1767121798377.mp4?url";
-import video1 from "@assets/IMG_0969_1767121032730.MOV?url";
-import video2 from "@assets/IMG_0965_1767121032731.MOV?url";
-import video3 from "@assets/IMG_1310_1767121041377.MOV?url";
+import video1 from "@assets/jerusalem_v1_compressed.mp4";
+import video2 from "@assets/jerusalem_v2_compressed.mp4";
+import video3 from "@assets/jerusalem_v3_compressed.mp4";
 import westernWall from "@assets/IMG_1138_1767120447756.jpg";
 import domeOfRock from "@assets/IMG_1271_1767120447754.jpg";
 import cityView from "@assets/IMG_1270_1767120447754.jpg";

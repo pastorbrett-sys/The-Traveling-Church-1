@@ -17,14 +17,14 @@ import rockFormations from "@assets/IMG_9923_1767128055584.jpg";
 import jungleFloating from "@assets/IMG_9938_1767128055584.jpg";
 import bambooRaft from "@assets/IMG_9949_1767128055585.jpg";
 
-import video1 from "@assets/IMG_0110_1767130315169.MOV?url";
-import video2 from "@assets/IMG_5046_1767130079431.MOV?url";
+import video1 from "@assets/thailand_v1_compressed.mp4";
+import video2 from "@assets/thailand_v2_compressed.mp4";
 import video3 from "@assets/thailand_video2_compressed.mp4";
-import video4 from "@assets/IMG_5067_1767130079430.MOV?url";
-import video5 from "@assets/IMG_5071_1767130523133.MOV?url";
+import video4 from "@assets/thailand_v4_compressed.mp4";
+import video5 from "@assets/thailand_v5_compressed.mp4";
 import video6 from "@assets/thailand_video3_compressed.mp4";
 import video7 from "@assets/thailand_video1_compressed.mp4";
-import video8 from "@assets/IMG_5949_1767130523133.MOV?url";
+import video8 from "@assets/thailand_v8_compressed.mp4";
 
 const videos = [
   { src: video1, title: "Elephant in Transport" },

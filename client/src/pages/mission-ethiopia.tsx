@@ -18,14 +18,14 @@ import localGuide from "@assets/IMG_1756_1767118533610.jpg";
 import nightCooking from "@assets/IMG_1767_1767118533610.jpg";
 import expeditionTeam from "@assets/IMG_1843_1767118533610.jpg";
 
-import video1 from "@assets/IMG_2137_1767119389079.MOV?url";
-import video2 from "@assets/IMG_2138_1767119389079.MOV?url";
-import video3 from "@assets/IMG_2093_1767119389080.mov?url";
+import video1 from "@assets/ethiopia_v1_compressed.mp4";
+import video2 from "@assets/ethiopia_v2_compressed.mp4";
+import video3 from "@assets/ethiopia_v3_compressed.mp4";
 import video4 from "@assets/ethiopia_danakil_compressed.mp4";
-import video5 from "@assets/IMG_2315_1767119715180.mov?url";
-import video6 from "@assets/IMG_1768_1767119715181.MOV?url";
+import video5 from "@assets/ethiopia_v5_compressed.mp4";
+import video6 from "@assets/ethiopia_v6_compressed.mp4";
 import video7 from "@assets/ethiopia_churches_compressed.mp4";
-import video8 from "@assets/IMG_2277_1767119715181.MOV?url";
+import video8 from "@assets/ethiopia_v8_compressed.mp4";
 
 interface GalleryImage {
   src: string;
