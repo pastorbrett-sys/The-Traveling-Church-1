@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Plus, Trash2, ArrowLeft, Lock, Sparkles, LogIn } from "lucide-react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Send, MessageCircle, ArrowLeft, Lock, Sparkles, LogIn } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,7 +10,6 @@ import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import type { Conversation, Message } from "@shared/schema";
 
 const FREE_MESSAGE_LIMIT = 10;
 
@@ -67,26 +66,6 @@ export default function PastorChat() {
     content: "Welcome! I'm here to offer pastoral guidance and spiritual support. Feel free to share what's on your heart, ask questions about faith, or seek prayer. I'm here to listen and help you find comfort in God's word. How can I help you today?"
   };
 
-  const { data: conversations = [] } = useQuery<Conversation[]>({
-    queryKey: ["/api/conversations"],
-  });
-
-  const { data: conversationData } = useQuery<Conversation & { messages: Message[] }>({
-    queryKey: ["/api/conversations", currentConversationId],
-    enabled: !!currentConversationId,
-  });
-
-  useEffect(() => {
-    if (conversationData?.messages) {
-      setMessages(
-        conversationData.messages.map((m) => ({
-          role: m.role as "user" | "assistant",
-          content: m.content,
-        }))
-      );
-    }
-  }, [conversationData]);
-
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -94,31 +73,6 @@ export default function PastorChat() {
   useEffect(() => {
     document.title = "AI Pastor Chat | The Traveling Church";
   }, []);
-
-  const createConversation = useMutation({
-    mutationFn: async () => {
-      const res = await apiRequest("POST", "/api/conversations", { title: "New Conversation" });
-      return res.json();
-    },
-    onSuccess: (data: Conversation) => {
-      setCurrentConversationId(data.id);
-      setMessages([]);
-      queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
-    },
-  });
-
-  const deleteConversation = useMutation({
-    mutationFn: async (id: number) => {
-      await apiRequest("DELETE", `/api/conversations/${id}`);
-    },
-    onSuccess: () => {
-      if (currentConversationId) {
-        setCurrentConversationId(null);
-        setMessages([]);
-      }
-      queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
-    },
-  });
 
   const handleSubscribe = async () => {
     // Require login before checkout
@@ -299,60 +253,9 @@ export default function PastorChat() {
             Back to Home
           </Link>
 
-          <div className="flex flex-col lg:flex-row gap-6">
-            {/* Sidebar - Conversations */}
-            <div className="lg:w-64 flex-shrink-0">
-              <div className="bg-card rounded-lg shadow-md border border-border p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="font-semibold text-foreground" data-testid="heading-conversations">
-                    Conversations
-                  </h2>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => createConversation.mutate()}
-                    disabled={createConversation.isPending}
-                    data-testid="button-new-chat"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                </div>
-
-                <ScrollArea className="h-48 lg:h-64">
-                  <div className="space-y-2">
-                    {conversations.map((conv) => (
-                      <div
-                        key={conv.id}
-                        className={`flex items-center justify-between p-2 rounded-md cursor-pointer transition-colors ${
-                          currentConversationId === conv.id
-                            ? "bg-primary/10 text-primary"
-                            : "hover:bg-muted"
-                        }`}
-                        onClick={() => setCurrentConversationId(conv.id)}
-                        data-testid={`conversation-${conv.id}`}
-                      >
-                        <span className="text-sm truncate flex-1">{conv.title}</span>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 hover:opacity-100"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            deleteConversation.mutate(conv.id);
-                          }}
-                          data-testid={`button-delete-${conv.id}`}
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
-            </div>
-
+          <div className="w-full max-w-3xl mx-auto">
             {/* Main Chat Area */}
-            <div className="flex-1">
+            <div className="w-full">
               <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 border-b border-border">
@@ -442,42 +345,41 @@ export default function PastorChat() {
                       </Button>
                     </div>
                   ) : (
-                    <>
-                      <div className="flex gap-2">
-                        <Textarea
-                          value={input}
-                          onChange={(e) => setInput(e.target.value)}
-                          onKeyDown={handleKeyDown}
-                          placeholder="Share what's on your heart..."
-                          className="min-h-[60px] resize-none"
-                          disabled={isStreaming}
-                          data-testid="input-message"
-                        />
-                        <Button
-                          onClick={sendMessage}
-                          disabled={!input.trim() || isStreaming}
-                          className="self-end"
-                          data-testid="button-send"
-                        >
-                          <Send className="w-4 h-4" />
-                        </Button>
-                      </div>
-                      <div className="flex justify-between items-center mt-2">
+                    <div className="space-y-3">
+                      <Textarea
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Share what's on your heart..."
+                        className="min-h-[80px] resize-none w-full"
+                        disabled={isStreaming}
+                        data-testid="input-message"
+                      />
+                      <Button
+                        onClick={sendMessage}
+                        disabled={!input.trim() || isStreaming}
+                        className="w-full"
+                        data-testid="button-send"
+                      >
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </Button>
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
                         <p className="text-xs text-muted-foreground">
                           This AI provides general spiritual guidance. For personal counseling, please contact a pastor directly.
                         </p>
                         {isPro ? (
-                          <p className="text-xs text-primary font-medium" data-testid="text-unlimited">
+                          <p className="text-xs text-primary font-medium whitespace-nowrap" data-testid="text-unlimited">
                             <Sparkles className="w-3 h-3 inline mr-1" />
                             Unlimited messages
                           </p>
                         ) : (
-                          <p className="text-xs text-muted-foreground" data-testid="text-messages-remaining">
+                          <p className="text-xs text-muted-foreground whitespace-nowrap" data-testid="text-messages-remaining">
                             {Math.max(0, FREE_MESSAGE_LIMIT - messageCount)} free messages remaining
                           </p>
                         )}
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
