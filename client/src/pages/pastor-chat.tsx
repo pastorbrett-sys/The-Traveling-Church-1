@@ -37,9 +37,11 @@ export default function PastorChat() {
   const [showPaywall, setShowPaywall] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [footerHeight, setFooterHeight] = useState(180);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
 
@@ -66,11 +68,30 @@ export default function PastorChat() {
     content: "Welcome! I'm here to offer pastoral guidance and spiritual support. Feel free to share what's on your heart, ask questions about faith, or seek prayer. I'm here to listen and help you find comfort in God's word. How can I help you today?"
   };
 
+  // Measure footer height dynamically
   useEffect(() => {
-    // Scroll to show newest messages just above the sticky footer
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-    }
+    if (!footerRef.current) return;
+    
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setFooterHeight(entry.contentRect.height + 32); // Add extra padding
+      }
+    });
+    
+    observer.observe(footerRef.current);
+    // Initial measurement
+    setFooterHeight(footerRef.current.offsetHeight + 32);
+    
+    return () => observer.disconnect();
+  }, []);
+
+  // Scroll to show newest messages just above the sticky footer
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    });
   }, [messages]);
 
   useEffect(() => {
@@ -245,7 +266,7 @@ export default function PastorChat() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
 
-      <main className="pb-48">
+      <main style={{ paddingBottom: `${footerHeight}px` }}>
         <div className="w-full max-w-3xl mx-auto px-4">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 border border-border rounded-lg mt-2">
@@ -331,6 +352,7 @@ export default function PastorChat() {
 
       {/* FIXED Input at absolute bottom of viewport */}
       <div 
+        ref={footerRef}
         className="fixed bottom-0 left-0 right-0 p-4 bg-card border-t border-border"
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)" }}
       >
