@@ -3,6 +3,22 @@ import { Link } from "wouter";
 import { MapPin } from "lucide-react";
 import type { Location } from "@shared/schema";
 
+import jordanImage from "@assets/Jordan-River_1760679838250.jpg";
+import jerusalemImage from "@assets/Jerusalem_1760679620278.jpg";
+import egyptImage from "@assets/Egypt_1760679346019.jpg";
+import cambodiaImage from "@assets/Cambodia_1760679558974.jpg";
+import thailandImage from "@assets/Thailand_1760680162179.jpg";
+import ethiopiaImage from "@assets/Ethiopia_1760680076506.jpg";
+
+const localImages: Record<string, string> = {
+  "The Jordan River": jordanImage,
+  "Jerusalem": jerusalemImage,
+  "Egypt": egyptImage,
+  "Cambodia": cambodiaImage,
+  "Thailand": thailandImage,
+  "Ethiopia": ethiopiaImage,
+};
+
 const missionLinks: Record<string, string> = {
   "Ethiopia": "/missions/ethiopia",
   "Jerusalem": "/missions/jerusalem",
@@ -109,7 +125,7 @@ export default function JourneyGallery() {
               >
                 <div className="relative overflow-hidden">
                   <img
-                    src={location.imageUrl}
+                    src={localImages[location.name] || location.imageUrl}
                     alt={`${location.name} landscape`}
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                     data-testid={`img-location-${location.id}`}

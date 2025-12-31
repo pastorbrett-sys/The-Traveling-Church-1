@@ -1,7 +1,7 @@
 import { SiInstagram, SiTiktok } from "react-icons/si";
+import pastorImage from "@assets/Pastor Brett_1760674999817.png";
 
 export default function PastorSection() {
-  const pastorImage = "/public-objects/Pastor Brett_1760674999817.png";
   return (
     <section id="pastor" className="py-12 md:py-16 px-4 bg-muted">
       <div className="max-w-4xl mx-auto">
