@@ -241,13 +241,13 @@ export default function PastorChat() {
   const displayMessages = messages.length > 0 ? messages : [systemPrompt];
 
   return (
-    <div className="bg-background text-foreground antialiased h-screen flex flex-col overflow-hidden">
+    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <div className="w-full max-w-3xl mx-auto px-4 flex flex-col h-full overflow-hidden">
+      <main className="flex-1 flex flex-col">
+        <div className="w-full max-w-3xl mx-auto px-4 flex flex-col flex-1">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 md:p-4 border border-border rounded-t-lg mt-2 flex-shrink-0">
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 md:p-4 border border-border rounded-t-lg mt-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -283,7 +283,11 @@ export default function PastorChat() {
           </div>
 
           {/* Messages - scrollable area */}
-          <div ref={scrollAreaRef} className="flex-1 overflow-y-auto p-4 bg-card border-x border-border">
+          <div 
+            ref={scrollAreaRef} 
+            className="flex-1 overflow-y-auto p-4 bg-card border-x border-border"
+            style={{ maxHeight: "calc(100vh - 280px)", minHeight: "300px" }}
+          >
             <div className="flex flex-col justify-end min-h-full">
               <div className="space-y-4">
                 {displayMessages.map((message, index) => (
@@ -319,8 +323,8 @@ export default function PastorChat() {
             </div>
           </div>
 
-          {/* Fixed Input at bottom */}
-          <div className="p-4 border border-border bg-card rounded-b-lg flex-shrink-0">
+          {/* Sticky Input at bottom */}
+          <div className="sticky bottom-0 p-4 border border-border bg-card rounded-b-lg">
             {isLimitReached ? (
               <div className="text-center py-2">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
