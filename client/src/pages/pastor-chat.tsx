@@ -85,12 +85,14 @@ export default function PastorChat() {
     return () => observer.disconnect();
   }, []);
 
-  // Helper function to scroll to bottom
+  // Helper function to scroll to bottom - ensures full message is visible above footer
   const scrollToBottom = () => {
     requestAnimationFrame(() => {
-      if (messagesEndRef.current) {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-      }
+      // Scroll the window to show the end of messages
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
     });
   };
 
