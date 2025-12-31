@@ -40,6 +40,7 @@ export default function PastorChat() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
 
@@ -67,7 +68,12 @@ export default function PastorChat() {
   };
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollAreaRef.current) {
+      const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (viewport) {
+        viewport.scrollTop = viewport.scrollHeight;
+      }
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -284,7 +290,7 @@ export default function PastorChat() {
           </div>
 
           {/* Messages */}
-          <ScrollArea className="flex-1 p-4 bg-card border-x border-border" style={{ minHeight: "calc(100vh - 320px)" }}>
+          <ScrollArea ref={scrollAreaRef} className="flex-1 p-4 bg-card border-x border-border" style={{ minHeight: "calc(100vh - 320px)" }}>
             <div className="space-y-4">
               {displayMessages.map((message, index) => (
                 <div
