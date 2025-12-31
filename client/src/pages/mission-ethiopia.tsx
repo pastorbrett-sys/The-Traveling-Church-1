@@ -8,7 +8,7 @@ import heroImage from "@assets/IMG_2260_1767118533609.jpg";
 import churchPool from "@assets/IMG_2171_1767118533608.jpg";
 import rockStructures from "@assets/IMG_2191_1767118533608.jpg";
 import nightCross from "@assets/IMG_2069_1767118533608.jpg";
-import marketScene from "@assets/5228A59C-AE32-4FB3-A509-8735BC11FBC1_1767118533609.JPG?url";
+import marketScene from "@assets/5228A59C-AE32-4FB3-A509-8735BC11FBC1_1767118533609.jpg";
 import childrenBible from "@assets/IMG_1720_1767118533609.jpg";
 import pastorFriends from "@assets/IMG_1620_1767118533609.jpg";
 import volcanoSelfie from "@assets/IMG_1791_1767118533610.jpg";

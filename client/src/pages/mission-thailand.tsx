@@ -4,7 +4,7 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/29A7ED8A-129F-4983-AB5E-5D32A7EBD688_1767128055581.JPG?url";
+import heroImage from "@assets/29A7ED8A-129F-4983-AB5E-5D32A7EBD688_1767128055581.jpg";
 import elephantLegs from "@assets/IMG_5021_1767128055582.jpg";
 import elephantMeeting from "@assets/IMG_5028_1767128055582.jpg";
 import rainbowLake from "@assets/IMG_0079_1767128055581.jpg";

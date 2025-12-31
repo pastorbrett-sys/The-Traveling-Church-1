@@ -6,8 +6,8 @@ import Footer from "@/components/footer";
 
 import heroImage from "@assets/__Red_Sea_1767124933007.jpg";
 import egyptMoney from "@assets/IMG_0743_1767124933006.jpg";
-import mealPrep from "@assets/IMG_0746_1767124933006.JPG?url";
-import mealsCrate from "@assets/IMG_0747_1767124933006.JPG?url";
+import mealPrep from "@assets/IMG_0746_1767124933006.jpg";
+import mealsCrate from "@assets/IMG_0747_1767124933006.jpg";
 import goatView from "@assets/IMG_0785_1767124933006.jpg";
 import blueDoors from "@assets/IMG_0831_1767124933007.jpg";
 import nightSelfie from "@assets/IMG_0910_1767124933007.jpg";

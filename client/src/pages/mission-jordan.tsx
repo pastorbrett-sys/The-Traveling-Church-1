@@ -4,10 +4,10 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import embraceImage from "@assets/IMG_1159_1767129664291.JPG?url";
-import heroImage from "@assets/IMG_1160_1767129664288.JPG?url";
-import baptismQuiet from "@assets/IMG_1161_1767129664288.JPG?url";
-import baptismCelebration from "@assets/IMG_1162_1767129664288.JPG?url";
+import embraceImage from "@assets/IMG_1159_1767129664291.jpg";
+import heroImage from "@assets/IMG_1160_1767129664288.jpg";
+import baptismQuiet from "@assets/IMG_1161_1767129664288.jpg";
+import baptismCelebration from "@assets/IMG_1162_1767129664288.jpg";
 import riverView from "@assets/WhatsApp_Image_2025-12-30_at_4.09.02_PM_1767129664289.jpeg";
 import baptismSite from "@assets/fasdfa_1767129664289.jpeg";
 import pastorInRiver from "@assets/asfdasfa_1767129664290.jpeg";
