@@ -58,8 +58,8 @@ export default function PastorChat() {
     retry: false,
   });
 
-  // Determine if user is pro (authenticated subscriber)
-  const isPro = subscriptionStatus?.isProUser ?? false;
+  // Determine if user is pro - check both session stats (server-side check) and subscription status
+  const isPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
   const messageCount = sessionStats?.messageCount ?? 0;
   const isLimitReached = !isPro && messageCount >= FREE_MESSAGE_LIMIT;
 
