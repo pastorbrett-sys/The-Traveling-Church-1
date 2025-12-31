@@ -1,14 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Plus, Trash2, ArrowLeft } from "lucide-react";
+import { Send, MessageCircle, Plus, Trash2, ArrowLeft, Lock, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { apiRequest } from "@/lib/queryClient";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import type { Conversation, Message } from "@shared/schema";
+
+const FREE_MESSAGE_LIMIT = 10;
+const MESSAGE_COUNT_KEY = "pastor_chat_message_count";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -20,8 +24,23 @@ export default function PastorChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [messageCount, setMessageCount] = useState(0);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+  // Initialize message count from localStorage (client-side only)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem(MESSAGE_COUNT_KEY);
+      if (stored) {
+        setMessageCount(parseInt(stored, 10));
+      }
+    }
+  }, []);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
+
+  const isLimitReached = messageCount >= FREE_MESSAGE_LIMIT;
 
   const systemPrompt: ChatMessage = {
     role: "assistant",
@@ -81,8 +100,39 @@ export default function PastorChat() {
     },
   });
 
+  const handleSubscribe = async () => {
+    setIsCheckingOut(true);
+    try {
+      // Fetch the Pro plan price
+      const productsRes = await fetch("/api/stripe/products-with-prices");
+      const productsData = await productsRes.json();
+      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
+      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
+      
+      if (proPrice) {
+        const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", {
+          priceId: proPrice.id,
+        });
+        const checkoutData = await checkoutRes.json();
+        if (checkoutData.url) {
+          window.location.href = checkoutData.url;
+        }
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+    } finally {
+      setIsCheckingOut(false);
+    }
+  };
+
   const sendMessage = async () => {
     if (!input.trim() || isStreaming) return;
+
+    // Check if limit reached
+    if (isLimitReached) {
+      setShowPaywall(true);
+      return;
+    }
 
     let convId = currentConversationId;
     if (!convId) {
@@ -97,6 +147,11 @@ export default function PastorChat() {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsStreaming(true);
+
+    // Increment message count
+    const newCount = messageCount + 1;
+    setMessageCount(newCount);
+    localStorage.setItem(MESSAGE_COUNT_KEY, newCount.toString());
 
     try {
       const response = await fetch(`/api/conversations/${convId}/messages`, {
@@ -317,34 +372,99 @@ export default function PastorChat() {
 
                 {/* Input */}
                 <div className="p-4 border-t border-border">
-                  <div className="flex gap-2">
-                    <Textarea
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      placeholder="Share what's on your heart..."
-                      className="min-h-[60px] resize-none"
-                      disabled={isStreaming}
-                      data-testid="input-message"
-                    />
-                    <Button
-                      onClick={sendMessage}
-                      disabled={!input.trim() || isStreaming}
-                      className="self-end"
-                      data-testid="button-send"
-                    >
-                      <Send className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-2 text-center">
-                    This AI provides general spiritual guidance. For personal counseling, please contact a pastor directly.
-                  </p>
+                  {isLimitReached ? (
+                    <div className="text-center py-4">
+                      <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
+                        <Lock className="w-5 h-5" />
+                        <span>You've reached your free message limit</span>
+                      </div>
+                      <Button onClick={() => setShowPaywall(true)} data-testid="button-upgrade">
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        Upgrade to Pro for Unlimited Access
+                      </Button>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex gap-2">
+                        <Textarea
+                          value={input}
+                          onChange={(e) => setInput(e.target.value)}
+                          onKeyDown={handleKeyDown}
+                          placeholder="Share what's on your heart..."
+                          className="min-h-[60px] resize-none"
+                          disabled={isStreaming}
+                          data-testid="input-message"
+                        />
+                        <Button
+                          onClick={sendMessage}
+                          disabled={!input.trim() || isStreaming}
+                          className="self-end"
+                          data-testid="button-send"
+                        >
+                          <Send className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-xs text-muted-foreground">
+                          This AI provides general spiritual guidance. For personal counseling, please contact a pastor directly.
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {FREE_MESSAGE_LIMIT - messageCount} free messages remaining
+                        </p>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      {/* Subscription Paywall Modal */}
+      <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-primary" />
+              Upgrade to Pro
+            </DialogTitle>
+            <DialogDescription>
+              You've experienced what the AI Pastor can offer. Upgrade to Pro for unlimited spiritual guidance and support.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+              <h3 className="font-semibold text-lg mb-2">Pro Plan - $9.99/month</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> Unlimited AI Pastor conversations
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> Priority spiritual guidance
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> Access to exclusive community content
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> Direct prayer request support
+                </li>
+              </ul>
+            </div>
+            <Button 
+              onClick={handleSubscribe} 
+              className="w-full" 
+              disabled={isCheckingOut}
+              data-testid="button-checkout"
+            >
+              {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
+            </Button>
+            <p className="text-xs text-center text-muted-foreground">
+              Cancel anytime. Secure payment via Stripe.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
