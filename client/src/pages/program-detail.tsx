@@ -189,7 +189,7 @@ export default function ProgramDetail() {
                       href={program.donateLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="programGiveNowBtn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg animate-dock-in"
+                      className="programGiveNowBtn inline-flex items-center gap-2 md:gap-3 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-base md:text-lg animate-dock-in whitespace-nowrap"
                       data-testid="button-donate-program"
                     >
                       <Heart className="w-5 h-5" />
@@ -208,7 +208,7 @@ export default function ProgramDetail() {
           href={program.donateLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="programGiveNowBtn fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg shadow-lg animate-float-up"
+          className="programGiveNowBtn fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2 md:gap-3 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-base md:text-lg shadow-lg animate-float-up whitespace-nowrap"
           data-testid="button-donate-program-sticky"
         >
           <Heart className="w-5 h-5" />
