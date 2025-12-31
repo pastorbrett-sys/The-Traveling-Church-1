@@ -248,28 +248,28 @@ export default function Login() {
                       </div>
                     </div>
                     
-                    <button
-                      type="button"
-                      onClick={handleForgotPassword}
-                      className="text-sm text-primary hover:underline"
-                      data-testid="button-forgot-password"
-                    >
-                      Forgot password?
-                    </button>
-                    
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full h-11"
-                      data-testid="button-signin-email"
-                    >
-                      {isSubmitting ? (
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      ) : (
-                        <Mail className="w-4 h-4 mr-2" />
-                      )}
-                      Sign In with Email
-                    </Button>
+                    <div className="flex items-center justify-between">
+                      <button
+                        type="button"
+                        onClick={handleForgotPassword}
+                        className="text-sm text-primary hover:underline"
+                        data-testid="button-forgot-password"
+                      >
+                        Forgot password?
+                      </button>
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        size="sm"
+                        data-testid="button-signin-email"
+                      >
+                        {isSubmitting ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          "Sign In"
+                        )}
+                      </Button>
+                    </div>
                   </form>
                   
                   <div className="relative py-2">
@@ -294,6 +294,10 @@ export default function Login() {
                     )}
                     Continue with Google
                   </Button>
+                  
+                  <p className="text-xs text-center text-muted-foreground">
+                    By continuing, you agree to our Terms of Service and Privacy Policy.
+                  </p>
                 </TabsContent>
                 
                 <TabsContent value="signup" className="space-y-4 mt-4">
@@ -393,12 +397,12 @@ export default function Login() {
                     )}
                     Sign up with Google
                   </Button>
+                  
+                  <p className="text-xs text-center text-muted-foreground">
+                    By continuing, you agree to our Terms of Service and Privacy Policy.
+                  </p>
                 </TabsContent>
               </Tabs>
-
-              <p className="text-xs text-center text-muted-foreground pt-2">
-                By continuing, you agree to our Terms of Service and Privacy Policy.
-              </p>
             </CardContent>
           </Card>
         </div>
