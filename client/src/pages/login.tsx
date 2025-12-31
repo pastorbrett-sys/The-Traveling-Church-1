@@ -248,28 +248,26 @@ export default function Login() {
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <button
-                        type="button"
-                        onClick={handleForgotPassword}
-                        className="text-sm text-primary hover:underline"
-                        data-testid="button-forgot-password"
-                      >
-                        Forgot password?
-                      </button>
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        size="sm"
-                        data-testid="button-signin-email"
-                      >
-                        {isSubmitting ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                          "Sign In"
-                        )}
-                      </Button>
-                    </div>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-11"
+                      data-testid="button-signin-email"
+                    >
+                      {isSubmitting ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : null}
+                      Sign In
+                    </Button>
+                    
+                    <button
+                      type="button"
+                      onClick={handleForgotPassword}
+                      className="text-sm text-primary hover:underline w-full text-center"
+                      data-testid="button-forgot-password"
+                    >
+                      Forgot password?
+                    </button>
                   </form>
                   
                   <div className="relative py-2">
