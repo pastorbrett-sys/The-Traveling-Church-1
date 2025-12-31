@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { programs } from "@/data/programs";
 import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase, Leaf } from "lucide-react";
@@ -33,10 +33,32 @@ const imageMap: Record<string, string> = {
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
   const program = programs.find((p) => p.slug === slug);
+  const [isButtonDocked, setIsButtonDocked] = useState(false);
+  const buttonTargetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsButtonDocked(false);
   }, [slug]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (buttonTargetRef.current) {
+        const rect = buttonTargetRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // When the target position is visible in viewport (with some offset)
+        if (rect.top < windowHeight - 100) {
+          setIsButtonDocked(true);
+        } else {
+          setIsButtonDocked(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!program) {
     return (
@@ -161,21 +183,38 @@ export default function ProgramDetail() {
                 <p className="text-lg text-foreground mb-6">
                   Your generosity makes this program possible.
                 </p>
-                <a
-                  href={program.donateLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="programGiveNowBtn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
-                  data-testid="button-donate-program"
-                >
-                  <Heart className="w-5 h-5" />
-                  Give Now
-                </a>
+                <div ref={buttonTargetRef} className="relative h-14">
+                  {isButtonDocked && (
+                    <a
+                      href={program.donateLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="programGiveNowBtn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg animate-dock-in"
+                      data-testid="button-donate-program"
+                    >
+                      <Heart className="w-5 h-5" />
+                      Give Now
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      {!isButtonDocked && (
+        <a
+          href={program.donateLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="programGiveNowBtn fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-medium text-lg shadow-lg animate-float-up"
+          data-testid="button-donate-program-sticky"
+        >
+          <Heart className="w-5 h-5" />
+          Give Now
+        </a>
+      )}
 
       <Footer />
     </div>
