@@ -116,14 +116,27 @@ export default function PastorChat() {
     try {
       // Fetch the Pro plan price
       const productsRes = await fetch("/api/stripe/products-with-prices");
+      
+      if (!productsRes.ok) {
+        const errText = await productsRes.text();
+        alert("Failed to load products: " + productsRes.status + " - " + errText);
+        return;
+      }
+      
       const productsData = await productsRes.json();
       console.log("Products data:", productsData);
+      
+      if (!productsData.data || productsData.data.length === 0) {
+        alert("No products found. Products count: " + (productsData.data?.length || 0));
+        return;
+      }
       
       const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
       console.log("Pro plan found:", proPlan);
       
       if (!proPlan) {
-        alert("Pro plan not found. Please try again in a moment while we sync with our payment system.");
+        const allProducts = productsData.data.map((p: any) => p.name + " (tier=" + p.metadata?.tier + ")").join(", ");
+        alert("Pro plan not found. Available products: " + allProducts);
         return;
       }
       
@@ -131,7 +144,7 @@ export default function PastorChat() {
       console.log("Pro price found:", proPrice);
       
       if (!proPrice) {
-        alert("Pricing not available. Please try again shortly.");
+        alert("Monthly price not found for Pro plan. Prices: " + JSON.stringify(proPlan.prices));
         return;
       }
       
@@ -144,11 +157,11 @@ export default function PastorChat() {
       if (checkoutData.url) {
         window.location.href = checkoutData.url;
       } else {
-        alert("Could not start checkout. Please try again.");
+        alert("No checkout URL returned: " + JSON.stringify(checkoutData));
       }
     } catch (error: any) {
       console.error("Checkout error:", error);
-      alert("Error: " + (error?.message || JSON.stringify(error)));
+      alert("Checkout failed: " + (error?.message || String(error)));
     } finally {
       setIsCheckingOut(false);
     }
