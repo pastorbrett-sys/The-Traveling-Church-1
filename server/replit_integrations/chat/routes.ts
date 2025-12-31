@@ -5,9 +5,9 @@ import { nanoid } from "nanoid";
 import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+const gemini = new OpenAI({
+  apiKey: process.env.AI_INTEGRATIONS_GEMINI_API_KEY,
+  baseURL: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL,
 });
 
 const FREE_MESSAGE_LIMIT = 10;
@@ -212,12 +212,12 @@ Remember: You are here to support, not to replace professional counseling or in-
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
 
-      // Stream response from OpenAI
-      const stream = await openai.chat.completions.create({
-        model: "gpt-4o",
+      // Stream response from Gemini 2.5 Flash
+      const stream = await gemini.chat.completions.create({
+        model: "gemini-2.5-flash",
         messages: chatMessages,
         stream: true,
-        max_completion_tokens: 2048,
+        max_tokens: 2048,
       });
 
       let fullResponse = "";
