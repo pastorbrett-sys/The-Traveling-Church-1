@@ -117,20 +117,38 @@ export default function PastorChat() {
       // Fetch the Pro plan price
       const productsRes = await fetch("/api/stripe/products-with-prices");
       const productsData = await productsRes.json();
-      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
-      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
+      console.log("Products data:", productsData);
       
-      if (proPrice) {
-        const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", {
-          priceId: proPrice.id,
-        });
-        const checkoutData = await checkoutRes.json();
-        if (checkoutData.url) {
-          window.location.href = checkoutData.url;
-        }
+      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
+      console.log("Pro plan found:", proPlan);
+      
+      if (!proPlan) {
+        alert("Pro plan not found. Please try again in a moment while we sync with our payment system.");
+        return;
+      }
+      
+      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
+      console.log("Pro price found:", proPrice);
+      
+      if (!proPrice) {
+        alert("Pricing not available. Please try again shortly.");
+        return;
+      }
+      
+      const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", {
+        priceId: proPrice.id,
+      });
+      const checkoutData = await checkoutRes.json();
+      console.log("Checkout response:", checkoutData);
+      
+      if (checkoutData.url) {
+        window.location.href = checkoutData.url;
+      } else {
+        alert("Could not start checkout. Please try again.");
       }
     } catch (error) {
       console.error("Checkout error:", error);
+      alert("An error occurred. Please try again.");
     } finally {
       setIsCheckingOut(false);
     }
