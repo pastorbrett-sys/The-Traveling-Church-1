@@ -85,13 +85,18 @@ export default function PastorChat() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll to show newest messages just above the sticky footer
-  useEffect(() => {
+  // Helper function to scroll to bottom
+  const scrollToBottom = () => {
     requestAnimationFrame(() => {
       if (messagesEndRef.current) {
         messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
       }
     });
+  };
+
+  // Scroll to show newest messages just above the sticky footer
+  useEffect(() => {
+    scrollToBottom();
   }, [messages]);
 
   useEffect(() => {
@@ -187,6 +192,7 @@ export default function PastorChat() {
       let assistantContent = "";
 
       setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
+      scrollToBottom();
 
       while (true) {
         const { done, value } = await reader.read();
@@ -212,6 +218,8 @@ export default function PastorChat() {
                   };
                   return newMessages;
                 });
+                // Scroll as content streams in
+                scrollToBottom();
               }
             } catch (e) {
               if (e instanceof SyntaxError) continue;
