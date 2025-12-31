@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Plus, Trash2, ArrowLeft, Lock, Sparkles, LogIn, Settings } from "lucide-react";
+import { Send, MessageCircle, Plus, Trash2, ArrowLeft, Lock, Sparkles, LogIn } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,7 +39,6 @@ export default function PastorChat() {
   const [showPaywall, setShowPaywall] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [isOpeningPortal, setIsOpeningPortal] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
@@ -149,23 +148,6 @@ export default function PastorChat() {
       console.error("Checkout error:", error);
     } finally {
       setIsCheckingOut(false);
-    }
-  };
-
-  const handleManageSubscription = async () => {
-    if (!isAuthenticated) return;
-    
-    setIsOpeningPortal(true);
-    try {
-      const res = await apiRequest("POST", "/api/stripe/my-portal");
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch (error) {
-      console.error("Portal error:", error);
-    } finally {
-      setIsOpeningPortal(false);
     }
   };
 
@@ -396,37 +378,17 @@ export default function PastorChat() {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {isAuthenticated ? (
-                        <>
-                          {isPro && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={handleManageSubscription}
-                              disabled={isOpeningPortal}
-                              data-testid="button-manage-subscription"
-                            >
-                              <Settings className="w-4 h-4 mr-2" />
-                              {isOpeningPortal ? "Loading..." : "Manage Subscription"}
-                            </Button>
-                          )}
-                          <span className="text-sm text-muted-foreground" data-testid="text-user-greeting">
-                            {user?.firstName || user?.username || 'User'}
-                          </span>
-                        </>
-                      ) : (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => window.location.href = "/api/login"}
-                          data-testid="button-login"
-                        >
-                          <LogIn className="w-4 h-4 mr-2" />
-                          Sign In
-                        </Button>
-                      )}
-                    </div>
+                    {!isAuthenticated && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => window.location.href = "/api/login"}
+                        data-testid="button-login"
+                      >
+                        <LogIn className="w-4 h-4 mr-2" />
+                        Sign In
+                      </Button>
+                    )}
                   </div>
                 </div>
 

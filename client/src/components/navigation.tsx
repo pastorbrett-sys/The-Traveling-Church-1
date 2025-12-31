@@ -116,10 +116,14 @@ export default function Navigation() {
               </div>
             ) : isAuthenticated ? (
               <div className="flex items-center gap-3 ml-2 pl-4 border-l border-border">
-                <span className="text-sm text-muted-foreground flex items-center gap-1" data-testid="text-user-name">
+                <Link
+                  href="/profile"
+                  className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
+                  data-testid="link-profile"
+                >
                   <User className="w-4 h-4" />
                   {user?.firstName || 'User'}
-                </span>
+                </Link>
                 <Button
                   type="button"
                   variant="outline"
@@ -194,10 +198,15 @@ export default function Navigation() {
                   <div className="h-10 w-full bg-muted animate-pulse rounded" />
                 ) : isAuthenticated ? (
                   <div className="flex flex-col gap-2">
-                    <span className="text-sm text-muted-foreground flex items-center gap-2 px-3 py-2" data-testid="text-mobile-user-name">
+                    <Link
+                      href="/profile"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2 px-3 py-2 transition-colors"
+                      data-testid="link-mobile-profile"
+                    >
                       <User className="w-4 h-4" />
-                      {user?.firstName || 'User'}
-                    </span>
+                      {user?.firstName || 'User'} - My Profile
+                    </Link>
                     <Button
                       type="button"
                       variant="outline"

@@ -16,6 +16,7 @@ import MissionThailand from "@/pages/mission-thailand";
 import MissionJordan from "@/pages/mission-jordan";
 import Missions from "@/pages/missions";
 import PastorChat from "@/pages/pastor-chat";
+import Profile from "@/pages/profile";
 import CheckoutSuccess from "@/pages/checkout-success";
 import CheckoutCancel from "@/pages/checkout-cancel";
 
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/missions/jordan" component={MissionJordan} />
       <Route path="/missions" component={Missions} />
       <Route path="/pastor-chat" component={PastorChat} />
+      <Route path="/profile" component={Profile} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
       <Route component={NotFound} />
