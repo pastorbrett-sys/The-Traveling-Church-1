@@ -7,6 +7,10 @@ import {
   GoogleAuthProvider, 
   signOut,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  updateProfile,
   type User as FirebaseUser
 } from "firebase/auth";
 
@@ -43,6 +47,48 @@ export async function handleRedirectResult(): Promise<FirebaseUser | null> {
   } catch (error) {
     console.error("Redirect result error:", error);
     return null;
+  }
+}
+
+export async function signUpWithEmail(email: string, password: string, displayName?: string): Promise<FirebaseUser> {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  if (displayName && result.user) {
+    await updateProfile(result.user, { displayName });
+  }
+  return result.user;
+}
+
+export async function signInWithEmail(email: string, password: string): Promise<FirebaseUser> {
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  return result.user;
+}
+
+export async function resetPassword(email: string): Promise<void> {
+  await sendPasswordResetEmail(auth, email);
+}
+
+export function getFirebaseErrorMessage(code: string): string {
+  switch (code) {
+    case 'auth/email-already-in-use':
+      return 'This email is already registered. Please sign in instead.';
+    case 'auth/invalid-email':
+      return 'Please enter a valid email address.';
+    case 'auth/operation-not-allowed':
+      return 'Email/password accounts are not enabled.';
+    case 'auth/weak-password':
+      return 'Password should be at least 6 characters.';
+    case 'auth/user-disabled':
+      return 'This account has been disabled.';
+    case 'auth/user-not-found':
+      return 'No account found with this email. Please sign up first.';
+    case 'auth/wrong-password':
+      return 'Incorrect password. Please try again.';
+    case 'auth/invalid-credential':
+      return 'Invalid email or password. Please check and try again.';
+    case 'auth/too-many-requests':
+      return 'Too many failed attempts. Please try again later.';
+    default:
+      return 'An error occurred. Please try again.';
   }
 }
 

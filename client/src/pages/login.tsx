@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useSearch, useLocation } from "wouter";
-import { ArrowLeft, Mail, Sparkles, Loader2 } from "lucide-react";
+import { ArrowLeft, Mail, Sparkles, Loader2, Eye, EyeOff } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/use-auth";
-import { signInWithGoogle, handleRedirectResult } from "@/lib/firebase";
+import { 
+  signInWithGoogle, 
+  signInWithEmail, 
+  signUpWithEmail, 
+  resetPassword,
+  getFirebaseErrorMessage,
+  handleRedirectResult 
+} from "@/lib/firebase";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
@@ -17,8 +27,20 @@ export default function Login() {
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/";
-  const [isSigningIn, setIsSigningIn] = useState(false);
+  
+  const [activeTab, setActiveTab] = useState<string>("signin");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+  
+  const [signUpName, setSignUpName] = useState("");
+  const [signUpEmail, setSignUpEmail] = useState("");
+  const [signUpPassword, setSignUpPassword] = useState("");
+  const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("");
 
   useEffect(() => {
     document.title = "Sign In | The Traveling Church";
@@ -39,7 +61,7 @@ export default function Login() {
   }, [isLoading, isAuthenticated, redirectTo, setLocation]);
 
   const handleGoogleSignIn = async () => {
-    setIsSigningIn(true);
+    setIsSubmitting(true);
     setError(null);
     try {
       const user = await signInWithGoogle();
@@ -51,9 +73,73 @@ export default function Login() {
         return;
       }
       console.error("Sign in error:", err);
-      setError(err.message || "Failed to sign in. Please try again.");
+      setError(getFirebaseErrorMessage(err.code));
     } finally {
-      setIsSigningIn(false);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEmailSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      await signInWithEmail(signInEmail, signInPassword);
+      await refetch();
+    } catch (err: any) {
+      console.error("Sign in error:", err);
+      setError(getFirebaseErrorMessage(err.code));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEmailSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    
+    if (signUpPassword !== signUpConfirmPassword) {
+      setError("Passwords do not match.");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (signUpPassword.length < 6) {
+      setError("Password must be at least 6 characters.");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    try {
+      await signUpWithEmail(signUpEmail, signUpPassword, signUpName);
+      await refetch();
+    } catch (err: any) {
+      console.error("Sign up error:", err);
+      setError(getFirebaseErrorMessage(err.code));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!signInEmail) {
+      setError("Please enter your email address first.");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      await resetPassword(signInEmail);
+      setSuccessMessage("Password reset email sent! Check your inbox.");
+    } catch (err: any) {
+      console.error("Password reset error:", err);
+      setError(getFirebaseErrorMessage(err.code));
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -98,73 +184,217 @@ export default function Login() {
                 />
               </div>
               <CardTitle className="text-2xl" data-testid="heading-sign-in">
-                Welcome Back
+                Welcome
               </CardTitle>
               <CardDescription className="text-base">
-                Sign in to access your account and AI Pastor Chat
+                Sign in or create an account to access AI Pastor Chat
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4 pt-4">
               {error && (
-                <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md">
+                <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md" data-testid="error-message">
                   {error}
                 </div>
               )}
+              
+              {successMessage && (
+                <div className="bg-green-100 text-green-800 text-sm p-3 rounded-md" data-testid="success-message">
+                  {successMessage}
+                </div>
+              )}
 
-              <Button
-                onClick={handleGoogleSignIn}
-                disabled={isSigningIn}
-                className="w-full h-12 text-base"
-                data-testid="button-continue-google"
-              >
-                {isSigningIn ? (
-                  <Loader2 className="w-5 h-5 mr-3 animate-spin" />
-                ) : (
-                  <SiGoogle className="w-5 h-5 mr-3" />
-                )}
-                Continue with Google
-              </Button>
-
-              <Button
-                onClick={handleGoogleSignIn}
-                disabled={isSigningIn}
-                variant="outline"
-                className="w-full h-12 text-base"
-                data-testid="button-continue-email"
-              >
-                <Mail className="w-5 h-5 mr-3" />
-                Continue with Email
-              </Button>
-
-              <div className="relative py-4">
-                <Separator />
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-3 text-sm text-muted-foreground">
-                  New here?
-                </span>
-              </div>
-
-              <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-                <h3 className="font-semibold flex items-center gap-2 mb-2">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  Get Started Free
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Create an account to try 10 free AI Pastor messages. Upgrade anytime for unlimited access.
-                </p>
-                <Button
-                  onClick={handleGoogleSignIn}
-                  disabled={isSigningIn}
-                  variant="secondary"
-                  className="w-full"
-                  data-testid="button-create-account"
-                >
-                  {isSigningIn ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : null}
-                  Create Free Account
-                </Button>
-              </div>
+              <Tabs value={activeTab} onValueChange={(v) => { setActiveTab(v); setError(null); setSuccessMessage(null); }}>
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="signin" data-testid="tab-signin">Sign In</TabsTrigger>
+                  <TabsTrigger value="signup" data-testid="tab-signup">Create Account</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="signin" className="space-y-4 mt-4">
+                  <form onSubmit={handleEmailSignIn} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signin-email">Email</Label>
+                      <Input
+                        id="signin-email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={signInEmail}
+                        onChange={(e) => setSignInEmail(e.target.value)}
+                        required
+                        data-testid="input-signin-email"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="signin-password">Password</Label>
+                      <div className="relative">
+                        <Input
+                          id="signin-password"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Enter your password"
+                          value={signInPassword}
+                          onChange={(e) => setSignInPassword(e.target.value)}
+                          required
+                          data-testid="input-signin-password"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                          data-testid="button-toggle-password"
+                        >
+                          {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <button
+                      type="button"
+                      onClick={handleForgotPassword}
+                      className="text-sm text-primary hover:underline"
+                      data-testid="button-forgot-password"
+                    >
+                      Forgot password?
+                    </button>
+                    
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-11"
+                      data-testid="button-signin-email"
+                    >
+                      {isSubmitting ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : (
+                        <Mail className="w-4 h-4 mr-2" />
+                      )}
+                      Sign In with Email
+                    </Button>
+                  </form>
+                  
+                  <div className="relative py-2">
+                    <Separator />
+                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-3 text-sm text-muted-foreground">
+                      or
+                    </span>
+                  </div>
+                  
+                  <Button
+                    type="button"
+                    onClick={handleGoogleSignIn}
+                    disabled={isSubmitting}
+                    variant="outline"
+                    className="w-full h-11"
+                    data-testid="button-signin-google"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <SiGoogle className="w-4 h-4 mr-2" />
+                    )}
+                    Continue with Google
+                  </Button>
+                </TabsContent>
+                
+                <TabsContent value="signup" className="space-y-4 mt-4">
+                  <div className="bg-primary/5 rounded-lg p-3 border border-primary/20 mb-4">
+                    <p className="text-sm flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-primary" />
+                      Get 10 free AI Pastor messages when you sign up!
+                    </p>
+                  </div>
+                  
+                  <form onSubmit={handleEmailSignUp} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-name">Name</Label>
+                      <Input
+                        id="signup-name"
+                        type="text"
+                        placeholder="Your name"
+                        value={signUpName}
+                        onChange={(e) => setSignUpName(e.target.value)}
+                        data-testid="input-signup-name"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-email">Email</Label>
+                      <Input
+                        id="signup-email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={signUpEmail}
+                        onChange={(e) => setSignUpEmail(e.target.value)}
+                        required
+                        data-testid="input-signup-email"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-password">Password</Label>
+                      <Input
+                        id="signup-password"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="At least 6 characters"
+                        value={signUpPassword}
+                        onChange={(e) => setSignUpPassword(e.target.value)}
+                        required
+                        data-testid="input-signup-password"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-confirm-password">Confirm Password</Label>
+                      <Input
+                        id="signup-confirm-password"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Confirm your password"
+                        value={signUpConfirmPassword}
+                        onChange={(e) => setSignUpConfirmPassword(e.target.value)}
+                        required
+                        data-testid="input-signup-confirm-password"
+                      />
+                    </div>
+                    
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-11"
+                      data-testid="button-signup-email"
+                    >
+                      {isSubmitting ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : (
+                        <Mail className="w-4 h-4 mr-2" />
+                      )}
+                      Create Account
+                    </Button>
+                  </form>
+                  
+                  <div className="relative py-2">
+                    <Separator />
+                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-3 text-sm text-muted-foreground">
+                      or
+                    </span>
+                  </div>
+                  
+                  <Button
+                    type="button"
+                    onClick={handleGoogleSignIn}
+                    disabled={isSubmitting}
+                    variant="outline"
+                    className="w-full h-11"
+                    data-testid="button-signup-google"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <SiGoogle className="w-4 h-4 mr-2" />
+                    )}
+                    Sign up with Google
+                  </Button>
+                </TabsContent>
+              </Tabs>
 
               <p className="text-xs text-center text-muted-foreground pt-2">
                 By continuing, you agree to our Terms of Service and Privacy Policy.
