@@ -99,6 +99,7 @@ export default function Login() {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+    setSuccessMessage(null);
     
     if (signUpPassword !== signUpConfirmPassword) {
       setError("Passwords do not match.");
@@ -114,7 +115,13 @@ export default function Login() {
     
     try {
       await signUpWithEmail(signUpEmail, signUpPassword, signUpName);
-      await refetch();
+      setSuccessMessage("Account created! We've sent a verification email to " + signUpEmail + ". Please check your inbox and verify your email, then sign in.");
+      setActiveTab("signin");
+      setSignInEmail(signUpEmail);
+      setSignUpEmail("");
+      setSignUpPassword("");
+      setSignUpConfirmPassword("");
+      setSignUpName("");
     } catch (err: any) {
       console.error("Sign up error:", err);
       setError(getFirebaseErrorMessage(err.code));
@@ -131,10 +138,11 @@ export default function Login() {
     
     setIsSubmitting(true);
     setError(null);
+    setSuccessMessage(null);
     
     try {
       await resetPassword(signInEmail);
-      setSuccessMessage("Password reset email sent! Check your inbox.");
+      setSuccessMessage("Password reset email sent to " + signInEmail + "! Check your inbox and follow the link to reset your password.");
     } catch (err: any) {
       console.error("Password reset error:", err);
       setError(getFirebaseErrorMessage(err.code));

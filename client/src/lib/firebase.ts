@@ -10,6 +10,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  sendEmailVerification,
   updateProfile,
   type User as FirebaseUser
 } from "firebase/auth";
@@ -55,7 +56,17 @@ export async function signUpWithEmail(email: string, password: string, displayNa
   if (displayName && result.user) {
     await updateProfile(result.user, { displayName });
   }
+  if (result.user) {
+    await sendEmailVerification(result.user);
+  }
   return result.user;
+}
+
+export async function resendVerificationEmail(): Promise<void> {
+  const user = auth.currentUser;
+  if (user && !user.emailVerified) {
+    await sendEmailVerification(user);
+  }
 }
 
 export async function signInWithEmail(email: string, password: string): Promise<FirebaseUser> {
