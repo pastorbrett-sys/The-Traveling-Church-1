@@ -2,12 +2,16 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { CheckCircle, MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { queryClient } from "@/lib/queryClient";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function CheckoutSuccess() {
   useEffect(() => {
     document.title = "Payment Successful | The Traveling Church";
+    // Invalidate subscription-related queries so they refetch with new status
+    queryClient.invalidateQueries({ queryKey: ["/api/stripe/my-subscription"] });
+    queryClient.invalidateQueries({ queryKey: ["/api/chat/session-stats"] });
   }, []);
 
   return (

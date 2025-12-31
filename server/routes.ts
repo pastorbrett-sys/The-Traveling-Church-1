@@ -10,11 +10,16 @@ import {
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
 import { registerChatRoutes } from "./replit_integrations/chat";
+import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integrations/auth";
 import { stripeStorage } from "./stripeStorage";
 import { stripeService } from "./stripeService";
 import { getStripePublishableKey } from "./stripeClient";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication first (before other routes)
+  await setupAuth(app);
+  registerAuthRoutes(app);
+  
   registerChatRoutes(app);
 
   // Public assets from Object Storage - from blueprint:javascript_object_storage
@@ -248,27 +253,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/stripe/checkout", async (req: any, res) => {
     try {
-      const { priceId, userId, email } = req.body;
+      const { priceId } = req.body;
       
       if (!priceId) {
         return res.status(400).json({ message: "Price ID is required" });
       }
 
       let customerId: string;
+      let userId: string | undefined;
       
-      if (userId) {
+      // Check if user is authenticated
+      if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
+        userId = req.user.claims.sub;
         const user = await storage.getUser(userId);
+        const email = req.user.claims.email || '';
+        
         if (user?.stripeCustomerId) {
           customerId = user.stripeCustomerId;
         } else {
-          const customer = await stripeService.createCustomer(email || '', userId);
+          const customer = await stripeService.createCustomer(email, userId);
           if (user) {
             await storage.updateUserStripeInfo(userId, { stripeCustomerId: customer.id });
           }
           customerId = customer.id;
         }
       } else {
-        const customer = await stripeService.createCustomer(email || '', 'guest');
+        // Guest checkout (fallback)
+        const customer = await stripeService.createCustomer('', 'guest');
         customerId = customer.id;
       }
 
@@ -315,6 +326,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ subscription });
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch subscription" });
+    }
+  });
+
+  // Get current user's subscription status (requires authentication)
+  app.get("/api/stripe/my-subscription", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      let subscription = null;
+      let isProUser = false;
+
+      if (user.stripeCustomerId) {
+        subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
+        isProUser = subscription?.status === 'active' || subscription?.status === 'trialing';
+      }
+
+      res.json({ 
+        subscription,
+        isProUser,
+        stripeCustomerId: user.stripeCustomerId
+      });
+    } catch (error) {
+      console.error("Error fetching subscription:", error);
+      res.status(500).json({ message: "Failed to fetch subscription" });
+    }
+  });
+
+  // Create customer portal session for authenticated user
+  app.post("/api/stripe/my-portal", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      
+      if (!user?.stripeCustomerId) {
+        return res.status(400).json({ message: "No subscription found" });
+      }
+
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      const session = await stripeService.createCustomerPortalSession(
+        user.stripeCustomerId,
+        `${baseUrl}/pastor-chat`
+      );
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Portal error:", error);
+      res.status(500).json({ message: "Failed to create portal session" });
     }
   });
 

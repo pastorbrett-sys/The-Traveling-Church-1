@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Plus, Trash2, ArrowLeft, Lock, Sparkles } from "lucide-react";
+import { Send, MessageCircle, Plus, Trash2, ArrowLeft, Lock, Sparkles, LogIn, Settings } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { apiRequest } from "@/lib/queryClient";
+import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import type { Conversation, Message } from "@shared/schema";
@@ -24,25 +25,42 @@ interface SessionStats {
   limit: number;
 }
 
+interface SubscriptionStatus {
+  subscription: any;
+  isProUser: boolean;
+  stripeCustomerId: string | null;
+}
+
 export default function PastorChat() {
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [isOpeningPortal, setIsOpeningPortal] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
+  const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
 
-  // Fetch session stats from server
+  // Fetch session stats from server (for anonymous message counting)
   const { data: sessionStats, refetch: refetchSessionStats } = useQuery<SessionStats>({
     queryKey: ["/api/chat/session-stats"],
     refetchOnWindowFocus: false,
   });
 
+  // Fetch subscription status for authenticated users
+  const { data: subscriptionStatus, refetch: refetchSubscription } = useQuery<SubscriptionStatus>({
+    queryKey: ["/api/stripe/my-subscription"],
+    enabled: isAuthenticated,
+    retry: false,
+  });
+
+  // Determine if user is pro (authenticated subscriber)
+  const isPro = subscriptionStatus?.isProUser ?? false;
   const messageCount = sessionStats?.messageCount ?? 0;
-  const isPro = sessionStats?.isPro ?? false;
   const isLimitReached = !isPro && messageCount >= FREE_MESSAGE_LIMIT;
 
   const systemPrompt: ChatMessage = {
@@ -104,6 +122,12 @@ export default function PastorChat() {
   });
 
   const handleSubscribe = async () => {
+    // Require login before checkout
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     setIsCheckingOut(true);
     try {
       // Fetch the Pro plan price
@@ -125,6 +149,23 @@ export default function PastorChat() {
       console.error("Checkout error:", error);
     } finally {
       setIsCheckingOut(false);
+    }
+  };
+
+  const handleManageSubscription = async () => {
+    if (!isAuthenticated) return;
+    
+    setIsOpeningPortal(true);
+    try {
+      const res = await apiRequest("POST", "/api/stripe/my-portal");
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error("Portal error:", error);
+    } finally {
+      setIsOpeningPortal(false);
     }
   };
 
@@ -333,17 +374,58 @@ export default function PastorChat() {
               <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 border-b border-border">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                      <MessageCircle className="w-6 h-6 text-primary" />
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                        <MessageCircle className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h1 className="text-xl md:text-2xl font-bold text-foreground" data-testid="heading-pastor-chat">
+                            AI Pastor Chat
+                          </h1>
+                          {isPro && (
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary text-primary-foreground" data-testid="badge-pro">
+                              <Sparkles className="w-3 h-3 mr-1" />
+                              PRO
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Seek spiritual guidance and pastoral support
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h1 className="text-xl md:text-2xl font-bold text-foreground" data-testid="heading-pastor-chat">
-                        AI Pastor Chat
-                      </h1>
-                      <p className="text-sm text-muted-foreground">
-                        Seek spiritual guidance and pastoral support
-                      </p>
+                    <div className="flex items-center gap-2">
+                      {isAuthenticated ? (
+                        <>
+                          {isPro && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={handleManageSubscription}
+                              disabled={isOpeningPortal}
+                              data-testid="button-manage-subscription"
+                            >
+                              <Settings className="w-4 h-4 mr-2" />
+                              {isOpeningPortal ? "Loading..." : "Manage Subscription"}
+                            </Button>
+                          )}
+                          <span className="text-sm text-muted-foreground" data-testid="text-user-greeting">
+                            {user?.firstName || user?.username || 'User'}
+                          </span>
+                        </>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => window.location.href = "/api/login"}
+                          data-testid="button-login"
+                        >
+                          <LogIn className="w-4 h-4 mr-2" />
+                          Sign In
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -421,9 +503,16 @@ export default function PastorChat() {
                         <p className="text-xs text-muted-foreground">
                           This AI provides general spiritual guidance. For personal counseling, please contact a pastor directly.
                         </p>
-                        <p className="text-xs text-muted-foreground">
-                          {FREE_MESSAGE_LIMIT - messageCount} free messages remaining
-                        </p>
+                        {isPro ? (
+                          <p className="text-xs text-primary font-medium" data-testid="text-unlimited">
+                            <Sparkles className="w-3 h-3 inline mr-1" />
+                            Unlimited messages
+                          </p>
+                        ) : (
+                          <p className="text-xs text-muted-foreground" data-testid="text-messages-remaining">
+                            {Math.max(0, FREE_MESSAGE_LIMIT - messageCount)} free messages remaining
+                          </p>
+                        )}
                       </div>
                     </>
                   )}
@@ -475,6 +564,34 @@ export default function PastorChat() {
             <p className="text-xs text-center text-muted-foreground">
               Cancel anytime. Secure payment via Stripe.
             </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Login Required Modal */}
+      <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <LogIn className="w-5 h-5 text-primary" />
+              Sign In Required
+            </DialogTitle>
+            <DialogDescription>
+              Please sign in to your account to subscribe to the Pro plan. This ensures your subscription is linked to your account.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <p className="text-sm text-muted-foreground">
+              After signing in, you'll be able to subscribe and your Pro access will be remembered across all your devices.
+            </p>
+            <Button 
+              onClick={() => window.location.href = "/api/login"} 
+              className="w-full"
+              data-testid="button-signin-modal"
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Sign In to Continue
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

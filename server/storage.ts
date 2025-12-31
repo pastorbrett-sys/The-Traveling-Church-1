@@ -5,7 +5,6 @@ import * as schema from "@shared/schema";
 import { eq } from "drizzle-orm";
 import type {
   User,
-  InsertUser,
   Location,
   InsertLocation,
   BlogPost,
@@ -26,9 +25,8 @@ export const db = drizzle(pool, { schema });
 export interface IStorage {
   // Users
   getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
-  updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string; stripeSubscriptionId?: string }): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string | null; stripeSubscriptionId?: string | null }): Promise<User | undefined>;
 
   // Locations
   getAllLocations(): Promise<Location[]>;
@@ -62,21 +60,16 @@ export class DbStorage implements IStorage {
     return result[0];
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
+  async getUserByEmail(email: string): Promise<User | undefined> {
     const result = await db
       .select()
       .from(schema.users)
-      .where(eq(schema.users.username, username))
+      .where(eq(schema.users.email, email))
       .limit(1);
     return result[0];
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const result = await db.insert(schema.users).values(insertUser).returning();
-    return result[0];
-  }
-
-  async updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string; stripeSubscriptionId?: string }): Promise<User | undefined> {
+  async updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string | null; stripeSubscriptionId?: string | null }): Promise<User | undefined> {
     const result = await db.update(schema.users).set(stripeInfo).where(eq(schema.users.id, userId)).returning();
     return result[0];
   }

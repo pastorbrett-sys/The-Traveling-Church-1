@@ -44,6 +44,8 @@ Preferred communication style: Simple, everyday language.
 - **Journey Locations**: Features 6 specific global locations with custom images and display order.
 - **AI Pastor Chat**: Dedicated page for AI-powered spiritual guidance using OpenAI GPT-4o with streaming responses and conversation persistence.
 - **Stripe Subscription Integration**: Implements Free and Pro SaaS tiers with `stripe-replit-sync` for webhook handling and data synchronization. Pro plan includes AI Pastor Chat and other exclusive features.
+- **Replit Auth Integration**: Users can sign in via Replit's OpenID Connect authentication (supports Google, GitHub, email/password). Subscriptions are linked to authenticated user accounts for cross-device access.
+- **Subscription Management**: Authenticated Pro users can manage their subscription (cancel, update payment) via Stripe Customer Portal integration.
 
 ## External Dependencies
 
