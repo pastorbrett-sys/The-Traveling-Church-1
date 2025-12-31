@@ -4,6 +4,7 @@ import { programs } from "@/data/programs";
 import { Heart, ArrowRight, Shield, HandHeart, Globe, Utensils, Briefcase, FileText, Leaf } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import FloatingDonateButton from "@/components/floating-donate-button";
 import programsHeroImage from "@assets/generated_images/global_ministry_helping_community.png";
 
 const iconMap: Record<string, typeof Shield> = {
@@ -126,6 +127,7 @@ export default function Programs() {
       </main>
 
       <Footer />
+      <FloatingDonateButton />
     </div>
   );
 }

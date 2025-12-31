@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight, Globe } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import FloatingDonateButton from "@/components/floating-donate-button";
 
 import heroVideo from "@assets/text-to-video-ffe46d5c_(1)_1767132632981.mp4?url";
 import jordanHero from "@assets/IMG_1160_1767129664288.jpg";
@@ -146,6 +147,7 @@ export default function Missions() {
       </main>
 
       <Footer />
+      <FloatingDonateButton />
     </div>
   );
 }
