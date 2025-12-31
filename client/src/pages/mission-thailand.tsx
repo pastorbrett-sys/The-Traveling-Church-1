@@ -19,11 +19,11 @@ import bambooRaft from "@assets/IMG_9949_1767128055585.jpg";
 
 import video1 from "@assets/IMG_0110_1767130315169.MOV?url";
 import video2 from "@assets/IMG_5046_1767130079431.MOV?url";
-import video3 from "@assets/IMG_5062_1767130079430.MOV?url";
+import video3 from "@assets/thailand_video2_compressed.mp4";
 import video4 from "@assets/IMG_5067_1767130079430.MOV?url";
 import video5 from "@assets/IMG_5071_1767130523133.MOV?url";
-import video6 from "@assets/IMG_5080_1767130079430.MOV?url";
-import video7 from "@assets/IMG_5921_1767130523133.MOV?url";
+import video6 from "@assets/thailand_video3_compressed.mp4";
+import video7 from "@assets/thailand_video1_compressed.mp4";
 import video8 from "@assets/IMG_5949_1767130523133.MOV?url";
 
 const videos = [
