@@ -4,7 +4,8 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/IMG_2260_1767118533609.jpg";
+import originalHeroImage from "@assets/IMG_2260_1767118533609.jpg";
+import heroImage from "@assets/generated_images/lalibela_rock_church_ethiopia.png";
 import churchPool from "@assets/IMG_2171_1767118533608.jpg";
 import rockStructures from "@assets/IMG_2191_1767118533608.jpg";
 import nightCross from "@assets/IMG_2069_1767118533608.jpg";

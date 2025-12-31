@@ -4,7 +4,8 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-import heroImage from "@assets/__Red_Sea_1767124933007.jpg";
+import originalHeroImage from "@assets/__Red_Sea_1767124933007.jpg";
+import heroImage from "@assets/generated_images/egyptian_pyramids_at_sunset.png";
 import egyptMoney from "@assets/IMG_0743_1767124933006.jpg";
 import mealPrep from "@assets/IMG_0746_1767124933006.jpg";
 import mealsCrate from "@assets/IMG_0747_1767124933006.jpg";
@@ -39,7 +40,7 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   {
-    src: heroImage,
+    src: originalHeroImage,
     alt: "Red Sea beach in Egypt",
     caption: "The beautiful shores of the Red Sea - where Moses led the Israelites to freedom",
     featured: true
