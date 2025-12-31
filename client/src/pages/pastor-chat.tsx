@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, ArrowLeft, Lock, Sparkles, LogIn } from "lucide-react";
+import { Send, MessageCircle, Lock, Sparkles, LogIn } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -242,148 +242,117 @@ export default function PastorChat() {
     <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 pt-5 pb-16">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <Link
-            href="/"
-            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-4 transition-colors"
-            data-testid="link-back-home"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Link>
-
-          <div className="w-full max-w-3xl mx-auto">
-            {/* Main Chat Area */}
-            <div className="w-full">
-              <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 border-b border-border">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                        <MessageCircle className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h1 className="text-xl md:text-2xl font-bold text-foreground" data-testid="heading-pastor-chat">
-                            AI Pastor Chat
-                          </h1>
-                          {isPro && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary text-primary-foreground" data-testid="badge-pro">
-                              <Sparkles className="w-3 h-3 mr-1" />
-                              PRO
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          Seek spiritual guidance and pastoral support
-                        </p>
-                      </div>
-                    </div>
-                    {!isAuthenticated && (
-                      <Link href="/login?redirect=/pastor-chat">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          data-testid="button-login"
-                        >
-                          <LogIn className="w-4 h-4 mr-2" />
-                          Sign In
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
+      <main className="flex-1 flex flex-col pb-0">
+        <div className="w-full max-w-3xl mx-auto px-4 flex flex-col flex-1">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 md:p-6 border-b border-border rounded-t-lg mt-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
-
-                {/* Messages */}
-                <ScrollArea className="h-96 md:h-[500px] p-4">
-                  <div className="space-y-4">
-                    {displayMessages.map((message, index) => (
-                      <div
-                        key={index}
-                        className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                      >
-                        <div
-                          className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                            message.role === "user"
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-muted text-foreground"
-                          }`}
-                          data-testid={`message-${message.role}-${index}`}
-                        >
-                          <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                        </div>
-                      </div>
-                    ))}
-                    {isStreaming && messages[messages.length - 1]?.content === "" && (
-                      <div className="flex justify-start">
-                        <div className="bg-muted rounded-2xl px-4 py-3">
-                          <div className="flex gap-1">
-                            <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                            <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
-                            <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
-                          </div>
-                        </div>
-                      </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h1 className="text-lg md:text-2xl font-bold text-foreground" data-testid="heading-pastor-chat">
+                      AI Pastor Chat
+                    </h1>
+                    {isPro && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary text-primary-foreground" data-testid="badge-pro">
+                        <Sparkles className="w-3 h-3 mr-1" />
+                        PRO
+                      </span>
                     )}
-                    <div ref={messagesEndRef} />
                   </div>
-                </ScrollArea>
-
-                {/* Input */}
-                <div className="p-4 border-t border-border">
-                  {isLimitReached ? (
-                    <div className="text-center py-4">
-                      <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
-                        <Lock className="w-5 h-5" />
-                        <span>You've reached your free message limit</span>
-                      </div>
-                      <Button onClick={() => setShowPaywall(true)} data-testid="button-upgrade">
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        Upgrade to Pro for Unlimited Access
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      <Textarea
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Share what's on your heart..."
-                        className="min-h-[80px] resize-none w-full"
-                        disabled={isStreaming}
-                        data-testid="input-message"
-                      />
-                      <Button
-                        onClick={sendMessage}
-                        disabled={!input.trim() || isStreaming}
-                        className="w-full"
-                        data-testid="button-send"
-                      >
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
-                      </Button>
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
-                        <p className="text-xs text-muted-foreground">
-                          This AI provides general spiritual guidance. For personal counseling, please contact a pastor directly.
-                        </p>
-                        {isPro ? (
-                          <p className="text-xs text-primary font-medium whitespace-nowrap" data-testid="text-unlimited">
-                            <Sparkles className="w-3 h-3 inline mr-1" />
-                            Unlimited messages
-                          </p>
-                        ) : (
-                          <p className="text-xs text-muted-foreground whitespace-nowrap" data-testid="text-messages-remaining">
-                            {Math.max(0, FREE_MESSAGE_LIMIT - messageCount)} free messages remaining
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                  <p className="text-xs md:text-sm text-muted-foreground">
+                    Spiritual guidance and support
+                  </p>
                 </div>
               </div>
+              {!isAuthenticated && (
+                <Link href="/login?redirect=/pastor-chat">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    data-testid="button-login"
+                  >
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Sign In
+                  </Button>
+                </Link>
+              )}
             </div>
+          </div>
+
+          {/* Messages */}
+          <ScrollArea className="flex-1 p-4 bg-card border-x border-border" style={{ minHeight: "calc(100vh - 320px)" }}>
+            <div className="space-y-4">
+              {displayMessages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                      message.role === "user"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-foreground"
+                    }`}
+                    data-testid={`message-${message.role}-${index}`}
+                  >
+                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                  </div>
+                </div>
+              ))}
+              {isStreaming && messages[messages.length - 1]?.content === "" && (
+                <div className="flex justify-start">
+                  <div className="bg-muted rounded-2xl px-4 py-3">
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
+                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
+                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          </ScrollArea>
+
+          {/* Sticky Input */}
+          <div className="sticky bottom-0 p-4 border-t border-x border-border bg-card rounded-b-lg">
+            {isLimitReached ? (
+              <div className="text-center py-2">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
+                  <Lock className="w-5 h-5" />
+                  <span>You've reached your free message limit</span>
+                </div>
+                <Button onClick={() => setShowPaywall(true)} data-testid="button-upgrade">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Upgrade to Pro for Unlimited Access
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <Textarea
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Share what's on your heart..."
+                  className="min-h-[60px] resize-none w-full"
+                  disabled={isStreaming}
+                  data-testid="input-message"
+                />
+                <Button
+                  onClick={sendMessage}
+                  disabled={!input.trim() || isStreaming}
+                  className="w-full"
+                  data-testid="button-send"
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Message
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </main>
