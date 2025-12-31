@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useSearch, useLocation } from "wouter";
-import { ArrowLeft, Mail, Sparkles, Loader2, Eye, EyeOff } from "lucide-react";
+import { useSearch, useLocation } from "wouter";
+import { Mail, Sparkles, Loader2, Eye, EyeOff } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -173,22 +173,13 @@ export default function Login() {
 
       <main className="flex-1 py-12">
         <div className="max-w-md mx-auto px-4">
-          <Link
-            href="/"
-            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
-            data-testid="link-back-home"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Link>
-
           <Card className="border-2">
             <CardHeader className="text-center pb-2">
               <div className="flex justify-center mb-4">
                 <img 
                   src={logoImage} 
                   alt="The Traveling Church" 
-                  className="h-16"
+                  className="h-11 w-auto object-contain"
                   data-testid="img-logo"
                 />
               </div>
