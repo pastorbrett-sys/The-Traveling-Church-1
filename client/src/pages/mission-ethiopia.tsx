@@ -21,10 +21,10 @@ import expeditionTeam from "@assets/IMG_1843_1767118533610.jpg";
 import video1 from "@assets/IMG_2137_1767119389079.MOV?url";
 import video2 from "@assets/IMG_2138_1767119389079.MOV?url";
 import video3 from "@assets/IMG_2093_1767119389080.mov?url";
-import video4 from "@assets/IMG_1951_1767119419277.MOV?url";
+import video4 from "@assets/ethiopia_danakil_compressed.mp4";
 import video5 from "@assets/IMG_2315_1767119715180.mov?url";
 import video6 from "@assets/IMG_1768_1767119715181.MOV?url";
-import video7 from "@assets/IMG_2176_1767119715181.MOV?url";
+import video7 from "@assets/ethiopia_churches_compressed.mp4";
 import video8 from "@assets/IMG_2277_1767119715181.MOV?url";
 
 interface GalleryImage {
