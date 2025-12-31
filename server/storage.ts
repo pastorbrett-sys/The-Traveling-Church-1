@@ -28,6 +28,7 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string; stripeSubscriptionId?: string }): Promise<User | undefined>;
 
   // Locations
   getAllLocations(): Promise<Location[]>;
@@ -72,6 +73,11 @@ export class DbStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const result = await db.insert(schema.users).values(insertUser).returning();
+    return result[0];
+  }
+
+  async updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string; stripeSubscriptionId?: string }): Promise<User | undefined> {
+    const result = await db.update(schema.users).set(stripeInfo).where(eq(schema.users.id, userId)).returning();
     return result[0];
   }
 

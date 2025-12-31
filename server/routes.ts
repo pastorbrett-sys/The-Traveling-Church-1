@@ -10,6 +10,9 @@ import {
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
 import { registerChatRoutes } from "./replit_integrations/chat";
+import { stripeStorage } from "./stripeStorage";
+import { stripeService } from "./stripeService";
+import { getStripePublishableKey } from "./stripeClient";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   registerChatRoutes(app);
@@ -177,6 +180,141 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(submissions);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch contact submissions" });
+    }
+  });
+
+  // Stripe Routes
+  app.get("/api/stripe/config", async (_req, res) => {
+    try {
+      const publishableKey = await getStripePublishableKey();
+      res.json({ publishableKey });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get Stripe config" });
+    }
+  });
+
+  app.get("/api/stripe/products", async (_req, res) => {
+    try {
+      const products = await stripeStorage.listProducts();
+      res.json({ data: products });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch products" });
+    }
+  });
+
+  app.get("/api/stripe/products-with-prices", async (_req, res) => {
+    try {
+      const rows = await stripeStorage.listProductsWithPrices();
+      
+      const productsMap = new Map();
+      for (const row of rows as any[]) {
+        if (!productsMap.has(row.product_id)) {
+          productsMap.set(row.product_id, {
+            id: row.product_id,
+            name: row.product_name,
+            description: row.product_description,
+            active: row.product_active,
+            metadata: row.product_metadata,
+            prices: []
+          });
+        }
+        if (row.price_id) {
+          productsMap.get(row.product_id).prices.push({
+            id: row.price_id,
+            unit_amount: row.unit_amount,
+            currency: row.currency,
+            recurring: row.recurring,
+            active: row.price_active,
+            metadata: row.price_metadata,
+          });
+        }
+      }
+
+      res.json({ data: Array.from(productsMap.values()) });
+    } catch (error) {
+      console.error("Error fetching products with prices:", error);
+      res.status(500).json({ message: "Failed to fetch products" });
+    }
+  });
+
+  app.get("/api/stripe/prices", async (_req, res) => {
+    try {
+      const prices = await stripeStorage.listPrices();
+      res.json({ data: prices });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch prices" });
+    }
+  });
+
+  app.post("/api/stripe/checkout", async (req: any, res) => {
+    try {
+      const { priceId, userId, email } = req.body;
+      
+      if (!priceId) {
+        return res.status(400).json({ message: "Price ID is required" });
+      }
+
+      let customerId: string;
+      
+      if (userId) {
+        const user = await storage.getUser(userId);
+        if (user?.stripeCustomerId) {
+          customerId = user.stripeCustomerId;
+        } else {
+          const customer = await stripeService.createCustomer(email || '', userId);
+          if (user) {
+            await storage.updateUserStripeInfo(userId, { stripeCustomerId: customer.id });
+          }
+          customerId = customer.id;
+        }
+      } else {
+        const customer = await stripeService.createCustomer(email || '', 'guest');
+        customerId = customer.id;
+      }
+
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      const session = await stripeService.createCheckoutSession(
+        customerId,
+        priceId,
+        `${baseUrl}/checkout/success`,
+        `${baseUrl}/checkout/cancel`
+      );
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Checkout error:", error);
+      res.status(500).json({ message: "Failed to create checkout session" });
+    }
+  });
+
+  app.post("/api/stripe/portal", async (req: any, res) => {
+    try {
+      const { customerId } = req.body;
+      
+      if (!customerId) {
+        return res.status(400).json({ message: "Customer ID is required" });
+      }
+
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      const session = await stripeService.createCustomerPortalSession(
+        customerId,
+        `${baseUrl}/account`
+      );
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Portal error:", error);
+      res.status(500).json({ message: "Failed to create portal session" });
+    }
+  });
+
+  app.get("/api/stripe/subscription/:customerId", async (req, res) => {
+    try {
+      const { customerId } = req.params;
+      const subscription = await stripeStorage.getCustomerSubscription(customerId);
+      res.json({ subscription });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch subscription" });
     }
   });
 
