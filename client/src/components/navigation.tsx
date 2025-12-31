@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, LogOut, User } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 export default function Navigation() {
@@ -8,6 +10,7 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
   const isHomePage = location === "/";
+  const { user, isAuthenticated, isLoading: isAuthLoading } = useAuth();
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -79,7 +82,7 @@ export default function Navigation() {
           </button>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex gap-4 text-sm">
+          <div className="hidden lg:flex items-center gap-4 text-sm">
             {navItems.map((item) => (
               item.type === "link" ? (
                 <Link
@@ -105,6 +108,42 @@ export default function Navigation() {
                 </button>
               )
             ))}
+            
+            {/* Auth Buttons */}
+            {isAuthLoading ? (
+              <div className="ml-2 pl-4 border-l border-border">
+                <div className="h-8 w-20 bg-muted animate-pulse rounded" />
+              </div>
+            ) : isAuthenticated ? (
+              <div className="flex items-center gap-3 ml-2 pl-4 border-l border-border">
+                <span className="text-sm text-muted-foreground flex items-center gap-1" data-testid="text-user-name">
+                  <User className="w-4 h-4" />
+                  {user?.firstName || 'User'}
+                </span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => window.location.href = "/api/logout"}
+                  data-testid="button-logout"
+                >
+                  <LogOut className="w-4 h-4 mr-1" />
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <Button
+                type="button"
+                variant="default"
+                size="sm"
+                className="ml-2"
+                onClick={() => window.location.href = "/api/login"}
+                data-testid="button-login"
+              >
+                <LogIn className="w-4 h-4 mr-1" />
+                Login
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -148,6 +187,41 @@ export default function Navigation() {
                   </button>
                 )
               ))}
+              
+              {/* Mobile Auth Buttons */}
+              <div className="mt-3 pt-3 border-t border-border">
+                {isAuthLoading ? (
+                  <div className="h-10 w-full bg-muted animate-pulse rounded" />
+                ) : isAuthenticated ? (
+                  <div className="flex flex-col gap-2">
+                    <span className="text-sm text-muted-foreground flex items-center gap-2 px-3 py-2" data-testid="text-mobile-user-name">
+                      <User className="w-4 h-4" />
+                      {user?.firstName || 'User'}
+                    </span>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full justify-start"
+                      onClick={() => window.location.href = "/api/logout"}
+                      data-testid="button-mobile-logout"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    type="button"
+                    variant="default"
+                    className="w-full"
+                    onClick={() => window.location.href = "/api/login"}
+                    data-testid="button-mobile-login"
+                  >
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Login
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         )}
