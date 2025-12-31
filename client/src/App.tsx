@@ -17,6 +17,7 @@ import MissionJordan from "@/pages/mission-jordan";
 import Missions from "@/pages/missions";
 import PastorChat from "@/pages/pastor-chat";
 import Profile from "@/pages/profile";
+import Login from "@/pages/login";
 import CheckoutSuccess from "@/pages/checkout-success";
 import CheckoutCancel from "@/pages/checkout-cancel";
 
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/missions" component={Missions} />
       <Route path="/pastor-chat" component={PastorChat} />
       <Route path="/profile" component={Profile} />
+      <Route path="/login" component={Login} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
       <Route component={NotFound} />

@@ -1,0 +1,150 @@
+import { useEffect } from "react";
+import { Link, useSearch } from "wouter";
+import { ArrowLeft, Mail, Sparkles } from "lucide-react";
+import { SiGoogle, SiGithub } from "react-icons/si";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { useAuth } from "@/hooks/use-auth";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
+
+export default function Login() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const searchString = useSearch();
+  const params = new URLSearchParams(searchString);
+  const redirectTo = params.get("redirect") || "/";
+
+  useEffect(() => {
+    document.title = "Sign In | The Traveling Church";
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      window.location.href = redirectTo;
+    }
+  }, [isLoading, isAuthenticated, redirectTo]);
+
+  const handleSignIn = () => {
+    const loginUrl = redirectTo && redirectTo !== "/" 
+      ? `/api/login?returnTo=${encodeURIComponent(redirectTo)}`
+      : "/api/login";
+    window.location.href = loginUrl;
+  };
+
+  if (isLoading) {
+    return (
+      <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+        <Navigation />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </main>
+      </div>
+    );
+  }
+
+  if (isAuthenticated) {
+    return null;
+  }
+
+  return (
+    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+      <Navigation />
+
+      <main className="flex-1 py-12">
+        <div className="max-w-md mx-auto px-4">
+          <Link
+            href="/"
+            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
+            data-testid="link-back-home"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Home
+          </Link>
+
+          <Card className="border-2">
+            <CardHeader className="text-center pb-2">
+              <div className="flex justify-center mb-4">
+                <img 
+                  src={logoImage} 
+                  alt="The Traveling Church" 
+                  className="h-16"
+                  data-testid="img-logo"
+                />
+              </div>
+              <CardTitle className="text-2xl" data-testid="heading-sign-in">
+                Welcome Back
+              </CardTitle>
+              <CardDescription className="text-base">
+                Sign in to access your account and AI Pastor Chat
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent className="space-y-4 pt-4">
+              <Button
+                onClick={handleSignIn}
+                className="w-full h-12 text-base"
+                data-testid="button-continue-google"
+              >
+                <SiGoogle className="w-5 h-5 mr-3" />
+                Continue with Google
+              </Button>
+
+              <Button
+                onClick={handleSignIn}
+                variant="outline"
+                className="w-full h-12 text-base"
+                data-testid="button-continue-github"
+              >
+                <SiGithub className="w-5 h-5 mr-3" />
+                Continue with GitHub
+              </Button>
+
+              <Button
+                onClick={handleSignIn}
+                variant="outline"
+                className="w-full h-12 text-base"
+                data-testid="button-continue-email"
+              >
+                <Mail className="w-5 h-5 mr-3" />
+                Continue with Email
+              </Button>
+
+              <div className="relative py-4">
+                <Separator />
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-3 text-sm text-muted-foreground">
+                  New here?
+                </span>
+              </div>
+
+              <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+                <h3 className="font-semibold flex items-center gap-2 mb-2">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  Get Started Free
+                </h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Create an account to try 10 free AI Pastor messages. Upgrade anytime for unlimited access.
+                </p>
+                <Button
+                  onClick={handleSignIn}
+                  variant="secondary"
+                  className="w-full"
+                  data-testid="button-create-account"
+                >
+                  Create Free Account
+                </Button>
+              </div>
+
+              <p className="text-xs text-center text-muted-foreground pt-2">
+                By continuing, you agree to our Terms of Service and Privacy Policy.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

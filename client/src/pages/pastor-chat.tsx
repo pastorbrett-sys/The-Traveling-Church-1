@@ -379,15 +379,16 @@ export default function PastorChat() {
                       </div>
                     </div>
                     {!isAuthenticated && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => window.location.href = "/api/login"}
-                        data-testid="button-login"
-                      >
-                        <LogIn className="w-4 h-4 mr-2" />
-                        Sign In
-                      </Button>
+                      <Link href="/login?redirect=/pastor-chat">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          data-testid="button-login"
+                        >
+                          <LogIn className="w-4 h-4 mr-2" />
+                          Sign In
+                        </Button>
+                      </Link>
                     )}
                   </div>
                 </div>
@@ -546,14 +547,15 @@ export default function PastorChat() {
             <p className="text-sm text-muted-foreground">
               After signing in, you'll be able to subscribe and your Pro access will be remembered across all your devices.
             </p>
-            <Button 
-              onClick={() => window.location.href = "/api/login"} 
-              className="w-full"
-              data-testid="button-signin-modal"
-            >
-              <LogIn className="w-4 h-4 mr-2" />
-              Sign In to Continue
-            </Button>
+            <Link href="/login?redirect=/pastor-chat">
+              <Button 
+                className="w-full"
+                data-testid="button-signin-modal"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Sign In to Continue
+              </Button>
+            </Link>
           </div>
         </DialogContent>
       </Dialog>

@@ -136,17 +136,18 @@ export default function Navigation() {
                 </Button>
               </div>
             ) : (
-              <Button
-                type="button"
-                variant="default"
-                size="sm"
-                className="ml-2"
-                onClick={() => window.location.href = "/api/login"}
-                data-testid="button-login"
-              >
-                <LogIn className="w-4 h-4 mr-1" />
-                Login
-              </Button>
+              <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
+                <Button
+                  type="button"
+                  variant="default"
+                  size="sm"
+                  className="ml-2"
+                  data-testid="button-login"
+                >
+                  <LogIn className="w-4 h-4 mr-1" />
+                  Login
+                </Button>
+              </Link>
             )}
           </div>
 
@@ -219,16 +220,17 @@ export default function Navigation() {
                     </Button>
                   </div>
                 ) : (
-                  <Button
-                    type="button"
-                    variant="default"
-                    className="w-full"
-                    onClick={() => window.location.href = "/api/login"}
-                    data-testid="button-mobile-login"
-                  >
-                    <LogIn className="w-4 h-4 mr-2" />
-                    Login
-                  </Button>
+                  <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
+                    <Button
+                      type="button"
+                      variant="default"
+                      className="w-full"
+                      data-testid="button-mobile-login"
+                    >
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Login
+                    </Button>
+                  </Link>
                 )}
               </div>
             </div>

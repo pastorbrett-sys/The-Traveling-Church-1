@@ -92,12 +92,11 @@ export default function Profile() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center">
-                <Button
-                  onClick={() => window.location.href = "/api/login"}
-                  data-testid="button-login"
-                >
-                  Sign In to Continue
-                </Button>
+                <Link href="/login?redirect=/profile">
+                  <Button data-testid="button-login">
+                    Sign In to Continue
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
