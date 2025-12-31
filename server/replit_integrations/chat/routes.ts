@@ -47,7 +47,7 @@ export function markSessionAsPro(sessionId: string): void {
   proSessions.add(sessionId);
 }
 
-// Check if authenticated user has an active subscription
+// Check if authenticated user has an active subscription (not cancelled)
 async function checkUserProStatus(req: any): Promise<boolean> {
   // First check if user is authenticated
   if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
@@ -55,8 +55,11 @@ async function checkUserProStatus(req: any): Promise<boolean> {
     try {
       const user = await storage.getUser(userId);
       if (user?.stripeCustomerId) {
-        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
-        if (subscription?.status === 'active' || subscription?.status === 'trialing') {
+        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId) as any;
+        // Check if subscription is active AND not set to cancel at period end
+        // This ensures immediate revocation when user cancels
+        if ((subscription?.status === 'active' || subscription?.status === 'trialing') 
+            && !subscription?.cancel_at_period_end) {
           return true;
         }
       }

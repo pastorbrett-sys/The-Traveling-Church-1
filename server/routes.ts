@@ -343,8 +343,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let isProUser = false;
 
       if (user.stripeCustomerId) {
-        subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
-        isProUser = subscription?.status === 'active' || subscription?.status === 'trialing';
+        subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId) as any;
+        // User is Pro only if subscription is active AND not set to cancel
+        // This ensures immediate revocation when user cancels
+        isProUser = (subscription?.status === 'active' || subscription?.status === 'trialing') 
+                    && !subscription?.cancel_at_period_end;
       }
 
       res.json({ 
