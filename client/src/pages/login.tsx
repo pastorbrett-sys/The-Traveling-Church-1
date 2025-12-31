@@ -56,6 +56,7 @@ export default function Login() {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
+      window.scrollTo(0, 0);
       setLocation(redirectTo);
     }
   }, [isLoading, isAuthenticated, redirectTo, setLocation]);
