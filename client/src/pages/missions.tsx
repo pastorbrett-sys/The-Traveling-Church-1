@@ -89,6 +89,18 @@ export default function Missions() {
           </div>
         </section>
 
+        <section className="py-10 md:py-14 px-4 bg-background">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-lg md:text-xl text-foreground leading-relaxed">
+              We go where others won't. Into the difficult places, the forgotten corners, 
+              the regions that need the gospel most.
+            </p>
+            <p className="text-muted-foreground mt-4 text-sm md:text-base">
+              Explore our recent missions below
+            </p>
+          </div>
+        </section>
+
         <section className="py-12 md:py-16 px-4 bg-muted">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
