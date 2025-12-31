@@ -8,7 +8,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
 
 const FREE_MESSAGE_LIMIT = 10;
 
@@ -241,13 +240,13 @@ export default function PastorChat() {
   const displayMessages = messages.length > 0 ? messages : [systemPrompt];
 
   return (
-    <div className="bg-background text-foreground antialiased flex flex-col" style={{ minHeight: "100svh" }}>
+    <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
 
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <div className="w-full max-w-3xl mx-auto px-4 flex flex-col flex-1 overflow-hidden">
+      <main className="pb-48">
+        <div className="w-full max-w-3xl mx-auto px-4">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 border border-border rounded-t-lg mt-2 flex-shrink-0">
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 border border-border rounded-lg mt-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -282,87 +281,82 @@ export default function PastorChat() {
             </div>
           </div>
 
-          {/* Messages - scrollable area */}
-          <div 
-            ref={scrollAreaRef} 
-            className="flex-1 overflow-y-auto p-4 bg-card border-x border-border pb-4"
-          >
-            <div className="flex flex-col justify-end min-h-full">
-              <div className="space-y-4">
-                {displayMessages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                        message.role === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-foreground"
-                      }`}
-                      data-testid={`message-${message.role}-${index}`}
-                    >
-                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    </div>
-                  </div>
-                ))}
-                {isStreaming && messages[messages.length - 1]?.content === "" && (
-                  <div className="flex justify-start">
-                    <div className="bg-muted rounded-2xl px-4 py-3">
-                      <div className="flex gap-1">
-                        <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                        <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
-                        <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            </div>
-          </div>
-
-          {/* Fixed Input at bottom */}
-          <div 
-            className="p-4 border border-border bg-card rounded-b-lg flex-shrink-0"
-            style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)" }}
-          >
-            {isLimitReached ? (
-              <div className="text-center py-2">
-                <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
-                  <Lock className="w-5 h-5" />
-                  <span>You've reached your free message limit</span>
-                </div>
-                <Button onClick={() => setShowPaywall(true)} data-testid="button-upgrade">
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Upgrade to Pro for Unlimited Access
-                </Button>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <Textarea
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Share what's on your heart..."
-                  className="min-h-[60px] resize-none w-full"
-                  disabled={isStreaming}
-                  data-testid="input-message"
-                />
-                <Button
-                  onClick={sendMessage}
-                  disabled={!input.trim() || isStreaming}
-                  className="w-full"
-                  data-testid="button-send"
+          {/* Messages area */}
+          <div ref={scrollAreaRef} className="mt-4 space-y-4">
+            {displayMessages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-foreground"
+                  }`}
+                  data-testid={`message-${message.role}-${index}`}
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </Button>
+                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                </div>
+              </div>
+            ))}
+            {isStreaming && messages[messages.length - 1]?.content === "" && (
+              <div className="flex justify-start">
+                <div className="bg-muted rounded-2xl px-4 py-3">
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
+                    <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
+                    <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
+                  </div>
+                </div>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
         </div>
       </main>
+
+      {/* FIXED Input at absolute bottom of viewport */}
+      <div 
+        className="fixed bottom-0 left-0 right-0 p-4 bg-card border-t border-border"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)" }}
+      >
+        <div className="w-full max-w-3xl mx-auto">
+          {isLimitReached ? (
+            <div className="text-center py-2">
+              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
+                <Lock className="w-5 h-5" />
+                <span>You've reached your free message limit</span>
+              </div>
+              <Button onClick={() => setShowPaywall(true)} data-testid="button-upgrade">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Upgrade to Pro for Unlimited Access
+              </Button>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <Textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Share what's on your heart..."
+                className="min-h-[60px] resize-none w-full"
+                disabled={isStreaming}
+                data-testid="input-message"
+              />
+              <Button
+                onClick={sendMessage}
+                disabled={!input.trim() || isStreaming}
+                className="w-full"
+                data-testid="button-send"
+              >
+                <Send className="w-4 h-4 mr-2" />
+                Send Message
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Subscription Paywall Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
@@ -437,8 +431,6 @@ export default function PastorChat() {
           </div>
         </DialogContent>
       </Dialog>
-
-      <Footer />
     </div>
   );
 }
