@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Lock, Sparkles, LogIn } from "lucide-react";
+import { Send, MessageCircle, Lock, Sparkles, LogIn, Plus } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -58,6 +58,34 @@ export default function PastorChat() {
     enabled: isAuthenticated,
     retry: false,
   });
+
+  // Fetch all conversations to restore the most recent one
+  const { data: conversations } = useQuery<Array<{ id: number; title: string; createdAt: string }>>({
+    queryKey: ["/api/conversations"],
+    refetchOnWindowFocus: false,
+  });
+
+  // Load the most recent conversation's messages on mount
+  useEffect(() => {
+    if (conversations && conversations.length > 0 && !currentConversationId) {
+      const mostRecent = conversations[0]; // Already sorted by createdAt desc
+      setCurrentConversationId(mostRecent.id);
+      
+      // Fetch messages for this conversation
+      fetch(`/api/conversations/${mostRecent.id}`, { credentials: "include" })
+        .then(res => res.json())
+        .then(data => {
+          if (data.messages && data.messages.length > 0) {
+            const restoredMessages: ChatMessage[] = data.messages.map((m: any) => ({
+              role: m.role as "user" | "assistant",
+              content: m.content,
+            }));
+            setMessages(restoredMessages);
+          }
+        })
+        .catch(err => console.error("Failed to restore conversation:", err));
+    }
+  }, [conversations, currentConversationId]);
 
   // Determine if user is pro - check both session stats (server-side check) and subscription status
   const isPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
@@ -312,6 +340,11 @@ export default function PastorChat() {
     }
   };
 
+  const startNewChat = () => {
+    setCurrentConversationId(null);
+    setMessages([]);
+  };
+
   const displayMessages = messages.length > 0 ? messages : [systemPrompt];
 
   return (
@@ -341,18 +374,31 @@ export default function PastorChat() {
                   </div>
                 </div>
               </div>
-              {!isAuthenticated && (
-                <Link href="/login?redirect=/pastor-chat">
+              <div className="flex items-center gap-2">
+                {messages.length > 0 && (
                   <Button
                     variant="outline"
                     size="sm"
-                    data-testid="button-login"
+                    onClick={startNewChat}
+                    data-testid="button-new-chat"
                   >
-                    <LogIn className="w-4 h-4 mr-2" />
-                    Sign In
+                    <Plus className="w-4 h-4 mr-1" />
+                    New Chat
                   </Button>
-                </Link>
-              )}
+                )}
+                {!isAuthenticated && (
+                  <Link href="/login?redirect=/pastor-chat">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      data-testid="button-login"
+                    >
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Sign In
+                    </Button>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
 
