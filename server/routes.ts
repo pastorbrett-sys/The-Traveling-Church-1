@@ -268,14 +268,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const user = await storage.getUser(userId);
         const email = user?.email || '';
         
-        if (user?.stripeCustomerId) {
-          customerId = user.stripeCustomerId;
-        } else {
-          const customer = await stripeService.createCustomer(email, userId);
-          if (user) {
-            await storage.updateUserStripeInfo(userId, { stripeCustomerId: customer.id });
-          }
-          customerId = customer.id;
+        // Use getOrCreateCustomer to handle test/live mode customer mismatch
+        const customer = await stripeService.getOrCreateCustomer(
+          user?.stripeCustomerId || null,
+          email,
+          userId
+        );
+        customerId = customer.id;
+        
+        // Update user's customer ID if it changed (new customer created for live mode)
+        if (user && user.stripeCustomerId !== customer.id) {
+          await storage.updateUserStripeInfo(userId, { stripeCustomerId: customer.id });
         }
       } else {
         // Guest checkout (fallback)

@@ -10,6 +10,30 @@ export class StripeService {
     });
   }
 
+  async getOrCreateCustomer(existingCustomerId: string | null, email: string, userId: string) {
+    const stripe = await getUncachableStripeClient();
+    
+    // If we have an existing customer ID, try to retrieve it
+    if (existingCustomerId) {
+      try {
+        const customer = await stripe.customers.retrieve(existingCustomerId);
+        // Check if customer exists and isn't deleted
+        if (customer && !('deleted' in customer && customer.deleted)) {
+          return customer;
+        }
+      } catch (error: any) {
+        // Customer doesn't exist in this Stripe environment (test vs live mismatch)
+        console.log(`Customer ${existingCustomerId} not found, creating new one`);
+      }
+    }
+    
+    // Create a new customer
+    return await stripe.customers.create({
+      email,
+      metadata: { userId },
+    });
+  }
+
   async createCheckoutSession(customerId: string, priceId: string, successUrl: string, cancelUrl: string) {
     const stripe = await getUncachableStripeClient();
     return await stripe.checkout.sessions.create({
