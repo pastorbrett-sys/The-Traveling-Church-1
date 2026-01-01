@@ -50,6 +50,7 @@ export default function PastorChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const queryClient = useQueryClient();
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
 
@@ -338,6 +339,8 @@ export default function PastorChat() {
     } finally {
       setIsStreaming(false);
       queryClient.invalidateQueries({ queryKey: ["/api/conversations", convId] });
+      // Refocus input so user can keep typing
+      setTimeout(() => inputRef.current?.focus(), 100);
     }
   };
 
@@ -471,6 +474,7 @@ export default function PastorChat() {
           ) : (
             <div className="space-y-3">
               <Textarea
+                ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
