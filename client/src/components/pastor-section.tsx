@@ -38,7 +38,7 @@ export default function PastorSection() {
                   Pastor Brett didn't start his ministry in a seminary or traditional church. His calling came on the road, traveling through different communities and witnessing firsthand the hunger for authentic spiritual connection in our modern world.
                 </p>
                 <p>
-                  Inspired by the early apostles who walked from town to town, Pastor Brett left behind the comforts of his 6 figure tech salary, Superbowl Art Direction and Billboard Top 40 songwriting career to build the Kingdom. His mission is simple: meet people where they are, share the gospel without judgment, and build a global community united by faith and compassion.
+                  Inspired by the early apostles who walked from town to town, Pastor Brett left behind the comforts of his 6 figure tech salary, Superbowl Art Direction and Billboard Top 40 songwriting career to build The Kingdom. His mission is simple: meet people where they are, share the gospel without judgment, and build a global community united by faith and compassion.
                 </p>
                 <p className="text-secondary font-medium">
                   "We don't need fancy robes or grand cathedrals. We need open hearts and willing hands. Come as you are, and let the Spirit do the rest."
