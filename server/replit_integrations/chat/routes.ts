@@ -101,7 +101,8 @@ export function registerChatRoutes(app: Express): void {
 
   app.get("/api/conversations", async (req: Request, res: Response) => {
     try {
-      const conversations = await chatStorage.getAllConversations();
+      const sessionId = getSessionId(req, res);
+      const conversations = await chatStorage.getConversationsBySession(sessionId);
       res.json(conversations);
     } catch (error) {
       console.error("Error fetching conversations:", error);
@@ -112,7 +113,8 @@ export function registerChatRoutes(app: Express): void {
   app.get("/api/conversations/:id", async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
-      const conversation = await chatStorage.getConversation(id);
+      const sessionId = getSessionId(req, res);
+      const conversation = await chatStorage.getConversation(id, sessionId);
       if (!conversation) {
         return res.status(404).json({ error: "Conversation not found" });
       }
@@ -126,8 +128,9 @@ export function registerChatRoutes(app: Express): void {
 
   app.post("/api/conversations", async (req: Request, res: Response) => {
     try {
+      const sessionId = getSessionId(req, res);
       const title = typeof req.body?.title === "string" ? req.body.title.slice(0, 100) : "New Chat";
-      const conversation = await chatStorage.createConversation(title);
+      const conversation = await chatStorage.createConversation(title, sessionId);
       res.status(201).json(conversation);
     } catch (error) {
       console.error("Error creating conversation:", error);
@@ -138,7 +141,8 @@ export function registerChatRoutes(app: Express): void {
   app.delete("/api/conversations/:id", async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
-      await chatStorage.deleteConversation(id);
+      const sessionId = getSessionId(req, res);
+      await chatStorage.deleteConversation(id, sessionId);
       res.status(204).send();
     } catch (error) {
       console.error("Error deleting conversation:", error);
