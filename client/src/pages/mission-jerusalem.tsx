@@ -80,6 +80,11 @@ const galleryImages: GalleryImage[] = [
     caption: "Meeting with the Palestinian Christian that baptized our Pastor"
   },
   {
+    src: israelFlags,
+    alt: "Shabbat rooftop meal with IDF soldiers",
+    caption: "Eating a Shabbat rooftop meal with IDF Soldiers (We were not able to show their faces) We met with both Israeli and Palestinian folks to see both sides and try to find paths to peace."
+  },
+  {
     src: domeOfRock,
     alt: "Dome of the Rock from Mount of Olives",
     caption: "The golden dome rising above the ancient city walls"
@@ -93,11 +98,6 @@ const galleryImages: GalleryImage[] = [
     src: mountOfOlives,
     alt: "Mount of Olives cemetery",
     caption: "The ancient Jewish cemetery on the Mount of Olives"
-  },
-  {
-    src: israelFlags,
-    alt: "Israeli flags over Jerusalem",
-    caption: "Flags waving over the rooftops of the Old City"
   },
   {
     src: gardenTomb,
