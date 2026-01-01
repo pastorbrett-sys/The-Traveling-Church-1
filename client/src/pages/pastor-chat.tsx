@@ -45,6 +45,7 @@ export default function PastorChat() {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [footerHeight, setFooterHeight] = useState(180);
+  const [isNewChatMode, setIsNewChatMode] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -71,9 +72,9 @@ export default function PastorChat() {
     refetchOnWindowFocus: false,
   });
 
-  // Load the most recent conversation's messages on mount
+  // Load the most recent conversation's messages on mount (but not if user started a new chat)
   useEffect(() => {
-    if (conversations && conversations.length > 0 && !currentConversationId) {
+    if (conversations && conversations.length > 0 && !currentConversationId && !isNewChatMode) {
       const mostRecent = conversations[0]; // Already sorted by createdAt desc
       setCurrentConversationId(mostRecent.id);
       
@@ -91,7 +92,7 @@ export default function PastorChat() {
         })
         .catch(err => console.error("Failed to restore conversation:", err));
     }
-  }, [conversations, currentConversationId]);
+  }, [conversations, currentConversationId, isNewChatMode]);
 
   // Determine if user is pro - check both session stats (server-side check) and subscription status
   const isPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
@@ -227,6 +228,7 @@ export default function PastorChat() {
       const newConv = await res.json();
       convId = newConv.id;
       setCurrentConversationId(convId);
+      setIsNewChatMode(false); // Reset so future visits restore this conversation
       queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
     }
 
@@ -347,6 +349,7 @@ export default function PastorChat() {
   };
 
   const startNewChat = () => {
+    setIsNewChatMode(true);
     setCurrentConversationId(null);
     setMessages([]);
   };
