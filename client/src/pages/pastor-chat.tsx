@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, Plus, Trash2 } from "lucide-react";
+import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -503,30 +503,14 @@ export default function PastorChat() {
                       <MoreVertical className="w-5 h-5 text-muted-foreground" />
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuContent align="end" className="w-40">
                     <DropdownMenuItem
                       onClick={startNewChat}
-                      data-testid="menu-new-chat-footer"
+                      data-testid="menu-clear-chat"
                     >
-                      <Plus className="w-4 h-4 mr-2" />
-                      New Chat
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                      Clear Chat
                     </DropdownMenuItem>
-                    {currentConversationId && (
-                      <DropdownMenuItem
-                        onClick={async () => {
-                          if (currentConversationId) {
-                            await apiRequest("DELETE", `/api/conversations/${currentConversationId}`);
-                            queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
-                            startNewChat();
-                          }
-                        }}
-                        className="text-destructive focus:text-destructive"
-                        data-testid="menu-delete-chat-footer"
-                      >
-                        <Trash2 className="w-4 h-4 mr-2" />
-                        Delete Chat
-                      </DropdownMenuItem>
-                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
