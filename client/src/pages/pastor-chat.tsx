@@ -517,7 +517,7 @@ export default function PastorChat() {
                 disabled={isStreaming}
                 data-testid="input-message"
               />
-              <div className="flex gap-2">
+              <div className="flex items-center gap-1">
                 <Button
                   onClick={sendMessage}
                   disabled={!input.trim() || isStreaming}
@@ -529,14 +529,13 @@ export default function PastorChat() {
                 </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="icon"
+                    <button
+                      className="p-1.5 hover:bg-muted rounded transition-colors"
                       data-testid="button-chat-menu-footer"
                       aria-label="Chat options"
                     >
-                      <MoreVertical className="w-5 h-5" />
-                    </Button>
+                      <MoreVertical className="w-5 h-5 text-muted-foreground" />
+                    </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem
