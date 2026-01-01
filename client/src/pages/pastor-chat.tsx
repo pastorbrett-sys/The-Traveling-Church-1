@@ -1,12 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Lock, Sparkles, LogIn, Plus } from "lucide-react";
+import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, Plus, Trash2 } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
@@ -375,17 +381,6 @@ export default function PastorChat() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                {messages.length > 0 && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={startNewChat}
-                    data-testid="button-new-chat"
-                  >
-                    <Plus className="w-4 h-4 mr-1" />
-                    New Chat
-                  </Button>
-                )}
                 {!isAuthenticated && (
                   <Link href="/login?redirect=/pastor-chat">
                     <Button
@@ -398,6 +393,42 @@ export default function PastorChat() {
                     </Button>
                   </Link>
                 )}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      className="p-2 rounded-md hover:bg-muted transition-colors"
+                      data-testid="button-chat-menu"
+                      aria-label="Chat options"
+                    >
+                      <MoreVertical className="w-5 h-5 text-muted-foreground" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem
+                      onClick={startNewChat}
+                      data-testid="menu-new-chat"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      New Chat
+                    </DropdownMenuItem>
+                    {currentConversationId && (
+                      <DropdownMenuItem
+                        onClick={async () => {
+                          if (currentConversationId) {
+                            await apiRequest("DELETE", `/api/conversations/${currentConversationId}`);
+                            queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
+                            startNewChat();
+                          }
+                        }}
+                        className="text-destructive focus:text-destructive"
+                        data-testid="menu-delete-chat"
+                      >
+                        <Trash2 className="w-4 h-4 mr-2" />
+                        Delete Chat
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
