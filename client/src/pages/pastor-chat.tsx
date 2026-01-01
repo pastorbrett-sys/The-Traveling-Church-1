@@ -517,15 +517,54 @@ export default function PastorChat() {
                 disabled={isStreaming}
                 data-testid="input-message"
               />
-              <Button
-                onClick={sendMessage}
-                disabled={!input.trim() || isStreaming}
-                className="w-full"
-                data-testid="button-send"
-              >
-                <Send className="w-4 h-4 mr-2" />
-                Send Message
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={sendMessage}
+                  disabled={!input.trim() || isStreaming}
+                  className="flex-1"
+                  data-testid="button-send"
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Message
+                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      data-testid="button-chat-menu-footer"
+                      aria-label="Chat options"
+                    >
+                      <MoreVertical className="w-5 h-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem
+                      onClick={startNewChat}
+                      data-testid="menu-new-chat-footer"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      New Chat
+                    </DropdownMenuItem>
+                    {currentConversationId && (
+                      <DropdownMenuItem
+                        onClick={async () => {
+                          if (currentConversationId) {
+                            await apiRequest("DELETE", `/api/conversations/${currentConversationId}`);
+                            queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
+                            startNewChat();
+                          }
+                        }}
+                        className="text-destructive focus:text-destructive"
+                        data-testid="menu-delete-chat-footer"
+                      >
+                        <Trash2 className="w-4 h-4 mr-2" />
+                        Delete Chat
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
           )}
         </div>
