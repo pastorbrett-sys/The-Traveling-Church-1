@@ -314,7 +314,7 @@ Reference: ${verseRef} (${translation})`;
                 }}
                 className="text-xl font-semibold font-serif"
               >
-                Search the Bible
+                Smart Search
               </motion.h2>
             )}
           </AnimatePresence>
