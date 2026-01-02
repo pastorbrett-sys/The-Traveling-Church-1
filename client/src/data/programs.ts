@@ -30,7 +30,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor and male leadership within the church.",
     icon: "shield",
     image: "iron-men",
-    donateLink: "https://donate.stripe.com/eVq28t786cEK79n5SL4wM06"
+    donateLink: "https://givebutter.com/eQnDVy"
   },
   {
     id: "2",
@@ -49,7 +49,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with careful attention to legal compliance, safety considerations, and appropriate stewardship of resources.",
     icon: "hand-heart",
     image: "persecuted-christians",
-    donateLink: "https://buy.stripe.com/8x2cN7eAybAGbpDch94wM02"
+    donateLink: "https://givebutter.com/OUWSZN"
   },
   {
     id: "3",
@@ -68,7 +68,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen directly by the Senior Pastor.",
     icon: "globe",
     image: "global-ministry",
-    donateLink: "https://donate.stripe.com/aFa00lcsqcEK8drftl4wM03"
+    donateLink: "https://givebutter.com/iM7H3h"
   },
   {
     id: "4",
@@ -87,7 +87,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with financial accountability maintained through standard church recordkeeping.",
     icon: "utensils",
     image: "community-feeding",
-    donateLink: "https://buy.stripe.com/8x25kF3VU2062T76WP4wM04"
+    donateLink: "https://givebutter.com/RMT2UG"
   },
   {
     id: "5",
@@ -106,7 +106,7 @@ export const programs: Program[] = [
     oversight: "This program operates in coordination with our business arm and is overseen by the Senior Pastor and Treasurer or their appointed designee.",
     icon: "briefcase",
     image: "economic-empowerment",
-    donateLink: "https://donate.stripe.com/3cIfZjakigV0gJX94X4wM05"
+    donateLink: "https://givebutter.com/CIYYAv"
   },
   {
     id: "6",
@@ -125,7 +125,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with careful attention to ethical practices, local partnerships, and appropriate stewardship of resources.",
     icon: "leaf",
     image: "animal-conservation",
-    donateLink: "https://donate.stripe.com/8x28wR0JI8ouctH1Cv4wM08"
+    donateLink: "https://givebutter.com/dWeKTj"
   }
 ];
 
