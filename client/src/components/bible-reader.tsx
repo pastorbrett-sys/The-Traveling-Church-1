@@ -296,7 +296,7 @@ Reference: ${verseRef} (${translation})`;
                     placeholder="Search verses, topics, keywords..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 h-10"
+                    className="pl-10 h-10 focus-visible:ring-[#c08e00]"
                     data-testid="input-bible-search"
                   />
                 </div>
@@ -326,7 +326,7 @@ Reference: ${verseRef} (${translation})`;
               variant="ghost"
               size="icon"
               onClick={handleSearchToggle}
-              className="h-9 w-9 flex-shrink-0"
+              className="h-9 w-9 flex-shrink-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
               data-testid="button-bible-search"
             >
               <motion.div
@@ -383,7 +383,7 @@ Reference: ${verseRef} (${translation})`;
                                 setSearchQuery("");
                               }
                             }}
-                            className="w-full text-left p-3 rounded-lg hover:bg-muted transition-colors"
+                            className="w-full text-left p-3 rounded-lg hover:bg-[#c08e00]/10 active:bg-[#c08e00]/20 transition-colors"
                             data-testid={`search-result-${result.pk}`}
                           >
                             <p className="text-sm font-medium">
@@ -421,7 +421,7 @@ Reference: ${verseRef} (${translation})`;
                     <button
                       key={book.bookid}
                       onClick={() => handleBookSelect(book)}
-                      className="p-3 text-left rounded-lg border hover:bg-muted transition-colors"
+                      className="p-3 text-left rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 active:bg-[#c08e00]/20 transition-colors"
                       data-testid={`book-${book.bookid}`}
                     >
                       <p className="font-medium text-sm">{book.name}</p>
