@@ -386,12 +386,25 @@ export default function PastorChat() {
       {/* Tab Toggle */}
       <div className="w-full max-w-3xl mx-auto px-4 mt-2">
         <div className="flex items-center justify-between">
-          <div className="inline-flex p-1 rounded-lg bg-muted gap-1">
+          <div className="relative inline-flex p-1 rounded-lg bg-muted">
+            <motion.div
+              className="absolute top-1 bottom-1 bg-background rounded-md shadow-sm"
+              initial={false}
+              animate={{
+                x: activeTab === "chat" ? 0 : "100%",
+                width: "calc(50% - 2px)"
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 500,
+                damping: 35
+              }}
+            />
             <button
               onClick={() => setActiveTab("chat")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeTab === "chat"
-                  ? "bg-background text-foreground shadow-sm"
+                  ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               data-testid="tab-chat"
@@ -401,9 +414,9 @@ export default function PastorChat() {
             </button>
             <button
               onClick={() => setActiveTab("bible")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeTab === "bible"
-                  ? "bg-background text-foreground shadow-sm"
+                  ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               data-testid="tab-bible"
