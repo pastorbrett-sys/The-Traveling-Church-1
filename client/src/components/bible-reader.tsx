@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Book, 
   ChevronLeft, 
@@ -82,6 +83,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [isLoadingInsight, setIsLoadingInsight] = useState(false);
   const [compareTranslations, setCompareTranslations] = useState<string[]>(["NIV", "ESV"]);
   const contentRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -256,71 +258,158 @@ Reference: ${verseRef} (${translation})`;
     return acc;
   }, {} as Record<string, BibleBook[]>);
 
+  const handleSearchToggle = () => {
+    if (!showSearch) {
+      setShowSearch(true);
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 300);
+    } else {
+      setShowSearch(false);
+      setSearchQuery("");
+    }
+  };
+
   if (showBookPicker) {
     return (
       <div className="flex flex-col h-full bg-background">
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-semibold font-serif">Search the Bible</h2>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setShowSearch(!showSearch)}
-            className="h-9 w-9 flex-shrink-0"
-            data-testid="button-bible-search"
+        <div className="flex items-center justify-between p-4 border-b overflow-hidden">
+          <AnimatePresence mode="wait">
+            {showSearch ? (
+              <motion.div
+                key="search-input"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -100, opacity: 0 }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                  mass: 0.8
+                }}
+                className="flex-1 mr-3"
+              >
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    ref={searchInputRef}
+                    placeholder="Search verses, topics, keywords..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 h-10"
+                    data-testid="input-bible-search"
+                  />
+                </div>
+              </motion.div>
+            ) : (
+              <motion.h2
+                key="title"
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -50, opacity: 0 }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30
+                }}
+                className="text-xl font-semibold font-serif"
+              >
+                Search the Bible
+              </motion.h2>
+            )}
+          </AnimatePresence>
+          <motion.div
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <Search className="w-4 h-4" />
-          </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleSearchToggle}
+              className="h-9 w-9 flex-shrink-0"
+              data-testid="button-bible-search"
+            >
+              <motion.div
+                animate={{ rotate: showSearch ? 90 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                {showSearch ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
+              </motion.div>
+            </Button>
+          </motion.div>
         </div>
 
-        {showSearch && (
-          <div className="p-4 border-b">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="Search the Bible..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-                data-testid="input-bible-search"
-              />
-            </div>
-            {isSearching && (
-              <div className="flex items-center justify-center py-4">
-                <Loader2 className="w-5 h-5 animate-spin" />
+        <AnimatePresence>
+          {showSearch && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }}
+              className="overflow-hidden border-b"
+            >
+              <div className="p-4">
+                {isSearching && (
+                  <div className="flex items-center justify-center py-4">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  </div>
+                )}
+                {searchResults && searchResults.results.length > 0 && (
+                  <ScrollArea className="h-64">
+                    <div className="space-y-2">
+                      {searchResults.results.slice(0, 20).map((result, index) => {
+                        const book = books?.find(b => b.bookid === result.book);
+                        return (
+                          <motion.button
+                            key={result.pk}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              delay: index * 0.03,
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 25
+                            }}
+                            onClick={() => {
+                              if (book) {
+                                setSelectedBook(book);
+                                setSelectedChapter(result.chapter || 1);
+                                setShowBookPicker(false);
+                                setShowSearch(false);
+                                setSearchQuery("");
+                              }
+                            }}
+                            className="w-full text-left p-3 rounded-lg hover:bg-muted transition-colors"
+                            data-testid={`search-result-${result.pk}`}
+                          >
+                            <p className="text-sm font-medium">
+                              {book?.name} {result.chapter}:{result.verse}
+                            </p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{result.text}</p>
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  </ScrollArea>
+                )}
+                {searchQuery.length > 0 && searchQuery.length <= 2 && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Type at least 3 characters to search
+                  </p>
+                )}
+                {searchQuery.length > 2 && !isSearching && searchResults?.results.length === 0 && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    No results found
+                  </p>
+                )}
               </div>
-            )}
-            {searchResults && searchResults.results.length > 0 && (
-              <ScrollArea className="h-64 mt-4">
-                <div className="space-y-2">
-                  {searchResults.results.slice(0, 20).map((result) => {
-                    const book = books?.find(b => b.bookid === result.book);
-                    return (
-                      <button
-                        key={result.pk}
-                        onClick={() => {
-                          if (book) {
-                            setSelectedBook(book);
-                            setSelectedChapter(result.chapter || 1);
-                            setShowBookPicker(false);
-                            setShowSearch(false);
-                            setSearchQuery("");
-                          }
-                        }}
-                        className="w-full text-left p-3 rounded-lg hover:bg-muted transition-colors"
-                        data-testid={`search-result-${result.pk}`}
-                      >
-                        <p className="text-sm font-medium">
-                          {book?.name} {result.chapter}:{result.verse}
-                        </p>
-                        <p className="text-sm text-muted-foreground line-clamp-2">{result.text}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </ScrollArea>
-            )}
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <ScrollArea className="flex-1">
           <div className="p-4 space-y-6">
