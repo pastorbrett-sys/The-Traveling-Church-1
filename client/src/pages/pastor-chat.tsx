@@ -385,7 +385,7 @@ export default function PastorChat() {
 
       {/* Tab Toggle */}
       <div className="w-full max-w-3xl mx-auto px-4 mt-2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-[7px]">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
               onClick={() => setActiveTab("chat")}
