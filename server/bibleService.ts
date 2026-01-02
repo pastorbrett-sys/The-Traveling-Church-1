@@ -172,6 +172,7 @@ export async function compareTranslations(
 function cleanVerseText(text: string): string {
   return text
     .replace(/<[^>]*>/g, "")
+    .replace(/(\D)(\d{2,5})(?=[\s,.:;!?'")\]]|$)/g, "$1")
     .replace(/\s+/g, " ")
     .trim();
 }
