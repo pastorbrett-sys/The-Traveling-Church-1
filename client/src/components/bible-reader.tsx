@@ -62,8 +62,12 @@ interface Translation {
   full_name: string;
 }
 
-export default function BibleReader() {
-  const [translation, setTranslation] = useState("KJV");
+interface BibleReaderProps {
+  translation: string;
+  onTranslationChange: (translation: string) => void;
+}
+
+export default function BibleReader({ translation, onTranslationChange }: BibleReaderProps) {
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [selectedVerse, setSelectedVerse] = useState<BibleVerse | null>(null);
@@ -257,28 +261,14 @@ Reference: ${verseRef} (${translation})`;
       <div className="flex flex-col h-full bg-background">
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-xl font-semibold font-serif">Select a Book</h2>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setShowSearch(!showSearch)}
-              data-testid="button-bible-search"
-            >
-              <Search className="w-5 h-5" />
-            </Button>
-            <Select value={translation} onValueChange={setTranslation}>
-              <SelectTrigger className="w-24" data-testid="select-translation">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {translations?.map((t) => (
-                  <SelectItem key={t.short_name} value={t.short_name}>
-                    {t.short_name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowSearch(!showSearch)}
+            data-testid="button-bible-search"
+          >
+            <Search className="w-5 h-5" />
+          </Button>
         </div>
 
         {showSearch && (
@@ -414,18 +404,6 @@ Reference: ${verseRef} (${translation})`;
           </Button>
         </div>
 
-        <Select value={translation} onValueChange={setTranslation}>
-          <SelectTrigger className="w-20" data-testid="select-translation-reader">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {translations?.map((t) => (
-              <SelectItem key={t.short_name} value={t.short_name}>
-                {t.short_name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
       </div>
 
       <ScrollArea className="flex-1" ref={contentRef}>

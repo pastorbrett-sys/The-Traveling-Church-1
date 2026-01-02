@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -37,8 +44,14 @@ interface SubscriptionStatus {
   stripeCustomerId: string | null;
 }
 
+interface Translation {
+  short_name: string;
+  full_name: string;
+}
+
 export default function PastorChat() {
   const [activeTab, setActiveTab] = useState<"chat" | "bible">("chat");
+  const [bibleTranslation, setBibleTranslation] = useState("KJV");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -73,6 +86,11 @@ export default function PastorChat() {
   const { data: conversations } = useQuery<Array<{ id: number; title: string; createdAt: string }>>({
     queryKey: ["/api/conversations"],
     refetchOnWindowFocus: false,
+  });
+
+  // Fetch Bible translations for the selector
+  const { data: bibleTranslations } = useQuery<Translation[]>({
+    queryKey: ["/api/bible/translations"],
   });
 
   // Load the most recent conversation's messages on mount (but not if user started a new chat)
@@ -394,24 +412,43 @@ export default function PastorChat() {
               Bible
             </button>
           </div>
-          {!isAuthenticated && (
-            <Link href="/login?redirect=/pastor-chat">
-              <Button
-                variant="outline"
-                size="sm"
-                data-testid="button-login"
-              >
-                <LogIn className="w-4 h-4 mr-2" />
-                Sign In
-              </Button>
-            </Link>
-          )}
+          <div className="flex items-center gap-2">
+            {activeTab === "bible" && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground hidden sm:inline">Bible Version</span>
+                <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
+                  <SelectTrigger className="w-20" data-testid="select-bible-translation">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {bibleTranslations?.map((t) => (
+                      <SelectItem key={t.short_name} value={t.short_name}>
+                        {t.short_name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            {!isAuthenticated && (
+              <Link href="/login?redirect=/pastor-chat">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  data-testid="button-login"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
 
       {activeTab === "bible" ? (
         <div className="w-full max-w-3xl mx-auto px-4 mt-4" style={{ height: "calc(100vh - 120px)" }}>
-          <BibleReader />
+          <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
         </div>
       ) : (
         <>
