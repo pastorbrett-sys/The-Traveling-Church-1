@@ -384,7 +384,7 @@ export default function PastorChat() {
       <Navigation />
 
       {/* Tab Toggle */}
-      <div className="w-full max-w-3xl mx-auto px-4 mt-6">
+      <div className="w-full max-w-3xl mx-auto px-4 mt-3">
         <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
