@@ -274,7 +274,7 @@ Reference: ${verseRef} (${translation})`;
     return (
       <div className="flex flex-col h-full bg-background">
         <div className="flex items-center justify-between p-4 border-b overflow-hidden">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             {showSearch ? (
               <motion.div
                 key="search-input"
