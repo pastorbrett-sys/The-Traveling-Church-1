@@ -339,80 +339,79 @@ Reference: ${verseRef} (${translation})`;
           </motion.div>
         </div>
 
-        <div className="relative overflow-hidden flex-1">
-          <AnimatePresence>
-            {showSearch && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 700,
-                  damping: 40
-                }}
-                className="absolute inset-0 z-10 bg-background"
-              >
-                <div className="p-4 h-full">
-                  {isSearching && (
-                    <div className="flex items-center justify-center py-4">
-                      <Loader2 className="w-5 h-5 animate-spin" />
+        <AnimatePresence>
+          {showSearch && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 700,
+                damping: 40
+              }}
+              className="overflow-hidden"
+            >
+              <div className="p-4">
+                {isSearching && (
+                  <div className="flex items-center justify-center py-4">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  </div>
+                )}
+                {searchResults && searchResults.results.length > 0 && (
+                  <ScrollArea className="h-64">
+                    <div className="space-y-2">
+                      {searchResults.results.slice(0, 20).map((result, index) => {
+                        const book = books?.find(b => b.bookid === result.book);
+                        return (
+                          <motion.button
+                            key={result.pk}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              delay: index * 0.02,
+                              type: "spring",
+                              stiffness: 500,
+                              damping: 30
+                            }}
+                            onClick={() => {
+                              if (book) {
+                                setSelectedBook(book);
+                                setSelectedChapter(result.chapter || 1);
+                                setShowBookPicker(false);
+                                setShowSearch(false);
+                                setSearchQuery("");
+                              }
+                            }}
+                            className="w-full text-left p-3 rounded-lg hover:bg-muted transition-colors"
+                            data-testid={`search-result-${result.pk}`}
+                          >
+                            <p className="text-sm font-medium">
+                              {book?.name} {result.chapter}:{result.verse}
+                            </p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{result.text}</p>
+                          </motion.button>
+                        );
+                      })}
                     </div>
-                  )}
-                  {searchResults && searchResults.results.length > 0 && (
-                    <ScrollArea className="h-full">
-                      <div className="space-y-2">
-                        {searchResults.results.slice(0, 20).map((result, index) => {
-                          const book = books?.find(b => b.bookid === result.book);
-                          return (
-                            <motion.button
-                              key={result.pk}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ 
-                                delay: index * 0.02,
-                                type: "spring",
-                                stiffness: 500,
-                                damping: 30
-                              }}
-                              onClick={() => {
-                                if (book) {
-                                  setSelectedBook(book);
-                                  setSelectedChapter(result.chapter || 1);
-                                  setShowBookPicker(false);
-                                  setShowSearch(false);
-                                  setSearchQuery("");
-                                }
-                              }}
-                              className="w-full text-left p-3 rounded-lg hover:bg-muted transition-colors"
-                              data-testid={`search-result-${result.pk}`}
-                            >
-                              <p className="text-sm font-medium">
-                                {book?.name} {result.chapter}:{result.verse}
-                              </p>
-                              <p className="text-sm text-muted-foreground line-clamp-2">{result.text}</p>
-                            </motion.button>
-                          );
-                        })}
-                      </div>
-                    </ScrollArea>
-                  )}
-                  {searchQuery.length > 0 && searchQuery.length <= 2 && (
-                    <p className="text-sm text-muted-foreground text-center py-4">
-                      Type at least 3 characters to search
-                    </p>
-                  )}
-                  {searchQuery.length > 2 && !isSearching && searchResults?.results.length === 0 && (
-                    <p className="text-sm text-muted-foreground text-center py-4">
-                      No results found
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  </ScrollArea>
+                )}
+                {searchQuery.length > 0 && searchQuery.length <= 2 && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Type at least 3 characters to search
+                  </p>
+                )}
+                {searchQuery.length > 2 && !isSearching && searchResults?.results.length === 0 && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    No results found
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-          <ScrollArea className="h-full">
+        <ScrollArea className="flex-1">
           <div className="p-4 space-y-6">
             {groupedBooks && Object.entries(groupedBooks).map(([testament, bookList]) => (
               <div key={testament}>
@@ -434,7 +433,6 @@ Reference: ${verseRef} (${translation})`;
             ))}
           </div>
         </ScrollArea>
-        </div>
       </div>
     );
   }
