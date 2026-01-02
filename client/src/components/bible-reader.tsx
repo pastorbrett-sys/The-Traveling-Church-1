@@ -263,7 +263,7 @@ Reference: ${verseRef} (${translation})`;
       setShowSearch(true);
       setTimeout(() => {
         searchInputRef.current?.focus();
-      }, 150);
+      }, 100);
     } else {
       setShowSearch(false);
       setSearchQuery("");
@@ -283,9 +283,9 @@ Reference: ${verseRef} (${translation})`;
                 exit={{ x: -100, opacity: 0 }}
                 transition={{ 
                   type: "spring",
-                  stiffness: 500,
-                  damping: 35,
-                  mass: 0.5
+                  stiffness: 700,
+                  damping: 40,
+                  mass: 0.3
                 }}
                 className="flex-1 mr-3"
               >
@@ -309,8 +309,8 @@ Reference: ${verseRef} (${translation})`;
                 exit={{ x: -50, opacity: 0 }}
                 transition={{ 
                   type: "spring",
-                  stiffness: 500,
-                  damping: 35
+                  stiffness: 700,
+                  damping: 40
                 }}
                 className="text-xl font-semibold font-serif"
               >
@@ -347,8 +347,8 @@ Reference: ${verseRef} (${translation})`;
               exit={{ height: 0, opacity: 0 }}
               transition={{ 
                 type: "spring",
-                stiffness: 500,
-                damping: 35
+                stiffness: 700,
+                damping: 40
               }}
               className="overflow-hidden"
             >
