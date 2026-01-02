@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw } from "lucide-react";
+import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw, Book } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -16,6 +16,7 @@ import {
 import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
+import BibleReader from "@/components/bible-reader";
 
 const FREE_MESSAGE_LIMIT = 10;
 
@@ -37,6 +38,7 @@ interface SubscriptionStatus {
 }
 
 export default function PastorChat() {
+  const [activeTab, setActiveTab] = useState<"chat" | "bible">("chat");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -363,43 +365,79 @@ export default function PastorChat() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
 
-      <main style={{ paddingBottom: `${footerHeight}px` }}>
-        <div className="w-full max-w-3xl mx-auto px-4">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 border border-border rounded-lg mt-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
+      {/* Tab Toggle */}
+      <div className="w-full max-w-3xl mx-auto px-4 mt-2">
+        <div className="flex items-center justify-between">
+          <div className="inline-flex p-1 rounded-lg bg-muted gap-1">
+            <button
+              onClick={() => setActiveTab("chat")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                activeTab === "chat"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              data-testid="tab-chat"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Chat
+            </button>
+            <button
+              onClick={() => setActiveTab("bible")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                activeTab === "bible"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              data-testid="tab-bible"
+            >
+              <Book className="w-4 h-4" />
+              Bible
+            </button>
+          </div>
+          <div className="flex items-center gap-2">
+            {isPro && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary text-primary-foreground" data-testid="badge-pro">
+                <Sparkles className="w-3 h-3 mr-1" />
+                PRO
+              </span>
+            )}
+            {!isAuthenticated && (
+              <Link href="/login?redirect=/pastor-chat">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  data-testid="button-login"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {activeTab === "bible" ? (
+        <div className="w-full max-w-3xl mx-auto px-4 mt-4" style={{ height: "calc(100vh - 120px)" }}>
+          <BibleReader />
+        </div>
+      ) : (
+        <>
+          <main style={{ paddingBottom: `${footerHeight}px` }}>
+            <div className="w-full max-w-3xl mx-auto px-4">
+              {/* Header */}
+              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 border border-border rounded-lg mt-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
                     <h1 className="text-lg font-bold text-foreground" data-testid="heading-pastor-chat">
                       AI Pastor Chat
                     </h1>
-                    {isPro && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary text-primary-foreground" data-testid="badge-pro">
-                        <Sparkles className="w-3 h-3 mr-1" />
-                        PRO
-                      </span>
-                    )}
                   </div>
                 </div>
               </div>
-              {!isAuthenticated && (
-                <Link href="/login?redirect=/pastor-chat">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    data-testid="button-login"
-                  >
-                    <LogIn className="w-4 h-4 mr-2" />
-                    Sign In
-                  </Button>
-                </Link>
-              )}
-            </div>
-          </div>
 
           {/* Messages area */}
           <div ref={scrollAreaRef} className="mt-4 space-y-4">
@@ -518,6 +556,8 @@ export default function PastorChat() {
           )}
         </div>
       </div>
+        </>
+      )}
 
       {/* Subscription Paywall Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>

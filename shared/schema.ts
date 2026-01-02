@@ -91,3 +91,4 @@ export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSche
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 
 export * from "./models/chat";
+export * from "./models/bible";

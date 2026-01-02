@@ -14,6 +14,7 @@ import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integra
 import { stripeStorage } from "./stripeStorage";
 import { stripeService } from "./stripeService";
 import { getStripePublishableKey } from "./stripeClient";
+import bibleRoutes from "./bibleRoutes";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first (before other routes)
@@ -21,6 +22,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerAuthRoutes(app);
   
   registerChatRoutes(app);
+  
+  // Bible routes
+  app.use("/api/bible", bibleRoutes);
 
   // Public assets from Object Storage - from blueprint:javascript_object_storage
   app.get("/public-objects/:filePath(*)", async (req, res) => {
