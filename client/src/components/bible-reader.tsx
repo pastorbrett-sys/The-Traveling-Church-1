@@ -260,14 +260,15 @@ Reference: ${verseRef} (${translation})`;
     return (
       <div className="flex flex-col h-full bg-background">
         <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-semibold font-serif">Select a Book</h2>
+          <h2 className="text-xl font-semibold font-serif">Search the Bible</h2>
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setShowSearch(!showSearch)}
+            className="h-9 w-9 flex-shrink-0"
             data-testid="button-bible-search"
           >
-            <Search className="w-5 h-5" />
+            <Search className="w-4 h-4" />
           </Button>
         </div>
 
