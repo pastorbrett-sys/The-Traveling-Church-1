@@ -263,7 +263,7 @@ Reference: ${verseRef} (${translation})`;
       setShowSearch(true);
       setTimeout(() => {
         searchInputRef.current?.focus();
-      }, 300);
+      }, 150);
     } else {
       setShowSearch(false);
       setSearchQuery("");
@@ -283,9 +283,9 @@ Reference: ${verseRef} (${translation})`;
                 exit={{ x: -100, opacity: 0 }}
                 transition={{ 
                   type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                  mass: 0.8
+                  stiffness: 500,
+                  damping: 35,
+                  mass: 0.5
                 }}
                 className="flex-1 mr-3"
               >
@@ -309,8 +309,8 @@ Reference: ${verseRef} (${translation})`;
                 exit={{ x: -50, opacity: 0 }}
                 transition={{ 
                   type: "spring",
-                  stiffness: 300,
-                  damping: 30
+                  stiffness: 500,
+                  damping: 35
                 }}
                 className="text-xl font-semibold font-serif"
               >
@@ -347,10 +347,10 @@ Reference: ${verseRef} (${translation})`;
               exit={{ height: 0, opacity: 0 }}
               transition={{ 
                 type: "spring",
-                stiffness: 300,
-                damping: 30
+                stiffness: 500,
+                damping: 35
               }}
-              className="overflow-hidden border-b"
+              className="overflow-hidden"
             >
               <div className="p-4">
                 {isSearching && (
@@ -369,10 +369,10 @@ Reference: ${verseRef} (${translation})`;
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ 
-                              delay: index * 0.03,
+                              delay: index * 0.02,
                               type: "spring",
-                              stiffness: 300,
-                              damping: 25
+                              stiffness: 500,
+                              damping: 30
                             }}
                             onClick={() => {
                               if (book) {
