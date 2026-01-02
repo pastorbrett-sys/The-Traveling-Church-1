@@ -394,26 +394,18 @@ export default function PastorChat() {
               Bible
             </button>
           </div>
-          <div className="flex items-center gap-2">
-            {isPro && (
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary text-primary-foreground" data-testid="badge-pro">
-                <Sparkles className="w-3 h-3 mr-1" />
-                PRO
-              </span>
-            )}
-            {!isAuthenticated && (
-              <Link href="/login?redirect=/pastor-chat">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  data-testid="button-login"
-                >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
-                </Button>
-              </Link>
-            )}
-          </div>
+          {!isAuthenticated && (
+            <Link href="/login?redirect=/pastor-chat">
+              <Button
+                variant="outline"
+                size="sm"
+                data-testid="button-login"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Sign In
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
 
