@@ -386,43 +386,48 @@ export default function PastorChat() {
       {/* Tab Toggle */}
       <div className="w-full max-w-3xl mx-auto px-4 mt-2">
         <div className="flex items-center justify-between">
-          <div className="relative inline-flex p-1 rounded-lg bg-muted">
-            <motion.div
-              className="absolute top-1 bottom-1 bg-background rounded-md shadow-sm"
-              initial={false}
-              animate={{
-                x: activeTab === "chat" ? 0 : "100%",
-                width: "calc(50% - 2px)"
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 500,
-                damping: 35
-              }}
-            />
+          <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
               onClick={() => setActiveTab("chat")}
-              className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeTab === "chat"
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               data-testid="tab-chat"
             >
-              <MessageCircle className="w-4 h-4" />
-              Chat
+              {activeTab === "chat" && (
+                <motion.div
+                  layoutId="tabHighlight"
+                  className="absolute inset-0 bg-background rounded-md shadow-sm"
+                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <MessageCircle className="w-4 h-4" />
+                Chat
+              </span>
             </button>
             <button
               onClick={() => setActiveTab("bible")}
-              className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeTab === "bible"
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               data-testid="tab-bible"
             >
-              <Book className="w-4 h-4" />
-              Bible
+              {activeTab === "bible" && (
+                <motion.div
+                  layoutId="tabHighlight"
+                  className="absolute inset-0 bg-background rounded-md shadow-sm"
+                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <Book className="w-4 h-4" />
+                Bible
+              </span>
             </button>
           </div>
           <div className="flex items-center gap-2">
