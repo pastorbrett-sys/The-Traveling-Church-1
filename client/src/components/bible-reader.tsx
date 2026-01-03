@@ -706,6 +706,7 @@ Reference: ${verseRef} (${translation})`;
               "Lamentations": "/attached_assets/Lamentations_1767416138635.png",
               "Ezekiel": "/attached_assets/Ezekial_1767416354333.png",
               "Daniel": "/attached_assets/Daniel_1767416552550.png",
+              "Hosea": "/attached_assets/Hosea_1767416671710.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
