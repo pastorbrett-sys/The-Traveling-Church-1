@@ -730,6 +730,8 @@ Reference: ${verseRef} (${translation})`;
               "Ephesians": "/attached_assets/Ephesians_1767429594997.png",
               "Philippians": "/attached_assets/image_1767458321782.png",
               "Colossians": "/attached_assets/58df8405-6738-4315-bc88-5792866c1f6a_1767459105574.png",
+              "1 Thessalonians": "/attached_assets/0a8a2f9c-4862-4186-9fb3-bd92fb1bc9e7_1767459379498.png",
+              "2 Thessalonians": "/attached_assets/fb5960a8-c1f4-440f-b8cc-b67527a1093c_1767459381009.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
