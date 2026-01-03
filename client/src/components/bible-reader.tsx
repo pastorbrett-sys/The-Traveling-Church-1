@@ -747,7 +747,7 @@ Reference: ${verseRef} (${translation})`;
               "Revelation": "/attached_assets/Revelation_1767464176577.png",
               "Tobit": "/attached_assets/Tobit_1767464568378.png",
               "Judith": "/attached_assets/Judith_1767464687292.png",
-              "1 Maccabees": "/attached_assets/1_Maccabees_1767464869040.png",
+              "1 Maccabees": "/attached_assets/A_pen-and-ink-style_digital_illustration_in_mustar_1767465895165.png",
               "2 Maccabees": "/attached_assets/A_traditional-style_line_drawing_in_sepia_tone_dep_1767465792706.png",
               "1 Esdras": "/attached_assets/Esdras_1767465072053.png",
               "Wisdom": "/attached_assets/Wisdome_Fix_Test_1767465366994.png",
