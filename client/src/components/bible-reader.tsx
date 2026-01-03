@@ -724,6 +724,7 @@ Reference: ${verseRef} (${translation})`;
               "John": "/attached_assets/John_1767421355415.png",
               "Acts": "/attached_assets/Acts_1767421479985.png",
               "Romans": "/attached_assets/Romans_1767421617285.png",
+              "1 Corinthians": "/attached_assets/1_Corinthians_1767422182460.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
