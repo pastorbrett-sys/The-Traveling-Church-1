@@ -705,7 +705,7 @@ Reference: ${verseRef} (${translation})`;
             <div className="flex items-center justify-between p-3 border-b">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
-                <span className="font-serif font-medium">Verse Insight</span>
+                <span className="font-serif font-bold">Verse Insight</span>
               </div>
               <Button
                 variant="ghost"
