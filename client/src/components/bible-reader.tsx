@@ -677,18 +677,18 @@ Reference: ${verseRef} (${translation})`;
 
       <ScrollArea className="flex-1" ref={contentRef}>
         <div className="p-4 sm:p-6 max-w-2xl mx-auto">
-          <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
-            {chapter?.book} {selectedChapter}
-          </h1>
-          <p className="text-sm text-muted-foreground mb-6">{translation}</p>
-
           {selectedChapter === 1 && selectedBook?.name === "Genesis" && (
             <img 
               src="/attached_assets/Genesis_1767411601006.png" 
               alt="Genesis decorative header"
-              className="w-full rounded-lg mb-6"
+              className="w-full rounded-lg mb-4"
             />
           )}
+
+          <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
+            {chapter?.book} {selectedChapter}
+          </h1>
+          <p className="text-sm text-muted-foreground mb-6">{translation}</p>
 
           {isLoadingChapter ? (
             <div className="flex items-center justify-center py-12">
