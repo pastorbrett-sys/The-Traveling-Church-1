@@ -50,6 +50,7 @@ function Router() {
       <Route path="/missions/jordan" component={MissionJordan} />
       <Route path="/missions" component={Missions} />
       <Route path="/pastor-chat" component={PastorChat} />
+      <Route path="/bible-buddy" component={PastorChat} />
       <Route path="/notes" component={Notes} />
       <Route path="/profile" component={Profile} />
       <Route path="/login" component={Login} />
