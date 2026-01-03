@@ -13,7 +13,8 @@ import {
   Check,
   Share2,
   Copy,
-  Loader2
+  Loader2,
+  Send
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -63,6 +64,12 @@ interface Translation {
   full_name: string;
 }
 
+interface InsightMessage {
+  role: "user" | "assistant";
+  content: string;
+  isInitialInsight?: boolean;
+}
+
 interface BibleReaderProps {
   translation: string;
   onTranslationChange: (translation: string) => void;
@@ -84,8 +91,16 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [compareTranslations, setCompareTranslations] = useState<string[]>(["NIV", "ESV"]);
   const [footerKey, setFooterKey] = useState(0);
   const [wasFooterOpen, setWasFooterOpen] = useState(false);
+  const [insightMessages, setInsightMessages] = useState<InsightMessage[]>([]);
+  const [insightConversationId, setInsightConversationId] = useState<number | null>(null);
+  const [insightInput, setInsightInput] = useState("");
+  const [isStreamingInsight, setIsStreamingInsight] = useState(false);
+  const [insightVerseRef, setInsightVerseRef] = useState("");
+  const [insightVerseText, setInsightVerseText] = useState("");
   const contentRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const insightChatRef = useRef<HTMLDivElement>(null);
+  const insightInputRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -183,19 +198,23 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const handleGetInsight = async () => {
     if (!selectedVerse || !selectedBook) return;
     
+    const verseRef = `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`;
+    setInsightVerseRef(verseRef);
+    setInsightVerseText(selectedVerse.text);
     setShowInsight(true);
     setIsLoadingInsight(true);
-    setInsight("");
+    setInsightMessages([]);
+    setInsightInput("");
 
     try {
       const response = await fetch("/api/conversations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: "Bible Insight" }),
+        body: JSON.stringify({ title: `Insight: ${verseRef}` }),
       });
       const conversation = await response.json();
+      setInsightConversationId(conversation.id);
 
-      const verseRef = `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`;
       const prompt = `Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
 
 Verse: "${selectedVerse.text}"
@@ -223,7 +242,7 @@ Reference: ${verseRef} (${translation})`;
                 const data = JSON.parse(line.slice(6));
                 if (data.content) {
                   fullText += data.content;
-                  setInsight(fullText);
+                  setInsightMessages([{ role: "assistant", content: fullText, isInitialInsight: true }]);
                 }
               } catch (e) {}
             }
@@ -237,6 +256,76 @@ Reference: ${verseRef} (${translation})`;
       setIsLoadingInsight(false);
     }
   };
+
+  const handleSendInsightMessage = async () => {
+    if (!insightInput.trim() || !insightConversationId || isStreamingInsight) return;
+
+    const userMessage = insightInput.trim();
+    setInsightInput("");
+    setInsightMessages(prev => [...prev, { role: "user", content: userMessage }]);
+    setIsStreamingInsight(true);
+
+    try {
+      const msgResponse = await fetch(`/api/conversations/${insightConversationId}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: "user", content: userMessage }),
+      });
+
+      const reader = msgResponse.body?.getReader();
+      const decoder = new TextDecoder();
+      let fullText = "";
+
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value);
+          const lines = chunk.split("\n");
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              try {
+                const data = JSON.parse(line.slice(6));
+                if (data.content) {
+                  fullText += data.content;
+                  setInsightMessages(prev => {
+                    const newMessages = [...prev];
+                    const lastMsg = newMessages[newMessages.length - 1];
+                    if (lastMsg?.role === "assistant" && !lastMsg.isInitialInsight) {
+                      lastMsg.content = fullText;
+                    } else {
+                      newMessages.push({ role: "assistant", content: fullText });
+                    }
+                    return newMessages;
+                  });
+                }
+              } catch (e) {}
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({ title: "Failed to send message", variant: "destructive" });
+    } finally {
+      setIsStreamingInsight(false);
+    }
+  };
+
+  const handleCloseInsight = () => {
+    setShowInsight(false);
+    setInsightMessages([]);
+    setInsightConversationId(null);
+    setInsightInput("");
+    setInsightVerseRef("");
+    setInsightVerseText("");
+  };
+
+  useEffect(() => {
+    if (insightChatRef.current) {
+      insightChatRef.current.scrollTop = insightChatRef.current.scrollHeight;
+    }
+  }, [insightMessages]);
 
   const handleSaveNote = () => {
     if (!selectedVerse || !selectedBook || !noteText.trim()) return;
@@ -603,41 +692,115 @@ Reference: ${verseRef} (${translation})`;
         )}
       </AnimatePresence>
 
-      <Dialog open={showInsight} onOpenChange={setShowInsight}>
-        <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 font-serif">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Verse Insight
-            </DialogTitle>
-          </DialogHeader>
-          <div className="text-sm text-muted-foreground mb-2">
-            {selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}
-          </div>
-          <blockquote className="border-l-2 border-primary pl-3 italic text-sm mb-4">
-            "{selectedVerse?.text}"
-          </blockquote>
-          <ScrollArea className="flex-1 pr-4">
-            {isLoadingInsight && !insight ? (
-              <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-6 h-6 animate-spin" />
+      <AnimatePresence>
+        {showInsight && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 z-50 bg-background flex flex-col"
+          >
+            <div className="flex items-center justify-between p-3 border-b">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-[#c08e00]" />
+                <span className="font-serif font-medium">Verse Insight</span>
               </div>
-            ) : (
-              <div className="prose prose-sm dark:prose-invert max-w-none">
-                <ReactMarkdown
-                  components={{
-                    strong: ({ children }) => (
-                      <strong className="font-serif font-bold">{children}</strong>
-                    ),
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleCloseInsight}
+                className="hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                data-testid="button-close-insight"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4" ref={insightChatRef}>
+              <div className="max-w-2xl mx-auto space-y-4">
+                <div className="border-l-2 border-[#c08e00] pl-3 mb-6">
+                  <p className="text-sm text-muted-foreground mb-1">{insightVerseRef}</p>
+                  <p className="text-sm italic">"{insightVerseText}"</p>
+                </div>
+
+                {isLoadingInsight && insightMessages.length === 0 ? (
+                  <div className="flex items-center justify-center py-8">
+                    <Loader2 className="w-6 h-6 animate-spin" />
+                  </div>
+                ) : (
+                  insightMessages.map((msg, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`${msg.role === "user" ? "flex justify-end" : ""}`}
+                    >
+                      {msg.role === "user" ? (
+                        <div className="bg-primary text-primary-foreground rounded-2xl rounded-br-sm px-4 py-2 max-w-[85%]">
+                          <p className="text-sm">{msg.content}</p>
+                        </div>
+                      ) : (
+                        <div className={msg.isInitialInsight ? "border-l-2 border-[#c08e00]/50 pl-3" : ""}>
+                          <div className="prose prose-sm dark:prose-invert max-w-none">
+                            <ReactMarkdown
+                              components={{
+                                strong: ({ children }) => (
+                                  <strong className="font-serif font-bold">{children}</strong>
+                                ),
+                              }}
+                            >
+                              {msg.content}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))
+                )}
+
+                {isStreamingInsight && (
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span className="text-sm">Thinking...</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div 
+              className="border-t p-3 bg-background"
+              style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+            >
+              <div className="max-w-2xl mx-auto flex gap-2">
+                <Textarea
+                  ref={insightInputRef}
+                  placeholder="Ask a follow-up question..."
+                  value={insightInput}
+                  onChange={(e) => setInsightInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendInsightMessage();
+                    }
                   }}
+                  rows={1}
+                  className="resize-none min-h-[44px] max-h-32"
+                  data-testid="input-insight-followup"
+                />
+                <Button
+                  onClick={handleSendInsightMessage}
+                  disabled={!insightInput.trim() || isStreamingInsight}
+                  className="shrink-0 bg-[#c08e00] hover:bg-[#a07800] text-white"
+                  data-testid="button-send-insight"
                 >
-                  {insight}
-                </ReactMarkdown>
+                  <Send className="w-4 h-4" />
+                </Button>
               </div>
-            )}
-          </ScrollArea>
-        </DialogContent>
-      </Dialog>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Dialog open={showNote} onOpenChange={setShowNote}>
         <DialogContent className="max-w-lg">
