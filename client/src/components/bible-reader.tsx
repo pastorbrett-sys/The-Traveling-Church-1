@@ -720,7 +720,7 @@ Reference: ${verseRef} (${translation})`;
 
             <div className="flex-1 overflow-y-auto p-4" ref={insightChatRef}>
               <div className="max-w-2xl mx-auto space-y-4">
-                <div className="border-l-2 border-[#c08e00] pl-3 mb-6">
+                <div className="border-l-2 border-[#c08e00] pl-3 mb-6 mt-2">
                   <p className="text-2xl font-serif font-bold mb-1">{insightVerseRef}</p>
                   <p className="text-sm italic">"{insightVerseText}"</p>
                 </div>
