@@ -122,7 +122,7 @@ export default function PastorChat() {
 
   const systemPrompt: ChatMessage = {
     role: "assistant",
-    content: "Welcome! I'm here to offer pastoral guidance and spiritual support. Feel free to share what's on your heart, ask questions about faith, or seek prayer. I'm here to listen and help you find comfort in God's word. How can I help you today?"
+    content: "Hey there! I'm Pastor Brett, your Digital Pastor. Ask me anything!"
   };
 
   // Measure footer height dynamically
@@ -384,7 +384,7 @@ export default function PastorChat() {
       <Navigation />
 
       {/* Tab Toggle */}
-      <div className="w-full max-w-3xl mx-auto px-4 mt-3">
+      <div className="sticky top-0 z-40 bg-background w-full max-w-3xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
@@ -472,22 +472,8 @@ export default function PastorChat() {
         <>
           <main style={{ paddingBottom: `${footerHeight}px` }}>
             <div className="w-full max-w-3xl mx-auto px-4">
-              {/* Header */}
-              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 border border-border rounded-lg mt-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h1 className="text-lg font-bold text-foreground" data-testid="heading-pastor-chat">
-                      AI Pastor Chat
-                    </h1>
-                  </div>
-                </div>
-              </div>
-
           {/* Messages area */}
-          <div ref={scrollAreaRef} className="mt-4 space-y-4">
+          <div ref={scrollAreaRef} className="space-y-4">
             <AnimatePresence mode="popLayout">
               {displayMessages.map((message, index) => (
                 <motion.div
