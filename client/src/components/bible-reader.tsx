@@ -910,7 +910,7 @@ Reference: ${verseRef} (${translation})`;
           className="flex items-center gap-2"
           data-testid="button-book-picker"
         >
-          <Book className="w-4 h-4" />
+          <ChevronLeft className="w-4 h-4" />
           <span className="font-medium truncate max-w-[120px] sm:max-w-none">
             {selectedBook?.name}
           </span>
