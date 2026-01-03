@@ -727,7 +727,7 @@ export default function Notes() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-6 w-6 hover:bg-[#c08e00]/10 hover:text-[#c08e00] rounded-sm opacity-70 hover:opacity-100"
+              className="h-7 w-7 hover:bg-[#c08e00]/10 hover:text-[#c08e00] rounded-sm opacity-70 hover:opacity-100"
               onClick={() => {
                 if (viewingNote) {
                   handleEditNote(viewingNote);
@@ -736,12 +736,12 @@ export default function Notes() {
               }}
               data-testid="button-view-edit"
             >
-              <Edit3 className="w-4 h-4" />
+              <Edit3 className="w-5 h-5" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="h-6 w-6 hover:bg-destructive/10 hover:text-destructive rounded-sm opacity-70 hover:opacity-100"
+              className="h-7 w-7 hover:bg-destructive/10 hover:text-destructive rounded-sm opacity-70 hover:opacity-100"
               onClick={() => {
                 if (viewingNote) {
                   setDeleteConfirm(viewingNote);
@@ -750,10 +750,10 @@ export default function Notes() {
               }}
               data-testid="button-view-delete"
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 className="w-5 h-5" />
             </Button>
-            <DialogClose className="h-6 w-6 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity">
-              <X className="h-4 w-4" />
+            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity">
+              <X className="h-5 w-5" />
               <span className="sr-only">Close</span>
             </DialogClose>
           </div>
