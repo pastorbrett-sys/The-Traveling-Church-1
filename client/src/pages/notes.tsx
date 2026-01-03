@@ -489,9 +489,9 @@ export default function Notes() {
           ) : (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <img 
-                src="/attached_assets/Scroll_Image_1767409900006.png" 
+                src="/attached_assets/Scroll_Image_1767410029173.png" 
                 alt="Ancient scroll" 
-                className="w-32 h-32 object-contain mb-4 opacity-80"
+                className="w-48 h-48 object-contain mb-4 opacity-80"
               />
               <h2 className="text-xl font-semibold mb-2">No notes yet</h2>
               <p className="text-muted-foreground max-w-sm mb-6">
