@@ -681,7 +681,7 @@ Reference: ${verseRef} (${translation})`;
             <img 
               src="/attached_assets/Genesis_1767411601006.png" 
               alt="Genesis decorative header"
-              className="w-full rounded-lg mb-4"
+              className="w-full h-auto rounded-lg mb-4"
             />
           )}
 
@@ -689,7 +689,7 @@ Reference: ${verseRef} (${translation})`;
             <img 
               src="/attached_assets/Exodus_1767412636802.png" 
               alt="Exodus decorative header"
-              className="w-full rounded-lg mb-4"
+              className="w-full h-auto rounded-lg mb-4"
             />
           )}
 
