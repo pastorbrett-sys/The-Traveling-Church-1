@@ -126,9 +126,9 @@ export default function PastorChat() {
     content: "Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!"
   };
 
-  // Measure footer height dynamically
+  // Measure footer height dynamically - re-run when activeTab changes
   useEffect(() => {
-    if (!footerRef.current) return;
+    if (activeTab !== "chat" || !footerRef.current) return;
     
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
@@ -141,7 +141,7 @@ export default function PastorChat() {
     setFooterHeight(footerRef.current.offsetHeight + 32);
     
     return () => observer.disconnect();
-  }, []);
+  }, [activeTab]);
 
   // Helper function to scroll to bottom - scrolls the container to show newest messages
   const scrollToBottom = () => {
@@ -156,6 +156,13 @@ export default function PastorChat() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Also scroll to bottom when switching to chat tab
+  useEffect(() => {
+    if (activeTab === "chat") {
+      setTimeout(scrollToBottom, 50);
+    }
+  }, [activeTab]);
 
   useEffect(() => {
     document.title = "AI Bible Buddy | The Traveling Church";
