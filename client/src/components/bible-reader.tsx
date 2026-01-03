@@ -241,6 +241,14 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const { data: books } = useQuery<BibleBook[]>({
     queryKey: ["/api/bible/books", translation],
     enabled: !!translation,
+    select: (data) => {
+      const seen = new Set<string>();
+      return data.filter(book => {
+        if (seen.has(book.name)) return false;
+        seen.add(book.name);
+        return true;
+      });
+    },
   });
 
   const { data: chapter, isLoading: isLoadingChapter } = useQuery<BibleChapter>({
