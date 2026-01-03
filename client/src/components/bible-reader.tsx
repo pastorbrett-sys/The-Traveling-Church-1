@@ -757,6 +757,14 @@ Reference: ${verseRef} (${translation})`;
             />
           )}
 
+          {selectedChapter === 1 && selectedBook?.name === "1 Kings" && (
+            <img 
+              src="/attached_assets/1_Kings_1767413857065.png" 
+              alt="1 Kings decorative header"
+              className="w-full h-auto rounded-lg mb-4"
+            />
+          )}
+
           <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
             {chapter?.book} {selectedChapter}
           </h1>
