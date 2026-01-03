@@ -1073,14 +1073,14 @@ Reference: ${verseRef} (${translation})`;
       </Dialog>
 
       <Dialog open={showCompare} onOpenChange={setShowCompare}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
-          <DialogHeader>
+        <DialogContent className="max-w-2xl w-[95vw] h-[90vh] sm:h-auto sm:max-h-[80vh] overflow-hidden flex flex-col p-0 sm:p-6">
+          <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0">
             <DialogTitle className="font-serif">Compare Translations</DialogTitle>
           </DialogHeader>
-          <div className="text-sm text-muted-foreground mb-4">
+          <div className="text-sm text-muted-foreground px-4 sm:px-0 mb-2">
             {selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}
           </div>
-          <ScrollArea className="flex-1">
+          <div className="flex-1 overflow-y-auto px-4 sm:px-0 pb-4 sm:pb-0">
             {isLoadingComparison ? (
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="w-6 h-6 animate-spin" />
@@ -1097,7 +1097,7 @@ Reference: ${verseRef} (${translation})`;
                 ))}
               </div>
             )}
-          </ScrollArea>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
