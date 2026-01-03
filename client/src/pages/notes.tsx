@@ -487,7 +487,7 @@ export default function Notes() {
               )}
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center py-16 text-center">
+            <div className="flex flex-col items-center justify-center py-6 sm:py-16 text-center">
               <img 
                 src="/attached_assets/Scroll_Image_1767410029173.png" 
                 alt="Ancient scroll" 
