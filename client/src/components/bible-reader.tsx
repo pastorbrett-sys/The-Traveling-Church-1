@@ -419,7 +419,7 @@ Reference: ${verseRef} (${translation})`;
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="flex-1 flex items-center justify-between"
+                className="flex-1 flex items-center relative"
               >
                 <motion.h2
                   initial={{ x: -50, opacity: 0 }}
@@ -434,18 +434,22 @@ Reference: ${verseRef} (${translation})`;
                   <Search className="w-5 h-5 text-muted-foreground" />
                   Smart Search
                 </motion.h2>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // TODO: Navigate to saved notes page
-                  }}
-                  className="h-9 w-9 flex-shrink-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
-                  data-testid="button-saved-notes"
+                <div 
+                  className="absolute right-4 top-1/2 -translate-y-1/2"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <Bookmark className="w-5 h-5" />
-                </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      // TODO: Navigate to saved notes page
+                    }}
+                    className="h-10 w-10 p-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
+                    data-testid="button-saved-notes"
+                  >
+                    <Bookmark className="w-[30px] h-[30px]" />
+                  </Button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
