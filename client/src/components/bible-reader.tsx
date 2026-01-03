@@ -309,6 +309,7 @@ Reference: ${verseRef} (${translation})`;
       toast({ title: "Failed to send message", variant: "destructive" });
     } finally {
       setIsStreamingInsight(false);
+      insightInputRef.current?.focus();
     }
   };
 
@@ -772,7 +773,7 @@ Reference: ${verseRef} (${translation})`;
               className="border-t p-3 bg-background"
               style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
             >
-              <div className="max-w-2xl mx-auto flex gap-2">
+              <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
                 <Textarea
                   ref={insightInputRef}
                   placeholder="Ask a follow-up question..."
@@ -785,13 +786,13 @@ Reference: ${verseRef} (${translation})`;
                     }
                   }}
                   rows={1}
-                  className="resize-none min-h-[44px] max-h-32"
+                  className="resize-none min-h-[44px] max-h-32 py-[10px] flex items-center"
                   data-testid="input-insight-followup"
                 />
                 <Button
                   onClick={handleSendInsightMessage}
                   disabled={!insightInput.trim() || isStreamingInsight}
-                  className="shrink-0 bg-[#c08e00] hover:bg-[#a07800] text-white"
+                  className="shrink-0 bg-[#c08e00] hover:bg-[#a07800] text-white aspect-square h-[44px] w-[44px] p-0"
                   data-testid="button-send-insight"
                 >
                   <Send className="w-4 h-4" />
