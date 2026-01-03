@@ -729,6 +729,7 @@ Reference: ${verseRef} (${translation})`;
               "Galatians": "/attached_assets/Galations_1767429121337.png",
               "Ephesians": "/attached_assets/Ephesians_1767429594997.png",
               "Philippians": "/attached_assets/image_1767458321782.png",
+              "Colossians": "/attached_assets/58df8405-6738-4315-bc88-5792866c1f6a_1767459105574.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
