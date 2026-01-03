@@ -685,6 +685,14 @@ Reference: ${verseRef} (${translation})`;
             />
           )}
 
+          {selectedChapter === 1 && selectedBook?.name === "Exodus" && (
+            <img 
+              src="/attached_assets/generated_images/exodus_moses_parting_red_sea.png" 
+              alt="Exodus decorative header"
+              className="w-full rounded-lg mb-4"
+            />
+          )}
+
           <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
             {chapter?.book} {selectedChapter}
           </h1>
