@@ -261,7 +261,7 @@ export default function Notes() {
             </div>
             <Link href="/pastor-chat?tab=bible">
               <button
-                className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors -translate-x-[23px] sm:translate-x-0"
+                className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors -translate-x-[13px] sm:translate-x-0"
                 data-testid="button-create-note"
               >
                 <Plus className="w-5 h-5 text-white" />
