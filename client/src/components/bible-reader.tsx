@@ -743,8 +743,16 @@ Reference: ${verseRef} (${translation})`;
 
           {selectedChapter === 1 && selectedBook?.name === "1 Samuel" && (
             <img 
-              src="/attached_assets/1_samuel_1767413597564.png" 
+              src="/attached_assets/1_samuel_1767413735216.png" 
               alt="1 Samuel decorative header"
+              className="w-full h-auto rounded-lg mb-4"
+            />
+          )}
+
+          {selectedChapter === 1 && selectedBook?.name === "2 Samuel" && (
+            <img 
+              src="/attached_assets/2_samuel_1767413735217.png" 
+              alt="2 Samuel decorative header"
               className="w-full h-auto rounded-lg mb-4"
             />
           )}
