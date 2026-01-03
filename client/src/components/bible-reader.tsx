@@ -728,6 +728,7 @@ Reference: ${verseRef} (${translation})`;
               "2 Corinthians": "/attached_assets/2_Corinthians_1767429135473.png",
               "Galatians": "/attached_assets/Galations_1767429121337.png",
               "Ephesians": "/attached_assets/Ephesians_1767429594997.png",
+              "Philippians": "/attached_assets/image_1767458321782.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
