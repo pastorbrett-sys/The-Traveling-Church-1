@@ -55,7 +55,7 @@ export default function PastorChat() {
   const initialTab = urlParams.get("tab") === "bible" ? "bible" : "chat";
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(initialTab);
-  const [bibleTranslation, setBibleTranslation] = useState("KJV");
+  const [bibleTranslation, setBibleTranslation] = useState("NIV");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
