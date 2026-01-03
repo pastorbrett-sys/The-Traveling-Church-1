@@ -735,6 +735,7 @@ Reference: ${verseRef} (${translation})`;
               "1 Timothy": "/attached_assets/1_Timothy_1767460433842.png",
               "2 Timothy": "/attached_assets/2_timothy_1767461142916.png",
               "Titus": "/attached_assets/Titus_1767461633372.png",
+              "Philemon": "/attached_assets/Philemon_1767461904106.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
