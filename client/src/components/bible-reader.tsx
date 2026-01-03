@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -77,6 +78,7 @@ interface BibleReaderProps {
 }
 
 export default function BibleReader({ translation, onTranslationChange }: BibleReaderProps) {
+  const [, navigate] = useLocation();
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [selectedVerse, setSelectedVerse] = useState<BibleVerse | null>(null);
@@ -439,7 +441,7 @@ Reference: ${verseRef} (${translation})`;
                   onClick={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    window.location.href = "/notes";
+                    navigate("/notes");
                   }}
                   data-testid="button-saved-notes"
                 >
