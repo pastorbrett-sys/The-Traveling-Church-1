@@ -721,14 +721,14 @@ export default function Notes() {
       </Dialog>
 
       <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
-        <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
+        <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[80vh] overflow-y-auto overflow-x-hidden">
           <DialogHeader>
-            <DialogTitle className="font-serif flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <Bookmark className="w-5 h-5 text-[#c08e00]" />
-                <span>{viewingNote?.verseRef}</span>
+            <div className="flex items-start justify-between gap-2 w-full">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <Bookmark className="w-5 h-5 text-[#c08e00] flex-shrink-0" />
+                <span className="font-serif font-semibold break-words">{viewingNote?.verseRef}</span>
               </div>
-              <div className="flex gap-1">
+              <div className="flex gap-1 flex-shrink-0">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -758,14 +758,14 @@ export default function Notes() {
                   <Trash2 className="w-4 h-4" />
                 </Button>
               </div>
-            </DialogTitle>
+            </div>
           </DialogHeader>
           
           {viewingNote && (
-            <div className="space-y-4">
+            <div className="space-y-4 break-words overflow-hidden">
               {viewingNote.verseText && (
                 <div className="border-l-2 border-[#c08e00] pl-3 py-1">
-                  <p className="text-sm text-muted-foreground italic">"{viewingNote.verseText}"</p>
+                  <p className="text-sm text-muted-foreground italic break-words">"{viewingNote.verseText}"</p>
                 </div>
               )}
               
@@ -773,7 +773,7 @@ export default function Notes() {
                 {formatDate(viewingNote.createdAt)}
               </p>
               
-              <p className="text-base whitespace-pre-wrap break-words">{viewingNote.content}</p>
+              <p className="text-base whitespace-pre-wrap break-words overflow-wrap-anywhere" style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{viewingNote.content}</p>
               
               {viewingNote.tags && viewingNote.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 pt-2">
