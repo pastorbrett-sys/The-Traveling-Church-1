@@ -734,6 +734,7 @@ Reference: ${verseRef} (${translation})`;
               "2 Thessalonians": "/attached_assets/fb5960a8-c1f4-440f-b8cc-b67527a1093c_1767459381009.png",
               "1 Timothy": "/attached_assets/1_Timothy_1767460433842.png",
               "2 Timothy": "/attached_assets/2_timothy_1767461142916.png",
+              "Titus": "/attached_assets/Titus_1767461633372.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
