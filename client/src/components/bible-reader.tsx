@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Book, 
+  Bookmark,
   ChevronLeft, 
   ChevronRight, 
   Search, 
@@ -412,21 +413,40 @@ Reference: ${verseRef} (${translation})`;
                 </Button>
               </motion.div>
             ) : (
-              <motion.h2
-                key="title"
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -50, opacity: 0 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 700,
-                  damping: 40
-                }}
-                className="text-xl font-semibold font-serif flex items-center gap-2"
+              <motion.div
+                key="title-row"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex-1 flex items-center justify-between"
               >
-                <Search className="w-5 h-5 text-muted-foreground" />
-                Smart Search
-              </motion.h2>
+                <motion.h2
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 700,
+                    damping: 40
+                  }}
+                  className="text-xl font-semibold font-serif flex items-center gap-2"
+                >
+                  <Search className="w-5 h-5 text-muted-foreground" />
+                  Smart Search
+                </motion.h2>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // TODO: Navigate to saved notes page
+                  }}
+                  className="h-9 w-9 flex-shrink-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
+                  data-testid="button-saved-notes"
+                >
+                  <Bookmark className="w-5 h-5" />
+                </Button>
+              </motion.div>
             )}
           </AnimatePresence>
         </div>
