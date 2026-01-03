@@ -78,11 +78,11 @@ interface Translation {
 export default function PastorChat() {
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
-  const initialTab = urlParams.get("tab") === "chat" ? "chat" : "bible";
+  const tabParam = urlParams.get("tab");
   const seedQuestion = urlParams.get("seedQuestion");
   const seedAnswer = urlParams.get("seedAnswer");
   
-  const [activeTab, setActiveTab] = useState<"chat" | "bible">(initialTab);
+  const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
   const [bibleTranslation, setBibleTranslation] = useState("NIV");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -95,6 +95,21 @@ export default function PastorChat() {
   const [isNewChatMode, setIsNewChatMode] = useState(false);
   const [isSeeding, setIsSeeding] = useState(false);
   const [hasSeeded, setHasSeeded] = useState(false);
+  
+  // Track the seed params to detect when they change (for same-page navigation)
+  const [lastSeedParams, setLastSeedParams] = useState<string | null>(null);
+  
+  // Watch for URL param changes and switch to chat tab when seed params are present
+  useEffect(() => {
+    const currentSeedKey = seedQuestion && seedAnswer ? `${seedQuestion}|${seedAnswer}` : null;
+    
+    if (currentSeedKey && currentSeedKey !== lastSeedParams) {
+      // New seed params detected - switch to chat tab and reset seeding state
+      setActiveTab("chat");
+      setHasSeeded(false);
+      setLastSeedParams(currentSeedKey);
+    }
+  }, [seedQuestion, seedAnswer, lastSeedParams]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
