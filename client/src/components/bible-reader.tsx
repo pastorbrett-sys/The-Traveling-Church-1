@@ -510,23 +510,31 @@ Reference: ${verseRef} (${translation})`;
 
         <ScrollArea className="flex-1">
           <div className="p-4 space-y-6">
-            {groupedBooks && Object.entries(groupedBooks).map(([testament, bookList]) => (
-              <div key={testament}>
+            {groupedBooks && Object.entries(groupedBooks).map(([testament, bookList], testamentIndex) => (
+              <motion.div 
+                key={testament}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: testamentIndex * 0.1 }}
+              >
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">{testament}</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                  {bookList.map((book) => (
-                    <button
+                  {bookList.map((book, bookIndex) => (
+                    <motion.button
                       key={book.bookid}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2, delay: testamentIndex * 0.1 + Math.min(bookIndex * 0.015, 0.3) }}
                       onClick={() => handleBookSelect(book)}
                       className="p-3 text-left rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 active:bg-[#c08e00]/20 transition-colors"
                       data-testid={`book-${book.bookid}`}
                     >
                       <p className="font-medium text-sm">{book.name}</p>
                       <p className="text-xs text-muted-foreground">{book.chapters} chapters</p>
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </ScrollArea>
