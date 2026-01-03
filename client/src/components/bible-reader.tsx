@@ -717,6 +717,7 @@ Reference: ${verseRef} (${translation})`;
               "Zephaniah": "/attached_assets/Zephaniah_1767417501572.png",
               "Haggai": "/attached_assets/Haggai_1767417622721.png",
               "Zechariah": "/attached_assets/Zechariah_1767417826870.png",
+              "Malachi": "/attached_assets/Malachi_1767418993072.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
