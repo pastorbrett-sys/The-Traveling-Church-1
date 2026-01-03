@@ -64,6 +64,7 @@ export default function PastorChat() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const queryClient = useQueryClient();
@@ -142,14 +143,12 @@ export default function PastorChat() {
     return () => observer.disconnect();
   }, []);
 
-  // Helper function to scroll to bottom - ensures full message is visible above footer
+  // Helper function to scroll to bottom - scrolls the container to show newest messages
   const scrollToBottom = () => {
     requestAnimationFrame(() => {
-      // Scroll the window to show the end of messages
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-      });
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+      }
     });
   };
 
@@ -465,7 +464,7 @@ export default function PastorChat() {
       </div>
 
       {/* Scrollable content area */}
-      <div className="flex-1 overflow-y-auto">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto">
         <div 
           className={`w-full max-w-3xl mx-auto px-4 h-full ${activeTab === "bible" ? "" : "hidden"}`}
         >
