@@ -68,3 +68,89 @@ export interface BibleChapter {
   verses: BibleVerse[];
   translation: string;
 }
+
+export type SmartSearchResultType = 
+  | "verse" 
+  | "topic" 
+  | "question" 
+  | "book" 
+  | "character" 
+  | "word_study";
+
+export interface SmartSearchResultVerse {
+  type: "verse";
+  reference: string;
+  bookId: number;
+  chapter: number;
+  verse: number;
+  preview: string;
+}
+
+export interface SmartSearchResultTopic {
+  type: "topic";
+  title: string;
+  description: string;
+  verses: Array<{
+    reference: string;
+    bookId: number;
+    chapter: number;
+    verse: number;
+    preview: string;
+  }>;
+}
+
+export interface SmartSearchResultQuestion {
+  type: "question";
+  question: string;
+  briefAnswer: string;
+  suggestedPrompt: string;
+}
+
+export interface SmartSearchResultBook {
+  type: "book";
+  bookId: number;
+  bookName: string;
+  description: string;
+  chapters: number;
+}
+
+export interface SmartSearchResultCharacter {
+  type: "character";
+  name: string;
+  description: string;
+  keyVerses: Array<{
+    reference: string;
+    bookId: number;
+    chapter: number;
+    verse: number;
+    context: string;
+  }>;
+}
+
+export interface SmartSearchResultWordStudy {
+  type: "word_study";
+  word: string;
+  originalLanguage: string;
+  meaning: string;
+  usageExamples: Array<{
+    reference: string;
+    bookId: number;
+    chapter: number;
+    verse: number;
+    context: string;
+  }>;
+}
+
+export type SmartSearchResult = 
+  | SmartSearchResultVerse
+  | SmartSearchResultTopic
+  | SmartSearchResultQuestion
+  | SmartSearchResultBook
+  | SmartSearchResultCharacter
+  | SmartSearchResultWordStudy;
+
+export interface SmartSearchResponse {
+  query: string;
+  results: SmartSearchResult[];
+  interpretation: string;
+}

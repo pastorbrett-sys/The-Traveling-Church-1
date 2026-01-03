@@ -16,8 +16,23 @@ import {
   Share2,
   Copy,
   Loader2,
-  Send
+  Send,
+  MessageCircle,
+  User,
+  BookOpen,
+  Languages,
+  ArrowRight
 } from "lucide-react";
+import type { 
+  SmartSearchResponse, 
+  SmartSearchResult,
+  SmartSearchResultVerse,
+  SmartSearchResultTopic,
+  SmartSearchResultQuestion,
+  SmartSearchResultBook,
+  SmartSearchResultCharacter,
+  SmartSearchResultWordStudy
+} from "@shared/models/bible";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -102,12 +117,110 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [isStreamingInsight, setIsStreamingInsight] = useState(false);
   const [insightVerseRef, setInsightVerseRef] = useState("");
   const [insightVerseText, setInsightVerseText] = useState("");
+  const [smartSearchResults, setSmartSearchResults] = useState<SmartSearchResponse | null>(null);
+  const [isSmartSearching, setIsSmartSearching] = useState(false);
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const contentRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const insightChatRef = useRef<HTMLDivElement>(null);
   const insightInputRef = useRef<HTMLTextAreaElement>(null);
+  const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
+    
+    if (searchQuery.length >= 2) {
+      searchDebounceRef.current = setTimeout(() => {
+        setDebouncedSearchQuery(searchQuery);
+      }, 500);
+    } else {
+      setSmartSearchResults(null);
+      setDebouncedSearchQuery("");
+    }
+    
+    return () => {
+      if (searchDebounceRef.current) {
+        clearTimeout(searchDebounceRef.current);
+      }
+    };
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (debouncedSearchQuery.length >= 2 && showSearch) {
+      performSmartSearch(debouncedSearchQuery);
+    }
+  }, [debouncedSearchQuery, showSearch]);
+
+  const performSmartSearch = async (query: string) => {
+    setIsSmartSearching(true);
+    try {
+      const res = await apiRequest("POST", "/api/bible/smart-search", { query });
+      const data: SmartSearchResponse = await res.json();
+      setSmartSearchResults(data);
+    } catch (error) {
+      console.error("Smart search error:", error);
+      toast({
+        title: "Search failed",
+        description: "Please try again",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSmartSearching(false);
+    }
+  };
+
+  const handleSmartSearchResult = (result: SmartSearchResult) => {
+    switch (result.type) {
+      case "verse":
+        const verseResult = result as SmartSearchResultVerse;
+        const book = books?.find(b => b.bookid === verseResult.bookId);
+        if (book) {
+          setSelectedBook(book);
+          setSelectedChapter(verseResult.chapter);
+          setShowBookPicker(false);
+          setShowSearch(false);
+          setSearchQuery("");
+          setSmartSearchResults(null);
+        }
+        break;
+      case "book":
+        const bookResult = result as SmartSearchResultBook;
+        const targetBook = books?.find(b => b.bookid === bookResult.bookId);
+        if (targetBook) {
+          setSelectedBook(targetBook);
+          setSelectedChapter(1);
+          setShowBookPicker(false);
+          setShowSearch(false);
+          setSearchQuery("");
+          setSmartSearchResults(null);
+        }
+        break;
+      case "question":
+        const questionResult = result as SmartSearchResultQuestion;
+        navigate(`/pastor-chat?prompt=${encodeURIComponent(questionResult.suggestedPrompt)}`);
+        break;
+      case "topic":
+      case "character":
+      case "word_study":
+        break;
+    }
+  };
+
+  const handleTopicVerseClick = (verse: { bookId: number; chapter: number; verse: number }) => {
+    const book = books?.find(b => b.bookid === verse.bookId);
+    if (book) {
+      setSelectedBook(book);
+      setSelectedChapter(verse.chapter);
+      setShowBookPicker(false);
+      setShowSearch(false);
+      setSearchQuery("");
+      setSmartSearchResults(null);
+    }
+  };
 
   const { data: translations } = useQuery<Translation[]>({
     queryKey: ["/api/bible/translations"],
@@ -123,16 +236,11 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     enabled: !!selectedBook && !showBookPicker,
   });
 
-  const { data: searchResults, isLoading: isSearching } = useQuery<{ total: number; results: BibleVerse[] }>({
-    queryKey: ["/api/bible/search", translation, searchQuery],
-    enabled: showSearch && searchQuery.length > 2,
-  });
-
   const { data: comparisonData, isLoading: isLoadingComparison } = useQuery<{ translation: string; verses: BibleVerse[] }[]>({
     queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, selectedVerse?.verse, compareTranslations],
     queryFn: async () => {
       if (!selectedVerse || !selectedBook) return [];
-      const allTranslations = [...new Set(compareTranslations)];
+      const allTranslations = Array.from(new Set(compareTranslations));
       const res = await apiRequest("POST", "/api/bible/compare", {
         translations: allTranslations,
         bookId: selectedBook.bookid,
@@ -509,106 +617,203 @@ Reference: ${verseRef} (${translation})`;
           </AnimatePresence>
         </div>
 
-        <AnimatePresence>
-          {showSearch && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ 
-                type: "spring",
-                stiffness: 700,
-                damping: 40
-              }}
-              className="overflow-hidden"
-            >
-              <div className="p-4">
-                {isSearching && (
-                  <div className="flex items-center justify-center py-4">
-                    <Loader2 className="w-5 h-5 animate-spin" />
+        <ScrollArea className="flex-1">
+          <div className="p-4 space-y-6">
+            {showSearch && searchQuery.length >= 2 ? (
+              <div className="space-y-4">
+                {isSmartSearching && (
+                  <div className="flex flex-col items-center justify-center py-8 gap-3">
+                    <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
+                    <p className="text-sm text-muted-foreground">Searching with AI...</p>
                   </div>
                 )}
-                {searchResults && searchResults.results.length > 0 && (
-                  <ScrollArea className="h-64">
-                    <div className="space-y-2">
-                      {searchResults.results.slice(0, 20).map((result, index) => {
-                        const book = books?.find(b => b.bookid === result.book);
-                        return (
-                          <motion.button
-                            key={result.pk}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ 
-                              delay: index * 0.02,
-                              type: "spring",
-                              stiffness: 500,
-                              damping: 30
-                            }}
-                            onClick={() => {
-                              if (book) {
-                                setSelectedBook(book);
-                                setSelectedChapter(result.chapter || 1);
-                                setShowBookPicker(false);
-                                setShowSearch(false);
-                                setSearchQuery("");
-                              }
-                            }}
-                            className="w-full text-left p-3 rounded-lg hover:bg-[#c08e00]/10 active:bg-[#c08e00]/20 transition-colors"
-                            data-testid={`search-result-${result.pk}`}
-                          >
-                            <p className="text-sm font-medium">
-                              {book?.name} {result.chapter}:{result.verse}
-                            </p>
-                            <p className="text-sm text-muted-foreground line-clamp-2">{result.text}</p>
-                          </motion.button>
-                        );
-                      })}
+                
+                {!isSmartSearching && smartSearchResults && (
+                  <>
+                    {smartSearchResults.interpretation && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-sm text-muted-foreground italic border-l-2 border-[#c08e00] pl-3"
+                      >
+                        {smartSearchResults.interpretation}
+                      </motion.p>
+                    )}
+                    
+                    <div className="space-y-3">
+                      {smartSearchResults.results.map((result, index) => (
+                        <motion.div
+                          key={`${result.type}-${index}`}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          {result.type === "verse" && (
+                            <button
+                              onClick={() => handleSmartSearchResult(result)}
+                              className="w-full text-left p-4 rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 transition-colors"
+                              data-testid={`smart-result-verse-${index}`}
+                            >
+                              <div className="flex items-center gap-2 mb-2">
+                                <BookOpen className="w-4 h-4 text-[#c08e00]" />
+                                <span className="font-medium text-sm">{(result as SmartSearchResultVerse).reference}</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground line-clamp-2">{(result as SmartSearchResultVerse).preview}</p>
+                            </button>
+                          )}
+                          
+                          {result.type === "book" && (
+                            <button
+                              onClick={() => handleSmartSearchResult(result)}
+                              className="w-full text-left p-4 rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 transition-colors"
+                              data-testid={`smart-result-book-${index}`}
+                            >
+                              <div className="flex items-center gap-2 mb-2">
+                                <Book className="w-4 h-4 text-[#c08e00]" />
+                                <span className="font-medium">{(result as SmartSearchResultBook).bookName}</span>
+                                <span className="text-xs text-muted-foreground">({(result as SmartSearchResultBook).chapters} chapters)</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground">{(result as SmartSearchResultBook).description}</p>
+                            </button>
+                          )}
+                          
+                          {result.type === "question" && (
+                            <button
+                              onClick={() => handleSmartSearchResult(result)}
+                              className="w-full text-left p-4 rounded-lg border border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/30 hover:bg-blue-100/50 dark:hover:bg-blue-900/30 transition-colors"
+                              data-testid={`smart-result-question-${index}`}
+                            >
+                              <div className="flex items-center gap-2 mb-2">
+                                <MessageCircle className="w-4 h-4 text-blue-500" />
+                                <span className="font-medium text-sm">Ask Pastor Brett</span>
+                              </div>
+                              <p className="text-sm font-medium mb-1">{(result as SmartSearchResultQuestion).question}</p>
+                              <p className="text-sm text-muted-foreground mb-2">{(result as SmartSearchResultQuestion).briefAnswer}</p>
+                              <div className="flex items-center gap-1 text-xs text-blue-500">
+                                <span>Continue discussion</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </div>
+                            </button>
+                          )}
+                          
+                          {result.type === "topic" && (
+                            <div className="p-4 rounded-lg border">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Sparkles className="w-4 h-4 text-[#c08e00]" />
+                                <span className="font-medium">{(result as SmartSearchResultTopic).title}</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground mb-3">{(result as SmartSearchResultTopic).description}</p>
+                              <div className="space-y-2">
+                                {(result as SmartSearchResultTopic).verses.map((v, vIndex) => (
+                                  <button
+                                    key={vIndex}
+                                    onClick={() => handleTopicVerseClick(v)}
+                                    className="w-full text-left p-2 rounded hover:bg-[#c08e00]/10 transition-colors"
+                                    data-testid={`topic-verse-${index}-${vIndex}`}
+                                  >
+                                    <p className="text-sm font-medium text-[#c08e00]">{v.reference}</p>
+                                    <p className="text-sm text-muted-foreground line-clamp-1">{v.preview}</p>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {result.type === "character" && (
+                            <div className="p-4 rounded-lg border">
+                              <div className="flex items-center gap-2 mb-2">
+                                <User className="w-4 h-4 text-[#c08e00]" />
+                                <span className="font-medium">{(result as SmartSearchResultCharacter).name}</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground mb-3">{(result as SmartSearchResultCharacter).description}</p>
+                              <div className="space-y-2">
+                                {(result as SmartSearchResultCharacter).keyVerses.map((v, vIndex) => (
+                                  <button
+                                    key={vIndex}
+                                    onClick={() => handleTopicVerseClick(v)}
+                                    className="w-full text-left p-2 rounded hover:bg-[#c08e00]/10 transition-colors"
+                                    data-testid={`character-verse-${index}-${vIndex}`}
+                                  >
+                                    <p className="text-sm font-medium text-[#c08e00]">{v.reference}</p>
+                                    <p className="text-sm text-muted-foreground line-clamp-1">{v.context}</p>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {result.type === "word_study" && (
+                            <div className="p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Languages className="w-4 h-4 text-purple-500" />
+                                <span className="font-medium">{(result as SmartSearchResultWordStudy).word}</span>
+                                <span className="text-xs text-muted-foreground">({(result as SmartSearchResultWordStudy).originalLanguage})</span>
+                              </div>
+                              <p className="text-sm mb-3">{(result as SmartSearchResultWordStudy).meaning}</p>
+                              <div className="space-y-2">
+                                {(result as SmartSearchResultWordStudy).usageExamples.map((v, vIndex) => (
+                                  <button
+                                    key={vIndex}
+                                    onClick={() => handleTopicVerseClick(v)}
+                                    className="w-full text-left p-2 rounded hover:bg-purple-100/50 dark:hover:bg-purple-900/30 transition-colors"
+                                    data-testid={`word-study-verse-${index}-${vIndex}`}
+                                  >
+                                    <p className="text-sm font-medium text-purple-600 dark:text-purple-400">{v.reference}</p>
+                                    <p className="text-sm text-muted-foreground line-clamp-1">{v.context}</p>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </motion.div>
+                      ))}
                     </div>
-                  </ScrollArea>
+                    
+                    {smartSearchResults.results.length === 0 && (
+                      <div className="text-center py-8">
+                        <p className="text-muted-foreground">No results found for "{searchQuery}"</p>
+                        <p className="text-sm text-muted-foreground mt-1">Try a different search term</p>
+                      </div>
+                    )}
+                  </>
                 )}
-                {searchQuery.length > 0 && searchQuery.length <= 2 && (
+                
+                {showSearch && searchQuery.length > 0 && searchQuery.length < 2 && (
                   <p className="text-sm text-muted-foreground text-center py-4">
-                    Type at least 3 characters to search
-                  </p>
-                )}
-                {searchQuery.length > 2 && !isSearching && searchResults?.results.length === 0 && (
-                  <p className="text-sm text-muted-foreground text-center py-4">
-                    No results found
+                    Type at least 2 characters to search
                   </p>
                 )}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <ScrollArea className="flex-1">
-          <div className="p-4 space-y-6">
-            {groupedBooks && Object.entries(groupedBooks).map(([testament, bookList], testamentIndex) => (
-              <motion.div 
-                key={testament}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: testamentIndex * 0.1 }}
-              >
-                <h3 className="text-sm font-medium text-muted-foreground mb-3">{testament}</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                  {bookList.map((book, bookIndex) => (
-                    <motion.button
-                      key={book.bookid}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.2, delay: testamentIndex * 0.1 + Math.min(bookIndex * 0.015, 0.3) }}
-                      onClick={() => handleBookSelect(book)}
-                      className="p-3 text-left rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 active:bg-[#c08e00]/20 transition-colors"
-                      data-testid={`book-${book.bookid}`}
-                    >
-                      <p className="font-medium text-sm">{book.name}</p>
-                      <p className="text-xs text-muted-foreground">{book.chapters} chapters</p>
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+            ) : (
+              <>
+                {groupedBooks && Object.entries(groupedBooks).map(([testament, bookList], testamentIndex) => (
+                  <motion.div 
+                    key={testament}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: testamentIndex * 0.1 }}
+                  >
+                    <h3 className="text-sm font-medium text-muted-foreground mb-3">{testament}</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                      {bookList.map((book, bookIndex) => (
+                        <motion.button
+                          key={book.bookid}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.2, delay: testamentIndex * 0.1 + Math.min(bookIndex * 0.015, 0.3) }}
+                          onClick={() => handleBookSelect(book)}
+                          className="p-3 text-left rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 active:bg-[#c08e00]/20 transition-colors"
+                          data-testid={`book-${book.bookid}`}
+                        >
+                          <p className="font-medium text-sm">{book.name}</p>
+                          <p className="text-xs text-muted-foreground">{book.chapters} chapters</p>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </>
+            )}
           </div>
         </ScrollArea>
       </div>
