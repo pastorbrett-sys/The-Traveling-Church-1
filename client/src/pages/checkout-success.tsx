@@ -29,14 +29,14 @@ export default function CheckoutSuccess() {
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8" data-testid="text-success-message">
-            Thank you for subscribing to The Traveling Church Pro plan. You now have unlimited access to the AI Pastor for spiritual guidance and support.
+            Thank you for subscribing to The Traveling Church Pro plan. You now have unlimited access to AI Bible Buddy for spiritual guidance and support.
           </p>
           
           <div className="space-y-4">
             <Link href="/pastor-chat">
               <Button size="lg" className="w-full sm:w-auto" data-testid="button-go-to-chat">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Continue to AI Pastor
+                Continue to AI Bible Buddy
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

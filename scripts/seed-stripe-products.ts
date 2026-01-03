@@ -45,12 +45,12 @@ async function seedProducts() {
   // Create Pro Plan
   const proPlan = await stripe.products.create({
     name: 'Pro Plan',
-    description: 'Full access to all Traveling Church features including AI Pastor Chat',
+    description: 'Full access to all Traveling Church features including AI Bible Buddy',
     metadata: {
       tier: 'pro',
       features: JSON.stringify([
         'Everything in Free Plan',
-        'Unlimited AI Pastor Chat',
+        'Unlimited AI Bible Buddy',
         'Priority event notifications',
         'Exclusive community content',
         'Direct prayer requests'

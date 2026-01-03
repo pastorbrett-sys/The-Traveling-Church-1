@@ -61,7 +61,7 @@ export default function Navigation() {
     { id: "home", label: "Home", type: "link", href: "/" },
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
-    { id: "pastor-chat", label: "AI Pastor", type: "link", href: "/pastor-chat" },
+    { id: "pastor-chat", label: "AI Bible Buddy", type: "link", href: "/pastor-chat" },
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 

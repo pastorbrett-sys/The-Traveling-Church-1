@@ -25,14 +25,14 @@ export default function CheckoutCancel() {
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8" data-testid="text-cancel-message">
-            No worries! Your payment was not processed. You can still enjoy 10 free messages with the AI Pastor, or subscribe anytime to get unlimited access.
+            No worries! Your payment was not processed. You can still enjoy 10 free messages with AI Bible Buddy, or subscribe anytime to get unlimited access.
           </p>
           
           <div className="space-y-4">
             <Link href="/pastor-chat">
               <Button size="lg" className="w-full sm:w-auto" data-testid="button-back-to-chat">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Back to AI Pastor
+                Back to AI Bible Buddy
               </Button>
             </Link>
             

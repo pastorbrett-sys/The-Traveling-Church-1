@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Traveling Church is a full-stack web application for a global, traveling ministry. It provides a comprehensive platform featuring travel locations with an interactive map, an event calendar, a contact form, mission statement, leadership profiles, resources for men, and a WhatsApp community call-to-action. The application aims to showcase the ministry's global reach and connect with its audience, offering an AI Pastor Chat and a SaaS subscription model for enhanced features.
+The Traveling Church is a full-stack web application for a global, traveling ministry. It provides a comprehensive platform featuring travel locations with an interactive map, an event calendar, a contact form, mission statement, leadership profiles, resources for men, and a WhatsApp community call-to-action. The application aims to showcase the ministry's global reach and connect with its audience, offering an AI Bible Buddy (comprehensive Bible study tool with AI chat, Bible reader, smart search, and verse insights) and a SaaS subscription model for enhanced features.
 
 ## User Preferences
 
@@ -33,7 +33,7 @@ Preferred communication style: Simple, everyday language.
 ### UI/UX Decisions
 - **Logo**: Custom image logo for branding, clickable to scroll to home.
 - **Hero Section Animations**: Title ("The Traveling Church") animates letter-by-letter, followed by a fade-in animation for the mission text.
-- **Navigation**: Includes Mission, Journey, Values, Pastor, Resources, Events, Contact, and AI Pastor. Supports smooth scrolling and mobile responsiveness.
+- **Navigation**: Includes Home, Missions, Programs, AI Bible Buddy, and Contact. Supports smooth scrolling and mobile responsiveness.
 
 ### Feature Specifications
 - **Contact Form**: Zod-validated, stores submissions, includes success/error notifications.
@@ -42,8 +42,8 @@ Preferred communication style: Simple, everyday language.
 - **Church Leadership Section**: Displays team members with images, names, titles, and descriptions.
 - **Resources for Men Section**: Dedicated section with a call-to-action linking to an external platform.
 - **Journey Locations**: Features 6 specific global locations with custom images and display order.
-- **AI Pastor Chat**: Dedicated page for AI-powered spiritual guidance using OpenAI GPT-4o with streaming responses and conversation persistence.
-- **Stripe Subscription Integration**: Implements Free and Pro SaaS tiers with `stripe-replit-sync` for webhook handling and data synchronization. Pro plan includes AI Pastor Chat and other exclusive features.
+- **AI Bible Buddy**: Comprehensive Bible study tool featuring AI-powered pastoral chat (Pastor Brett), Bible reader with multiple translations, smart search, conversational verse insights with follow-up questions, and note-taking capabilities. Uses OpenAI GPT-4o with streaming responses and conversation persistence.
+- **Stripe Subscription Integration**: Implements Free and Pro SaaS tiers with `stripe-replit-sync` for webhook handling and data synchronization. Pro plan includes unlimited AI Bible Buddy access and other exclusive features.
 - **Replit Auth Integration**: Users can sign in via Replit's OpenID Connect authentication (supports Google, GitHub, email/password). Subscriptions are linked to authenticated user accounts for cross-device access.
 - **Subscription Management**: Authenticated Pro users can manage their subscription (cancel, update payment) via Stripe Customer Portal integration.
 

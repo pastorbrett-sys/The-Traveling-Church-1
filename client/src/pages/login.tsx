@@ -187,7 +187,7 @@ export default function Login() {
                 Welcome
               </CardTitle>
               <CardDescription className="text-base">
-                Sign in or create an account to access AI Pastor Chat
+                Sign in or create an account to access AI Bible Buddy
               </CardDescription>
             </CardHeader>
 
@@ -302,7 +302,7 @@ export default function Login() {
                   <div className="bg-primary/5 rounded-lg p-3 border border-primary/20 mb-4">
                     <p className="text-sm flex items-center gap-2">
                       <Sparkles className="w-4 h-4 text-primary" />
-                      Get 10 free AI Pastor messages when you sign up!
+                      Get 10 free AI Bible Buddy messages when you sign up!
                     </p>
                   </div>
                   

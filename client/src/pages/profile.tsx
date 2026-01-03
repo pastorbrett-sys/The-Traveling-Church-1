@@ -269,11 +269,11 @@ export default function Profile() {
                         Upgrade to Pro
                       </h3>
                       <p className="text-sm text-muted-foreground mb-3">
-                        Get unlimited AI Pastor conversations and exclusive features for $9.99/month.
+                        Get unlimited AI Bible Buddy conversations and exclusive features for $9.99/month.
                       </p>
                       <Link href="/pastor-chat">
                         <Button size="sm" data-testid="button-upgrade">
-                          Try AI Pastor Chat
+                          Try AI Bible Buddy
                         </Button>
                       </Link>
                     </div>
