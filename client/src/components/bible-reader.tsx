@@ -740,6 +740,7 @@ Reference: ${verseRef} (${translation})`;
               "James": "/attached_assets/James_1767462437109.png",
               "1 Peter": "/attached_assets/1_Peter_1767462523972.png",
               "2 Peter": "/attached_assets/2_Peter_1767462672373.png",
+              "1 John": "/attached_assets/1_John_1767463715610.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
