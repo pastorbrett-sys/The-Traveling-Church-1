@@ -722,6 +722,7 @@ Reference: ${verseRef} (${translation})`;
               "Mark": "/attached_assets/Mark_1767420620236.png",
               "Luke": "/attached_assets/Luke_1767421254835.png",
               "John": "/attached_assets/John_1767421355415.png",
+              "Acts": "/attached_assets/Acts_1767421479985.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
