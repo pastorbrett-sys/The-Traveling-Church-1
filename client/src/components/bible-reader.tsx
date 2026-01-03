@@ -579,9 +579,9 @@ Reference: ${verseRef} (${translation})`;
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ 
-                      delay: 0.08 + index * 0.04,
+                      delay: 0.1 + index * 0.06,
                       type: "spring",
-                      stiffness: 500,
+                      stiffness: 400,
                       damping: 25
                     }}
                   >
