@@ -484,7 +484,7 @@ export default function Notes() {
                                 "{note.verseText}"
                               </p>
                             </div>
-                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="flex gap-1">
                               <Button
                                 variant="ghost"
                                 size="icon"
@@ -506,7 +506,7 @@ export default function Notes() {
                             </div>
                           </div>
                           
-                          <p className="text-sm whitespace-pre-wrap">{note.content}</p>
+                          <p className="text-sm whitespace-pre-wrap line-clamp-3">{note.content}</p>
                           
                           {note.tags && note.tags.length > 0 && (
                             <div className="flex flex-wrap gap-1 mt-3">
