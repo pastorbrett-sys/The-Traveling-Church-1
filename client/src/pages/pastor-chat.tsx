@@ -52,7 +52,7 @@ interface Translation {
 export default function PastorChat() {
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
-  const initialTab = urlParams.get("tab") === "bible" ? "bible" : "chat";
+  const initialTab = urlParams.get("tab") === "chat" ? "chat" : "bible";
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(initialTab);
   const [bibleTranslation, setBibleTranslation] = useState("NIV");
@@ -398,27 +398,6 @@ export default function PastorChat() {
         <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
-              onClick={() => setActiveTab("chat")}
-              className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                activeTab === "chat"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-              data-testid="tab-chat"
-            >
-              {activeTab === "chat" && (
-                <motion.div
-                  layoutId="tabHighlight"
-                  className="absolute inset-0 bg-background rounded-md shadow-sm"
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-2">
-                <MessageCircle className="w-4 h-4" />
-                Chat
-              </span>
-            </button>
-            <button
               onClick={() => setActiveTab("bible")}
               className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeTab === "bible"
@@ -437,6 +416,27 @@ export default function PastorChat() {
               <span className="relative z-10 flex items-center gap-2">
                 <Book className="w-4 h-4" />
                 Bible
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveTab("chat")}
+              className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                activeTab === "chat"
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              data-testid="tab-chat"
+            >
+              {activeTab === "chat" && (
+                <motion.div
+                  layoutId="tabHighlight"
+                  className="absolute inset-0 bg-background rounded-md shadow-sm"
+                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <MessageCircle className="w-4 h-4" />
+                Chat
               </span>
             </button>
           </div>
