@@ -435,7 +435,7 @@ Reference: ${verseRef} (${translation})`;
                   Smart Search
                 </motion.h2>
                 <div 
-                  className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer hover:text-[#c08e00] active:text-[#c08e00]/80 transition-colors"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer hover:text-[#c08e00] active:text-[#c08e00]/80 transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     // TODO: Navigate to saved notes page
