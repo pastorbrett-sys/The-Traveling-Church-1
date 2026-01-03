@@ -698,6 +698,7 @@ Reference: ${verseRef} (${translation})`;
               "Esther": "/attached_assets/Esther_1767414581937.png",
               "Job": "/attached_assets/Job_1767415276443.png",
               "Psalms": "/attached_assets/Psalm_1767415345681.png",
+              "Proverbs": "/attached_assets/proverbs_1767415425100.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
