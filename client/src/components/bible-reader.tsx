@@ -750,6 +750,7 @@ Reference: ${verseRef} (${translation})`;
               "1 Maccabees": "/attached_assets/1_Maccabees_1767464869040.png",
               "2 Maccabees": "/attached_assets/2_Maccabees_1767464998178.png",
               "1 Esdras": "/attached_assets/Esdras_1767465072053.png",
+              "Wisdom": "/attached_assets/Wisdome_Fix_Test_1767465366994.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
