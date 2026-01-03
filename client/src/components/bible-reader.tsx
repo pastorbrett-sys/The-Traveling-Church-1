@@ -715,6 +715,7 @@ Reference: ${verseRef} (${translation})`;
               "Nahum": "/attached_assets/Nahum_1767417179478.png",
               "Habakkuk": "/attached_assets/Habakkuk_1767417257097.png",
               "Zephaniah": "/attached_assets/Zephaniah_1767417501572.png",
+              "Haggai": "/attached_assets/Haggai_1767417622721.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
