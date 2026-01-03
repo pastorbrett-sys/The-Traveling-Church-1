@@ -708,6 +708,8 @@ Reference: ${verseRef} (${translation})`;
               "Daniel": "/attached_assets/Daniel_1767416552550.png",
               "Hosea": "/attached_assets/Hosea_1767416671710.png",
               "Joel": "/attached_assets/Joel_1767416752872.png",
+              "Amos": "/attached_assets/Amos_1767416900316.png",
+              "Obadiah": "/attached_assets/Obadiah_1767416910129.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
