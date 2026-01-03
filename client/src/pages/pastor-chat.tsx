@@ -24,6 +24,32 @@ import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import BibleReader from "@/components/bible-reader";
+import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
+
+function WelcomeMessage() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="flex justify-start"
+    >
+      <div
+        className="flex items-center gap-3 bg-muted rounded-2xl px-4 py-3 max-w-[80%]"
+        data-testid="message-welcome"
+      >
+        <img
+          src={pastorBrettIcon}
+          alt="Pastor Brett"
+          className="w-12 h-12 rounded-full flex-shrink-0"
+        />
+        <p className="text-sm text-foreground">
+          Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 const FREE_MESSAGE_LIMIT = 10;
 
@@ -487,32 +513,40 @@ export default function PastorChat() {
             {/* Messages area */}
             <div ref={scrollAreaRef} className="space-y-4">
             <AnimatePresence mode="popLayout">
-              {displayMessages.map((message, index) => (
-                <motion.div
-                  key={`${message.role}-${index}-${message.content.slice(0, 20)}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                      message.role === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-foreground"
-                    }`}
-                    data-testid={`message-${message.role}-${index}`}
+              {displayMessages.map((message, index) => {
+                const isWelcomeMessage = index === 0 && messages.length === 0 && message.content.includes("Hey there! I'm Pastor Brett");
+                
+                if (isWelcomeMessage) {
+                  return <WelcomeMessage key="welcome-message" />;
+                }
+                
+                return (
+                  <motion.div
+                    key={`${message.role}-${index}-${message.content.slice(0, 20)}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
-                    {message.role === "user" ? (
-                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    ) : (
-                      <div className="text-sm prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0.5 [&_strong]:font-serif [&_strong]:text-foreground">
-                        <ReactMarkdown>{message.content}</ReactMarkdown>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+                    <div
+                      className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                        message.role === "user"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted text-foreground"
+                      }`}
+                      data-testid={`message-${message.role}-${index}`}
+                    >
+                      {message.role === "user" ? (
+                        <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                      ) : (
+                        <div className="text-sm prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0.5 [&_strong]:font-serif [&_strong]:text-foreground">
+                          <ReactMarkdown>{message.content}</ReactMarkdown>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
               {isStreaming && messages[messages.length - 1]?.content === "" && (
                 <motion.div
                   key="typing-indicator"
