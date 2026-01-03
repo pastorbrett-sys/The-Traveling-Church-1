@@ -1,46 +1,9 @@
 import { useState, useEffect } from "react";
-import { LogIn, LogOut, User } from "lucide-react";
+import { Menu, X, LogIn, LogOut, User } from "lucide-react";
 import { Link, useLocation } from "wouter";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
-
-function AnimatedMenuIcon({ isOpen }: { isOpen: boolean }) {
-  return (
-    <div className="w-6 h-6 relative flex flex-col justify-center items-center">
-      <motion.span
-        className="absolute block h-0.5 w-5 bg-current rounded-full"
-        style={{ top: "25%" }}
-        animate={{
-          rotate: isOpen ? 45 : 0,
-          y: isOpen ? "50%" : 0,
-          top: isOpen ? "50%" : "25%",
-        }}
-        transition={{ duration: 0.2 }}
-      />
-      <motion.span
-        className="absolute block h-0.5 w-5 bg-current rounded-full"
-        style={{ top: "50%", y: "-50%" }}
-        animate={{
-          opacity: isOpen ? 0 : 1,
-          scaleX: isOpen ? 0 : 1,
-        }}
-        transition={{ duration: 0.15 }}
-      />
-      <motion.span
-        className="absolute block h-0.5 w-5 bg-current rounded-full"
-        style={{ bottom: "25%" }}
-        animate={{
-          rotate: isOpen ? -45 : 0,
-          y: isOpen ? "-50%" : 0,
-          bottom: isOpen ? "50%" : "25%",
-        }}
-        transition={{ duration: 0.2 }}
-      />
-    </div>
-  );
-}
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
@@ -195,7 +158,7 @@ export default function Navigation() {
             data-testid="button-mobile-menu"
             aria-label="Toggle menu"
           >
-            <AnimatedMenuIcon isOpen={mobileMenuOpen} />
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
