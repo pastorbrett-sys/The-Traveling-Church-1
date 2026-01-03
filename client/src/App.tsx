@@ -18,7 +18,6 @@ import MissionThailand from "@/pages/mission-thailand";
 import MissionJordan from "@/pages/mission-jordan";
 import Missions from "@/pages/missions";
 import PastorChat from "@/pages/pastor-chat";
-import Bible from "@/pages/bible";
 import Profile from "@/pages/profile";
 import Login from "@/pages/login";
 import CheckoutSuccess from "@/pages/checkout-success";
@@ -50,7 +49,6 @@ function Router() {
       <Route path="/missions/jordan" component={MissionJordan} />
       <Route path="/missions" component={Missions} />
       <Route path="/pastor-chat" component={PastorChat} />
-      <Route path="/bible" component={Bible} />
       <Route path="/profile" component={Profile} />
       <Route path="/login" component={Login} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
