@@ -714,6 +714,7 @@ Reference: ${verseRef} (${translation})`;
               "Micah": "/attached_assets/Micah_1767417074729.png",
               "Nahum": "/attached_assets/Nahum_1767417179478.png",
               "Habakkuk": "/attached_assets/Habakkuk_1767417257097.png",
+              "Zephaniah": "/attached_assets/Zephaniah_1767417501572.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
