@@ -747,6 +747,7 @@ Reference: ${verseRef} (${translation})`;
               "Revelation": "/attached_assets/Revelation_1767464176577.png",
               "Tobit": "/attached_assets/Tobit_1767464568378.png",
               "Judith": "/attached_assets/Judith_1767464687292.png",
+              "1 Maccabees": "/attached_assets/1_Maccabees_1767464869040.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
