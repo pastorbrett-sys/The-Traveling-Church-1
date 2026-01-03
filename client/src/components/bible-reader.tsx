@@ -712,6 +712,7 @@ Reference: ${verseRef} (${translation})`;
               "Obadiah": "/attached_assets/Obadiah_1767416910129.png",
               "Jonah": "/attached_assets/Jonah_1767416994034.png",
               "Micah": "/attached_assets/Micah_1767417074729.png",
+              "Nahum": "/attached_assets/Nahum_1767417179478.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
