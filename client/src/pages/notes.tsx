@@ -79,6 +79,10 @@ export default function Notes() {
   const [editTags, setEditTags] = useState<string[]>([]);
   const [deleteConfirm, setDeleteConfirm] = useState<Note | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [showCreateNote, setShowCreateNote] = useState(false);
+  const [newNoteVerseRef, setNewNoteVerseRef] = useState("");
+  const [newNoteContent, setNewNoteContent] = useState("");
+  const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
 
   useEffect(() => {
     document.title = "My Notes | The Traveling Church";
@@ -121,6 +125,39 @@ export default function Notes() {
       toast({ title: "Failed to delete note", variant: "destructive" });
     },
   });
+
+  const createNoteMutation = useMutation({
+    mutationFn: async (data: { verseRef: string; content: string; tags: string[] }) => {
+      const res = await apiRequest("POST", "/api/notes", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Note created" });
+      setShowCreateNote(false);
+      setNewNoteVerseRef("");
+      setNewNoteContent("");
+      setNewNoteTags([]);
+      queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
+    },
+    onError: (error: Error) => {
+      toast({ title: error.message || "Failed to create note", variant: "destructive" });
+    },
+  });
+
+  const handleCreateNote = () => {
+    if (!newNoteVerseRef.trim() || !newNoteContent.trim()) return;
+    createNoteMutation.mutate({
+      verseRef: newNoteVerseRef.trim(),
+      content: newNoteContent,
+      tags: newNoteTags,
+    });
+  };
+
+  const toggleNewNoteTag = (tag: string) => {
+    setNewNoteTags(prev =>
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  };
 
   const filteredAndSortedNotes = useMemo(() => {
     let result = [...notes];
@@ -259,14 +296,13 @@ export default function Notes() {
                 </span>
               </div>
             </div>
-            <Link href="/pastor-chat?tab=bible">
-              <button
-                className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors -translate-x-[11px] sm:translate-x-0"
-                data-testid="button-create-note"
-              >
-                <Plus className="w-5 h-5 text-white" />
-              </button>
-            </Link>
+            <button
+              onClick={() => setShowCreateNote(true)}
+              className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors -translate-x-[11px] sm:translate-x-0"
+              data-testid="button-create-note"
+            >
+              <Plus className="w-5 h-5 text-white" />
+            </button>
           </div>
 
           {notes.length > 0 ? (
@@ -613,6 +649,85 @@ export default function Notes() {
                 <Trash2 className="w-4 h-4 mr-1" />
               )}
               Delete
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showCreateNote} onOpenChange={(open) => {
+        if (!open) {
+          setShowCreateNote(false);
+          setNewNoteVerseRef("");
+          setNewNoteContent("");
+          setNewNoteTags([]);
+        }
+      }}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="font-serif flex items-center gap-2">
+              <Plus className="w-5 h-5 text-[#c08e00]" />
+              Create Note
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium mb-1.5 block">Verse Reference</label>
+              <Input
+                placeholder="e.g., John 3:16"
+                value={newNoteVerseRef}
+                onChange={(e) => setNewNoteVerseRef(e.target.value)}
+                data-testid="input-new-verse-ref"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium mb-1.5 block">Your Note</label>
+              <Textarea
+                placeholder="Write your thoughts..."
+                value={newNoteContent}
+                onChange={(e) => setNewNoteContent(e.target.value)}
+                rows={4}
+                className="resize-none"
+                data-testid="input-new-note-content"
+              />
+            </div>
+
+            <div>
+              <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
+              <div className="flex flex-wrap gap-2">
+                {TAGS.map(tag => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleNewNoteTag(tag)}
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                      newNoteTags.includes(tag)
+                        ? "bg-[#c08e00] text-white border-[#c08e00]"
+                        : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                    }`}
+                    data-testid={`new-note-tag-${tag.toLowerCase()}`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-2 pt-2">
+            <Button variant="ghost" onClick={() => setShowCreateNote(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleCreateNote}
+              disabled={!newNoteVerseRef.trim() || !newNoteContent.trim() || createNoteMutation.isPending}
+              className="bg-[#c08e00] hover:bg-[#a07800] text-white"
+              data-testid="button-save-new-note"
+            >
+              {createNoteMutation.isPending ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-1" />
+              ) : null}
+              Save Note
             </Button>
           </div>
         </DialogContent>
