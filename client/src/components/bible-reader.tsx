@@ -901,32 +901,19 @@ Reference: ${verseRef} (${translation})`;
             </DialogTitle>
           </DialogHeader>
           
-          <div className="border-l-2 border-[#c08e00] pl-3 py-1">
-            <p className="font-medium">{selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}</p>
-            <p className="text-sm text-muted-foreground italic line-clamp-2">"{selectedVerse?.text}"</p>
+          <div className="flex items-start gap-3">
+            <img 
+              src="/attached_assets/Bible_(for_notes_card)_1767410376299.png" 
+              alt="Bible" 
+              className="w-12 h-12 object-contain"
+            />
+            <div className="border-l-2 border-[#c08e00] pl-3 py-1 flex-1">
+              <p className="font-medium">{selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}</p>
+              <p className="text-sm text-muted-foreground italic line-clamp-2">"{selectedVerse?.text}"</p>
+            </div>
           </div>
 
           <div className="space-y-3">
-            <div>
-              <p className="text-xs text-muted-foreground mb-2">Quick prompts</p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "What does this mean to me?",
-                  "A prayer based on this",
-                  "How can I apply this?"
-                ].map((prompt) => (
-                  <button
-                    key={prompt}
-                    onClick={() => insertPrompt(prompt)}
-                    className="text-xs px-3 py-1.5 rounded-full border hover:bg-[#c08e00]/10 hover:border-[#c08e00] hover:text-[#c08e00] transition-colors"
-                    data-testid={`chip-prompt-${prompt.slice(0, 10).replace(/\s/g, '-')}`}
-                  >
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <Textarea
               placeholder="Write your reflection..."
               value={noteText}
