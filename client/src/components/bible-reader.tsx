@@ -89,6 +89,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [showNote, setShowNote] = useState(false);
   const [showCompare, setShowCompare] = useState(false);
   const [noteText, setNoteText] = useState("");
+  const [noteTags, setNoteTags] = useState<string[]>([]);
+  const [showSaveGlow, setShowSaveGlow] = useState(false);
   const [insight, setInsight] = useState("");
   const [isLoadingInsight, setIsLoadingInsight] = useState(false);
   const [compareTranslations, setCompareTranslations] = useState<string[]>(["NIV", "ESV"]);
@@ -142,15 +144,39 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   });
 
   const saveNoteMutation = useMutation({
-    mutationFn: async (data: { book: string; chapter: number; verse: number; translation: string; note: string }) => {
-      const res = await apiRequest("POST", "/api/bible/notes", data);
+    mutationFn: async (data: { 
+      verseRef: string; 
+      verseText: string; 
+      content: string; 
+      tags: string[];
+      bookId: number;
+      chapter: number;
+      verse: number;
+    }) => {
+      const res = await apiRequest("POST", "/api/notes", data);
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Note saved" });
-      setShowNote(false);
-      setNoteText("");
-      queryClient.invalidateQueries({ queryKey: ["/api/bible/notes"] });
+      setShowSaveGlow(true);
+      setTimeout(() => {
+        setShowSaveGlow(false);
+        setShowNote(false);
+        setNoteText("");
+        setNoteTags([]);
+        toast({ title: "Note saved", description: "Your reflection has been saved" });
+      }, 600);
+      queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
+    },
+    onError: (error: any) => {
+      if (error?.quotaExceeded) {
+        toast({ 
+          title: "Note limit reached", 
+          description: "Upgrade to Pro for more notes",
+          variant: "destructive" 
+        });
+      } else {
+        toast({ title: "Failed to save note", variant: "destructive" });
+      }
     },
   });
 
@@ -335,12 +361,24 @@ Reference: ${verseRef} (${translation})`;
     if (!selectedVerse || !selectedBook || !noteText.trim()) return;
     
     saveNoteMutation.mutate({
-      book: selectedBook.name,
+      verseRef: `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`,
+      verseText: selectedVerse.text,
+      content: noteText,
+      tags: noteTags,
+      bookId: selectedBook.bookid,
       chapter: selectedChapter,
       verse: selectedVerse.verse,
-      translation,
-      note: noteText,
     });
+  };
+
+  const toggleTag = (tag: string) => {
+    setNoteTags(prev => 
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const insertPrompt = (prompt: string) => {
+    setNoteText(prev => prev ? `${prev}\n\n${prompt}` : prompt);
   };
 
   const handleCopyVerse = () => {
@@ -830,32 +868,101 @@ Reference: ${verseRef} (${translation})`;
         )}
       </AnimatePresence>
 
-      <Dialog open={showNote} onOpenChange={setShowNote}>
-        <DialogContent className="max-w-lg">
+      <Dialog open={showNote} onOpenChange={(open) => {
+        setShowNote(open);
+        if (!open) {
+          setNoteText("");
+          setNoteTags([]);
+        }
+      }}>
+        <DialogContent className={`max-w-lg transition-all duration-300 ${showSaveGlow ? "ring-4 ring-[#c08e00]/50 shadow-[0_0_30px_rgba(192,142,0,0.4)]" : ""}`}>
           <DialogHeader>
-            <DialogTitle className="font-serif">Add Note</DialogTitle>
+            <DialogTitle className="font-serif flex items-center gap-2">
+              <StickyNote className="w-5 h-5 text-[#c08e00]" />
+              Add Note
+            </DialogTitle>
           </DialogHeader>
-          <div className="text-sm text-muted-foreground mb-2">
-            {selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}
+          
+          <div className="border-l-2 border-[#c08e00] pl-3 py-1">
+            <p className="font-medium">{selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}</p>
+            <p className="text-sm text-muted-foreground italic line-clamp-2">"{selectedVerse?.text}"</p>
           </div>
-          <Textarea
-            placeholder="Write your note..."
-            value={noteText}
-            onChange={(e) => setNoteText(e.target.value)}
-            rows={4}
-            data-testid="input-note"
-          />
-          <div className="flex justify-end gap-2">
-            <Button variant="ghost" onClick={() => setShowNote(false)}>
+
+          <div className="space-y-3">
+            <div>
+              <p className="text-xs text-muted-foreground mb-2">Quick prompts</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "What does this mean to me?",
+                  "A prayer based on this",
+                  "How can I apply this?"
+                ].map((prompt) => (
+                  <button
+                    key={prompt}
+                    onClick={() => insertPrompt(prompt)}
+                    className="text-xs px-3 py-1.5 rounded-full border hover:bg-[#c08e00]/10 hover:border-[#c08e00] hover:text-[#c08e00] transition-colors"
+                    data-testid={`chip-prompt-${prompt.slice(0, 10).replace(/\s/g, '-')}`}
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <Textarea
+              placeholder="Write your reflection..."
+              value={noteText}
+              onChange={(e) => setNoteText(e.target.value)}
+              rows={4}
+              className="resize-none"
+              data-testid="input-note"
+            />
+
+            <div>
+              <p className="text-xs text-muted-foreground mb-2">Tags</p>
+              <div className="flex flex-wrap gap-2">
+                {["Faith", "Hope", "Gratitude", "Prayer", "Question"].map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleTag(tag)}
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                      noteTags.includes(tag)
+                        ? "bg-[#c08e00] text-white border-[#c08e00]"
+                        : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                    }`}
+                    data-testid={`tag-${tag.toLowerCase()}`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-2 pt-2">
+            <Button variant="ghost" onClick={() => setShowNote(false)} data-testid="button-cancel-note">
               Cancel
             </Button>
             <Button 
               onClick={handleSaveNote}
               disabled={!noteText.trim() || saveNoteMutation.isPending}
+              className={`bg-[#c08e00] hover:bg-[#a07800] text-white transition-all ${showSaveGlow ? "scale-105" : ""}`}
               data-testid="button-save-note"
             >
-              {saveNoteMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4 mr-1" />}
-              Save
+              {saveNoteMutation.isPending ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-1" />
+              ) : showSaveGlow ? (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 20 }}
+                >
+                  <Check className="w-4 h-4 mr-1" />
+                </motion.div>
+              ) : (
+                <Check className="w-4 h-4 mr-1" />
+              )}
+              {showSaveGlow ? "Saved!" : "Save Note"}
             </Button>
           </div>
         </DialogContent>
