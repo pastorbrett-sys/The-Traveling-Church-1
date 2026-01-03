@@ -121,6 +121,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [isSmartSearching, setIsSmartSearching] = useState(false);
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
+  const [burstHighlightedVerse, setBurstHighlightedVerse] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const verseRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const searchInputRef = useRef<HTMLInputElement>(null);
