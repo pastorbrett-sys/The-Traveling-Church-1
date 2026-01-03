@@ -677,133 +677,35 @@ Reference: ${verseRef} (${translation})`;
 
       <ScrollArea className="flex-1" ref={contentRef}>
         <div className="p-4 sm:p-6 max-w-2xl mx-auto">
-          {selectedChapter === 1 && selectedBook?.name === "Genesis" && (
-            <img 
-              src="/attached_assets/Genesis_1767411601006.png" 
-              alt="Genesis decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Exodus" && (
-            <img 
-              src="/attached_assets/Exodus_1767412636802.png" 
-              alt="Exodus decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Leviticus" && (
-            <img 
-              src="/attached_assets/Leviticus_1767412914057.png" 
-              alt="Leviticus decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Numbers" && (
-            <img 
-              src="/attached_assets/Numbers_1767413000653.png" 
-              alt="Numbers decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Deuteronomy" && (
-            <img 
-              src="/attached_assets/Deuteronomy_1767413178601.png" 
-              alt="Deuteronomy decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Joshua" && (
-            <img 
-              src="/attached_assets/Joshua_1767413275284.png" 
-              alt="Joshua decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Judges" && (
-            <img 
-              src="/attached_assets/Judges_1767413305628.png" 
-              alt="Judges decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Ruth" && (
-            <img 
-              src="/attached_assets/Ruth_1767413374084.png" 
-              alt="Ruth decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "1 Samuel" && (
-            <img 
-              src="/attached_assets/1_samuel_1767413735216.png" 
-              alt="1 Samuel decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "2 Samuel" && (
-            <img 
-              src="/attached_assets/2_samuel_1767413735217.png" 
-              alt="2 Samuel decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "1 Kings" && (
-            <img 
-              src="/attached_assets/1_Kings_1767413857065.png" 
-              alt="1 Kings decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "2 Kings" && (
-            <img 
-              src="/attached_assets/2_kings_1767413943019.png" 
-              alt="2 Kings decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "1 Chronicles" && (
-            <img 
-              src="/attached_assets/1_chronicles_1767414102105.png" 
-              alt="1 Chronicles decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "2 Chronicles" && (
-            <img 
-              src="/attached_assets/2_chronicles_1767414225684.png" 
-              alt="2 Chronicles decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Ezra" && (
-            <img 
-              src="/attached_assets/Ezra_1767414326404.png" 
-              alt="Ezra decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
-
-          {selectedChapter === 1 && selectedBook?.name === "Nehemiah" && (
-            <img 
-              src="/attached_assets/Nehemia_1767414455924.png" 
-              alt="Nehemiah decorative header"
-              className="w-full h-auto rounded-lg mb-4"
-            />
-          )}
+          {selectedChapter === 1 && selectedBook?.name && (() => {
+            const bookHeaderImages: Record<string, string> = {
+              "Genesis": "/attached_assets/Genesis_1767411601006.png",
+              "Exodus": "/attached_assets/Exodus_1767412636802.png",
+              "Leviticus": "/attached_assets/Leviticus_1767412914057.png",
+              "Numbers": "/attached_assets/Numbers_1767413000653.png",
+              "Deuteronomy": "/attached_assets/Deuteronomy_1767413178601.png",
+              "Joshua": "/attached_assets/Joshua_1767413275284.png",
+              "Judges": "/attached_assets/Judges_1767413305628.png",
+              "Ruth": "/attached_assets/Ruth_1767413374084.png",
+              "1 Samuel": "/attached_assets/1_samuel_1767413735216.png",
+              "2 Samuel": "/attached_assets/2_samuel_1767413735217.png",
+              "1 Kings": "/attached_assets/1_Kings_1767413857065.png",
+              "2 Kings": "/attached_assets/2_kings_1767413943019.png",
+              "1 Chronicles": "/attached_assets/1_chronicles_1767414102105.png",
+              "2 Chronicles": "/attached_assets/2_chronicles_1767414225684.png",
+              "Ezra": "/attached_assets/Ezra_1767414326404.png",
+              "Nehemiah": "/attached_assets/Nehemia_1767414455924.png",
+              "Esther": "/attached_assets/Esther_1767414581937.png",
+            };
+            const imageSrc = bookHeaderImages[selectedBook.name];
+            return imageSrc ? (
+              <img 
+                src={imageSrc}
+                alt={`${selectedBook.name} decorative header`}
+                className="w-full h-auto rounded-lg mb-4"
+              />
+            ) : null;
+          })()}
 
           <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
             {chapter?.book} {selectedChapter}
