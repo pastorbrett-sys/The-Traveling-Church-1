@@ -466,6 +466,7 @@ Reference: ${verseRef} (${translation})`;
             size="icon"
             onClick={() => handleChapterChange("prev")}
             disabled={selectedBook?.bookid === 1 && selectedChapter === 1}
+            className="hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
             data-testid="button-prev-chapter"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -495,6 +496,7 @@ Reference: ${verseRef} (${translation})`;
             size="icon"
             onClick={() => handleChapterChange("next")}
             disabled={books && selectedBook?.bookid === books[books.length - 1]?.bookid && selectedChapter === selectedBook?.chapters}
+            className="hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
             data-testid="button-next-chapter"
           >
             <ChevronRight className="w-5 h-5" />
