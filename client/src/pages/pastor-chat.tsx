@@ -383,10 +383,9 @@ export default function PastorChat() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
 
-      {/* Tab Toggle - Fixed on top */}
-      <div className="fixed top-16 left-0 right-0 z-40 bg-background border-b">
-        <div className="w-full max-w-3xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
+      {/* Tab Toggle */}
+      <div className="sticky top-0 z-40 bg-background w-full max-w-3xl mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
               onClick={() => setActiveTab("chat")}
@@ -463,14 +462,10 @@ export default function PastorChat() {
             )}
           </div>
         </div>
-        </div>
       </div>
 
-      {/* Spacer for fixed tab toggle */}
-      <div className="h-16" />
-
       <div 
-        className={`w-full max-w-3xl mx-auto px-4 ${activeTab === "bible" ? "" : "hidden"}`} 
+        className={`w-full max-w-3xl mx-auto px-4 mt-4 ${activeTab === "bible" ? "" : "hidden"}`} 
         style={{ height: "calc(100vh - 120px)" }}
       >
         <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
