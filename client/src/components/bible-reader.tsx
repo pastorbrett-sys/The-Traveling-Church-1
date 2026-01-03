@@ -720,6 +720,7 @@ Reference: ${verseRef} (${translation})`;
               "Malachi": "/attached_assets/Malachi_1767418993072.png",
               "Matthew": "/attached_assets/Matthew_1767419474550.png",
               "Mark": "/attached_assets/Mark_1767420620236.png",
+              "Luke": "/attached_assets/Luke_1767421254835.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
