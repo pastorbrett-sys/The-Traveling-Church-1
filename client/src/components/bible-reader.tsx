@@ -717,6 +717,22 @@ Reference: ${verseRef} (${translation})`;
             />
           )}
 
+          {selectedChapter === 1 && selectedBook?.name === "Joshua" && (
+            <img 
+              src="/attached_assets/Joshua_1767413275284.png" 
+              alt="Joshua decorative header"
+              className="w-full h-auto rounded-lg mb-4"
+            />
+          )}
+
+          {selectedChapter === 1 && selectedBook?.name === "Judges" && (
+            <img 
+              src="/attached_assets/Judges_1767413305628.png" 
+              alt="Judges decorative header"
+              className="w-full h-auto rounded-lg mb-4"
+            />
+          )}
+
           <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
             {chapter?.book} {selectedChapter}
           </h1>
