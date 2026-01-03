@@ -901,7 +901,7 @@ Reference: ${verseRef} (${translation})`;
             </DialogTitle>
           </DialogHeader>
           
-          <div className="flex items-start gap-3">
+          <div className="flex items-center gap-3">
             <img 
               src="/attached_assets/Bible_(for_notes_card)_1767410376299.png" 
               alt="Bible" 
