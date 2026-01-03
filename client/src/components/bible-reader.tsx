@@ -387,10 +387,10 @@ Reference: ${verseRef} (${translation})`;
                   damping: 40,
                   mass: 0.3
                 }}
-                className="flex-1 mr-3"
+                className="flex-1 flex items-center gap-2"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative">
+                <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     ref={searchInputRef}
@@ -401,6 +401,15 @@ Reference: ${verseRef} (${translation})`;
                     data-testid="input-bible-search"
                   />
                 </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleSearchToggle}
+                  className="h-9 w-9 flex-shrink-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
+                  data-testid="button-close-search"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
               </motion.div>
             ) : (
               <motion.h2
@@ -420,26 +429,6 @@ Reference: ${verseRef} (${translation})`;
               </motion.h2>
             )}
           </AnimatePresence>
-          <motion.div
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleSearchToggle}
-              className="h-9 w-9 flex-shrink-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
-              data-testid="button-bible-search"
-            >
-              <motion.div
-                animate={{ rotate: showSearch ? 90 : 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                {showSearch ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
-              </motion.div>
-            </Button>
-          </motion.div>
         </div>
 
         <AnimatePresence>
