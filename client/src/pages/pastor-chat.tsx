@@ -464,16 +464,18 @@ export default function PastorChat() {
         </div>
       </div>
 
-      {activeTab === "bible" ? (
-        <div className="w-full max-w-3xl mx-auto px-4 mt-4" style={{ height: "calc(100vh - 120px)" }}>
-          <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
-        </div>
-      ) : (
-        <>
-          <main style={{ paddingBottom: `${footerHeight}px` }}>
-            <div className="w-full max-w-3xl mx-auto px-4">
-          {/* Messages area */}
-          <div ref={scrollAreaRef} className="space-y-4">
+      <div 
+        className={`w-full max-w-3xl mx-auto px-4 mt-4 ${activeTab === "bible" ? "" : "hidden"}`} 
+        style={{ height: "calc(100vh - 120px)" }}
+      >
+        <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
+      </div>
+
+      <div className={activeTab === "chat" ? "" : "hidden"}>
+        <main style={{ paddingBottom: `${footerHeight}px` }}>
+          <div className="w-full max-w-3xl mx-auto px-4">
+            {/* Messages area */}
+            <div ref={scrollAreaRef} className="space-y-4">
             <AnimatePresence mode="popLayout">
               {displayMessages.map((message, index) => (
                 <motion.div
@@ -589,8 +591,7 @@ export default function PastorChat() {
           )}
         </div>
       </div>
-        </>
-      )}
+      </div>
 
       {/* Subscription Paywall Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
