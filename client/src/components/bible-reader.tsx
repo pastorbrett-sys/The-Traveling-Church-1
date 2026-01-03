@@ -719,6 +719,7 @@ Reference: ${verseRef} (${translation})`;
               "Zechariah": "/attached_assets/Zechariah_1767417826870.png",
               "Malachi": "/attached_assets/Malachi_1767418993072.png",
               "Matthew": "/attached_assets/Matthew_1767419474550.png",
+              "Mark": "/attached_assets/Mark_1767420620236.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
