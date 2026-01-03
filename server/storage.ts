@@ -2,7 +2,7 @@ import { drizzle } from "drizzle-orm/neon-serverless";
 import { Pool, neonConfig } from "@neondatabase/serverless";
 import ws from "ws";
 import * as schema from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { eq, and, desc, sql, ilike } from "drizzle-orm";
 import type {
   User,
   Location,
@@ -15,6 +15,8 @@ import type {
   InsertTestimonial,
   ContactSubmission,
   InsertContactSubmission,
+  Note,
+  InsertNote,
 } from "@shared/schema";
 
 neonConfig.webSocketConstructor = ws;
@@ -51,6 +53,15 @@ export interface IStorage {
   // Contact Submissions
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getAllContactSubmissions(): Promise<ContactSubmission[]>;
+
+  // Notes
+  getNotesByUser(userId: string): Promise<Note[]>;
+  getNoteById(id: string, userId: string): Promise<Note | undefined>;
+  createNote(note: InsertNote): Promise<Note>;
+  updateNote(id: string, userId: string, updates: Partial<InsertNote>): Promise<Note | undefined>;
+  deleteNote(id: string, userId: string): Promise<boolean>;
+  countNotesByUser(userId: string): Promise<number>;
+  searchNotes(userId: string, query: string): Promise<Note[]>;
 }
 
 export class DbStorage implements IStorage {
@@ -142,6 +153,67 @@ export class DbStorage implements IStorage {
 
   async getAllContactSubmissions(): Promise<ContactSubmission[]> {
     return await db.select().from(schema.contactSubmissions).orderBy(schema.contactSubmissions.createdAt);
+  }
+
+  // Notes
+  async getNotesByUser(userId: string): Promise<Note[]> {
+    return await db
+      .select()
+      .from(schema.notes)
+      .where(eq(schema.notes.userId, userId))
+      .orderBy(desc(schema.notes.createdAt));
+  }
+
+  async getNoteById(id: string, userId: string): Promise<Note | undefined> {
+    const result = await db
+      .select()
+      .from(schema.notes)
+      .where(and(eq(schema.notes.id, id), eq(schema.notes.userId, userId)))
+      .limit(1);
+    return result[0];
+  }
+
+  async createNote(insertNote: InsertNote): Promise<Note> {
+    const result = await db.insert(schema.notes).values(insertNote).returning();
+    return result[0];
+  }
+
+  async updateNote(id: string, userId: string, updates: Partial<InsertNote>): Promise<Note | undefined> {
+    const result = await db
+      .update(schema.notes)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(and(eq(schema.notes.id, id), eq(schema.notes.userId, userId)))
+      .returning();
+    return result[0];
+  }
+
+  async deleteNote(id: string, userId: string): Promise<boolean> {
+    const result = await db
+      .delete(schema.notes)
+      .where(and(eq(schema.notes.id, id), eq(schema.notes.userId, userId)))
+      .returning();
+    return result.length > 0;
+  }
+
+  async countNotesByUser(userId: string): Promise<number> {
+    const result = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(schema.notes)
+      .where(eq(schema.notes.userId, userId));
+    return Number(result[0]?.count ?? 0);
+  }
+
+  async searchNotes(userId: string, query: string): Promise<Note[]> {
+    return await db
+      .select()
+      .from(schema.notes)
+      .where(
+        and(
+          eq(schema.notes.userId, userId),
+          sql`(${schema.notes.content} ILIKE ${`%${query}%`} OR ${schema.notes.verseRef} ILIKE ${`%${query}%`})`
+        )
+      )
+      .orderBy(desc(schema.notes.createdAt));
   }
 }
 

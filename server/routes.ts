@@ -6,6 +6,7 @@ import {
   insertEventSchema,
   insertTestimonialSchema,
   insertContactSubmissionSchema,
+  insertNoteSchema,
 } from "@shared/schema";
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
@@ -189,6 +190,123 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(submissions);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch contact submissions" });
+    }
+  });
+
+  // Notes Routes (requires authentication)
+  const FREE_NOTE_LIMIT = 50;
+  const PRO_NOTE_LIMIT = 500;
+
+  app.get("/api/notes", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const notes = await storage.getNotesByUser(userId);
+      const count = await storage.countNotesByUser(userId);
+      
+      // Check if user is Pro via their Stripe customer ID
+      const user = await storage.getUser(userId);
+      let isPro = false;
+      if (user?.stripeCustomerId) {
+        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
+        isPro = subscription?.status === 'active';
+      }
+      const limit = isPro ? PRO_NOTE_LIMIT : FREE_NOTE_LIMIT;
+      
+      res.json({ notes, count, limit, isPro });
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+      res.status(500).json({ message: "Failed to fetch notes" });
+    }
+  });
+
+  app.get("/api/notes/search", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const query = req.query.q as string;
+      if (!query || query.length < 2) {
+        return res.json({ notes: [] });
+      }
+      const notes = await storage.searchNotes(userId, query);
+      res.json({ notes });
+    } catch (error) {
+      console.error("Error searching notes:", error);
+      res.status(500).json({ message: "Failed to search notes" });
+    }
+  });
+
+  app.get("/api/notes/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const note = await storage.getNoteById(req.params.id, userId);
+      if (!note) {
+        return res.status(404).json({ message: "Note not found" });
+      }
+      res.json(note);
+    } catch (error) {
+      console.error("Error fetching note:", error);
+      res.status(500).json({ message: "Failed to fetch note" });
+    }
+  });
+
+  app.post("/api/notes", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      
+      // Check quota
+      const count = await storage.countNotesByUser(userId);
+      const user = await storage.getUser(userId);
+      let isPro = false;
+      if (user?.stripeCustomerId) {
+        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
+        isPro = subscription?.status === 'active';
+      }
+      const limit = isPro ? PRO_NOTE_LIMIT : FREE_NOTE_LIMIT;
+      
+      if (count >= limit) {
+        return res.status(403).json({ 
+          message: isPro ? "You've reached the maximum note limit" : "Upgrade to Pro for more notes",
+          quotaExceeded: true,
+          limit,
+          count
+        });
+      }
+      
+      const validatedData = insertNoteSchema.parse({ ...req.body, userId });
+      const note = await storage.createNote(validatedData);
+      res.status(201).json({ note, count: count + 1, limit });
+    } catch (error) {
+      console.error("Error creating note:", error);
+      res.status(400).json({ message: "Invalid note data" });
+    }
+  });
+
+  app.patch("/api/notes/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const { content, tags } = req.body;
+      
+      const note = await storage.updateNote(req.params.id, userId, { content, tags });
+      if (!note) {
+        return res.status(404).json({ message: "Note not found" });
+      }
+      res.json(note);
+    } catch (error) {
+      console.error("Error updating note:", error);
+      res.status(400).json({ message: "Failed to update note" });
+    }
+  });
+
+  app.delete("/api/notes/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const deleted = await storage.deleteNote(req.params.id, userId);
+      if (!deleted) {
+        return res.status(404).json({ message: "Note not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting note:", error);
+      res.status(500).json({ message: "Failed to delete note" });
     }
   });
 

@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -89,6 +89,30 @@ export type Testimonial = typeof testimonials.$inferSelect;
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+// User Notes for Bible study
+export const notes = pgTable("notes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull(),
+  verseRef: text("verse_ref").notNull(), // e.g., "Genesis 1:1"
+  verseText: text("verse_text").notNull(), // The actual verse content
+  content: text("content").notNull(), // User's note
+  tags: text("tags").array(), // Array of tag names
+  bookId: integer("book_id").notNull(), // Bible book ID for filtering
+  chapter: integer("chapter").notNull(),
+  verse: integer("verse").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertNoteSchema = createInsertSchema(notes).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertNote = z.infer<typeof insertNoteSchema>;
+export type Note = typeof notes.$inferSelect;
 
 export * from "./models/chat";
 export * from "./models/bible";
