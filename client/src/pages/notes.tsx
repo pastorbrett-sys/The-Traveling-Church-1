@@ -46,8 +46,6 @@ import type { Note } from "@shared/schema";
 type NotesResponse = {
   notes: Note[];
   count: number;
-  limit: number;
-  isPro: boolean;
 };
 
 const TAGS = ["Faith", "Hope", "Gratitude", "Prayer", "Question"];
@@ -91,8 +89,6 @@ export default function Notes() {
   });
   
   const notes = notesData?.notes || [];
-  const noteQuota = notesData?.limit || 50;
-  const isPro = notesData?.isPro || false;
 
   const updateNoteMutation = useMutation({
     mutationFn: async (data: { id: string; content: string; tags: string[] }) => {
@@ -258,20 +254,9 @@ export default function Notes() {
               <div className="flex items-center gap-2">
                 <Bookmark className="w-6 h-6 text-[#c08e00]" />
                 <h1 className="text-2xl font-serif font-bold">My Notes</h1>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-sm text-muted-foreground">
-                {notes.length} / {noteQuota} notes
-              </p>
-              <div className="w-24 h-1.5 bg-muted rounded-full mt-1 overflow-hidden">
-                <div 
-                  className={`h-full rounded-full transition-all ${
-                    notes.length >= noteQuota ? "bg-destructive" : 
-                    notes.length >= noteQuota * 0.8 ? "bg-amber-500" : "bg-[#c08e00]"
-                  }`}
-                  style={{ width: `${Math.min(100, (notes.length / noteQuota) * 100)}%` }}
-                />
+                <span className="text-sm text-muted-foreground">
+                  ({notes.length})
+                </span>
               </div>
             </div>
           </div>

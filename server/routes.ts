@@ -194,25 +194,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Notes Routes (requires authentication)
-  const FREE_NOTE_LIMIT = 50;
-  const PRO_NOTE_LIMIT = 500;
-
   app.get("/api/notes", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.userId;
       const notes = await storage.getNotesByUser(userId);
-      const count = await storage.countNotesByUser(userId);
+      const count = notes.length;
       
-      // Check if user is Pro via their Stripe customer ID
-      const user = await storage.getUser(userId);
-      let isPro = false;
-      if (user?.stripeCustomerId) {
-        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
-        isPro = subscription?.status === 'active';
-      }
-      const limit = isPro ? PRO_NOTE_LIMIT : FREE_NOTE_LIMIT;
-      
-      res.json({ notes, count, limit, isPro });
+      res.json({ notes, count });
     } catch (error) {
       console.error("Error fetching notes:", error);
       res.status(500).json({ message: "Failed to fetch notes" });
@@ -251,29 +239,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/notes", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.userId;
-      
-      // Check quota
       const count = await storage.countNotesByUser(userId);
-      const user = await storage.getUser(userId);
-      let isPro = false;
-      if (user?.stripeCustomerId) {
-        const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId);
-        isPro = subscription?.status === 'active';
-      }
-      const limit = isPro ? PRO_NOTE_LIMIT : FREE_NOTE_LIMIT;
-      
-      if (count >= limit) {
-        return res.status(403).json({ 
-          message: isPro ? "You've reached the maximum note limit" : "Upgrade to Pro for more notes",
-          quotaExceeded: true,
-          limit,
-          count
-        });
-      }
       
       const validatedData = insertNoteSchema.parse({ ...req.body, userId });
       const note = await storage.createNote(validatedData);
-      res.status(201).json({ note, count: count + 1, limit });
+      res.status(201).json({ note, count: count + 1 });
     } catch (error) {
       console.error("Error creating note:", error);
       res.status(400).json({ message: "Invalid note data" });

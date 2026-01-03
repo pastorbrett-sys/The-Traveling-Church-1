@@ -143,6 +143,21 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     enabled: showCompare && !!selectedVerse && !!selectedBook,
   });
 
+  const MILESTONES = [1, 5, 10, 25, 50, 100, 250, 500];
+  const getMilestoneMessage = (count: number) => {
+    switch (count) {
+      case 1: return "Your journey begins! First note saved.";
+      case 5: return "You're building a habit! 5 notes.";
+      case 10: return "Double digits! 10 notes and counting.";
+      case 25: return "Quarter century of reflections!";
+      case 50: return "Halfway to 100! Amazing dedication.";
+      case 100: return "A hundred reflections! You're truly devoted.";
+      case 250: return "250 notes! Your wisdom grows.";
+      case 500: return "500 notes! An incredible milestone.";
+      default: return null;
+    }
+  };
+
   const saveNoteMutation = useMutation({
     mutationFn: async (data: { 
       verseRef: string; 
@@ -156,27 +171,30 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       const res = await apiRequest("POST", "/api/notes", data);
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (data: { note: any; count: number }) => {
       setShowSaveGlow(true);
+      const newCount = data.count;
+      const milestoneMessage = getMilestoneMessage(newCount);
+      
       setTimeout(() => {
         setShowSaveGlow(false);
         setShowNote(false);
         setNoteText("");
         setNoteTags([]);
-        toast({ title: "Note saved", description: "Your reflection has been saved" });
+        
+        if (milestoneMessage) {
+          toast({ 
+            title: `🎉 Milestone: ${newCount} notes!`, 
+            description: milestoneMessage,
+          });
+        } else {
+          toast({ title: "Note saved", description: "Your reflection has been saved" });
+        }
       }, 600);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
-    onError: (error: any) => {
-      if (error?.quotaExceeded) {
-        toast({ 
-          title: "Note limit reached", 
-          description: "Upgrade to Pro for more notes",
-          variant: "destructive" 
-        });
-      } else {
-        toast({ title: "Failed to save note", variant: "destructive" });
-      }
+    onError: () => {
+      toast({ title: "Failed to save note", variant: "destructive" });
     },
   });
 
