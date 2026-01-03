@@ -733,7 +733,7 @@ Reference: ${verseRef} (${translation})`;
               "1 Thessalonians": "/attached_assets/0a8a2f9c-4862-4186-9fb3-bd92fb1bc9e7_1767459379498.png",
               "2 Thessalonians": "/attached_assets/fb5960a8-c1f4-440f-b8cc-b67527a1093c_1767459381009.png",
               "1 Timothy": "/attached_assets/1_Timothy_1767460433842.png",
-              "2 Timothy": "/attached_assets/a9dee9d6-8cf0-4bbd-b79e-b12c5f8bd68a_1767459644509.png",
+              "2 Timothy": "/attached_assets/2_timothy_1767461142916.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
