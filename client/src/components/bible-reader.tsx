@@ -727,7 +727,7 @@ Reference: ${verseRef} (${translation})`;
               "1 Corinthians": "/attached_assets/1_Corinthians_1767428700264.png",
               "2 Corinthians": "/attached_assets/2_Corinthians_1767429135473.png",
               "Galatians": "/attached_assets/Galations_1767429121337.png",
-              "Ephesians": "/attached_assets/Ephesians_1767422670575.png",
+              "Ephesians": "/attached_assets/Ephesians_1767429594997.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
