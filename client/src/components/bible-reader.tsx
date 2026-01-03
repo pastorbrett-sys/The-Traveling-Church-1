@@ -717,10 +717,12 @@ Reference: ${verseRef} (${translation})`;
             className="absolute inset-0 z-50 bg-background flex flex-col"
           >
             <div className="flex items-center justify-between p-3 border-b">
+              <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
                 <span className="font-serif font-bold">Verse Insight</span>
               </div>
+              <div className="flex-1 flex justify-end">
               <Button
                 variant="ghost"
                 size="icon"
@@ -730,6 +732,7 @@ Reference: ${verseRef} (${translation})`;
               >
                 <X className="w-5 h-5" />
               </Button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4" ref={insightChatRef}>
