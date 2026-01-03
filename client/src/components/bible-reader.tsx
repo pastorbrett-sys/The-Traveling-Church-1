@@ -697,6 +697,7 @@ Reference: ${verseRef} (${translation})`;
               "Nehemiah": "/attached_assets/Nehemia_1767414455924.png",
               "Esther": "/attached_assets/Esther_1767414581937.png",
               "Job": "/attached_assets/Job_1767415276443.png",
+              "Psalms": "/attached_assets/Psalm_1767415345681.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
