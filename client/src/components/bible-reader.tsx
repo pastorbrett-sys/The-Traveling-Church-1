@@ -725,6 +725,7 @@ Reference: ${verseRef} (${translation})`;
               "Acts": "/attached_assets/Acts_1767421479985.png",
               "Romans": "/attached_assets/Romans_1767421617285.png",
               "1 Corinthians": "/attached_assets/1_Corinthians_1767422182460.png",
+              "Galatians": "/attached_assets/Galations_1767422446201.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
