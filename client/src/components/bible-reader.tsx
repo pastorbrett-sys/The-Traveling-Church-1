@@ -744,6 +744,7 @@ Reference: ${verseRef} (${translation})`;
               "2 John": "/attached_assets/2_John_1767463802345.png",
               "3 John": "/attached_assets/3_John_1767463941002.png",
               "Jude": "/attached_assets/Jude_1767464016099.png",
+              "Revelation": "/attached_assets/Revelation_1767464176577.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
