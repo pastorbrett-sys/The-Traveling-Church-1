@@ -370,7 +370,10 @@ Reference: ${verseRef} (${translation})`;
   if (showBookPicker) {
     return (
       <div className="flex flex-col h-full bg-background">
-        <div className="flex items-center justify-between p-4 border-b overflow-hidden">
+        <div 
+          className={`flex items-center justify-between p-4 border-b overflow-hidden ${!showSearch ? "cursor-pointer hover:bg-muted/50 active:bg-muted transition-colors" : ""}`}
+          onClick={() => !showSearch && handleSearchToggle()}
+        >
           <AnimatePresence mode="popLayout">
             {showSearch ? (
               <motion.div
@@ -385,6 +388,7 @@ Reference: ${verseRef} (${translation})`;
                   mass: 0.3
                 }}
                 className="flex-1 mr-3"
+                onClick={(e) => e.stopPropagation()}
               >
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -409,8 +413,9 @@ Reference: ${verseRef} (${translation})`;
                   stiffness: 700,
                   damping: 40
                 }}
-                className="text-xl font-semibold font-serif"
+                className="text-xl font-semibold font-serif flex items-center gap-2"
               >
+                <Search className="w-5 h-5 text-muted-foreground" />
                 Smart Search
               </motion.h2>
             )}
@@ -418,6 +423,7 @@ Reference: ${verseRef} (${translation})`;
           <motion.div
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            onClick={(e) => e.stopPropagation()}
           >
             <Button
               variant="ghost"
