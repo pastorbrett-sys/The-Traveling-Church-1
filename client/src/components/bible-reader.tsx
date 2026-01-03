@@ -679,7 +679,7 @@ Reference: ${verseRef} (${translation})`;
         <div className="p-4 sm:p-6 max-w-2xl mx-auto">
           {selectedChapter === 1 && selectedBook?.name === "Genesis" && (
             <img 
-              src="/attached_assets/Genesis_1767411601006.png" 
+              src="/attached_assets/Genesis_1767412035714.png" 
               alt="Genesis decorative header"
               className="w-full rounded-lg mb-4"
             />
