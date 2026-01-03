@@ -751,6 +751,7 @@ Reference: ${verseRef} (${translation})`;
               "2 Maccabees": "/attached_assets/A_traditional-style_line_drawing_in_sepia_tone_dep_1767465792706.png",
               "1 Esdras": "/attached_assets/Esdras_1767465072053.png",
               "Wisdom": "/attached_assets/Wisdome_Fix_Test_1767465366994.png",
+              "Sirach": "/attached_assets/image_1767466140623.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
