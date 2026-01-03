@@ -40,7 +40,7 @@ export default function Notes() {
             <p className="text-muted-foreground max-w-sm mb-6">
               Start reading the Bible and tap on any verse to add notes. Your saved notes will appear here.
             </p>
-            <Link href="/pastor-chat">
+            <Link href="/pastor-chat?tab=bible">
               <Button data-testid="button-start-reading">
                 Start Reading
               </Button>

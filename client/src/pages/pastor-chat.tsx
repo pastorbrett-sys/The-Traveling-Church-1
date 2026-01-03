@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw, Book } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useSearch } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
@@ -50,7 +50,11 @@ interface Translation {
 }
 
 export default function PastorChat() {
-  const [activeTab, setActiveTab] = useState<"chat" | "bible">("chat");
+  const searchString = useSearch();
+  const urlParams = new URLSearchParams(searchString);
+  const initialTab = urlParams.get("tab") === "bible" ? "bible" : "chat";
+  
+  const [activeTab, setActiveTab] = useState<"chat" | "bible">(initialTab);
   const [bibleTranslation, setBibleTranslation] = useState("KJV");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
