@@ -789,6 +789,14 @@ Reference: ${verseRef} (${translation})`;
             />
           )}
 
+          {selectedChapter === 1 && selectedBook?.name === "Ezra" && (
+            <img 
+              src="/attached_assets/Ezra_1767414326404.png" 
+              alt="Ezra decorative header"
+              className="w-full h-auto rounded-lg mb-4"
+            />
+          )}
+
           <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
             {chapter?.book} {selectedChapter}
           </h1>
