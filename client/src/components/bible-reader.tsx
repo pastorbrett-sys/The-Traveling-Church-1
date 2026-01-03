@@ -710,6 +710,7 @@ Reference: ${verseRef} (${translation})`;
               "Joel": "/attached_assets/Joel_1767416752872.png",
               "Amos": "/attached_assets/Amos_1767416900316.png",
               "Obadiah": "/attached_assets/Obadiah_1767416910129.png",
+              "Jonah": "/attached_assets/Jonah_1767416994034.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
