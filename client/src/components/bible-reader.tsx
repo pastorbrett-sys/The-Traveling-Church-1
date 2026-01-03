@@ -120,7 +120,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [smartSearchResults, setSmartSearchResults] = useState<SmartSearchResponse | null>(null);
   const [isSmartSearching, setIsSmartSearching] = useState(false);
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const verseRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const searchInputRef = useRef<HTMLInputElement>(null);
   const insightChatRef = useRef<HTMLDivElement>(null);
   const insightInputRef = useRef<HTMLTextAreaElement>(null);
@@ -181,6 +183,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         if (book) {
           setSelectedBook(book);
           setSelectedChapter(verseResult.chapter);
+          setScrollToVerse(verseResult.verse);
           setShowBookPicker(false);
           setShowSearch(false);
           setSearchQuery("");
@@ -215,6 +218,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     if (book) {
       setSelectedBook(book);
       setSelectedChapter(verse.chapter);
+      setScrollToVerse(verse.verse);
       setShowBookPicker(false);
       setShowSearch(false);
       setSearchQuery("");
@@ -251,6 +255,26 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     },
     enabled: showCompare && !!selectedVerse && !!selectedBook,
   });
+
+  // Scroll to specific verse when chapter loads
+  useEffect(() => {
+    if (scrollToVerse && chapter && !isLoadingChapter) {
+      // Small delay to ensure DOM is rendered
+      const timer = setTimeout(() => {
+        const verseElement = verseRefs.current.get(scrollToVerse);
+        if (verseElement) {
+          verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
+          // Highlight the verse briefly
+          verseElement.classList.add("bg-[#c08e00]/20");
+          setTimeout(() => {
+            verseElement.classList.remove("bg-[#c08e00]/20");
+          }, 2000);
+        }
+        setScrollToVerse(null);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [scrollToVerse, chapter, isLoadingChapter]);
 
   const MILESTONES = [1, 5, 10, 25, 50, 100, 250, 500];
   const getMilestoneMessage = (count: number) => {
@@ -983,6 +1007,9 @@ Reference: ${verseRef} (${translation})`;
               {chapter?.verses.map((verse) => (
                 <motion.span
                   key={verse.pk}
+                  ref={(el) => {
+                    if (el) verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
+                  }}
                   onClick={() => handleVerseClick(verse)}
                   animate={{
                     backgroundColor: selectedVerse?.verse === verse.verse 
@@ -990,7 +1017,7 @@ Reference: ${verseRef} (${translation})`;
                       : "rgba(0, 0, 0, 0)"
                   }}
                   transition={{ duration: 0.2 }}
-                  className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5"
+                  className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 transition-colors"
                   data-testid={`verse-${verse.verse}`}
                 >
                   <sup className={`text-xs font-medium mr-1 transition-colors ${
