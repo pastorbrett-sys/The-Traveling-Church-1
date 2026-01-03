@@ -1055,7 +1055,7 @@ Reference: ${verseRef} (${translation})`;
                       ? "rgba(192, 142, 0, 0.15)" 
                       : "rgba(0, 0, 0, 0)"
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.1 }}
                   className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 transition-colors"
                   data-testid={`verse-${verse.verse}`}
                 >
