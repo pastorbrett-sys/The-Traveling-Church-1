@@ -4,7 +4,6 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { 
   ArrowLeft, 
   Bookmark, 
-  StickyNote, 
   Search, 
   Filter, 
   Trash2, 
@@ -489,9 +488,11 @@ export default function Notes() {
             </>
           ) : (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="bg-muted rounded-full p-6 mb-4">
-                <StickyNote className="w-12 h-12 text-muted-foreground" />
-              </div>
+              <img 
+                src="/attached_assets/Scroll_Image_1767409900006.png" 
+                alt="Ancient scroll" 
+                className="w-32 h-32 object-contain mb-4 opacity-80"
+              />
               <h2 className="text-xl font-semibold mb-2">No notes yet</h2>
               <p className="text-muted-foreground max-w-sm mb-6">
                 Start reading the Bible and tap on any verse to add notes. Your saved notes will appear here.
