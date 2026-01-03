@@ -682,6 +682,14 @@ Reference: ${verseRef} (${translation})`;
           </h1>
           <p className="text-sm text-muted-foreground mb-6">{translation}</p>
 
+          {selectedChapter === 1 && selectedBook?.name === "Genesis" && (
+            <img 
+              src="/attached_assets/Genesis_1767411601006.png" 
+              alt="Genesis decorative header"
+              className="w-full rounded-lg mb-6"
+            />
+          )}
+
           {isLoadingChapter ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="w-6 h-6 animate-spin" />
