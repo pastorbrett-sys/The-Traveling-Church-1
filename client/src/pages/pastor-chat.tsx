@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw, Book } from "lucide-react";
+import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
 import { Link, useSearch } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -547,7 +547,7 @@ export default function PastorChat() {
                   </motion.div>
                 );
               })}
-              {isStreaming && messages[messages.length - 1]?.content === "" && (
+              {isStreaming && (messages.length === 0 || messages[messages.length - 1]?.role === "user" || messages[messages.length - 1]?.content === "") && (
                 <motion.div
                   key="typing-indicator"
                   initial={{ opacity: 0, y: 20 }}
@@ -556,10 +556,9 @@ export default function PastorChat() {
                   className="flex justify-start"
                 >
                   <div className="bg-muted rounded-2xl px-4 py-3">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Consulting THE Big Guy...</span>
                     </div>
                   </div>
                 </motion.div>
