@@ -264,11 +264,11 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         const verseElement = verseRefs.current.get(scrollToVerse);
         if (verseElement) {
           verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
-          // Highlight the verse briefly
-          verseElement.classList.add("bg-[#c08e00]/20");
+          // Add burst animation and highlight
+          verseElement.classList.add("verse-burst-highlight");
           setTimeout(() => {
-            verseElement.classList.remove("bg-[#c08e00]/20");
-          }, 2000);
+            verseElement.classList.remove("verse-burst-highlight");
+          }, 4000);
         }
         setScrollToVerse(null);
       }, 100);
