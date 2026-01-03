@@ -121,7 +121,6 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [isSmartSearching, setIsSmartSearching] = useState(false);
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
-  const [burstHighlightedVerse, setBurstHighlightedVerse] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const verseRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -401,6 +400,12 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   };
 
   const handleVerseClick = (verse: BibleVerse) => {
+    // If clicking the same verse that's already selected, deselect it
+    if (selectedVerse?.verse === verse.verse) {
+      setSelectedVerse(null);
+      return;
+    }
+    
     const isFooterCurrentlyOpen = selectedVerse !== null;
     if (!isFooterCurrentlyOpen) {
       setFooterKey(prev => prev + 1);
