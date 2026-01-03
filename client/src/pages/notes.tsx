@@ -80,7 +80,6 @@ export default function Notes() {
   const [deleteConfirm, setDeleteConfirm] = useState<Note | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [showCreateNote, setShowCreateNote] = useState(false);
-  const [newNoteVerseRef, setNewNoteVerseRef] = useState("");
   const [newNoteContent, setNewNoteContent] = useState("");
   const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
 
@@ -127,14 +126,13 @@ export default function Notes() {
   });
 
   const createNoteMutation = useMutation({
-    mutationFn: async (data: { verseRef: string; content: string; tags: string[] }) => {
-      const res = await apiRequest("POST", "/api/notes", data);
+    mutationFn: async (data: { content: string; tags: string[] }) => {
+      const res = await apiRequest("POST", "/api/notes/general", data);
       return res.json();
     },
     onSuccess: () => {
       toast({ title: "Note created" });
       setShowCreateNote(false);
-      setNewNoteVerseRef("");
       setNewNoteContent("");
       setNewNoteTags([]);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
@@ -145,9 +143,8 @@ export default function Notes() {
   });
 
   const handleCreateNote = () => {
-    if (!newNoteVerseRef.trim() || !newNoteContent.trim()) return;
+    if (!newNoteContent.trim()) return;
     createNoteMutation.mutate({
-      verseRef: newNoteVerseRef.trim(),
       content: newNoteContent,
       tags: newNoteTags,
     });
@@ -657,7 +654,6 @@ export default function Notes() {
       <Dialog open={showCreateNote} onOpenChange={(open) => {
         if (!open) {
           setShowCreateNote(false);
-          setNewNoteVerseRef("");
           setNewNoteContent("");
           setNewNoteTags([]);
         }
@@ -666,32 +662,20 @@ export default function Notes() {
           <DialogHeader>
             <DialogTitle className="font-serif flex items-center gap-2">
               <Plus className="w-5 h-5 text-[#c08e00]" />
-              Create Note
+              New Note
             </DialogTitle>
           </DialogHeader>
           
           <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">Verse Reference</label>
-              <Input
-                placeholder="e.g., John 3:16"
-                value={newNoteVerseRef}
-                onChange={(e) => setNewNoteVerseRef(e.target.value)}
-                data-testid="input-new-verse-ref"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">Your Note</label>
-              <Textarea
-                placeholder="Write your thoughts..."
-                value={newNoteContent}
-                onChange={(e) => setNewNoteContent(e.target.value)}
-                rows={4}
-                className="resize-none"
-                data-testid="input-new-note-content"
-              />
-            </div>
+            <Textarea
+              placeholder="Write your thoughts..."
+              value={newNoteContent}
+              onChange={(e) => setNewNoteContent(e.target.value)}
+              rows={5}
+              className="resize-none"
+              autoFocus
+              data-testid="input-new-note-content"
+            />
 
             <div>
               <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
@@ -720,14 +704,14 @@ export default function Notes() {
             </Button>
             <Button
               onClick={handleCreateNote}
-              disabled={!newNoteVerseRef.trim() || !newNoteContent.trim() || createNoteMutation.isPending}
+              disabled={!newNoteContent.trim() || createNoteMutation.isPending}
               className="bg-[#c08e00] hover:bg-[#a07800] text-white"
               data-testid="button-save-new-note"
             >
               {createNoteMutation.isPending ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-1" />
               ) : null}
-              Save Note
+              Save
             </Button>
           </div>
         </DialogContent>

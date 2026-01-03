@@ -250,6 +250,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/notes/general", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const { content, tags } = req.body;
+      
+      if (!content || !content.trim()) {
+        return res.status(400).json({ message: "Note content is required" });
+      }
+      
+      const count = await storage.countNotesByUser(userId);
+      const noteData = {
+        userId,
+        verseRef: "General Note",
+        verseText: "",
+        content: content.trim(),
+        tags: tags || [],
+        bookId: 0,
+        chapter: 0,
+        verse: 0,
+      };
+      
+      const note = await storage.createNote(noteData);
+      res.status(201).json({ note, count: count + 1 });
+    } catch (error) {
+      console.error("Error creating general note:", error);
+      res.status(400).json({ message: "Failed to create note" });
+    }
+  });
+
   app.patch("/api/notes/:id", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.userId;
