@@ -722,42 +722,40 @@ export default function Notes() {
 
       <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
         <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[80vh] overflow-y-auto overflow-x-hidden">
-          <DialogHeader>
-            <div className="flex items-start justify-between gap-2 w-full">
-              <div className="flex items-center gap-2 min-w-0 flex-1">
-                <Bookmark className="w-5 h-5 text-[#c08e00] flex-shrink-0" />
-                <span className="font-serif font-semibold break-words">{viewingNote?.verseRef}</span>
-              </div>
-              <div className="flex gap-1 flex-shrink-0">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
-                  onClick={() => {
-                    if (viewingNote) {
-                      handleEditNote(viewingNote);
-                      setViewingNote(null);
-                    }
-                  }}
-                  data-testid="button-view-edit"
-                >
-                  <Edit3 className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 hover:bg-destructive/10 hover:text-destructive"
-                  onClick={() => {
-                    if (viewingNote) {
-                      setDeleteConfirm(viewingNote);
-                      setViewingNote(null);
-                    }
-                  }}
-                  data-testid="button-view-delete"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
-              </div>
+          <div className="absolute right-10 top-4 flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 hover:bg-[#c08e00]/10 hover:text-[#c08e00] rounded-sm opacity-70 hover:opacity-100"
+              onClick={() => {
+                if (viewingNote) {
+                  handleEditNote(viewingNote);
+                  setViewingNote(null);
+                }
+              }}
+              data-testid="button-view-edit"
+            >
+              <Edit3 className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 hover:bg-destructive/10 hover:text-destructive rounded-sm opacity-70 hover:opacity-100"
+              onClick={() => {
+                if (viewingNote) {
+                  setDeleteConfirm(viewingNote);
+                  setViewingNote(null);
+                }
+              }}
+              data-testid="button-view-delete"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </div>
+          <DialogHeader className="pr-24">
+            <div className="flex items-center gap-2 min-w-0">
+              <Bookmark className="w-5 h-5 text-[#c08e00] flex-shrink-0" />
+              <span className="font-serif font-semibold break-words">{viewingNote?.verseRef}</span>
             </div>
           </DialogHeader>
           
