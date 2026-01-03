@@ -384,7 +384,7 @@ export default function PastorChat() {
       <Navigation />
 
       {/* Tab Toggle */}
-      <div className="sticky top-0 z-40 bg-background w-full max-w-3xl mx-auto px-4 py-3">
+      <div className="sticky top-[57px] z-40 bg-background w-full max-w-3xl mx-auto px-4 py-3 border-b">
         <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
