@@ -687,7 +687,7 @@ Reference: ${verseRef} (${translation})`;
 
           {selectedChapter === 1 && selectedBook?.name === "Exodus" && (
             <img 
-              src="/attached_assets/generated_images/da_vinci_style_exodus_sketch.png" 
+              src="/attached_assets/Exodus_1767412636802.png" 
               alt="Exodus decorative header"
               className="w-full rounded-lg mb-4"
             />
