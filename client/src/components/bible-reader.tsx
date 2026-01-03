@@ -700,11 +700,13 @@ Reference: ${verseRef} (${translation})`;
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
-              <img 
-                src={imageSrc}
-                alt={`${selectedBook.name} decorative header`}
-                className="w-full h-auto rounded-lg mb-4 block"
-              />
+              <div className="-mx-4 sm:-mx-6 mb-4">
+                <img 
+                  src={imageSrc}
+                  alt={`${selectedBook.name} decorative header`}
+                  className="w-full h-auto"
+                />
+              </div>
             ) : null;
           })()}
 
