@@ -97,10 +97,14 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [isStreamingInsight, setIsStreamingInsight] = useState(false);
   const [insightVerseRef, setInsightVerseRef] = useState("");
   const [insightVerseText, setInsightVerseText] = useState("");
+  const [selectedVerses, setSelectedVerses] = useState<BibleVerse[]>([]);
+  const [multiSelectMode, setMultiSelectMode] = useState(false);
+  const [showMultiSelectMenu, setShowMultiSelectMenu] = useState<{ x: number; y: number; verse: BibleVerse } | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const insightChatRef = useRef<HTMLDivElement>(null);
   const insightInputRef = useRef<HTMLTextAreaElement>(null);
+  const longPressTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -123,19 +127,30 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     enabled: showSearch && searchQuery.length > 2,
   });
 
+  const getVerseNumbers = () => {
+    if (selectedVerses.length > 0) {
+      return selectedVerses.map(v => v.verse).sort((a, b) => a - b);
+    }
+    if (selectedVerse) {
+      return [selectedVerse.verse];
+    }
+    return [];
+  };
+
   const { data: comparisonData, isLoading: isLoadingComparison } = useQuery<{ translation: string; verses: BibleVerse[] }[]>({
-    queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, selectedVerse?.verse, compareTranslations],
+    queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, getVerseNumbers(), compareTranslations],
     queryFn: async () => {
-      if (!selectedVerse || !selectedBook) return [];
+      const verseNumbers = getVerseNumbers();
+      if (verseNumbers.length === 0 || !selectedBook) return [];
       const res = await apiRequest("POST", "/api/bible/compare", {
         translations: [translation, ...compareTranslations],
         bookId: selectedBook.bookid,
         chapter: selectedChapter,
-        verses: [selectedVerse.verse],
+        verses: verseNumbers,
       });
       return res.json();
     },
-    enabled: showCompare && !!selectedVerse && !!selectedBook,
+    enabled: showCompare && (!!selectedVerse || selectedVerses.length > 0) && !!selectedBook,
   });
 
   const saveNoteMutation = useMutation({
@@ -186,21 +201,93 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     contentRef.current?.scrollTo(0, 0);
   };
 
-  const handleVerseClick = (verse: BibleVerse) => {
-    const isFooterCurrentlyOpen = selectedVerse !== null;
+  const handleVerseClick = (verse: BibleVerse, event?: React.MouseEvent) => {
+    setShowMultiSelectMenu(null);
+    
+    if (multiSelectMode) {
+      setSelectedVerses(prev => {
+        const isSelected = prev.some(v => v.verse === verse.verse);
+        if (isSelected) {
+          const newVerses = prev.filter(v => v.verse !== verse.verse);
+          if (newVerses.length === 0) {
+            setMultiSelectMode(false);
+          }
+          return newVerses;
+        }
+        return [...prev, verse].sort((a, b) => a.verse - b.verse);
+      });
+      return;
+    }
+
+    if (event?.shiftKey && selectedVerse) {
+      const startVerse = Math.min(selectedVerse.verse, verse.verse);
+      const endVerse = Math.max(selectedVerse.verse, verse.verse);
+      const versesInRange = chapter?.verses.filter(v => v.verse >= startVerse && v.verse <= endVerse) || [];
+      setSelectedVerses(versesInRange);
+      setMultiSelectMode(true);
+      setFooterKey(prev => prev + 1);
+      return;
+    }
+
+    const isFooterCurrentlyOpen = selectedVerse !== null || selectedVerses.length > 0;
     if (!isFooterCurrentlyOpen) {
       setFooterKey(prev => prev + 1);
     }
     setWasFooterOpen(isFooterCurrentlyOpen);
     setSelectedVerse(verse);
+    setSelectedVerses([]);
+    setMultiSelectMode(false);
+  };
+
+  const handleVerseLongPress = (verse: BibleVerse, x: number, y: number) => {
+    setShowMultiSelectMenu({ x, y, verse });
+  };
+
+  const handleStartMultiSelect = () => {
+    if (!showMultiSelectMenu) return;
+    const verse = showMultiSelectMenu.verse;
+    setShowMultiSelectMenu(null);
+    setMultiSelectMode(true);
+    setSelectedVerses([verse]);
+    setSelectedVerse(null);
+    setFooterKey(prev => prev + 1);
+  };
+
+  const handleCancelMultiSelect = () => {
+    setMultiSelectMode(false);
+    setSelectedVerses([]);
+    setSelectedVerse(null);
+  };
+
+  const getSelectedVersesRef = () => {
+    if (selectedVerses.length === 0 && selectedVerse) {
+      return `${selectedBook?.name} ${selectedChapter}:${selectedVerse.verse}`;
+    }
+    if (selectedVerses.length === 1) {
+      return `${selectedBook?.name} ${selectedChapter}:${selectedVerses[0].verse}`;
+    }
+    const sorted = [...selectedVerses].sort((a, b) => a.verse - b.verse);
+    const first = sorted[0].verse;
+    const last = sorted[sorted.length - 1].verse;
+    return `${selectedBook?.name} ${selectedChapter}:${first}-${last}`;
+  };
+
+  const getSelectedVersesText = () => {
+    if (selectedVerses.length === 0 && selectedVerse) {
+      return selectedVerse.text;
+    }
+    const sorted = [...selectedVerses].sort((a, b) => a.verse - b.verse);
+    return sorted.map(v => v.text).join(" ");
   };
 
   const handleGetInsight = async () => {
-    if (!selectedVerse || !selectedBook) return;
+    const hasSelection = selectedVerse || selectedVerses.length > 0;
+    if (!hasSelection || !selectedBook) return;
     
-    const verseRef = `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`;
+    const verseRef = getSelectedVersesRef();
+    const verseText = getSelectedVersesText();
     setInsightVerseRef(verseRef);
-    setInsightVerseText(selectedVerse.text);
+    setInsightVerseText(verseText);
     setShowInsight(true);
     setIsLoadingInsight(true);
     setInsightMessages([]);
@@ -215,9 +302,15 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       const conversation = await response.json();
       setInsightConversationId(conversation.id);
 
-      const prompt = `Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
+      const isMultiple = selectedVerses.length > 1;
+      const prompt = isMultiple 
+        ? `Please explain these Bible verses in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
 
-Verse: "${selectedVerse.text}"
+Verses: "${verseText}"
+Reference: ${verseRef} (${translation})`
+        : `Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
+
+Verse: "${verseText}"
 Reference: ${verseRef} (${translation})`;
 
       const msgResponse = await fetch(`/api/conversations/${conversation.id}/messages`, {
@@ -341,10 +434,13 @@ Reference: ${verseRef} (${translation})`;
   };
 
   const handleCopyVerse = () => {
-    if (!selectedVerse || !selectedBook) return;
-    const text = `"${selectedVerse.text}" - ${selectedBook.name} ${selectedChapter}:${selectedVerse.verse} (${translation})`;
+    const hasSelection = selectedVerse || selectedVerses.length > 0;
+    if (!hasSelection || !selectedBook) return;
+    const verseRef = getSelectedVersesRef();
+    const verseText = getSelectedVersesText();
+    const text = `"${verseText}" - ${verseRef} (${translation})`;
     navigator.clipboard.writeText(text);
-    toast({ title: "Verse copied" });
+    toast({ title: selectedVerses.length > 1 ? "Verses copied" : "Verse copied" });
   };
 
   const groupedBooks = books?.reduce((acc, book) => {
@@ -608,32 +704,91 @@ Reference: ${verseRef} (${translation})`;
             </div>
           ) : (
             <div className="space-y-1 pb-20">
-              {chapter?.verses.map((verse) => (
-                <motion.span
-                  key={verse.pk}
-                  onClick={() => handleVerseClick(verse)}
-                  animate={{
-                    backgroundColor: selectedVerse?.verse === verse.verse 
-                      ? "rgba(192, 142, 0, 0.15)" 
-                      : "rgba(0, 0, 0, 0)"
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5"
-                  data-testid={`verse-${verse.verse}`}
-                >
-                  <sup className={`text-xs font-medium mr-1 transition-colors ${
-                    selectedVerse?.verse === verse.verse ? "text-[#c08e00]" : "text-primary"
-                  }`}>{verse.verse}</sup>
-                  <span className="text-base leading-relaxed">{verse.text} </span>
-                </motion.span>
-              ))}
+              {chapter?.verses.map((verse) => {
+                const isSelected = selectedVerse?.verse === verse.verse || selectedVerses.some(v => v.verse === verse.verse);
+                return (
+                  <motion.span
+                    key={verse.pk}
+                    onClick={(e) => handleVerseClick(verse, e)}
+                    onTouchStart={(e) => {
+                      const touch = e.touches[0];
+                      longPressTimerRef.current = setTimeout(() => {
+                        handleVerseLongPress(verse, touch.clientX, touch.clientY);
+                      }, 500);
+                    }}
+                    onTouchEnd={() => {
+                      if (longPressTimerRef.current) {
+                        clearTimeout(longPressTimerRef.current);
+                        longPressTimerRef.current = null;
+                      }
+                    }}
+                    onTouchMove={() => {
+                      if (longPressTimerRef.current) {
+                        clearTimeout(longPressTimerRef.current);
+                        longPressTimerRef.current = null;
+                      }
+                    }}
+                    onContextMenu={(e) => {
+                      e.preventDefault();
+                      handleVerseLongPress(verse, e.clientX, e.clientY);
+                    }}
+                    animate={{
+                      backgroundColor: isSelected 
+                        ? "rgba(192, 142, 0, 0.15)" 
+                        : "rgba(0, 0, 0, 0)"
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 select-none"
+                    data-testid={`verse-${verse.verse}`}
+                  >
+                    <sup className={`text-xs font-medium mr-1 transition-colors ${
+                      isSelected ? "text-[#c08e00]" : "text-primary"
+                    }`}>{verse.verse}</sup>
+                    <span className="text-base leading-relaxed">{verse.text} </span>
+                  </motion.span>
+                );
+              })}
             </div>
           )}
         </div>
       </ScrollArea>
 
       <AnimatePresence>
-        {selectedVerse && (
+        {showMultiSelectMenu && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.15 }}
+            className="fixed z-[60] bg-background border rounded-lg shadow-lg p-1"
+            style={{ 
+              left: Math.min(showMultiSelectMenu.x, window.innerWidth - 160), 
+              top: showMultiSelectMenu.y - 40 
+            }}
+          >
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleStartMultiSelect}
+              className="w-full justify-start gap-2 hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+              data-testid="button-select-multiple"
+            >
+              <Columns2 className="w-4 h-4" />
+              Select multiple
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {showMultiSelectMenu && (
+        <div 
+          className="fixed inset-0 z-[55]" 
+          onClick={() => setShowMultiSelectMenu(null)}
+        />
+      )}
+
+      <AnimatePresence>
+        {(selectedVerse || selectedVerses.length > 0) && (
           <motion.div
             key={footerKey}
             initial={{ y: 100, opacity: 0 }}
@@ -646,23 +801,23 @@ Reference: ${verseRef} (${translation})`;
             <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
               <AnimatePresence mode="wait">
                 <motion.p
-                  key={`${selectedBook?.name}-${selectedChapter}-${selectedVerse.verse}`}
+                  key={getSelectedVersesRef()}
                   initial={{ x: wasFooterOpen ? 30 : 0, opacity: wasFooterOpen ? 0 : 1 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -30, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   className="text-sm font-medium truncate"
                 >
-                  {selectedBook?.name} {selectedChapter}:{selectedVerse.verse}
+                  {getSelectedVersesRef()}
                 </motion.p>
               </AnimatePresence>
               <div className="flex items-center gap-1">
                 {[
                   { icon: Sparkles, label: "Insight", onClick: handleGetInsight, testId: "button-get-insight" },
                   { icon: Columns2, label: "Compare", onClick: () => setShowCompare(true), testId: "button-compare" },
-                  { icon: StickyNote, label: "Note", onClick: () => setShowNote(true), testId: "button-add-note" },
+                  ...(selectedVerses.length <= 1 ? [{ icon: StickyNote, label: "Note", onClick: () => setShowNote(true), testId: "button-add-note" }] : []),
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
-                  { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
+                  { icon: X, label: null, onClick: handleCancelMultiSelect, testId: "button-deselect-verse" },
                 ].map((item, index) => (
                   <motion.div
                     key={`${footerKey}-${item.testId}`}
