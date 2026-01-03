@@ -471,20 +471,20 @@ export default function Notes() {
                         transition={{ delay: index * 0.05 }}
                       >
                         <div
-                          className="border rounded-lg p-4 hover:border-[#c08e00]/50 transition-colors group"
+                          className="border rounded-lg p-4 hover:border-[#c08e00]/50 transition-colors overflow-hidden"
                           data-testid={`note-card-${note.id}`}
                         >
-                          <div className="flex items-start justify-between gap-4 mb-2">
-                            <div className="flex-1">
+                          <div className="flex items-start justify-between gap-2 mb-2">
+                            <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <span className="font-medium text-[#c08e00]">{note.verseRef}</span>
-                                <span className="text-xs text-muted-foreground">{formatDate(note.createdAt)}</span>
+                                <span className="font-medium text-[#c08e00] truncate">{note.verseRef}</span>
+                                <span className="text-xs text-muted-foreground flex-shrink-0">{formatDate(note.createdAt)}</span>
                               </div>
                               <p className="text-sm text-muted-foreground italic mt-1 line-clamp-1">
                                 "{note.verseText}"
                               </p>
                             </div>
-                            <div className="flex gap-1">
+                            <div className="flex gap-1 flex-shrink-0">
                               <Button
                                 variant="ghost"
                                 size="icon"
@@ -506,7 +506,7 @@ export default function Notes() {
                             </div>
                           </div>
                           
-                          <p className="text-sm whitespace-pre-wrap line-clamp-3">{note.content}</p>
+                          <p className="text-sm whitespace-pre-wrap line-clamp-3 break-words">{note.content}</p>
                           
                           {note.tags && note.tags.length > 0 && (
                             <div className="flex flex-wrap gap-1 mt-3">
