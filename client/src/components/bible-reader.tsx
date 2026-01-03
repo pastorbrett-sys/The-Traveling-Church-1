@@ -763,7 +763,7 @@ Reference: ${verseRef} (${translation})`;
                 {isStreamingInsight && (
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-sm">Thinking...</span>
+                    <span className="text-sm">Consulting the big guy...</span>
                   </div>
                 )}
               </div>
