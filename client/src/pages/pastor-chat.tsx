@@ -380,11 +380,11 @@ export default function PastorChat() {
   const displayMessages = messages.length > 0 ? messages : [systemPrompt];
 
   return (
-    <div className="bg-background text-foreground antialiased min-h-screen">
+    <div className="bg-background text-foreground antialiased h-screen flex flex-col overflow-hidden">
       <Navigation />
 
-      {/* Tab Toggle */}
-      <div className="sticky top-0 z-40 bg-background w-full max-w-3xl mx-auto px-4 py-3">
+      {/* Tab Toggle - stays fixed below nav */}
+      <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
@@ -464,16 +464,16 @@ export default function PastorChat() {
         </div>
       </div>
 
-      <div 
-        className={`w-full max-w-3xl mx-auto px-4 mt-4 ${activeTab === "bible" ? "" : "hidden"}`} 
-        style={{ height: "calc(100vh - 120px)" }}
-      >
-        <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
-      </div>
+      {/* Scrollable content area */}
+      <div className="flex-1 overflow-y-auto">
+        <div 
+          className={`w-full max-w-3xl mx-auto px-4 h-full ${activeTab === "bible" ? "" : "hidden"}`}
+        >
+          <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
+        </div>
 
-      <div className={activeTab === "chat" ? "" : "hidden"}>
-        <main style={{ paddingBottom: `${footerHeight}px` }}>
-          <div className="w-full max-w-3xl mx-auto px-4">
+        <div className={activeTab === "chat" ? "" : "hidden"}>
+          <div className="w-full max-w-3xl mx-auto px-4" style={{ paddingBottom: `${footerHeight}px` }}>
             {/* Messages area */}
             <div ref={scrollAreaRef} className="space-y-4">
             <AnimatePresence mode="popLayout">
@@ -524,7 +524,8 @@ export default function PastorChat() {
             <div ref={messagesEndRef} />
           </div>
         </div>
-      </main>
+        </div>
+      </div>
 
       {/* FIXED Input at absolute bottom of viewport */}
       <div 
@@ -590,7 +591,6 @@ export default function PastorChat() {
             </div>
           )}
         </div>
-      </div>
       </div>
 
       {/* Subscription Paywall Modal */}
