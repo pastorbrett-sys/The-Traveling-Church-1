@@ -435,20 +435,14 @@ Reference: ${verseRef} (${translation})`;
                   Smart Search
                 </motion.h2>
                 <div 
-                  className="absolute right-4 top-1/2 -translate-y-1/2"
-                  onClick={(e) => e.stopPropagation()}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer hover:text-[#c08e00] active:text-[#c08e00]/80 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // TODO: Navigate to saved notes page
+                  }}
+                  data-testid="button-saved-notes"
                 >
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => {
-                      // TODO: Navigate to saved notes page
-                    }}
-                    className="h-10 w-10 p-0 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
-                    data-testid="button-saved-notes"
-                  >
-                    <Bookmark className="w-[30px] h-[30px]" />
-                  </Button>
+                  <Bookmark className="w-7 h-7" />
                 </div>
               </motion.div>
             )}
