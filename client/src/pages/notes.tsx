@@ -459,7 +459,7 @@ export default function Notes() {
                   </Button>
                 </div>
               ) : (
-                <div className="grid gap-4">
+                <div className="grid gap-4 overflow-hidden">
                   <AnimatePresence mode="popLayout">
                     {filteredAndSortedNotes.map((note, index) => (
                       <motion.div
@@ -469,9 +469,10 @@ export default function Notes() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ delay: index * 0.05 }}
+                        className="w-full overflow-hidden"
                       >
                         <div
-                          className="border rounded-lg p-4 hover:border-[#c08e00]/50 transition-colors overflow-hidden"
+                          className="border rounded-lg p-4 hover:border-[#c08e00]/50 transition-colors overflow-hidden w-full"
                           data-testid={`note-card-${note.id}`}
                         >
                           <div className="flex items-start justify-between gap-2 mb-2">
