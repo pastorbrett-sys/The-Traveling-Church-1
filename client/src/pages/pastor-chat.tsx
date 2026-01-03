@@ -526,7 +526,8 @@ export default function PastorChat() {
         </div>
       </div>
 
-      {/* FIXED Input at absolute bottom of viewport */}
+      {/* FIXED Input at absolute bottom of viewport - only show for Chat tab */}
+      {activeTab === "chat" && (
       <div 
         ref={footerRef}
         className="fixed bottom-0 left-0 right-0 p-4 bg-card border-t border-border"
@@ -591,6 +592,7 @@ export default function PastorChat() {
           )}
         </div>
       </div>
+      )}
 
       {/* Subscription Paywall Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
