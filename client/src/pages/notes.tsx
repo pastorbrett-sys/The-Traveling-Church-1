@@ -27,6 +27,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 } from "@/components/ui/dialog";
 import {
   DropdownMenu,
@@ -721,8 +722,8 @@ export default function Notes() {
       </Dialog>
 
       <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
-        <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[80vh] overflow-y-auto overflow-x-hidden">
-          <div className="absolute right-10 top-4 flex items-center gap-1">
+        <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[80vh] overflow-y-auto overflow-x-hidden [&>button]:hidden">
+          <div className="absolute right-4 top-4 flex items-center gap-1">
             <Button
               variant="ghost"
               size="icon"
@@ -751,6 +752,10 @@ export default function Notes() {
             >
               <Trash2 className="w-4 h-4" />
             </Button>
+            <DialogClose className="h-6 w-6 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
           </div>
           <DialogHeader className="pr-24">
             <div className="flex items-center gap-2 min-w-0">
