@@ -93,7 +93,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [showSaveGlow, setShowSaveGlow] = useState(false);
   const [insight, setInsight] = useState("");
   const [isLoadingInsight, setIsLoadingInsight] = useState(false);
-  const [compareTranslations, setCompareTranslations] = useState<string[]>(["NIV", "ESV"]);
+  const [compareTranslations, setCompareTranslations] = useState<string[]>(["KJV", "NIV", "NIV2011", "ESV", "NLT", "NKJV", "NASB", "AMP", "MSG"]);
   const [footerKey, setFooterKey] = useState(0);
   const [wasFooterOpen, setWasFooterOpen] = useState(false);
   const [insightMessages, setInsightMessages] = useState<InsightMessage[]>([]);
@@ -132,8 +132,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, selectedVerse?.verse, compareTranslations],
     queryFn: async () => {
       if (!selectedVerse || !selectedBook) return [];
+      const allTranslations = [...new Set(compareTranslations)];
       const res = await apiRequest("POST", "/api/bible/compare", {
-        translations: [translation, ...compareTranslations],
+        translations: allTranslations,
         bookId: selectedBook.bookid,
         chapter: selectedChapter,
         verses: [selectedVerse.verse],
