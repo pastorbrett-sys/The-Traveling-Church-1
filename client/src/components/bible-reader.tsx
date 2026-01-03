@@ -105,6 +105,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const insightChatRef = useRef<HTMLDivElement>(null);
   const insightInputRef = useRef<HTMLTextAreaElement>(null);
   const longPressTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const longPressTriggeredRef = useRef(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -202,6 +203,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   };
 
   const handleVerseClick = (verse: BibleVerse, event?: React.MouseEvent) => {
+    if (longPressTriggeredRef.current) {
+      longPressTriggeredRef.current = false;
+      return;
+    }
     setShowMultiSelectMenu(null);
     
     if (multiSelectMode) {
@@ -240,6 +245,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   };
 
   const handleVerseLongPress = (verse: BibleVerse, x: number, y: number) => {
+    longPressTriggeredRef.current = true;
     setShowMultiSelectMenu({ x, y, verse });
   };
 
@@ -267,9 +273,23 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       return `${selectedBook?.name} ${selectedChapter}:${selectedVerses[0].verse}`;
     }
     const sorted = [...selectedVerses].sort((a, b) => a.verse - b.verse);
-    const first = sorted[0].verse;
-    const last = sorted[sorted.length - 1].verse;
-    return `${selectedBook?.name} ${selectedChapter}:${first}-${last}`;
+    
+    const ranges: string[] = [];
+    let rangeStart = sorted[0].verse;
+    let rangeEnd = sorted[0].verse;
+    
+    for (let i = 1; i < sorted.length; i++) {
+      if (sorted[i].verse === rangeEnd + 1) {
+        rangeEnd = sorted[i].verse;
+      } else {
+        ranges.push(rangeStart === rangeEnd ? `${rangeStart}` : `${rangeStart}-${rangeEnd}`);
+        rangeStart = sorted[i].verse;
+        rangeEnd = sorted[i].verse;
+      }
+    }
+    ranges.push(rangeStart === rangeEnd ? `${rangeStart}` : `${rangeStart}-${rangeEnd}`);
+    
+    return `${selectedBook?.name} ${selectedChapter}:${ranges.join(", ")}`;
   };
 
   const getSelectedVersesText = () => {
