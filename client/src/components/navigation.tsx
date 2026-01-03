@@ -8,17 +8,20 @@ import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 function AnimatedMenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="w-6 h-6 flex flex-col justify-center items-center">
+    <div className="w-6 h-6 relative flex flex-col justify-center items-center">
       <motion.span
-        className="block h-0.5 w-5 bg-current rounded-full"
+        className="absolute block h-0.5 w-5 bg-current rounded-full"
+        style={{ top: "25%" }}
         animate={{
           rotate: isOpen ? 45 : 0,
-          y: isOpen ? 6 : 0,
+          y: isOpen ? "50%" : 0,
+          top: isOpen ? "50%" : "25%",
         }}
         transition={{ duration: 0.2 }}
       />
       <motion.span
-        className="block h-0.5 w-5 bg-current rounded-full mt-1.5"
+        className="absolute block h-0.5 w-5 bg-current rounded-full"
+        style={{ top: "50%", y: "-50%" }}
         animate={{
           opacity: isOpen ? 0 : 1,
           scaleX: isOpen ? 0 : 1,
@@ -26,10 +29,12 @@ function AnimatedMenuIcon({ isOpen }: { isOpen: boolean }) {
         transition={{ duration: 0.15 }}
       />
       <motion.span
-        className="block h-0.5 w-5 bg-current rounded-full mt-1.5"
+        className="absolute block h-0.5 w-5 bg-current rounded-full"
+        style={{ bottom: "25%" }}
         animate={{
           rotate: isOpen ? -45 : 0,
-          y: isOpen ? -6 : 0,
+          y: isOpen ? "-50%" : 0,
+          bottom: isOpen ? "50%" : "25%",
         }}
         transition={{ duration: 0.2 }}
       />
