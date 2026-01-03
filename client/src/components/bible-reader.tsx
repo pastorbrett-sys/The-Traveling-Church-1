@@ -702,6 +702,7 @@ Reference: ${verseRef} (${translation})`;
               "Ecclesiastes": "/attached_assets/ecclesiastes_1767415636619.png",
               "Song of Solomon": "/attached_assets/Song_of_Solomon_1767415703406.png",
               "Isaiah": "/attached_assets/Isaiah_1767415854208.png",
+              "Jeremiah": "/attached_assets/Jeremiah_1767415967086.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
