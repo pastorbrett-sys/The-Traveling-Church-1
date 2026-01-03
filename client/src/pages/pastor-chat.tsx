@@ -384,8 +384,7 @@ export default function PastorChat() {
       <Navigation />
 
       {/* Tab Toggle */}
-      <div className="fixed top-[57px] left-0 right-0 z-40 bg-background border-b">
-        <div className="w-full max-w-3xl mx-auto px-4 py-3">
+      <div className="sticky top-0 z-40 bg-background w-full max-w-3xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
@@ -463,14 +462,10 @@ export default function PastorChat() {
             )}
           </div>
         </div>
-        </div>
       </div>
 
-      {/* Spacer for fixed header */}
-      <div className="h-[58px]" />
-
       <div 
-        className={`w-full max-w-3xl mx-auto px-4 ${activeTab === "bible" ? "" : "hidden"}`} 
+        className={`w-full max-w-3xl mx-auto px-4 mt-4 ${activeTab === "bible" ? "" : "hidden"}`} 
         style={{ height: "calc(100vh - 120px)" }}
       >
         <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
