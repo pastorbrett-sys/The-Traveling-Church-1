@@ -1019,8 +1019,15 @@ Reference: ${verseRef} (${translation})`;
               "1 Maccabees": "/attached_assets/A_pen-and-ink-style_digital_illustration_in_mustar_1767465895165.png",
               "2 Maccabees": "/attached_assets/A_traditional-style_line_drawing_in_sepia_tone_dep_1767465792706.png",
               "1 Esdras": "/attached_assets/Esdras_1767465072053.png",
+              "2 Esdras": "/attached_assets/2_Esdras_1767475181847.png",
               "Wisdom": "/attached_assets/Wisdome_Fix_Test_1767465366994.png",
-              "Sirach": "/attached_assets/image_1767466140623.png",
+              "Sirach": "/attached_assets/Sirach_1767475181849.png",
+              "Baruch": "/attached_assets/Baruch_1767475181848.png",
+              "Epistle of Jeremiah": "/attached_assets/Epistle_of_Jeremiah_1767475239079.png",
+              "Prayer of Azariah": "/attached_assets/Prayer_of_Azariah_1767475181848.png",
+              "Susanna": "/attached_assets/Susanna_1767475181849.png",
+              "Bel and the Dragon": "/attached_assets/Bel_and_the_Dragon_1767475239079.png",
+              "Prayer of Manasseh": "/attached_assets/Prayer_of_Manasseh_1767475181849.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
