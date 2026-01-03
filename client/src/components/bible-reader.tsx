@@ -263,12 +263,45 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       const timer = setTimeout(() => {
         const verseElement = verseRefs.current.get(scrollToVerse);
         if (verseElement) {
-          verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
-          // Add burst animation and highlight
-          verseElement.classList.add("verse-burst-highlight");
-          setTimeout(() => {
-            verseElement.classList.remove("verse-burst-highlight");
-          }, 4000);
+          // Check if verse is already visible in viewport
+          const rect = verseElement.getBoundingClientRect();
+          const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+          
+          if (isVisible) {
+            // Already visible - trigger burst immediately
+            verseElement.classList.add("verse-burst-highlight");
+            setTimeout(() => {
+              verseElement.classList.remove("verse-burst-highlight");
+            }, 4000);
+          } else {
+            // Need to scroll - trigger burst after scroll completes
+            verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            
+            // Wait for scroll to complete before triggering burst
+            let scrollTimeout: NodeJS.Timeout;
+            const checkScrollEnd = () => {
+              clearTimeout(scrollTimeout);
+              scrollTimeout = setTimeout(() => {
+                verseElement.classList.add("verse-burst-highlight");
+                setTimeout(() => {
+                  verseElement.classList.remove("verse-burst-highlight");
+                }, 4000);
+                window.removeEventListener("scroll", checkScrollEnd, true);
+              }, 150);
+            };
+            
+            window.addEventListener("scroll", checkScrollEnd, true);
+            // Fallback in case scroll event doesn't fire
+            setTimeout(() => {
+              window.removeEventListener("scroll", checkScrollEnd, true);
+              if (!verseElement.classList.contains("verse-burst-highlight")) {
+                verseElement.classList.add("verse-burst-highlight");
+                setTimeout(() => {
+                  verseElement.classList.remove("verse-burst-highlight");
+                }, 4000);
+              }
+            }, 1000);
+          }
         }
         setScrollToVerse(null);
       }, 100);
