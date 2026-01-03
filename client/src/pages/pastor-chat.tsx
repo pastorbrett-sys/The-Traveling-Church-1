@@ -386,7 +386,7 @@ export default function PastorChat() {
       {/* Tab Toggle */}
       <div className="fixed top-[57px] left-0 right-0 z-40 bg-background border-b">
         <div className="w-full max-w-3xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between min-h-[44px]">
           <div className="inline-flex p-1 rounded-lg bg-muted">
             <button
               onClick={() => setActiveTab("chat")}
@@ -467,7 +467,7 @@ export default function PastorChat() {
       </div>
 
       {/* Spacer for fixed header */}
-      <div className="h-[68px]" />
+      <div className="h-[76px]" />
 
       <div 
         className={`w-full max-w-3xl mx-auto px-4 ${activeTab === "bible" ? "" : "hidden"}`} 
