@@ -541,13 +541,15 @@ export default function Notes() {
               />
               <h2 className="text-xl font-semibold mb-2">No notes yet</h2>
               <p className="text-muted-foreground max-w-sm mb-6">
-                Start reading the Bible and tap on any verse to add notes. Your saved notes will appear here.
+                Capture your thoughts, reflections, and insights. Your saved notes will appear here.
               </p>
-              <Link href="/pastor-chat?tab=bible">
-                <Button className="bg-[#c08e00] hover:bg-[#a07800] text-white" data-testid="button-start-reading">
-                  Start Reading
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => setShowCreateNote(true)}
+                className="bg-[#c08e00] hover:bg-[#a07800] text-white" 
+                data-testid="button-take-note"
+              >
+                Take a Note
+              </Button>
             </div>
           )}
         </div>
