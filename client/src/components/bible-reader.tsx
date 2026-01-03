@@ -700,6 +700,7 @@ Reference: ${verseRef} (${translation})`;
               "Psalms": "/attached_assets/Psalm_1767415345681.png",
               "Proverbs": "/attached_assets/proverbs_1767415425100.png",
               "Ecclesiastes": "/attached_assets/ecclesiastes_1767415636619.png",
+              "Song of Solomon": "/attached_assets/Song_of_Solomon_1767415703406.png",
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
