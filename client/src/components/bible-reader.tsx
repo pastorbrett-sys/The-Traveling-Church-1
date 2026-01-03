@@ -508,82 +508,86 @@ Reference: ${verseRef} (${translation})`;
               <Loader2 className="w-6 h-6 animate-spin" />
             </div>
           ) : (
-            <div className="space-y-1">
+            <div className="space-y-1 pb-20">
               {chapter?.verses.map((verse) => (
-                <span
+                <motion.span
                   key={verse.pk}
                   onClick={() => handleVerseClick(verse)}
-                  className={`inline cursor-pointer transition-colors hover:bg-primary/10 rounded px-0.5 ${
-                    selectedVerse?.verse === verse.verse ? "bg-primary/20" : ""
-                  }`}
+                  animate={{
+                    backgroundColor: selectedVerse?.verse === verse.verse 
+                      ? "rgba(192, 142, 0, 0.15)" 
+                      : "rgba(0, 0, 0, 0)"
+                  }}
+                  transition={{ duration: 0.2 }}
+                  className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5"
                   data-testid={`verse-${verse.verse}`}
                 >
-                  <sup className="text-xs text-primary font-medium mr-1">{verse.verse}</sup>
+                  <sup className={`text-xs font-medium mr-1 transition-colors ${
+                    selectedVerse?.verse === verse.verse ? "text-[#c08e00]" : "text-primary"
+                  }`}>{verse.verse}</sup>
                   <span className="text-base leading-relaxed">{verse.text} </span>
-                </span>
+                </motion.span>
               ))}
             </div>
           )}
         </div>
       </ScrollArea>
 
-      {selectedVerse && (
-        <div className="border-t p-3 bg-muted/30">
-          <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
-            <p className="text-sm font-medium truncate">
-              {selectedBook?.name} {selectedChapter}:{selectedVerse.verse}
-            </p>
-            <div className="flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleGetInsight}
-                className="gap-1"
-                data-testid="button-get-insight"
+      <AnimatePresence>
+        {selectedVerse && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 500, damping: 35 }}
+            className="fixed bottom-0 left-0 right-0 border-t p-3 bg-background/95 backdrop-blur-sm shadow-lg z-50"
+            style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+          >
+            <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
+              <motion.p 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.05 }}
+                className="text-sm font-medium truncate"
               >
-                <Sparkles className="w-4 h-4" />
-                <span className="hidden sm:inline">Insight</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowCompare(true)}
-                className="gap-1"
-                data-testid="button-compare"
-              >
-                <Columns2 className="w-4 h-4" />
-                <span className="hidden sm:inline">Compare</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowNote(true)}
-                className="gap-1"
-                data-testid="button-add-note"
-              >
-                <StickyNote className="w-4 h-4" />
-                <span className="hidden sm:inline">Note</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleCopyVerse}
-                data-testid="button-copy-verse"
-              >
-                <Copy className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSelectedVerse(null)}
-                data-testid="button-deselect-verse"
-              >
-                <X className="w-4 h-4" />
-              </Button>
+                {selectedBook?.name} {selectedChapter}:{selectedVerse.verse}
+              </motion.p>
+              <div className="flex items-center gap-1">
+                {[
+                  { icon: Sparkles, label: "Insight", onClick: handleGetInsight, testId: "button-get-insight" },
+                  { icon: Columns2, label: "Compare", onClick: () => setShowCompare(true), testId: "button-compare" },
+                  { icon: StickyNote, label: "Note", onClick: () => setShowNote(true), testId: "button-add-note" },
+                  { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
+                  { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.testId}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ 
+                      delay: 0.08 + index * 0.04,
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 25
+                    }}
+                  >
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={item.onClick}
+                      className="gap-1 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
+                      data-testid={item.testId}
+                    >
+                      <item.icon className="w-4 h-4" />
+                      {item.label && <span className="hidden sm:inline">{item.label}</span>}
+                    </Button>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Dialog open={showInsight} onOpenChange={setShowInsight}>
         <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
