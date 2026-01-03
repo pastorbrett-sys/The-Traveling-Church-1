@@ -590,18 +590,6 @@ export default function PastorChat() {
                 </Select>
               </div>
             )}
-            {!isAuthenticated && (
-              <Link href="/login?redirect=/pastor-chat">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  data-testid="button-login"
-                >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
-                </Button>
-              </Link>
-            )}
           </div>
         </div>
       </div>
