@@ -15,7 +15,8 @@ import {
   Tag,
   Loader2,
   SortAsc,
-  SortDesc
+  SortDesc,
+  Plus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -258,6 +259,14 @@ export default function Notes() {
                 </span>
               </div>
             </div>
+            <Link href="/pastor-chat?tab=bible">
+              <button
+                className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors"
+                data-testid="button-create-note"
+              >
+                <Plus className="w-5 h-5 text-white" />
+              </button>
+            </Link>
           </div>
 
           {notes.length > 0 ? (
