@@ -227,4 +227,89 @@ export function registerChatRoutes(app: Express): void {
       }
     }
   });
+
+  // Seed a conversation with initial question and answer from Smart Search
+  app.post("/api/conversations/:id/seed", async (req: Request, res: Response) => {
+    try {
+      const conversationId = parseInt(req.params.id);
+      if (isNaN(conversationId)) {
+        return res.status(400).json({ error: "Invalid conversation ID" });
+      }
+
+      const { question, answer } = req.body;
+      if (typeof question !== "string" || typeof answer !== "string") {
+        return res.status(400).json({ error: "Question and answer are required" });
+      }
+
+      // Save both messages to the database
+      await chatStorage.createMessage(conversationId, "user", question.trim());
+      await chatStorage.createMessage(conversationId, "assistant", answer.trim());
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error seeding conversation:", error);
+      res.status(500).json({ error: "Failed to seed conversation" });
+    }
+  });
+
+  // Generate a contextual follow-up prompt from Pastor Brett
+  app.post("/api/conversations/:id/follow-up", async (req: Request, res: Response) => {
+    try {
+      const conversationId = parseInt(req.params.id);
+      if (isNaN(conversationId)) {
+        return res.status(400).json({ error: "Invalid conversation ID" });
+      }
+
+      const { question, answer } = req.body;
+      if (typeof question !== "string" || typeof answer !== "string") {
+        return res.status(400).json({ error: "Question and answer are required" });
+      }
+
+      const followUpPrompt = `You are Pastor Brett, a warm and compassionate AI Bible Buddy. The user just asked: "${question}"
+
+You already provided this brief answer: "${answer}"
+
+Now, generate a SHORT (1-2 sentences max) pastoral follow-up invitation to continue the discussion. Be warm, inviting, and specific to the topic. Examples of good follow-ups:
+- "Would you like me to walk through any of these passages together?"
+- "Is there a particular aspect of this topic you'd like to explore further?"
+- "What questions come to mind as you reflect on this?"
+
+Generate ONLY the follow-up question/invitation, nothing else.`;
+
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+
+      const stream = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [{ role: "user", content: followUpPrompt }],
+        stream: true,
+        max_completion_tokens: 150,
+      });
+
+      let fullResponse = "";
+
+      for await (const chunk of stream) {
+        const text = chunk.choices[0]?.delta?.content || "";
+        if (text) {
+          fullResponse += text;
+          res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+        }
+      }
+
+      // Save the follow-up to the database
+      await chatStorage.createMessage(conversationId, "assistant", fullResponse);
+
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+    } catch (error) {
+      console.error("Error generating follow-up:", error);
+      if (res.headersSent) {
+        res.write(`data: ${JSON.stringify({ error: "Failed to generate follow-up" })}\n\n`);
+        res.end();
+      } else {
+        res.status(500).json({ error: "Failed to generate follow-up" });
+      }
+    }
+  });
 }

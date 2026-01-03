@@ -211,7 +211,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         break;
       case "question":
         const questionResult = result as SmartSearchResultQuestion;
-        navigate(`/pastor-chat?prompt=${encodeURIComponent(questionResult.suggestedPrompt)}`);
+        navigate(`/pastor-chat?tab=chat&seedQuestion=${encodeURIComponent(questionResult.question)}&seedAnswer=${encodeURIComponent(questionResult.briefAnswer)}`);
         break;
       case "topic":
       case "character":

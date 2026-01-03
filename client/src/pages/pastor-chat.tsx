@@ -79,6 +79,8 @@ export default function PastorChat() {
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const initialTab = urlParams.get("tab") === "chat" ? "chat" : "bible";
+  const seedQuestion = urlParams.get("seedQuestion");
+  const seedAnswer = urlParams.get("seedAnswer");
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(initialTab);
   const [bibleTranslation, setBibleTranslation] = useState("NIV");
@@ -91,6 +93,8 @@ export default function PastorChat() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [footerHeight, setFooterHeight] = useState(180);
   const [isNewChatMode, setIsNewChatMode] = useState(false);
+  const [isSeeding, setIsSeeding] = useState(false);
+  const [hasSeeded, setHasSeeded] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -124,8 +128,9 @@ export default function PastorChat() {
     queryKey: ["/api/bible/translations"],
   });
 
-  // Load the most recent conversation's messages on mount (but not if user started a new chat)
+  // Load the most recent conversation's messages on mount (but not if user started a new chat or we have seed params)
   useEffect(() => {
+    if (seedQuestion && seedAnswer) return; // Skip restoration if we're seeding
     if (conversations && conversations.length > 0 && !currentConversationId && !isNewChatMode) {
       const mostRecent = conversations[0]; // Already sorted by createdAt desc
       setCurrentConversationId(mostRecent.id);
@@ -144,7 +149,93 @@ export default function PastorChat() {
         })
         .catch(err => console.error("Failed to restore conversation:", err));
     }
-  }, [conversations, currentConversationId, isNewChatMode]);
+  }, [conversations, currentConversationId, isNewChatMode, seedQuestion, seedAnswer]);
+
+  // Handle seeding conversation from Smart Search "Continue discussion"
+  useEffect(() => {
+    if (!seedQuestion || !seedAnswer || hasSeeded || isSeeding) return;
+    
+    const seedConversation = async () => {
+      setIsSeeding(true);
+      try {
+        // Create a new conversation
+        const res = await apiRequest("POST", "/api/conversations", { title: seedQuestion.slice(0, 50) });
+        const newConv = await res.json();
+        const convId = newConv.id;
+        setCurrentConversationId(convId);
+        
+        // Set initial messages locally
+        const initialMessages: ChatMessage[] = [
+          { role: "user", content: seedQuestion },
+          { role: "assistant", content: seedAnswer },
+        ];
+        setMessages(initialMessages);
+        
+        // Save the seeded messages to the server
+        await apiRequest("POST", `/api/conversations/${convId}/seed`, {
+          question: seedQuestion,
+          answer: seedAnswer,
+        });
+        
+        // Now generate a follow-up prompt from Pastor Brett
+        setIsStreaming(true);
+        const followUpRes = await fetch(`/api/conversations/${convId}/follow-up`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: seedQuestion, answer: seedAnswer }),
+          credentials: "include",
+        });
+        
+        if (followUpRes.ok && followUpRes.body) {
+          const reader = followUpRes.body.getReader();
+          const decoder = new TextDecoder();
+          let followUpContent = "";
+          
+          // Add empty assistant message for the follow-up
+          setMessages(prev => [...prev, { role: "assistant", content: "" }]);
+          
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const chunk = decoder.decode(value);
+            const lines = chunk.split("\n");
+            
+            for (const line of lines) {
+              if (line.startsWith("data: ")) {
+                try {
+                  const data = JSON.parse(line.slice(6));
+                  if (data.content) {
+                    followUpContent += data.content;
+                    setMessages(prev => {
+                      const newMessages = [...prev];
+                      newMessages[newMessages.length - 1] = {
+                        role: "assistant",
+                        content: followUpContent,
+                      };
+                      return newMessages;
+                    });
+                  }
+                } catch (e) {
+                  if (e instanceof SyntaxError) continue;
+                }
+              }
+            }
+          }
+        }
+        
+        queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
+        setHasSeeded(true);
+      } catch (error) {
+        console.error("Failed to seed conversation:", error);
+      } finally {
+        setIsSeeding(false);
+        setIsStreaming(false);
+      }
+    };
+    
+    seedConversation();
+  }, [seedQuestion, seedAnswer, hasSeeded, isSeeding, queryClient]);
 
   // Determine if user is pro - check both session stats (server-side check) and subscription status
   const isPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
