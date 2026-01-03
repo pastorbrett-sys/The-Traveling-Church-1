@@ -703,7 +703,7 @@ Reference: ${verseRef} (${translation})`;
               <img 
                 src={imageSrc}
                 alt={`${selectedBook.name} decorative header`}
-                className="w-full h-auto rounded-lg mb-4"
+                className="w-full h-auto rounded-lg mb-4 block"
               />
             ) : null;
           })()}
