@@ -200,6 +200,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
           setShowSearch(false);
           setSearchQuery("");
           setSmartSearchResults(null);
+          contentRef.current?.scrollTo(0, 0);
         }
         break;
       case "question":
@@ -223,6 +224,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       setShowSearch(false);
       setSearchQuery("");
       setSmartSearchResults(null);
+      contentRef.current?.scrollTo(0, 0);
     }
   };
 
@@ -368,6 +370,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     setSelectedBook(book);
     setSelectedChapter(1);
     setShowBookPicker(false);
+    contentRef.current?.scrollTo(0, 0);
   };
 
   const handleChapterChange = (direction: "prev" | "next") => {
