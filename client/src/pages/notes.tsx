@@ -82,6 +82,7 @@ export default function Notes() {
   const [showCreateNote, setShowCreateNote] = useState(false);
   const [newNoteContent, setNewNoteContent] = useState("");
   const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
+  const [viewingNote, setViewingNote] = useState<Note | null>(null);
 
   useEffect(() => {
     document.title = "My Notes | The Traveling Church";
@@ -472,8 +473,9 @@ export default function Notes() {
                         className="w-full overflow-hidden"
                       >
                         <div
-                          className="border rounded-lg p-4 hover:border-[#c08e00]/50 transition-colors overflow-hidden w-full"
+                          className="border rounded-lg p-4 hover:border-[#c08e00]/50 transition-colors overflow-hidden w-full cursor-pointer"
                           data-testid={`note-card-${note.id}`}
+                          onClick={() => setViewingNote(note)}
                         >
                           <div className="flex items-start justify-between gap-2 mb-2">
                             <div className="flex-1 min-w-0">
@@ -490,7 +492,7 @@ export default function Notes() {
                                 variant="ghost"
                                 size="icon"
                                 className="h-8 w-8 hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
-                                onClick={() => handleEditNote(note)}
+                                onClick={(e) => { e.stopPropagation(); handleEditNote(note); }}
                                 data-testid={`button-edit-${note.id}`}
                               >
                                 <Edit3 className="w-4 h-4" />
@@ -499,7 +501,7 @@ export default function Notes() {
                                 variant="ghost"
                                 size="icon"
                                 className="h-8 w-8 hover:bg-destructive/10 hover:text-destructive"
-                                onClick={() => setDeleteConfirm(note)}
+                                onClick={(e) => { e.stopPropagation(); setDeleteConfirm(note); }}
                                 data-testid={`button-delete-${note.id}`}
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -715,6 +717,79 @@ export default function Notes() {
               Save
             </Button>
           </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
+        <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Bookmark className="w-5 h-5 text-[#c08e00]" />
+                <span>{viewingNote?.verseRef}</span>
+              </div>
+              <div className="flex gap-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                  onClick={() => {
+                    if (viewingNote) {
+                      handleEditNote(viewingNote);
+                      setViewingNote(null);
+                    }
+                  }}
+                  data-testid="button-view-edit"
+                >
+                  <Edit3 className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 hover:bg-destructive/10 hover:text-destructive"
+                  onClick={() => {
+                    if (viewingNote) {
+                      setDeleteConfirm(viewingNote);
+                      setViewingNote(null);
+                    }
+                  }}
+                  data-testid="button-view-delete"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
+            </DialogTitle>
+          </DialogHeader>
+          
+          {viewingNote && (
+            <div className="space-y-4">
+              {viewingNote.verseText && (
+                <div className="border-l-2 border-[#c08e00] pl-3 py-1">
+                  <p className="text-sm text-muted-foreground italic">"{viewingNote.verseText}"</p>
+                </div>
+              )}
+              
+              <p className="text-sm text-muted-foreground">
+                {formatDate(viewingNote.createdAt)}
+              </p>
+              
+              <p className="text-base whitespace-pre-wrap break-words">{viewingNote.content}</p>
+              
+              {viewingNote.tags && viewingNote.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {viewingNote.tags.map(tag => (
+                    <Badge
+                      key={tag}
+                      variant="outline"
+                      className="text-xs"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </DialogContent>
       </Dialog>
     </div>
