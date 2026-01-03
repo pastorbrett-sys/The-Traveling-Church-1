@@ -82,6 +82,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [insight, setInsight] = useState("");
   const [isLoadingInsight, setIsLoadingInsight] = useState(false);
   const [compareTranslations, setCompareTranslations] = useState<string[]>(["NIV", "ESV"]);
+  const [footerKey, setFooterKey] = useState(0);
+  const [wasFooterOpen, setWasFooterOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -170,6 +172,11 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   };
 
   const handleVerseClick = (verse: BibleVerse) => {
+    const isFooterCurrentlyOpen = selectedVerse !== null;
+    if (!isFooterCurrentlyOpen) {
+      setFooterKey(prev => prev + 1);
+    }
+    setWasFooterOpen(isFooterCurrentlyOpen);
     setSelectedVerse(verse);
   };
 
@@ -536,22 +543,27 @@ Reference: ${verseRef} (${translation})`;
       <AnimatePresence>
         {selectedVerse && (
           <motion.div
+            key={footerKey}
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 500, damping: 35 }}
-            className="fixed bottom-0 left-0 right-0 border-t p-3 bg-background/95 backdrop-blur-sm shadow-lg z-50"
+            className="fixed bottom-0 left-0 right-0 border-t p-3 bg-background shadow-lg z-50"
             style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
           >
             <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
-              <motion.p 
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.05 }}
-                className="text-sm font-medium truncate"
-              >
-                {selectedBook?.name} {selectedChapter}:{selectedVerse.verse}
-              </motion.p>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`${selectedBook?.name}-${selectedChapter}-${selectedVerse.verse}`}
+                  initial={{ x: wasFooterOpen ? 30 : 0, opacity: wasFooterOpen ? 0 : 1 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -30, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  className="text-sm font-medium truncate"
+                >
+                  {selectedBook?.name} {selectedChapter}:{selectedVerse.verse}
+                </motion.p>
+              </AnimatePresence>
               <div className="flex items-center gap-1">
                 {[
                   { icon: Sparkles, label: "Insight", onClick: handleGetInsight, testId: "button-get-insight" },
@@ -561,7 +573,7 @@ Reference: ${verseRef} (${translation})`;
                   { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
                 ].map((item, index) => (
                   <motion.div
-                    key={item.testId}
+                    key={`${footerKey}-${item.testId}`}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ 
