@@ -42,11 +42,10 @@ export default function VagabondBible() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-2xl">
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
-              Your <span className="text-[hsl(35,65%,55%)]">AI-Powered</span> Bible Companion for the Journey
+              The Most Advanced <span className="text-[hsl(35,65%,55%)]">AI Bible Companion</span> Ever Built
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Whether you're on the road, at camp, or exploring new horizons — Vagabond Bible AI brings 
-              wisdom, insight, and spiritual guidance wherever your travels take you.
+              Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)] text-white text-lg px-8 rounded-full" data-testid="button-start-reading">
