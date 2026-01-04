@@ -139,6 +139,31 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     prevTranslationRef.current = translation;
   }, [translation, selectedVerse]);
 
+  // Lock body scroll when insight modal is open (prevents iOS background scrolling)
+  useEffect(() => {
+    if (showInsight) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      }
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+    };
+  }, [showInsight]);
+
   useEffect(() => {
     if (searchDebounceRef.current) {
       clearTimeout(searchDebounceRef.current);
@@ -1171,7 +1196,8 @@ Reference: ${verseRef} (${translation})`;
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-0 z-50 bg-background flex flex-col"
+            className="fixed inset-0 z-50 bg-background flex flex-col touch-none"
+            style={{ touchAction: "none" }}
           >
             <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
@@ -1192,7 +1218,7 @@ Reference: ${verseRef} (${translation})`;
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4" ref={insightChatRef}>
+            <div className="flex-1 overflow-y-auto p-4 touch-auto overscroll-contain" ref={insightChatRef} style={{ touchAction: "pan-y" }}>
               <div className="max-w-2xl mx-auto space-y-4">
                 <div className="border-l-2 border-[#c08e00] pl-3 mb-6 mt-2">
                   <p className="text-2xl font-serif font-bold mb-1">{insightVerseRef}</p>
