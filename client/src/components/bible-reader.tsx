@@ -1389,6 +1389,10 @@ Reference: ${verseRef} (${translation})`;
                     className="p-4 rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors"
                     onClick={() => {
                       onTranslationChange(item.translation);
+                      // Trigger scroll to the same verse with highlight animation
+                      if (selectedVerse) {
+                        setScrollToVerse(selectedVerse.verse);
+                      }
                       setShowCompare(false);
                     }}
                     data-testid={`comparison-${item.translation}`}
