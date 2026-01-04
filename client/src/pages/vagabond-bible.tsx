@@ -22,6 +22,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </nav>
+
       <section className="relative pt-16 min-h-[90vh] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
           <video
@@ -37,14 +38,14 @@ export default function VagabondBible() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-6 border border-white/20">
-              <span className="text-[hsl(35,65%,55%)] text-xs">★</span>
-              <span className="text-xs font-medium">Voted #1 Bible App by Experts</span>
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/20">
+              <span className="text-[hsl(35,65%,55%)]">★</span>
+              <span className="text-sm font-medium">Voted #1 Bible App by Experts</span>
             </div>
-            <h1 className="font-heading sm:text-5xl lg:text-6xl font-bold mb-6 text-white text-[40px] leading-[1.1]">
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
               The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
             </h1>
-            <p className="text-white/90 mb-8 text-[17px]">
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
               Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -60,6 +61,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
+
       <section id="features" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -138,6 +140,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
+
       <section id="about" className="py-24 bg-[hsl(30,20%,97%)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -180,6 +183,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
+
       <section id="community" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -207,6 +211,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
+
       <section className="py-24 bg-gradient-to-br from-[hsl(25,35%,45%)] to-[hsl(25,35%,38%)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 text-white">Ready to Start Your Journey?</h2>
@@ -219,6 +224,7 @@ export default function VagabondBible() {
           </Button>
         </div>
       </section>
+
       <footer id="contact" className="py-16 bg-[hsl(30,20%,97%)] border-t border-[hsl(30,20%,88%)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12">
