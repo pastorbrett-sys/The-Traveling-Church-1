@@ -23,6 +23,7 @@ import Profile from "@/pages/profile";
 import Login from "@/pages/login";
 import CheckoutSuccess from "@/pages/checkout-success";
 import CheckoutCancel from "@/pages/checkout-cancel";
+import VagabondBible from "@/pages/vagabond-bible";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -56,6 +57,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
+      <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>
   );
