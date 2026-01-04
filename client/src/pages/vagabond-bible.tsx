@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles } from "lucide-react";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
-import heroVideo from "@assets/Man_on_mountain_top_face_to_the_right_1767552623735.mp4";
+import heroVideo from "@assets/text-to-video-28b9692b_1767555845533.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 
