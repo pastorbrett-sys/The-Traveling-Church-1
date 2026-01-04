@@ -46,7 +46,7 @@ export default function VagabondBible() {
               <span className="text-sm font-medium">Voted #1 Bible App by Religious Experts</span>
             </div>
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
-              The Most Advanced <span className="text-[hsl(35,65%,55%)]">AI Bible Companion</span> Ever Built
+              The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span> Ever Built
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
               Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
