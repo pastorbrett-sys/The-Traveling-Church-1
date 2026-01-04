@@ -233,7 +233,7 @@ export default function Profile() {
                         variant="outline"
                         onClick={handleManageSubscription}
                         disabled={isOpeningPortal}
-                        className="w-full sm:w-auto bg-[#c7b96b]"
+                        className="w-full sm:w-auto"
                         data-testid="button-manage-subscription"
                       >
                         {isOpeningPortal ? (
