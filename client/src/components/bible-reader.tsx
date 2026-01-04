@@ -1384,7 +1384,15 @@ Reference: ${verseRef} (${translation})`;
             ) : (
               <div className="space-y-4">
                 {comparisonData?.map((item) => (
-                  <div key={item.translation} className="p-4 rounded-lg border">
+                  <div 
+                    key={item.translation} 
+                    className="p-4 rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors"
+                    onClick={() => {
+                      onTranslationChange(item.translation);
+                      setShowCompare(false);
+                    }}
+                    data-testid={`comparison-${item.translation}`}
+                  >
                     <p className="text-sm font-medium text-primary mb-2">{item.translation}</p>
                     {item.verses.map((v) => (
                       <p key={v.pk} className="text-sm leading-relaxed">{v.text}</p>
