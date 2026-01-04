@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles } from "lucide-react";
 import vagabondLogo from "@assets/image_1767551915880.png";
-import heroImage from "@assets/generated_images/traveler_reading_by_lake.png";
+import heroVideo from "@assets/Man_on_mountain_top_face_to_the_right_1767552623735.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 
@@ -27,16 +27,24 @@ export default function VagabondBible() {
       </nav>
 
       <section className="relative pt-16 min-h-[90vh] flex items-center">
-        <div className="absolute inset-0">
-          <img src={heroImage} alt="Traveler reading by a lake" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent" />
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-2xl">
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-[hsl(20,10%,20%)]">
-              Your <span className="text-[hsl(25,35%,45%)]">AI-Powered</span> Bible Companion for the Journey
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
+              Your <span className="text-[hsl(35,65%,55%)]">AI-Powered</span> Bible Companion for the Journey
             </h1>
-            <p className="text-xl text-[hsl(20,10%,35%)] mb-8 leading-relaxed">
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
               Whether you're on the road, at camp, or exploring new horizons — Vagabond Bible AI brings 
               wisdom, insight, and spiritual guidance wherever your travels take you.
             </p>
@@ -45,7 +53,7 @@ export default function VagabondBible() {
                 <BookOpen className="w-5 h-5 mr-2" />
                 Start Reading
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-[hsl(25,35%,45%)] text-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,45%)] hover:text-white text-lg px-8 rounded-full" data-testid="button-chat-pastor">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[hsl(25,35%,45%)] text-lg px-8 rounded-full backdrop-blur-sm" data-testid="button-chat-pastor">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Chat with Pastor AI
               </Button>
