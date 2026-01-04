@@ -513,7 +513,16 @@ export default function PastorChat() {
     }
   };
 
-  const startNewChat = () => {
+  const startNewChat = async () => {
+    // Delete the current conversation from the server if one exists
+    if (currentConversationId) {
+      try {
+        await apiRequest("DELETE", `/api/conversations/${currentConversationId}`);
+        queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
+      } catch (error) {
+        console.error("Failed to delete conversation:", error);
+      }
+    }
     setIsNewChatMode(true);
     setCurrentConversationId(null);
     setMessages([]);
