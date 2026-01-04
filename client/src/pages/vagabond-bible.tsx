@@ -71,14 +71,14 @@ export default function VagabondBible() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-bible-reader">
+            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-verse-insights">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <BookOpen className="w-7 h-7 text-[hsl(25,35%,45%)]" />
+                  <Sparkles className="w-7 h-7 text-[hsl(25,35%,45%)]" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Multi-Translation Bible Reader</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">AI Verse Insights</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Access multiple Bible translations side-by-side. Compare verses across KJV, NIV, ESV, and more.
+                  Get AI-powered explanations of any verse with historical context, cultural background, and practical application.
                 </p>
               </CardContent>
             </Card>
@@ -87,7 +87,7 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(35,65%,55%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <MessageCircle className="w-7 h-7 text-[hsl(35,65%,55%)]" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">AI Pastor Chat</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">24/7 Pastor Chat</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
                   Have meaningful conversations about faith, get guidance, and explore biblical wisdom with our AI pastor.
                 </p>
@@ -104,25 +104,25 @@ export default function VagabondBible() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-verse-insights">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <Sparkles className="w-7 h-7 text-[hsl(25,35%,45%)]" />
-                </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Verse Insights</h3>
-                <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Get AI-powered explanations of any verse with historical context, cultural background, and practical application.
-                </p>
-              </CardContent>
-            </Card>
             <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-notes">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(35,65%,55%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <Heart className="w-7 h-7 text-[hsl(35,65%,55%)]" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Personal Notes</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Notes and Journal</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
                   Save your reflections, bookmark favorite verses, and build your personal study journal.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-bible-reader">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
+                  <BookOpen className="w-7 h-7 text-[hsl(25,35%,45%)]" />
+                </div>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Multi-Translation</h3>
+                <p className="text-[hsl(20,10%,40%)] leading-relaxed">
+                  Access multiple Bible translations side-by-side. Compare verses across KJV, NIV, ESV, and more.
                 </p>
               </CardContent>
             </Card>
