@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles } from "lucide-react";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
-import heroVideo from "@assets/text-to-video-28b9692b_1767555845533.mp4";
+import heroVideo from "@assets/Man_on_mountain_top_face_to_the_right_1767552623735.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 
@@ -42,7 +42,7 @@ export default function VagabondBible() {
               <span className="text-[hsl(35,65%,55%)]">★</span>
               <span className="text-sm font-medium">Voted #1 Bible App by Experts</span>
             </div>
-            <h1 className="font-heading text-[2rem] sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
               The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
