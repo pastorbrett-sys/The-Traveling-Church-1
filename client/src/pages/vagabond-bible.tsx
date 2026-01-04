@@ -19,9 +19,6 @@ export default function VagabondBible() {
               <a href="#community" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-community">Community</a>
               <a href="#contact" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-contact">Contact</a>
             </div>
-            <Button className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)] text-white rounded-full px-6" data-testid="button-get-started">
-              Get Started Free
-            </Button>
           </div>
         </div>
       </nav>
