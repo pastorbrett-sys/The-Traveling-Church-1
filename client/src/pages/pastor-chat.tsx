@@ -92,7 +92,10 @@ export default function PastorChat() {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [footerHeight, setFooterHeight] = useState(180);
-  const [isNewChatMode, setIsNewChatMode] = useState(false);
+  const [isNewChatMode, setIsNewChatMode] = useState(() => {
+    // Check if user previously cleared their chat
+    return localStorage.getItem("bibleBuddyChatCleared") === "true";
+  });
   const [isSeeding, setIsSeeding] = useState(false);
   const [hasSeeded, setHasSeeded] = useState(false);
   
@@ -240,6 +243,7 @@ export default function PastorChat() {
         }
         
         queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
+        localStorage.removeItem("bibleBuddyChatCleared"); // Clear the "chat cleared" flag
         setHasSeeded(true);
       } catch (error) {
         console.error("Failed to seed conversation:", error);
@@ -392,6 +396,7 @@ export default function PastorChat() {
       convId = newConv.id;
       setCurrentConversationId(convId);
       setIsNewChatMode(false); // Reset so future visits restore this conversation
+      localStorage.removeItem("bibleBuddyChatCleared"); // Clear the "chat cleared" flag
       queryClient.invalidateQueries({ queryKey: ["/api/conversations"] });
     }
 
@@ -523,6 +528,8 @@ export default function PastorChat() {
         console.error("Failed to delete conversation:", error);
       }
     }
+    // Remember that user wants a fresh chat (persists across page reloads)
+    localStorage.setItem("bibleBuddyChatCleared", "true");
     setIsNewChatMode(true);
     setCurrentConversationId(null);
     setMessages([]);
