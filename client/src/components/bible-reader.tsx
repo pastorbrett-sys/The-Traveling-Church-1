@@ -127,8 +127,17 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const insightChatRef = useRef<HTMLDivElement>(null);
   const insightInputRef = useRef<HTMLTextAreaElement>(null);
   const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
+  const prevTranslationRef = useRef<string>(translation);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // When translation changes and there's a selected verse, scroll to it
+  useEffect(() => {
+    if (prevTranslationRef.current !== translation && selectedVerse) {
+      setScrollToVerse(selectedVerse.verse);
+    }
+    prevTranslationRef.current = translation;
+  }, [translation, selectedVerse]);
 
   useEffect(() => {
     if (searchDebounceRef.current) {
