@@ -157,7 +157,7 @@ export default function Profile() {
                     </h2>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Mail className="w-4 h-4" />
-                      <span className="text-sm truncate max-w-[200px]" data-testid="text-user-id">ID: {user?.id}</span>
+                      <span className="text-sm truncate max-w-[120px]" data-testid="text-user-id">ID: {user?.id}</span>
                     </div>
                   </div>
                 </div>
