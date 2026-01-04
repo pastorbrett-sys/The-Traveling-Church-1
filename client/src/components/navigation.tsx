@@ -162,10 +162,10 @@ export default function Navigation() {
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu - Overlay */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4">
-            <div className="flex flex-col gap-3">
+          <div className="lg:hidden fixed left-0 right-0 top-[64px] z-50 bg-background border-b border-border shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
+            <div className="flex flex-col gap-3 p-4">
               {navItems.map((item) => (
                 item.type === "link" ? (
                   <Link
