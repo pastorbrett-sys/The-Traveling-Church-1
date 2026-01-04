@@ -481,7 +481,11 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: `Insight: ${verseRef}` }),
+        credentials: "include",
       });
+      if (!response.ok) {
+        throw new Error("Failed to create conversation");
+      }
       const conversation = await response.json();
       setInsightConversationId(conversation.id);
 
@@ -494,6 +498,7 @@ Reference: ${verseRef} (${translation})`;
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "user", content: prompt }),
+        credentials: "include",
       });
 
       const reader = msgResponse.body?.getReader();
@@ -540,6 +545,7 @@ Reference: ${verseRef} (${translation})`;
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "user", content: userMessage }),
+        credentials: "include",
       });
 
       const reader = msgResponse.body?.getReader();
