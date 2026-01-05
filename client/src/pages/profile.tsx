@@ -54,6 +54,8 @@ export default function Profile() {
     queryKey: ["/api/usage/summary"],
     enabled: isAuthenticated,
     retry: false,
+    refetchOnMount: "always",
+    staleTime: 0,
   });
 
   useEffect(() => {
