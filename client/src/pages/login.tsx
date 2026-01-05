@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearch, useLocation } from "wouter";
+import { useSearch, useLocation, Link } from "wouter";
 import { Mail, Sparkles, Loader2, Eye, EyeOff } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
@@ -17,16 +17,14 @@ import {
   getFirebaseErrorMessage,
   handleRedirectResult 
 } from "@/lib/firebase";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
-import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
+import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 
 export default function Login() {
   const { isAuthenticated, isLoading, refetch } = useAuth();
   const [, setLocation] = useLocation();
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
-  const redirectTo = params.get("redirect") || "/";
+  const redirectTo = params.get("redirect") || "/pastor-chat";
   
   const [activeTab, setActiveTab] = useState<string>("signin");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,7 +41,7 @@ export default function Login() {
   const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("");
 
   useEffect(() => {
-    document.title = "Sign In | The Traveling Church";
+    document.title = "Sign In | Vagabond Bible";
   }, []);
 
   useEffect(() => {
@@ -154,10 +152,17 @@ export default function Login() {
 
   if (isLoading) {
     return (
-      <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
-        <Navigation />
+      <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
+        <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
+          <div className="max-w-7xl mx-auto px-4 flex items-center justify-center">
+            <Link href="/vagabond-bible" className="flex items-center gap-2">
+              <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
+              <span className="font-heading text-xl font-bold text-[hsl(20,10%,20%)]">Vagabond Bible</span>
+            </Link>
+          </div>
+        </header>
         <main className="flex-1 flex items-center justify-center">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-[hsl(25,35%,45%)] border-t-transparent rounded-full animate-spin" />
         </main>
       </div>
     );
@@ -168,26 +173,25 @@ export default function Login() {
   }
 
   return (
-    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
-      <Navigation />
+    <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
+      <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center">
+          <Link href="/vagabond-bible" className="flex items-center gap-2">
+            <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
+            <span className="font-heading text-xl font-bold text-[hsl(20,10%,20%)]">Vagabond Bible</span>
+          </Link>
+        </div>
+      </header>
 
-      <main className="flex-1 py-12">
-        <div className="max-w-md mx-auto px-4">
-          <Card className="border-2">
+      <main className="flex-1 py-12 flex items-center justify-center">
+        <div className="max-w-md mx-auto px-4 w-full">
+          <Card className="border-2 border-[hsl(30,20%,88%)]">
             <CardHeader className="text-center pb-2">
-              <div className="flex justify-center mb-4">
-                <img 
-                  src={logoImage} 
-                  alt="The Traveling Church" 
-                  className="h-11 w-auto object-contain"
-                  data-testid="img-logo"
-                />
-              </div>
-              <CardTitle className="text-2xl" data-testid="heading-sign-in">
-                Welcome
+              <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">
+                Welcome to Vagabond Bible
               </CardTitle>
               <CardDescription className="text-base">
-                Sign in or create an account to access AI Bible Buddy
+                Sign in or create an account to start your journey
               </CardDescription>
             </CardHeader>
 
@@ -299,10 +303,10 @@ export default function Login() {
                 </TabsContent>
                 
                 <TabsContent value="signup" className="space-y-4 mt-4">
-                  <div className="bg-primary/5 rounded-lg p-3 border border-primary/20 mb-4">
+                  <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-3 border border-[hsl(25,35%,45%)]/20 mb-4">
                     <p className="text-sm flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-primary" />
-                      Get 10 free AI Bible Buddy messages when you sign up!
+                      <Sparkles className="w-4 h-4 text-[hsl(25,35%,45%)]" />
+                      Get 10 free messages when you sign up!
                     </p>
                   </div>
                   
@@ -406,7 +410,9 @@ export default function Login() {
         </div>
       </main>
 
-      <Footer />
+      <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
+        <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

@@ -8,8 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest } from "@/lib/queryClient";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
+import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 
 interface SubscriptionStatus {
   subscription: {
@@ -37,7 +36,7 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    document.title = "My Profile | The Traveling Church";
+    document.title = "My Profile | Vagabond Bible";
   }, []);
 
   const handleManageSubscription = async () => {
@@ -55,12 +54,23 @@ export default function Profile() {
     }
   };
 
+  const VagabondHeader = () => (
+    <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-center">
+        <Link href="/vagabond-bible" className="flex items-center gap-2">
+          <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
+          <span className="font-heading text-xl font-bold text-[hsl(20,10%,20%)]">Vagabond Bible</span>
+        </Link>
+      </div>
+    </header>
+  );
+
   if (isAuthLoading) {
     return (
-      <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
-        <Navigation />
+      <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
+        <VagabondHeader />
         <main className="flex-1 flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <Loader2 className="w-8 h-8 animate-spin text-[hsl(25,35%,45%)]" />
         </main>
       </div>
     );
@@ -68,23 +78,23 @@ export default function Profile() {
 
   if (!isAuthenticated) {
     return (
-      <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
-        <Navigation />
+      <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
+        <VagabondHeader />
         <main className="flex-1 pt-5 pb-16">
           <div className="max-w-2xl mx-auto px-4 md:px-8">
             <Link
-              href="/"
-              className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
+              href="/vagabond-bible"
+              className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
               data-testid="link-back-home"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              Back to Vagabond Bible
             </Link>
 
-            <Card>
+            <Card className="border-[hsl(30,20%,88%)]">
               <CardHeader className="text-center">
-                <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <User className="w-8 h-8 text-primary" />
+                <div className="mx-auto w-16 h-16 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center mb-4">
+                  <User className="w-8 h-8 text-[hsl(25,35%,45%)]" />
                 </div>
                 <CardTitle data-testid="heading-login-required">Sign In Required</CardTitle>
                 <CardDescription>
@@ -93,7 +103,7 @@ export default function Profile() {
               </CardHeader>
               <CardContent className="flex justify-center">
                 <Link href="/login?redirect=/profile">
-                  <Button data-testid="button-login">
+                  <Button className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)]" data-testid="button-login">
                     Sign In to Continue
                   </Button>
                 </Link>
@@ -101,7 +111,9 @@ export default function Profile() {
             </Card>
           </div>
         </main>
-        <Footer />
+        <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
+          <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+        </footer>
       </div>
     );
   }
@@ -111,18 +123,18 @@ export default function Profile() {
   const isCancelling = subscription?.cancel_at_period_end;
 
   return (
-    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
-      <Navigation />
+    <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
+      <VagabondHeader />
 
       <main className="flex-1 pt-5 pb-16">
         <div className="max-w-2xl mx-auto px-4 md:px-8">
           <Link
-            href="/"
-            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors"
+            href="/vagabond-bible"
+            className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
             data-testid="link-back-home"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
+            Back to Vagabond Bible
           </Link>
 
           <div className="space-y-6">
@@ -152,7 +164,7 @@ export default function Profile() {
                   )}
                   <div>
                     <h2 className="text-xl font-semibold" data-testid="text-user-name">
-                      {user?.firstName || user?.username || "User"}
+                      {user?.firstName || "User"}
                       {user?.lastName ? ` ${user.lastName}` : ""}
                     </h2>
                     <div className="flex items-center gap-2 text-muted-foreground">
@@ -269,11 +281,11 @@ export default function Profile() {
                         Upgrade to Pro
                       </h3>
                       <p className="text-sm text-muted-foreground mb-3">
-                        Get unlimited AI Bible Buddy conversations and exclusive features for $9.99/month.
+                        Get unlimited conversations and exclusive features for $9.99/month.
                       </p>
                       <Link href="/pastor-chat">
-                        <Button size="sm" data-testid="button-upgrade">
-                          Try AI Bible Buddy
+                        <Button size="sm" className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)]" data-testid="button-upgrade">
+                          Try Vagabond Bible
                         </Button>
                       </Link>
                     </div>
@@ -285,7 +297,9 @@ export default function Profile() {
         </div>
       </main>
 
-      <Footer />
+      <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
+        <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

@@ -7,9 +7,10 @@ import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 interface NavigationProps {
   customLogo?: string;
+  showAuth?: boolean;
 }
 
-export default function Navigation({ customLogo }: NavigationProps = {}) {
+export default function Navigation({ customLogo, showAuth = false }: NavigationProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
@@ -113,45 +114,49 @@ export default function Navigation({ customLogo }: NavigationProps = {}) {
               )
             ))}
             
-            {/* Auth Buttons */}
-            {isAuthLoading ? (
-              <div className="ml-2 pl-4 border-l border-border">
-                <div className="h-8 w-20 bg-muted animate-pulse rounded" />
-              </div>
-            ) : isAuthenticated ? (
-              <div className="flex items-center gap-3 ml-2 pl-4 border-l border-border">
-                <Link
-                  href="/profile"
-                  className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
-                  data-testid="link-profile"
-                >
-                  <User className="w-4 h-4" />
-                  {user?.firstName || 'User'}
-                </Link>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => logout()}
-                  data-testid="button-logout"
-                >
-                  <LogOut className="w-4 h-4 mr-1" />
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
-                <Button
-                  type="button"
-                  variant="default"
-                  size="sm"
-                  className="ml-2"
-                  data-testid="button-login"
-                >
-                  <LogIn className="w-4 h-4 mr-1" />
-                  Login
-                </Button>
-              </Link>
+            {/* Auth Buttons - only shown when showAuth is true */}
+            {showAuth && (
+              <>
+                {isAuthLoading ? (
+                  <div className="ml-2 pl-4 border-l border-border">
+                    <div className="h-8 w-20 bg-muted animate-pulse rounded" />
+                  </div>
+                ) : isAuthenticated ? (
+                  <div className="flex items-center gap-3 ml-2 pl-4 border-l border-border">
+                    <Link
+                      href="/profile"
+                      className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
+                      data-testid="link-profile"
+                    >
+                      <User className="w-4 h-4" />
+                      {user?.firstName || 'User'}
+                    </Link>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => logout()}
+                      data-testid="button-logout"
+                    >
+                      <LogOut className="w-4 h-4 mr-1" />
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
+                    <Button
+                      type="button"
+                      variant="default"
+                      size="sm"
+                      className="ml-2"
+                      data-testid="button-login"
+                    >
+                      <LogIn className="w-4 h-4 mr-1" />
+                      Login
+                    </Button>
+                  </Link>
+                )}
+              </>
             )}
           </div>
 
@@ -197,46 +202,48 @@ export default function Navigation({ customLogo }: NavigationProps = {}) {
                 )
               ))}
               
-              {/* Mobile Auth Buttons */}
-              <div className="mt-3 pt-3 border-t border-border">
-                {isAuthLoading ? (
-                  <div className="h-10 w-full bg-muted animate-pulse rounded" />
-                ) : isAuthenticated ? (
-                  <div className="flex flex-col gap-2">
-                    <Link
-                      href="/profile"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2 px-3 py-2 transition-colors"
-                      data-testid="link-mobile-profile"
-                    >
-                      <User className="w-4 h-4" />
-                      {user?.firstName || 'User'} - My Profile
+              {/* Mobile Auth Buttons - only shown when showAuth is true */}
+              {showAuth && (
+                <div className="mt-3 pt-3 border-t border-border">
+                  {isAuthLoading ? (
+                    <div className="h-10 w-full bg-muted animate-pulse rounded" />
+                  ) : isAuthenticated ? (
+                    <div className="flex flex-col gap-2">
+                      <Link
+                        href="/profile"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2 px-3 py-2 transition-colors"
+                        data-testid="link-mobile-profile"
+                      >
+                        <User className="w-4 h-4" />
+                        {user?.firstName || 'User'} - My Profile
+                      </Link>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="w-full justify-start"
+                        onClick={() => logout()}
+                        data-testid="button-mobile-logout"
+                      >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        Logout
+                      </Button>
+                    </div>
+                  ) : (
+                    <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
+                      <Button
+                        type="button"
+                        variant="default"
+                        className="w-full"
+                        data-testid="button-mobile-login"
+                      >
+                        <LogIn className="w-4 h-4 mr-2" />
+                        Login
+                      </Button>
                     </Link>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="w-full justify-start"
-                      onClick={() => logout()}
-                      data-testid="button-mobile-logout"
-                    >
-                      <LogOut className="w-4 h-4 mr-2" />
-                      Logout
-                    </Button>
-                  </div>
-                ) : (
-                  <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
-                    <Button
-                      type="button"
-                      variant="default"
-                      className="w-full"
-                      data-testid="button-mobile-login"
-                    >
-                      <LogIn className="w-4 h-4 mr-2" />
-                      Login
-                    </Button>
-                  </Link>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
