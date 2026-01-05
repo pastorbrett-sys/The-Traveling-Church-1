@@ -154,10 +154,9 @@ export default function Login() {
     return (
       <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
         <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-          <div className="max-w-7xl mx-auto px-4 flex items-center justify-center">
-            <Link href="/vagabond-bible" className="flex items-center gap-2">
+          <div className="max-w-7xl mx-auto px-4 flex items-center">
+            <Link href="/vagabond-bible" className="flex items-center">
               <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-              <span className="font-heading text-xl font-bold text-[hsl(20,10%,20%)]">Vagabond Bible</span>
             </Link>
           </div>
         </header>
@@ -175,10 +174,9 @@ export default function Login() {
   return (
     <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
       <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center">
-          <Link href="/vagabond-bible" className="flex items-center gap-2">
+        <div className="max-w-7xl mx-auto px-4 flex items-center">
+          <Link href="/vagabond-bible" className="flex items-center">
             <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-            <span className="font-heading text-xl font-bold text-[hsl(20,10%,20%)]">Vagabond Bible</span>
           </Link>
         </div>
       </header>
@@ -187,6 +185,9 @@ export default function Login() {
         <div className="max-w-md mx-auto px-4 w-full">
           <Card className="border-2 border-[hsl(30,20%,88%)]">
             <CardHeader className="text-center pb-2">
+              <div className="flex justify-center mb-4">
+                <img src={vagabondLogo} alt="Vagabond Bible" className="h-16 w-auto" />
+              </div>
               <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">
                 Welcome to Vagabond Bible
               </CardTitle>
