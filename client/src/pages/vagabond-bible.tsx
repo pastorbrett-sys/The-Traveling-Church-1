@@ -252,10 +252,12 @@ export default function VagabondBible() {
           <p className="text-white/90 text-xl mb-10">
             Try Vagabond Bible AI free. No credit card required.
           </p>
-          <Button size="lg" className="bg-white text-[hsl(25,35%,45%)] hover:bg-white/90 text-lg px-12 rounded-full" data-testid="button-try-free">
-            <Sparkles className="w-5 h-5 mr-2" />
-            Try It Free
-          </Button>
+          <Link href="/pastor-chat">
+            <Button size="lg" className="bg-white text-[hsl(25,35%,45%)] hover:bg-white/90 hover:scale-105 transition-all duration-200 text-lg px-12 rounded-full" data-testid="button-try-free">
+              <Sparkles className="w-5 h-5 mr-2" />
+              Try It Free
+            </Button>
+          </Link>
         </div>
       </section>
       <footer id="contact" className="py-16 bg-[hsl(30,20%,97%)] border-t border-[hsl(30,20%,88%)]">
