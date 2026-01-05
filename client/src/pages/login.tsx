@@ -302,7 +302,7 @@ export default function Login() {
                   <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-3 border border-[hsl(25,35%,45%)]/20 mb-4">
                     <p className="text-sm flex items-center gap-2">
                       <Sparkles className="w-4 h-4 text-[hsl(25,35%,45%)]" />
-                      Get 10 free messages when you sign up!
+                      Free to Sign up!
                     </p>
                   </div>
                   
