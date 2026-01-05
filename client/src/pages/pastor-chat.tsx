@@ -650,15 +650,29 @@ export default function PastorChat() {
                   return <WelcomeMessage key="welcome-message" />;
                 }
                 
+                const staggerDelay = index < 3 ? index * 0.2 : 0;
+                
                 return (
                   <motion.div
                     key={`${message.role}-${index}-${message.content.slice(0, 20)}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    initial={{ opacity: 0, y: 15, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ 
+                      duration: 0.35, 
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: staggerDelay,
+                    }}
                     className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
-                    <div
+                    <motion.div
+                      initial={{ scale: 0.92 }}
+                      animate={{ scale: 1 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 350, 
+                        damping: 22,
+                        delay: staggerDelay + 0.05,
+                      }}
                       className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                         message.role === "user"
                           ? "bg-primary text-primary-foreground"
@@ -673,7 +687,7 @@ export default function PastorChat() {
                           <ReactMarkdown>{message.content}</ReactMarkdown>
                         </div>
                       )}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 );
               })}
