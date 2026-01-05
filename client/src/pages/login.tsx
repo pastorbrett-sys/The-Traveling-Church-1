@@ -180,7 +180,6 @@ export default function Login() {
           </Link>
         </div>
       </header>
-
       <main className="flex-1 py-12 flex items-center justify-center">
         <div className="max-w-md mx-auto px-4 w-full">
           <Card className="border-2 border-[hsl(30,20%,88%)]">
@@ -191,9 +190,7 @@ export default function Login() {
               <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">
                 Welcome to Vagabond Bible
               </CardTitle>
-              <CardDescription className="text-base">
-                Sign in or create an account to start your journey
-              </CardDescription>
+              <CardDescription className="text-base">Sign in or create an account</CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4 pt-4">
@@ -410,7 +407,6 @@ export default function Login() {
           </Card>
         </div>
       </main>
-
       <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
         <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
       </footer>
