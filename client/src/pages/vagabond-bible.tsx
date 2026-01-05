@@ -185,9 +185,9 @@ export default function VagabondBible() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 text-[hsl(20,10%,20%)]">
+              <div className="font-heading text-[38px] sm:text-4xl lg:text-5xl font-semibold mb-6 text-[hsl(20,10%,20%)]">
                 Faith Meets the <span className="text-[hsl(25,35%,45%)]">Open Road</span>
-              </h2>
+              </div>
               <p className="text-[hsl(20,10%,35%)] text-lg mb-6 leading-relaxed">
                 Vagabond Bible AI was born from a simple truth: your spiritual journey shouldn't stop 
                 just because you're on one. Whether you're a digital nomad, van-lifer, backpacker, 
