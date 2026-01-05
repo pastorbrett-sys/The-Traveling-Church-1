@@ -236,7 +236,7 @@ export function registerChatRoutes(app: Express): void {
         return res.status(400).json({ error: "Invalid conversation ID" });
       }
 
-      const { question, answer } = req.body;
+      const { question, answer, followUp } = req.body;
       if (typeof question !== "string" || typeof answer !== "string") {
         return res.status(400).json({ error: "Question and answer are required" });
       }
@@ -244,6 +244,11 @@ export function registerChatRoutes(app: Express): void {
       // Save both messages to the database
       await chatStorage.createMessage(conversationId, "user", question.trim());
       await chatStorage.createMessage(conversationId, "assistant", answer.trim());
+      
+      // Save follow-up message if provided (for book synopsis feature)
+      if (typeof followUp === "string" && followUp.trim()) {
+        await chatStorage.createMessage(conversationId, "assistant", followUp.trim());
+      }
 
       res.json({ success: true });
     } catch (error) {

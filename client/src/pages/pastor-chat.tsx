@@ -82,6 +82,7 @@ export default function PastorChat() {
   const tabParam = urlParams.get("tab");
   const seedQuestion = urlParams.get("seedQuestion");
   const seedAnswer = urlParams.get("seedAnswer");
+  const seedFollowUp = urlParams.get("seedFollowUp");
   const upgradeParam = urlParams.get("upgrade");
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
@@ -195,60 +196,66 @@ export default function PastorChat() {
         const convId = newConv.id;
         setCurrentConversationId(convId);
         
-        // Set initial messages locally
+        // Set initial messages locally (include followUp if provided)
         const initialMessages: ChatMessage[] = [
           { role: "user", content: seedQuestion },
           { role: "assistant", content: seedAnswer },
         ];
+        if (seedFollowUp) {
+          initialMessages.push({ role: "assistant", content: seedFollowUp });
+        }
         setMessages(initialMessages);
         
         // Save the seeded messages to the server
         await apiRequest("POST", `/api/conversations/${convId}/seed`, {
           question: seedQuestion,
           answer: seedAnswer,
+          followUp: seedFollowUp || undefined,
         });
         
-        // Now generate a follow-up prompt from Pastor Brett
-        setIsStreaming(true);
-        const followUpRes = await fetch(`/api/conversations/${convId}/follow-up`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: seedQuestion, answer: seedAnswer }),
-          credentials: "include",
-        });
-        
-        if (followUpRes.ok && followUpRes.body) {
-          const reader = followUpRes.body.getReader();
-          const decoder = new TextDecoder();
-          let followUpContent = "";
+        // Only generate a follow-up if one wasn't provided
+        if (!seedFollowUp) {
+          setIsStreaming(true);
+          const followUpRes = await fetch(`/api/conversations/${convId}/follow-up`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question: seedQuestion, answer: seedAnswer }),
+            credentials: "include",
+          });
           
-          // Add empty assistant message for the follow-up
-          setMessages(prev => [...prev, { role: "assistant", content: "" }]);
-          
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
+          if (followUpRes.ok && followUpRes.body) {
+            const reader = followUpRes.body.getReader();
+            const decoder = new TextDecoder();
+            let followUpContent = "";
             
-            const chunk = decoder.decode(value);
-            const lines = chunk.split("\n");
+            // Add empty assistant message for the follow-up
+            setMessages(prev => [...prev, { role: "assistant", content: "" }]);
             
-            for (const line of lines) {
-              if (line.startsWith("data: ")) {
-                try {
-                  const data = JSON.parse(line.slice(6));
-                  if (data.content) {
-                    followUpContent += data.content;
-                    setMessages(prev => {
-                      const newMessages = [...prev];
-                      newMessages[newMessages.length - 1] = {
-                        role: "assistant",
-                        content: followUpContent,
-                      };
-                      return newMessages;
-                    });
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+              
+              const chunk = decoder.decode(value);
+              const lines = chunk.split("\n");
+              
+              for (const line of lines) {
+                if (line.startsWith("data: ")) {
+                  try {
+                    const data = JSON.parse(line.slice(6));
+                    if (data.content) {
+                      followUpContent += data.content;
+                      setMessages(prev => {
+                        const newMessages = [...prev];
+                        newMessages[newMessages.length - 1] = {
+                          role: "assistant",
+                          content: followUpContent,
+                        };
+                        return newMessages;
+                      });
+                    }
+                  } catch (e) {
+                    if (e instanceof SyntaxError) continue;
                   }
-                } catch (e) {
-                  if (e instanceof SyntaxError) continue;
                 }
               }
             }

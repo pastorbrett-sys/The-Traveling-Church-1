@@ -319,35 +319,54 @@ router.post("/book-synopsis", async (req, res) => {
 
     const question = `Give me a short synopsis of the book of ${bookName} in the Bible.`;
     
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
+    const [synopsisCompletion, followUpCompletion] = await Promise.all([
+      openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
 1. The author and approximate time period
 2. The main theme or purpose
 3. Key events or teachings
 4. Its significance to the overall biblical narrative
 
-Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers.
+Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers. Only provide the synopsis paragraph, nothing else.`
+          },
+          {
+            role: "user",
+            content: question
+          }
+        ],
+        max_tokens: 300,
+        temperature: 0.7,
+      }),
+      openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: `You are a warm Bible study assistant. Generate a single engaging follow-up question about the book of ${bookName} to encourage continued conversation. The question should invite the user to explore a specific theme, character, chapter, or teaching from this book. Only output the question, nothing else.`
+          },
+          {
+            role: "user",
+            content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.`
+          }
+        ],
+        max_tokens: 100,
+        temperature: 0.7,
+      })
+    ]);
 
-IMPORTANT: After the synopsis paragraph, add a blank line, then write "Synopsis Above ☝️" followed by another blank line, then ask an engaging follow-up question to encourage continued conversation about the book (e.g., "Would you like to explore a specific theme or character from this book?" or "Is there a particular chapter or event you'd like to dive deeper into?").`
-        },
-        {
-          role: "user",
-          content: question
-        }
-      ],
-      max_tokens: 400,
-      temperature: 0.7,
-    });
-
-    const answer = completion.choices[0]?.message?.content || "Unable to generate synopsis at this time.";
+    const synopsis = synopsisCompletion.choices[0]?.message?.content || "Unable to generate synopsis at this time.";
+    const followUpQuestion = followUpCompletion.choices[0]?.message?.content || "Would you like to explore a specific theme or character from this book?";
+    
+    const followUpMessage = `Synopsis Above ☝️\n\n${followUpQuestion}`;
 
     res.json({
       question,
-      answer,
+      answer: synopsis,
+      followUp: followUpMessage,
       bookName,
     });
   } catch (error) {

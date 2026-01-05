@@ -652,6 +652,9 @@ Reference: ${verseRef} (${translation})`;
           seedQuestion: data.question,
           seedAnswer: data.answer,
         });
+        if (data.followUp) {
+          params.set("seedFollowUp", data.followUp);
+        }
         navigate(`/pastor-chat?${params.toString()}`);
       }
     } catch (error) {
