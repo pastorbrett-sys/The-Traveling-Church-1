@@ -72,7 +72,7 @@ export default function VagabondBible() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-2xl text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/20">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/20 scale-[0.94]">
               <span className="text-[hsl(35,65%,55%)]">★</span>
               <span className="text-sm font-medium">Voted #1 Bible App by Experts</span>
             </div>
