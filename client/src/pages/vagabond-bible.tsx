@@ -279,8 +279,8 @@ export default function VagabondBible() {
               <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">Contact</h3>
               <div className="flex items-center gap-2 text-[hsl(20,10%,40%)] mb-3">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:hello@vagabondbible.ai" className="hover:text-[hsl(25,35%,45%)] transition-colors" data-testid="link-email">
-                  hello@vagabondbible.ai
+                <a href="mailto:Pastorbrett@thetravelingchurch.com" className="hover:text-[hsl(25,35%,45%)] transition-colors" data-testid="link-email">
+                  Pastorbrett@thetravelingchurch.com
                 </a>
               </div>
               <p className="text-[hsl(20,10%,50%)] text-sm mt-4">
