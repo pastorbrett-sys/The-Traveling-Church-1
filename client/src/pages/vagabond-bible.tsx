@@ -244,10 +244,12 @@ export default function VagabondBible() {
                 and seekers who are exploring faith on the move. Share insights, ask questions, 
                 and find your tribe.
               </p>
-              <Button size="lg" className="bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,30%)] text-white rounded-full px-8" data-testid="button-join-community">
-                <Users className="w-5 h-5 mr-2" />
-                Join Our WhatsApp Community
-              </Button>
+              <a href="https://thetravelingchurch.com" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white rounded-full px-8" data-testid="button-join-community">
+                  <Users className="w-5 h-5 mr-2" />
+                  Join The Traveling Church
+                </Button>
+              </a>
             </div>
           </div>
         </div>
