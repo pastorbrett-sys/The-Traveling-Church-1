@@ -18,10 +18,15 @@ export default function VagabondBible() {
           <div className="flex items-center justify-between h-16">
             <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10" data-testid="img-vagabond-logo" />
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-features">Features</a>
-              <a href="#about" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-about">About</a>
-              <a href="#community" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-community">Community</a>
-              <a href="#contact" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-contact">Contact</a>
+              <a href="#features" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-features">Features</a>
+              <a href="#about" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-about">About</a>
+              <a href="#community" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-community">Community</a>
+              <a href="#contact" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-contact">Contact</a>
+              <Link href="/login">
+                <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px]" data-testid="button-login">
+                  Login
+                </Button>
+              </Link>
             </div>
             <button
               className="md:hidden p-2"
@@ -38,10 +43,15 @@ export default function VagabondBible() {
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-[hsl(30,20%,88%)] py-4">
               <div className="flex flex-col gap-4">
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-features-mobile">Features</a>
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-about-mobile">About</a>
-                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-community-mobile">Community</a>
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-contact-mobile">Contact</a>
+                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-features-mobile">Features</a>
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-about-mobile">About</a>
+                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-community-mobile">Community</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-contact-mobile">Contact</a>
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px]" data-testid="button-login-mobile">
+                    Login
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
