@@ -90,9 +90,9 @@ export default function VagabondBible() {
                 </Button>
               </Link>
               <Link href="/pastor-chat?tab=chat">
-                <Button size="lg" variant="ghost" className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[18px] pr-[18px] text-[16px]" data-testid="button-chat-pastor">
+                <Button size="lg" variant="ghost" className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px]" data-testid="button-chat-pastor">
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  Chat with Pastor AI
+                  Pastor Brett
                 </Button>
               </Link>
             </div>
