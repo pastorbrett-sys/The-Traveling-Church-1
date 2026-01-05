@@ -9,6 +9,7 @@ import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
 import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
+import burstIcon from "@assets/Burst_1767600505667.png";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -226,8 +227,9 @@ export default function VagabondBible() {
       <section id="community" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 relative">
               <img src={campfireImage} alt="Community around campfire" className="rounded-2xl shadow-xl" />
+              <img src={burstIcon} alt="" className="absolute -top-8 -left-8 sm:-top-10 sm:-left-10 w-20 h-20 sm:w-24 sm:h-24" />
             </div>
             <div className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 bg-[hsl(35,65%,55%)]/10 text-[hsl(35,65%,45%)] px-4 py-2 rounded-full mb-6">
