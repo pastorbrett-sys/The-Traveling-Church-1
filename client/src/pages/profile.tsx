@@ -107,14 +107,14 @@ export default function Profile() {
         <VagabondHeader />
         <main className="flex-1 pt-5 pb-16">
           <div className="max-w-2xl mx-auto px-4 md:px-8">
-            <Link
-              href="/vagabond-bible"
+            <button
+              onClick={() => window.history.back()}
               className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
               data-testid="link-back-home"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Vagabond Bible
-            </Link>
+              Back
+            </button>
 
             <Card className="border-[hsl(30,20%,88%)]">
               <CardHeader className="text-center">
@@ -153,14 +153,14 @@ export default function Profile() {
 
       <main className="flex-1 pt-5 pb-16">
         <div className="max-w-2xl mx-auto px-4 md:px-8">
-          <Link
-            href="/vagabond-bible"
+          <button
+            onClick={() => window.history.back()}
             className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
             data-testid="link-back-home"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Vagabond Bible
-          </Link>
+            Back
+          </button>
 
           <div className="space-y-6">
             <Card>
