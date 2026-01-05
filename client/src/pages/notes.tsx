@@ -132,10 +132,18 @@ export default function Notes() {
 
   const createNoteMutation = useMutation({
     mutationFn: async (data: { content: string; tags: string[] }) => {
-      const res = await apiRequest("POST", "/api/notes/general", data);
+      const res = await fetch("/api/notes/general", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        credentials: "include",
+      });
       if (res.status === 429) {
         const errorData = await res.json();
         throw { status: 429, ...errorData };
+      }
+      if (!res.ok) {
+        throw new Error("Failed to create note");
       }
       return res.json();
     },
@@ -149,10 +157,6 @@ export default function Notes() {
     onError: (error: any) => {
       if (error?.status === 429) {
         setUpgradeDialogOpen(true);
-        toast({ 
-          title: "Note limit reached", 
-          description: "Upgrade to Pro for unlimited notes",
-        });
         return;
       }
       toast({ title: error.message || "Failed to create note", variant: "destructive" });

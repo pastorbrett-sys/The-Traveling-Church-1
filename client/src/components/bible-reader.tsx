@@ -397,10 +397,18 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       chapter: number;
       verse: number;
     }) => {
-      const res = await apiRequest("POST", "/api/notes", data);
+      const res = await fetch("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        credentials: "include",
+      });
       if (res.status === 429) {
         const errorData = await res.json();
         throw { status: 429, ...errorData };
+      }
+      if (!res.ok) {
+        throw new Error("Failed to save note");
       }
       return res.json();
     },
@@ -431,10 +439,6 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         setUpgradeFeature("notes");
         setUpgradeResetAt(null);
         setUpgradeDialogOpen(true);
-        toast({ 
-          title: "Note limit reached", 
-          description: "Upgrade to Pro for unlimited notes",
-        });
         return;
       }
       toast({ title: "Failed to save note", variant: "destructive" });
