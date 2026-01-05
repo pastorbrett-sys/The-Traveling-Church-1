@@ -36,15 +36,11 @@ interface UsageSummary {
   book_synopsis: UsageItem;
   verse_insight: UsageItem;
   notes: UsageItem;
+  chat_message: UsageItem;
   resetAt: string;
   isPro: boolean;
 }
 
-interface ChatSessionStats {
-  messageCount: number;
-  isPro: boolean;
-  limit: number;
-}
 
 export default function Profile() {
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
@@ -64,12 +60,6 @@ export default function Profile() {
     staleTime: 0,
   });
 
-  const { data: chatStats } = useQuery<ChatSessionStats>({
-    queryKey: ["/api/chat/session-stats"],
-    retry: false,
-    refetchOnMount: "always",
-    staleTime: 0,
-  });
 
   useEffect(() => {
     document.title = "My Profile | Vagabond Bible";
@@ -354,31 +344,14 @@ export default function Profile() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between py-2" data-testid="usage-row-chat_messages">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center">
-                          <MessagesSquare className="w-4 h-4 text-[hsl(25,35%,45%)]" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm">Pastor Chat Messages</p>
-                          <p className="text-xs text-muted-foreground">AI pastoral conversations</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        {(usageSummary?.isPro || chatStats?.isPro) ? (
-                          <Badge variant="outline" className="border-[hsl(25,35%,45%)] text-[hsl(25,35%,45%)]" data-testid="badge-unlimited-chat">
-                            <Infinity className="w-3 h-3 mr-1" />
-                            Unlimited
-                          </Badge>
-                        ) : (
-                          <span className="text-sm font-medium" data-testid="text-usage-chat">
-                            {chatStats ? (chatStats.limit - chatStats.messageCount) : 10} of {chatStats?.limit ?? 10}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    
                     {[
+                      { 
+                        key: 'chat_message', 
+                        label: 'Pastor Chat Messages', 
+                        icon: MessagesSquare,
+                        data: usageSummary?.chat_message,
+                        description: 'AI pastoral conversations'
+                      },
                       { 
                         key: 'smart_search', 
                         label: 'Smart Searches', 

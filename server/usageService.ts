@@ -14,6 +14,7 @@ export interface UsageSummary {
   book_synopsis: { used: number; limit: number; remaining: number };
   verse_insight: { used: number; limit: number; remaining: number };
   notes: { used: number; limit: number; remaining: number };
+  chat_message: { used: number; limit: number; remaining: number };
   resetAt: string;
   isPro: boolean;
 }
@@ -96,6 +97,7 @@ export async function getUsageSummary(userId: string, isPro: boolean): Promise<U
       book_synopsis: { used: 0, limit: Infinity, remaining: Infinity },
       verse_insight: { used: 0, limit: Infinity, remaining: Infinity },
       notes: { used: 0, limit: Infinity, remaining: Infinity },
+      chat_message: { used: 0, limit: Infinity, remaining: Infinity },
       resetAt: getNextMonthStart().toISOString(),
       isPro: true,
     };
@@ -126,6 +128,11 @@ export async function getUsageSummary(userId: string, isPro: boolean): Promise<U
       used: noteCount,
       limit: FEATURE_LIMITS.notes,
       remaining: Math.max(0, FEATURE_LIMITS.notes - noteCount),
+    },
+    chat_message: {
+      used: featureUsage.chat_message,
+      limit: FEATURE_LIMITS.chat_message,
+      remaining: Math.max(0, FEATURE_LIMITS.chat_message - featureUsage.chat_message),
     },
     resetAt: getNextMonthStart().toISOString(),
     isPro: false,

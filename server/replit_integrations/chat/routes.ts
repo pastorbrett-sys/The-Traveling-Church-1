@@ -93,8 +93,19 @@ export function registerChatRoutes(app: Express): void {
     const isSessionPro = isProSession(sessionId);
     const isPro = isUserPro || isSessionPro;
     
+    // Get database-backed usage count for authenticated users
+    let messageCount = 0;
+    const userId = (req as any).firebaseUid || (req.session as any)?.userId;
+    if (userId) {
+      const user = await storage.getUser(userId);
+      if (user) {
+        const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
+        messageCount = usageResult.currentUsage;
+      }
+    }
+    
     res.json({
-      messageCount: getSessionMessageCount(sessionId),
+      messageCount,
       isPro,
       limit: FREE_MESSAGE_LIMIT,
     });
@@ -202,24 +213,37 @@ export function registerChatRoutes(app: Express): void {
       const conversation = await chatStorage.getConversation(conversationId, sessionId);
       const isVerseInsight = conversation?.title?.startsWith("Insight:");
       
-      const messageCount = getSessionMessageCount(sessionId);
       const isUserPro = await checkUserProStatus(req);
       const isSessionPro = isProSession(sessionId);
       const isPro = isUserPro || isSessionPro;
       
+      // Get authenticated user for database-backed usage tracking
+      const userId = (req as any).firebaseUid || (req.session as any)?.userId;
+      
       // Only enforce chat message limit for regular chat, not verse insights
-      if (!isPro && !isVerseInsight && messageCount >= FREE_MESSAGE_LIMIT) {
-        return res.status(402).json({ 
-          error: "Message limit reached", 
-          code: "LIMIT_REACHED",
-          messageCount,
-          limit: FREE_MESSAGE_LIMIT,
-        });
+      if (!isPro && !isVerseInsight && userId) {
+        const user = await storage.getUser(userId);
+        if (user) {
+          const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
+          if (!usageResult.allowed) {
+            return res.status(429).json({ 
+              error: "Message limit reached", 
+              code: "LIMIT_REACHED",
+              feature: "chat_message",
+              messageCount: usageResult.currentUsage,
+              limit: usageResult.limit,
+              resetAt: usageResult.resetAt,
+            });
+          }
+        }
       }
 
-      // Only increment chat count for regular chat conversations
-      if (!isPro && !isVerseInsight) {
-        incrementSessionMessageCount(sessionId);
+      // Only increment chat count for regular chat conversations (database-backed)
+      if (!isPro && !isVerseInsight && userId) {
+        const user = await storage.getUser(userId);
+        if (user) {
+          await incrementUsage(user.id, "chat_message", isPro);
+        }
       }
 
       await chatStorage.createMessage(conversationId, "user", content.trim());

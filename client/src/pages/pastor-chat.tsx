@@ -442,8 +442,8 @@ export default function PastorChat() {
         credentials: "include",
       });
 
-      // Handle payment required (message limit reached)
-      if (response.status === 402) {
+      // Handle payment required (message limit reached) - check both 402 and 429
+      if (response.status === 402 || response.status === 429) {
         const errorData = await response.json();
         if (errorData.code === "LIMIT_REACHED") {
           setShowPaywall(true);

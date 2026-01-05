@@ -297,6 +297,7 @@ export class DbStorage implements IStorage {
       smart_search: 0,
       book_synopsis: 0,
       verse_insight: 0,
+      chat_message: 0,
     };
 
     for (const record of results) {
