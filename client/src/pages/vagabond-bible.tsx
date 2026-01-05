@@ -8,6 +8,7 @@ import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
+import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -214,7 +215,7 @@ export default function VagabondBible() {
             </div>
             <div className="relative">
               <img src={camperImage} alt="Person studying in camper van" className="rounded-2xl shadow-xl" />
-              <img src={ladderIcon} alt="" className="absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg" />
+              <img src={vagaburstIcon} alt="" className="absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg" />
               <div className="absolute -bottom-6 -left-6 bg-[hsl(25,35%,45%)] text-white p-5 rounded-xl shadow-lg">
                 <p className="font-medium text-lg">"My quiet time, anywhere."</p>
               </div>
