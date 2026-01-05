@@ -37,6 +37,11 @@ export function markSessionAsPro(sessionId: string): void {
 }
 
 function getAuthenticatedUserId(req: any): string | null {
+  // Check for Firebase auth (stored in session)
+  if (req.session?.userId) {
+    return req.session.userId;
+  }
+  // Check for Replit auth (stored via passport)
   if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
     return req.user.claims.sub;
   }
