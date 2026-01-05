@@ -116,6 +116,14 @@ export default function PastorChat() {
     }
   }, [seedQuestion, seedAnswer, lastSeedParams]);
 
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const queryClient = useQueryClient();
+  const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
+
   // Handle upgrade param to show paywall modal
   useEffect(() => {
     if (upgradeParam === "true" && !isAuthLoading) {
@@ -126,14 +134,6 @@ export default function PastorChat() {
       }
     }
   }, [upgradeParam, isAuthenticated, isAuthLoading]);
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const queryClient = useQueryClient();
-  const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
 
   // Fetch session stats from server (for anonymous message counting)
   const { data: sessionStats, refetch: refetchSessionStats } = useQuery<SessionStats>({
