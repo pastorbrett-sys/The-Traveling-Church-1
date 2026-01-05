@@ -100,10 +100,10 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
-      <section id="features" className="py-24 bg-white">
+      <section id="features" className="pt-12 pb-24 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <img src={ladderIcon} alt="Vagabond Icon" className="w-[80px] h-[80px] sm:w-[200px] sm:h-[200px] mx-auto mb-[20px] sm:mb-6" data-testid="img-features-icon" />
+            <img src={ladderIcon} alt="Vagabond Icon" className="w-[80px] h-[80px] sm:w-[200px] sm:h-[200px] mx-auto mb-[35px] sm:mb-6" data-testid="img-features-icon" />
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-[hsl(20,10%,20%)]">Powerful Features for Your Spiritual Journey</h2>
             <p className="text-[hsl(20,10%,40%)] text-lg max-w-2xl mx-auto">
               Everything you need to study, reflect, and grow — designed for life on the move.
