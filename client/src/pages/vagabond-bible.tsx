@@ -7,7 +7,6 @@ import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
-import ladderIcon from "@assets/Ladder_Icon_1_1767598173225.png";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -103,7 +102,6 @@ export default function VagabondBible() {
       <section id="features" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <img src={ladderIcon} alt="Features" className="w-[150px] h-[150px] mx-auto mb-6" />
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-[hsl(20,10%,20%)]">Powerful Features for Your Spiritual Journey</h2>
             <p className="text-[hsl(20,10%,40%)] text-lg max-w-2xl mx-auto">
               Everything you need to study, reflect, and grow — designed for life on the move.
