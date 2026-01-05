@@ -83,14 +83,14 @@ export default function VagabondBible() {
               Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/pastor-chat">
-                <Button size="lg" className="hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px]" data-testid="button-start-reading">
+              <Link href="/pastor-chat" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px]" data-testid="button-start-reading">
                   <BookOpen className="w-5 h-5 mr-2" />
                   Start Reading
                 </Button>
               </Link>
-              <Link href="/pastor-chat?tab=chat">
-                <Button size="lg" variant="ghost" className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px]" data-testid="button-chat-pastor">
+              <Link href="/pastor-chat?tab=chat" className="w-full sm:w-auto">
+                <Button size="lg" variant="ghost" className="w-full sm:w-auto border-[1.5px] border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px]" data-testid="button-chat-pastor">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   AI Pastor
                 </Button>
