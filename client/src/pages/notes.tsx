@@ -41,6 +41,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { motion, AnimatePresence } from "framer-motion";
+import Navigation from "@/components/navigation";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import type { Note } from "@shared/schema";
 
@@ -260,28 +261,9 @@ export default function Notes() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[hsl(30,20%,97%)] text-[hsl(20,10%,25%)] flex flex-col">
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <Link href="/vagabond-bible">
-                <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10" />
-              </Link>
-              <div className="hidden md:flex items-center gap-8">
-                <Link href="/vagabond-bible#features" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">Features</Link>
-                <Link href="/vagabond-bible#about" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">About</Link>
-                <Link href="/vagabond-bible#community" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">Community</Link>
-                <Link href="/vagabond-bible#contact" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">Contact</Link>
-                <Link href="/login">
-                  <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px]">
-                    Login
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <main className="flex-1 flex items-center justify-center pt-16">
+      <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+        <Navigation customLogo={vagabondLogo} hideNavLinks={true} showAuth={true} />
+        <main className="flex-1 flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#c08e00]" />
         </main>
       </div>
@@ -289,29 +271,10 @@ export default function Notes() {
   }
 
   return (
-    <div className="min-h-screen bg-[hsl(30,20%,97%)] text-[hsl(20,10%,25%)] flex flex-col">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/vagabond-bible">
-              <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10" />
-            </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/vagabond-bible#features" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">Features</Link>
-              <Link href="/vagabond-bible#about" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">About</Link>
-              <Link href="/vagabond-bible#community" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">Community</Link>
-              <Link href="/vagabond-bible#contact" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium">Contact</Link>
-              <Link href="/login">
-                <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px]">
-                  Login
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+      <Navigation customLogo={vagabondLogo} hideNavLinks={true} showAuth={true} />
 
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
