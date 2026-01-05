@@ -503,8 +503,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
 
       res.json({ url: session.url });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Portal error:", error);
+      
+      // Handle case where Stripe customer no longer exists
+      if (error?.code === 'resource_missing' && error?.param === 'customer') {
+        // Clear the invalid customer ID from the user record
+        const userId = req.user?.uid || (req.session as any)?.userId;
+        if (userId) {
+          await storage.updateUserStripeInfo(userId, { stripeCustomerId: null, stripeSubscriptionId: null });
+        }
+        return res.status(400).json({ 
+          message: "Your subscription data was reset. Please subscribe again to access premium features.",
+          customerReset: true
+        });
+      }
+      
       res.status(500).json({ message: "Failed to create portal session" });
     }
   });

@@ -46,6 +46,9 @@ export default function Profile() {
       const data = await res.json();
       if (data.url) {
         window.location.href = data.url;
+      } else if (data.customerReset) {
+        // Customer was reset, reload the page to show updated state
+        window.location.reload();
       }
     } catch (error) {
       console.error("Portal error:", error);
