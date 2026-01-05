@@ -41,10 +41,10 @@ export default function VagabondBible() {
               <span className="text-[hsl(35,65%,55%)]">★</span>
               <span className="text-sm font-medium">Voted #1 Bible App by Experts</span>
             </div>
-            <h1 className="font-heading text-[40px] sm:text-5xl lg:text-[68px] mb-6 text-white font-extrabold leading-[0.9] sm:leading-tight">
+            <h1 className="font-heading text-[40px] sm:text-5xl lg:text-[68px] mb-6 text-white font-extrabold leading-[0.97] sm:leading-tight">
               The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
             </h1>
-            <p className="text-[10px] sm:text-xl text-white/90 mb-8 leading-relaxed">
+            <p className="text-[14px] sm:text-xl text-white/90 mb-8 leading-relaxed">
               Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
