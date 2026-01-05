@@ -1132,21 +1132,19 @@ Reference: ${verseRef} (${translation})`;
               {chapter?.book} {selectedChapter}
             </h1>
             {selectedChapter === 1 && selectedBook && (
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 onClick={handleBookSynopsis}
                 disabled={isLoadingBookSynopsis}
-                className="text-[hsl(35,65%,55%)] hover:text-[hsl(35,65%,45%)] hover:bg-[hsl(35,65%,55%)]/10 p-2"
+                className="text-[hsl(35,65%,55%)] hover:text-[hsl(35,65%,45%)] hover:bg-[hsl(35,65%,55%)]/10 p-1 rounded-md transition-colors disabled:opacity-50"
                 title={`Get AI synopsis of ${selectedBook.name}`}
                 data-testid="button-book-synopsis"
               >
                 {isLoadingBookSynopsis ? (
-                  <Loader2 className="w-20 h-20 animate-spin" />
+                  <Loader2 className="w-8 h-8 animate-spin" />
                 ) : (
-                  <Sparkles className="w-20 h-20" />
+                  <Sparkles className="w-8 h-8" />
                 )}
-              </Button>
+              </button>
             )}
           </div>
           <p className="text-sm text-muted-foreground mb-6">{translation}</p>
