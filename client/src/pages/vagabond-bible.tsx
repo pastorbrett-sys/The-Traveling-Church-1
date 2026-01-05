@@ -108,10 +108,10 @@ export default function VagabondBible() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-verse-insights">
+            <Card className="group bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-verse-insights">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <Sparkles className="w-7 h-7 text-[hsl(25,35%,45%)]" />
+                  <Sparkles className="w-7 h-7 text-[hsl(25,35%,45%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">AI Verse Insights</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
@@ -119,10 +119,10 @@ export default function VagabondBible() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-ai-chat">
+            <Card className="group bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-ai-chat">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(35,65%,55%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <MessageCircle className="w-7 h-7 text-[hsl(35,65%,55%)]" />
+                  <MessageCircle className="w-7 h-7 text-[hsl(35,65%,55%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">24/7 Pastor Chat</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
@@ -130,10 +130,10 @@ export default function VagabondBible() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-smart-search">
+            <Card className="group bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-smart-search">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(15,45%,60%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <Search className="w-7 h-7 text-[hsl(15,45%,60%)]" />
+                  <Search className="w-7 h-7 text-[hsl(15,45%,60%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Smart Search</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
@@ -141,10 +141,10 @@ export default function VagabondBible() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-notes">
+            <Card className="group bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-notes">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(35,65%,55%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <Heart className="w-7 h-7 text-[hsl(35,65%,55%)]" />
+                  <Heart className="w-7 h-7 text-[hsl(35,65%,55%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Notes and Journal</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
@@ -152,10 +152,10 @@ export default function VagabondBible() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-bible-reader">
+            <Card className="group bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-bible-reader">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <BookOpen className="w-7 h-7 text-[hsl(25,35%,45%)]" />
+                  <BookOpen className="w-7 h-7 text-[hsl(25,35%,45%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Multi-Translation</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
@@ -163,10 +163,10 @@ export default function VagabondBible() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-offline">
+            <Card className="group bg-white border border-[hsl(30,20%,88%)] shadow-sm hover:shadow-lg transition-shadow rounded-2xl" data-testid="card-feature-offline">
               <CardContent className="p-8">
                 <div className="w-14 h-14 bg-[hsl(15,45%,60%)]/10 rounded-xl flex items-center justify-center mb-5">
-                  <MapPin className="w-7 h-7 text-[hsl(15,45%,60%)]" />
+                  <MapPin className="w-7 h-7 text-[hsl(15,45%,60%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Built for Travelers</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
