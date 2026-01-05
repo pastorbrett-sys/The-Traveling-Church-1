@@ -1142,9 +1142,9 @@ Reference: ${verseRef} (${translation})`;
                 data-testid="button-book-synopsis"
               >
                 {isLoadingBookSynopsis ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-7 h-7 animate-spin" />
                 ) : (
-                  <Sparkles className="w-5 h-5" />
+                  <Sparkles className="w-7 h-7" />
                 )}
               </Button>
             )}
