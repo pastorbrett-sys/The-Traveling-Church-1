@@ -49,7 +49,7 @@ export default function VagabondBible() {
               Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)] text-white text-lg px-8 rounded-full" data-testid="button-start-reading">
+              <Button size="lg" className="hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[23px] pr-[23px] text-[16px]" data-testid="button-start-reading">
                 <BookOpen className="w-5 h-5 mr-2" />
                 Start Reading
               </Button>
