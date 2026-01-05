@@ -254,7 +254,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
-      <section className="py-24 bg-gradient-to-br from-[hsl(25,35%,45%)] to-[hsl(25,35%,38%)]">
+      <section className="py-24 from-[hsl(25,35%,45%)] to-[hsl(25,35%,38%)] text-[#d79942] bg-[#d79942]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 text-white">Ready to Start Your Journey?</h2>
           <p className="text-white/90 text-xl mb-10">
