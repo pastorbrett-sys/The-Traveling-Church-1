@@ -323,7 +323,7 @@ export default function Profile() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2" data-testid="heading-usage">
                   <Sparkles className="w-5 h-5" />
-                  AI Usage
+                  AI Credits Remaining
                 </CardTitle>
                 <CardDescription>
                   {usageSummary?.isPro 
@@ -387,7 +387,7 @@ export default function Profile() {
                             </Badge>
                           ) : (
                             <span className="text-sm font-medium" data-testid={`text-usage-${key}`}>
-                              {data?.remaining ?? 0} of {data?.limit ?? 0} remaining
+                              {data?.remaining ?? 0} of {data?.limit ?? 0}
                             </span>
                           )}
                         </div>
