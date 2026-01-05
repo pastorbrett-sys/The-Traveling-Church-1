@@ -101,6 +101,7 @@ export default function PastorChat() {
   });
   const [isSeeding, setIsSeeding] = useState(false);
   const [hasSeeded, setHasSeeded] = useState(false);
+  const [animateFromIndex, setAnimateFromIndex] = useState<number>(Infinity); // Only animate messages at or after this index
   
   // Track the seed params to detect when they change (for same-page navigation)
   const [lastSeedParams, setLastSeedParams] = useState<string | null>(null);
@@ -177,6 +178,8 @@ export default function PastorChat() {
               content: m.content,
             }));
             setMessages(restoredMessages);
+            // Don't animate restored messages
+            setAnimateFromIndex(restoredMessages.length);
           }
         })
         .catch(err => console.error("Failed to restore conversation:", err));
@@ -203,6 +206,11 @@ export default function PastorChat() {
         ];
         if (seedFollowUp) {
           initialMessages.push({ role: "assistant", content: seedFollowUp });
+          // Only animate the last message (the follow-up)
+          setAnimateFromIndex(2);
+        } else {
+          // No follow-up yet, don't animate any seeded messages
+          setAnimateFromIndex(2);
         }
         setMessages(initialMessages);
         
@@ -650,12 +658,13 @@ export default function PastorChat() {
                   return <WelcomeMessage key="welcome-message" />;
                 }
                 
+                const shouldAnimate = index >= animateFromIndex;
                 return (
                   <motion.div
                     key={`${message.role}-${index}-${message.content.slice(0, 20)}`}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={shouldAnimate ? { opacity: 0, y: 20 } : false}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    transition={shouldAnimate ? { duration: 0.3, ease: "easeOut" } : { duration: 0 }}
                     className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
