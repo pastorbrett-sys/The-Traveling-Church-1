@@ -310,6 +310,50 @@ router.post("/compare", async (req, res) => {
   }
 });
 
+router.post("/book-synopsis", async (req, res) => {
+  try {
+    const { bookName } = req.body;
+    if (!bookName) {
+      return res.status(400).json({ message: "Book name is required" });
+    }
+
+    const question = `Give me a short synopsis of the book of ${bookName} in the Bible.`;
+    
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
+1. The author and approximate time period
+2. The main theme or purpose
+3. Key events or teachings
+4. Its significance to the overall biblical narrative
+
+Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers.`
+        },
+        {
+          role: "user",
+          content: question
+        }
+      ],
+      max_tokens: 300,
+      temperature: 0.7,
+    });
+
+    const answer = completion.choices[0]?.message?.content || "Unable to generate synopsis at this time.";
+
+    res.json({
+      question,
+      answer,
+      bookName,
+    });
+  } catch (error) {
+    console.error("Error generating book synopsis:", error);
+    res.status(500).json({ message: "Failed to generate book synopsis" });
+  }
+});
+
 router.get("/notes", async (req, res) => {
   try {
     const sessionId = req.cookies?.sessionId;

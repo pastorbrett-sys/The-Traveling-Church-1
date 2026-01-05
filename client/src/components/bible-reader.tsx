@@ -120,6 +120,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [smartSearchResults, setSmartSearchResults] = useState<SmartSearchResponse | null>(null);
   const [isSmartSearching, setIsSmartSearching] = useState(false);
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [isLoadingBookSynopsis, setIsLoadingBookSynopsis] = useState(false);
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const verseRefs = useRef<Map<number, HTMLDivElement>>(new Map());
@@ -635,6 +636,36 @@ Reference: ${verseRef} (${translation})`;
     toast({ title: "Verse copied" });
   };
 
+  const handleBookSynopsis = async () => {
+    if (!selectedBook) return;
+    
+    setIsLoadingBookSynopsis(true);
+    try {
+      const res = await apiRequest("POST", "/api/bible/book-synopsis", {
+        bookName: selectedBook.name,
+      });
+      const data = await res.json();
+      
+      if (data.question && data.answer) {
+        const params = new URLSearchParams({
+          tab: "chat",
+          seedQuestion: data.question,
+          seedAnswer: data.answer,
+        });
+        navigate(`/pastor-chat?${params.toString()}`);
+      }
+    } catch (error) {
+      console.error("Book synopsis error:", error);
+      toast({ 
+        title: "Unable to get synopsis", 
+        description: "Please try again",
+        variant: "destructive" 
+      });
+    } finally {
+      setIsLoadingBookSynopsis(false);
+    }
+  };
+
   const groupedBooks = books?.reduce((acc, book) => {
     const isOT = book.bookid <= 39;
     const key = isOT ? "Old Testament" : "New Testament";
@@ -1096,9 +1127,28 @@ Reference: ${verseRef} (${translation})`;
             ) : null;
           })()}
 
-          <h1 className="text-2xl font-serif font-bold mb-1" data-testid="heading-chapter">
-            {chapter?.book} {selectedChapter}
-          </h1>
+          <div className="flex items-center justify-between mb-1">
+            <h1 className="text-2xl font-serif font-bold" data-testid="heading-chapter">
+              {chapter?.book} {selectedChapter}
+            </h1>
+            {selectedChapter === 1 && selectedBook && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleBookSynopsis}
+                disabled={isLoadingBookSynopsis}
+                className="text-[hsl(35,65%,55%)] hover:text-[hsl(35,65%,45%)] hover:bg-[hsl(35,65%,55%)]/10 p-2"
+                title={`Get AI synopsis of ${selectedBook.name}`}
+                data-testid="button-book-synopsis"
+              >
+                {isLoadingBookSynopsis ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <Sparkles className="w-5 h-5" />
+                )}
+              </Button>
+            )}
+          </div>
           <p className="text-sm text-muted-foreground mb-6">{translation}</p>
 
           {isLoadingChapter ? (
