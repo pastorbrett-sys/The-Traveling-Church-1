@@ -8,9 +8,10 @@ import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 interface NavigationProps {
   customLogo?: string;
   showAuth?: boolean;
+  hideNavLinks?: boolean;
 }
 
-export default function Navigation({ customLogo, showAuth = false }: NavigationProps = {}) {
+export default function Navigation({ customLogo, showAuth = false, hideNavLinks = false }: NavigationProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
@@ -88,7 +89,7 @@ export default function Navigation({ customLogo, showAuth = false }: NavigationP
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4 text-sm">
-            {navItems.map((item) => (
+            {!hideNavLinks && navItems.map((item) => (
               item.type === "link" ? (
                 <Link
                   key={item.id}
@@ -175,7 +176,7 @@ export default function Navigation({ customLogo, showAuth = false }: NavigationP
         {mobileMenuOpen && (
           <div className="lg:hidden fixed left-0 right-0 top-[64px] z-50 bg-background border-b border-border shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
             <div className="flex flex-col gap-3 p-4">
-              {navItems.map((item) => (
+              {!hideNavLinks && navItems.map((item) => (
                 item.type === "link" ? (
                   <Link
                     key={item.id}

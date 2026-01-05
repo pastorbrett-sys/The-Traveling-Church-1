@@ -540,7 +540,7 @@ export default function PastorChat() {
 
   return (
     <div className="bg-background text-foreground antialiased h-screen flex flex-col overflow-hidden">
-      <Navigation customLogo={vagabondLogo} showAuth={true} />
+      <Navigation customLogo={vagabondLogo} showAuth={true} hideNavLinks={true} />
 
       {/* Tab Toggle - stays fixed below nav */}
       <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3">
