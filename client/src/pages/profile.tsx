@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { ArrowLeft, User, Mail, Sparkles, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity } from "lucide-react";
+import { ArrowLeft, User, Mail, Sparkles, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -40,6 +40,12 @@ interface UsageSummary {
   isPro: boolean;
 }
 
+interface ChatSessionStats {
+  messageCount: number;
+  isPro: boolean;
+  limit: number;
+}
+
 export default function Profile() {
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
@@ -53,6 +59,13 @@ export default function Profile() {
   const { data: usageSummary, isLoading: isUsageLoading } = useQuery<UsageSummary>({
     queryKey: ["/api/usage/summary"],
     enabled: isAuthenticated,
+    retry: false,
+    refetchOnMount: "always",
+    staleTime: 0,
+  });
+
+  const { data: chatStats } = useQuery<ChatSessionStats>({
+    queryKey: ["/api/chat/session-stats"],
     retry: false,
     refetchOnMount: "always",
     staleTime: 0,
@@ -341,6 +354,30 @@ export default function Profile() {
                   </div>
                 ) : (
                   <div className="space-y-4">
+                    <div className="flex items-center justify-between py-2" data-testid="usage-row-chat_messages">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center">
+                          <MessagesSquare className="w-4 h-4 text-[hsl(25,35%,45%)]" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm">Pastor Chat Messages</p>
+                          <p className="text-xs text-muted-foreground">AI pastoral conversations</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        {(usageSummary?.isPro || chatStats?.isPro) ? (
+                          <Badge variant="outline" className="border-[hsl(25,35%,45%)] text-[hsl(25,35%,45%)]" data-testid="badge-unlimited-chat">
+                            <Infinity className="w-3 h-3 mr-1" />
+                            Unlimited
+                          </Badge>
+                        ) : (
+                          <span className="text-sm font-medium" data-testid="text-usage-chat">
+                            {chatStats ? (chatStats.limit - chatStats.messageCount) : 10} of {chatStats?.limit ?? 10}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    
                     {[
                       { 
                         key: 'smart_search', 

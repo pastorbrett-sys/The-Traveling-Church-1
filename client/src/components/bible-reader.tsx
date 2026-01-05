@@ -205,7 +205,12 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const performSmartSearch = async (query: string) => {
     setIsSmartSearching(true);
     try {
-      const res = await apiRequest("POST", "/api/bible/smart-search", { query });
+      const res = await fetch("/api/bible/smart-search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+        credentials: "include",
+      });
       if (res.status === 429) {
         const data = await res.json();
         setUpgradeFeature("smart_search");
@@ -213,6 +218,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         setUpgradeDialogOpen(true);
         setSmartSearchResults(null);
         return;
+      }
+      if (!res.ok) {
+        throw new Error("Search failed");
       }
       const data: SmartSearchResponse = await res.json();
       setSmartSearchResults(data);
@@ -682,8 +690,11 @@ Reference: ${verseRef} (${translation})`;
     
     setIsLoadingBookSynopsis(true);
     try {
-      const res = await apiRequest("POST", "/api/bible/book-synopsis", {
-        bookName: selectedBook.name,
+      const res = await fetch("/api/bible/book-synopsis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ bookName: selectedBook.name }),
+        credentials: "include",
       });
       
       if (res.status === 429) {
@@ -692,6 +703,10 @@ Reference: ${verseRef} (${translation})`;
         setUpgradeResetAt(data.resetAt || null);
         setUpgradeDialogOpen(true);
         return;
+      }
+      
+      if (!res.ok) {
+        throw new Error("Failed to get synopsis");
       }
       
       const data = await res.json();

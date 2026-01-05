@@ -196,12 +196,18 @@ export function registerChatRoutes(app: Express): void {
       }
 
       const sessionId = getSessionId(req, res);
+      
+      // Check if this is a verse insight conversation (bypass chat limit for these)
+      const conversation = await chatStorage.getConversation(conversationId, sessionId);
+      const isVerseInsight = conversation?.title?.startsWith("Insight:");
+      
       const messageCount = getSessionMessageCount(sessionId);
       const isUserPro = await checkUserProStatus(req);
       const isSessionPro = isProSession(sessionId);
       const isPro = isUserPro || isSessionPro;
       
-      if (!isPro && messageCount >= FREE_MESSAGE_LIMIT) {
+      // Only enforce chat message limit for regular chat, not verse insights
+      if (!isPro && !isVerseInsight && messageCount >= FREE_MESSAGE_LIMIT) {
         return res.status(402).json({ 
           error: "Message limit reached", 
           code: "LIMIT_REACHED",
@@ -210,7 +216,8 @@ export function registerChatRoutes(app: Express): void {
         });
       }
 
-      if (!isPro) {
+      // Only increment chat count for regular chat conversations
+      if (!isPro && !isVerseInsight) {
         incrementSessionMessageCount(sessionId);
       }
 
