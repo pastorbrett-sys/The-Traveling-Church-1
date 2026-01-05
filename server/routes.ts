@@ -7,7 +7,9 @@ import {
   insertTestimonialSchema,
   insertContactSubmissionSchema,
   insertNoteSchema,
+  FEATURE_LIMITS,
 } from "@shared/schema";
+import { getUsageSummary, checkNotesLimit } from "./usageService";
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
 import { registerChatRoutes } from "./replit_integrations/chat";
@@ -239,11 +241,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/notes", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.userId;
-      const count = await storage.countNotesByUser(userId);
+      const user = await storage.getUser(userId);
+      const isPro = !!user?.stripeSubscriptionId;
+      
+      const limitResult = await checkNotesLimit(userId, isPro);
+      if (!limitResult.allowed) {
+        return res.status(429).json({
+          code: "USAGE_LIMIT_REACHED",
+          feature: "notes",
+          remaining: 0,
+          limit: FEATURE_LIMITS.notes,
+          message: "You've reached your notes limit. Upgrade to Pro for unlimited notes.",
+        });
+      }
       
       const validatedData = insertNoteSchema.parse({ ...req.body, userId });
       const note = await storage.createNote(validatedData);
-      res.status(201).json({ note, count: count + 1 });
+      const count = await storage.countNotesByUser(userId);
+      res.status(201).json({ note, count });
     } catch (error) {
       console.error("Error creating note:", error);
       res.status(400).json({ message: "Invalid note data" });
@@ -259,7 +274,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Note content is required" });
       }
       
-      const count = await storage.countNotesByUser(userId);
+      const user = await storage.getUser(userId);
+      const isPro = !!user?.stripeSubscriptionId;
+      
+      const limitResult = await checkNotesLimit(userId, isPro);
+      if (!limitResult.allowed) {
+        return res.status(429).json({
+          code: "USAGE_LIMIT_REACHED",
+          feature: "notes",
+          remaining: 0,
+          limit: FEATURE_LIMITS.notes,
+          message: "You've reached your notes limit. Upgrade to Pro for unlimited notes.",
+        });
+      }
+      
       const noteData = {
         userId,
         verseRef: "General Note",
@@ -272,10 +300,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
       
       const note = await storage.createNote(noteData);
-      res.status(201).json({ note, count: count + 1 });
+      const count = await storage.countNotesByUser(userId);
+      res.status(201).json({ note, count });
     } catch (error) {
       console.error("Error creating general note:", error);
       res.status(400).json({ message: "Failed to create note" });
+    }
+  });
+
+  // Usage Summary endpoint for Profile page
+  app.get("/api/usage/summary", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const user = await storage.getUser(userId);
+      const isPro = !!user?.stripeSubscriptionId;
+      
+      const summary = await getUsageSummary(userId, isPro);
+      res.json(summary);
+    } catch (error) {
+      console.error("Error fetching usage summary:", error);
+      res.status(500).json({ message: "Failed to fetch usage summary" });
     }
   });
 

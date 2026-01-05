@@ -17,6 +17,8 @@ import type {
   InsertContactSubmission,
   Note,
   InsertNote,
+  FeatureUsage,
+  FeatureUsageType,
 } from "@shared/schema";
 
 neonConfig.webSocketConstructor = ws;
@@ -62,6 +64,11 @@ export interface IStorage {
   deleteNote(id: string, userId: string): Promise<boolean>;
   countNotesByUser(userId: string): Promise<number>;
   searchNotes(userId: string, query: string): Promise<Note[]>;
+
+  // Feature Usage
+  getFeatureUsage(userId: string, feature: FeatureUsageType): Promise<number>;
+  incrementFeatureUsage(userId: string, feature: FeatureUsageType): Promise<number>;
+  getAllFeatureUsage(userId: string): Promise<Record<FeatureUsageType, number>>;
 }
 
 export class DbStorage implements IStorage {
@@ -214,6 +221,91 @@ export class DbStorage implements IStorage {
         )
       )
       .orderBy(desc(schema.notes.createdAt));
+  }
+
+  // Feature Usage
+  private getCurrentPeriodStart(): Date {
+    const now = new Date();
+    return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  }
+
+  async getFeatureUsage(userId: string, feature: FeatureUsageType): Promise<number> {
+    const periodStart = this.getCurrentPeriodStart();
+    const result = await db
+      .select()
+      .from(schema.featureUsage)
+      .where(
+        and(
+          eq(schema.featureUsage.userId, userId),
+          eq(schema.featureUsage.feature, feature),
+          eq(schema.featureUsage.periodStart, periodStart)
+        )
+      )
+      .limit(1);
+    return result[0]?.count ?? 0;
+  }
+
+  async incrementFeatureUsage(userId: string, feature: FeatureUsageType): Promise<number> {
+    const periodStart = this.getCurrentPeriodStart();
+    
+    // Try to get existing record for this period
+    const existing = await db
+      .select()
+      .from(schema.featureUsage)
+      .where(
+        and(
+          eq(schema.featureUsage.userId, userId),
+          eq(schema.featureUsage.feature, feature),
+          eq(schema.featureUsage.periodStart, periodStart)
+        )
+      )
+      .limit(1);
+
+    if (existing[0]) {
+      // Update existing record
+      const newCount = existing[0].count + 1;
+      await db
+        .update(schema.featureUsage)
+        .set({ count: newCount })
+        .where(eq(schema.featureUsage.id, existing[0].id));
+      return newCount;
+    } else {
+      // Create new record for this period
+      await db.insert(schema.featureUsage).values({
+        userId,
+        feature,
+        periodStart,
+        count: 1,
+      });
+      return 1;
+    }
+  }
+
+  async getAllFeatureUsage(userId: string): Promise<Record<FeatureUsageType, number>> {
+    const periodStart = this.getCurrentPeriodStart();
+    const results = await db
+      .select()
+      .from(schema.featureUsage)
+      .where(
+        and(
+          eq(schema.featureUsage.userId, userId),
+          eq(schema.featureUsage.periodStart, periodStart)
+        )
+      );
+
+    const usage: Record<FeatureUsageType, number> = {
+      smart_search: 0,
+      book_synopsis: 0,
+      verse_insight: 0,
+    };
+
+    for (const record of results) {
+      if (record.feature in usage) {
+        usage[record.feature as FeatureUsageType] = record.count;
+      }
+    }
+
+    return usage;
   }
 }
 

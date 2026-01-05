@@ -53,6 +53,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import ReactMarkdown from "react-markdown";
+import { UpgradeDialog } from "@/components/upgrade-dialog";
 
 interface BibleBook {
   bookid: number;
@@ -122,6 +123,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [isLoadingBookSynopsis, setIsLoadingBookSynopsis] = useState(false);
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
+  const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
+  const [upgradeFeature, setUpgradeFeature] = useState<string>("smart_search");
+  const [upgradeResetAt, setUpgradeResetAt] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const verseRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -202,6 +206,14 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     setIsSmartSearching(true);
     try {
       const res = await apiRequest("POST", "/api/bible/smart-search", { query });
+      if (res.status === 429) {
+        const data = await res.json();
+        setUpgradeFeature("smart_search");
+        setUpgradeResetAt(data.resetAt || null);
+        setUpgradeDialogOpen(true);
+        setSmartSearchResults(null);
+        return;
+      }
       const data: SmartSearchResponse = await res.json();
       setSmartSearchResults(data);
     } catch (error) {
@@ -386,6 +398,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       verse: number;
     }) => {
       const res = await apiRequest("POST", "/api/notes", data);
+      if (res.status === 429) {
+        const errorData = await res.json();
+        throw { status: 429, ...errorData };
+      }
       return res.json();
     },
     onSuccess: (data: { note: any; count: number }) => {
@@ -410,7 +426,17 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       }, 600);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
-    onError: () => {
+    onError: (error: any) => {
+      if (error?.status === 429) {
+        setUpgradeFeature("notes");
+        setUpgradeResetAt(null);
+        setUpgradeDialogOpen(true);
+        toast({ 
+          title: "Note limit reached", 
+          description: "Upgrade to Pro for unlimited notes",
+        });
+        return;
+      }
       toast({ title: "Failed to save note", variant: "destructive" });
     },
   });
@@ -484,6 +510,17 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         body: JSON.stringify({ title: `Insight: ${verseRef}` }),
         credentials: "include",
       });
+      
+      if (response.status === 429) {
+        const data = await response.json();
+        setShowInsight(false);
+        setUpgradeFeature("verse_insight");
+        setUpgradeResetAt(data.resetAt || null);
+        setUpgradeDialogOpen(true);
+        setIsLoadingInsight(false);
+        return;
+      }
+      
       if (!response.ok) {
         throw new Error("Failed to create conversation");
       }
@@ -644,6 +681,15 @@ Reference: ${verseRef} (${translation})`;
       const res = await apiRequest("POST", "/api/bible/book-synopsis", {
         bookName: selectedBook.name,
       });
+      
+      if (res.status === 429) {
+        const data = await res.json();
+        setUpgradeFeature("book_synopsis");
+        setUpgradeResetAt(data.resetAt || null);
+        setUpgradeDialogOpen(true);
+        return;
+      }
+      
       const data = await res.json();
       
       if (data.question && data.answer) {
@@ -1500,6 +1546,13 @@ Reference: ${verseRef} (${translation})`;
           </div>
         </DialogContent>
       </Dialog>
+
+      <UpgradeDialog
+        open={upgradeDialogOpen}
+        onClose={() => setUpgradeDialogOpen(false)}
+        feature={upgradeFeature}
+        resetAt={upgradeResetAt}
+      />
     </div>
   );
 }

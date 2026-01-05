@@ -44,6 +44,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import type { Note } from "@shared/schema";
+import { UpgradeDialog } from "@/components/upgrade-dialog";
 
 type NotesResponse = {
   notes: Note[];
@@ -85,6 +86,7 @@ export default function Notes() {
   const [newNoteContent, setNewNoteContent] = useState("");
   const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
   const [viewingNote, setViewingNote] = useState<Note | null>(null);
+  const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
 
   useEffect(() => {
     document.title = "My Notes | Vagabond Bible AI";
@@ -131,6 +133,10 @@ export default function Notes() {
   const createNoteMutation = useMutation({
     mutationFn: async (data: { content: string; tags: string[] }) => {
       const res = await apiRequest("POST", "/api/notes/general", data);
+      if (res.status === 429) {
+        const errorData = await res.json();
+        throw { status: 429, ...errorData };
+      }
       return res.json();
     },
     onSuccess: () => {
@@ -140,7 +146,15 @@ export default function Notes() {
       setNewNoteTags([]);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
+      if (error?.status === 429) {
+        setUpgradeDialogOpen(true);
+        toast({ 
+          title: "Note limit reached", 
+          description: "Upgrade to Pro for unlimited notes",
+        });
+        return;
+      }
       toast({ title: error.message || "Failed to create note", variant: "destructive" });
     },
   });
@@ -798,6 +812,13 @@ export default function Notes() {
           )}
         </DialogContent>
       </Dialog>
+
+      <UpgradeDialog
+        open={upgradeDialogOpen}
+        onClose={() => setUpgradeDialogOpen(false)}
+        feature="notes"
+        resetAt={null}
+      />
     </div>
   );
 }

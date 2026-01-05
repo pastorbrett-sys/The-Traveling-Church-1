@@ -114,5 +114,32 @@ export const insertNoteSchema = createInsertSchema(notes).omit({
 export type InsertNote = z.infer<typeof insertNoteSchema>;
 export type Note = typeof notes.$inferSelect;
 
+// Feature usage tracking for subscription gates
+export const featureUsageTypeEnum = ['smart_search', 'book_synopsis', 'verse_insight'] as const;
+export type FeatureUsageType = typeof featureUsageTypeEnum[number];
+
+export const featureUsage = pgTable("feature_usage", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull(),
+  feature: text("feature").notNull(), // 'smart_search' | 'book_synopsis' | 'verse_insight'
+  periodStart: timestamp("period_start").notNull(), // First day of the month (UTC)
+  count: integer("count").notNull().default(0),
+});
+
+export const insertFeatureUsageSchema = createInsertSchema(featureUsage).omit({
+  id: true,
+});
+
+export type InsertFeatureUsage = z.infer<typeof insertFeatureUsageSchema>;
+export type FeatureUsage = typeof featureUsage.$inferSelect;
+
+// Feature limits constants
+export const FEATURE_LIMITS = {
+  smart_search: 5,
+  book_synopsis: 2,
+  verse_insight: 6,
+  notes: 3,
+} as const;
+
 export * from "./models/chat";
 export * from "./models/bible";

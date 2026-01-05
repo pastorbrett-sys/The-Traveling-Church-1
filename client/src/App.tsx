@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthGate } from "@/components/auth-gate";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -50,10 +51,10 @@ function Router() {
       <Route path="/missions/thailand" component={MissionThailand} />
       <Route path="/missions/jordan" component={MissionJordan} />
       <Route path="/missions" component={Missions} />
-      <Route path="/pastor-chat" component={PastorChat} />
-      <Route path="/bible-buddy" component={PastorChat} />
-      <Route path="/notes" component={Notes} />
-      <Route path="/profile" component={Profile} />
+      <Route path="/pastor-chat">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
+      <Route path="/bible-buddy">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
+      <Route path="/notes">{() => <AuthGate><Notes /></AuthGate>}</Route>
+      <Route path="/profile">{() => <AuthGate><Profile /></AuthGate>}</Route>
       <Route path="/login" component={Login} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />

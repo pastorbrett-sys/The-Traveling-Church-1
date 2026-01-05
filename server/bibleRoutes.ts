@@ -1,11 +1,14 @@
 import { Router } from "express";
 import { db } from "./db";
-import { bibleNotes, readingProgress } from "@shared/schema";
+import { bibleNotes, readingProgress, FEATURE_LIMITS } from "@shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import * as bibleService from "./bibleService";
 import OpenAI from "openai";
 import type { SmartSearchResponse, SmartSearchResult } from "@shared/models/bible";
+import { isAuthenticated } from "./replit_integrations/auth";
+import { storage } from "./storage";
+import { checkUsageLimit, incrementUsage } from "./usageService";
 
 const router = Router();
 
@@ -182,12 +185,28 @@ Philippians=50, Colossians=51, 1 Thessalonians=52, 2 Thessalonians=53, 1 Timothy
 Provide 1-5 results maximum, prioritizing the most relevant result type for the query.
 Return ONLY the JSON object, no additional text or formatting.`;
 
-router.post("/smart-search", async (req, res) => {
+router.post("/smart-search", isAuthenticated, async (req: any, res) => {
   try {
     const { query } = req.body;
     
     if (!query || typeof query !== "string" || query.trim().length < 2) {
       return res.status(400).json({ message: "Search query required (minimum 2 characters)" });
+    }
+
+    const userId = req.session.userId;
+    const user = await storage.getUser(userId);
+    const isPro = !!user?.stripeSubscriptionId;
+    
+    const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
+    if (!limitResult.allowed) {
+      return res.status(429).json({
+        code: "USAGE_LIMIT_REACHED",
+        feature: "smart_search",
+        remaining: 0,
+        limit: FEATURE_LIMITS.smart_search,
+        resetAt: limitResult.resetAt?.toISOString(),
+        message: "You've reached your Smart Search limit this month. Upgrade to Pro for unlimited access.",
+      });
     }
 
     const completion = await openai.chat.completions.create({
@@ -217,6 +236,7 @@ router.post("/smart-search", async (req, res) => {
       results: parsed.results || [],
     };
 
+    await incrementUsage(userId, "smart_search", isPro);
     res.json(response);
   } catch (error) {
     console.error("Smart search error:", error);
@@ -310,11 +330,27 @@ router.post("/compare", async (req, res) => {
   }
 });
 
-router.post("/book-synopsis", async (req, res) => {
+router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
   try {
     const { bookName } = req.body;
     if (!bookName) {
       return res.status(400).json({ message: "Book name is required" });
+    }
+
+    const userId = req.session.userId;
+    const user = await storage.getUser(userId);
+    const isPro = !!user?.stripeSubscriptionId;
+    
+    const limitResult = await checkUsageLimit(userId, "book_synopsis", isPro);
+    if (!limitResult.allowed) {
+      return res.status(429).json({
+        code: "USAGE_LIMIT_REACHED",
+        feature: "book_synopsis",
+        remaining: 0,
+        limit: FEATURE_LIMITS.book_synopsis,
+        resetAt: limitResult.resetAt?.toISOString(),
+        message: "You've reached your Book Synopsis limit this month. Upgrade to Pro for unlimited access.",
+      });
     }
 
     const question = `Give me a short synopsis of the book of ${bookName} in the Bible.`;
@@ -363,6 +399,7 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
     
     const followUpMessage = `Synopsis Above ☝️\n\n${followUpQuestion}`;
 
+    await incrementUsage(userId, "book_synopsis", isPro);
     res.json({
       question,
       answer: synopsis,
