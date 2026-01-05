@@ -185,7 +185,7 @@ export default function Login() {
           <Card className="border-2 border-[hsl(30,20%,88%)]">
             <CardHeader className="text-center pb-2">
               <div className="flex justify-center mb-4">
-                <img src={vagabondLogo} alt="Vagabond Bible" className="h-16 w-auto" />
+                <img src={vagabondLogo} alt="Vagabond Bible" className="h-16 object-contain" />
               </div>
               <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">
                 Welcome to Vagabond Bible
