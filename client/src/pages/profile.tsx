@@ -58,14 +58,15 @@ export default function Profile() {
   };
 
   const VagabondHeader = () => (
-    <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-center">
-        <Link href="/vagabond-bible" className="flex items-center gap-2">
-          <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-          <span className="font-heading text-xl font-bold text-[hsl(20,10%,20%)]">Vagabond Bible</span>
-        </Link>
+    <nav className="bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/vagabond-bible">
+            <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10" data-testid="img-vagabond-logo" />
+          </Link>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 
   if (isAuthLoading) {
