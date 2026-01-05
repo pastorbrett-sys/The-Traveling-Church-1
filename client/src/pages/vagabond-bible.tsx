@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles } from "lucide-react";
+import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 
 export default function VagabondBible() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[hsl(30,20%,97%)] text-[hsl(20,10%,25%)]">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
@@ -19,7 +22,28 @@ export default function VagabondBible() {
               <a href="#community" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-community">Community</a>
               <a href="#contact" className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-contact">Contact</a>
             </div>
+            <button
+              className="md:hidden p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              data-testid="button-mobile-menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-[hsl(20,10%,40%)] stroke-[1.5]" />
+              ) : (
+                <Menu className="w-6 h-6 text-[hsl(20,10%,40%)] stroke-[1.5]" />
+              )}
+            </button>
           </div>
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-[hsl(30,20%,88%)] py-4">
+              <div className="flex flex-col gap-4">
+                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-features-mobile">Features</a>
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-about-mobile">About</a>
+                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-community-mobile">Community</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-contact-mobile">Contact</a>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
       <section className="relative pt-16 min-h-[90vh] flex items-center">
