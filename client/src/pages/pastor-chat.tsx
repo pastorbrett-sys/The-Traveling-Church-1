@@ -25,6 +25,7 @@ import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
+import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 
 function WelcomeMessage() {
   return (
@@ -539,7 +540,7 @@ export default function PastorChat() {
 
   return (
     <div className="bg-background text-foreground antialiased h-screen flex flex-col overflow-hidden">
-      <Navigation />
+      <Navigation customLogo={vagabondLogo} />
 
       {/* Tab Toggle - stays fixed below nav */}
       <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3">

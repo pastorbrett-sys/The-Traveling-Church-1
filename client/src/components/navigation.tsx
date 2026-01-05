@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
-export default function Navigation() {
+interface NavigationProps {
+  customLogo?: string;
+}
+
+export default function Navigation({ customLogo }: NavigationProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
@@ -75,8 +79,8 @@ export default function Navigation() {
             data-testid="link-home"
           >
             <img 
-              src={logoImage} 
-              alt="The Traveling Church" 
+              src={customLogo || logoImage} 
+              alt={customLogo ? "Vagabond Bible AI" : "The Traveling Church"} 
               className="h-11"
             />
           </button>
