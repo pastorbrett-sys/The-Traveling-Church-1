@@ -150,12 +150,13 @@ export function registerChatRoutes(app: Express): void {
         const isPro = await checkUserProStatus(req);
         
         // Check usage limit
-        const canUse = await checkUsageLimit(user.id, "verse_insight", isPro);
-        if (!canUse) {
+        const usageResult = await checkUsageLimit(user.id, "verse_insight", isPro);
+        if (!usageResult.allowed) {
           return res.status(429).json({ 
             error: "Verse insight limit reached",
             code: "USAGE_LIMIT_EXCEEDED",
-            feature: "verse_insight"
+            feature: "verse_insight",
+            resetAt: usageResult.resetAt
           });
         }
         
