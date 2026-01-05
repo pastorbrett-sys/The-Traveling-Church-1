@@ -4,6 +4,7 @@ import { chatStorage } from "./storage";
 import { nanoid } from "nanoid";
 import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
+import { checkUsageLimit, incrementUsage } from "../../usageService";
 
 const openai = new OpenAI({
   apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
@@ -130,6 +131,38 @@ export function registerChatRoutes(app: Express): void {
     try {
       const sessionId = getSessionId(req, res);
       const title = typeof req.body?.title === "string" ? req.body.title.slice(0, 100) : "New Chat";
+      
+      // Check if this is a verse insight conversation
+      const isVerseInsight = title.startsWith("Insight:");
+      
+      if (isVerseInsight) {
+        // Get authenticated user for usage tracking
+        const userId = (req as any).firebaseUid || (req.session as any)?.userId;
+        if (!userId) {
+          return res.status(401).json({ error: "Authentication required for verse insights" });
+        }
+        
+        const user = await storage.getUser(userId);
+        if (!user) {
+          return res.status(401).json({ error: "User not found" });
+        }
+        
+        const isPro = await checkUserProStatus(req);
+        
+        // Check usage limit
+        const canUse = await checkUsageLimit(user.id, "verse_insight", isPro);
+        if (!canUse) {
+          return res.status(429).json({ 
+            error: "Verse insight limit reached",
+            code: "USAGE_LIMIT_EXCEEDED",
+            feature: "verse_insight"
+          });
+        }
+        
+        // Increment usage
+        await incrementUsage(user.id, "verse_insight", isPro);
+      }
+      
       const conversation = await chatStorage.createConversation(title, sessionId);
       res.status(201).json(conversation);
     } catch (error) {
