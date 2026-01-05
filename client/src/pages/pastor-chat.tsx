@@ -137,9 +137,10 @@ export default function PastorChat() {
     }
   }, [upgradeParam, isAuthenticated, isAuthLoading]);
 
-  // Fetch session stats from server (for anonymous message counting)
+  // Fetch session stats from server (only for authenticated users)
   const { data: sessionStats, refetch: refetchSessionStats } = useQuery<SessionStats>({
     queryKey: ["/api/chat/session-stats"],
+    enabled: isAuthenticated,
     refetchOnWindowFocus: false,
   });
 

@@ -12,7 +12,6 @@ const openai = new OpenAI({
 });
 
 const FREE_MESSAGE_LIMIT = 10;
-const sessionMessageCounts = new Map<string, number>();
 const proSessions = new Set<string>();
 
 function getSessionId(req: Request, res: Response): string {
@@ -29,17 +28,6 @@ function getSessionId(req: Request, res: Response): string {
   return sessionId;
 }
 
-function getSessionMessageCount(sessionId: string): number {
-  return sessionMessageCounts.get(sessionId) || 0;
-}
-
-function incrementSessionMessageCount(sessionId: string): number {
-  const current = getSessionMessageCount(sessionId);
-  const newCount = current + 1;
-  sessionMessageCounts.set(sessionId, newCount);
-  return newCount;
-}
-
 function isProSession(sessionId: string): boolean {
   return proSessions.has(sessionId);
 }
@@ -48,9 +36,16 @@ export function markSessionAsPro(sessionId: string): void {
   proSessions.add(sessionId);
 }
 
-async function checkUserProStatus(req: any): Promise<boolean> {
+function getAuthenticatedUserId(req: any): string | null {
   if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
-    const userId = req.user.claims.sub;
+    return req.user.claims.sub;
+  }
+  return null;
+}
+
+async function checkUserProStatus(req: any): Promise<boolean> {
+  const userId = getAuthenticatedUserId(req);
+  if (userId) {
     try {
       const user = await storage.getUser(userId);
       if (user?.stripeCustomerId) {
@@ -67,13 +62,6 @@ async function checkUserProStatus(req: any): Promise<boolean> {
   return false;
 }
 
-export function getSessionStats(sessionId: string): { messageCount: number; isPro: boolean; limit: number } {
-  return {
-    messageCount: getSessionMessageCount(sessionId),
-    isPro: isProSession(sessionId),
-    limit: FREE_MESSAGE_LIMIT,
-  };
-}
 
 const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
 - Offer comfort, encouragement, and biblical wisdom
@@ -94,14 +82,22 @@ export function registerChatRoutes(app: Express): void {
     const isPro = isUserPro || isSessionPro;
     
     // Get database-backed usage count for authenticated users
+    const authUserId = getAuthenticatedUserId(req);
+    if (!authUserId) {
+      // Return 401 for unauthenticated users - chat requires login
+      return res.status(401).json({
+        error: "Authentication required",
+        messageCount: 0,
+        isPro: false,
+        limit: FREE_MESSAGE_LIMIT,
+      });
+    }
+    
     let messageCount = 0;
-    const userId = (req as any).firebaseUid || (req.session as any)?.userId;
-    if (userId) {
-      const user = await storage.getUser(userId);
-      if (user) {
-        const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
-        messageCount = usageResult.currentUsage;
-      }
+    const user = await storage.getUser(authUserId);
+    if (user) {
+      const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
+      messageCount = usageResult.currentUsage;
     }
     
     res.json({
@@ -148,12 +144,12 @@ export function registerChatRoutes(app: Express): void {
       
       if (isVerseInsight) {
         // Get authenticated user for usage tracking
-        const userId = (req as any).firebaseUid || (req.session as any)?.userId;
-        if (!userId) {
+        const authUserId = getAuthenticatedUserId(req);
+        if (!authUserId) {
           return res.status(401).json({ error: "Authentication required for verse insights" });
         }
         
-        const user = await storage.getUser(userId);
+        const user = await storage.getUser(authUserId);
         if (!user) {
           return res.status(401).json({ error: "User not found" });
         }
@@ -218,11 +214,19 @@ export function registerChatRoutes(app: Express): void {
       const isPro = isUserPro || isSessionPro;
       
       // Get authenticated user for database-backed usage tracking
-      const userId = (req as any).firebaseUid || (req.session as any)?.userId;
+      const authUserId = getAuthenticatedUserId(req);
+      
+      // Require authentication for regular chat (verse insights have their own auth check)
+      if (!isVerseInsight && !authUserId) {
+        return res.status(401).json({ 
+          error: "Authentication required",
+          code: "AUTH_REQUIRED"
+        });
+      }
       
       // Only enforce chat message limit for regular chat, not verse insights
-      if (!isPro && !isVerseInsight && userId) {
-        const user = await storage.getUser(userId);
+      if (!isPro && !isVerseInsight && authUserId) {
+        const user = await storage.getUser(authUserId);
         if (user) {
           const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
           if (!usageResult.allowed) {
@@ -239,8 +243,8 @@ export function registerChatRoutes(app: Express): void {
       }
 
       // Only increment chat count for regular chat conversations (database-backed)
-      if (!isPro && !isVerseInsight && userId) {
-        const user = await storage.getUser(userId);
+      if (!isPro && !isVerseInsight && authUserId) {
+        const user = await storage.getUser(authUserId);
         if (user) {
           await incrementUsage(user.id, "chat_message", isPro);
         }
