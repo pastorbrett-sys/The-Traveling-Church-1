@@ -286,9 +286,9 @@ export default function Profile() {
                       <p className="text-sm text-muted-foreground mb-3">
                         Get unlimited conversations and exclusive features for $9.99/month.
                       </p>
-                      <Link href="/pastor-chat">
+                      <Link href="/pastor-chat?upgrade=true">
                         <Button size="sm" className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)]" data-testid="button-upgrade">
-                          Try Vagabond Bible
+                          Upgrade Now!
                         </Button>
                       </Link>
                     </div>

@@ -82,6 +82,7 @@ export default function PastorChat() {
   const tabParam = urlParams.get("tab");
   const seedQuestion = urlParams.get("seedQuestion");
   const seedAnswer = urlParams.get("seedAnswer");
+  const upgradeParam = urlParams.get("upgrade");
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
   const [bibleTranslation, setBibleTranslation] = useState("NIV");
@@ -114,6 +115,17 @@ export default function PastorChat() {
       setLastSeedParams(currentSeedKey);
     }
   }, [seedQuestion, seedAnswer, lastSeedParams]);
+
+  // Handle upgrade param to show paywall modal
+  useEffect(() => {
+    if (upgradeParam === "true" && !isAuthLoading) {
+      if (isAuthenticated) {
+        setShowPaywall(true);
+      } else {
+        setShowLoginPrompt(true);
+      }
+    }
+  }, [upgradeParam, isAuthenticated, isAuthLoading]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
