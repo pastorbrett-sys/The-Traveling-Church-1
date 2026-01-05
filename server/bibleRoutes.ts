@@ -330,14 +330,16 @@ router.post("/book-synopsis", async (req, res) => {
 3. Key events or teachings
 4. Its significance to the overall biblical narrative
 
-Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers.`
+Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers.
+
+IMPORTANT: After the synopsis paragraph, add a blank line, then write "Synopsis Above ☝️" followed by another blank line, then ask an engaging follow-up question to encourage continued conversation about the book (e.g., "Would you like to explore a specific theme or character from this book?" or "Is there a particular chapter or event you'd like to dive deeper into?").`
         },
         {
           role: "user",
           content: question
         }
       ],
-      max_tokens: 300,
+      max_tokens: 400,
       temperature: 0.7,
     });
 
