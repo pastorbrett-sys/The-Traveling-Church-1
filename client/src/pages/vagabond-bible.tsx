@@ -215,7 +215,7 @@ export default function VagabondBible() {
             </div>
             <div className="relative">
               <img src={camperImage} alt="Person studying in camper van" className="rounded-2xl shadow-xl" />
-              <img src={vagaburstIcon} alt="" className="absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg" />
+              <img src={vagaburstIcon} alt="" className="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg" />
               <div className="absolute -bottom-6 -left-6 bg-[hsl(25,35%,45%)] text-white p-5 rounded-xl shadow-lg">
                 <p className="font-medium text-lg">"My quiet time, anywhere."</p>
               </div>
