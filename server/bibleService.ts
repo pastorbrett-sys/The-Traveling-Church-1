@@ -1,6 +1,10 @@
 import type { BibleBook, BibleChapter, BibleVerse, BibleTranslation } from "@shared/models/bible";
 import * as fs from "fs";
 import * as path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const BOLLS_API = "https://bolls.life";
 
@@ -21,7 +25,9 @@ function loadHeadingOverrides(): HeadingOverrides {
       removeHeadings: data.removeHeadings || {},
       addHeadings: data.addHeadings || {}
     };
+    console.log(`Loaded ${Object.keys(headingOverrides.removeHeadings).length} heading overrides`);
   } catch (error) {
+    console.error("Failed to load heading overrides:", error);
     headingOverrides = { removeHeadings: {}, addHeadings: {} };
   }
   return headingOverrides;
