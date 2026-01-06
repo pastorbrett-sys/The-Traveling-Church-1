@@ -216,12 +216,16 @@ export function registerChatRoutes(app: Express): void {
       const isBookSynopsis = conversation?.title?.startsWith("Give me a short synopsis");
       const isFeatureConversation = isVerseInsight || isBookSynopsis;
       
+      console.log("[PASTOR CHAT] Conversation:", conversation?.id, "Title:", conversation?.title);
+      console.log("[PASTOR CHAT] isVerseInsight:", isVerseInsight, "isBookSynopsis:", isBookSynopsis, "isFeatureConversation:", isFeatureConversation);
+      
       const isUserPro = await checkUserProStatus(req);
       const isSessionPro = isProSession(sessionId);
       const isPro = isUserPro || isSessionPro;
       
       // Get authenticated user for database-backed usage tracking
       const authUserId = getAuthenticatedUserId(req);
+      console.log("[PASTOR CHAT] authUserId:", authUserId, "isPro:", isPro);
       
       // Require authentication for regular chat (feature conversations have their own auth check)
       if (!isFeatureConversation && !authUserId) {
@@ -233,9 +237,11 @@ export function registerChatRoutes(app: Express): void {
       
       // Only enforce chat message limit for regular chat, not feature conversations
       if (!isPro && !isFeatureConversation && authUserId) {
+        console.log("[PASTOR CHAT] Checking usage limit for user:", authUserId);
         const user = await storage.getUser(authUserId);
         if (user) {
           const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
+          console.log("[PASTOR CHAT] Usage check result:", usageResult);
           if (!usageResult.allowed) {
             return res.status(429).json({ 
               error: "Message limit reached", 
@@ -246,15 +252,23 @@ export function registerChatRoutes(app: Express): void {
               resetAt: usageResult.resetAt,
             });
           }
+        } else {
+          console.log("[PASTOR CHAT] User not found in storage for id:", authUserId);
         }
       }
 
       // Only increment chat count for regular chat conversations (database-backed)
       if (!isPro && !isFeatureConversation && authUserId) {
+        console.log("[PASTOR CHAT] Incrementing usage for user:", authUserId);
         const user = await storage.getUser(authUserId);
         if (user) {
           await incrementUsage(user.id, "chat_message", isPro);
+          console.log("[PASTOR CHAT] Usage incremented successfully");
+        } else {
+          console.log("[PASTOR CHAT] Cannot increment - user not found");
         }
+      } else {
+        console.log("[PASTOR CHAT] Skipping increment - isPro:", isPro, "isFeature:", isFeatureConversation, "authUserId:", authUserId);
       }
 
       await chatStorage.createMessage(conversationId, "user", content.trim());
