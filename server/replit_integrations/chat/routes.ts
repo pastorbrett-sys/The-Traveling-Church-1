@@ -115,8 +115,19 @@ export function registerChatRoutes(app: Express): void {
   app.get("/api/conversations", async (req: Request, res: Response) => {
     try {
       const sessionId = getSessionId(req, res);
-      const conversations = await chatStorage.getConversationsBySession(sessionId);
-      res.json(conversations);
+      const allConversations = await chatStorage.getConversationsBySession(sessionId);
+      
+      // Filter out feature-specific temporary conversations so they don't appear in Pastor Chat
+      // These are: Verse Insights ("Insight:"), Book Synopsis ("Give me a short synopsis"), 
+      // and Continue Discussion ("Discussion:") - all bypass chat limits and should be invisible
+      const pastorChatConversations = allConversations.filter(conv => {
+        const title = conv.title || "";
+        return !title.startsWith("Insight:") && 
+               !title.startsWith("Give me a short synopsis") && 
+               !title.startsWith("Discussion:");
+      });
+      
+      res.json(pastorChatConversations);
     } catch (error) {
       console.error("Error fetching conversations:", error);
       res.status(500).json({ error: "Failed to fetch conversations" });
