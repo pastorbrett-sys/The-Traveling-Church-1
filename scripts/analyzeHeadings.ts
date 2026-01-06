@@ -78,27 +78,29 @@ async function analyzeHeadingsWithAI(headings: DetectedHeading[]): Promise<strin
     `${i + 1}. "${h.heading}" (${h.bookName} ${h.chapter}:${h.verse}) - Context: "${h.context.substring(0, 100)}..."`
   ).join("\n");
 
-  const prompt = `Analyze these detected "headings" from the Bible text. Each was extracted because it appeared before a line break (<br/>) at the start of a verse.
+  const prompt = `Analyze these detected "headings" from Bible text. Each was extracted because it appeared before a line break at the start of a verse.
 
-Determine which are TRUE section headings vs FALSE POSITIVES (just paragraph text that happened to be before a break).
+BE VERY STRICT. Most of these are FALSE POSITIVES (regular verse text, not headings).
 
-TRUE section headings in the Bible typically:
-- Are thematic titles like "The Beatitudes", "David's Prayer", "Warnings Against Folly"
-- Are Psalm superscriptions like "A Psalm of David", "For the director of music"
-- Are book section titles like "Proverbs of Solomon", "Words of the Wise"
-- Name a section theme or speaker
+TRUE HEADINGS (very rare) are ONLY:
+- Psalm superscriptions: "A Psalm of David", "For the director of music", "A maskil", "A prayer of Moses"
+- Book section dividers: "Proverbs of Solomon", "The words of Agur", "Sayings of the Wise"  
+- Major thematic section titles (very rare): "The Sermon on the Mount", "The Ten Commandments"
 
-FALSE POSITIVES are typically:
-- The beginning of regular verse text that just starts with a capital letter
-- Partial sentences or verse beginnings
-- Numbered references like "Psalm 1" when it's not a superscription
-- Text that reads as part of the narrative/poetry rather than a title
+FALSE POSITIVES (most entries) are:
+- ANY regular verse text that starts with a capital letter
+- Partial sentences like "They will be a garland to grace your head"
+- Poetic lines like "Blessed is the man", "The Lord is my shepherd"
+- Commands, statements, or narrative text
+- Anything that reads as CONTENT rather than a TITLE
+
+When in doubt, mark it as FALSE POSITIVE. Only keep obvious, traditional section headings.
 
 DETECTED HEADINGS:
 ${headingsList}
 
 Return ONLY the numbers of the FALSE POSITIVES (ones that should NOT be headings), comma-separated.
-Example response: 2, 5, 8, 12
+Example response: 1, 2, 3, 5, 6, 7, 8, 10
 If all are true headings, respond with: NONE`;
 
   try {
@@ -136,21 +138,8 @@ async function main() {
   const books = await getBooks("NIV");
   console.log(`Found ${books.length} books`);
   
-  const priorityBooks = [
-    "Psalms", "Proverbs", "Ecclesiastes", 
-    "Genesis", "Exodus", "Isaiah", "Jeremiah", "Ezekiel",
-    "Matthew", "Mark", "Luke", "John", "Acts", "Romans",
-    "1 Corinthians", "2 Corinthians", "Hebrews", "Revelation"
-  ];
-  
-  const sortedBooks = books.sort((a, b) => {
-    const aIndex = priorityBooks.indexOf(a.name);
-    const bIndex = priorityBooks.indexOf(b.name);
-    if (aIndex >= 0 && bIndex >= 0) return aIndex - bIndex;
-    if (aIndex >= 0) return -1;
-    if (bIndex >= 0) return 1;
-    return 0;
-  });
+  // Process ALL books in order
+  const sortedBooks = books;
 
   let totalHeadings = 0;
   let totalFalsePositives = 0;
