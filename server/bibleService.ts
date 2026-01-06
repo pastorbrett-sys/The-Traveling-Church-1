@@ -238,8 +238,8 @@ function cleanVerseWithHeading(text: string, bookId?: number, chapter?: number, 
           /^[A-Z]/.test(potentialHeading)) {
         // Check if this heading should be removed (false positive)
         if (verseKey && overrides.removeHeadings[verseKey]) {
-          // Don't set heading, but still clean the text normally
-          cleaned = cleaned.replace(/^[^<]+<br\s*\/?>/i, "");
+          // Don't set heading and keep the text intact (don't strip pre-<br/> content)
+          // The <br/> will be cleaned to a space later, preserving the full verse
         } else {
           heading = potentialHeading;
           cleaned = cleaned.replace(/^[^<]+<br\s*\/?>/i, "");
