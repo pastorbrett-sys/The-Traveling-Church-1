@@ -230,11 +230,6 @@ export default function VagabondBible() {
                 <div className="firefly firefly-6" style={{ top: '40%', left: '60%' }} />
                 <div className="firefly firefly-7" style={{ top: '25%', left: '75%' }} />
                 <div className="firefly firefly-8" style={{ top: '55%', right: '15%' }} />
-                {/* Extra fireflies for more coverage */}
-                <div className="firefly firefly-3" style={{ top: '10%', left: '50%' }} />
-                <div className="firefly firefly-1" style={{ top: '70%', left: '30%' }} />
-                <div className="firefly firefly-5" style={{ top: '45%', right: '40%' }} />
-                <div className="firefly firefly-2" style={{ top: '30%', left: '10%' }} />
               </div>
             </div>
           </div>
