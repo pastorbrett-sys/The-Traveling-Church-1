@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, forwardRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
 import { Link, useSearch } from "wouter";
@@ -27,9 +27,10 @@ import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 
-function WelcomeMessage() {
+const WelcomeMessage = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
@@ -50,7 +51,8 @@ function WelcomeMessage() {
       </div>
     </motion.div>
   );
-}
+});
+WelcomeMessage.displayName = "WelcomeMessage";
 
 const FREE_MESSAGE_LIMIT = 10;
 
