@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { apiRequest } from "@/lib/queryClient";
+import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
 interface UpgradeDialogProps {
   open: boolean;
@@ -91,8 +92,8 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="sm:max-w-md bg-[hsl(40,30%,96%)] border-[hsl(30,20%,88%)]">
         <DialogHeader className="text-center">
-          <div className="mx-auto w-16 h-16 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center mb-2">
-            <Sparkles className="w-8 h-8 text-[hsl(25,35%,45%)]" />
+          <div className="mx-auto w-16 h-16 flex items-center justify-center mb-2">
+            <img src={upgradeIcon} alt="Upgrade" className="w-16 h-16" />
           </div>
           <DialogTitle className="text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
             {featureLabel} Limit Reached
