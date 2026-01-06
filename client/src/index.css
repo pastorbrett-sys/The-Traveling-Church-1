@@ -429,3 +429,141 @@
   transform: translateZ(0);
   will-change: filter, box-shadow;
 }
+
+/* Firefly animations */
+@keyframes fireflyFloat1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  25% {
+    transform: translate(15px, -25px) scale(1.2);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-10px, -50px) scale(0.8);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(20px, -30px) scale(1.1);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fireflyFloat2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  30% {
+    transform: translate(-20px, -40px) scale(1);
+    opacity: 1;
+  }
+  55% {
+    transform: translate(10px, -70px) scale(0.9);
+    opacity: 0.5;
+  }
+  80% {
+    transform: translate(-15px, -45px) scale(1.2);
+    opacity: 0.9;
+  }
+  95% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes fireflyFloat3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1.1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  20% {
+    transform: translate(25px, -35px) scale(0.9);
+    opacity: 1;
+  }
+  45% {
+    transform: translate(-5px, -60px) scale(1.2);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translate(15px, -40px) scale(0.8);
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes fireflyGlow {
+  0%, 100% {
+    box-shadow: 0 0 4px 2px rgba(255, 230, 120, 0.8),
+                0 0 8px 4px rgba(255, 200, 80, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 8px 4px rgba(255, 240, 140, 1),
+                0 0 16px 8px rgba(255, 210, 100, 0.6);
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(255, 240, 140, 1) 0%, rgba(255, 200, 80, 0.8) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 20;
+  animation: fireflyGlow 1.5s ease-in-out infinite;
+}
+
+.firefly-1 {
+  animation: fireflyFloat1 8s ease-in-out infinite, fireflyGlow 1.2s ease-in-out infinite;
+}
+
+.firefly-2 {
+  animation: fireflyFloat2 10s ease-in-out infinite 1s, fireflyGlow 1.8s ease-in-out infinite 0.5s;
+}
+
+.firefly-3 {
+  animation: fireflyFloat3 9s ease-in-out infinite 2s, fireflyGlow 1.4s ease-in-out infinite 0.3s;
+}
+
+.firefly-4 {
+  animation: fireflyFloat1 11s ease-in-out infinite 3s, fireflyGlow 1.6s ease-in-out infinite 0.7s;
+}
+
+.firefly-5 {
+  animation: fireflyFloat2 7s ease-in-out infinite 0.5s, fireflyGlow 1.3s ease-in-out infinite 0.2s;
+}
+
+.firefly-6 {
+  animation: fireflyFloat3 12s ease-in-out infinite 4s, fireflyGlow 2s ease-in-out infinite 0.4s;
+}
+
+.firefly-7 {
+  animation: fireflyFloat1 9.5s ease-in-out infinite 1.5s, fireflyGlow 1.5s ease-in-out infinite 0.6s;
+}
+
+.firefly-8 {
+  animation: fireflyFloat2 8.5s ease-in-out infinite 2.5s, fireflyGlow 1.7s ease-in-out infinite 0.8s;
+}
+
+.fireflies-container {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 15;
+}

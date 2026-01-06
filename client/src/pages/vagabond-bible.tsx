@@ -214,11 +214,27 @@ export default function VagabondBible() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative overflow-visible">
               <img src={camperImage} alt="Person studying in camper van" className="rounded-2xl shadow-xl" />
               <img src={vagaburstIcon} alt="" className="absolute -top-[43px] -right-[43px] sm:-top-[53px] sm:-right-[53px] w-[85px] h-[85px] sm:w-[106px] sm:h-[106px] drop-shadow-lg" />
               <div className="absolute -bottom-6 -left-6 text-white p-5 rounded-xl shadow-lg bg-[#d79942]">
                 <p className="font-medium text-lg">"My quiet time, anywhere."</p>
+              </div>
+              {/* Fireflies floating over the image */}
+              <div className="fireflies-container">
+                <div className="firefly firefly-1" style={{ top: '20%', left: '15%' }} />
+                <div className="firefly firefly-2" style={{ top: '35%', right: '20%' }} />
+                <div className="firefly firefly-3" style={{ top: '50%', left: '25%' }} />
+                <div className="firefly firefly-4" style={{ top: '15%', right: '35%' }} />
+                <div className="firefly firefly-5" style={{ top: '60%', left: '40%' }} />
+                <div className="firefly firefly-6" style={{ top: '40%', left: '60%' }} />
+                <div className="firefly firefly-7" style={{ top: '25%', left: '75%' }} />
+                <div className="firefly firefly-8" style={{ top: '55%', right: '15%' }} />
+                {/* Extra fireflies for more coverage */}
+                <div className="firefly firefly-3" style={{ top: '10%', left: '50%' }} />
+                <div className="firefly firefly-1" style={{ top: '70%', left: '30%' }} />
+                <div className="firefly firefly-5" style={{ top: '45%', right: '40%' }} />
+                <div className="firefly firefly-2" style={{ top: '30%', left: '10%' }} />
               </div>
             </div>
           </div>
