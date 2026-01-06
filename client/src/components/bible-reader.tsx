@@ -1330,9 +1330,12 @@ Reference: ${verseRef} (${translation})`;
                 return (
                   <span key={verse.pk}>
                     {heading && (
-                      <h3 className="block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mt-16 mb-1 first:mt-0">
-                        {heading}
-                      </h3>
+                      <>
+                        <div className="block w-full h-6" />
+                        <h3 className="block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mt-4 mb-1">
+                          {heading}
+                        </h3>
+                      </>
                     )}
                     <motion.span
                       ref={(el) => {
