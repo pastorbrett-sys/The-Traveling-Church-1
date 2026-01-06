@@ -1325,22 +1325,21 @@ Reference: ${verseRef} (${translation})`;
             </div>
           ) : (
             <div className="space-y-1 pb-20">
-              {(() => {
-                let isFirstHeading = true;
-                return chapter?.verses.map((verse) => {
-                  const { heading, content } = parseVerseText(verse.text);
-                  const showSpacer = heading && !isFirstHeading;
-                  if (heading) isFirstHeading = false;
-                  return (
-                    <span key={verse.pk}>
-                      {heading && (
-                        <>
-                          {showSpacer && <div className="block w-full h-6" />}
-                          <h3 className={`block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mb-1 ${showSpacer ? 'mt-4' : 'mt-0'}`}>
-                            {heading}
-                          </h3>
-                        </>
-                      )}
+              {chapter?.verses.map((verse) => {
+                const { heading, content } = parseVerseText(verse.text);
+                // Only skip spacer if heading is in verse 1 (first verse of chapter)
+                const isFirstVerse = verse.verse === 1;
+                const showSpacer = heading && !isFirstVerse;
+                return (
+                  <span key={verse.pk}>
+                    {heading && (
+                      <>
+                        {showSpacer && <div className="block w-full h-6" />}
+                        <h3 className={`block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mb-1 ${showSpacer ? 'mt-4' : 'mt-0'}`}>
+                          {heading}
+                        </h3>
+                      </>
+                    )}
                     <motion.span
                       ref={(el) => {
                         if (el) verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
@@ -1361,9 +1360,8 @@ Reference: ${verseRef} (${translation})`;
                       <span className="text-base leading-relaxed">{content} </span>
                     </motion.span>
                   </span>
-                  );
-                });
-              })()}
+                );
+              })}
             </div>
           )}
         </div>
