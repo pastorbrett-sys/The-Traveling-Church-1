@@ -132,10 +132,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
                 Loading...
               </>
             ) : (
-              <>
-                <Sparkles className="w-4 h-4 mr-2" />
-                Upgrade to Pro
-              </>
+              "Upgrade to Pro"
             )}
           </Button>
           <Button 
