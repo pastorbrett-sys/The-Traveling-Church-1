@@ -90,60 +90,62 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="sm:max-w-md bg-[hsl(40,30%,96%)] border-[hsl(30,20%,88%)]">
-        <DialogHeader className="text-center">
-          <div className="mx-auto w-16 h-16 flex items-center justify-center mb-2">
-            <img src={upgradeIcon} alt="Upgrade" className="w-16 h-16" />
+      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0">
+        <div className="flex flex-col justify-center min-h-full p-6 sm:p-6">
+          <DialogHeader className="text-center">
+            <div className="mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-2">
+              <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
+            </div>
+            <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
+              {featureLabel} Limit Reached
+            </DialogTitle>
+            <DialogDescription className="text-[hsl(20,10%,40%)] text-base sm:text-sm">
+              You've used all your {featureDescription} for this {feature === 'notes' ? 'account' : 'month'}.
+              {resetDate && feature !== 'notes' && (
+                <span className="block mt-1">
+                  Your limit resets on {resetDate}.
+                </span>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] mt-6 sm:mt-2">
+            <h4 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">Upgrade to Pro for:</h4>
+            <ul className="text-base sm:text-sm text-[hsl(20,10%,35%)] space-y-2 sm:space-y-1">
+              <li>• Unlimited Smart Searches</li>
+              <li>• Unlimited Book Synopses</li>
+              <li>• Unlimited Verse Insights</li>
+              <li>• Unlimited Notes</li>
+              <li>• Priority support</li>
+            </ul>
           </div>
-          <DialogTitle className="text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
-            {featureLabel} Limit Reached
-          </DialogTitle>
-          <DialogDescription className="text-[hsl(20,10%,40%)]">
-            You've used all your {featureDescription} for this {feature === 'notes' ? 'account' : 'month'}.
-            {resetDate && feature !== 'notes' && (
-              <span className="block mt-1">
-                Your limit resets on {resetDate}.
-              </span>
-            )}
-          </DialogDescription>
-        </DialogHeader>
 
-        <div className="bg-white/50 rounded-lg p-4 border border-[hsl(30,20%,88%)] mt-2">
-          <h4 className="font-semibold text-[hsl(20,10%,20%)] mb-2">Upgrade to Pro for:</h4>
-          <ul className="text-sm text-[hsl(20,10%,35%)] space-y-1">
-            <li>• Unlimited Smart Searches</li>
-            <li>• Unlimited Book Synopses</li>
-            <li>• Unlimited Verse Insights</li>
-            <li>• Unlimited Notes</li>
-            <li>• Priority support</li>
-          </ul>
-        </div>
-
-        <div className="flex flex-col gap-2 mt-4">
-          <Button 
-            onClick={handleUpgrade}
-            disabled={isCheckingOut}
-            className="w-full btn-upgrade"
-            data-testid="button-upgrade-pro"
-          >
-            {isCheckingOut ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Loading...
-              </>
-            ) : (
-              "Upgrade to Pro"
-            )}
-          </Button>
-          <Button 
-            variant="ghost" 
-            onClick={onClose}
-            disabled={isCheckingOut}
-            className="text-[hsl(20,10%,40%)]"
-            data-testid="button-maybe-later"
-          >
-            Maybe Later
-          </Button>
+          <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
+            <Button 
+              onClick={handleUpgrade}
+              disabled={isCheckingOut}
+              className="w-full btn-upgrade text-lg sm:text-base py-6 sm:py-4"
+              data-testid="button-upgrade-pro"
+            >
+              {isCheckingOut ? (
+                <>
+                  <Loader2 className="w-5 h-5 sm:w-4 sm:h-4 mr-2 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                "Upgrade to Pro"
+              )}
+            </Button>
+            <Button 
+              variant="ghost" 
+              onClick={onClose}
+              disabled={isCheckingOut}
+              className="text-[hsl(20,10%,40%)] text-lg sm:text-base py-6 sm:py-4"
+              data-testid="button-maybe-later"
+            >
+              Maybe Later
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
