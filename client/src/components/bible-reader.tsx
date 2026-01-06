@@ -88,6 +88,12 @@ interface InsightMessage {
   isInitialInsight?: boolean;
 }
 
+interface DiscussionMessage {
+  role: "user" | "assistant";
+  content: string;
+  isInitialAnswer?: boolean;
+}
+
 interface BibleReaderProps {
   translation: string;
   onTranslationChange: (translation: string) => void;
@@ -130,6 +136,15 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [isStreamingInsight, setIsStreamingInsight] = useState(false);
   const [insightVerseRef, setInsightVerseRef] = useState("");
   const [insightVerseText, setInsightVerseText] = useState("");
+  
+  // Continue Discussion modal state (temporary chat from Smart Search)
+  const [showContinueDiscussion, setShowContinueDiscussion] = useState(false);
+  const [discussionMessages, setDiscussionMessages] = useState<DiscussionMessage[]>([]);
+  const [discussionConversationId, setDiscussionConversationId] = useState<number | null>(null);
+  const [discussionInput, setDiscussionInput] = useState("");
+  const [isStreamingDiscussion, setIsStreamingDiscussion] = useState(false);
+  const [discussionQuestion, setDiscussionQuestion] = useState("");
+  const [discussionAnswer, setDiscussionAnswer] = useState("");
   const [smartSearchResults, setSmartSearchResults] = useState<SmartSearchResponse | null>(null);
   const [isSmartSearching, setIsSmartSearching] = useState(false);
   const [searchLimitReached, setSearchLimitReached] = useState(false);
@@ -145,6 +160,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const searchInputRef = useRef<HTMLInputElement>(null);
   const insightChatRef = useRef<HTMLDivElement>(null);
   const insightInputRef = useRef<HTMLTextAreaElement>(null);
+  const discussionChatRef = useRef<HTMLDivElement>(null);
+  const discussionInputRef = useRef<HTMLTextAreaElement>(null);
   const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
   const prevTranslationRef = useRef<string>(translation);
   const { toast } = useToast();
@@ -182,6 +199,31 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       document.body.style.top = "";
     };
   }, [showInsight]);
+
+  // Lock body scroll when Continue Discussion modal is open
+  useEffect(() => {
+    if (showContinueDiscussion) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      }
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+    };
+  }, [showContinueDiscussion]);
 
   useEffect(() => {
     if (searchDebounceRef.current) {
@@ -313,7 +355,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         break;
       case "question":
         const questionResult = result as SmartSearchResultQuestion;
-        navigate(`/pastor-chat?tab=chat&seedQuestion=${encodeURIComponent(questionResult.question)}&seedAnswer=${encodeURIComponent(questionResult.briefAnswer)}`);
+        handleOpenContinueDiscussion(questionResult.question, questionResult.briefAnswer);
         break;
       case "topic":
       case "character":
@@ -723,6 +765,105 @@ Reference: ${verseRef} (${translation})`;
       insightChatRef.current.scrollTop = insightChatRef.current.scrollHeight;
     }
   }, [insightMessages]);
+
+  // Continue Discussion handlers (temporary modal from Smart Search)
+  const handleOpenContinueDiscussion = async (question: string, answer: string) => {
+    setDiscussionQuestion(question);
+    setDiscussionAnswer(answer);
+    setDiscussionMessages([{ role: "assistant", content: answer, isInitialAnswer: true }]);
+    setShowContinueDiscussion(true);
+    setShowSearch(false);
+    setSearchQuery("");
+    setSmartSearchResults(null);
+
+    try {
+      const response = await fetch("/api/conversations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: `Discussion: ${question.slice(0, 50)}...` }),
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Failed to create conversation");
+      const conversation = await response.json();
+      setDiscussionConversationId(conversation.id);
+    } catch (error) {
+      console.error("Error creating discussion conversation:", error);
+      toast({ title: "Failed to start discussion", variant: "destructive" });
+    }
+  };
+
+  const handleCloseContinueDiscussion = () => {
+    setShowContinueDiscussion(false);
+    setDiscussionMessages([]);
+    setDiscussionConversationId(null);
+    setDiscussionInput("");
+    setDiscussionQuestion("");
+    setDiscussionAnswer("");
+  };
+
+  const handleSendDiscussionMessage = async () => {
+    if (!discussionInput.trim() || !discussionConversationId || isStreamingDiscussion) return;
+
+    const userMessage = discussionInput.trim();
+    setDiscussionInput("");
+    setDiscussionMessages(prev => [...prev, { role: "user", content: userMessage }]);
+    setIsStreamingDiscussion(true);
+
+    try {
+      const msgResponse = await fetch(`/api/conversations/${discussionConversationId}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: "user", content: userMessage }),
+        credentials: "include",
+      });
+
+      const reader = msgResponse.body?.getReader();
+      const decoder = new TextDecoder();
+      let fullText = "";
+
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value);
+          const lines = chunk.split("\n");
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              try {
+                const data = JSON.parse(line.slice(6));
+                if (data.content) {
+                  fullText += data.content;
+                  setDiscussionMessages(prev => {
+                    const newMessages = [...prev];
+                    const lastMsg = newMessages[newMessages.length - 1];
+                    if (lastMsg?.role === "assistant" && !lastMsg.isInitialAnswer) {
+                      lastMsg.content = fullText;
+                    } else {
+                      newMessages.push({ role: "assistant", content: fullText });
+                    }
+                    return newMessages;
+                  });
+                }
+              } catch (e) {}
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error sending discussion message:", error);
+      toast({ title: "Failed to send message", variant: "destructive" });
+    } finally {
+      setIsStreamingDiscussion(false);
+      discussionInputRef.current?.focus();
+    }
+  };
+
+  useEffect(() => {
+    if (discussionChatRef.current) {
+      discussionChatRef.current.scrollTop = discussionChatRef.current.scrollHeight;
+    }
+  }, [discussionMessages]);
 
   const handleSaveNote = () => {
     if (!selectedVerse || !selectedBook || !noteText.trim()) return;
@@ -1534,6 +1675,121 @@ Reference: ${verseRef} (${translation})`;
                   disabled={!insightInput.trim() || isStreamingInsight}
                   className="shrink-0 bg-[#c08e00] hover:bg-[#a07800] text-white aspect-square h-[44px] w-[44px] p-0"
                   data-testid="button-send-insight"
+                >
+                  <Send className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Continue Discussion Modal (temporary - disappears on close) */}
+      <AnimatePresence>
+        {showContinueDiscussion && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 bg-background flex flex-col touch-none"
+            style={{ touchAction: "none" }}
+          >
+            <div className="flex items-center justify-between p-3 border-b">
+              <div className="flex-1" />
+              <div className="flex items-center gap-2">
+                <MessageCircle className="w-5 h-5 text-[#c08e00]" />
+                <span className="font-serif font-bold">Continue Discussion</span>
+              </div>
+              <div className="flex-1 flex justify-end">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleCloseContinueDiscussion}
+                  className="hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                  data-testid="button-close-discussion"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4 touch-auto overscroll-contain" ref={discussionChatRef} style={{ touchAction: "pan-y" }}>
+              <div className="max-w-2xl mx-auto space-y-4">
+                <div className="border-l-2 border-[#c08e00] pl-3 mb-6 mt-2">
+                  <p className="text-lg font-serif font-bold mb-1">{discussionQuestion}</p>
+                </div>
+
+                {discussionMessages.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center py-8 gap-2">
+                    <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
+                    <span className="text-sm text-muted-foreground">Consulting THE Big Guy 👆...</span>
+                  </div>
+                ) : (
+                  discussionMessages.map((msg, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`${msg.role === "user" ? "flex justify-end" : ""}`}
+                    >
+                      {msg.role === "user" ? (
+                        <div className="bg-primary text-primary-foreground rounded-2xl rounded-br-sm px-4 py-2 max-w-[85%]">
+                          <p className="text-sm">{msg.content}</p>
+                        </div>
+                      ) : (
+                        <div className={msg.isInitialAnswer ? "border-l-2 border-[#c08e00]/50 pl-3" : ""}>
+                          <div className="prose prose-sm dark:prose-invert max-w-none">
+                            <ReactMarkdown
+                              components={{
+                                strong: ({ children }) => (
+                                  <strong className="font-serif font-bold">{children}</strong>
+                                ),
+                              }}
+                            >
+                              {msg.content}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))
+                )}
+
+                {isStreamingDiscussion && (
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Loader2 className="w-4 h-4 animate-spin text-[#c08e00]" />
+                    <span className="text-sm">Consulting THE Big Guy 👆...</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div 
+              className="border-t p-3 bg-background"
+              style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+            >
+              <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
+                <Textarea
+                  ref={discussionInputRef}
+                  placeholder="Ask a follow-up question..."
+                  value={discussionInput}
+                  onChange={(e) => setDiscussionInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendDiscussionMessage();
+                    }
+                  }}
+                  rows={1}
+                  className="resize-none min-h-[44px] max-h-32 py-[10px] flex items-center"
+                  data-testid="input-discussion-followup"
+                />
+                <Button
+                  onClick={handleSendDiscussionMessage}
+                  disabled={!discussionInput.trim() || isStreamingDiscussion || !discussionConversationId}
+                  className="shrink-0 bg-[#c08e00] hover:bg-[#a07800] text-white aspect-square h-[44px] w-[44px] p-0"
+                  data-testid="button-send-discussion"
                 >
                   <Send className="w-4 h-4" />
                 </Button>
