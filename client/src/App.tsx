@@ -1,10 +1,11 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route, useLocation, Redirect } from "wouter";
 import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthGate } from "@/components/auth-gate";
+import { isVagabondBibleDomain } from "@/lib/host-detection";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -36,7 +37,24 @@ function ScrollToTop() {
   return null;
 }
 
-function Router() {
+function VagabondBibleRouter() {
+  return (
+    <Switch>
+      <Route path="/" component={VagabondBible} />
+      <Route path="/pastor-chat">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
+      <Route path="/bible-buddy">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
+      <Route path="/notes">{() => <AuthGate><Notes /></AuthGate>}</Route>
+      <Route path="/profile">{() => <AuthGate><Profile /></AuthGate>}</Route>
+      <Route path="/login" component={Login} />
+      <Route path="/checkout/success" component={CheckoutSuccess} />
+      <Route path="/checkout/cancel" component={CheckoutCancel} />
+      <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
+      <Route>{() => <Redirect to="/" />}</Route>
+    </Switch>
+  );
+}
+
+function ChurchRouter() {
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -62,6 +80,11 @@ function Router() {
       <Route component={NotFound} />
     </Switch>
   );
+}
+
+function Router() {
+  const isVagabond = isVagabondBibleDomain();
+  return isVagabond ? <VagabondBibleRouter /> : <ChurchRouter />;
 }
 
 function App() {
