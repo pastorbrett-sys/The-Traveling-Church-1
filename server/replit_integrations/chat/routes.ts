@@ -214,7 +214,8 @@ export function registerChatRoutes(app: Express): void {
       const conversation = await chatStorage.getConversation(conversationId, sessionId);
       const isVerseInsight = conversation?.title?.startsWith("Insight:");
       const isBookSynopsis = conversation?.title?.startsWith("Give me a short synopsis");
-      const isFeatureConversation = isVerseInsight || isBookSynopsis;
+      const isContinueDiscussion = conversation?.title?.startsWith("Discussion:");
+      const isFeatureConversation = isVerseInsight || isBookSynopsis || isContinueDiscussion;
       
       const isUserPro = await checkUserProStatus(req);
       const isSessionPro = isProSession(sessionId);

@@ -793,7 +793,19 @@ Reference: ${verseRef} (${translation})`;
     }
   };
 
-  const handleCloseContinueDiscussion = () => {
+  const handleCloseContinueDiscussion = async () => {
+    // Delete the temporary conversation from the backend
+    if (discussionConversationId) {
+      try {
+        await fetch(`/api/conversations/${discussionConversationId}`, {
+          method: "DELETE",
+          credentials: "include",
+        });
+      } catch (error) {
+        console.error("Error deleting discussion conversation:", error);
+      }
+    }
+    
     setShowContinueDiscussion(false);
     setDiscussionMessages([]);
     setDiscussionConversationId(null);
@@ -923,15 +935,7 @@ Reference: ${verseRef} (${translation})`;
       const data = await res.json();
       
       if (data.question && data.answer) {
-        const params = new URLSearchParams({
-          tab: "chat",
-          seedQuestion: data.question,
-          seedAnswer: data.answer,
-        });
-        if (data.followUp) {
-          params.set("seedFollowUp", data.followUp);
-        }
-        navigate(`/pastor-chat?${params.toString()}`);
+        handleOpenContinueDiscussion(data.question, data.answer);
       }
     } catch (error) {
       console.error("Book synopsis error:", error);
