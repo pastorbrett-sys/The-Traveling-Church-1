@@ -31,6 +31,8 @@ const FEATURE_DESCRIPTIONS: Record<string, string> = {
 };
 
 export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialogProps) {
+  console.log("[UPGRADE DIALOG] Render - open:", open, "feature:", feature);
+  
   const featureLabel = FEATURE_LABELS[feature] || feature;
   const featureDescription = FEATURE_DESCRIPTIONS[feature] || feature;
   
