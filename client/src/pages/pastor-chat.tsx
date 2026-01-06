@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, forwardRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Send, MessageCircle, Lock, Sparkles, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
+import { Send, MessageCircle, Lock, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
+import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 import { Link, useSearch } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -729,7 +730,6 @@ export default function PastorChat() {
                 <span>You've reached your free message limit</span>
               </div>
               <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
-                <Sparkles className="w-4 h-4 mr-2" />
                 Upgrade to Pro for Unlimited Access
               </Button>
             </div>
@@ -784,45 +784,51 @@ export default function PastorChat() {
 
       {/* Subscription Paywall Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Upgrade to Pro
-            </DialogTitle>
-            <DialogDescription>
-              You've experienced what Vagabond Bible can offer. Upgrade to Pro for unlimited spiritual guidance and support.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-              <h3 className="font-semibold text-lg mb-2">Pro Plan - $9.99/month</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0">
+          <div className="flex flex-col justify-center min-h-full p-6 sm:p-6">
+            <DialogHeader className="text-center">
+              <div className="mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-2">
+                <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
+              </div>
+              <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]">
+                Upgrade to Pro
+              </DialogTitle>
+              <DialogDescription className="text-[hsl(20,10%,40%)] text-base sm:text-sm">
+                You've experienced what Vagabond Bible can offer. Upgrade to Pro for unlimited spiritual guidance and support.
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] mt-6 sm:mt-4">
+              <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Pro Plan - $9.99/month</h3>
+              <ul className="space-y-2 sm:space-y-2 text-base sm:text-sm text-[hsl(20,10%,35%)]">
                 <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Unlimited Vagabond Bible conversations
+                  <span className="text-[hsl(35,65%,45%)]">✓</span> Unlimited Vagabond Bible conversations
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Priority spiritual guidance
+                  <span className="text-[hsl(35,65%,45%)]">✓</span> Priority spiritual guidance
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Access to exclusive community content
+                  <span className="text-[hsl(35,65%,45%)]">✓</span> Access to exclusive community content
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Direct prayer request support
+                  <span className="text-[hsl(35,65%,45%)]">✓</span> Direct prayer request support
                 </li>
               </ul>
             </div>
-            <Button 
-              onClick={handleSubscribe} 
-              className="w-full btn-upgrade" 
-              disabled={isCheckingOut}
-              data-testid="button-checkout"
-            >
-              {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
-            </Button>
-            <p className="text-xs text-center text-muted-foreground">
-              Cancel anytime. Secure payment via Stripe.
-            </p>
+            
+            <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
+              <Button 
+                onClick={handleSubscribe} 
+                className="w-full btn-upgrade text-lg sm:text-base py-6 sm:py-4" 
+                disabled={isCheckingOut}
+                data-testid="button-checkout"
+              >
+                {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
+              </Button>
+              <p className="text-xs text-center text-[hsl(20,10%,40%)]">
+                Cancel anytime. Secure payment via Stripe.
+              </p>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
