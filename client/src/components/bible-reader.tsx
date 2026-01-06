@@ -51,6 +51,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 import { apiRequest } from "@/lib/queryClient";
 import ReactMarkdown from "react-markdown";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
@@ -547,9 +548,14 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
           toast({ 
             title: `🎉 Milestone: ${newCount} notes!`, 
             description: milestoneMessage,
+            action: <ToastAction altText="View Notes" onClick={() => navigate("/pastor-chat?tab=notes")}>View Notes</ToastAction>,
           });
         } else {
-          toast({ title: "Note saved", description: "Your reflection has been saved" });
+          toast({ 
+            title: "Note saved", 
+            description: "Your reflection has been saved",
+            action: <ToastAction altText="View Notes" onClick={() => navigate("/pastor-chat?tab=notes")}>View Notes</ToastAction>,
+          });
         }
       }, 600);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
