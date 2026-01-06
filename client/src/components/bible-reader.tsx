@@ -544,17 +544,21 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         setNoteText("");
         setNoteTags([]);
         
+        const handleViewNotes = () => {
+          window.location.href = "/pastor-chat?tab=notes";
+        };
+        
         if (milestoneMessage) {
           toast({ 
             title: `🎉 Milestone: ${newCount} notes!`, 
             description: milestoneMessage,
-            action: <ToastAction altText="View Notes" onClick={() => navigate("/pastor-chat?tab=notes")}>View Notes</ToastAction>,
+            action: <ToastAction altText="View Notes" onClick={handleViewNotes}>View Notes</ToastAction>,
           });
         } else {
           toast({ 
             title: "Note saved", 
             description: "Your reflection has been saved",
-            action: <ToastAction altText="View Notes" onClick={() => navigate("/pastor-chat?tab=notes")}>View Notes</ToastAction>,
+            action: <ToastAction altText="View Notes" onClick={handleViewNotes}>View Notes</ToastAction>,
           });
         }
       }, 600);
