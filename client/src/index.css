@@ -519,13 +519,20 @@
 
 .firefly {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 5.5px;
+  height: 5.5px;
   background: rgba(255, 235, 120, 1);
   border-radius: 50%;
   pointer-events: none;
   z-index: 20;
   animation: fireflyGlow 1.5s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+  .firefly {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 .firefly-1 {
