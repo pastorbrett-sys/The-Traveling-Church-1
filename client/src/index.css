@@ -519,8 +519,8 @@
 
 .firefly {
   position: absolute;
-  width: 5.5px;
-  height: 5.5px;
+  width: 5px;
+  height: 5px;
   background: rgba(255, 235, 120, 1);
   border-radius: 50%;
   pointer-events: none;
