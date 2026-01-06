@@ -799,20 +799,13 @@ export default function PastorChat() {
             </DialogHeader>
             
             <div className="bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] mt-6 sm:mt-4">
-              <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Pro Plan - $9.99/month</h3>
+              <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Upgrade to Pro for:</h3>
               <ul className="space-y-2 sm:space-y-2 text-base sm:text-sm text-[hsl(20,10%,35%)]">
-                <li className="flex items-center gap-2">
-                  <span className="text-[hsl(35,65%,45%)]">✓</span> Unlimited Vagabond Bible conversations
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[hsl(35,65%,45%)]">✓</span> Priority spiritual guidance
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[hsl(35,65%,45%)]">✓</span> Access to exclusive community content
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-[hsl(35,65%,45%)]">✓</span> Direct prayer request support
-                </li>
+                <li>• Unlimited Smart Searches</li>
+                <li>• Unlimited Book Synopses</li>
+                <li>• Unlimited Verse Insights</li>
+                <li>• Unlimited Notes</li>
+                <li>• Priority support</li>
               </ul>
             </div>
             

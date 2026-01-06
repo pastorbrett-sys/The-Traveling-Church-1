@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { ArrowLeft, User, Mail, Sparkles, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest } from "@/lib/queryClient";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
 interface SubscriptionStatus {
   subscription: {
@@ -45,6 +47,8 @@ interface UsageSummary {
 export default function Profile() {
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   const { data: subscriptionStatus, isLoading: isSubLoading } = useQuery<SubscriptionStatus>({
     queryKey: ["/api/stripe/my-subscription"],
@@ -80,6 +84,30 @@ export default function Profile() {
       console.error("Portal error:", error);
     } finally {
       setIsOpeningPortal(false);
+    }
+  };
+
+  const handleSubscribe = async () => {
+    setIsCheckingOut(true);
+    try {
+      const productsRes = await fetch("/api/stripe/products-with-prices");
+      if (!productsRes.ok) throw new Error("Failed to load products");
+      const productsData = await productsRes.json();
+      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
+      if (!proPlan) throw new Error("Pro plan not found");
+      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
+      if (!proPrice) throw new Error("Monthly price not found");
+      
+      const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", { priceId: proPrice.id });
+      const checkoutData = await checkoutRes.json();
+      if (checkoutData.url) {
+        window.location.href = checkoutData.url;
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Unable to start checkout. Please try again.");
+    } finally {
+      setIsCheckingOut(false);
     }
   };
 
@@ -225,8 +253,8 @@ export default function Profile() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Badge variant="default" className="bg-primary" data-testid="badge-pro">
-                          <Sparkles className="w-3 h-3 mr-1" />
+                        <Badge variant="default" className="bg-[hsl(25,35%,45%)]" data-testid="badge-pro">
+                          <img src={upgradeIcon} alt="" className="w-3 h-3 mr-1" />
                           Pro Plan
                         </Badge>
                         {isCancelling && (
@@ -305,19 +333,17 @@ export default function Profile() {
 
                     <Separator />
 
-                    <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-                      <h3 className="font-semibold flex items-center gap-2 mb-2">
-                        <Sparkles className="w-4 h-4 text-primary" />
+                    <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-4 border border-[hsl(25,35%,45%)]/20">
+                      <h3 className="font-semibold flex items-center gap-2 mb-2 text-[hsl(20,10%,20%)]">
+                        <img src={upgradeIcon} alt="" className="w-5 h-5" />
                         Upgrade to Pro
                       </h3>
                       <p className="text-sm text-muted-foreground mb-3">
                         Get unlimited conversations and exclusive features for $9.99/month.
                       </p>
-                      <Link href="/pastor-chat?upgrade=true">
-                        <Button size="sm" className="btn-upgrade" data-testid="button-upgrade">
-                          Upgrade Now!
-                        </Button>
-                      </Link>
+                      <Button size="sm" className="btn-upgrade" data-testid="button-upgrade" onClick={() => setShowPaywall(true)}>
+                        Upgrade Now!
+                      </Button>
                     </div>
                   </div>
                 )}
@@ -327,7 +353,7 @@ export default function Profile() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2" data-testid="heading-usage">
-                  <Sparkles className="w-5 h-5" />
+                  <img src={upgradeIcon} alt="" className="w-5 h-5" />
                   AI Credits Remaining
                 </CardTitle>
                 <CardDescription>
@@ -409,16 +435,13 @@ export default function Profile() {
                     {!usageSummary?.isPro && (
                       <>
                         <Separator className="my-4" />
-                        <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+                        <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-4 border border-[hsl(25,35%,45%)]/20">
                           <p className="text-sm text-muted-foreground mb-3">
                             Want unlimited access to all features?
                           </p>
-                          <Link href="/pastor-chat?upgrade=true">
-                            <Button size="sm" className="btn-upgrade" data-testid="button-upgrade-usage">
-                              <Sparkles className="w-4 h-4 mr-2" />
-                              Upgrade to Pro
-                            </Button>
-                          </Link>
+                          <Button size="sm" className="btn-upgrade" data-testid="button-upgrade-usage" onClick={() => setShowPaywall(true)}>
+                            Upgrade to Pro
+                          </Button>
                         </div>
                       </>
                     )}
@@ -433,6 +456,50 @@ export default function Profile() {
       <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
         <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
       </footer>
+
+      {/* Upgrade Modal */}
+      <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0">
+          <div className="flex flex-col justify-center min-h-full p-6 sm:p-6">
+            <DialogHeader className="text-center">
+              <div className="mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-2">
+                <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
+              </div>
+              <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]">
+                Upgrade to Pro
+              </DialogTitle>
+              <DialogDescription className="text-[hsl(20,10%,40%)] text-base sm:text-sm">
+                You've experienced what Vagabond Bible can offer. Upgrade to Pro for unlimited spiritual guidance and support.
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] mt-6 sm:mt-4">
+              <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Upgrade to Pro for:</h3>
+              <ul className="space-y-2 sm:space-y-2 text-base sm:text-sm text-[hsl(20,10%,35%)]">
+                <li>• Unlimited Smart Searches</li>
+                <li>• Unlimited Book Synopses</li>
+                <li>• Unlimited Verse Insights</li>
+                <li>• Unlimited Notes</li>
+                <li>• Priority support</li>
+              </ul>
+            </div>
+            
+            <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
+              <Button 
+                onClick={handleSubscribe} 
+                className="w-full btn-upgrade text-lg sm:text-base py-6 sm:py-4" 
+                disabled={isCheckingOut}
+                data-testid="button-checkout"
+              >
+                {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
+              </Button>
+              <p className="text-xs text-center text-[hsl(20,10%,40%)]">
+                Cancel anytime. Secure payment via Stripe.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
