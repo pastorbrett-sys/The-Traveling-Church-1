@@ -697,13 +697,13 @@
   color: #ffffff !important;
   font-weight: 600;
   border: none;
-  box-shadow: 0 4px 15px rgba(90, 64, 8, 0.5);
+  box-shadow: 0 2px 8px rgba(90, 64, 8, 0.25);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-upgrade:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(90, 64, 8, 0.6);
+  box-shadow: 0 4px 12px rgba(90, 64, 8, 0.3);
   background: linear-gradient(-45deg, #6B4E0A, #7A5D10, #5A4008, #6B4E0A, #5A4008, #7A5D10);
   background-size: 400% 400%;
   animation: goldenPulse 6s ease-in-out infinite;
@@ -722,10 +722,10 @@
 .dark .btn-upgrade {
   background: linear-gradient(-45deg, #6B4E0A, #7A5D10, #5A4008, #6B4E0A, #5A4008, #7A5D10);
   background-size: 400% 400%;
-  box-shadow: 0 4px 15px rgba(107, 78, 10, 0.5);
+  box-shadow: 0 2px 8px rgba(107, 78, 10, 0.25);
 }
 
 .dark .btn-upgrade:hover {
   background: linear-gradient(-45deg, #7A5D10, #6B4E0A, #5A4008, #7A5D10, #6B4E0A, #7A5D10);
-  box-shadow: 0 8px 25px rgba(122, 93, 16, 0.6);
+  box-shadow: 0 4px 12px rgba(122, 93, 16, 0.3);
 }
