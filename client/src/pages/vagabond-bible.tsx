@@ -26,7 +26,7 @@ export default function VagabondBible() {
               <a href="#community" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-community">Community</a>
               <a href="#contact" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-contact">Contact</a>
               <Link href="/login">
-                <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px]" data-testid="button-login">
+                <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px] md:hover:scale-105 active:scale-95 transition-all duration-200" data-testid="button-login">
                   Login
                 </Button>
               </Link>
@@ -87,13 +87,13 @@ export default function VagabondBible() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/pastor-chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
-                <Button size="lg" className="w-full sm:w-auto hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px]" data-testid="button-start-reading">
+                <Button size="lg" className="w-full sm:w-auto hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-all duration-200" data-testid="button-start-reading">
                   <BookOpen className="w-5 h-5 mr-2" />
                   Start Reading
                 </Button>
               </Link>
               <Link href="/pastor-chat?tab=chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
-                <Button size="lg" variant="ghost" className="w-full sm:w-auto border-[1.5px] border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px]" data-testid="button-chat-pastor">
+                <Button size="lg" variant="ghost" className="w-full sm:w-auto border-[1.5px] border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-all duration-200" data-testid="button-chat-pastor">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   AI Pastor
                 </Button>
@@ -245,7 +245,7 @@ export default function VagabondBible() {
                 and find your tribe.
               </p>
               <a href="https://thetravelingchurch.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white rounded-full px-8" data-testid="button-join-community">
+                <Button size="lg" className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white rounded-full px-8 md:hover:scale-105 active:scale-95 transition-all duration-200" data-testid="button-join-community">
                   <Users className="w-5 h-5 mr-2" />
                   Join The Traveling Church
                 </Button>
