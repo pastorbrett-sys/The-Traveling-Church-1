@@ -211,8 +211,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         body: JSON.stringify({ query }),
         credentials: "include",
       });
+      console.log("[SMART SEARCH] Response status:", res.status);
       if (res.status === 429) {
         const data = await res.json();
+        console.log("[SMART SEARCH] Limit reached, showing upgrade dialog");
         setUpgradeFeature("smart_search");
         setUpgradeResetAt(data.resetAt || null);
         setUpgradeDialogOpen(true);
