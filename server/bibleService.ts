@@ -184,21 +184,40 @@ function cleanVerseText(text: string): string {
 }
 
 function cleanVerseWithHeading(text: string): CleanedVerse {
-  // Extract heading from <h> or <h1>-<h6> tags
   let heading: string | undefined;
-  const headingMatch = text.match(/<h[1-6]?[^>]*>([^<]+)<\/h[1-6]?>/i);
-  if (headingMatch) {
-    heading = headingMatch[1].trim();
+  let cleaned = text;
+  
+  // Pattern 1: Extract heading from <h> or <h1>-<h6> tags
+  const hTagMatch = cleaned.match(/<h[1-6]?[^>]*>([^<]+)<\/h[1-6]?>/i);
+  if (hTagMatch) {
+    heading = hTagMatch[1].trim();
+    cleaned = cleaned.replace(/<h[1-6]?[^>]*>[^<]*<\/h[1-6]?>/gi, "");
   }
   
-  // Replace heading tags with empty string (we've captured the content)
-  let cleaned = text.replace(/<h[1-6]?[^>]*>[^<]*<\/h[1-6]?>/gi, "");
+  // Pattern 2: Check for heading as text before first <br/> at start of verse
+  // This is the common NIV format: "Section Title<br/>Actual verse text..."
+  if (!heading) {
+    const brHeadingMatch = cleaned.match(/^([A-Z][^<]{2,50})<br\s*\/?>/i);
+    if (brHeadingMatch) {
+      const potentialHeading = brHeadingMatch[1].trim();
+      // Only treat as heading if it's short (not a full sentence) and starts with capital
+      // and doesn't end with typical sentence endings
+      if (potentialHeading.length <= 50 && 
+          !potentialHeading.match(/[.!?]$/) &&
+          /^[A-Z]/.test(potentialHeading)) {
+        heading = potentialHeading;
+        cleaned = cleaned.replace(/^[^<]+<br\s*\/?>/i, "");
+      }
+    }
+  }
   
-  // Also check for other heading patterns like <pb> (paragraph break with title)
-  const pbMatch = cleaned.match(/<pb[^>]*>([^<]+)<\/pb>/i);
-  if (pbMatch && !heading) {
-    heading = pbMatch[1].trim();
-    cleaned = cleaned.replace(/<pb[^>]*>[^<]*<\/pb>/gi, "");
+  // Pattern 3: Check for <pb> (paragraph break with title) tags
+  if (!heading) {
+    const pbMatch = cleaned.match(/<pb[^>]*>([^<]+)<\/pb>/i);
+    if (pbMatch) {
+      heading = pbMatch[1].trim();
+      cleaned = cleaned.replace(/<pb[^>]*>[^<]*<\/pb>/gi, "");
+    }
   }
   
   // Handle self-closing tags and ensure spacing
