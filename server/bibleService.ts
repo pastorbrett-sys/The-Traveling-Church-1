@@ -1,6 +1,31 @@
 import type { BibleBook, BibleChapter, BibleVerse, BibleTranslation } from "@shared/models/bible";
+import * as fs from "fs";
+import * as path from "path";
 
 const BOLLS_API = "https://bolls.life";
+
+interface HeadingOverrides {
+  removeHeadings: Record<string, string>;
+  addHeadings: Record<string, string>;
+}
+
+let headingOverrides: HeadingOverrides | null = null;
+
+function loadHeadingOverrides(): HeadingOverrides {
+  if (headingOverrides) return headingOverrides;
+  
+  try {
+    const overridesPath = path.join(__dirname, "data/headingOverrides.json");
+    const data = JSON.parse(fs.readFileSync(overridesPath, "utf-8"));
+    headingOverrides = {
+      removeHeadings: data.removeHeadings || {},
+      addHeadings: data.addHeadings || {}
+    };
+  } catch (error) {
+    headingOverrides = { removeHeadings: {}, addHeadings: {} };
+  }
+  return headingOverrides;
+}
 
 const SUPPORTED_TRANSLATIONS: BibleTranslation[] = [
   { short_name: "KJV", full_name: "King James Version" },
@@ -63,7 +88,7 @@ export async function getChapter(
       verses: verses.map(v => ({
         pk: v.pk,
         verse: v.verse,
-        text: cleanVerseText(v.text),
+        text: cleanVerseText(v.text, bookId, chapter, v.verse),
       })),
       translation,
     };
@@ -90,7 +115,7 @@ export async function getVerse(
     return {
       pk: data.pk,
       verse: data.verse,
-      text: cleanVerseText(data.text),
+      text: cleanVerseText(data.text, bookId, chapter, data.verse),
       book: bookId,
       chapter,
     };
@@ -118,7 +143,7 @@ export async function searchBible(
       results: (data.results || []).map((v: any) => ({
         pk: v.pk,
         verse: v.verse,
-        text: cleanVerseText(v.text),
+        text: cleanVerseText(v.text, v.book, v.chapter, v.verse),
         book: v.book,
         chapter: v.chapter,
       })),
@@ -157,10 +182,10 @@ export async function compareTranslations(
     
     return data.map((translationVerses: any[], index: number) => ({
       translation: translations[index],
-      verses: translationVerses.map((v: any) => ({
+      verses: translationVerses.map((v: any, vIndex: number) => ({
         pk: v.pk,
         verse: v.verse,
-        text: cleanVerseText(v.text),
+        text: cleanVerseText(v.text, bookId, chapter, verses[vIndex]),
       })),
     }));
   } catch (error) {
@@ -174,39 +199,51 @@ interface CleanedVerse {
   heading?: string;
 }
 
-function cleanVerseText(text: string): string {
-  const cleaned = cleanVerseWithHeading(text);
-  // For backward compatibility, prepend heading with separator if present
+function cleanVerseText(text: string, bookId?: number, chapter?: number, verse?: number): string {
+  const cleaned = cleanVerseWithHeading(text, bookId, chapter, verse);
   if (cleaned.heading) {
     return `§${cleaned.heading}§ ${cleaned.text}`;
   }
   return cleaned.text;
 }
 
-function cleanVerseWithHeading(text: string): CleanedVerse {
+function cleanVerseWithHeading(text: string, bookId?: number, chapter?: number, verse?: number): CleanedVerse {
+  const overrides = loadHeadingOverrides();
+  const verseKey = bookId && chapter && verse ? `${bookId}:${chapter}:${verse}` : null;
+  
   let heading: string | undefined;
   let cleaned = text;
   
+  // Check for manual heading addition first
+  if (verseKey && overrides.addHeadings[verseKey]) {
+    heading = overrides.addHeadings[verseKey];
+  }
+  
   // Pattern 1: Extract heading from <h> or <h1>-<h6> tags
-  const hTagMatch = cleaned.match(/<h[1-6]?[^>]*>([^<]+)<\/h[1-6]?>/i);
-  if (hTagMatch) {
-    heading = hTagMatch[1].trim();
-    cleaned = cleaned.replace(/<h[1-6]?[^>]*>[^<]*<\/h[1-6]?>/gi, "");
+  if (!heading) {
+    const hTagMatch = cleaned.match(/<h[1-6]?[^>]*>([^<]+)<\/h[1-6]?>/i);
+    if (hTagMatch) {
+      heading = hTagMatch[1].trim();
+      cleaned = cleaned.replace(/<h[1-6]?[^>]*>[^<]*<\/h[1-6]?>/gi, "");
+    }
   }
   
   // Pattern 2: Check for heading as text before first <br/> at start of verse
-  // This is the common NIV format: "Section Title<br/>Actual verse text..."
   if (!heading) {
     const brHeadingMatch = cleaned.match(/^([A-Z][^<]{2,50})<br\s*\/?>/i);
     if (brHeadingMatch) {
       const potentialHeading = brHeadingMatch[1].trim();
-      // Only treat as heading if it's short (not a full sentence) and starts with capital
-      // and doesn't end with typical sentence endings
       if (potentialHeading.length <= 50 && 
           !potentialHeading.match(/[.!?]$/) &&
           /^[A-Z]/.test(potentialHeading)) {
-        heading = potentialHeading;
-        cleaned = cleaned.replace(/^[^<]+<br\s*\/?>/i, "");
+        // Check if this heading should be removed (false positive)
+        if (verseKey && overrides.removeHeadings[verseKey]) {
+          // Don't set heading, but still clean the text normally
+          cleaned = cleaned.replace(/^[^<]+<br\s*\/?>/i, "");
+        } else {
+          heading = potentialHeading;
+          cleaned = cleaned.replace(/^[^<]+<br\s*\/?>/i, "");
+        }
       }
     }
   }
@@ -222,8 +259,8 @@ function cleanVerseWithHeading(text: string): CleanedVerse {
   
   // Handle self-closing tags and ensure spacing
   cleaned = cleaned.replace(/<br\s*\/?>/gi, " ");
-  cleaned = cleaned.replace(/<\/[^>]+>/g, " "); // Add space when closing tags
-  cleaned = cleaned.replace(/<[^>]*>/g, ""); // Remove remaining tags
+  cleaned = cleaned.replace(/<\/[^>]+>/g, " ");
+  cleaned = cleaned.replace(/<[^>]*>/g, "");
   
   // Clean up numbers that look like Strong's references
   cleaned = cleaned.replace(/(\D)(\d{2,5})(?=[\s,.:;!?'")\]]|$)/g, "$1");

@@ -1,0 +1,6 @@
+{
+  "_description": "Bible heading overrides. 'removeHeadings' lists verses where detected headings should be suppressed (false positives). 'addHeadings' can specify verses that should have custom headings.",
+  "_format": "Keys are 'BOOK_ID:CHAPTER:VERSE' format",
+  "removeHeadings": {},
+  "addHeadings": {}
+}
