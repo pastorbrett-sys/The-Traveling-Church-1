@@ -384,3 +384,48 @@
   border-radius: 6px;
   display: inline-block;
 }
+
+/* Campfire burning animation - flickering warm glow */
+@keyframes campfireGlow {
+  0%, 100% {
+    filter: brightness(1) saturate(1.1);
+    box-shadow: 0 0 30px rgba(255, 120, 50, 0.4),
+                0 0 60px rgba(255, 80, 20, 0.2);
+  }
+  15% {
+    filter: brightness(1.05) saturate(1.15);
+    box-shadow: 0 0 40px rgba(255, 140, 60, 0.5),
+                0 0 80px rgba(255, 100, 30, 0.25);
+  }
+  30% {
+    filter: brightness(0.98) saturate(1.08);
+    box-shadow: 0 0 25px rgba(255, 100, 40, 0.35),
+                0 0 50px rgba(255, 60, 10, 0.15);
+  }
+  45% {
+    filter: brightness(1.08) saturate(1.2);
+    box-shadow: 0 0 45px rgba(255, 150, 70, 0.55),
+                0 0 90px rgba(255, 110, 40, 0.3);
+  }
+  60% {
+    filter: brightness(1.02) saturate(1.12);
+    box-shadow: 0 0 35px rgba(255, 130, 55, 0.45),
+                0 0 70px rgba(255, 90, 25, 0.22);
+  }
+  75% {
+    filter: brightness(0.96) saturate(1.05);
+    box-shadow: 0 0 22px rgba(255, 90, 35, 0.3),
+                0 0 45px rgba(255, 50, 5, 0.12);
+  }
+  90% {
+    filter: brightness(1.06) saturate(1.18);
+    box-shadow: 0 0 42px rgba(255, 145, 65, 0.52),
+                0 0 85px rgba(255, 105, 35, 0.28);
+  }
+}
+
+.animate-campfire {
+  animation: campfireGlow 3s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: filter, box-shadow;
+}

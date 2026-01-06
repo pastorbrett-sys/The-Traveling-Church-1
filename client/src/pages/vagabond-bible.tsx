@@ -228,7 +228,7 @@ export default function VagabondBible() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative">
-              <img src={campfireImage} alt="Community around campfire" className="rounded-2xl shadow-xl" />
+              <img src={campfireImage} alt="Community around campfire" className="rounded-2xl shadow-xl animate-campfire" />
               <img src={burstIcon} alt="" className="absolute -top-8 -left-8 sm:-top-10 sm:-left-10 w-20 h-20 sm:w-24 sm:h-24" />
             </div>
             <div className="order-1 lg:order-2">
