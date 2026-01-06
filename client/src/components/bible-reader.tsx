@@ -242,7 +242,36 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     }
   };
 
-  const handleSmartSearchResult = (result: SmartSearchResult) => {
+  const handleSmartSearchResult = async (result: SmartSearchResult) => {
+    // Check and use credit before navigating to result
+    try {
+      const res = await fetch("/api/bible/smart-search/use-credit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      
+      if (res.status === 429) {
+        const data = await res.json();
+        setSearchLimitReached(true);
+        setSearchLimitResetAt(data.resetAt || null);
+        return;
+      }
+      
+      if (!res.ok) {
+        throw new Error("Failed to use search credit");
+      }
+    } catch (error) {
+      console.error("Credit check error:", error);
+      toast({
+        title: "Error",
+        description: "Please try again",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Credit used successfully, navigate to result
     switch (result.type) {
       case "verse":
         const verseResult = result as SmartSearchResultVerse;
@@ -281,7 +310,30 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     }
   };
 
-  const handleTopicVerseClick = (verse: { bookId: number; chapter: number; verse: number }) => {
+  const handleTopicVerseClick = async (verse: { bookId: number; chapter: number; verse: number }) => {
+    // Check and use credit before navigating to verse
+    try {
+      const res = await fetch("/api/bible/smart-search/use-credit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      
+      if (res.status === 429) {
+        const data = await res.json();
+        setSearchLimitReached(true);
+        setSearchLimitResetAt(data.resetAt || null);
+        return;
+      }
+      
+      if (!res.ok) {
+        throw new Error("Failed to use search credit");
+      }
+    } catch (error) {
+      console.error("Credit check error:", error);
+      return;
+    }
+
     const book = books?.find(b => b.bookid === verse.bookId);
     if (book) {
       setSelectedBook(book);

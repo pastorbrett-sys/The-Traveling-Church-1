@@ -193,6 +193,7 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       return res.status(400).json({ message: "Search query required (minimum 2 characters)" });
     }
 
+    // Check if user has credits available (but don't consume yet - consumed on click-through)
     const userId = req.session.userId;
     const user = await storage.getUser(userId);
     const isPro = !!user?.stripeSubscriptionId;
@@ -236,11 +237,41 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       results: parsed.results || [],
     };
 
-    await incrementUsage(userId, "smart_search", isPro);
     res.json(response);
   } catch (error) {
     console.error("Smart search error:", error);
     res.status(500).json({ message: "Smart search failed" });
+  }
+});
+
+// Use a smart search credit when clicking through to a result
+router.post("/smart-search/use-credit", isAuthenticated, async (req: any, res) => {
+  try {
+    const userId = req.session.userId;
+    const user = await storage.getUser(userId);
+    const isPro = !!user?.stripeSubscriptionId;
+    
+    const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
+    if (!limitResult.allowed) {
+      return res.status(429).json({
+        code: "USAGE_LIMIT_REACHED",
+        feature: "smart_search",
+        remaining: 0,
+        limit: FEATURE_LIMITS.smart_search,
+        resetAt: limitResult.resetAt?.toISOString(),
+        message: "You've reached your Smart Search limit this month. Upgrade to Pro for unlimited access.",
+      });
+    }
+
+    await incrementUsage(userId, "smart_search", isPro);
+    res.json({ 
+      success: true, 
+      remaining: limitResult.remaining - 1,
+      limit: limitResult.limit 
+    });
+  } catch (error) {
+    console.error("Smart search use credit error:", error);
+    res.status(500).json({ message: "Failed to use search credit" });
   }
 });
 
