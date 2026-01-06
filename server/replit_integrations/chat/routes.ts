@@ -210,9 +210,11 @@ export function registerChatRoutes(app: Express): void {
 
       const sessionId = getSessionId(req, res);
       
-      // Check if this is a verse insight conversation (bypass chat limit for these)
+      // Check if this is a feature-specific conversation (bypass chat limit for these)
       const conversation = await chatStorage.getConversation(conversationId, sessionId);
       const isVerseInsight = conversation?.title?.startsWith("Insight:");
+      const isBookSynopsis = conversation?.title?.startsWith("Give me a short synopsis");
+      const isFeatureConversation = isVerseInsight || isBookSynopsis;
       
       const isUserPro = await checkUserProStatus(req);
       const isSessionPro = isProSession(sessionId);
@@ -221,16 +223,16 @@ export function registerChatRoutes(app: Express): void {
       // Get authenticated user for database-backed usage tracking
       const authUserId = getAuthenticatedUserId(req);
       
-      // Require authentication for regular chat (verse insights have their own auth check)
-      if (!isVerseInsight && !authUserId) {
+      // Require authentication for regular chat (feature conversations have their own auth check)
+      if (!isFeatureConversation && !authUserId) {
         return res.status(401).json({ 
           error: "Authentication required",
           code: "AUTH_REQUIRED"
         });
       }
       
-      // Only enforce chat message limit for regular chat, not verse insights
-      if (!isPro && !isVerseInsight && authUserId) {
+      // Only enforce chat message limit for regular chat, not feature conversations
+      if (!isPro && !isFeatureConversation && authUserId) {
         const user = await storage.getUser(authUserId);
         if (user) {
           const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
@@ -248,7 +250,7 @@ export function registerChatRoutes(app: Express): void {
       }
 
       // Only increment chat count for regular chat conversations (database-backed)
-      if (!isPro && !isVerseInsight && authUserId) {
+      if (!isPro && !isFeatureConversation && authUserId) {
         const user = await storage.getUser(authUserId);
         if (user) {
           await incrementUsage(user.id, "chat_message", isPro);
