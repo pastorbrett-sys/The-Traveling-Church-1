@@ -1,0 +1,27 @@
+{
+  "name": "Vagabond Bible",
+  "short_name": "Vagabond Bible",
+  "description": "The best AI Bible ever built. Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#be9009",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vagabond-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/vagabond-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["books", "education", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
