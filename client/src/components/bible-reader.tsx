@@ -1330,7 +1330,7 @@ Reference: ${verseRef} (${translation})`;
                 return (
                   <span key={verse.pk}>
                     {heading && (
-                      <h3 className="block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mt-10 mb-2 first:mt-0">
+                      <h3 className="block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mt-16 mb-1 first:mt-0">
                         {heading}
                       </h3>
                     )}
