@@ -672,3 +672,55 @@
   pointer-events: none;
   z-index: 25;
 }
+
+/* =========================================================================
+   UPGRADE BUTTON - ANIMATED GOLD GRADIENT
+   Premium upgrade buttons with warm gold-to-dark-yellow animated gradient
+   ========================================================================= */
+
+@keyframes goldenPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.btn-upgrade {
+  background: linear-gradient(-45deg, #D4A520, #FFD700, #C49B0F, #E8C139, #B8860B, #F0C14B);
+  background-size: 400% 400%;
+  animation: goldenPulse 6s ease-in-out infinite;
+  color: #1a1a1a;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 15px rgba(212, 165, 32, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-upgrade:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(212, 165, 32, 0.5);
+}
+
+.btn-upgrade:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-upgrade:focus-visible {
+  outline: 3px solid rgba(255, 215, 0, 0.6);
+  outline-offset: 3px;
+}
+
+/* Dark mode adjustments */
+.dark .btn-upgrade {
+  color: #0f0f0f;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.dark .btn-upgrade:hover {
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
