@@ -789,7 +789,7 @@ export default function PastorChat() {
               Upgrade to Pro
             </DialogTitle>
             <DialogDescription>
-              You've experienced what AI Bible Buddy can offer. Upgrade to Pro for unlimited spiritual guidance and support.
+              You've experienced what Vagabond Bible can offer. Upgrade to Pro for unlimited spiritual guidance and support.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -797,7 +797,7 @@ export default function PastorChat() {
               <h3 className="font-semibold text-lg mb-2">Pro Plan - $9.99/month</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> Unlimited AI Bible Buddy conversations
+                  <span className="text-primary">✓</span> Unlimited Vagabond Bible conversations
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-primary">✓</span> Priority spiritual guidance
