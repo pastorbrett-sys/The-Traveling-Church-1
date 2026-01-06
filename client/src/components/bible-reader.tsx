@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -120,6 +120,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [insightVerseText, setInsightVerseText] = useState("");
   const [smartSearchResults, setSmartSearchResults] = useState<SmartSearchResponse | null>(null);
   const [isSmartSearching, setIsSmartSearching] = useState(false);
+  const [searchLimitReached, setSearchLimitReached] = useState(false);
+  const [searchLimitResetAt, setSearchLimitResetAt] = useState<string | null>(null);
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [isLoadingBookSynopsis, setIsLoadingBookSynopsis] = useState(false);
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
@@ -203,6 +205,11 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   }, [selectedBook, showBookPicker]);
 
   const performSmartSearch = async (query: string) => {
+    // If limit is already reached, don't make another request
+    if (searchLimitReached) {
+      return;
+    }
+    
     setIsSmartSearching(true);
     try {
       const res = await fetch("/api/bible/smart-search", {
@@ -214,10 +221,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       console.log("[SMART SEARCH] Response status:", res.status);
       if (res.status === 429) {
         const data = await res.json();
-        console.log("[SMART SEARCH] Limit reached, showing upgrade dialog");
-        setUpgradeFeature("smart_search");
-        setUpgradeResetAt(data.resetAt || null);
-        setUpgradeDialogOpen(true);
+        console.log("[SMART SEARCH] Limit reached, showing inline upgrade message");
+        setSearchLimitReached(true);
+        setSearchLimitResetAt(data.resetAt || null);
         setSmartSearchResults(null);
         return;
       }
@@ -849,7 +855,39 @@ Reference: ${verseRef} (${translation})`;
                   </div>
                 )}
                 
-                {!isSmartSearching && smartSearchResults && (
+                {!isSmartSearching && searchLimitReached && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex flex-col items-center justify-center py-8 gap-4 text-center"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center">
+                      <Sparkles className="w-8 h-8 text-[hsl(25,35%,45%)]" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Smart Search Limit Reached</h3>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        You've used all your AI-powered searches for this month.
+                      </p>
+                      {searchLimitResetAt && (
+                        <p className="text-xs text-muted-foreground">
+                          Resets on {new Date(searchLimitResetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}
+                        </p>
+                      )}
+                    </div>
+                    <Link href="/pastor-chat?upgrade=true">
+                      <Button 
+                        className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)] text-white"
+                        data-testid="button-upgrade-search"
+                      >
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        Upgrade to Pro for Unlimited
+                      </Button>
+                    </Link>
+                  </motion.div>
+                )}
+                
+                {!isSmartSearching && !searchLimitReached && smartSearchResults && (
                   <>
                     {smartSearchResults.interpretation && (
                       <motion.p
