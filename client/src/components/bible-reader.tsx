@@ -1465,8 +1465,9 @@ Reference: ${verseRef} (${translation})`;
                 </div>
 
                 {isLoadingInsight && insightMessages.length === 0 ? (
-                  <div className="flex items-center justify-center py-8">
-                    <Loader2 className="w-6 h-6 animate-spin" />
+                  <div className="flex flex-col items-center justify-center py-8 gap-2">
+                    <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
+                    <span className="text-sm text-muted-foreground">Consulting THE Big Guy 👆...</span>
                   </div>
                 ) : (
                   insightMessages.map((msg, index) => (
@@ -1501,8 +1502,8 @@ Reference: ${verseRef} (${translation})`;
 
                 {isStreamingInsight && (
                   <div className="flex items-center gap-2 text-muted-foreground">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-sm">Consulting the big guy...</span>
+                    <Loader2 className="w-4 h-4 animate-spin text-[#c08e00]" />
+                    <span className="text-sm">Consulting THE Big Guy 👆...</span>
                   </div>
                 )}
               </div>
