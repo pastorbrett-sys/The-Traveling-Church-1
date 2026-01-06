@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage, db } from "./storage";
+import { sql } from "drizzle-orm";
 import {
   insertBlogPostSchema,
   insertEventSchema,
@@ -567,6 +568,100 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin endpoint to backfill Stripe customer links for existing users
+  // This runs automatically on startup but can also be triggered manually
+  app.post("/api/admin/sync-stripe-customers", async (req, res) => {
+    try {
+      const results = await syncStripeCustomersToUsers();
+      res.json(results);
+    } catch (error) {
+      console.error("Error syncing Stripe customers:", error);
+      res.status(500).json({ message: "Failed to sync Stripe customers" });
+    }
+  });
+
+  // Run the sync on startup to ensure all existing customers are linked
+  syncStripeCustomersToUsers().catch(err => {
+    console.error("Error during startup Stripe customer sync:", err);
+  });
+
   const httpServer = createServer(app);
   return httpServer;
+}
+
+// Helper function to sync Stripe customers to user accounts
+async function syncStripeCustomersToUsers() {
+  const results = { synced: 0, skipped: 0, cleared: 0, errors: [] as string[] };
+  
+  try {
+    // Query stripe.customers table to find customers with userId metadata
+    const customersResult = await db.execute(sql`
+      SELECT id, email, metadata 
+      FROM stripe.customers 
+      WHERE metadata->>'userId' IS NOT NULL 
+        AND metadata->>'userId' != 'guest'
+    `);
+    
+    for (const customer of customersResult.rows) {
+      const customerId = customer.id as string;
+      const userId = (customer.metadata as any)?.userId;
+      
+      if (!userId) continue;
+      
+      try {
+        // Check if user exists
+        const user = await storage.getUser(userId);
+        
+        if (!user) {
+          results.skipped++;
+          continue;
+        }
+        
+        // Find any active subscription for this customer (not pending cancellation)
+        const subResult = await db.execute(sql`
+          SELECT id FROM stripe.subscriptions 
+          WHERE customer = ${customerId} 
+            AND status IN ('active', 'trialing')
+            AND (cancel_at_period_end = false OR cancel_at_period_end IS NULL)
+          ORDER BY created DESC 
+          LIMIT 1
+        `);
+        
+        const subscriptionId = subResult.rows[0]?.id as string | null;
+        
+        // Check if update is needed
+        const needsUpdate = user.stripeCustomerId !== customerId || 
+                           user.stripeSubscriptionId !== subscriptionId;
+        
+        if (!needsUpdate) {
+          results.skipped++;
+          continue;
+        }
+        
+        // Update the user's Stripe info (use null to clear subscription if none active)
+        await storage.updateUserStripeInfo(userId, {
+          stripeCustomerId: customerId,
+          stripeSubscriptionId: subscriptionId,
+        });
+        
+        if (subscriptionId) {
+          console.log(`Synced Stripe customer ${customerId} to user ${userId} with subscription ${subscriptionId}`);
+          results.synced++;
+        } else {
+          console.log(`Cleared inactive subscription for user ${userId} (customer ${customerId})`);
+          results.cleared++;
+        }
+      } catch (err) {
+        const errorMsg = `Failed to sync customer ${customerId}: ${err}`;
+        console.error(errorMsg);
+        results.errors.push(errorMsg);
+      }
+    }
+  } catch (error) {
+    console.error("Error querying Stripe customers:", error);
+    throw error;
+  }
+  
+  console.log(`Stripe customer sync complete: ${results.synced} synced, ${results.cleared} cleared, ${results.skipped} skipped`);
+  return results;
 }
