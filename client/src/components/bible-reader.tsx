@@ -1085,7 +1085,7 @@ Reference: ${verseRef} (${translation})`;
                     </div>
                     <Link href="/pastor-chat?upgrade=true">
                       <Button 
-                        className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)] text-white"
+                        className="btn-upgrade"
                         data-testid="button-upgrade-search"
                       >
                         <Sparkles className="w-4 h-4 mr-2" />

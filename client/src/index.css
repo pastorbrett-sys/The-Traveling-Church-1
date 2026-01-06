@@ -691,19 +691,22 @@
 }
 
 .btn-upgrade {
-  background: linear-gradient(-45deg, #D4A520, #FFD700, #C49B0F, #E8C139, #B8860B, #F0C14B);
+  background: linear-gradient(-45deg, #5A4008, #6B4E0A, #4D3607, #5A4008, #4D3607, #6B4E0A);
   background-size: 400% 400%;
   animation: goldenPulse 6s ease-in-out infinite;
-  color: #1a1a1a;
+  color: #ffffff !important;
   font-weight: 600;
   border: none;
-  box-shadow: 0 4px 15px rgba(212, 165, 32, 0.4);
+  box-shadow: 0 4px 15px rgba(90, 64, 8, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-upgrade:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(212, 165, 32, 0.5);
+  box-shadow: 0 8px 25px rgba(90, 64, 8, 0.6);
+  background: linear-gradient(-45deg, #6B4E0A, #7A5D10, #5A4008, #6B4E0A, #5A4008, #7A5D10);
+  background-size: 400% 400%;
+  animation: goldenPulse 6s ease-in-out infinite;
 }
 
 .btn-upgrade:active {
@@ -711,16 +714,18 @@
 }
 
 .btn-upgrade:focus-visible {
-  outline: 3px solid rgba(255, 215, 0, 0.6);
+  outline: 3px solid rgba(107, 78, 10, 0.6);
   outline-offset: 3px;
 }
 
-/* Dark mode adjustments */
+/* Dark mode - slightly lighter gold for visibility while maintaining contrast */
 .dark .btn-upgrade {
-  color: #0f0f0f;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  background: linear-gradient(-45deg, #6B4E0A, #7A5D10, #5A4008, #6B4E0A, #5A4008, #7A5D10);
+  background-size: 400% 400%;
+  box-shadow: 0 4px 15px rgba(107, 78, 10, 0.5);
 }
 
 .dark .btn-upgrade:hover {
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  background: linear-gradient(-45deg, #7A5D10, #6B4E0A, #5A4008, #7A5D10, #6B4E0A, #7A5D10);
+  box-shadow: 0 8px 25px rgba(122, 93, 16, 0.6);
 }

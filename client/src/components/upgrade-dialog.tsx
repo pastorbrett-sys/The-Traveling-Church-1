@@ -122,7 +122,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
           <Button 
             onClick={handleUpgrade}
             disabled={isCheckingOut}
-            className="w-full bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)] text-white"
+            className="w-full btn-upgrade"
             data-testid="button-upgrade-pro"
           >
             {isCheckingOut ? (

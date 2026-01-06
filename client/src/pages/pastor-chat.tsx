@@ -728,7 +728,7 @@ export default function PastorChat() {
                 <Lock className="w-5 h-5" />
                 <span>You've reached your free message limit</span>
               </div>
-              <Button onClick={() => setShowPaywall(true)} data-testid="button-upgrade">
+              <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
                 <Sparkles className="w-4 h-4 mr-2" />
                 Upgrade to Pro for Unlimited Access
               </Button>
@@ -814,7 +814,7 @@ export default function PastorChat() {
             </div>
             <Button 
               onClick={handleSubscribe} 
-              className="w-full" 
+              className="w-full btn-upgrade" 
               disabled={isCheckingOut}
               data-testid="button-checkout"
             >
