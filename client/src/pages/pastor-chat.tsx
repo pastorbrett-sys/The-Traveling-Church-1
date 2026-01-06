@@ -535,6 +535,8 @@ export default function PastorChat() {
     } finally {
       setIsStreaming(false);
       queryClient.invalidateQueries({ queryKey: ["/api/conversations", convId] });
+      // Force refresh session stats to update message count in UI
+      queryClient.invalidateQueries({ queryKey: ["/api/chat/session-stats"] });
       // Refocus input so user can keep typing
       setTimeout(() => inputRef.current?.focus(), 100);
     }
