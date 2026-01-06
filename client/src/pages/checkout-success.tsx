@@ -32,23 +32,13 @@ export default function CheckoutSuccess() {
             Thank you for subscribing to The Traveling Church Pro plan. You now have unlimited access to Vagabond Bible for spiritual guidance and support.
           </p>
           
-          <div className="space-y-4">
-            <Link href="/pastor-chat">
-              <Button size="lg" className="w-full sm:w-auto" data-testid="button-go-to-chat">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Continue to Vagabond Bible
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-            
-            <div>
-              <Link href="/">
-                <Button variant="ghost" data-testid="link-home">
-                  Return to Home
-                </Button>
-              </Link>
-            </div>
-          </div>
+          <Link href="/pastor-chat">
+            <Button size="lg" className="w-full sm:w-auto" data-testid="button-go-to-chat">
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Continue to Vagabond Bible
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
       </main>
       

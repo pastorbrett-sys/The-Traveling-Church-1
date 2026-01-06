@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { XCircle, ArrowLeft, MessageCircle } from "lucide-react";
+import { XCircle, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -28,23 +28,12 @@ export default function CheckoutCancel() {
             No worries! Your payment was not processed. You can still enjoy 10 free messages with Vagabond Bible, or subscribe anytime to get unlimited access.
           </p>
           
-          <div className="space-y-4">
-            <Link href="/pastor-chat">
-              <Button size="lg" className="w-full sm:w-auto" data-testid="button-back-to-chat">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Back to Vagabond Bible
-              </Button>
-            </Link>
-            
-            <div>
-              <Link href="/">
-                <Button variant="ghost" data-testid="link-home">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Return to Home
-                </Button>
-              </Link>
-            </div>
-          </div>
+          <Link href="/pastor-chat">
+            <Button size="lg" className="w-full sm:w-auto" data-testid="button-back-to-chat">
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Back to Vagabond Bible
+            </Button>
+          </Link>
         </div>
       </main>
       
