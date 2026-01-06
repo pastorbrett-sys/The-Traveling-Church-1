@@ -772,6 +772,7 @@ Reference: ${verseRef} (${translation})`;
     setDiscussionAnswer(answer);
     setDiscussionMessages([{ role: "assistant", content: answer, isInitialAnswer: true }]);
     setShowContinueDiscussion(true);
+    setShowBookPicker(false);
     setShowSearch(false);
     setSearchQuery("");
     setSmartSearchResults(null);
