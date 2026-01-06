@@ -545,7 +545,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
         setNoteTags([]);
         
         const handleViewNotes = () => {
-          window.location.href = "/pastor-chat?tab=notes";
+          window.location.href = "/notes";
         };
         
         if (milestoneMessage) {
