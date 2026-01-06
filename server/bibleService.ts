@@ -169,10 +169,48 @@ export async function compareTranslations(
   }
 }
 
+interface CleanedVerse {
+  text: string;
+  heading?: string;
+}
+
 function cleanVerseText(text: string): string {
-  return text
-    .replace(/<[^>]*>/g, "")
-    .replace(/(\D)(\d{2,5})(?=[\s,.:;!?'")\]]|$)/g, "$1")
-    .replace(/\s+/g, " ")
-    .trim();
+  const cleaned = cleanVerseWithHeading(text);
+  // For backward compatibility, prepend heading with separator if present
+  if (cleaned.heading) {
+    return `§${cleaned.heading}§ ${cleaned.text}`;
+  }
+  return cleaned.text;
+}
+
+function cleanVerseWithHeading(text: string): CleanedVerse {
+  // Extract heading from <h> or <h1>-<h6> tags
+  let heading: string | undefined;
+  const headingMatch = text.match(/<h[1-6]?[^>]*>([^<]+)<\/h[1-6]?>/i);
+  if (headingMatch) {
+    heading = headingMatch[1].trim();
+  }
+  
+  // Replace heading tags with empty string (we've captured the content)
+  let cleaned = text.replace(/<h[1-6]?[^>]*>[^<]*<\/h[1-6]?>/gi, "");
+  
+  // Also check for other heading patterns like <pb> (paragraph break with title)
+  const pbMatch = cleaned.match(/<pb[^>]*>([^<]+)<\/pb>/i);
+  if (pbMatch && !heading) {
+    heading = pbMatch[1].trim();
+    cleaned = cleaned.replace(/<pb[^>]*>[^<]*<\/pb>/gi, "");
+  }
+  
+  // Handle self-closing tags and ensure spacing
+  cleaned = cleaned.replace(/<br\s*\/?>/gi, " ");
+  cleaned = cleaned.replace(/<\/[^>]+>/g, " "); // Add space when closing tags
+  cleaned = cleaned.replace(/<[^>]*>/g, ""); // Remove remaining tags
+  
+  // Clean up numbers that look like Strong's references
+  cleaned = cleaned.replace(/(\D)(\d{2,5})(?=[\s,.:;!?'")\]]|$)/g, "$1");
+  
+  // Collapse multiple spaces
+  cleaned = cleaned.replace(/\s+/g, " ").trim();
+  
+  return { text: cleaned, heading };
 }

@@ -93,6 +93,18 @@ interface BibleReaderProps {
   onTranslationChange: (translation: string) => void;
 }
 
+// Parse verse text to extract heading if present (marked with §heading§)
+function parseVerseText(text: string): { heading?: string; content: string } {
+  const headingMatch = text.match(/^§([^§]+)§\s*/);
+  if (headingMatch) {
+    return {
+      heading: headingMatch[1],
+      content: text.slice(headingMatch[0].length)
+    };
+  }
+  return { content: text };
+}
+
 export default function BibleReader({ translation, onTranslationChange }: BibleReaderProps) {
   const [, navigate] = useLocation();
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
@@ -1313,28 +1325,37 @@ Reference: ${verseRef} (${translation})`;
             </div>
           ) : (
             <div className="space-y-1 pb-20">
-              {chapter?.verses.map((verse) => (
-                <motion.span
-                  key={verse.pk}
-                  ref={(el) => {
-                    if (el) verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
-                  }}
-                  onClick={() => handleVerseClick(verse)}
-                  animate={{
-                    backgroundColor: selectedVerse?.verse === verse.verse 
-                      ? "rgba(192, 142, 0, 0.15)" 
-                      : "rgba(0, 0, 0, 0)"
-                  }}
-                  transition={{ duration: 0.025 }}
-                  className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 transition-colors"
-                  data-testid={`verse-${verse.verse}`}
-                >
-                  <sup className={`text-xs font-medium mr-1 transition-colors ${
-                    selectedVerse?.verse === verse.verse ? "text-[#c08e00]" : "text-primary"
-                  }`}>{verse.verse}</sup>
-                  <span className="text-base leading-relaxed">{verse.text} </span>
-                </motion.span>
-              ))}
+              {chapter?.verses.map((verse) => {
+                const { heading, content } = parseVerseText(verse.text);
+                return (
+                  <span key={verse.pk}>
+                    {heading && (
+                      <h3 className="block text-lg font-semibold text-[hsl(35,65%,45%)] mt-6 mb-3 first:mt-0">
+                        {heading}
+                      </h3>
+                    )}
+                    <motion.span
+                      ref={(el) => {
+                        if (el) verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
+                      }}
+                      onClick={() => handleVerseClick(verse)}
+                      animate={{
+                        backgroundColor: selectedVerse?.verse === verse.verse 
+                          ? "rgba(192, 142, 0, 0.15)" 
+                          : "rgba(0, 0, 0, 0)"
+                      }}
+                      transition={{ duration: 0.025 }}
+                      className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 transition-colors"
+                      data-testid={`verse-${verse.verse}`}
+                    >
+                      <sup className={`text-xs font-medium mr-1 transition-colors ${
+                        selectedVerse?.verse === verse.verse ? "text-[#c08e00]" : "text-primary"
+                      }`}>{verse.verse}</sup>
+                      <span className="text-base leading-relaxed">{content} </span>
+                    </motion.span>
+                  </span>
+                );
+              })}
             </div>
           )}
         </div>
@@ -1645,9 +1666,10 @@ Reference: ${verseRef} (${translation})`;
                     data-testid={`comparison-${item.translation}`}
                   >
                     <p className="text-sm font-medium text-primary mb-2">{item.translation}</p>
-                    {item.verses.map((v) => (
-                      <p key={v.pk} className="text-sm leading-relaxed">{v.text}</p>
-                    ))}
+                    {item.verses.map((v) => {
+                      const { content } = parseVerseText(v.text);
+                      return <p key={v.pk} className="text-sm leading-relaxed">{content}</p>;
+                    })}
                   </div>
                 ))}
               </div>
