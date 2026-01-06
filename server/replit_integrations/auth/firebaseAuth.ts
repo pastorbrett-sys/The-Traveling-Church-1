@@ -61,7 +61,7 @@ export async function setupAuth(app: Express) {
       if (err) {
         console.error("Session destroy error:", err);
       }
-      res.redirect("/");
+      res.redirect("/login");
     });
   });
 }

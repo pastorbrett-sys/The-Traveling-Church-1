@@ -75,17 +75,31 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     <nav className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <button
-            onClick={() => handleNavClick("home")}
-            className="flex items-center"
-            data-testid="link-home"
-          >
-            <img 
-              src={customLogo || logoImage} 
-              alt={customLogo ? "Vagabond Bible AI" : "The Traveling Church"} 
-              className="h-11"
-            />
-          </button>
+          {customLogo ? (
+            <Link
+              href="/vagabond-bible"
+              className="flex items-center"
+              data-testid="link-home"
+            >
+              <img 
+                src={customLogo} 
+                alt="Vagabond Bible AI" 
+                className="h-11"
+              />
+            </Link>
+          ) : (
+            <button
+              onClick={() => handleNavClick("home")}
+              className="flex items-center"
+              data-testid="link-home"
+            >
+              <img 
+                src={logoImage} 
+                alt="The Traveling Church" 
+                className="h-11"
+              />
+            </button>
+          )}
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4 text-sm">
