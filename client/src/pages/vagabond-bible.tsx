@@ -60,7 +60,7 @@ export default function VagabondBible() {
           )}
         </div>
       </nav>
-      <section className="relative pt-16 min-h-[90vh] flex items-center">
+      <section className="relative pt-16 min-h-[100svh] sm:min-h-[90vh] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
           <video
             autoPlay
