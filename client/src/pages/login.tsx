@@ -264,7 +264,12 @@ export default function Login() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white' : ''}`}
+                      className={`w-full h-11 ${isNative ? 'text-white border-0' : ''}`}
+                      style={isNative ? {
+                        background: 'linear-gradient(90deg, #b8860b, #a07608, #b8860b)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 3s ease-in-out infinite',
+                      } : undefined}
                       data-testid="button-signin-email"
                     >
                       {isSubmitting ? (
@@ -377,7 +382,12 @@ export default function Login() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white' : ''}`}
+                      className={`w-full h-11 ${isNative ? 'text-white border-0' : ''}`}
+                      style={isNative ? {
+                        background: 'linear-gradient(90deg, #b8860b, #a07608, #b8860b)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 3s ease-in-out infinite',
+                      } : undefined}
                       data-testid="button-signup-email"
                     >
                       {isSubmitting ? (

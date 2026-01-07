@@ -737,3 +737,20 @@
   background: linear-gradient(-45deg, #7A5D10, #6B4E0A, #5A4008, #7A5D10, #6B4E0A, #7A5D10);
   box-shadow: 0 4px 12px rgba(122, 93, 16, 0.3);
 }
+
+/* =========================================================================
+   SHIMMER - SUBTLE GRADIENT ANIMATION FOR BUTTONS
+   Super subtle left-right gradient shift for native login button
+   ========================================================================= */
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
