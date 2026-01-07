@@ -27,10 +27,10 @@ export function NativeTabBar() {
   
   const isActive = (href: string) => {
     const [hrefPath, hrefQuery] = href.split("?");
-    const [locPath] = location.split("?");
+    const currentPath = window.location.pathname;
     
     // For pastor-chat tabs, check both path and query param
-    if (hrefPath === "/pastor-chat" && locPath === "/pastor-chat") {
+    if (hrefPath === "/pastor-chat" && currentPath === "/pastor-chat") {
       const currentParams = new URLSearchParams(window.location.search);
       const hrefParams = new URLSearchParams(hrefQuery || "");
       const currentTab = currentParams.get("tab") || "bible";
@@ -39,8 +39,8 @@ export function NativeTabBar() {
     }
     
     // For other routes, simple path matching
-    if (hrefPath === locPath) return true;
-    return locPath.startsWith(hrefPath + "/");
+    if (hrefPath === currentPath) return true;
+    return currentPath.startsWith(hrefPath + "/");
   };
   
   const handleTabClick = (href: string) => {
