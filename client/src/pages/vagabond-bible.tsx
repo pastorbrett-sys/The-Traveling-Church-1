@@ -20,8 +20,7 @@ export default function VagabondBible() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollThreshold = window.innerHeight * 0.85;
-      setIsScrolled(window.scrollY > scrollThreshold);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -81,14 +80,14 @@ export default function VagabondBible() {
   return (
     <div className="min-h-screen bg-[hsl(30,20%,97%)] text-[hsl(20,10%,25%)]">
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
+        (isScrolled || mobileMenuOpen) 
           ? 'bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]' 
           : 'bg-transparent border-b border-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <img 
-              src={isScrolled ? vagabondLogo : vagabondLogoWhite} 
+              src={(isScrolled || mobileMenuOpen) ? vagabondLogo : vagabondLogoWhite} 
               alt="Vagabond Bible AI" 
               className="h-11 transition-opacity duration-300" 
               data-testid="img-vagabond-logo" 
@@ -110,19 +109,19 @@ export default function VagabondBible() {
               data-testid="button-mobile-menu"
             >
               {mobileMenuOpen ? (
-                <X className={`w-6 h-6 stroke-[1.5] transition-colors ${isScrolled ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
+                <X className={`w-6 h-6 stroke-[1.5] transition-colors ${(isScrolled || mobileMenuOpen) ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
               ) : (
-                <Menu className={`w-6 h-6 stroke-[1.5] transition-colors ${isScrolled ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
+                <Menu className={`w-6 h-6 stroke-[1.5] transition-colors ${(isScrolled || mobileMenuOpen) ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
               )}
             </button>
           </div>
           {mobileMenuOpen && (
-            <div className={`md:hidden py-4 ${isScrolled ? 'border-t border-[hsl(30,20%,88%)]' : 'bg-black/80 backdrop-blur-sm rounded-lg mt-2'}`}>
+            <div className="md:hidden border-t border-[hsl(30,20%,88%)] py-4">
               <div className="flex flex-col gap-4">
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features-mobile">Features</a>
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about-mobile">About</a>
-                <a href="#community" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community-mobile">Community</a>
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact-mobile">Contact</a>
+                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-features-mobile">Features</a>
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-about-mobile">About</a>
+                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-community-mobile">Community</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-contact-mobile">Contact</a>
                 <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
                   <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px]" data-testid="button-login-mobile">
                     Login
