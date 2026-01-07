@@ -9,9 +9,10 @@ interface NavigationProps {
   customLogo?: string;
   showAuth?: boolean;
   hideNavLinks?: boolean;
+  rightContent?: React.ReactNode;
 }
 
-export default function Navigation({ customLogo, showAuth = false, hideNavLinks = false }: NavigationProps = {}) {
+export default function Navigation({ customLogo, showAuth = false, hideNavLinks = false, rightContent }: NavigationProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
@@ -175,15 +176,20 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
-            data-testid="button-mobile-menu"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Right content slot (e.g., Bible version selector in native mode) */}
+          {rightContent ? (
+            <div className="flex items-center">{rightContent}</div>
+          ) : (
+            /* Mobile Menu Button */
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 text-foreground"
+              data-testid="button-mobile-menu"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          )}
         </div>
 
         {/* Mobile Navigation Menu - Overlay */}

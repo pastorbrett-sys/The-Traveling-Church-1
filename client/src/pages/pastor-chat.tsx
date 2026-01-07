@@ -587,12 +587,30 @@ export default function PastorChat() {
       className="bg-background text-foreground antialiased flex flex-col overflow-hidden"
       style={{ height: isNative ? "calc(100vh - 64px)" : "100vh" }}
     >
-      <Navigation customLogo={vagabondLogo} showAuth={true} hideNavLinks={true} />
+      <Navigation 
+        customLogo={vagabondLogo} 
+        showAuth={true} 
+        hideNavLinks={true}
+        rightContent={isNative && activeTab === "bible" ? (
+          <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
+            <SelectTrigger className="w-20" data-testid="select-bible-translation-nav">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {bibleTranslations?.map((t) => (
+                <SelectItem key={t.short_name} value={t.short_name}>
+                  {t.short_name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : undefined}
+      />
 
-      {/* Tab Toggle - stays fixed below nav (hidden in native mode since tab bar handles it) */}
-      <div className={`flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3 ${isNative ? "py-2" : ""}`}>
-        <div className="flex items-center justify-between">
-          {!isNative && (
+      {/* Tab Toggle - only shown in web mode (native uses bottom tab bar) */}
+      {!isNative && (
+        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
             <div className="inline-flex p-1 rounded-lg bg-muted">
               <button
                 onClick={() => setActiveTab("bible")}
@@ -637,28 +655,28 @@ export default function PastorChat() {
                 </span>
               </button>
             </div>
-          )}
-          <div className={`flex items-center gap-2 ${isNative ? "w-full justify-end" : ""}`}>
-            {activeTab === "bible" && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground hidden sm:inline">Bible Version</span>
-                <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
-                  <SelectTrigger className="w-20" data-testid="select-bible-translation">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {bibleTranslations?.map((t) => (
-                      <SelectItem key={t.short_name} value={t.short_name}>
-                        {t.short_name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {activeTab === "bible" && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground hidden sm:inline">Bible Version</span>
+                  <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
+                    <SelectTrigger className="w-20" data-testid="select-bible-translation">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {bibleTranslations?.map((t) => (
+                        <SelectItem key={t.short_name} value={t.short_name}>
+                          {t.short_name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Scrollable content area */}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto">
