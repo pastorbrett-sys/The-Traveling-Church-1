@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest } from "@/lib/queryClient";
+import { usePlatform } from "@/contexts/platform-context";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
@@ -50,6 +51,7 @@ export default function Profile() {
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const { isNative } = usePlatform();
 
   const { data: subscriptionStatus, isLoading: isSubLoading } = useQuery<SubscriptionStatus>({
     queryKey: ["/api/stripe/my-subscription"],
@@ -126,8 +128,10 @@ export default function Profile() {
 
   if (isAuthLoading) {
     return (
-      <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
-        <VagabondHeader />
+      <div className={`bg-[hsl(40,30%,96%)] text-foreground antialiased flex flex-col ${
+        isNative ? "h-screen overflow-hidden" : "min-h-screen"
+      }`}>
+        {!isNative && <VagabondHeader />}
         <main className="flex-1 flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-[hsl(25,35%,45%)]" />
         </main>
@@ -137,18 +141,22 @@ export default function Profile() {
 
   if (!isAuthenticated) {
     return (
-      <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
-        <VagabondHeader />
-        <main className="flex-1 pt-5 pb-16">
+      <div className={`bg-[hsl(40,30%,96%)] text-foreground antialiased flex flex-col ${
+        isNative ? "h-screen overflow-hidden" : "min-h-screen"
+      }`}>
+        {!isNative && <VagabondHeader />}
+        <main className={`flex-1 pt-5 overflow-y-auto ${isNative ? "pb-20" : "pb-16"}`}>
           <div className="max-w-2xl mx-auto px-4 md:px-8">
-            <button
-              onClick={() => window.history.back()}
-              className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
-              data-testid="link-back-home"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
-            </button>
+            {!isNative && (
+              <button
+                onClick={() => window.history.back()}
+                className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
+                data-testid="link-back-home"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back
+              </button>
+            )}
 
             <Card className="border-[hsl(30,20%,88%)]">
               <CardHeader className="text-center">
@@ -170,9 +178,11 @@ export default function Profile() {
             </Card>
           </div>
         </main>
-        <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
-          <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
-        </footer>
+        {!isNative && (
+          <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
+            <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+          </footer>
+        )}
       </div>
     );
   }
@@ -182,19 +192,23 @@ export default function Profile() {
   const isCancelling = subscription?.cancel_at_period_end;
 
   return (
-    <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
-      <VagabondHeader />
+    <div className={`bg-[hsl(40,30%,96%)] text-foreground antialiased flex flex-col ${
+      isNative ? "h-screen overflow-hidden" : "min-h-screen"
+    }`}>
+      {!isNative && <VagabondHeader />}
 
-      <main className="flex-1 pt-5 pb-16">
+      <main className={`flex-1 pt-5 overflow-y-auto ${isNative ? "pb-20" : "pb-16"}`}>
         <div className="max-w-2xl mx-auto px-4 md:px-8">
-          <button
-            onClick={() => window.history.back()}
-            className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
-            data-testid="link-back-home"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
-          </button>
+          {!isNative && (
+            <button
+              onClick={() => window.history.back()}
+              className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
+              data-testid="link-back-home"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back
+            </button>
+          )}
 
           <div className="space-y-6">
             <Card>
@@ -479,9 +493,11 @@ export default function Profile() {
         </div>
       </main>
 
-      <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
-        <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
-      </footer>
+      {!isNative && (
+        <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
+          <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+        </footer>
+      )}
 
       {/* Upgrade Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
