@@ -5,20 +5,17 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { usePlatform } from "@/contexts/platform-context";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
-import whiteLogoImage from "@assets/Bigger_White_Logo_1767823942002.png";
 
 interface NavigationProps {
   customLogo?: string;
   showAuth?: boolean;
   hideNavLinks?: boolean;
   rightContent?: React.ReactNode;
-  transparentOnLanding?: boolean;
 }
 
-export default function Navigation({ customLogo, showAuth = false, hideNavLinks = false, rightContent, transparentOnLanding = false }: NavigationProps = {}) {
+export default function Navigation({ customLogo, showAuth = false, hideNavLinks = false, rightContent }: NavigationProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
   const isHomePage = location === "/";
   const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
@@ -42,19 +39,11 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       }
 
       setActiveSection(currentSection);
-      
-      if (transparentOnLanding) {
-        const scrollThreshold = window.innerHeight * 0.8;
-        setIsScrolled(window.scrollY > scrollThreshold);
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage, transparentOnLanding]);
-  
-  const isTransparent = transparentOnLanding && !isScrolled && isHomePage;
+  }, [isHomePage]);
 
   const handleNavClick = (sectionId: string) => {
     if (!isHomePage) {
@@ -86,11 +75,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   ];
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
-      isTransparent 
-        ? "bg-transparent border-transparent" 
-        : "bg-card border-b border-border shadow-sm"
-    }`}>
+    <nav className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {customLogo ? (
@@ -112,7 +97,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
               data-testid="link-home"
             >
               <img 
-                src={isTransparent ? whiteLogoImage : logoImage} 
+                src={logoImage} 
                 alt="The Traveling Church" 
                 className="h-11"
               />
@@ -126,12 +111,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                 <Link
                   key={item.id}
                   href={item.href!}
-                  className={`nav-link font-medium transition-colors ${
-                    isTransparent 
-                      ? "text-white hover:text-white/80" 
-                      : `text-muted-foreground hover:text-primary ${
-                          (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") ? "text-primary" : ""
-                        }`
+                  className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
+                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -141,12 +122,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`nav-link font-medium transition-colors ${
-                    isTransparent 
-                      ? "text-white hover:text-white/80" 
-                      : `text-muted-foreground hover:text-primary ${
-                          activeSection === item.id && isHomePage ? "text-primary" : ""
-                        }`
+                  className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
+                    activeSection === item.id && isHomePage ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -208,7 +185,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
             /* Mobile Menu Button - hidden in native mode since bottom tab bar handles navigation */
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`lg:hidden p-2 transition-colors ${isTransparent ? "text-white" : "text-foreground"}`}
+              className="lg:hidden p-2 text-foreground"
               data-testid="button-mobile-menu"
               aria-label="Toggle menu"
             >
