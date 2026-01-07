@@ -80,6 +80,10 @@ interface Translation {
   full_name: string;
 }
 
+// Preload Pastor Brett avatar immediately so it's cached before WelcomeMessage renders
+const preloadedPastorImage = new Image();
+preloadedPastorImage.src = pastorBrettIcon;
+
 export default function PastorChat() {
   const { isNative } = usePlatform();
   const searchString = useSearch();
