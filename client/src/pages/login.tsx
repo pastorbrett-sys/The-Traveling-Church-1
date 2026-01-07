@@ -178,41 +178,31 @@ export default function Login() {
               )}
 
               {/* Tab Switcher with animated highlight */}
-              <div className="grid w-full grid-cols-2 bg-[#2a2a2a] rounded-lg p-1 relative">
-                <button
-                  type="button"
-                  onClick={() => { setActiveTab("signin"); setError(null); setSuccessMessage(null); }}
-                  className="relative py-2 text-sm font-medium rounded-md z-10"
-                  data-testid="tab-signin"
-                >
-                  {activeTab === "signin" && (
-                    <motion.div
-                      layoutId="loginTabHighlight"
-                      className="absolute inset-0 bg-[#3a3a3a] rounded-md"
-                      transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                    />
-                  )}
-                  <span className={`relative z-10 ${activeTab === "signin" ? "text-white" : "text-gray-400"}`}>
+              <div className="relative w-full bg-[#2a2a2a] rounded-lg p-1">
+                {/* Animated highlight - slides between tabs */}
+                <motion.div
+                  className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#3a3a3a] rounded-md"
+                  animate={{ x: activeTab === "signin" ? 4 : "calc(100% + 4px)" }}
+                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                />
+                <div className="relative flex">
+                  <button
+                    type="button"
+                    onClick={() => { setActiveTab("signin"); setError(null); setSuccessMessage(null); }}
+                    className={`flex-1 py-2 text-sm font-medium rounded-md z-10 transition-colors ${activeTab === "signin" ? "text-white" : "text-gray-400"}`}
+                    data-testid="tab-signin"
+                  >
                     Sign In
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setActiveTab("signup"); setError(null); setSuccessMessage(null); }}
-                  className="relative py-2 text-sm font-medium rounded-md z-10"
-                  data-testid="tab-signup"
-                >
-                  {activeTab === "signup" && (
-                    <motion.div
-                      layoutId="loginTabHighlight"
-                      className="absolute inset-0 bg-[#3a3a3a] rounded-md"
-                      transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                    />
-                  )}
-                  <span className={`relative z-10 ${activeTab === "signup" ? "text-white" : "text-gray-400"}`}>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setActiveTab("signup"); setError(null); setSuccessMessage(null); }}
+                    className={`flex-1 py-2 text-sm font-medium rounded-md z-10 transition-colors ${activeTab === "signup" ? "text-white" : "text-gray-400"}`}
+                    data-testid="tab-signup"
+                  >
                     Create Account
-                  </span>
-                </button>
+                  </button>
+                </div>
               </div>
 
               {/* Unified Form - Fixed Position Elements */}
