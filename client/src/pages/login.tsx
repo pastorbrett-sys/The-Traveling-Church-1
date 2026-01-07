@@ -156,7 +156,7 @@ export default function Login() {
     <div className="antialiased min-h-screen flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
       <main className="flex-1 flex items-center justify-center pt-12 pb-6 px-5">
         <div className="max-w-md mx-auto w-full">
-          <Card className="border-0 shadow-none bg-transparent">
+          <Card className="border-0 shadow-none bg-transparent animate-fade-up" style={{ animationDuration: '0.4s' }}>
             <CardHeader className="text-center pb-4 pt-0">
               <div className="flex justify-center mb-4">
                 <img src={vagabondLogoWhite} alt="Vagabond Bible" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
