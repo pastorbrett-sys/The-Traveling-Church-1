@@ -687,7 +687,7 @@ export default function Notes() {
           setNewNoteTags([]);
         }
       }}>
-        <DialogContent className="!w-full !h-full !max-w-none !left-0 !top-0 !translate-x-0 !translate-y-0 !rounded-none sm:!left-[50%] sm:!top-[50%] sm:!translate-x-[-50%] sm:!translate-y-[-50%] sm:!w-auto sm:!h-auto sm:!max-w-lg sm:!rounded-lg flex flex-col">
+        <DialogContent className="flex flex-col">
           <DialogHeader>
             <DialogTitle className="font-serif flex items-center gap-2">
               <Plus className="w-5 h-5 text-[#c08e00]" />
