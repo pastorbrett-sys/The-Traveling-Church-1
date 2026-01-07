@@ -114,8 +114,6 @@ export default function Login() {
       setSignInEmail(signUpEmail);
       setSignUpEmail("");
       setSignUpPassword("");
-      setSignUpConfirmPassword("");
-      setSignUpName("");
     } catch (err: any) {
       console.error("Sign up error:", err);
       setError(getFirebaseErrorMessage(err.code));
