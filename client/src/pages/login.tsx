@@ -316,19 +316,6 @@ export default function Login() {
                 <TabsContent value="signup" className="space-y-4 mt-4">
                   <form onSubmit={handleEmailSignUp} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="signup-name" className={isNative ? 'text-gray-300' : ''}>Name</Label>
-                      <Input
-                        id="signup-name"
-                        type="text"
-                        placeholder="Your name"
-                        value={signUpName}
-                        onChange={(e) => setSignUpName(e.target.value)}
-                        data-testid="input-signup-name"
-                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
                       <Label htmlFor="signup-email" className={isNative ? 'text-gray-300' : ''}>Email</Label>
                       <Input
                         id="signup-email"
