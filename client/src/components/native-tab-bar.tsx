@@ -44,18 +44,7 @@ export function NativeTabBar() {
   };
   
   const handleTabClick = (href: string) => {
-    // For same-path navigation with different query params, use window.location
-    // to ensure the page properly updates
-    const [hrefPath] = href.split("?");
-    const [locPath] = location.split("?");
-    
-    if (hrefPath === locPath && hrefPath === "/pastor-chat") {
-      // Same base path - force navigation with full URL update
-      window.history.pushState({}, "", href);
-      window.dispatchEvent(new PopStateEvent("popstate"));
-    } else {
-      setLocation(href);
-    }
+    setLocation(href);
   };
   
   return (
