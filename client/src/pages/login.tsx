@@ -18,6 +18,7 @@ import {
   handleRedirectResult 
 } from "@/lib/firebase";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import { usePlatform } from "@/contexts/platform-context";
 
 export default function Login() {
   const { isAuthenticated, isLoading, refetch } = useAuth();
@@ -25,6 +26,7 @@ export default function Login() {
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/pastor-chat";
+  const { isNative } = usePlatform();
   
   const [activeTab, setActiveTab] = useState<string>("signin");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -152,14 +154,16 @@ export default function Login() {
 
   if (isLoading) {
     return (
-      <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
-        <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-          <div className="max-w-7xl mx-auto px-4 flex items-center">
-            <Link href="/vagabond-bible" className="flex items-center">
-              <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-            </Link>
-          </div>
-        </header>
+      <div className={`text-foreground antialiased min-h-screen flex flex-col ${isNative ? 'bg-white' : 'bg-[hsl(40,30%,96%)]'}`}>
+        {!isNative && (
+          <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
+            <div className="max-w-7xl mx-auto px-4 flex items-center">
+              <Link href="/vagabond-bible" className="flex items-center">
+                <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
+              </Link>
+            </div>
+          </header>
+        )}
         <main className="flex-1 flex items-center justify-center">
           <div className="w-8 h-8 border-4 border-[hsl(25,35%,45%)] border-t-transparent rounded-full animate-spin" />
         </main>
@@ -172,23 +176,25 @@ export default function Login() {
   }
 
   return (
-    <div className="bg-[hsl(40,30%,96%)] text-foreground antialiased min-h-screen flex flex-col">
-      <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-        <div className="max-w-7xl mx-auto px-4 flex items-center">
-          <Link href="/vagabond-bible" className="flex items-center">
-            <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-          </Link>
-        </div>
-      </header>
-      <main className="flex-1 py-12 flex items-center justify-center">
-        <div className="max-w-md mx-auto px-4 w-full">
-          <Card className="border-2 border-[hsl(30,20%,88%)]">
-            <CardHeader className="text-center pb-2">
-              <div className="flex justify-center mb-4">
-                <img src={vagabondLogo} alt="Vagabond Bible" className="h-16 object-contain" />
+    <div className={`text-foreground antialiased min-h-screen flex flex-col ${isNative ? 'bg-white' : 'bg-[hsl(40,30%,96%)]'}`}>
+      {!isNative && (
+        <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
+          <div className="max-w-7xl mx-auto px-4 flex items-center">
+            <Link href="/vagabond-bible" className="flex items-center">
+              <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
+            </Link>
+          </div>
+        </header>
+      )}
+      <main className={`flex-1 flex items-center justify-center ${isNative ? 'pt-8 pb-6 px-5' : 'py-12'}`}>
+        <div className="max-w-md mx-auto w-full">
+          <Card className={`${isNative ? 'border-0 shadow-none bg-transparent' : 'border-2 border-[hsl(30,20%,88%)]'}`}>
+            <CardHeader className={`text-center ${isNative ? 'pb-4 pt-0' : 'pb-2'}`}>
+              <div className="flex justify-center mb-3">
+                <img src={vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-12' : 'h-16'}`} />
               </div>
-              <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">Welcome Home</CardTitle>
-              <CardDescription className="text-base">Sign in or create an account</CardDescription>
+              <CardTitle className={`text-[hsl(20,10%,20%)] ${isNative ? 'text-xl' : 'text-2xl'}`} data-testid="heading-sign-in">Welcome Home</CardTitle>
+              <CardDescription className={`${isNative ? 'text-sm' : 'text-base'}`}>Sign in or create an account</CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4 pt-4">
@@ -405,9 +411,11 @@ export default function Login() {
           </Card>
         </div>
       </main>
-      <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
-        <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
-      </footer>
+      {!isNative && (
+        <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
+          <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+        </footer>
+      )}
     </div>
   );
 }
