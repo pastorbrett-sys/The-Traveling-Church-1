@@ -598,7 +598,7 @@ export default function Profile() {
                 Upgrade to Pro
               </DialogTitle>
               <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-base mt-3' : 'text-base sm:text-sm'}`}>
-                Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.
+                Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
               </DialogDescription>
             </DialogHeader>
             
