@@ -1,10 +1,5 @@
 import type { BibleBook, BibleChapter, BibleVerse, BibleTranslation } from "@shared/models/bible";
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import headingOverridesData from "./data/headingOverrides.json";
 
 const BOLLS_API = "https://bolls.life";
 
@@ -13,23 +8,14 @@ interface HeadingOverrides {
   addHeadings: Record<string, string>;
 }
 
-let headingOverrides: HeadingOverrides | null = null;
+const headingOverrides: HeadingOverrides = {
+  removeHeadings: headingOverridesData.removeHeadings || {},
+  addHeadings: (headingOverridesData as any).addHeadings || {}
+};
+
+console.log(`Loaded ${Object.keys(headingOverrides.removeHeadings).length} heading overrides`);
 
 function loadHeadingOverrides(): HeadingOverrides {
-  if (headingOverrides) return headingOverrides;
-  
-  try {
-    const overridesPath = path.join(__dirname, "data/headingOverrides.json");
-    const data = JSON.parse(fs.readFileSync(overridesPath, "utf-8"));
-    headingOverrides = {
-      removeHeadings: data.removeHeadings || {},
-      addHeadings: data.addHeadings || {}
-    };
-    console.log(`Loaded ${Object.keys(headingOverrides.removeHeadings).length} heading overrides`);
-  } catch (error) {
-    console.error("Failed to load heading overrides:", error);
-    headingOverrides = { removeHeadings: {}, addHeadings: {} };
-  }
   return headingOverrides;
 }
 
