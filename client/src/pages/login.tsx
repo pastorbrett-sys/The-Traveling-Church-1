@@ -233,7 +233,7 @@ export default function Login() {
                         onChange={(e) => setSignInEmail(e.target.value)}
                         required
                         data-testid="input-signin-email"
-                        className={isNative ? 'bg-[#2a2a2a] border-[#3a3a3a] text-white placeholder:text-gray-500' : ''}
+                        className={isNative ? 'bg-[#222222] border-[#333333] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -248,7 +248,7 @@ export default function Login() {
                           onChange={(e) => setSignInPassword(e.target.value)}
                           required
                           data-testid="input-signin-password"
-                          className={isNative ? 'bg-[#2a2a2a] border-[#3a3a3a] text-white placeholder:text-gray-500' : ''}
+                          className={isNative ? 'bg-[#222222] border-[#333333] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                         />
                         <button
                           type="button"
@@ -264,7 +264,7 @@ export default function Login() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,40%)] text-white' : ''}`}
+                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white' : ''}`}
                       data-testid="button-signin-email"
                     >
                       {isSubmitting ? (
@@ -276,7 +276,7 @@ export default function Login() {
                     <button
                       type="button"
                       onClick={handleForgotPassword}
-                      className={`text-sm hover:underline w-full text-center ${isNative ? 'text-[hsl(25,35%,55%)]' : 'text-primary'}`}
+                      className={`text-sm hover:underline w-full text-center ${isNative ? 'text-[#b8860b]' : 'text-primary'}`}
                       data-testid="button-forgot-password"
                     >
                       Forgot password?
@@ -329,7 +329,7 @@ export default function Login() {
                         value={signUpName}
                         onChange={(e) => setSignUpName(e.target.value)}
                         data-testid="input-signup-name"
-                        className={isNative ? 'bg-[#2a2a2a] border-[#3a3a3a] text-white placeholder:text-gray-500' : ''}
+                        className={isNative ? 'bg-[#222222] border-[#333333] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -343,7 +343,7 @@ export default function Login() {
                         onChange={(e) => setSignUpEmail(e.target.value)}
                         required
                         data-testid="input-signup-email"
-                        className={isNative ? 'bg-[#2a2a2a] border-[#3a3a3a] text-white placeholder:text-gray-500' : ''}
+                        className={isNative ? 'bg-[#222222] border-[#333333] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -357,7 +357,7 @@ export default function Login() {
                         onChange={(e) => setSignUpPassword(e.target.value)}
                         required
                         data-testid="input-signup-password"
-                        className={isNative ? 'bg-[#2a2a2a] border-[#3a3a3a] text-white placeholder:text-gray-500' : ''}
+                        className={isNative ? 'bg-[#222222] border-[#333333] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -371,14 +371,14 @@ export default function Login() {
                         onChange={(e) => setSignUpConfirmPassword(e.target.value)}
                         required
                         data-testid="input-signup-confirm-password"
-                        className={isNative ? 'bg-[#2a2a2a] border-[#3a3a3a] text-white placeholder:text-gray-500' : ''}
+                        className={isNative ? 'bg-[#222222] border-[#333333] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,40%)] text-white' : ''}`}
+                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white' : ''}`}
                       data-testid="button-signup-email"
                     >
                       {isSubmitting ? (
