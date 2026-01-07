@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
-import { motion } from "framer-motion";
 import { Mail, Loader2, Eye, EyeOff } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
@@ -177,32 +176,24 @@ export default function Login() {
                 </div>
               )}
 
-              {/* Tab Switcher with animated highlight */}
-              <div className="relative w-full bg-[#2a2a2a] rounded-lg p-1">
-                {/* Animated highlight - slides between tabs */}
-                <motion.div
-                  className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#3a3a3a] rounded-md"
-                  animate={{ x: activeTab === "signin" ? 4 : "calc(100% + 4px)" }}
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-                <div className="relative flex">
-                  <button
-                    type="button"
-                    onClick={() => { setActiveTab("signin"); setError(null); setSuccessMessage(null); }}
-                    className={`flex-1 py-2 text-sm font-medium rounded-md z-10 transition-colors ${activeTab === "signin" ? "text-white" : "text-gray-400"}`}
-                    data-testid="tab-signin"
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setActiveTab("signup"); setError(null); setSuccessMessage(null); }}
-                    className={`flex-1 py-2 text-sm font-medium rounded-md z-10 transition-colors ${activeTab === "signup" ? "text-white" : "text-gray-400"}`}
-                    data-testid="tab-signup"
-                  >
-                    Create Account
-                  </button>
-                </div>
+              {/* Tab Switcher */}
+              <div className="grid w-full grid-cols-2 bg-[#2a2a2a] rounded-lg p-1">
+                <button
+                  type="button"
+                  onClick={() => { setActiveTab("signin"); setError(null); setSuccessMessage(null); }}
+                  className={`py-2 text-sm font-medium rounded-md transition-colors ${activeTab === "signin" ? "bg-[#3a3a3a] text-white" : "text-gray-400"}`}
+                  data-testid="tab-signin"
+                >
+                  Sign In
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setActiveTab("signup"); setError(null); setSuccessMessage(null); }}
+                  className={`py-2 text-sm font-medium rounded-md transition-colors ${activeTab === "signup" ? "bg-[#3a3a3a] text-white" : "text-gray-400"}`}
+                  data-testid="tab-signup"
+                >
+                  Create Account
+                </button>
               </div>
 
               {/* Unified Form - Fixed Position Elements */}
@@ -261,48 +252,46 @@ export default function Login() {
                 </Button>
               </form>
 
-              {/* Forgot Password - Only shows on Sign In */}
-              {activeTab === "signin" && (
-                <div className="h-6 flex items-center justify-center">
+              {/* Forgot Password - Only on Sign In, with fixed height container */}
+              <div className="h-6 flex items-center justify-center">
+                {activeTab === "signin" && (
                   <button
                     type="button"
                     onClick={handleForgotPassword}
-                    className="text-sm hover:underline text-[#b8860b]"
+                    className="text-sm hover:underline text-[#b8860b] transition-opacity duration-200"
                     data-testid="button-forgot-password"
                   >
                     Forgot password?
                   </button>
-                </div>
-              )}
-              
-              {/* Bottom Section */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 py-2">
-                  <div className="flex-1 h-px bg-[#333333]" />
-                  <span className="text-sm text-gray-500">or</span>
-                  <div className="flex-1 h-px bg-[#333333]" />
-                </div>
-                
-                <Button
-                  type="button"
-                  onClick={handleGoogleSignIn}
-                  disabled={isSubmitting}
-                  variant="outline"
-                  className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
-                  data-testid={activeTab === "signin" ? "button-signin-google" : "button-signup-google"}
-                >
-                  {isSubmitting ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : (
-                    <SiGoogle className="w-4 h-4 mr-2" />
-                  )}
-                  {activeTab === "signin" ? "Continue with Google" : "Sign up with Google"}
-                </Button>
-                
-                <p className="text-xs text-center text-gray-500">
-                  By continuing, you agree to our Terms of Service and Privacy Policy.
-                </p>
+                )}
               </div>
+              
+              {/* Bottom Section - Same for both tabs */}
+              <div className="flex items-center gap-3 py-2">
+                <div className="flex-1 h-px bg-[#333333]" />
+                <span className="text-sm text-gray-500">or</span>
+                <div className="flex-1 h-px bg-[#333333]" />
+              </div>
+              
+              <Button
+                type="button"
+                onClick={handleGoogleSignIn}
+                disabled={isSubmitting}
+                variant="outline"
+                className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
+                data-testid={activeTab === "signin" ? "button-signin-google" : "button-signup-google"}
+              >
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <SiGoogle className="w-4 h-4 mr-2" />
+                )}
+                {activeTab === "signin" ? "Continue with Google" : "Sign up with Google"}
+              </Button>
+              
+              <p className="text-xs text-center text-gray-500">
+                By continuing, you agree to our Terms of Service and Privacy Policy.
+              </p>
             </CardContent>
           </Card>
         </div>
