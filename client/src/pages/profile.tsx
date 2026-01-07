@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -45,7 +45,8 @@ interface UsageSummary {
 
 
 export default function Profile() {
-  const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
+  const { user, isLoading: isAuthLoading, isAuthenticated, logout, isLoggingOut } = useAuth();
+  const [, setLocation] = useLocation();
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -231,6 +232,31 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
+
+                <Separator className="my-4" />
+
+                <Button
+                  variant="outline"
+                  onClick={async () => {
+                    await logout();
+                    setLocation("/login");
+                  }}
+                  disabled={isLoggingOut}
+                  className="w-full text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+                  data-testid="button-logout"
+                >
+                  {isLoggingOut ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Signing Out...
+                    </>
+                  ) : (
+                    <>
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </>
+                  )}
+                </Button>
               </CardContent>
             </Card>
 

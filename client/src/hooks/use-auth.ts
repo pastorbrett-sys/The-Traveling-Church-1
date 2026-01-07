@@ -68,14 +68,20 @@ export function useAuth() {
     return () => unsubscribe();
   }, [queryClient]);
 
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
   const logout = async () => {
+    setIsLoggingOut(true);
     try {
       await logoutFirebase();
       queryClient.setQueryData(["/api/auth/user"], null);
-      window.location.href = "/api/logout";
+      queryClient.clear();
+      // Call backend logout without redirect
+      await fetch("/api/logout", { method: "GET", credentials: "include" });
     } catch (error) {
       console.error("Logout error:", error);
-      window.location.href = "/api/logout";
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -84,7 +90,7 @@ export function useAuth() {
     isLoading: isQueryLoading || isFirebaseLoading,
     isAuthenticated: !!user,
     logout,
-    isLoggingOut: false,
+    isLoggingOut,
     refetch,
   };
 }
