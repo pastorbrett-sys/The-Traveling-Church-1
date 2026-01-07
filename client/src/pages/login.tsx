@@ -314,13 +314,6 @@ export default function Login() {
                 </TabsContent>
                 
                 <TabsContent value="signup" className="space-y-4 mt-4">
-                  <div className={`rounded-lg p-3 border mb-4 ${isNative ? 'bg-[hsl(25,35%,45%)]/10 border-[hsl(25,35%,45%)]/30' : 'bg-[hsl(25,35%,45%)]/5 border-[hsl(25,35%,45%)]/20'}`}>
-                    <p className={`text-sm flex items-center gap-2 ${isNative ? 'text-gray-300' : ''}`}>
-                      <Sparkles className="w-4 h-4 text-[hsl(25,35%,45%)]" />
-                      Free to Sign up!
-                    </p>
-                  </div>
-                  
                   <form onSubmit={handleEmailSignUp} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="signup-name" className={isNative ? 'text-gray-300' : ''}>Name</Label>
