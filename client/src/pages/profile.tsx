@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
+import { useRevenueCat } from "@/contexts/revenuecat-context";
+import { useToast } from "@/hooks/use-toast";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
@@ -51,7 +53,11 @@ export default function Profile() {
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [isPurchasing, setIsPurchasing] = useState(false);
+  const [isRestoring, setIsRestoring] = useState(false);
   const { isNative } = usePlatform();
+  const { purchaseProduct, restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
+  const { toast } = useToast();
 
   const { data: subscriptionStatus, isLoading: isSubLoading } = useQuery<SubscriptionStatus>({
     queryKey: ["/api/stripe/my-subscription"],
@@ -111,6 +117,58 @@ export default function Profile() {
       alert("Unable to start checkout. Please try again.");
     } finally {
       setIsCheckingOut(false);
+    }
+  };
+
+  const handleNativePurchase = async () => {
+    setIsPurchasing(true);
+    try {
+      const success = await purchaseProduct("vagabond_bible_pro_monthly");
+      if (success) {
+        setShowPaywall(false);
+        toast({
+          title: "Welcome to Pro!",
+          description: "Your subscription is now active. Enjoy unlimited access!",
+        });
+        await refreshEntitlements();
+      }
+    } catch (error) {
+      console.error("Native purchase error:", error);
+      toast({
+        title: "Purchase Failed",
+        description: "Unable to complete purchase. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsPurchasing(false);
+    }
+  };
+
+  const handleRestorePurchases = async () => {
+    setIsRestoring(true);
+    try {
+      const success = await restorePurchases();
+      if (success) {
+        toast({
+          title: "Purchases Restored",
+          description: "Your Pro subscription has been restored successfully!",
+        });
+        await refreshEntitlements();
+      } else {
+        toast({
+          title: "No Purchases Found",
+          description: "No previous purchases were found for this account.",
+        });
+      }
+    } catch (error) {
+      console.error("Restore error:", error);
+      toast({
+        title: "Restore Failed",
+        description: "Unable to restore purchases. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsRestoring(false);
     }
   };
 
@@ -187,7 +245,7 @@ export default function Profile() {
     );
   }
 
-  const isPro = subscriptionStatus?.isProUser || false;
+  const isPro = subscriptionStatus?.isProUser || isRevenueCatPro || false;
   const subscription = subscriptionStatus?.subscription;
   const isCancelling = subscription?.cancel_at_period_end;
 
@@ -338,29 +396,58 @@ export default function Profile() {
                     )}
 
                     <div className="pt-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={handleManageSubscription}
-                        disabled={isOpeningPortal}
-                        className="w-full sm:w-auto"
-                        data-testid="button-manage-subscription"
-                      >
-                        {isOpeningPortal ? (
-                          <>
-                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                            Opening...
-                          </>
-                        ) : (
-                          <>
-                            <CreditCard className="w-4 h-4 mr-2" />
-                            Manage Subscription
-                          </>
-                        )}
-                      </Button>
-                      <p className="text-xs text-muted-foreground mt-2">
-                        Update payment method, view invoices, or cancel your subscription
-                      </p>
+                      {isNative && isRevenueCatPro && !subscription ? (
+                        <>
+                          <p className="text-sm text-muted-foreground">
+                            To manage your subscription, go to your device Settings → Subscriptions.
+                          </p>
+                          <Button
+                            variant="ghost"
+                            onClick={handleRestorePurchases}
+                            disabled={isRestoring}
+                            className="mt-2 text-sm"
+                            data-testid="button-refresh-subscription"
+                          >
+                            {isRestoring ? (
+                              <>
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                Refreshing...
+                              </>
+                            ) : (
+                              <>
+                                <RefreshCw className="w-4 h-4 mr-2" />
+                                Refresh Subscription Status
+                              </>
+                            )}
+                          </Button>
+                        </>
+                      ) : (
+                        <>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={handleManageSubscription}
+                            disabled={isOpeningPortal}
+                            className="w-full sm:w-auto"
+                            data-testid="button-manage-subscription"
+                          >
+                            {isOpeningPortal ? (
+                              <>
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                Opening...
+                              </>
+                            ) : (
+                              <>
+                                <CreditCard className="w-4 h-4 mr-2" />
+                                Manage Subscription
+                              </>
+                            )}
+                          </Button>
+                          <p className="text-xs text-muted-foreground mt-2">
+                            Update payment method, view invoices, or cancel your subscription
+                          </p>
+                        </>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -527,17 +614,54 @@ export default function Profile() {
             </div>
             
             <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
-              <Button 
-                onClick={handleSubscribe} 
-                className="w-full btn-upgrade text-lg sm:text-base py-6 sm:py-4" 
-                disabled={isCheckingOut}
-                data-testid="button-checkout"
-              >
-                {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
-              </Button>
-              <p className="text-xs text-center text-[hsl(20,10%,40%)]">
-                Cancel anytime. Secure payment via Stripe.
-              </p>
+              {isNative ? (
+                <>
+                  <Button 
+                    onClick={handleNativePurchase} 
+                    className="w-full btn-upgrade text-lg sm:text-base py-6 sm:py-4" 
+                    disabled={isPurchasing}
+                    data-testid="button-checkout"
+                  >
+                    {isPurchasing ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Processing...
+                      </>
+                    ) : "Subscribe Now - $9.99/month"}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={handleRestorePurchases}
+                    disabled={isRestoring}
+                    className="w-full text-sm"
+                    data-testid="button-restore-purchases"
+                  >
+                    {isRestoring ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Restoring...
+                      </>
+                    ) : "Restore Purchases"}
+                  </Button>
+                  <p className="text-xs text-center text-[hsl(20,10%,40%)]">
+                    Cancel anytime in your device settings.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Button 
+                    onClick={handleSubscribe} 
+                    className="w-full btn-upgrade text-lg sm:text-base py-6 sm:py-4" 
+                    disabled={isCheckingOut}
+                    data-testid="button-checkout"
+                  >
+                    {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
+                  </Button>
+                  <p className="text-xs text-center text-[hsl(20,10%,40%)]">
+                    Cancel anytime. Secure payment via Stripe.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </DialogContent>

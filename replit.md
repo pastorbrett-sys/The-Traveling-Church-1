@@ -82,3 +82,18 @@ Preferred communication style: Simple, everyday language.
 
 ### Stripe Integration
 - **stripe-replit-sync**: For Stripe webhook handling and data synchronization.
+
+### RevenueCat Integration (In-App Purchases)
+- **@revenuecat/purchases-capacitor**: Handles native iOS/Android in-app purchases and subscriptions.
+- **SDK Initialization**: RevenueCat SDK only initializes on true native platforms (Capacitor runtime), not on web or simulated native mode.
+- **Entitlement**: Uses "pro" entitlement to track Pro subscription status on native platforms.
+- **UI Integration**: Native users see app store-specific subscription management guidance; web users continue to use Stripe portal.
+- **Product ID**: `vagabond_bible_pro_monthly` for the monthly Pro subscription.
+- **Future Work**: Backend sync endpoint needed to inform the server about RevenueCat purchases so usage limits align with native subscriptions.
+
+### Native App (Capacitor)
+- **Platforms**: iOS and Android via Capacitor
+- **App ID**: `com.vagabondbible.app`
+- **Native Tab Bar**: Dark gradient bottom navigation (#1a1a1a to #000000) with gold active states (#b8860b)
+- **Platform Detection**: `Capacitor.isNativePlatform()` for true native detection; `usePlatform()` hook for UI-level native simulation
+- **Full-screen Modals**: All mobile modals use full-screen layout with inset-0 positioning

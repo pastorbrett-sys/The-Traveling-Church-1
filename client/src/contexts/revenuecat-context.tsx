@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
-import { usePlatform } from './platform-context';
+import { Capacitor } from '@capacitor/core';
 
 interface RevenueCatContextType {
   isInitialized: boolean;
@@ -16,16 +16,17 @@ const RevenueCatContext = createContext<RevenueCatContextType | null>(null);
 const REVENUECAT_SDK_KEY = import.meta.env.VITE_REVENUECAT_SDK_KEY || '';
 
 export function RevenueCatProvider({ children }: { children: ReactNode }) {
-  const { isNative, platform } = usePlatform();
   const [isInitialized, setIsInitialized] = useState(false);
   const [isProUser, setIsProUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [Purchases, setPurchases] = useState<any>(null);
 
+  const isTrueNative = Capacitor.isNativePlatform();
+
   useEffect(() => {
     const initializeRevenueCat = async () => {
-      if (!isNative) {
+      if (!isTrueNative) {
         setIsLoading(false);
         return;
       }
@@ -46,7 +47,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
         const hasProEntitlement = customerInfo.customerInfo.entitlements.active['pro'] !== undefined;
         setIsProUser(hasProEntitlement);
 
-      } catch (err) {
+      } catch (err: any) {
         console.error('RevenueCat initialization error:', err);
         setError(err instanceof Error ? err.message : 'Failed to initialize RevenueCat');
       } finally {
@@ -55,7 +56,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
     };
 
     initializeRevenueCat();
-  }, [isNative, platform]);
+  }, [isTrueNative]);
 
   const refreshEntitlements = useCallback(async () => {
     if (!Purchases || !isInitialized) return;
