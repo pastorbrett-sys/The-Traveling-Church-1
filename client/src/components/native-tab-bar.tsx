@@ -10,8 +10,8 @@ interface TabItem {
 }
 
 const tabs: TabItem[] = [
-  { id: "home", label: "Bible", href: "/", icon: Book },
-  { id: "chat", label: "Chat", href: "/pastor-chat", icon: MessageCircle },
+  { id: "bible", label: "Bible", href: "/pastor-chat?tab=bible", icon: Book },
+  { id: "chat", label: "Chat", href: "/pastor-chat?tab=chat", icon: MessageCircle },
   { id: "notes", label: "Notes", href: "/notes", icon: FileText },
   { id: "profile", label: "Profile", href: "/profile", icon: User },
 ];
@@ -22,11 +22,25 @@ export function NativeTabBar() {
   
   if (!isNative) return null;
   
-  if (location === "/" || location === "/login") return null;
+  // Hide on video landing page and login
+  if (location === "/" || location === "/login" || location === "/vagabond-bible") return null;
   
   const isActive = (href: string) => {
-    if (href === "/") return location === "/";
-    return location.startsWith(href);
+    const [hrefPath, hrefQuery] = href.split("?");
+    const [locPath] = location.split("?");
+    
+    // For pastor-chat tabs, check both path and query param
+    if (hrefPath === "/pastor-chat" && locPath === "/pastor-chat") {
+      const currentParams = new URLSearchParams(window.location.search);
+      const hrefParams = new URLSearchParams(hrefQuery || "");
+      const currentTab = currentParams.get("tab") || "bible";
+      const targetTab = hrefParams.get("tab") || "bible";
+      return currentTab === targetTab;
+    }
+    
+    // For other routes, simple path matching
+    if (hrefPath === locPath) return true;
+    return locPath.startsWith(hrefPath + "/");
   };
   
   return (

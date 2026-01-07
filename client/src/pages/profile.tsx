@@ -239,7 +239,7 @@ export default function Profile() {
                   variant="outline"
                   onClick={async () => {
                     await logout();
-                    setLocation("/login");
+                    setLocation("/vagabond-bible");
                   }}
                   disabled={isLoggingOut}
                   className="w-full text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"

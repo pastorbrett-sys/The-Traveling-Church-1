@@ -55,6 +55,7 @@ import { ToastAction } from "@/components/ui/toast";
 import { apiRequest } from "@/lib/queryClient";
 import ReactMarkdown from "react-markdown";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
+import { usePlatform } from "@/contexts/platform-context";
 
 interface BibleBook {
   bookid: number;
@@ -113,6 +114,7 @@ function parseVerseText(text: string): { heading?: string; content: string } {
 }
 
 export default function BibleReader({ translation, onTranslationChange }: BibleReaderProps) {
+  const { isNative } = usePlatform();
   const [, navigate] = useLocation();
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
@@ -1046,17 +1048,19 @@ Reference: ${verseRef} (${translation})`;
                   <Search className="w-5 h-5 text-muted-foreground" />
                   Smart Search
                 </motion.h2>
-                <div 
-                  className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer hover:text-[#c08e00] active:text-[#c08e00]/80 transition-colors z-10 p-2 -mr-2"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    navigate("/notes");
-                  }}
-                  data-testid="button-saved-notes"
-                >
-                  <Bookmark className="w-7 h-7" />
-                </div>
+                {!isNative && (
+                  <div 
+                    className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer hover:text-[#c08e00] active:text-[#c08e00]/80 transition-colors z-10 p-2 -mr-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      navigate("/notes");
+                    }}
+                    data-testid="button-saved-notes"
+                  >
+                    <Bookmark className="w-7 h-7" />
+                  </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
