@@ -189,12 +189,16 @@ export default function Login() {
       <main className={`flex-1 flex items-center justify-center ${isNative ? 'pt-8 pb-6 px-5' : 'py-12'}`}>
         <div className="max-w-md mx-auto w-full">
           <Card className={`${isNative ? 'border-0 shadow-none bg-transparent' : 'border-2 border-[hsl(30,20%,88%)]'}`}>
-            <CardHeader className={`text-center ${isNative ? 'pb-4 pt-0' : 'pb-2'}`}>
-              <div className="flex justify-center mb-3">
-                <img src={vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-12' : 'h-16'}`} />
+            <CardHeader className={`text-center ${isNative ? 'pb-2 pt-0' : 'pb-2'}`}>
+              <div className={`flex justify-center ${isNative ? 'mb-2' : 'mb-3'}`}>
+                <img src={vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-14' : 'h-16'}`} />
               </div>
-              <CardTitle className={`text-[hsl(20,10%,20%)] ${isNative ? 'text-xl' : 'text-2xl'}`} data-testid="heading-sign-in">Welcome Home</CardTitle>
-              <CardDescription className={`${isNative ? 'text-sm' : 'text-base'}`}>Sign in or create an account</CardDescription>
+              {!isNative && (
+                <>
+                  <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">Welcome Home</CardTitle>
+                  <CardDescription className="text-base">Sign in or create an account</CardDescription>
+                </>
+              )}
             </CardHeader>
 
             <CardContent className="space-y-4 pt-4">
