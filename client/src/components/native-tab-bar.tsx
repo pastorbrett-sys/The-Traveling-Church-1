@@ -22,6 +22,7 @@ export function NativeTabBar() {
   const { isNative } = usePlatform();
   const [location, setLocation] = useLocation();
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
+  const [tappedTab, setTappedTab] = useState<string | null>(null);
   
   // Track URL changes including query params
   useEffect(() => {
@@ -60,8 +61,6 @@ export function NativeTabBar() {
     if (hrefPath === currentPath) return true;
     return currentPath.startsWith(hrefPath + "/");
   };
-  
-  const [tappedTab, setTappedTab] = useState<string | null>(null);
   
   const handleTabClick = (tab: TabItem) => {
     setTappedTab(tab.id);
