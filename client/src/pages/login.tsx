@@ -38,10 +38,8 @@ export default function Login() {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
   
-  const [signUpName, setSignUpName] = useState("");
   const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
-  const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("");
 
   useEffect(() => {
     document.title = "Sign In | Vagabond Bible";
@@ -103,12 +101,6 @@ export default function Login() {
     setError(null);
     setSuccessMessage(null);
     
-    if (signUpPassword !== signUpConfirmPassword) {
-      setError("Passwords do not match.");
-      setIsSubmitting(false);
-      return;
-    }
-    
     if (signUpPassword.length < 6) {
       setError("Password must be at least 6 characters.");
       setIsSubmitting(false);
@@ -116,7 +108,7 @@ export default function Login() {
     }
     
     try {
-      await signUpWithEmail(signUpEmail, signUpPassword, signUpName);
+      await signUpWithEmail(signUpEmail, signUpPassword);
       setSuccessMessage("Account created! We've sent a verification email to " + signUpEmail + ". Please check your inbox and verify your email, then sign in.");
       setActiveTab("signin");
       setSignInEmail(signUpEmail);
