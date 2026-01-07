@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import vagabondLogoWhite from "@assets/Logo_White_1767753622588.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
@@ -56,9 +57,8 @@ export default function VagabondBible() {
               </div>
             </div>
           </div>
-          <div className="absolute bottom-5 left-0 right-0 z-10 flex flex-col items-center gap-1" data-testid="native-footer-logo">
-            <img src={vagabondLogo} alt="Vagabond Bible" className="h-8 w-8" />
-            <span className="text-white text-xs font-medium tracking-wide">Vagabond Bible</span>
+          <div className="absolute bottom-5 left-0 right-0 z-10 flex items-center justify-center" data-testid="native-footer-logo">
+            <img src={vagabondLogoWhite} alt="Vagabond Bible" className="h-8" />
           </div>
         </section>
       </div>
