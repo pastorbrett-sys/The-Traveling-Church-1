@@ -27,6 +27,7 @@ import Navigation from "@/components/navigation";
 import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import { usePlatform } from "@/contexts/platform-context";
 
 const WelcomeMessage = forwardRef<HTMLDivElement>((_, ref) => {
   return (
@@ -80,6 +81,7 @@ interface Translation {
 }
 
 export default function PastorChat() {
+  const { isNative } = usePlatform();
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const tabParam = urlParams.get("tab");
@@ -719,8 +721,11 @@ export default function PastorChat() {
       {activeTab === "chat" && (
       <div 
         ref={footerRef}
-        className="fixed bottom-0 left-0 right-0 p-4 bg-card border-t border-border"
-        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)" }}
+        className="fixed left-0 right-0 p-4 bg-card border-t border-border"
+        style={{ 
+          bottom: isNative ? "64px" : "0",
+          paddingBottom: isNative ? "16px" : "calc(env(safe-area-inset-bottom, 0px) + 16px)" 
+        }}
       >
         <div className="w-full max-w-3xl mx-auto">
           {isLimitReached ? (

@@ -1535,8 +1535,11 @@ Reference: ${verseRef} (${translation})`;
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 500, damping: 35 }}
-            className="fixed bottom-0 left-0 right-0 border-t p-3 bg-background shadow-lg z-50"
-            style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+            className="fixed left-0 right-0 border-t p-3 bg-background shadow-lg z-50"
+            style={{ 
+              bottom: isNative ? "64px" : "0",
+              paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
+            }}
           >
             <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
               <AnimatePresence mode="wait">
