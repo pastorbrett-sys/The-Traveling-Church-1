@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface TabItem {
   id: string;
@@ -60,10 +61,15 @@ export function NativeTabBar() {
     return currentPath.startsWith(hrefPath + "/");
   };
   
-  const handleTabClick = (href: string) => {
-    setLocation(href);
+  const [tappedTab, setTappedTab] = useState<string | null>(null);
+  
+  const handleTabClick = (tab: TabItem) => {
+    setTappedTab(tab.id);
+    setLocation(tab.href);
     // Immediately update currentUrl to ensure active state changes
-    setCurrentUrl(href);
+    setCurrentUrl(tab.href);
+    // Reset tapped state after animation completes
+    setTimeout(() => setTappedTab(null), 300);
   };
   
   return (
@@ -76,16 +82,28 @@ export function NativeTabBar() {
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const active = isActive(tab.href);
+          const isTapped = tappedTab === tab.id;
           
           return (
             <button
               key={tab.id}
-              onClick={() => handleTabClick(tab.href)}
+              onClick={() => handleTabClick(tab)}
               className="flex flex-col items-center justify-center flex-1 h-full gap-0.5 transition-colors"
               style={{ color: active ? '#b8860b' : 'rgba(255, 255, 255, 0.7)' }}
               data-testid={`tab-${tab.id}`}
             >
-              <Icon className={`w-5 h-5 ${active ? "stroke-[2.5px]" : ""}`} />
+              <motion.div
+                animate={isTapped ? {
+                  scale: [1, 1.3, 0.95, 1.1, 1],
+                  y: [0, -4, 1, -2, 0],
+                } : { scale: 1, y: 0 }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut",
+                }}
+              >
+                <Icon className={`w-5 h-5 ${active ? "stroke-[2.5px]" : ""}`} />
+              </motion.div>
               <span className={`text-[10px] ${active ? "font-semibold" : "font-medium"}`}>
                 {tab.label}
               </span>
