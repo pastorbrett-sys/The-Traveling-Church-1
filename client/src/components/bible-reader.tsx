@@ -1922,7 +1922,7 @@ Reference: ${verseRef} (${translation})`;
       </Dialog>
 
       <Dialog open={showCompare} onOpenChange={setShowCompare}>
-        <DialogContent className="max-w-2xl w-[95vw] h-[90vh] sm:h-auto sm:max-h-[80vh] overflow-hidden flex flex-col p-0 sm:p-6">
+        <DialogContent className="max-w-2xl w-full h-full sm:w-[95vw] sm:h-auto sm:max-h-[80vh] sm:rounded-lg rounded-none overflow-hidden flex flex-col p-0 sm:p-6">
           <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0">
             <DialogTitle className="font-serif">Compare Translations</DialogTitle>
           </DialogHeader>
