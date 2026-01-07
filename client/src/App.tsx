@@ -8,6 +8,7 @@ import { AuthGate } from "@/components/auth-gate";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 import { DynamicHead } from "@/components/dynamic-head";
 import { PlatformProvider } from "@/contexts/platform-context";
+import { RevenueCatProvider } from "@/contexts/revenuecat-context";
 import { PlatformToggle } from "@/components/platform-toggle";
 import { NativeTabBar } from "@/components/native-tab-bar";
 import NotFound from "@/pages/not-found";
@@ -95,14 +96,16 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <PlatformProvider>
-        <TooltipProvider>
-          <DynamicHead />
-          <ScrollToTop />
-          <Toaster />
-          <Router />
-          <NativeTabBar />
-          <PlatformToggle />
-        </TooltipProvider>
+        <RevenueCatProvider>
+          <TooltipProvider>
+            <DynamicHead />
+            <ScrollToTop />
+            <Toaster />
+            <Router />
+            <NativeTabBar />
+            <PlatformToggle />
+          </TooltipProvider>
+        </RevenueCatProvider>
       </PlatformProvider>
     </QueryClientProvider>
   );
