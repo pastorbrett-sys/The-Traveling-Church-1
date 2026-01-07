@@ -1936,27 +1936,51 @@ Reference: ${verseRef} (${translation})`;
               </div>
             ) : (
               <div className="space-y-4">
-                {comparisonData?.map((item) => (
-                  <div 
-                    key={item.translation} 
-                    className="p-4 rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors"
-                    onClick={() => {
-                      onTranslationChange(item.translation);
-                      // Trigger scroll to the same verse with highlight animation
-                      if (selectedVerse) {
-                        setScrollToVerse(selectedVerse.verse);
-                      }
-                      setShowCompare(false);
-                    }}
-                    data-testid={`comparison-${item.translation}`}
-                  >
-                    <p className="text-sm font-medium text-primary mb-2">{item.translation}</p>
-                    {item.verses.map((v) => {
-                      const { content } = parseVerseText(v.text);
-                      return <p key={v.pk} className="text-sm leading-relaxed">{content}</p>;
-                    })}
-                  </div>
-                ))}
+                {comparisonData
+                  ?.slice()
+                  .sort((a, b) => {
+                    // Current translation comes first
+                    if (a.translation === translation) return -1;
+                    if (b.translation === translation) return 1;
+                    return 0;
+                  })
+                  .map((item) => {
+                    const isCurrent = item.translation === translation;
+                    return (
+                      <div 
+                        key={item.translation} 
+                        className={`p-4 rounded-lg border cursor-pointer transition-colors ${
+                          isCurrent 
+                            ? "border-[#c08e00] bg-[#c08e00]/10" 
+                            : "hover:bg-muted/50"
+                        }`}
+                        onClick={() => {
+                          onTranslationChange(item.translation);
+                          // Trigger scroll to the same verse with highlight animation
+                          if (selectedVerse) {
+                            setScrollToVerse(selectedVerse.verse);
+                          }
+                          setShowCompare(false);
+                        }}
+                        data-testid={`comparison-${item.translation}`}
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <p className={`text-sm font-medium ${isCurrent ? "text-[#c08e00]" : "text-primary"}`}>
+                            {item.translation}
+                          </p>
+                          {isCurrent && (
+                            <span className="text-xs bg-[#c08e00] text-white px-2 py-0.5 rounded-full">
+                              Current
+                            </span>
+                          )}
+                        </div>
+                        {item.verses.map((v) => {
+                          const { content } = parseVerseText(v.text);
+                          return <p key={v.pk} className="text-sm leading-relaxed">{content}</p>;
+                        })}
+                      </div>
+                    );
+                  })}
               </div>
             )}
           </div>
