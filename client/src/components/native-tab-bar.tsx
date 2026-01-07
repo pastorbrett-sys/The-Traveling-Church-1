@@ -22,6 +22,8 @@ export function NativeTabBar() {
   
   if (!isNative) return null;
   
+  if (location === "/" || location === "/login") return null;
+  
   const isActive = (href: string) => {
     if (href === "/") return location === "/";
     return location.startsWith(href);
