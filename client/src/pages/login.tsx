@@ -356,24 +356,10 @@ export default function Login() {
                       />
                     </div>
                     
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-confirm-password" className={isNative ? 'text-gray-300' : ''}>Confirm Password</Label>
-                      <Input
-                        id="signup-confirm-password"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Confirm your password"
-                        value={signUpConfirmPassword}
-                        onChange={(e) => setSignUpConfirmPassword(e.target.value)}
-                        required
-                        data-testid="input-signup-confirm-password"
-                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
-                      />
-                    </div>
-                    
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 px-4 py-2 w-full h-11 bg-[#b8860b] hover:bg-[#a07608] text-white border-0 pt-[8px] pb-[8px] mt-[17px] mb-[17px]"
+                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white border-0' : ''}`}
                       style={isNative ? {
                         animation: 'subtleGlow 3s ease-in-out infinite',
                       } : undefined}
