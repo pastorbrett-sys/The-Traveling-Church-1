@@ -1,4 +1,4 @@
-import { useLocation, Link } from "wouter";
+import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
 
@@ -18,7 +18,7 @@ const tabs: TabItem[] = [
 
 export function NativeTabBar() {
   const { isNative } = usePlatform();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   
   if (!isNative) return null;
   
@@ -43,6 +43,21 @@ export function NativeTabBar() {
     return locPath.startsWith(hrefPath + "/");
   };
   
+  const handleTabClick = (href: string) => {
+    // For same-path navigation with different query params, use window.location
+    // to ensure the page properly updates
+    const [hrefPath] = href.split("?");
+    const [locPath] = location.split("?");
+    
+    if (hrefPath === locPath && hrefPath === "/pastor-chat") {
+      // Same base path - force navigation with full URL update
+      window.history.pushState({}, "", href);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    } else {
+      setLocation(href);
+    }
+  };
+  
   return (
     <nav 
       className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border safe-area-bottom"
@@ -54,9 +69,9 @@ export function NativeTabBar() {
           const active = isActive(tab.href);
           
           return (
-            <Link
+            <button
               key={tab.id}
-              href={tab.href}
+              onClick={() => handleTabClick(tab.href)}
               className={`flex flex-col items-center justify-center flex-1 h-full gap-0.5 transition-colors ${
                 active 
                   ? "text-primary" 
@@ -68,7 +83,7 @@ export function NativeTabBar() {
               <span className={`text-[10px] ${active ? "font-semibold" : "font-medium"}`}>
                 {tab.label}
               </span>
-            </Link>
+            </button>
           );
         })}
       </div>
