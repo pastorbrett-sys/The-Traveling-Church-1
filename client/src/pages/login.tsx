@@ -268,7 +268,7 @@ export default function Login() {
               {/* Bottom Section - Slides up when on Create Account */}
               <div 
                 className="space-y-4 transition-transform duration-300 ease-out"
-                style={{ transform: activeTab === "signup" ? "translateY(-44px)" : "translateY(0)" }}
+                style={{ transform: activeTab === "signup" ? "translateY(-44px)" : "translateY(-3px)" }}
               >
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-[#333333]" />
