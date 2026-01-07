@@ -9,6 +9,7 @@ import { isVagabondBibleDomain } from "@/lib/host-detection";
 import { DynamicHead } from "@/components/dynamic-head";
 import { PlatformProvider } from "@/contexts/platform-context";
 import { PlatformToggle } from "@/components/platform-toggle";
+import { NativeTabBar } from "@/components/native-tab-bar";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -99,6 +100,7 @@ function App() {
           <ScrollToTop />
           <Toaster />
           <Router />
+          <NativeTabBar />
           <PlatformToggle />
         </TooltipProvider>
       </PlatformProvider>
