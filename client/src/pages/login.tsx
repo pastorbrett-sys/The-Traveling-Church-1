@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mail, Loader2, Eye, EyeOff } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
@@ -271,37 +271,22 @@ export default function Login() {
                 </Button>
               </form>
 
-              {/* Forgot Password - Animates in/out */}
-              <AnimatePresence mode="wait">
-                {activeTab === "signin" && (
-                  <motion.div
-                    key="forgot-password"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                    className="overflow-hidden"
+              {/* Forgot Password - Only shows on Sign In */}
+              {activeTab === "signin" && (
+                <div className="h-6 flex items-center justify-center">
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    className="text-sm hover:underline text-[#b8860b]"
+                    data-testid="button-forgot-password"
                   >
-                    <div className="h-6 flex items-center justify-center">
-                      <button
-                        type="button"
-                        onClick={handleForgotPassword}
-                        className="text-sm hover:underline text-[#b8860b]"
-                        data-testid="button-forgot-password"
-                      >
-                        Forgot password?
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    Forgot password?
+                  </button>
+                </div>
+              )}
               
-              {/* Bottom Section - Slides up smoothly */}
-              <motion.div 
-                layout
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-                className="space-y-4"
-              >
+              {/* Bottom Section */}
+              <div className="space-y-4">
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-[#333333]" />
                   <span className="text-sm text-gray-500">or</span>
@@ -327,7 +312,7 @@ export default function Login() {
                 <p className="text-xs text-center text-gray-500">
                   By continuing, you agree to our Terms of Service and Privacy Policy.
                 </p>
-              </motion.div>
+              </div>
             </CardContent>
           </Card>
         </div>
