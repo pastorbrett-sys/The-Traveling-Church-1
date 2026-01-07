@@ -3,9 +3,7 @@ import { Menu, X, LogIn, LogOut, User } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import { usePlatform } from "@/contexts/platform-context";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
-import whiteLogoImage from "@assets/White_Logo_Big_1767755759050.png";
 
 interface NavigationProps {
   customLogo?: string;
@@ -20,7 +18,6 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const [location] = useLocation();
   const isHomePage = location === "/";
   const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
-  const { isNative } = usePlatform();
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -75,27 +72,19 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 
-  // Determine which logo to use
-  const activeLogo = isNative ? whiteLogoImage : (customLogo || logoImage);
-  const logoAlt = isNative || customLogo ? "Vagabond Bible AI" : "The Traveling Church";
-  const logoHref = isNative ? "/pastor-chat" : (customLogo ? "/vagabond-bible" : undefined);
-
   return (
-    <nav 
-      className={`sticky top-0 z-50 ${isNative ? '' : 'bg-card border-b border-border'} shadow-sm`}
-      style={isNative ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' } : undefined}
-    >
+    <nav className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          {logoHref ? (
+          {customLogo ? (
             <Link
-              href={logoHref}
+              href="/vagabond-bible"
               className="flex items-center"
               data-testid="link-home"
             >
               <img 
-                src={activeLogo} 
-                alt={logoAlt} 
+                src={customLogo} 
+                alt="Vagabond Bible AI" 
                 className="h-11"
               />
             </Link>
@@ -106,8 +95,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
               data-testid="link-home"
             >
               <img 
-                src={activeLogo} 
-                alt={logoAlt} 
+                src={logoImage} 
+                alt="The Traveling Church" 
                 className="h-11"
               />
             </button>
