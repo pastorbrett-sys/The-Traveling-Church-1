@@ -574,7 +574,10 @@ export default function PastorChat() {
   const displayMessages = messages.length > 0 ? messages : [systemPrompt];
 
   return (
-    <div className="bg-background text-foreground antialiased h-screen flex flex-col overflow-hidden">
+    <div 
+      className="bg-background text-foreground antialiased flex flex-col overflow-hidden"
+      style={{ height: isNative ? "calc(100vh - 64px)" : "100vh" }}
+    >
       <Navigation customLogo={vagabondLogo} showAuth={true} hideNavLinks={true} />
 
       {/* Tab Toggle - stays fixed below nav */}
