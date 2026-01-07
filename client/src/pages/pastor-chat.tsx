@@ -91,6 +91,15 @@ export default function PastorChat() {
   const upgradeParam = urlParams.get("upgrade");
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
+  
+  // Sync activeTab with URL param changes (for native tab bar navigation)
+  useEffect(() => {
+    const newTab = tabParam === "chat" ? "chat" : "bible";
+    if (newTab !== activeTab) {
+      setActiveTab(newTab);
+    }
+  }, [tabParam]);
+  
   const [bibleTranslation, setBibleTranslation] = useState("NIV");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
