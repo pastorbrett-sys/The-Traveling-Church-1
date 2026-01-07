@@ -252,27 +252,24 @@ export default function Login() {
                 </Button>
               </form>
 
-              {/* Forgot Password - Only on Sign In */}
-              <div 
-                className="overflow-hidden transition-all duration-300 ease-out"
-                style={{ 
-                  maxHeight: activeTab === "signin" ? "40px" : "0px",
-                  opacity: activeTab === "signin" ? 1 : 0,
-                  marginTop: activeTab === "signin" ? "0" : "-8px"
-                }}
-              >
+              {/* Forgot Password - Fixed position, just fades */}
+              <div className="h-10 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={handleForgotPassword}
-                  className="text-sm hover:underline text-[#b8860b] w-full text-center py-2"
+                  className="text-sm hover:underline text-[#b8860b] transition-opacity duration-200"
+                  style={{ opacity: activeTab === "signin" ? 1 : 0, pointerEvents: activeTab === "signin" ? "auto" : "none" }}
                   data-testid="button-forgot-password"
                 >
                   Forgot password?
                 </button>
               </div>
               
-              {/* Bottom Section - Slides up when Forgot Password is hidden */}
-              <div className="space-y-4 transition-all duration-300 ease-out">
+              {/* Bottom Section - Slides up when on Create Account */}
+              <div 
+                className="space-y-4 transition-transform duration-300 ease-out"
+                style={{ transform: activeTab === "signup" ? "translateY(-40px)" : "translateY(0)" }}
+              >
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-[#333333]" />
                   <span className="text-sm text-gray-500">or</span>
