@@ -103,7 +103,7 @@ function App() {
             <Toaster />
             <Router />
             <NativeTabBar />
-            <PlatformToggle />
+            {/* <PlatformToggle /> */}
           </TooltipProvider>
         </RevenueCatProvider>
       </PlatformProvider>
