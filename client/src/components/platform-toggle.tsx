@@ -12,6 +12,9 @@ export function PlatformToggle() {
   
   if (!isLocalDev) return null;
   
+  const isHidden = true;
+  if (isHidden) return null;
+  
   return (
     <div 
       className="fixed top-2 right-2 z-[60] flex items-center gap-1 bg-background/90 backdrop-blur border rounded-full p-1 shadow-md"
