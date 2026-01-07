@@ -12,7 +12,7 @@ export function PlatformToggle() {
   
   if (!isLocalDev) return null;
   
-  const isHidden = true;
+  const isHidden = false;
   if (isHidden) return null;
   
   return (
