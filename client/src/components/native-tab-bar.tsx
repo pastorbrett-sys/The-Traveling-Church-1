@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
@@ -19,6 +20,22 @@ const tabs: TabItem[] = [
 export function NativeTabBar() {
   const { isNative } = usePlatform();
   const [location, setLocation] = useLocation();
+  const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
+  
+  // Track URL changes including query params
+  useEffect(() => {
+    const updateUrl = () => {
+      setCurrentUrl(window.location.pathname + window.location.search);
+    };
+    
+    // Update on popstate (browser back/forward)
+    window.addEventListener("popstate", updateUrl);
+    
+    // Also update when location changes
+    updateUrl();
+    
+    return () => window.removeEventListener("popstate", updateUrl);
+  }, [location]);
   
   if (!isNative) return null;
   
@@ -27,11 +44,11 @@ export function NativeTabBar() {
   
   const isActive = (href: string) => {
     const [hrefPath, hrefQuery] = href.split("?");
-    const currentPath = window.location.pathname;
+    const [currentPath, currentQuery] = currentUrl.split("?");
     
     // For pastor-chat tabs, check both path and query param
     if (hrefPath === "/pastor-chat" && currentPath === "/pastor-chat") {
-      const currentParams = new URLSearchParams(window.location.search);
+      const currentParams = new URLSearchParams(currentQuery || "");
       const hrefParams = new URLSearchParams(hrefQuery || "");
       const currentTab = currentParams.get("tab") || "bible";
       const targetTab = hrefParams.get("tab") || "bible";
@@ -45,6 +62,8 @@ export function NativeTabBar() {
   
   const handleTabClick = (href: string) => {
     setLocation(href);
+    // Immediately update currentUrl to ensure active state changes
+    setCurrentUrl(href);
   };
   
   return (
