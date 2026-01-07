@@ -192,7 +192,7 @@ export default function Login() {
           <Card className={`${isNative ? 'border-0 shadow-none bg-transparent' : 'border-2 border-[hsl(30,20%,88%)]'}`}>
             <CardHeader className={`text-center ${isNative ? 'pb-4 pt-0' : 'pb-2'}`}>
               <div className={`flex justify-center ${isNative ? 'mb-4' : 'mb-3'}`}>
-                <img src={isNative ? vagabondLogoWhite : vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-16' : 'h-16'}`} style={isNative ? { marginLeft: '-9px' } : undefined} />
+                <img src={isNative ? vagabondLogoWhite : vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-16' : 'h-16'}`} style={isNative ? { marginLeft: '-11px' } : undefined} />
               </div>
               {!isNative && (
                 <>
