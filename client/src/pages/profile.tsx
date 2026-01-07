@@ -597,7 +597,7 @@ export default function Profile() {
               <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]">
                 Upgrade to Pro
               </DialogTitle>
-              <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-base mt-3' : 'text-base sm:text-sm'}`}>
+              <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
                 Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
               </DialogDescription>
             </DialogHeader>
@@ -642,9 +642,6 @@ export default function Profile() {
                       </>
                     ) : "Restore Purchases"}
                   </Button>
-                  <p className="text-xs text-center text-[hsl(20,10%,40%)]">
-                    Cancel anytime in your device settings.
-                  </p>
                 </>
               ) : (
                 <>
