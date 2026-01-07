@@ -57,11 +57,9 @@ export default function VagabondBible() {
               </div>
             </div>
           </div>
-          {/* Logo hidden temporarily
-          <div className="absolute top-5 left-5 z-10" data-testid="native-header-logo">
+          <div className="absolute top-5 left-0 right-0 z-10 flex justify-center" data-testid="native-header-logo">
             <img src={vagabondLogoWhite} alt="Vagabond Bible" className="h-8" />
           </div>
-          */}
         </section>
       </div>
     );
