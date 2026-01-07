@@ -34,7 +34,6 @@ export default function VagabondBible() {
           </div>
           <div className="relative z-10 w-full px-6 py-12">
             <div className="max-w-md mx-auto text-center">
-              <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-16 mx-auto mb-8" data-testid="img-vagabond-logo-native" />
               <h1 className="font-heading text-[36px] sm:text-5xl mb-4 text-white font-extrabold leading-[1.12]">
                 The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
               </h1>
@@ -56,6 +55,10 @@ export default function VagabondBible() {
                 </Link>
               </div>
             </div>
+          </div>
+          <div className="absolute bottom-5 left-0 right-0 z-10 flex flex-col items-center gap-1" data-testid="native-footer-logo">
+            <img src={vagabondLogo} alt="Vagabond Bible" className="h-8 w-8" />
+            <span className="text-white text-xs font-medium tracking-wide">Vagabond Bible</span>
           </div>
         </section>
       </div>
