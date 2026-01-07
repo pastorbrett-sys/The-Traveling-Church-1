@@ -1308,7 +1308,7 @@ Reference: ${verseRef} (${translation})`;
           variant="ghost"
           size="sm"
           onClick={() => setShowBookPicker(true)}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
           data-testid="button-book-picker"
         >
           <ChevronLeft className="w-4 h-4" />
