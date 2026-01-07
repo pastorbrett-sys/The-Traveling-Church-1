@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSearch, useLocation, Link } from "wouter";
-import { Mail, Sparkles, Loader2, Eye, EyeOff } from "lucide-react";
+import { useSearch, useLocation } from "wouter";
+import { Mail, Loader2, Eye, EyeOff } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/use-auth";
 import { 
   signInWithGoogle, 
@@ -17,9 +16,7 @@ import {
   getFirebaseErrorMessage,
   handleRedirectResult 
 } from "@/lib/firebase";
-import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
-import { usePlatform } from "@/contexts/platform-context";
 
 export default function Login() {
   const { isAuthenticated, isLoading, refetch } = useAuth();
@@ -27,7 +24,6 @@ export default function Login() {
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/pastor-chat";
-  const { isNative } = usePlatform();
   
   const [activeTab, setActiveTab] = useState<string>("signin");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -145,18 +141,9 @@ export default function Login() {
 
   if (isLoading) {
     return (
-      <div className={`antialiased min-h-screen flex flex-col ${isNative ? 'text-white' : 'bg-[hsl(40,30%,96%)] text-foreground'}`} style={isNative ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' } : undefined}>
-        {!isNative && (
-          <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-            <div className="max-w-7xl mx-auto px-4 flex items-center">
-              <Link href="/vagabond-bible" className="flex items-center">
-                <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-              </Link>
-            </div>
-          </header>
-        )}
+      <div className="antialiased min-h-screen flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
         <main className="flex-1 flex items-center justify-center">
-          <div className={`w-8 h-8 border-4 rounded-full animate-spin ${isNative ? 'border-white border-t-transparent' : 'border-[hsl(25,35%,45%)] border-t-transparent'}`} />
+          <div className="w-8 h-8 border-4 rounded-full animate-spin border-white border-t-transparent" />
         </main>
       </div>
     );
@@ -167,29 +154,14 @@ export default function Login() {
   }
 
   return (
-    <div className={`antialiased min-h-screen flex flex-col ${isNative ? 'text-white' : 'bg-[hsl(40,30%,96%)] text-foreground'}`} style={isNative ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' } : undefined}>
-      {!isNative && (
-        <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
-          <div className="max-w-7xl mx-auto px-4 flex items-center">
-            <Link href="/vagabond-bible" className="flex items-center">
-              <img src={vagabondLogo} alt="Vagabond Bible" className="h-10 w-auto" />
-            </Link>
-          </div>
-        </header>
-      )}
-      <main className={`flex-1 flex items-center justify-center ${isNative ? 'pt-12 pb-6 px-5' : 'py-12'}`}>
+    <div className="antialiased min-h-screen flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
+      <main className="flex-1 flex items-center justify-center pt-12 pb-6 px-5">
         <div className="max-w-md mx-auto w-full">
-          <Card className={`${isNative ? 'border-0 shadow-none bg-transparent' : 'border-2 border-[hsl(30,20%,88%)]'}`}>
-            <CardHeader className={`text-center ${isNative ? 'pb-4 pt-0' : 'pb-2'}`}>
-              <div className={`flex justify-center ${isNative ? 'mb-4' : 'mb-3'}`}>
-                <img src={isNative ? vagabondLogoWhite : vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-16' : 'h-16'}`} style={isNative ? { marginLeft: '-13px' } : undefined} />
+          <Card className="border-0 shadow-none bg-transparent">
+            <CardHeader className="text-center pb-4 pt-0">
+              <div className="flex justify-center mb-4">
+                <img src={vagabondLogoWhite} alt="Vagabond Bible" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
               </div>
-              {!isNative && (
-                <>
-                  <CardTitle className="text-2xl text-[hsl(20,10%,20%)]" data-testid="heading-sign-in">Welcome Home</CardTitle>
-                  <CardDescription className="text-base">Sign in or create an account</CardDescription>
-                </>
-              )}
             </CardHeader>
 
             <CardContent className="space-y-4 pt-4">
@@ -206,15 +178,15 @@ export default function Login() {
               )}
 
               <Tabs value={activeTab} onValueChange={(v) => { setActiveTab(v); setError(null); setSuccessMessage(null); }}>
-                <TabsList className={`grid w-full grid-cols-2 ${isNative ? 'bg-[#2a2a2a]' : ''}`}>
-                  <TabsTrigger value="signin" data-testid="tab-signin" className={isNative ? 'data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white text-gray-400' : ''}>Sign In</TabsTrigger>
-                  <TabsTrigger value="signup" data-testid="tab-signup" className={isNative ? 'data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white text-gray-400' : ''}>Create Account</TabsTrigger>
+                <TabsList className="grid w-full grid-cols-2 bg-[#2a2a2a]">
+                  <TabsTrigger value="signin" data-testid="tab-signin" className="data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white text-gray-400">Sign In</TabsTrigger>
+                  <TabsTrigger value="signup" data-testid="tab-signup" className="data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white text-gray-400">Create Account</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="signin" className="space-y-4 mt-4">
                   <form onSubmit={handleEmailSignIn} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="signin-email" className={isNative ? 'text-gray-300' : ''}>Email</Label>
+                      <Label htmlFor="signin-email" className="text-gray-300">Email</Label>
                       <Input
                         id="signin-email"
                         type="email"
@@ -223,12 +195,12 @@ export default function Login() {
                         onChange={(e) => setSignInEmail(e.target.value)}
                         required
                         data-testid="input-signin-email"
-                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className="bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="signin-password" className={isNative ? 'text-gray-300' : ''}>Password</Label>
+                      <Label htmlFor="signin-password" className="text-gray-300">Password</Label>
                       <div className="relative">
                         <Input
                           id="signin-password"
@@ -238,12 +210,12 @@ export default function Login() {
                           onChange={(e) => setSignInPassword(e.target.value)}
                           required
                           data-testid="input-signin-password"
-                          className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                          className="bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                         />
                         <button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className={`absolute right-3 top-1/2 -translate-y-1/2 ${isNative ? 'text-gray-400 hover:text-white' : 'text-muted-foreground hover:text-foreground'}`}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
                           data-testid="button-toggle-password"
                         >
                           {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -254,10 +226,8 @@ export default function Login() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white border-0' : ''}`}
-                      style={isNative ? {
-                        animation: 'subtleGlow 3s ease-in-out infinite',
-                      } : undefined}
+                      className="w-full h-11 bg-[#b8860b] hover:bg-[#a07608] text-white border-0"
+                      style={{ animation: 'subtleGlow 3s ease-in-out infinite' }}
                       data-testid="button-signin-email"
                     >
                       {isSubmitting ? (
@@ -269,17 +239,17 @@ export default function Login() {
                     <button
                       type="button"
                       onClick={handleForgotPassword}
-                      className={`text-sm hover:underline w-full text-center ${isNative ? 'text-[#b8860b]' : 'text-primary'}`}
+                      className="text-sm hover:underline w-full text-center text-[#b8860b]"
                       data-testid="button-forgot-password"
                     >
                       Forgot password?
                     </button>
                   </form>
                   
-                  <div className={`flex items-center gap-3 py-2 ${isNative ? '' : ''}`}>
-                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
-                    <span className={`text-sm ${isNative ? 'text-gray-500' : 'text-muted-foreground'}`}>or</span>
-                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
+                  <div className="flex items-center gap-3 py-2">
+                    <div className="flex-1 h-px bg-[#333333]" />
+                    <span className="text-sm text-gray-500">or</span>
+                    <div className="flex-1 h-px bg-[#333333]" />
                   </div>
                   
                   <Button
@@ -287,7 +257,7 @@ export default function Login() {
                     onClick={handleGoogleSignIn}
                     disabled={isSubmitting}
                     variant="outline"
-                    className={`w-full h-11 ${isNative ? 'bg-transparent border-[#333333] text-white hover:bg-[#222222]' : ''}`}
+                    className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
                     data-testid="button-signin-google"
                   >
                     {isSubmitting ? (
@@ -298,7 +268,7 @@ export default function Login() {
                     Continue with Google
                   </Button>
                   
-                  <p className={`text-xs text-center ${isNative ? 'text-gray-500' : 'text-muted-foreground'}`}>
+                  <p className="text-xs text-center text-gray-500">
                     By continuing, you agree to our Terms of Service and Privacy Policy.
                   </p>
                 </TabsContent>
@@ -306,7 +276,7 @@ export default function Login() {
                 <TabsContent value="signup" className="space-y-4 mt-4">
                   <form onSubmit={handleEmailSignUp} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="signup-email" className={isNative ? 'text-gray-300' : ''}>Email</Label>
+                      <Label htmlFor="signup-email" className="text-gray-300">Email</Label>
                       <Input
                         id="signup-email"
                         type="email"
@@ -315,12 +285,12 @@ export default function Login() {
                         onChange={(e) => setSignUpEmail(e.target.value)}
                         required
                         data-testid="input-signup-email"
-                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className="bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="signup-password" className={isNative ? 'text-gray-300' : ''}>Password</Label>
+                      <Label htmlFor="signup-password" className="text-gray-300">Password</Label>
                       <Input
                         id="signup-password"
                         type={showPassword ? "text" : "password"}
@@ -329,17 +299,15 @@ export default function Login() {
                         onChange={(e) => setSignUpPassword(e.target.value)}
                         required
                         data-testid="input-signup-password"
-                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className="bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                       />
                     </div>
                     
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white border-0' : ''}`}
-                      style={isNative ? {
-                        animation: 'subtleGlow 3s ease-in-out infinite',
-                      } : undefined}
+                      className="w-full h-11 bg-[#b8860b] hover:bg-[#a07608] text-white border-0"
+                      style={{ animation: 'subtleGlow 3s ease-in-out infinite' }}
                       data-testid="button-signup-email"
                     >
                       {isSubmitting ? (
@@ -351,10 +319,10 @@ export default function Login() {
                     </Button>
                   </form>
                   
-                  <div className={`flex items-center gap-3 py-2`}>
-                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
-                    <span className={`text-sm ${isNative ? 'text-gray-500' : 'text-muted-foreground'}`}>or</span>
-                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
+                  <div className="flex items-center gap-3 py-2">
+                    <div className="flex-1 h-px bg-[#333333]" />
+                    <span className="text-sm text-gray-500">or</span>
+                    <div className="flex-1 h-px bg-[#333333]" />
                   </div>
                   
                   <Button
@@ -362,7 +330,7 @@ export default function Login() {
                     onClick={handleGoogleSignIn}
                     disabled={isSubmitting}
                     variant="outline"
-                    className={`w-full h-11 ${isNative ? 'bg-transparent border-[#333333] text-white hover:bg-[#222222]' : ''}`}
+                    className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
                     data-testid="button-signup-google"
                   >
                     {isSubmitting ? (
@@ -373,7 +341,7 @@ export default function Login() {
                     Sign up with Google
                   </Button>
                   
-                  <p className={`text-xs text-center ${isNative ? 'text-gray-500' : 'text-muted-foreground'}`}>
+                  <p className="text-xs text-center text-gray-500">
                     By continuing, you agree to our Terms of Service and Privacy Policy.
                   </p>
                 </TabsContent>
@@ -382,11 +350,6 @@ export default function Login() {
           </Card>
         </div>
       </main>
-      {!isNative && (
-        <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
-          <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
-        </footer>
-      )}
     </div>
   );
 }
