@@ -689,7 +689,7 @@ export default function PastorChat() {
         <div className={activeTab === "chat" ? "" : "hidden"}>
           <div className="w-full max-w-3xl mx-auto px-4" style={{ paddingBottom: `${footerHeight}px` }}>
             {/* Messages area */}
-            <div ref={scrollAreaRef} className="space-y-4">
+            <div ref={scrollAreaRef} className="space-y-4 pt-4">
             <AnimatePresence mode="popLayout">
               {displayMessages.map((message, index) => {
                 const isWelcomeMessage = index === 0 && messages.length === 0 && message.content.includes("Hey there! I'm Pastor Brett");
