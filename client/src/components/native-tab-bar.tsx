@@ -68,7 +68,8 @@ export function NativeTabBar() {
   
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border safe-area-bottom"
+      className="fixed bottom-0 left-0 right-0 z-50 safe-area-bottom"
+      style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}
       data-testid="native-tab-bar"
     >
       <div className="flex items-center justify-around h-16 px-2">
@@ -80,11 +81,8 @@ export function NativeTabBar() {
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.href)}
-              className={`flex flex-col items-center justify-center flex-1 h-full gap-0.5 transition-colors ${
-                active 
-                  ? "text-primary" 
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+              className="flex flex-col items-center justify-center flex-1 h-full gap-0.5 transition-colors"
+              style={{ color: active ? '#b8860b' : 'rgba(255, 255, 255, 0.7)' }}
               data-testid={`tab-${tab.id}`}
             >
               <Icon className={`w-5 h-5 ${active ? "stroke-[2.5px]" : ""}`} />
