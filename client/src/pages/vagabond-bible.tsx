@@ -58,9 +58,9 @@ export default function VagabondBible() {
             </div>
           </div>
           <div className="absolute top-5 left-0 right-0 z-10 flex items-center px-4" data-testid="native-header-logo">
-            <div className="flex-1 h-px bg-gray-400/50" />
+            <div className="flex-1 h-px bg-gray-400/15" />
             <img src={vagabondLogoWhite} alt="Vagabond Bible" className="h-8 mx-4" />
-            <div className="flex-1 h-px bg-gray-400/50" />
+            <div className="flex-1 h-px bg-gray-400/15" />
           </div>
         </section>
       </div>
