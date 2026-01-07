@@ -3,6 +3,7 @@ import { Menu, X, LogIn, LogOut, User } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
+import { usePlatform } from "@/contexts/platform-context";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 interface NavigationProps {
@@ -18,6 +19,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const [location] = useLocation();
   const isHomePage = location === "/";
   const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
+  const { isNative } = usePlatform();
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -179,8 +181,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
           {/* Right content slot (e.g., Bible version selector in native mode) */}
           {rightContent ? (
             <div className="flex items-center">{rightContent}</div>
-          ) : (
-            /* Mobile Menu Button */
+          ) : !isNative ? (
+            /* Mobile Menu Button - hidden in native mode since bottom tab bar handles navigation */
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 text-foreground"
@@ -189,7 +191,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
-          )}
+          ) : null}
         </div>
 
         {/* Mobile Navigation Menu - Overlay */}
