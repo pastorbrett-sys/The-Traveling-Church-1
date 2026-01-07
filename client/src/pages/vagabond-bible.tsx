@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
-import vagabondLogoWhite from "@assets/Logo_White_1767753622588.png";
+import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
@@ -15,7 +15,18 @@ import { usePlatform } from "@/contexts/platform-context";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { isNative } = usePlatform();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = window.innerHeight * 0.85;
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (isNative) {
     return (
@@ -69,15 +80,24 @@ export default function VagabondBible() {
 
   return (
     <div className="min-h-screen bg-[hsl(30,20%,97%)] text-[hsl(20,10%,25%)]">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]' 
+          : 'bg-transparent border-b border-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-11" data-testid="img-vagabond-logo" />
+            <img 
+              src={isScrolled ? vagabondLogo : vagabondLogoWhite} 
+              alt="Vagabond Bible AI" 
+              className="h-11 transition-opacity duration-300" 
+              data-testid="img-vagabond-logo" 
+            />
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-features">Features</a>
-              <a href="#about" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-about">About</a>
-              <a href="#community" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-community">Community</a>
-              <a href="#contact" className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium" data-testid="link-contact">Contact</a>
+              <a href="#features" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features">Features</a>
+              <a href="#about" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about">About</a>
+              <a href="#community" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community">Community</a>
+              <a href="#contact" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact">Contact</a>
               <Link href="/login">
                 <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-login">
                   Login
@@ -90,19 +110,19 @@ export default function VagabondBible() {
               data-testid="button-mobile-menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[hsl(20,10%,40%)] stroke-[1.5]" />
+                <X className={`w-6 h-6 stroke-[1.5] transition-colors ${isScrolled ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
               ) : (
-                <Menu className="w-6 h-6 text-[hsl(20,10%,40%)] stroke-[1.5]" />
+                <Menu className={`w-6 h-6 stroke-[1.5] transition-colors ${isScrolled ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
               )}
             </button>
           </div>
           {mobileMenuOpen && (
-            <div className="md:hidden border-t border-[hsl(30,20%,88%)] py-4">
+            <div className={`md:hidden py-4 ${isScrolled ? 'border-t border-[hsl(30,20%,88%)]' : 'bg-black/80 backdrop-blur-sm rounded-lg mt-2'}`}>
               <div className="flex flex-col gap-4">
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-features-mobile">Features</a>
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-about-mobile">About</a>
-                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-community-mobile">Community</a>
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2" data-testid="link-contact-mobile">Contact</a>
+                <a href="#features" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features-mobile">Features</a>
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about-mobile">About</a>
+                <a href="#community" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community-mobile">Community</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className={`text-[14px] transition-colors font-medium px-2 ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact-mobile">Contact</a>
                 <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
                   <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px]" data-testid="button-login-mobile">
                     Login
@@ -113,7 +133,7 @@ export default function VagabondBible() {
           )}
         </div>
       </nav>
-      <section className="relative pt-16 min-h-[100svh] sm:min-h-[90vh] flex items-center">
+      <section className="relative min-h-[100svh] sm:min-h-[90vh] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
           <video
             autoPlay
