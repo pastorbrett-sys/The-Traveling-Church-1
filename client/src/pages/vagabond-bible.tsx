@@ -33,7 +33,7 @@ export default function VagabondBible() {
             </video>
             <div className="absolute inset-0 bg-black/50" />
           </div>
-          <div className="relative z-10 w-full px-6 py-12">
+          <div className="absolute bottom-8 left-0 right-0 z-10 w-full px-6">
             <div className="max-w-md mx-auto text-center">
               <h1 className="font-heading text-[36px] sm:text-5xl mb-4 text-white font-extrabold leading-[1.12]">
                 The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
