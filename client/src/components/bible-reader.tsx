@@ -1674,7 +1674,10 @@ Reference: ${verseRef} (${translation})`;
 
             <div 
               className="border-t p-3 bg-background"
-              style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+              style={{ 
+                marginBottom: isNative ? "64px" : "0",
+                paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
+              }}
             >
               <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
                 <Textarea
@@ -1789,7 +1792,10 @@ Reference: ${verseRef} (${translation})`;
 
             <div 
               className="border-t p-3 bg-background"
-              style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+              style={{ 
+                marginBottom: isNative ? "64px" : "0",
+                paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
+              }}
             >
               <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
                 <Textarea
