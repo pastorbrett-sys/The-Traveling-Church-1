@@ -192,7 +192,7 @@ export default function Login() {
           <Card className={`${isNative ? 'border-0 shadow-none bg-transparent' : 'border-2 border-[hsl(30,20%,88%)]'}`}>
             <CardHeader className={`text-center ${isNative ? 'pb-4 pt-0' : 'pb-2'}`}>
               <div className={`flex justify-center ${isNative ? 'mb-4' : 'mb-3'}`}>
-                <img src={isNative ? vagabondLogoWhite : vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-16' : 'h-16'}`} />
+                <img src={isNative ? vagabondLogoWhite : vagabondLogo} alt="Vagabond Bible" className={`object-contain ${isNative ? 'h-16' : 'h-16'}`} style={isNative ? { marginLeft: '-3px' } : undefined} />
               </div>
               {!isNative && (
                 <>
@@ -233,7 +233,7 @@ export default function Login() {
                         onChange={(e) => setSignInEmail(e.target.value)}
                         required
                         data-testid="input-signin-email"
-                        className={isNative ? 'bg-[#1c1c1c] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -248,7 +248,7 @@ export default function Login() {
                           onChange={(e) => setSignInPassword(e.target.value)}
                           required
                           data-testid="input-signin-password"
-                          className={isNative ? 'bg-[#1c1c1c] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                          className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                         />
                         <button
                           type="button"
@@ -328,7 +328,7 @@ export default function Login() {
                         value={signUpName}
                         onChange={(e) => setSignUpName(e.target.value)}
                         data-testid="input-signup-name"
-                        className={isNative ? 'bg-[#1c1c1c] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -342,7 +342,7 @@ export default function Login() {
                         onChange={(e) => setSignUpEmail(e.target.value)}
                         required
                         data-testid="input-signup-email"
-                        className={isNative ? 'bg-[#1c1c1c] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -356,7 +356,7 @@ export default function Login() {
                         onChange={(e) => setSignUpPassword(e.target.value)}
                         required
                         data-testid="input-signup-password"
-                        className={isNative ? 'bg-[#1c1c1c] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
@@ -370,7 +370,7 @@ export default function Login() {
                         onChange={(e) => setSignUpConfirmPassword(e.target.value)}
                         required
                         data-testid="input-signup-confirm-password"
-                        className={isNative ? 'bg-[#1c1c1c] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
+                        className={isNative ? 'bg-[#181818] border-[#2a2a2a] text-white placeholder:text-gray-500 focus:border-[#b8860b] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0' : ''}
                       />
                     </div>
                     
