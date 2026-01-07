@@ -253,7 +253,7 @@ export default function Login() {
               </form>
 
               {/* Forgot Password - Fixed position, just fades */}
-              <div className="h-10 flex items-center justify-center" style={{ marginTop: '-4px' }}>
+              <div className="h-10 flex items-center justify-center" style={{ marginTop: '-2px' }}>
                 <button
                   type="button"
                   onClick={handleForgotPassword}
