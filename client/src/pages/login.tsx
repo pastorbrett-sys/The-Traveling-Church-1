@@ -373,7 +373,7 @@ export default function Login() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full h-11 ${isNative ? 'bg-[#b8860b] hover:bg-[#a07608] text-white border-0' : ''}`}
+                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 px-4 py-2 w-full h-11 bg-[#b8860b] hover:bg-[#a07608] text-white border-0 pt-[8px] pb-[8px] mt-[17px] mb-[17px]"
                       style={isNative ? {
                         animation: 'subtleGlow 3s ease-in-out infinite',
                       } : undefined}
