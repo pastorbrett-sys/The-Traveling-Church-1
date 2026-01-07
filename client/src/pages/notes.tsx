@@ -687,61 +687,63 @@ export default function Notes() {
           setNewNoteTags([]);
         }
       }}>
-        <DialogContent className="flex flex-col">
-          <DialogHeader>
-            <DialogTitle className="font-serif flex items-center gap-2">
-              <Plus className="w-5 h-5 text-[#c08e00]" />
-              New Note
-            </DialogTitle>
-          </DialogHeader>
-          
-          <div className="space-y-4">
-            <Textarea
-              placeholder="Write your thoughts..."
-              value={newNoteContent}
-              onChange={(e) => setNewNoteContent(e.target.value)}
-              rows={5}
-              className="resize-none"
-              autoFocus
-              data-testid="input-new-note-content"
-            />
+        <DialogContent className="flex flex-col items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="w-full max-w-md space-y-4">
+            <DialogHeader>
+              <DialogTitle className="font-serif flex items-center gap-2">
+                <Plus className="w-5 h-5 text-[#c08e00]" />
+                New Note
+              </DialogTitle>
+            </DialogHeader>
+            
+            <div className="space-y-4">
+              <Textarea
+                placeholder="Write your thoughts..."
+                value={newNoteContent}
+                onChange={(e) => setNewNoteContent(e.target.value)}
+                rows={5}
+                className="resize-none"
+                autoFocus
+                data-testid="input-new-note-content"
+              />
 
-            <div>
-              <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
-              <div className="flex flex-wrap gap-2">
-                {TAGS.map(tag => (
-                  <button
-                    key={tag}
-                    onClick={() => toggleNewNoteTag(tag)}
-                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
-                      newNoteTags.includes(tag)
-                        ? "bg-[#c08e00] text-white border-[#c08e00]"
-                        : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
-                    }`}
-                    data-testid={`new-note-tag-${tag.toLowerCase()}`}
-                  >
-                    {tag}
-                  </button>
-                ))}
+              <div>
+                <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
+                <div className="flex flex-wrap gap-2">
+                  {TAGS.map(tag => (
+                    <button
+                      key={tag}
+                      onClick={() => toggleNewNoteTag(tag)}
+                      className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                        newNoteTags.includes(tag)
+                          ? "bg-[#c08e00] text-white border-[#c08e00]"
+                          : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                      }`}
+                      data-testid={`new-note-tag-${tag.toLowerCase()}`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex justify-end gap-2 pt-2">
-            <Button variant="ghost" onClick={() => setShowCreateNote(false)}>
-              Cancel
-            </Button>
-            <Button
-              onClick={handleCreateNote}
-              disabled={!newNoteContent.trim() || createNoteMutation.isPending}
-              className="bg-[#c08e00] hover:bg-[#a07800] text-white"
-              data-testid="button-save-new-note"
-            >
-              {createNoteMutation.isPending ? (
-                <Loader2 className="w-4 h-4 animate-spin mr-1" />
-              ) : null}
-              Save
-            </Button>
+            <div className="flex justify-end gap-2 pt-2">
+              <Button variant="ghost" onClick={() => setShowCreateNote(false)}>
+                Cancel
+              </Button>
+              <Button
+                onClick={handleCreateNote}
+                disabled={!newNoteContent.trim() || createNoteMutation.isPending}
+                className="bg-[#c08e00] hover:bg-[#a07800] text-white"
+                data-testid="button-save-new-note"
+              >
+                {createNoteMutation.isPending ? (
+                  <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                ) : null}
+                Save
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
