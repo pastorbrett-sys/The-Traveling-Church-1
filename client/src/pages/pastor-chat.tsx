@@ -589,54 +589,56 @@ export default function PastorChat() {
     >
       <Navigation customLogo={vagabondLogo} showAuth={true} hideNavLinks={true} />
 
-      {/* Tab Toggle - stays fixed below nav */}
-      <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3">
+      {/* Tab Toggle - stays fixed below nav (hidden in native mode since tab bar handles it) */}
+      <div className={`flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3 ${isNative ? "py-2" : ""}`}>
         <div className="flex items-center justify-between">
-          <div className="inline-flex p-1 rounded-lg bg-muted">
-            <button
-              onClick={() => setActiveTab("bible")}
-              className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                activeTab === "bible"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-              data-testid="tab-bible"
-            >
-              {activeTab === "bible" && (
-                <motion.div
-                  layoutId="tabHighlight"
-                  className="absolute inset-0 bg-background rounded-md shadow-sm"
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-2">
-                <Book className="w-4 h-4" />
-                Bible
-              </span>
-            </button>
-            <button
-              onClick={() => setActiveTab("chat")}
-              className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                activeTab === "chat"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-              data-testid="tab-chat"
-            >
-              {activeTab === "chat" && (
-                <motion.div
-                  layoutId="tabHighlight"
-                  className="absolute inset-0 bg-background rounded-md shadow-sm"
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-2">
-                <MessageCircle className="w-4 h-4" />
-                Chat
-              </span>
-            </button>
-          </div>
-          <div className="flex items-center gap-2">
+          {!isNative && (
+            <div className="inline-flex p-1 rounded-lg bg-muted">
+              <button
+                onClick={() => setActiveTab("bible")}
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeTab === "bible"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                data-testid="tab-bible"
+              >
+                {activeTab === "bible" && (
+                  <motion.div
+                    layoutId="tabHighlight"
+                    className="absolute inset-0 bg-background rounded-md shadow-sm"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <Book className="w-4 h-4" />
+                  Bible
+                </span>
+              </button>
+              <button
+                onClick={() => setActiveTab("chat")}
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeTab === "chat"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                data-testid="tab-chat"
+              >
+                {activeTab === "chat" && (
+                  <motion.div
+                    layoutId="tabHighlight"
+                    className="absolute inset-0 bg-background rounded-md shadow-sm"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <MessageCircle className="w-4 h-4" />
+                  Chat
+                </span>
+              </button>
+            </div>
+          )}
+          <div className={`flex items-center gap-2 ${isNative ? "w-full justify-end" : ""}`}>
             {activeTab === "bible" && (
               <div className="flex items-center gap-2">
                 <span className="text-sm text-muted-foreground hidden sm:inline">Bible Version</span>
