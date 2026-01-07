@@ -155,7 +155,7 @@ export default function Login() {
 
   if (isLoading) {
     return (
-      <div className={`antialiased min-h-screen flex flex-col ${isNative ? 'bg-[#1a1a1a] text-white' : 'bg-[hsl(40,30%,96%)] text-foreground'}`}>
+      <div className={`antialiased min-h-screen flex flex-col ${isNative ? 'text-white' : 'bg-[hsl(40,30%,96%)] text-foreground'}`} style={isNative ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' } : undefined}>
         {!isNative && (
           <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
             <div className="max-w-7xl mx-auto px-4 flex items-center">
@@ -177,7 +177,7 @@ export default function Login() {
   }
 
   return (
-    <div className={`antialiased min-h-screen flex flex-col ${isNative ? 'bg-[#1a1a1a] text-white' : 'bg-[hsl(40,30%,96%)] text-foreground'}`}>
+    <div className={`antialiased min-h-screen flex flex-col ${isNative ? 'text-white' : 'bg-[hsl(40,30%,96%)] text-foreground'}`} style={isNative ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' } : undefined}>
       {!isNative && (
         <header className="bg-white border-b border-[hsl(30,20%,88%)] py-4">
           <div className="max-w-7xl mx-auto px-4 flex items-center">
@@ -283,11 +283,10 @@ export default function Login() {
                     </button>
                   </form>
                   
-                  <div className="relative py-2">
-                    <Separator className={isNative ? 'bg-[#3a3a3a]' : ''} />
-                    <span className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 text-sm ${isNative ? 'bg-[#1a1a1a] text-gray-500' : 'bg-card text-muted-foreground'}`}>
-                      or
-                    </span>
+                  <div className={`flex items-center gap-3 py-2 ${isNative ? '' : ''}`}>
+                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
+                    <span className={`text-sm ${isNative ? 'text-gray-500' : 'text-muted-foreground'}`}>or</span>
+                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
                   </div>
                   
                   <Button
@@ -295,7 +294,7 @@ export default function Login() {
                     onClick={handleGoogleSignIn}
                     disabled={isSubmitting}
                     variant="outline"
-                    className={`w-full h-11 ${isNative ? 'bg-transparent border-[#3a3a3a] text-white hover:bg-[#2a2a2a]' : ''}`}
+                    className={`w-full h-11 ${isNative ? 'bg-transparent border-[#333333] text-white hover:bg-[#222222]' : ''}`}
                     data-testid="button-signin-google"
                   >
                     {isSubmitting ? (
@@ -390,11 +389,10 @@ export default function Login() {
                     </Button>
                   </form>
                   
-                  <div className="relative py-2">
-                    <Separator className={isNative ? 'bg-[#3a3a3a]' : ''} />
-                    <span className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 text-sm ${isNative ? 'bg-[#1a1a1a] text-gray-500' : 'bg-card text-muted-foreground'}`}>
-                      or
-                    </span>
+                  <div className={`flex items-center gap-3 py-2`}>
+                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
+                    <span className={`text-sm ${isNative ? 'text-gray-500' : 'text-muted-foreground'}`}>or</span>
+                    <div className={`flex-1 h-px ${isNative ? 'bg-[#333333]' : 'bg-border'}`} />
                   </div>
                   
                   <Button
@@ -402,7 +400,7 @@ export default function Login() {
                     onClick={handleGoogleSignIn}
                     disabled={isSubmitting}
                     variant="outline"
-                    className={`w-full h-11 ${isNative ? 'bg-transparent border-[#3a3a3a] text-white hover:bg-[#2a2a2a]' : ''}`}
+                    className={`w-full h-11 ${isNative ? 'bg-transparent border-[#333333] text-white hover:bg-[#222222]' : ''}`}
                     data-testid="button-signup-google"
                   >
                     {isSubmitting ? (
