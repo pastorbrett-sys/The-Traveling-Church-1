@@ -295,7 +295,7 @@ export default function Notes() {
       <Navigation customLogo={vagabondLogo} hideNavLinks={true} showAuth={true} />
 
       <main className="flex-1">
-        <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto px-4 pt-4 pb-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               {!isNative && (
