@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div className="bg-background text-foreground antialiased">
-      <Navigation />
+      <Navigation transparentOnLanding={true} />
       <HeroSection />
       <MissionSection />
       <WhatsAppSection />
