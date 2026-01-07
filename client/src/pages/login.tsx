@@ -253,7 +253,7 @@ export default function Login() {
               </form>
 
               {/* Forgot Password - Fixed position, just fades */}
-              <div className="h-10 flex items-center justify-center" style={{ marginTop: '6px' }}>
+              <div className="h-10 flex items-center justify-center" style={{ marginTop: '8px' }}>
                 <button
                   type="button"
                   onClick={handleForgotPassword}
@@ -268,7 +268,7 @@ export default function Login() {
               {/* Bottom Section - Slides up when on Create Account */}
               <div 
                 className="space-y-4 transition-transform duration-300 ease-out"
-                style={{ transform: activeTab === "signup" ? "translateY(-40px)" : "translateY(0)" }}
+                style={{ transform: activeTab === "signup" ? "translateY(-42px)" : "translateY(0)" }}
               >
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-[#333333]" />
