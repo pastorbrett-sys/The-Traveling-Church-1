@@ -589,27 +589,26 @@ export default function Profile() {
       {/* Upgrade Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
         <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0">
-          <div className="flex flex-col justify-center min-h-full p-6 sm:p-6">
+          <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-16' : ''}`}>
             <DialogHeader className="text-center">
-              <div className="mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-2">
+              <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
                 <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
               </div>
               <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]">
                 Upgrade to Pro
               </DialogTitle>
-              <DialogDescription className="text-[hsl(20,10%,40%)] text-base sm:text-sm">
-                You've experienced what Vagabond Bible can offer. Upgrade to Pro for unlimited spiritual guidance and support.
+              <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-base mt-3' : 'text-base sm:text-sm'}`}>
+                Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.
               </DialogDescription>
             </DialogHeader>
             
-            <div className="bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] mt-6 sm:mt-4">
+            <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}>
               <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Upgrade to Pro for:</h3>
-              <ul className="space-y-2 sm:space-y-2 text-base sm:text-sm text-[hsl(20,10%,35%)]">
+              <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
                 <li>• Unlimited Smart Searches</li>
                 <li>• Unlimited Book Synopses</li>
                 <li>• Unlimited Verse Insights</li>
                 <li>• Unlimited Notes</li>
-                <li>• Priority support</li>
               </ul>
             </div>
             
