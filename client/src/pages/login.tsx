@@ -252,46 +252,53 @@ export default function Login() {
                 </Button>
               </form>
 
-              {/* Forgot Password - Only on Sign In, with fixed height container */}
-              <div className="h-6 flex items-center justify-center">
-                {activeTab === "signin" && (
-                  <button
-                    type="button"
-                    onClick={handleForgotPassword}
-                    className="text-sm hover:underline text-[#b8860b] transition-opacity duration-200"
-                    data-testid="button-forgot-password"
-                  >
-                    Forgot password?
-                  </button>
-                )}
-              </div>
-              
-              {/* Bottom Section - Same for both tabs */}
-              <div className="flex items-center gap-3 py-2">
-                <div className="flex-1 h-px bg-[#333333]" />
-                <span className="text-sm text-gray-500">or</span>
-                <div className="flex-1 h-px bg-[#333333]" />
-              </div>
-              
-              <Button
-                type="button"
-                onClick={handleGoogleSignIn}
-                disabled={isSubmitting}
-                variant="outline"
-                className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
-                data-testid={activeTab === "signin" ? "button-signin-google" : "button-signup-google"}
+              {/* Forgot Password - Only on Sign In */}
+              <div 
+                className="overflow-hidden transition-all duration-300 ease-out"
+                style={{ 
+                  maxHeight: activeTab === "signin" ? "40px" : "0px",
+                  opacity: activeTab === "signin" ? 1 : 0,
+                  marginTop: activeTab === "signin" ? "0" : "-8px"
+                }}
               >
-                {isSubmitting ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <SiGoogle className="w-4 h-4 mr-2" />
-                )}
-                {activeTab === "signin" ? "Continue with Google" : "Sign up with Google"}
-              </Button>
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  className="text-sm hover:underline text-[#b8860b] w-full text-center py-2"
+                  data-testid="button-forgot-password"
+                >
+                  Forgot password?
+                </button>
+              </div>
               
-              <p className="text-xs text-center text-gray-500">
-                By continuing, you agree to our Terms of Service and Privacy Policy.
-              </p>
+              {/* Bottom Section - Slides up when Forgot Password is hidden */}
+              <div className="space-y-4 transition-all duration-300 ease-out">
+                <div className="flex items-center gap-3 py-2">
+                  <div className="flex-1 h-px bg-[#333333]" />
+                  <span className="text-sm text-gray-500">or</span>
+                  <div className="flex-1 h-px bg-[#333333]" />
+                </div>
+                
+                <Button
+                  type="button"
+                  onClick={handleGoogleSignIn}
+                  disabled={isSubmitting}
+                  variant="outline"
+                  className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
+                  data-testid={activeTab === "signin" ? "button-signin-google" : "button-signup-google"}
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <SiGoogle className="w-4 h-4 mr-2" />
+                  )}
+                  {activeTab === "signin" ? "Continue with Google" : "Sign up with Google"}
+                </Button>
+                
+                <p className="text-xs text-center text-gray-500">
+                  By continuing, you agree to our Terms of Service and Privacy Policy.
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>
