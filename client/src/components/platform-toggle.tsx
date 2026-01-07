@@ -1,9 +1,8 @@
 import { usePlatform } from '@/contexts/platform-context';
-import { Button } from '@/components/ui/button';
 import { Smartphone, Monitor } from 'lucide-react';
 
 export function PlatformToggle() {
-  const { isNative, isSimulating, toggleSimulation } = usePlatform();
+  const { isSimulating, toggleSimulation } = usePlatform();
   
   if (typeof window === 'undefined') return null;
   
@@ -15,32 +14,29 @@ export function PlatformToggle() {
   
   return (
     <div 
-      className="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-background/95 backdrop-blur border rounded-lg p-2 shadow-lg"
+      className="fixed top-2 right-2 z-[60] flex items-center gap-1 bg-background/90 backdrop-blur border rounded-full p-1 shadow-md"
       data-testid="platform-toggle-container"
     >
-      <span className="text-xs text-muted-foreground px-2">
-        Preview:
-      </span>
-      <Button
-        variant={!isSimulating ? "default" : "outline"}
-        size="sm"
+      <button
         onClick={() => isSimulating && toggleSimulation()}
-        className="gap-1"
+        className={`p-1.5 rounded-full transition-colors ${
+          !isSimulating ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+        }`}
         data-testid="button-web-preview"
+        title="Web Preview"
       >
-        <Monitor className="h-3 w-3" />
-        Web
-      </Button>
-      <Button
-        variant={isSimulating ? "default" : "outline"}
-        size="sm"
+        <Monitor className="h-3.5 w-3.5" />
+      </button>
+      <button
         onClick={() => !isSimulating && toggleSimulation()}
-        className="gap-1"
+        className={`p-1.5 rounded-full transition-colors ${
+          isSimulating ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+        }`}
         data-testid="button-native-preview"
+        title="Native App Preview"
       >
-        <Smartphone className="h-3 w-3" />
-        Native App
-      </Button>
+        <Smartphone className="h-3.5 w-3.5" />
+      </button>
     </div>
   );
 }
