@@ -42,6 +42,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
+import { usePlatform } from "@/contexts/platform-context";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
 import type { Note } from "@shared/schema";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
@@ -73,6 +74,7 @@ type SortOption = "newest" | "oldest" | "book";
 
 export default function Notes() {
   const { toast } = useToast();
+  const { isNative } = usePlatform();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
@@ -296,16 +298,18 @@ export default function Notes() {
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <Link href="/pastor-chat?tab=bible">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
-                  data-testid="button-back"
-                >
-                  <ArrowLeft className="w-5 h-5" />
-                </Button>
-              </Link>
+              {!isNative && (
+                <Link href="/pastor-chat?tab=bible">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                    data-testid="button-back"
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </Button>
+                </Link>
+              )}
               <div className="flex items-center gap-2">
                 <Bookmark className="w-6 h-6 text-[#c08e00]" />
                 <h1 className="text-2xl font-serif font-bold">My Notes</h1>
