@@ -569,7 +569,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin endpoint to backfill Stripe customer links for existing users
-  // This runs automatically on startup but can also be triggered manually
   app.post("/api/admin/sync-stripe-customers", async (req, res) => {
     try {
       const results = await syncStripeCustomersToUsers();
@@ -580,10 +579,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Run the sync on startup to ensure all existing customers are linked
-  syncStripeCustomersToUsers().catch(err => {
-    console.error("Error during startup Stripe customer sync:", err);
-  });
+  // Background job: sync Stripe customers every hour instead of on startup
+  // This ensures subscription status stays in sync without blocking server startup
+  const STRIPE_SYNC_INTERVAL = 60 * 60 * 1000; // 1 hour in milliseconds
+  setInterval(() => {
+    syncStripeCustomersToUsers().catch(err => {
+      console.error("Error during scheduled Stripe customer sync:", err);
+    });
+  }, STRIPE_SYNC_INTERVAL);
+  console.log("Stripe customer sync scheduled to run every hour");
 
   const httpServer = createServer(app);
   return httpServer;
