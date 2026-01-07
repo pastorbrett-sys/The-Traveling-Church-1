@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthGate } from "@/components/auth-gate";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 import { DynamicHead } from "@/components/dynamic-head";
+import { PlatformProvider } from "@/contexts/platform-context";
+import { PlatformToggle } from "@/components/platform-toggle";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -91,12 +93,15 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <DynamicHead />
-        <ScrollToTop />
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <PlatformProvider>
+        <TooltipProvider>
+          <DynamicHead />
+          <ScrollToTop />
+          <Toaster />
+          <Router />
+          <PlatformToggle />
+        </TooltipProvider>
+      </PlatformProvider>
     </QueryClientProvider>
   );
 }
