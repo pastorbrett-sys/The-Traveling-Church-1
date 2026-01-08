@@ -30,7 +30,8 @@ async function handleRevenueCatEvent(event: RevenueCatEvent["event"]): Promise<v
   
   console.log(`RevenueCat webhook: ${type} for user ${app_user_id}`);
   
-  const hasProEntitlement = entitlement_ids.includes("Vagabond Bible Pro");
+  const entitlements = entitlement_ids || [];
+  const hasProEntitlement = entitlements.includes("Vagabond Bible Pro");
   const expiresAt = expiration_at_ms ? new Date(expiration_at_ms) : null;
   
   switch (type) {
