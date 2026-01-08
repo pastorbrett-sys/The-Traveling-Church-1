@@ -715,20 +715,20 @@
 }
 
 .btn-upgrade {
-  background: linear-gradient(-45deg, #5A4008, #6B4E0A, #4D3607, #5A4008, #4D3607, #6B4E0A);
+  background: linear-gradient(-45deg, #b8860b, #d4a017, #c9a417, #b8860b, #daa520, #c9a417);
   background-size: 400% 400%;
   animation: goldenPulse 6s ease-in-out infinite;
   color: #ffffff !important;
   font-weight: 600;
   border: none;
-  box-shadow: 0 2px 8px rgba(90, 64, 8, 0.25);
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-upgrade:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(90, 64, 8, 0.3);
-  background: linear-gradient(-45deg, #6B4E0A, #7A5D10, #5A4008, #6B4E0A, #5A4008, #7A5D10);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.4);
+  background: linear-gradient(-45deg, #d4a017, #daa520, #b8860b, #d4a017, #c9a417, #daa520);
   background-size: 400% 400%;
   animation: goldenPulse 6s ease-in-out infinite;
 }
@@ -742,16 +742,16 @@
   outline-offset: 3px;
 }
 
-/* Dark mode - slightly lighter gold for visibility while maintaining contrast */
+/* Dark mode - same vibrant gold for visibility */
 .dark .btn-upgrade {
-  background: linear-gradient(-45deg, #6B4E0A, #7A5D10, #5A4008, #6B4E0A, #5A4008, #7A5D10);
+  background: linear-gradient(-45deg, #b8860b, #d4a017, #c9a417, #b8860b, #daa520, #c9a417);
   background-size: 400% 400%;
-  box-shadow: 0 2px 8px rgba(107, 78, 10, 0.25);
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
 }
 
 .dark .btn-upgrade:hover {
-  background: linear-gradient(-45deg, #7A5D10, #6B4E0A, #5A4008, #7A5D10, #6B4E0A, #7A5D10);
-  box-shadow: 0 4px 12px rgba(122, 93, 16, 0.3);
+  background: linear-gradient(-45deg, #d4a017, #daa520, #b8860b, #d4a017, #c9a417, #daa520);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.4);
 }
 
 /* =========================================================================
