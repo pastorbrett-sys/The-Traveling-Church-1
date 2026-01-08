@@ -109,7 +109,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
       
       const result = await Purchases.purchasePackage({ aPackage: monthlyPackage });
       
-      if (result.customerInfo.entitlements.active["pro"]) {
+      if (result.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
         toast({
           title: "Welcome to Pro!",
           description: "You now have unlimited access to all features.",
@@ -137,7 +137,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
       const { Purchases } = await import("@revenuecat/purchases-capacitor");
       const customerInfo = await Purchases.restorePurchases();
       
-      if (customerInfo.customerInfo.entitlements.active["pro"]) {
+      if (customerInfo.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
         toast({
           title: "Purchases restored!",
           description: "Your Pro subscription has been restored.",

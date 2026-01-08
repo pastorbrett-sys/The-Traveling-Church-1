@@ -44,7 +44,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
         setIsInitialized(true);
 
         const customerInfo = await PurchasesModule.getCustomerInfo();
-        const hasProEntitlement = customerInfo.customerInfo.entitlements.active['pro'] !== undefined;
+        const hasProEntitlement = customerInfo.customerInfo.entitlements.active['Vagabond Bible Pro'] !== undefined;
         setIsProUser(hasProEntitlement);
 
       } catch (err: any) {
@@ -63,7 +63,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
 
     try {
       const customerInfo = await Purchases.getCustomerInfo();
-      const hasProEntitlement = customerInfo.customerInfo.entitlements.active['pro'] !== undefined;
+      const hasProEntitlement = customerInfo.customerInfo.entitlements.active['Vagabond Bible Pro'] !== undefined;
       setIsProUser(hasProEntitlement);
     } catch (err) {
       console.error('Failed to refresh entitlements:', err);
@@ -95,7 +95,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
 
       const purchaseResult = await Purchases.purchasePackage({ aPackage: packageToPurchase });
       
-      const hasProEntitlement = purchaseResult.customerInfo.entitlements.active['pro'] !== undefined;
+      const hasProEntitlement = purchaseResult.customerInfo.entitlements.active['Vagabond Bible Pro'] !== undefined;
       setIsProUser(hasProEntitlement);
 
       return hasProEntitlement;
@@ -122,7 +122,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       
       const customerInfo = await Purchases.restorePurchases();
-      const hasProEntitlement = customerInfo.customerInfo.entitlements.active['pro'] !== undefined;
+      const hasProEntitlement = customerInfo.customerInfo.entitlements.active['Vagabond Bible Pro'] !== undefined;
       setIsProUser(hasProEntitlement);
 
       return hasProEntitlement;

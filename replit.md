@@ -86,7 +86,7 @@ Preferred communication style: Simple, everyday language.
 ### RevenueCat Integration (In-App Purchases)
 - **@revenuecat/purchases-capacitor**: Handles native iOS/Android in-app purchases and subscriptions.
 - **SDK Initialization**: RevenueCat SDK only initializes on true native platforms (Capacitor runtime), not on web or simulated native mode.
-- **Entitlement**: Uses "pro" entitlement to track Pro subscription status on native platforms.
+- **Entitlement**: Uses "Vagabond Bible Pro" entitlement to track Pro subscription status on native platforms.
 - **UI Integration**: Native users see app store-specific subscription management guidance; web users continue to use Stripe portal.
 - **Product ID**: `vagabond_bible_pro_monthly` for the monthly Pro subscription.
 - **Future Work**: Backend sync endpoint needed to inform the server about RevenueCat purchases so usage limits align with native subscriptions.
