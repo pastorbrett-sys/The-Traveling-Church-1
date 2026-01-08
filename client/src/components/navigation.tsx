@@ -185,11 +185,18 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
             /* Mobile Menu Button - hidden in native mode since bottom tab bar handles navigation */
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-foreground"
+              className="lg:hidden p-2 text-foreground relative w-10 h-10 flex items-center justify-center"
               data-testid="button-mobile-menu"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <X 
+                key={mobileMenuOpen ? 'x-visible' : 'x-hidden'}
+                className={`w-6 h-6 absolute ${mobileMenuOpen ? 'menu-icon-enter' : 'opacity-0'}`} 
+              />
+              <Menu 
+                key={mobileMenuOpen ? 'menu-hidden' : 'menu-visible'}
+                className={`w-6 h-6 absolute ${!mobileMenuOpen ? 'menu-icon-enter' : 'opacity-0'}`} 
+              />
             </button>
           ) : null}
         </div>
