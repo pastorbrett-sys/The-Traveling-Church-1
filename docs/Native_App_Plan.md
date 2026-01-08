@@ -1,7 +1,24 @@
 # Vagabond Bible - Native App Development Plan
 
 **Last Updated:** January 8, 2026  
-**Status:** In Progress
+**Status:** In Progress - App Store Connect Setup Next
+
+---
+
+## Current Session Progress
+
+**✅ Phase 1 Complete:** RevenueCat fully configured with:
+- iOS & Android apps (API keys stored)
+- "Vagabond Bible Pro" entitlement
+- 3 subscription tiers: Monthly, Yearly, Lifetime
+- Default offering with all packages linked
+
+**🔄 Next Steps (in order):**
+1. Phase 2: App Store Connect Setup (iOS) ← **Starting Now**
+2. Phase 3: Google Play Console Setup (Android)
+3. Phase 5: Backend Integration (webhook + sync)
+
+**📋 Approach:** Complete external platform setup first (Apple/Google), then build backend to match exact configurations.
 
 ---
 
