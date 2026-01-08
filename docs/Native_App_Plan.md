@@ -20,13 +20,27 @@
 
 **📋 Approach:** Complete external platform setup first (Apple/Google), then build backend to match exact configurations.
 
-**⏳ Waiting On (Apple - Sequential Process):**
-1. Bank account verification (~24 hours processing)
+**⏳ Current Blockers:**
+
+| Platform | Blocker | What's Needed | ETA |
+|----------|---------|---------------|-----|
+| **Apple** | Bank verification pending | Wait ~24 hours, then complete W-9, then Paid Apps Agreement activates | ~24-48 hours |
+| **Google** | APK required for subscriptions | Must upload APK to internal testing before subscription creation unlocks | After app build |
+
+**Apple Sequential Process:**
+1. ⏳ Bank account verification (~24 hours processing) ← CURRENT
 2. Then: W-9 tax form submission (unlocks after banking approved)
 3. Then: Paid Apps Agreement becomes Active
 4. Then: In-App Purchase capability can be enabled on Bundle ID
+5. Then: Create subscription products in App Store Connect
 
-**Status:** Holding on Phase 2 until Apple banking verification completes.
+**Google Sequential Process:**
+1. ✅ App created in Google Play Console
+2. ✅ Merchant/payments profile set up (pending small deposit verification)
+3. ⏳ Upload APK to internal testing ← BLOCKED (need to build app first)
+4. Then: Create subscription products
+
+**Status:** Moving to Phase 5 (Backend Integration) while waiting on platform verifications.
 
 ---
 
@@ -35,9 +49,9 @@
 | Phase | Status |
 |-------|--------|
 | RevenueCat Setup | ✅ Complete |
-| App Store Connect Setup | 🔄 In Progress (waiting on Apple verification) |
-| Google Play Console Setup | ⏳ Pending |
-| Backend Integration | ⏳ Pending |
+| App Store Connect Setup | ⏳ Blocked (bank verification ~24h) |
+| Google Play Console Setup | ⏳ Blocked (needs APK upload) |
+| Backend Integration | 🔄 In Progress |
 | Build & Test | ⏳ Pending |
 | App Store Submission | ⏳ Pending |
 
