@@ -205,15 +205,16 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
         {mobileMenuOpen && (
           <div className="lg:hidden fixed left-0 right-0 top-[64px] z-50 bg-background border-b border-border shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
             <div className="flex flex-col gap-3 p-4">
-              {!hideNavLinks && navItems.map((item) => (
+              {!hideNavLinks && navItems.map((item, index) => (
                 item.type === "link" ? (
                   <Link
                     key={item.id}
                     href={item.href!}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
+                    className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-fade-in-up ${
                       (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") ? "bg-muted text-primary" : ""
                     }`}
+                    style={{ animationDelay: `${index * 50}ms` }}
                     data-testid={`link-${item.id}`}
                   >
                     {item.label}
@@ -222,9 +223,10 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
-                    className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors ${
+                    className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-fade-in-up ${
                       activeSection === item.id && isHomePage ? "bg-muted text-primary" : ""
                     }`}
+                    style={{ animationDelay: `${index * 50}ms` }}
                     data-testid={`link-${item.id}`}
                   >
                     {item.label}
@@ -234,7 +236,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
               
               {/* Mobile Auth Buttons - only shown when showAuth is true */}
               {showAuth && (
-                <div className="mt-3 pt-3 border-t border-border">
+                <div className="mt-3 pt-3 border-t border-border animate-fade-in-up" style={{ animationDelay: `${navItems.length * 50}ms` }}>
                   {isAuthLoading ? (
                     <div className="h-10 w-full bg-muted animate-pulse rounded" />
                   ) : isAuthenticated ? (
