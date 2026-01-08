@@ -14,11 +14,16 @@
 - Default offering with all packages linked
 
 **🔄 Next Steps (in order):**
-1. Phase 2: App Store Connect Setup (iOS) ← **Starting Now**
+1. Phase 2: App Store Connect Setup (iOS) ← **In Progress**
 2. Phase 3: Google Play Console Setup (Android)
 3. Phase 5: Backend Integration (webhook + sync)
 
 **📋 Approach:** Complete external platform setup first (Apple/Google), then build backend to match exact configurations.
+
+**⏳ Waiting On:**
+- Apple banking verification (processing ~24 hours)
+- Tax Form W-9 submission required
+- After verified: Enable In-App Purchase capability on Bundle ID
 
 ---
 
@@ -27,7 +32,7 @@
 | Phase | Status |
 |-------|--------|
 | RevenueCat Setup | ✅ Complete |
-| App Store Connect Setup | ⏳ Pending |
+| App Store Connect Setup | 🔄 In Progress (waiting on Apple verification) |
 | Google Play Console Setup | ⏳ Pending |
 | Backend Integration | ⏳ Pending |
 | Build & Test | ⏳ Pending |
