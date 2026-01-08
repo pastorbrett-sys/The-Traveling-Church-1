@@ -44,6 +44,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
 import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
 
@@ -558,7 +559,7 @@ export default function Notes() {
           ) : (
             <div className="flex flex-col items-center justify-center py-6 sm:py-16 text-center">
               <img 
-                src="/attached_assets/Scroll_Image_1767410029173.png" 
+                src={scrollImage} 
                 alt="Ancient scroll" 
                 className="w-48 h-48 object-contain mb-4 opacity-80"
               />
