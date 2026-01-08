@@ -20,10 +20,13 @@
 
 **📋 Approach:** Complete external platform setup first (Apple/Google), then build backend to match exact configurations.
 
-**⏳ Waiting On:**
-- Apple banking verification (processing ~24 hours)
-- Tax Form W-9 submission required
-- After verified: Enable In-App Purchase capability on Bundle ID
+**⏳ Waiting On (Apple - Sequential Process):**
+1. Bank account verification (~24 hours processing)
+2. Then: W-9 tax form submission (unlocks after banking approved)
+3. Then: Paid Apps Agreement becomes Active
+4. Then: In-App Purchase capability can be enabled on Bundle ID
+
+**Status:** Holding on Phase 2 until Apple banking verification completes.
 
 ---
 
