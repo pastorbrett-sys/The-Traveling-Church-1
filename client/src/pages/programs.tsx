@@ -27,11 +27,14 @@ export default function Programs() {
       
       <main>
         <div className="relative">
-          <div className="w-full h-48 md:h-64 lg:h-80 overflow-hidden">
+          <div className="w-full h-48 md:h-64 lg:h-80 overflow-hidden bg-muted">
             <img
               src={programsHeroImage}
               alt="Our ministry programs helping communities worldwide"
               className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               data-testid="img-programs-hero"
             />
           </div>
