@@ -928,7 +928,7 @@ export default function PastorChat() {
                 <>
                   <Button 
                     onClick={handleNativePurchase} 
-                    className="w-full btn-upgrade text-base py-5 sm:py-4" 
+                    className="w-full btn-upgrade text-base py-6 sm:py-4" 
                     disabled={isPurchasing}
                     data-testid="button-checkout"
                   >
@@ -958,7 +958,7 @@ export default function PastorChat() {
                 <>
                   <Button 
                     onClick={handleSubscribe} 
-                    className="w-full btn-upgrade text-base py-5 sm:py-4" 
+                    className="w-full btn-upgrade text-base py-6 sm:py-4" 
                     disabled={isCheckingOut}
                     data-testid="button-checkout"
                   >
