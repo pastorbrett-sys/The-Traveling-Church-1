@@ -33,7 +33,6 @@ export default function Programs() {
               alt="Our ministry programs helping communities worldwide"
               className="w-full h-full object-cover"
               loading="eager"
-              fetchPriority="high"
               decoding="async"
               data-testid="img-programs-hero"
             />
