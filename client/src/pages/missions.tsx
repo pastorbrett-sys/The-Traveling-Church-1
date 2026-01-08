@@ -63,13 +63,14 @@ export default function Missions() {
       <Navigation />
       
       <main>
-        <section className="relative h-[60vh] min-h-[400px]">
+        <section className="relative h-[60vh] min-h-[400px] bg-black">
           <video
             src={heroVideo}
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
             className="w-full h-full object-cover"
             data-testid="video-missions-hero"
           />
