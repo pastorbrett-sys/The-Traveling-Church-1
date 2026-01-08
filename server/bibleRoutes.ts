@@ -9,6 +9,7 @@ import type { SmartSearchResponse, SmartSearchResult } from "@shared/models/bibl
 import { isAuthenticated } from "./replit_integrations/auth";
 import { storage } from "./storage";
 import { checkUsageLimit, incrementUsage } from "./usageService";
+import { isUserPro } from "./proStatusService";
 
 const router = Router();
 
@@ -196,7 +197,7 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
     // Check if user has credits available (but don't consume yet - consumed on click-through)
     const userId = req.session.userId;
     const user = await storage.getUser(userId);
-    const isPro = !!user?.stripeSubscriptionId;
+    const isPro = isUserPro(user);
     
     const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
     if (!limitResult.allowed) {
@@ -249,7 +250,7 @@ router.post("/smart-search/use-credit", isAuthenticated, async (req: any, res) =
   try {
     const userId = req.session.userId;
     const user = await storage.getUser(userId);
-    const isPro = !!user?.stripeSubscriptionId;
+    const isPro = isUserPro(user);
     
     const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
     if (!limitResult.allowed) {
@@ -370,7 +371,7 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
 
     const userId = req.session.userId;
     const user = await storage.getUser(userId);
-    const isPro = !!user?.stripeSubscriptionId;
+    const isPro = isUserPro(user);
     
     const limitResult = await checkUsageLimit(userId, "book_synopsis", isPro);
     if (!limitResult.allowed) {

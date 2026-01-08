@@ -51,7 +51,7 @@
 | RevenueCat Setup | ✅ Complete |
 | App Store Connect Setup | ⏳ Blocked (bank verification ~24h) |
 | Google Play Console Setup | ⏳ Blocked (needs APK upload) |
-| Backend Integration | 🔄 In Progress |
+| Backend Integration | ✅ Complete (webhook ready, needs RevenueCat config) |
 | Build & Test | ⏳ Pending |
 | App Store Submission | ⏳ Pending |
 
@@ -373,50 +373,77 @@ iOS API key stored as `REVENUECAT_SDK_KEY` environment secret.
 ## Phase 5: Backend Integration
 
 ### Step 5.1: Store API Keys as Secrets
-**Status:** ⏳ Not Started
+**Status:** ✅ Completed
 
-Agent will securely store:
-- `VITE_REVENUECAT_SDK_KEY` (iOS key for now, will handle per-platform later)
-- `REVENUECAT_WEBHOOK_SECRET` (after webhook setup)
+Stored:
+- `REVENUECAT_SDK_KEY` - iOS API key stored as environment secret
 
-- [ ] Completed
+*Note: `REVENUECAT_WEBHOOK_SECRET` will be added after webhook is configured in RevenueCat dashboard.*
+
+- [x] Completed
 
 ---
 
 ### Step 5.2: Build RevenueCat Webhook Endpoint
-**Status:** ⏳ Not Started
+**Status:** ✅ Completed
 
-Agent will create `/api/revenuecat/webhook` to:
-- Receive purchase events from RevenueCat
-- Verify webhook signature
-- Update user's Pro status in database
+Created `/api/revenuecat/webhook` endpoint that:
+- Receives purchase events from RevenueCat
+- Verifies webhook Authorization header signature
+- Updates user's Pro status in database
 
-- [ ] Completed
+**Files created:**
+- `server/revenueCatWebhook.ts` - Webhook handler
+- `server/proStatusService.ts` - Pro status checker (Stripe + RevenueCat)
+
+**Database changes:**
+- Added `revenuecat_user_id` column to users table
+- Added `revenuecat_entitlement` column to users table
+- Added `revenuecat_expires_at` column to users table
+
+- [x] Completed
 
 ---
 
 ### Step 5.3: Update Pro Status Checks
-**Status:** ⏳ Not Started
+**Status:** ✅ Completed
 
-Agent will modify server to check both:
+Created `proStatusService.ts` with functions:
+- `checkUserProStatus(user)` - Returns Pro status from Stripe OR RevenueCat
+- `isUserPro(user)` - Quick boolean check
+
+The service checks both:
 - Stripe subscription status (web users)
 - RevenueCat entitlement status (native users)
+
+- [x] Completed
+
+---
+
+### Step 5.4: Configure Webhook in RevenueCat
+**Status:** ⏳ Pending (User Action Required)
+
+1. In RevenueCat, go to **Project Settings** → **Integrations** → **Webhooks**
+2. Click **"+ New"**
+3. Enter webhook URL: `https://vagabond-bible.replit.app/api/revenuecat/webhook`
+4. Select events: **Initial Purchase**, **Renewal**, **Cancellation**, **Expiration**, **Billing Issue**
+5. Copy the **Authorization Header** value
+6. Share the authorization header with agent to store as `REVENUECAT_WEBHOOK_SECRET`
+7. Click **Save**
 
 - [ ] Completed
 
 ---
 
-### Step 5.4: Configure Webhook in RevenueCat
-**Status:** ⏳ Not Started
+### Step 5.5: Link User Endpoint
+**Status:** ✅ Completed
 
-1. In RevenueCat, go to **Project Settings** → **Integrations** → **Webhooks**
-2. Click **"+ New"**
-3. Enter webhook URL: `https://your-app-url.replit.app/api/revenuecat/webhook`
-4. Select events: **Initial Purchase**, **Renewal**, **Cancellation**, **Expiration**
-5. Copy the **Authorization Header** value
-6. Click **Save**
+Created `/api/revenuecat/link` endpoint that:
+- Allows authenticated users to link their RevenueCat user ID
+- Called from native app after RevenueCat purchase
+- Enables webhook to find and update the correct user
 
-- [ ] Completed
+- [x] Completed
 
 ---
 

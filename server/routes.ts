@@ -19,11 +19,16 @@ import { stripeStorage } from "./stripeStorage";
 import { stripeService } from "./stripeService";
 import { getStripePublishableKey } from "./stripeClient";
 import bibleRoutes from "./bibleRoutes";
+import { registerRevenueCatWebhook } from "./revenueCatWebhook";
+import { isUserPro } from "./proStatusService";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first (before other routes)
   await setupAuth(app);
   registerAuthRoutes(app);
+  
+  // RevenueCat webhook (for native app subscriptions)
+  registerRevenueCatWebhook(app);
   
   registerChatRoutes(app);
   
@@ -243,7 +248,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.session.userId;
       const user = await storage.getUser(userId);
-      const isPro = !!user?.stripeSubscriptionId;
+      const isPro = isUserPro(user);
       
       const limitResult = await checkNotesLimit(userId, isPro);
       if (!limitResult.allowed) {
@@ -276,7 +281,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const user = await storage.getUser(userId);
-      const isPro = !!user?.stripeSubscriptionId;
+      const isPro = isUserPro(user);
       
       const limitResult = await checkNotesLimit(userId, isPro);
       if (!limitResult.allowed) {
@@ -314,7 +319,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.session.userId;
       const user = await storage.getUser(userId);
-      const isPro = !!user?.stripeSubscriptionId;
+      const isPro = isUserPro(user);
       
       const summary = await getUsageSummary(userId, isPro);
       res.json(summary);

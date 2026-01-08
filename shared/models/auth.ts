@@ -23,6 +23,9 @@ export const users = pgTable("users", {
   profileImageUrl: varchar("profile_image_url"),
   stripeCustomerId: varchar("stripe_customer_id"),
   stripeSubscriptionId: varchar("stripe_subscription_id"),
+  revenueCatUserId: varchar("revenuecat_user_id"),
+  revenueCatEntitlement: varchar("revenuecat_entitlement"),
+  revenueCatExpiresAt: timestamp("revenuecat_expires_at"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
