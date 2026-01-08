@@ -9,7 +9,7 @@
 
 | Phase | Status |
 |-------|--------|
-| RevenueCat Setup | 🔄 In Progress |
+| RevenueCat Setup | ✅ Complete |
 | App Store Connect Setup | ⏳ Pending |
 | Google Play Console Setup | ⏳ Pending |
 | Backend Integration | ⏳ Pending |
@@ -33,64 +33,82 @@
 ---
 
 ### Step 1.2: Add iOS App to RevenueCat
-**Status:** ⏳ Not Started
+**Status:** ✅ Completed
 
 1. In your project, click **Project Settings** (gear icon, left sidebar)
 2. Click **Apps** tab
 3. Click **"+ New App"**
 4. Select **App Store** (iOS)
 5. Fill in:
-   - **App Name:** `Vagabond Bible`
+   - **App Name:** `Vagabond Bible (App Store)`
    - **Bundle ID:** `com.vagabondbible.app`
 6. Click **Save**
 7. **Copy the API Key** shown (starts with `appl_`)
 
-**Your iOS API Key:** `________________________`
+**Your iOS API Key:** `appl_IHuuguwDzrFpaSziwpBDtyAdmqg` ✅
 
-- [ ] Completed
+- [x] Completed
 
 ---
 
 ### Step 1.3: Add Android App to RevenueCat
-**Status:** ⏳ Not Started
+**Status:** ✅ Completed
 
 1. Still in **Project Settings → Apps**
 2. Click **"+ New App"**
 3. Select **Play Store** (Android)
 4. Fill in:
-   - **App Name:** `Vagabond Bible`
+   - **App Name:** `Vagabond Bible (Play Store)`
    - **Package Name:** `com.vagabondbible.app`
 5. Click **Save**
 6. **Copy the API Key** shown (starts with `goog_`)
 
-**Your Android API Key:** `________________________`
+**Your Android API Key:** `goog_ZKYPzTyUWBvTPYIVHpgXcllVDzx` ✅
 
-- [ ] Completed
+- [x] Completed
 
 ---
 
-### Step 1.4: Create "Pro" Entitlement
-**Status:** ⏳ Not Started
+### Step 1.4: Create "Vagabond Bible Pro" Entitlement
+**Status:** ✅ Completed
 
 1. Click **Entitlements** in the left sidebar
 2. Click **"+ New"**
 3. Enter:
-   - **Identifier:** `pro`
-   - **Display Name:** `Pro Access`
+   - **Identifier:** `Vagabond Bible Pro`
+   - **Display Name:** `Vagabond Bible Pro`
 4. Click **Create**
+5. Attach products: Monthly, Yearly, Lifetime
 
-- [ ] Completed
+**Entitlement ID:** `entifac67229a1`
+
+- [x] Completed
 
 ---
 
-### Step 1.5: Share API Keys with Agent
-**Status:** ⏳ Not Started
+### Step 1.5: Configure Offering & Products
+**Status:** ✅ Completed
 
-Share your API keys so they can be securely stored:
-- iOS API Key (appl_...)
-- Android API Key (goog_...)
+Products created in RevenueCat (Test Store/sandbox):
+- **Monthly** (identifier: `monthly`) → Package: `$rc_monthly`
+- **Yearly** (identifier: `yearly`) → Package: `$rc_annual`
+- **Lifetime** (identifier: `lifetime`) → Package: `$rc_lifetime`
 
-- [ ] Completed
+All products attached to "Vagabond Bible Pro" entitlement ✅
+Default offering configured with all 3 packages ✅
+
+- [x] Completed
+
+---
+
+### Step 1.6: Store API Key as Secret
+**Status:** ✅ Completed
+
+iOS API key stored as `REVENUECAT_SDK_KEY` environment secret.
+
+*Note: Android will use a separate key when building for Android.*
+
+- [x] Completed
 
 ---
 
