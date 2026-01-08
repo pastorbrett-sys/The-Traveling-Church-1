@@ -76,7 +76,7 @@ export default function HeroSection() {
           {animateTitle()}
         </h1>
         <p 
-          className="text-lg md:text-xl text-white/95 leading-relaxed font-light animate-fade-up opacity-0"
+          className="text-[16px] md:text-[18px] text-white/95 leading-relaxed font-light animate-fade-up opacity-0"
           style={{
             animationDelay: '1s',
             animationFillMode: 'forwards'
