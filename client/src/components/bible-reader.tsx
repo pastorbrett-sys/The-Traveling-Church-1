@@ -113,6 +113,36 @@ function parseVerseText(text: string): { heading?: string; content: string } {
   return { content: text };
 }
 
+function BookHeaderImage({ src, bookName }: { src: string; bookName: string }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setHasError(false);
+  }, [src]);
+
+  if (hasError) return null;
+
+  return (
+    <div className="relative w-full mb-4">
+      {!isLoaded && (
+        <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#f5f0e6] to-[#e8e0d0] animate-pulse rounded-lg" />
+      )}
+      <motion.img
+        src={src}
+        alt={`${bookName} decorative header`}
+        className={`w-full h-auto rounded-lg ${!isLoaded ? 'absolute top-0 left-0 opacity-0' : ''}`}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 8 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
+      />
+    </div>
+  );
+}
+
 export default function BibleReader({ translation, onTranslationChange }: BibleReaderProps) {
   const { isNative } = usePlatform();
   const [, navigate] = useLocation();
@@ -1449,15 +1479,21 @@ Reference: ${verseRef} (${translation})`;
             };
             const imageSrc = bookHeaderImages[selectedBook.name];
             return imageSrc ? (
-              <img 
-                src={imageSrc}
-                alt={`${selectedBook.name} decorative header`}
-                className="w-full h-auto mb-4"
+              <BookHeaderImage 
+                src={imageSrc} 
+                bookName={selectedBook.name} 
+                key={selectedBook.name}
               />
             ) : null;
           })()}
 
-          <div className="flex items-center justify-between mb-1">
+          <motion.div 
+            className="flex items-center justify-between mb-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            key={`header-${selectedBook?.name}-${selectedChapter}`}
+          >
             <h1 className="text-2xl font-serif font-bold" data-testid="heading-chapter">
               {chapter?.book} {selectedChapter}
             </h1>
@@ -1476,7 +1512,7 @@ Reference: ${verseRef} (${translation})`;
                 )}
               </button>
             )}
-          </div>
+          </motion.div>
           <p className="text-sm text-muted-foreground mb-6">{translation}</p>
 
           {isLoadingChapter ? (
@@ -1484,7 +1520,13 @@ Reference: ${verseRef} (${translation})`;
               <Loader2 className="w-6 h-6 animate-spin" />
             </div>
           ) : (
-            <div className="space-y-1 pb-20">
+            <motion.div 
+              className="space-y-1 pb-20"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut", delay: 0.1 }}
+              key={`${selectedBook?.name}-${selectedChapter}`}
+            >
               {chapter?.verses.map((verse) => {
                 const { heading, content } = parseVerseText(verse.text);
                 // Only skip spacer if heading is in verse 1 (first verse of chapter)
@@ -1522,7 +1564,7 @@ Reference: ${verseRef} (${translation})`;
                   </span>
                 );
               })}
-            </div>
+            </motion.div>
           )}
         </div>
       </ScrollArea>
