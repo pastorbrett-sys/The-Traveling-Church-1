@@ -103,7 +103,9 @@ function verifyWebhookSignature(req: Request): boolean {
     return false;
   }
   
-  const expectedAuth = `Bearer ${REVENUECAT_WEBHOOK_SECRET}`;
+  // Handle both cases: secret with or without "Bearer " prefix
+  const secret = REVENUECAT_WEBHOOK_SECRET!;
+  const expectedAuth = secret.startsWith("Bearer ") ? secret : `Bearer ${secret}`;
   return authHeader === expectedAuth;
 }
 
