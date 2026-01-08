@@ -83,7 +83,7 @@ export default function HeroSection() {
           }}
           data-testid="text-hero-mission"
         >
-          A global, traveling ministry, comprised of people all over the world. We reach out to people where they are to spread the gospel and love of Jesus. Our goal is to create the largest and most powerful spiritual revival on planet Earth.
+          A global, traveling ministry, comprised of people all over the world. We reach out to people where they are to spread the gospel and love of Jesus.
         </p>
       </div>
     </section>
