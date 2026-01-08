@@ -632,7 +632,7 @@ export default function Profile() {
                     variant="ghost"
                     onClick={handleRestorePurchases}
                     disabled={isRestoring}
-                    className="w-full text-sm"
+                    className="w-full text-sm hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
                     data-testid="button-restore-purchases"
                   >
                     {isRestoring ? (
