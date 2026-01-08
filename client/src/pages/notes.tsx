@@ -749,7 +749,7 @@ export default function Notes() {
       </Dialog>
 
       <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
-        <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[80vh] overflow-y-auto overflow-x-hidden [&>button]:hidden">
+        <DialogContent className="w-[calc(100%-2rem)] max-w-lg max-h-[80vh] overflow-y-auto overflow-x-hidden [&>button]:hidden bg-background">
           <div className="absolute right-4 top-4 flex items-center gap-1">
             <Button
               variant="ghost"
