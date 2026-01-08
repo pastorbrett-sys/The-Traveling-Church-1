@@ -453,7 +453,7 @@ export default function Profile() {
                 ) : (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <Badge variant="secondary" data-testid="badge-free">
+                      <Badge variant="secondary" className="text-[#ffffff]" data-testid="badge-free">
                         Free Plan
                       </Badge>
                     </div>
