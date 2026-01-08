@@ -199,7 +199,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
                 <Button 
                   onClick={handleNativePurchase}
                   disabled={isPurchasing}
-                  className="w-full btn-upgrade text-base py-6 sm:py-4"
+                  className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium"
                   data-testid="button-upgrade-pro"
                 >
                   {isPurchasing ? (
@@ -231,7 +231,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
                 <Button 
                   onClick={handleUpgrade}
                   disabled={isCheckingOut}
-                  className="w-full btn-upgrade text-base py-6 sm:py-4"
+                  className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium"
                   data-testid="button-upgrade-pro"
                 >
                   {isCheckingOut ? (
