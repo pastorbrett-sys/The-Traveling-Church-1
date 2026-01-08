@@ -767,3 +767,38 @@
     box-shadow: 0 0 25px 4px rgba(184, 134, 11, 0.15);
   }
 }
+
+/* =========================================================================
+   MOBILE MENU ICON ANIMATIONS
+   Smooth spin and fade transitions for hamburger/X icon
+   ========================================================================= */
+
+@keyframes menuIconSpinIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes menuIconSpinOut {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+}
+
+.menu-icon-enter {
+  animation: menuIconSpinIn 0.25s ease-out forwards;
+}
+
+.menu-icon-exit {
+  animation: menuIconSpinOut 0.25s ease-out forwards;
+}

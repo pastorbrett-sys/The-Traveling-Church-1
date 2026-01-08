@@ -106,15 +106,18 @@ export default function VagabondBible() {
               </Link>
             </div>
             <button
-              className="md:hidden p-2"
+              className="md:hidden p-2 relative w-10 h-10 flex items-center justify-center"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               data-testid="button-mobile-menu"
             >
-              {mobileMenuOpen ? (
-                <X className={`w-6 h-6 stroke-[1.5] transition-colors ${(isScrolled || mobileMenuOpen) ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
-              ) : (
-                <Menu className={`w-6 h-6 stroke-[1.5] transition-colors ${(isScrolled || mobileMenuOpen) ? 'text-[hsl(20,10%,40%)]' : 'text-white'}`} />
-              )}
+              <X 
+                key={mobileMenuOpen ? 'x-visible' : 'x-hidden'}
+                className={`w-6 h-6 stroke-[1.5] absolute ${(isScrolled || mobileMenuOpen) ? 'text-[hsl(20,10%,40%)]' : 'text-white'} ${mobileMenuOpen ? 'menu-icon-enter' : 'opacity-0'}`} 
+              />
+              <Menu 
+                key={mobileMenuOpen ? 'menu-hidden' : 'menu-visible'}
+                className={`w-6 h-6 stroke-[1.5] absolute ${(isScrolled || mobileMenuOpen) ? 'text-[hsl(20,10%,40%)]' : 'text-white'} ${!mobileMenuOpen ? 'menu-icon-enter' : 'opacity-0'}`} 
+              />
             </button>
           </div>
           {mobileMenuOpen && (
