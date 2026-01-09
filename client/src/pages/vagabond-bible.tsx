@@ -43,7 +43,10 @@ export default function VagabondBible() {
             </video>
             <div className="absolute inset-0 bg-black/50" />
           </div>
-          <div className="absolute bottom-8 left-0 right-0 z-10 w-full px-6">
+          <div 
+            className="absolute left-0 right-0 z-10 w-full px-6"
+            style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 32px)' }}
+          >
             <div className="max-w-md mx-auto text-center">
               <h1 className="font-heading text-[36px] sm:text-5xl mb-4 text-white font-extrabold leading-[1.12]">
                 The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
@@ -67,7 +70,11 @@ export default function VagabondBible() {
               </div>
             </div>
           </div>
-          <div className="absolute top-5 left-0 right-0 z-10 flex items-center px-4" data-testid="native-header-logo">
+          <div 
+            className="absolute left-0 right-0 z-10 flex items-center px-4" 
+            style={{ top: 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
+            data-testid="native-header-logo"
+          >
             <div className="flex-1 h-px bg-gray-400/15" />
             <img src={vagabondLogoWhite} alt="Vagabond Bible" className="h-8 mx-4" />
             <div className="flex-1 h-px bg-gray-400/15" />
