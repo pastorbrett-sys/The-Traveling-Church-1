@@ -1,0 +1,164 @@
+brettlindstrom@Bretts-MacBook-Pro VagabondBible % npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.20 building for production...
+✓ 2559 modules transformed.
+../dist/public/assets/Burst_1767600505667-BDRCFNRC.png                                                                4.20 kB
+../dist/public/assets/Traveling_Church_Vector_SVG_1766874390629--aA4_1V7.png                                          4.60 kB
+../dist/public/index.html                                                                                             5.05 kB │ gzip:   1.44 kB
+../dist/public/assets/Vagaburst_1767599907611-C4L75ouw.png                                                            7.52 kB
+../dist/public/assets/Uppgrade_icon_1767730633674-BBdRy8Vl.png                                                        7.93 kB
+../dist/public/assets/White_Logo_Big_1767755759050-lc-FDA9Z.png                                                      18.35 kB
+../dist/public/assets/Pastor Brett_1760674999817-Dm1o6lT-.png                                                        26.09 kB
+../dist/public/assets/Bigger_White_Logo_1767824644015-yoZIbkGk.png                                                   58.05 kB
+../dist/public/assets/vagabond-logo-C9q_FyPk.png                                                                     60.02 kB
+../dist/public/assets/IMG_0079_1767128055581-w278YAY3.jpg                                                            63.23 kB
+../dist/public/assets/IMG_1948_1767118533608-D-oK7pJX.jpg                                                            66.51 kB
+../dist/public/assets/IMG_9838_1767128055583-Clk9FskX.jpg                                                            68.99 kB
+../dist/public/assets/IMG_1756_1767118533610-DSHCAUP9.jpg                                                            76.46 kB
+../dist/public/assets/Daniel_1760680915194-F_3c5eFx.jpg                                                              80.42 kB
+../dist/public/assets/Ethiopia_1760680076506-BveVWZmP.jpg                                                            83.29 kB
+../dist/public/assets/__Red_Sea_1767124933007-mg5MCUbc.jpg                                                           88.67 kB
+../dist/public/assets/IMG_0530_1767124933009-Cuf6mYWy.jpg                                                            90.72 kB
+../dist/public/assets/Jordan-River_1760679838250-Cw7w1Gd-.jpg                                                        97.54 kB
+../dist/public/assets/Vagabond_Icon_1767598919164-BfJOIgrQ.png                                                       98.45 kB
+../dist/public/assets/IMG_0631_1767124933009-DwqwBqSY.jpg                                                           103.32 kB
+../dist/public/assets/Cambodia_1760679558974-COwIN_z1.jpg                                                           105.93 kB
+../dist/public/assets/IMG_0729_1767124933010-BQo0IpAN.jpg                                                           106.10 kB
+../dist/public/assets/IMG_0747_1767124933006-DeNOC3ck.jpg                                                           107.64 kB
+../dist/public/assets/IMG_1271_1767120447754-DUZsXHFV.jpg                                                           108.78 kB
+../dist/public/assets/IMG_0093_1767128055581-CTrjUYAc.jpg                                                           108.96 kB
+../dist/public/assets/IMG_2069_1767118533608-Cwe0Da57.jpg                                                           110.03 kB
+../dist/public/assets/IMG_0427_1767124933008-C7qkjSwV.jpg                                                           112.06 kB
+../dist/public/assets/IMG_1244_1767120447753-B63EzIH5.jpg                                                           112.41 kB
+../dist/public/assets/IMG_1767_1767118533610-CLIM3zUd.jpg                                                           114.88 kB
+../dist/public/assets/Pastor_Brett_Chat_Icon_1767476985840-ChGfprkT.png                                             119.82 kB
+../dist/public/assets/Jerusalem_1760679620278-D8Oejy6Y.jpg                                                          121.17 kB
+../dist/public/assets/IMG_1239_1767120447756-DnDljXR6.jpg                                                           121.93 kB
+../dist/public/assets/IMG_0316(1)_1767124933007-D3QzvNih.jpg                                                        122.34 kB
+../dist/public/assets/IMG_0785_1767124933006-BJH3Y9kT.jpg                                                           127.11 kB
+../dist/public/assets/IMG_5979_1767126453202-B36djAKG.jpg                                                           127.48 kB
+../dist/public/assets/IMG_1620_1767118533609-Dca7zsXd.jpg                                                           130.84 kB
+../dist/public/assets/Egypt_1760679346019-CMNspZs9.jpg                                                              131.56 kB
+../dist/public/assets/IMG_0379_1767124933008-CNIoiWis.jpg                                                           131.81 kB
+../dist/public/assets/IMG_9922_1767128055583-DZizNs76.jpg                                                           132.40 kB
+../dist/public/assets/IMG_0096_1767128055582--oNftImZ.jpg                                                           134.12 kB
+../dist/public/assets/IMG_1274_1767120447754-022jUy5h.jpg                                                           134.52 kB
+../dist/public/assets/IMG_1270_1767120447754-MIn_VQNH.jpg                                                           135.25 kB
+../dist/public/assets/IMG_0370_1767124933008-Ch_upZ3z.jpg                                                           137.64 kB
+../dist/public/assets/Thailand_1760680162179-DZmHnVLn.jpg                                                           141.53 kB
+../dist/public/assets/IMG_1791_1767118533610-DnduWNBE.jpg                                                           143.92 kB
+../dist/public/assets/IMG_0680_1767124933010-CllITQR8.jpg                                                           144.93 kB
+../dist/public/assets/IMG_0831_1767124933007-CGJdd_TS.jpg                                                           145.49 kB
+../dist/public/assets/IMG_1843_1767118533610-y-n5QKFe.jpg                                                           146.67 kB
+../dist/public/assets/IMG_0746_1767124933006-ChsS3dXI.jpg                                                           146.68 kB
+../dist/public/assets/IMG_1124_1767120447756-CowUxoAT.jpg                                                           147.05 kB
+../dist/public/assets/IMG_9923_1767128055584-ZGKd9Urb.jpg                                                           147.61 kB
+../dist/public/assets/IMG_0966_1767120447755-BKwJrWP3.jpg                                                           148.74 kB
+../dist/public/assets/IMG_2191_1767118533608-nTKdfcK0.jpg                                                           154.18 kB
+../dist/public/assets/IMG_1933_1767118533607-CZwrR0F5.jpg                                                           155.85 kB
+../dist/public/assets/IMG_0652_1767124933010-CTsSELg5.jpg                                                           156.76 kB
+../dist/public/assets/IMG_0445_1767124933009-CYtzIxly.jpg                                                           159.55 kB
+../dist/public/assets/IMG_1267_1767120447753-D88cyQbC.jpg                                                           162.11 kB
+../dist/public/assets/IMG_0443(1)_1767124933008-DH-z-Pc1.jpg                                                        164.68 kB
+../dist/public/assets/Sai_and_his_family_made_delicious_spicy_banana_chips__we_decid_1767126749785-CzCOE7Lx.jpg     166.28 kB
+../dist/public/assets/IMG_0743_1767124933006-CoXpuoAN.jpg                                                           168.29 kB
+../dist/public/assets/IMG_1254_1767120447753-B1F51a-W.jpg                                                           178.90 kB
+../dist/public/assets/IMG_0630_1767124933009-D0fc0AXN.jpg                                                           181.07 kB
+../dist/public/assets/IMG_0420_1767124933008-CNlXSuH3.jpg                                                           198.46 kB
+../dist/public/assets/IMG_0910_1767124933007-E7Hk8gib.jpg                                                           203.61 kB
+../dist/public/assets/IMG_2171_1767118533608-DQZT4DZq.jpg                                                           210.94 kB
+../dist/public/assets/IMG_1720_1767118533609-Jz0bmhyS.jpg                                                           215.37 kB
+../dist/public/assets/IMG_0964_1767120447755-DMUnSbxP.jpg                                                           215.60 kB
+../dist/public/assets/IMG_5028_1767128055582-B-cfzD7E.jpg                                                           219.65 kB
+../dist/public/assets/IMG_2260_1767118533609-DCPCYRVY.jpg                                                           232.62 kB
+../dist/public/assets/IMG_1138_1767120447756-BiQ_h2Tx.jpg                                                           235.72 kB
+../dist/public/assets/IMG_1293_1767120447755-DuT4a2cV.jpg                                                           241.95 kB
+../dist/public/assets/IMG_9949_1767128055585-BW5sPiT1.jpg                                                           244.51 kB
+../dist/public/assets/IMG_1221_1767120447756-BPRJaBvd.jpg                                                           245.61 kB
+../dist/public/assets/IMG_5900_1767126453203-B-C42e8P.jpg                                                           253.97 kB
+../dist/public/assets/IMG_9938_1767128055584-fjWPOD6i.jpg                                                           263.52 kB
+../dist/public/assets/Josh_1760681040173-CjphGpHz.jpg                                                               271.50 kB
+../dist/public/assets/555fa120-a4ec-4871-8819-820a4d27f061_1767126623920-Bc7HaEVn.jpg                               276.27 kB
+../dist/public/assets/IMG_1161_1767129664288-YnmBA68p.jpg                                                           279.67 kB
+../dist/public/assets/fasd_1767129664290-Cf-dcLHM.jpeg                                                              292.25 kB
+../dist/public/assets/IMG_1057_1767120447755-S1NUx1PB.jpg                                                           297.82 kB
+../dist/public/assets/IMG_9953_1767128055581-B0EAZYNh.jpg                                                           302.01 kB
+../dist/public/assets/fasdfa_1767129664289-CHqjN-Pk.jpeg                                                            321.74 kB
+../dist/public/assets/IMG_1159_1767129664291-DBBFm4QH.jpg                                                           330.46 kB
+../dist/public/assets/IMG_5021_1767128055582-D74MmUK_.jpg                                                           336.15 kB
+../dist/public/assets/asfdasfa_1767129664290-HrmnG5G4.jpeg                                                          343.21 kB
+../dist/public/assets/IMG_5693_1767126453203-BqCdyhMY.jpg                                                           358.68 kB
+../dist/public/assets/IMG_1160_1767129664288-CNqiJMjO.jpg                                                           378.87 kB
+../dist/public/assets/WhatsApp_Image_2025-12-30_at_4.09.02_PM_1767129664289-DabulBS7.jpeg                           391.86 kB
+../dist/public/assets/business_training_entrepreneurs_workshop-BxmOcWa1.png                                         443.74 kB
+../dist/public/assets/global_ministry_helping_community-CYEFyGwE.png                                                475.19 kB
+../dist/public/assets/traveling_minister_meeting_people-DgrjGSdQ.png                                                485.09 kB
+../dist/public/assets/christians_receiving_humanitarian_aid-HK4QInqr.png                                            500.14 kB
+../dist/public/assets/men's_support_group_meeting-Dq4jYBUl.png                                                      522.10 kB
+../dist/public/assets/community_food_distribution_volunteers-B81eNU8B.png                                           522.86 kB
+../dist/public/assets/IMG_1162_1767129664288-DE-yHeKI.jpg                                                           560.79 kB
+../dist/public/assets/animal_conservation_volunteers_caring-ZWE_d7uC.png                                            674.98 kB
+../dist/public/assets/5228A59C-AE32-4FB3-A509-8735BC11FBC1_1767118533609-DGSOxFWZ.jpg                               799.48 kB
+../dist/public/assets/ethiopia_v5_compressed-D7R1BzXd.mp4                                                         1,028.88 kB
+../dist/public/assets/Scroll_Image_1767410029173-CyTPkx5r.png                                                     1,033.06 kB
+../dist/public/assets/29A7ED8A-129F-4983-AB5E-5D32A7EBD688_1767128055581-DEkWUw3E.jpg                             1,315.71 kB
+../dist/public/assets/people_at_table_holding_hands-DN8DU1h3.png                                                  1,323.24 kB
+../dist/public/assets/person_in_camper_van-CO0kU9An.png                                                           1,551.56 kB
+../dist/public/assets/cambodia_angkor_wat_sunrise_landscape-B7SquwR0.png                                          1,556.02 kB
+../dist/public/assets/EDM_BANNER_1_1766962031883-d91Ljfgg.png                                                     1,620.94 kB
+../dist/public/assets/egyptian_pyramids_at_sunset-DFvFUoDP.png                                                    1,631.61 kB
+../dist/public/assets/travelers_around_campfire-DVD_XcYA.png                                                      1,747.31 kB
+../dist/public/assets/ethiopia_v2_compressed-DDrYoYPQ.mp4                                                         1,824.28 kB
+../dist/public/assets/ethiopia_v1_compressed-DY90nnqj.mp4                                                         1,837.93 kB
+../dist/public/assets/jerusalem_western_wall_sunset_view-Hv0k879U.png                                             1,854.27 kB
+../dist/public/assets/ethiopia_v6_compressed-BiAXjbXD.mp4                                                         1,890.07 kB
+../dist/public/assets/jerusalem_v3_compressed-CJbuL-4m.mp4                                                        1,892.76 kB
+../dist/public/assets/jordan_river_baptism_site_view-CuoqtenB.png                                                 1,914.65 kB
+../dist/public/assets/thai_elephant_sanctuary_scene-ti1LAR-f.png                                                  2,024.71 kB
+../dist/public/assets/lalibela_rock_church_ethiopia-Ba4c3d0N.png                                                  2,067.26 kB
+../dist/public/assets/jerusalem_v2_compressed-CBFAWC77.mp4                                                        2,169.76 kB
+../dist/public/assets/egypt_street_compressed-B4yVBxAX.mp4                                                        2,186.05 kB
+../dist/public/assets/ethiopia_churches_compressed-Byo8oGJI.mp4                                                   2,214.46 kB
+../dist/public/assets/IMG_5169_1767126443574-BmqRl_rs.jpg                                                         2,334.96 kB
+../dist/public/assets/IMG_5166_1767126443573-Cf2y7MmH.jpg                                                         2,465.20 kB
+../dist/public/assets/IMG_5165_1767126443573-B2jP5Mwn.jpg                                                         2,488.97 kB
+../dist/public/assets/thailand_v1_compressed-COE3nDnd.mp4                                                         2,652.51 kB
+../dist/public/assets/egypt_v3_compressed-DI3QAj30.mp4                                                            2,653.43 kB
+../dist/public/assets/IMG_5170_1767126443574-CQ0T6x_B.jpg                                                         2,811.35 kB
+../dist/public/assets/ethiopia_danakil_compressed-jEAgyLv2.mp4                                                    2,945.24 kB
+../dist/public/assets/egypt_sinai_compressed-CcKZy4mG.mp4                                                         3,114.00 kB
+../dist/public/assets/IMG_5162_1767126443573-CdivWmTn.jpg                                                         3,120.27 kB
+../dist/public/assets/ethiopia_v8_compressed-BuPSkcMi.mp4                                                         3,335.48 kB
+../dist/public/assets/thailand_video2_compressed-Bp2Nd5Bg.mp4                                                     3,724.11 kB
+../dist/public/assets/thailand_v2_compressed-BXwEvcw9.mp4                                                         3,839.32 kB
+../dist/public/assets/IMG_5178_1767126443572-XVyjYD6N.jpg                                                         4,009.13 kB
+../dist/public/assets/ethiopia_v3_compressed-B1gCrphD.mp4                                                         4,096.74 kB
+../dist/public/assets/IMG_5168_1767126443573-CCyawVHi.jpg                                                         4,220.39 kB
+../dist/public/assets/jerusalem_v1_compressed-BqQyZX6q.mp4                                                        4,321.41 kB
+../dist/public/assets/soldier_1767121798377-BFqyh472.mp4                                                          4,325.17 kB
+../dist/public/assets/IMG_0311_1767125302509-CqnYQ-x6.mov                                                         4,705.94 kB
+../dist/public/assets/thailand_v4_compressed-e4pe9jD2.mp4                                                         5,022.40 kB
+../dist/public/assets/thailand_v8_compressed-DK8eexMf.mp4                                                         6,398.33 kB
+../dist/public/assets/thailand_v5_compressed-DOgBEF1i.mp4                                                         6,902.97 kB
+../dist/public/assets/thailand_video3_compressed-Bp4LESes.mp4                                                     7,336.44 kB
+../dist/public/assets/Man_on_Mountain_Spinning_Fast_1_1766872397132-DGHorqzB.mp4                                 12,918.15 kB
+../dist/public/assets/text-to-video-ffe46d5c_(1)_1767132632981-Cil3jEGb.mp4                                      12,930.97 kB
+../dist/public/assets/thailand_video1_compressed-Bs7iIirU.mp4                                                    14,060.24 kB
+../dist/public/assets/text-to-video-28b9692b_1767558425367-Dr7kuZnw.mp4                                          24,715.74 kB
+../dist/public/assets/index-DMmb1yqT.css                                                                            126.45 kB │ gzip:  20.48 kB
+../dist/public/assets/index-CjV7ipcY.js                                                                               6.42 kB │ gzip:   2.44 kB
+../dist/public/assets/web--oj0xJpe.js                                                                                 9.77 kB │ gzip:   1.99 kB
+../dist/public/assets/index-B3bHt8h3.js                                                                           1,184.58 kB │ gzip: 334.20 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.72s
+
+  dist/index.js  478.9kb
+
+⚡ Done in 21ms
