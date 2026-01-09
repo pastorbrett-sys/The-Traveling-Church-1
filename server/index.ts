@@ -8,6 +8,31 @@ import { WebhookHandlers } from './webhookHandlers';
 
 const app = express();
 
+const ALLOWED_ORIGINS = [
+  'https://the-traveling-church-brettlindstrom.replit.app',
+  'https://vagabondbible.com',
+  'https://www.vagabondbible.com',
+  'capacitor://localhost',
+  'https://localhost',
+  'http://localhost',
+  'http://localhost:5000',
+  'http://localhost:5173',
+];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  }
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 async function initStripe() {
   const databaseUrl = process.env.DATABASE_URL;
 

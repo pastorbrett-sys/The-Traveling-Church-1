@@ -20,8 +20,8 @@ function getSessionId(req: Request, res: Response): string {
     sessionId = nanoid();
     res.cookie("pastor_session", sessionId, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none" as const,
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
   }

@@ -1,0 +1,76 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Failed to resolve host network app id to config: bundleID: com.apple.WebKit.Networking instance ID: Optional([_EXExtensionInstanceIdentifier: DC6CBD09-1FF2-45A5-B53F-388F4474E52C])
+⚡️  Loading app at capacitor://localhost...
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+GPU process (0x1161201e0) took 7.106545 seconds to launch
+WebContent[47048] Unable to hide query parameters from script (missing data)
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 16CA640E-5C56-4997-BE18-AA216F5A3B01
+⚡️  WebView loaded
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 38866018
+⚡️  TO JS undefined
+ERROR: 😿‼️ The specified API Key is not recognized.
+Ensure that you are using the public app-specific API key,  which should look like 'appl_1a2b3c4d5e6f7h'.
+See https://rev.cat/auth for more details.
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2 (Build 23C54)
+DEBUG: ℹ️ Using a simulator. Ensure you have a StoreKit Config file set up before trying to fetch products or make purchases.
+See https://errors.rev.cat/testing-in-simulator for more details.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ ProductEntitlementMapping cache is stale, updating from network.
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetProductEntitlementMappingOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/product_entitlement_mapping
+DEBUG: ℹ️ API request started: GET '/v1/product_entitlement_mapping'
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ API request failed: GET '/v1/product_entitlement_mapping' (401): There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+Request-ID: 'b98a2cf3-e685-4d20-b3f8-e529c539c981'; Amzn-Trace-ID: 'Root=1-6960a12b-213e74ce33fc343d011c08e9'
+ERROR: 😿‼️ Failed updating ProductEntitlementMapping from network: The operation couldn’t be completed. (RevenueCat.BackendError error 0.)
+DEBUG: ℹ️ GetProductEntitlementMappingOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/product_entitlement_mapping, 0 requests left in the queue
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings'
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ API request failed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings' (401): There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+Request-ID: '6a71fee9-df2e-4dfb-b35b-b4987872cec2'; Amzn-Trace-ID: 'Root=1-6960a12b-5876aa9243b4a4ca08bd6e13'
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 🍎‼️ Error fetching offerings - The operation couldn’t be completed. (RevenueCat.OfferingsManager.Error error 0.)
+Underlying error: There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings, 0 requests left in the queue
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3'
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ API request failed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3' (401): There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+Request-ID: '53dd2a84-9d13-4a17-b53c-8806738fce03'; Amzn-Trace-ID: 'Root=1-6960a12b-26d0dd1321ff34a219423650'
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+WARN: ⚠️ Attempt to update CustomerInfo from network failed.
+The operation couldn’t be completed. (RevenueCat.BackendError error 0.)
+Underlying error: There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+WARN: ⚠️ Attempt to update CustomerInfo from network failed.
+The operation couldn’t be completed. (RevenueCat.BackendError error 0.)
+Underlying error: There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3, 0 requests left in the queue
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR MESSAGE:  {"code":"11","errorMessage":"There was a credentials issue. Check the underlying error for more details. Invalid API Key.","message":"There was a credentials issue. Check the underlying error for more details. Invalid API Key."}
+⚡️  [error] - {"code":"11","errorMessage":"There was a credentials issue. Check the underlying error for more details. Invalid API Key.","message":"There was a credentials issue. Check the underlying error for more details. Invalid API Key."}
+⚡️  [error] - RevenueCat initialization error: {"code":"11","errorMessage":"There was a credentials issue. Check the underlying error for more details. Invalid API Key."}

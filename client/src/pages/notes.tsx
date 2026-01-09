@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { apiRequest, queryClient, apiFetch } from "@/lib/queryClient";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
@@ -135,11 +135,10 @@ export default function Notes() {
 
   const createNoteMutation = useMutation({
     mutationFn: async (data: { content: string; tags: string[] }) => {
-      const res = await fetch("/api/notes/general", {
+      const res = await apiFetch("/api/notes/general", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-        credentials: "include",
       });
       if (res.status === 429) {
         const errorData = await res.json();

@@ -52,7 +52,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, apiFetch } from "@/lib/queryClient";
 import ReactMarkdown from "react-markdown";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
 import { usePlatform } from "@/contexts/platform-context";
@@ -299,11 +299,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     
     setIsSmartSearching(true);
     try {
-      const res = await fetch("/api/bible/smart-search", {
+      const res = await apiFetch("/api/bible/smart-search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query }),
-        credentials: "include",
       });
       if (res.status === 429) {
         const data = await res.json();
@@ -332,10 +331,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const handleSmartSearchResult = async (result: SmartSearchResult) => {
     // Check and use credit before navigating to result
     try {
-      const res = await fetch("/api/bible/smart-search/use-credit", {
+      const res = await apiFetch("/api/bible/smart-search/use-credit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
       });
       
       if (res.status === 429) {
@@ -400,10 +398,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const handleTopicVerseClick = async (verse: { bookId: number; chapter: number; verse: number }) => {
     // Check and use credit before navigating to verse
     try {
-      const res = await fetch("/api/bible/smart-search/use-credit", {
+      const res = await apiFetch("/api/bible/smart-search/use-credit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
       });
       
       if (res.status === 429) {
@@ -550,11 +547,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       chapter: number;
       verse: number;
     }) => {
-      const res = await fetch("/api/notes", {
+      const res = await apiFetch("/api/notes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-        credentials: "include",
       });
       if (res.status === 429) {
         const errorData = await res.json();
@@ -670,11 +666,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     setInsightInput("");
 
     try {
-      const response = await fetch("/api/conversations", {
+      const response = await apiFetch("/api/conversations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: `Insight: ${verseRef}` }),
-        credentials: "include",
       });
       
       if (response.status === 429) {
@@ -698,11 +693,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
 Verse: "${selectedVerse.text}"
 Reference: ${verseRef} (${translation})`;
 
-      const msgResponse = await fetch(`/api/conversations/${conversation.id}/messages`, {
+      const msgResponse = await apiFetch(`/api/conversations/${conversation.id}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "user", content: prompt }),
-        credentials: "include",
       });
 
       const reader = msgResponse.body?.getReader();
@@ -745,11 +739,10 @@ Reference: ${verseRef} (${translation})`;
     setIsStreamingInsight(true);
 
     try {
-      const msgResponse = await fetch(`/api/conversations/${insightConversationId}/messages`, {
+      const msgResponse = await apiFetch(`/api/conversations/${insightConversationId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "user", content: userMessage }),
-        credentials: "include",
       });
 
       const reader = msgResponse.body?.getReader();
@@ -820,11 +813,10 @@ Reference: ${verseRef} (${translation})`;
     setSmartSearchResults(null);
 
     try {
-      const response = await fetch("/api/conversations", {
+      const response = await apiFetch("/api/conversations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: `Discussion: ${question.slice(0, 50)}...` }),
-        credentials: "include",
       });
 
       if (!response.ok) throw new Error("Failed to create conversation");
@@ -840,9 +832,8 @@ Reference: ${verseRef} (${translation})`;
     // Delete the temporary conversation from the backend
     if (discussionConversationId) {
       try {
-        await fetch(`/api/conversations/${discussionConversationId}`, {
+        await apiFetch(`/api/conversations/${discussionConversationId}`, {
           method: "DELETE",
-          credentials: "include",
         });
       } catch (error) {
         console.error("Error deleting discussion conversation:", error);
@@ -866,11 +857,10 @@ Reference: ${verseRef} (${translation})`;
     setIsStreamingDiscussion(true);
 
     try {
-      const msgResponse = await fetch(`/api/conversations/${discussionConversationId}/messages`, {
+      const msgResponse = await apiFetch(`/api/conversations/${discussionConversationId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "user", content: userMessage }),
-        credentials: "include",
       });
 
       const reader = msgResponse.body?.getReader();
@@ -956,11 +946,10 @@ Reference: ${verseRef} (${translation})`;
     
     setIsLoadingBookSynopsis(true);
     try {
-      const res = await fetch("/api/bible/book-synopsis", {
+      const res = await apiFetch("/api/bible/book-synopsis", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ bookName: selectedBook.name }),
-        credentials: "include",
       });
       
       if (res.status === 429) {

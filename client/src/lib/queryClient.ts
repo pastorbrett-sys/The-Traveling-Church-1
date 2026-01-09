@@ -5,7 +5,7 @@ import { Capacitor } from '@capacitor/core';
 const PRODUCTION_URL = 'https://the-traveling-church-brettlindstrom.replit.app';
 
 // Evaluate platform at call time, not module initialization time
-function getApiUrl(url: string): string {
+export function getApiUrl(url: string): string {
   if (url.startsWith('/')) {
     // Check native platform at runtime when Capacitor is ready
     const isNative = Capacitor.isNativePlatform();
@@ -13,6 +13,15 @@ function getApiUrl(url: string): string {
     return `${baseUrl}${url}`;
   }
   return url;
+}
+
+// Helper for direct fetch calls that need the correct API URL
+export async function apiFetch(url: string, options?: RequestInit): Promise<Response> {
+  const fullUrl = getApiUrl(url);
+  const defaultOptions: RequestInit = {
+    credentials: "include",
+  };
+  return fetch(fullUrl, { ...defaultOptions, ...options });
 }
 
 async function throwIfResNotOk(res: Response) {

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/use-auth";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, apiFetch } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
@@ -99,7 +99,7 @@ export default function Profile() {
   const handleSubscribe = async () => {
     setIsCheckingOut(true);
     try {
-      const productsRes = await fetch("/api/stripe/products-with-prices");
+      const productsRes = await apiFetch("/api/stripe/products-with-prices");
       if (!productsRes.ok) throw new Error("Failed to load products");
       const productsData = await productsRes.json();
       const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");

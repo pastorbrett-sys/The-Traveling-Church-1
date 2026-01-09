@@ -21,7 +21,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/navigation";
@@ -191,7 +191,7 @@ export default function PastorChat() {
       setCurrentConversationId(mostRecent.id);
       
       // Fetch messages for this conversation
-      fetch(`/api/conversations/${mostRecent.id}`, { credentials: "include" })
+      apiFetch(`/api/conversations/${mostRecent.id}`)
         .then(res => res.json())
         .then(data => {
           if (data.messages && data.messages.length > 0) {
@@ -246,11 +246,10 @@ export default function PastorChat() {
         // Only generate a follow-up if one wasn't provided
         if (!seedFollowUp) {
           setIsStreaming(true);
-          const followUpRes = await fetch(`/api/conversations/${convId}/follow-up`, {
+          const followUpRes = await apiFetch(`/api/conversations/${convId}/follow-up`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question: seedQuestion, answer: seedAnswer }),
-            credentials: "include",
           });
           
           if (followUpRes.ok && followUpRes.body) {
@@ -368,7 +367,7 @@ export default function PastorChat() {
     setIsCheckingOut(true);
     try {
       // Fetch the Pro plan price
-      const productsRes = await fetch("/api/stripe/products-with-prices");
+      const productsRes = await apiFetch("/api/stripe/products-with-prices");
       
       if (!productsRes.ok) {
         const errText = await productsRes.text();
@@ -528,11 +527,10 @@ export default function PastorChat() {
     setIsStreaming(true);
 
     try {
-      const response = await fetch(`/api/conversations/${convId}/messages`, {
+      const response = await apiFetch(`/api/conversations/${convId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: savedInput }),
-        credentials: "include",
       });
 
       // Handle payment required (message limit reached) - check both 402 and 429

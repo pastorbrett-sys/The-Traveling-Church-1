@@ -495,8 +495,8 @@ router.post("/notes", async (req, res) => {
       sessionId = nanoid();
       res.cookie("sessionId", sessionId, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        secure: true,
+        sameSite: "none" as const,
         maxAge: 365 * 24 * 60 * 60 * 1000,
       });
     }
@@ -623,8 +623,8 @@ router.post("/progress", async (req, res) => {
       sessionId = nanoid();
       res.cookie("sessionId", sessionId, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        secure: true,
+        sameSite: "none" as const,
         maxAge: 365 * 24 * 60 * 60 * 1000,
       });
     }

@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { User } from "@shared/models/auth";
 import { auth, onAuthChange, logoutFirebase, type FirebaseUser } from "@/lib/firebase";
+import { apiFetch } from "@/lib/queryClient";
 
 async function fetchUser(): Promise<User | null> {
-  const response = await fetch("/api/auth/user", {
-    credentials: "include",
-  });
+  const response = await apiFetch("/api/auth/user");
 
   if (response.status === 401) {
     return null;
@@ -22,12 +21,11 @@ async function fetchUser(): Promise<User | null> {
 async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null> {
   try {
     const idToken = await firebaseUser.getIdToken();
-    const response = await fetch("/api/auth/firebase", {
+    const response = await apiFetch("/api/auth/firebase", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({ idToken }),
     });
 
@@ -77,7 +75,7 @@ export function useAuth() {
       queryClient.setQueryData(["/api/auth/user"], null);
       queryClient.clear();
       // Call backend logout without redirect
-      await fetch("/api/logout", { method: "GET", credentials: "include" });
+      await apiFetch("/api/logout", { method: "GET" });
     } catch (error) {
       console.error("Logout error:", error);
     } finally {

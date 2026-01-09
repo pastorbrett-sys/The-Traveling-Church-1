@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, apiFetch } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { useToast } from "@/hooks/use-toast";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
@@ -51,7 +51,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
   const handleUpgrade = async () => {
     setIsCheckingOut(true);
     try {
-      const productsRes = await fetch("/api/stripe/products-with-prices");
+      const productsRes = await apiFetch("/api/stripe/products-with-prices");
       
       if (!productsRes.ok) {
         throw new Error("Failed to load products");
