@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
-import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import vagabondLogo from "@/assets/vagabond-logo.png";
 import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";

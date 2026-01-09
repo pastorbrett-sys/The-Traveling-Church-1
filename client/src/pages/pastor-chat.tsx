@@ -27,7 +27,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/navigation";
 import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
-import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
 
 const WelcomeMessage = forwardRef<HTMLDivElement>((_, ref) => {

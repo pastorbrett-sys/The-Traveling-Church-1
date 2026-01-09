@@ -12,7 +12,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
-import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
 interface SubscriptionStatus {

@@ -43,7 +43,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
-import vagabondLogo from "@assets/Vagabond_Bible_AI_Icon_1767553973302.png";
+import vagabondLogo from "@/assets/vagabond-logo.png";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
