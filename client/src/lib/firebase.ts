@@ -36,21 +36,26 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
     if (Capacitor.isNativePlatform()) {
       const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
       
-      // Sign in with Google using native plugin
-      const result = await FirebaseAuthentication.signInWithGoogle();
+      // Use skipNativeAuth to get credential, then sign in with web SDK
+      // This ensures the web Firebase SDK is aware of the auth state
+      const result = await FirebaseAuthentication.signInWithGoogle({
+        skipNativeAuth: true,
+        scopes: ['profile', 'email']
+      });
       
-      if (result.credential) {
+      if (result.credential?.idToken) {
         // Create Firebase credential from the native result
         const credential = GoogleAuthProvider.credential(
           result.credential.idToken,
-          result.credential.accessToken
+          result.credential.accessToken || null
         );
         
-        // Sign in to Firebase with the credential
+        // Sign in to Firebase Web SDK with the credential
         const userCredential = await signInWithCredential(auth, credential);
         return userCredential.user;
       }
       
+      console.error("No credential returned from native Google sign-in");
       return null;
     }
     
@@ -58,6 +63,7 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
     const result = await signInWithPopup(auth, googleProvider);
     return result.user;
   } catch (error: any) {
+    console.error("Google sign-in error:", error);
     if (error.code === 'auth/popup-blocked') {
       await signInWithRedirect(auth, googleProvider);
       return null;
