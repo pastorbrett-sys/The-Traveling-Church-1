@@ -1,0 +1,22 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Failed to resolve host network app id to config: bundleID: com.apple.WebKit.Networking instance ID: Optional([_EXExtensionInstanceIdentifier: 9D0C2570-C254-4739-B5E5-E6A334264B1B])
+⚡️  Loading app at capacitor://localhost...
+Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+-[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  Can only perform input operation for an active session. sessionID = E0AC59B3-0B1C-4082-8FA1-C63BA982B335
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = E0AC59B3-0B1C-4082-8FA1-C63BA982B335
+Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = E0AC59B3-0B1C-4082-8FA1-C63BA982B335
+Result accumulator timeout: 0.250000, exceeded.
+WebContent[26303] Unable to hide query parameters from script (missing data)
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = E0AC59B3-0B1C-4082-8FA1-C63BA982B335
+⚡️  WebView loaded
+
+⚡️  ------ STARTUP JS ERROR ------
+
+⚡️  FirebaseError: Firebase: Error (auth/invalid-api-key).
+⚡️  URL: capacitor://localhost/assets/index-B3bHt8h3.js
+⚡️  index-B3bHt8h3.js:777:812
+
+⚡️  See above for help with debugging blank-screen issues
+⚡️  [error] - {"code":"auth/invalid-api-key","customData":{"appName":"[DEFAULT]"},"name":"FirebaseError"}
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
