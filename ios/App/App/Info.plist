@@ -52,7 +52,7 @@
                         <string>Google Sign-In</string>
                         <key>CFBundleURLSchemes</key>
                         <array>
-                                <string>REPLACE_WITH_REVERSED_CLIENT_ID_FROM_FIREBASE</string>
+                                <string>com.googleusercontent.apps.120766949732-5fu6t0hegaaaf8fdqenn2gu0mplghh5e</string>
                         </array>
                 </dict>
         </array>
