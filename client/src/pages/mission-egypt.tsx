@@ -29,7 +29,7 @@ import caveSelfie from "@assets/IMG_0729_1767124933010.jpg";
 import video1 from "@assets/egypt_street_compressed.mp4";
 import video2 from "@assets/egypt_sinai_compressed.mp4";
 import video3 from "@assets/egypt_v3_compressed.mp4";
-import video4 from "@assets/IMG_0311_1767125302509.MOV?url";
+import video4 from "@assets/IMG_0311_1767125302509.mov?url";
 
 interface GalleryImage {
   src: string;
