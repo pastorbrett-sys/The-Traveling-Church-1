@@ -53,7 +53,16 @@ export function useAuth() {
   });
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    
+    // Timeout fallback in case Firebase auth state never fires (native app edge case)
+    timeoutId = setTimeout(() => {
+      console.log("Firebase auth timeout - proceeding without Firebase auth state");
+      setIsFirebaseLoading(false);
+    }, 5000);
+
     const unsubscribe = onAuthChange(async (firebaseUser) => {
+      clearTimeout(timeoutId);
       if (firebaseUser) {
         const syncedUser = await syncFirebaseUser(firebaseUser);
         if (syncedUser) {
@@ -63,7 +72,10 @@ export function useAuth() {
       setIsFirebaseLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      clearTimeout(timeoutId);
+      unsubscribe();
+    };
   }, [queryClient]);
 
   const [isLoggingOut, setIsLoggingOut] = useState(false);
