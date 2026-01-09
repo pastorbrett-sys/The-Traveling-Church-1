@@ -14,6 +14,7 @@ import {
   updateProfile,
   type User as FirebaseUser
 } from "firebase/auth";
+import { Capacitor } from "@capacitor/core";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -30,6 +31,13 @@ const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<FirebaseUser | null> {
   try {
+    // On native apps, popups don't work - use redirect instead
+    if (Capacitor.isNativePlatform()) {
+      await signInWithRedirect(auth, googleProvider);
+      return null;
+    }
+    
+    // On web, try popup first
     const result = await signInWithPopup(auth, googleProvider);
     return result.user;
   } catch (error: any) {
