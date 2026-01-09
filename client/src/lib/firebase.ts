@@ -4,6 +4,7 @@ import {
   signInWithPopup, 
   signInWithRedirect,
   getRedirectResult,
+  signInWithCredential,
   GoogleAuthProvider, 
   signOut,
   onAuthStateChanged,
@@ -31,9 +32,25 @@ const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<FirebaseUser | null> {
   try {
-    // On native apps, popups don't work - use redirect instead
+    // On native apps, use Capacitor Firebase Authentication plugin
     if (Capacitor.isNativePlatform()) {
-      await signInWithRedirect(auth, googleProvider);
+      const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+      
+      // Sign in with Google using native plugin
+      const result = await FirebaseAuthentication.signInWithGoogle();
+      
+      if (result.credential) {
+        // Create Firebase credential from the native result
+        const credential = GoogleAuthProvider.credential(
+          result.credential.idToken,
+          result.credential.accessToken
+        );
+        
+        // Sign in to Firebase with the credential
+        const userCredential = await signInWithCredential(auth, credential);
+        return userCredential.user;
+      }
+      
       return null;
     }
     
@@ -51,6 +68,10 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
 
 export async function handleRedirectResult(): Promise<FirebaseUser | null> {
   try {
+    // Skip redirect handling on native - we use native plugin instead
+    if (Capacitor.isNativePlatform()) {
+      return null;
+    }
     const result = await getRedirectResult(auth);
     return result?.user || null;
   } catch (error) {

@@ -15,10 +15,7 @@ import {
   getFirebaseErrorMessage,
   handleRedirectResult 
 } from "@/lib/firebase";
-import { Capacitor } from "@capacitor/core";
 import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
-
-const isNative = Capacitor.isNativePlatform();
 
 export default function Login() {
   const { isAuthenticated, isLoading, refetch } = useAuth();
