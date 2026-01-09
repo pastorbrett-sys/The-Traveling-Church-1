@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { 
-  getAuth, 
+  getAuth,
+  initializeAuth,
+  indexedDBLocalPersistence,
+  browserLocalPersistence,
   signInWithPopup, 
   signInWithRedirect,
   getRedirectResult,
@@ -13,7 +16,8 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   updateProfile,
-  type User as FirebaseUser
+  type User as FirebaseUser,
+  type Auth
 } from "firebase/auth";
 import { Capacitor } from "@capacitor/core";
 
@@ -26,7 +30,27 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+
+// Use initializeAuth with explicit persistence for Capacitor compatibility
+// WKWebView has issues with default persistence, causing onAuthStateChanged to never fire
+function createAuth(): Auth {
+  if (Capacitor.isNativePlatform()) {
+    // On native, use indexedDB persistence with fallback to browserLocal
+    // This avoids the WKWebView persistence deadlock
+    try {
+      return initializeAuth(app, {
+        persistence: [indexedDBLocalPersistence, browserLocalPersistence]
+      });
+    } catch (e) {
+      // If already initialized, return existing instance
+      return getAuth(app);
+    }
+  }
+  // On web, use default getAuth
+  return getAuth(app);
+}
+
+export const auth = createAuth();
 
 const googleProvider = new GoogleAuthProvider();
 

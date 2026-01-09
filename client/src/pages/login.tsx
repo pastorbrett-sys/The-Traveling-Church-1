@@ -25,7 +25,8 @@ export default function Login() {
   const redirectTo = params.get("redirect") || "/pastor-chat";
   
   const [activeTab, setActiveTab] = useState<string>("signin");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isEmailSubmitting, setIsEmailSubmitting] = useState(false);
+  const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +57,7 @@ export default function Login() {
   }, [isLoading, isAuthenticated, redirectTo, setLocation]);
 
   const handleGoogleSignIn = async () => {
-    setIsSubmitting(true);
+    setIsGoogleSubmitting(true);
     setError(null);
     try {
       const user = await signInWithGoogle();
@@ -70,13 +71,13 @@ export default function Login() {
       console.error("Sign in error:", err);
       setError(getFirebaseErrorMessage(err.code));
     } finally {
-      setIsSubmitting(false);
+      setIsGoogleSubmitting(false);
     }
   };
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setIsEmailSubmitting(true);
     setError(null);
     
     try {
@@ -86,19 +87,19 @@ export default function Login() {
       console.error("Sign in error:", err);
       setError(getFirebaseErrorMessage(err.code));
     } finally {
-      setIsSubmitting(false);
+      setIsEmailSubmitting(false);
     }
   };
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setIsEmailSubmitting(true);
     setError(null);
     setSuccessMessage(null);
     
     if (signUpPassword.length < 6) {
       setError("Password must be at least 6 characters.");
-      setIsSubmitting(false);
+      setIsEmailSubmitting(false);
       return;
     }
     
@@ -113,7 +114,7 @@ export default function Login() {
       console.error("Sign up error:", err);
       setError(getFirebaseErrorMessage(err.code));
     } finally {
-      setIsSubmitting(false);
+      setIsEmailSubmitting(false);
     }
   };
 
@@ -123,7 +124,7 @@ export default function Login() {
       return;
     }
     
-    setIsSubmitting(true);
+    setIsEmailSubmitting(true);
     setError(null);
     setSuccessMessage(null);
     
@@ -134,7 +135,7 @@ export default function Login() {
       console.error("Password reset error:", err);
       setError(getFirebaseErrorMessage(err.code));
     } finally {
-      setIsSubmitting(false);
+      setIsEmailSubmitting(false);
     }
   };
 
@@ -238,12 +239,12 @@ export default function Login() {
                 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isEmailSubmitting || isGoogleSubmitting}
                   className="w-full h-11 bg-[#b8860b] hover:bg-[#a07608] text-white border-0"
                   style={{ animation: 'subtleGlow 3s ease-in-out infinite' }}
                   data-testid={activeTab === "signin" ? "button-signin-email" : "button-signup-email"}
                 >
-                  {isSubmitting ? (
+                  {isEmailSubmitting ? (
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   ) : activeTab === "signup" ? (
                     <Mail className="w-4 h-4 mr-2" />
@@ -279,12 +280,12 @@ export default function Login() {
                 <Button
                   type="button"
                   onClick={handleGoogleSignIn}
-                  disabled={isSubmitting}
+                  disabled={isEmailSubmitting || isGoogleSubmitting}
                   variant="outline"
                   className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
                   data-testid={activeTab === "signin" ? "button-signin-google" : "button-signup-google"}
                 >
-                  {isSubmitting ? (
+                  {isGoogleSubmitting ? (
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   ) : (
                     <SiGoogle className="w-4 h-4 mr-2" />
