@@ -53,6 +53,27 @@
                 <true/>
                 <key>NSAllowsLocalNetworking</key>
                 <true/>
+                <key>NSExceptionDomains</key>
+                <dict>
+                        <key>developers.google.com</key>
+                        <dict>
+                                <key>NSIncludesSubdomains</key>
+                                <true/>
+                                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                                <true/>
+                                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                                <true/>
+                        </dict>
+                        <key>google.com</key>
+                        <dict>
+                                <key>NSIncludesSubdomains</key>
+                                <true/>
+                                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                                <true/>
+                                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                                <true/>
+                        </dict>
+                </dict>
         </dict>
 </dict>
 </plist>
