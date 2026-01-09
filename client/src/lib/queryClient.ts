@@ -1,14 +1,16 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { Capacitor } from '@capacitor/core';
 
-// For native apps, API calls need to go to the production server
-const API_BASE_URL = Capacitor.isNativePlatform() 
-  ? (import.meta.env.VITE_API_BASE_URL || 'https://the-traveling-church-brettlindstrom.replit.app')
-  : '';
+// Production server URL for native apps
+const PRODUCTION_URL = 'https://the-traveling-church-brettlindstrom.replit.app';
 
+// Evaluate platform at call time, not module initialization time
 function getApiUrl(url: string): string {
   if (url.startsWith('/')) {
-    return `${API_BASE_URL}${url}`;
+    // Check native platform at runtime when Capacitor is ready
+    const isNative = Capacitor.isNativePlatform();
+    const baseUrl = isNative ? PRODUCTION_URL : '';
+    return `${baseUrl}${url}`;
   }
   return url;
 }
