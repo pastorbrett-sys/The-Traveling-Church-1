@@ -1,0 +1,94 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Failed to resolve host network app id to config: bundleID: com.apple.WebKit.Networking instance ID: Optional([_EXExtensionInstanceIdentifier: 7B3ECAC7-9E06-4AF5-A52F-3BC80659F0A4])
+⚡️  Loading app at capacitor://localhost...
+-[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  Can only perform input operation for an active session. sessionID = 312410BD-FC33-467E-8512-DE5F56522E13
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 312410BD-FC33-467E-8512-DE5F56522E13
+Networking process (0x116078100) took 1.074251 seconds to launch
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 312410BD-FC33-467E-8512-DE5F56522E13
+Result accumulator timeout: 0.250000, exceeded.
+WebContent[59348] Unable to hide query parameters from script (missing data)
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 312410BD-FC33-467E-8512-DE5F56522E13
+⚡️  WebView loaded
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 68556544
+⚡️  TO JS undefined
+ERROR: 😿‼️ The specified API Key is not recognized.
+Ensure that you are using the public app-specific API key,  which should look like 'appl_1a2b3c4d5e6f7h'.
+See https://rev.cat/auth for more details.
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2 (Build 23C54)
+DEBUG: ℹ️ Using a simulator. Ensure you have a StoreKit Config file set up before trying to fetch products or make purchases.
+See https://errors.rev.cat/testing-in-simulator for more details.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ ProductEntitlementMapping cache is stale, updating from network.
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetProductEntitlementMappingOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/product_entitlement_mapping
+DEBUG: ℹ️ API request started: GET '/v1/product_entitlement_mapping'
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+⚡️  To Native ->  CapacitorHttp request 68556545
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ API request failed: GET '/v1/product_entitlement_mapping' (401): There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+Request-ID: '3fde4190-e28e-4b04-b3a7-4cf543ba259f'; Amzn-Trace-ID: 'Root=1-6960b4a5-6574efae5c17f41230584eed'
+ERROR: 😿‼️ Failed updating ProductEntitlementMapping from network: The operation couldn’t be completed. (RevenueCat.BackendError error 0.)
+DEBUG: ℹ️ GetProductEntitlementMappingOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/product_entitlement_mapping, 0 requests left in the queue
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings'
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ API request failed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings' (401): There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+Request-ID: 'e25c02ec-c75a-4f81-b674-98bb62f23f5d'; Amzn-Trace-ID: 'Root=1-6960b4a5-2f9483c26be23ed772ce5b15'
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 🍎‼️ Error fetching offerings - The operation couldn’t be completed. (RevenueCat.OfferingsManager.Error error 0.)
+Underlying error: There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings, 0 requests left in the queue
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3'
+nw_connection_copy_connected_local_endpoint_block_invoke [C2] Connection has no local endpoint
+nw_connection_copy_connected_local_endpoint_block_invoke [C2] Connection has no local endpoint
+Cannot start load of Task <1514F04B-D0BA-4122-AE67-094AFD6AD087>.<1> since it does not conform to ATS policy
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ API request failed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3' (401): There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+Request-ID: '4d6ba62a-6306-4998-bac4-cc779b93d339'; Amzn-Trace-ID: 'Root=1-6960b4a5-6c5693582ff751646425ca9f'
+Task <1514F04B-D0BA-4122-AE67-094AFD6AD087>.<1> finished with error [-1022] Error Domain=NSURLErrorDomain Code=-1022 "The resource could not be loaded because the App Transport Security policy requires the use of a secure connection." UserInfo={NSLocalizedDescription=The resource could not be loaded because the App Transport Security policy requires the use of a secure connection., NSErrorFailingURLStringKey=http://developers.google.com/, NSErrorFailingURLKey=http://developers.google.com/, _NSURLErrorRelatedURLSessionTaskErrorKey=(
+    "LocalDataTask <1514F04B-D0BA-4122-AE67-094AFD6AD087>.<1>"
+), _NSURLErrorFailingURLSessionTaskErrorKey=LocalDataTask <1514F04B-D0BA-4122-AE67-094AFD6AD087>.<1>, NSUnderlyingError=0x600000c89d70 {Error Domain=kCFErrorDomainCFNetwork Code=-1022 "(null)"}}
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+WARN: ⚠️ Attempt to update CustomerInfo from network failed.
+The operation couldn’t be completed. (RevenueCat.BackendError error 0.)
+Underlying error: There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR MESSAGE:  {"errorMessage":"The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.","message":"The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.","code":"NSURLErrorDomain"}
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+WARN: ⚠️ Attempt to update CustomerInfo from network failed.
+The operation couldn’t be completed. (RevenueCat.BackendError error 0.)
+Underlying error: There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3, 0 requests left in the queue
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+ERROR: 😿‼️ There was a credentials issue. Check the underlying error for more details. Invalid API Key.
+⚡️  [error] - {"errorMessage":"The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.","message":"The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.","code":"NSURLErrorDomain"}
+ERROR MESSAGE:  {"errorMessage":"There was a credentials issue. Check the underlying error for more details. Invalid API Key.","message":"There was a credentials issue. Check the underlying error for more details. Invalid API Key.","code":"11"}
+⚡️  [error] - {"errorMessage":"There was a credentials issue. Check the underlying error for more details. Invalid API Key.","message":"There was a credentials issue. Check the underlying error for more details. Invalid API Key.","code":"11"}
+⚡️  [error] - RevenueCat initialization error: {"code":"11","errorMessage":"There was a credentials issue. Check the underlying error for more details. Invalid API Key."}
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report_availability'
+nw_connection_copy_connected_local_endpoint_block_invoke [C4] Connection has no local endpoint
+nw_connection_copy_connected_local_endpoint_block_invoke [C4] Connection has no local endpoint

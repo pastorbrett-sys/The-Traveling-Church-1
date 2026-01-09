@@ -97,3 +97,30 @@ Preferred communication style: Simple, everyday language.
 - **Native Tab Bar**: Dark gradient bottom navigation (#1a1a1a to #000000) with gold active states (#b8860b)
 - **Platform Detection**: `Capacitor.isNativePlatform()` for true native detection; `usePlatform()` hook for UI-level native simulation
 - **Full-screen Modals**: All mobile modals use full-screen layout with inset-0 positioning
+
+## Native App Build Process (CRITICAL)
+
+### Environment Variables for Native Builds
+- **IMPORTANT**: Replit configuration variables do NOT interpolate secrets. `${SECRET_NAME}` is passed as literal text.
+- Frontend env vars must start with `VITE_` prefix to be accessible in client code.
+- `VITE_REVENUECAT_SDK_KEY` must be set to the ACTUAL API key value directly (e.g., `appl_xxxxx`), NOT a reference like `${REVENUECAT_SDK_KEY}`.
+- Environment variables are embedded at BUILD TIME by Vite. Changes require rebuild.
+
+### iOS Build Workflow (VagabondBible folder on Desktop)
+1. Download ZIP from Replit, extract to `~/Desktop/VagabondBible`
+2. Run: `npm install`
+3. Run: `sed -i '' "s/platform :ios, '14.0'/platform :ios, '15.0'/" ios/App/Podfile`
+4. Run: `cd ios/App && pod install && open App.xcworkspace`
+5. In Xcode: Set iOS 15.0 for both PROJECT and TARGET
+6. Configure signing: Team "Brett Lindstrom", Bundle ID `com.vagabondbible.app`
+7. Build and run on connected iPhone
+
+### API Calls on Native
+- All `/api/...` calls use `apiFetch()` helper from `queryClient.ts`
+- `apiFetch()` prepends production URL (`https://the-traveling-church-brettlindstrom.replit.app`) when `Capacitor.isNativePlatform()` is true
+- Server has CORS configured for `capacitor://localhost` and `https://localhost`
+- Session cookies use `sameSite: "none"` and `secure: true` for cross-origin requests
+
+### App Transport Security (iOS)
+- Info.plist includes `NSAppTransportSecurity` with `NSAllowsArbitraryLoads: true`
+- Required for Firebase and other services that may use HTTP endpoints
