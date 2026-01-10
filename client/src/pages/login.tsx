@@ -141,7 +141,7 @@ export default function Login() {
 
   if (isLoading) {
     return (
-      <div className="antialiased min-h-[100dvh] flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
+      <div className="antialiased min-h-[100dvh] flex flex-col text-white safe-area-top" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
         <main className="flex-1 flex items-center justify-center">
           <div className="w-8 h-8 border-4 rounded-full animate-spin border-white border-t-transparent" />
         </main>
@@ -155,7 +155,7 @@ export default function Login() {
 
   return (
     <div className="antialiased min-h-[100dvh] flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
-      <main className="flex-1 flex items-center justify-center pt-12 pb-[max(1.5rem,env(safe-area-inset-bottom))] px-5">
+      <main className="flex-1 flex items-center justify-center px-5" style={{ paddingTop: 'max(3rem, env(safe-area-inset-top, 48px))', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))' }}>
         <div className="max-w-md mx-auto w-full">
           <Card className="border-0 shadow-none bg-transparent animate-fade-up" style={{ animationDuration: '0.4s' }}>
             <CardHeader className="text-center pb-4 pt-0">
