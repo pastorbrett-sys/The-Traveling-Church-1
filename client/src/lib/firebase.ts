@@ -69,23 +69,24 @@ const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<FirebaseUser | null> {
   try {
-    // On native apps, use Capacitor Firebase Authentication plugin with native auth
+    // On native apps, use browser-based OAuth flow
     if (Capacitor.isNativePlatform()) {
-      const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+      console.log("[NATIVE AUTH] Starting browser-based Google sign-in...");
       
-      console.log("[NATIVE AUTH] Starting Google sign-in with native SDK...");
+      const { Browser } = await import("@capacitor/browser");
       
-      // skipNativeAuth is now FALSE in config, so this uses native iOS Firebase SDK
-      const result = await FirebaseAuthentication.signInWithGoogle();
+      // Open the web login page in system browser
+      // After successful auth, the page will redirect back to app via deep link
+      const authUrl = "https://the-traveling-church-brettlindstrom.replit.app/login?native=true";
       
-      console.log("[NATIVE AUTH] Google sign-in complete, user:", result.user?.email);
+      await Browser.open({ 
+        url: authUrl,
+        presentationStyle: 'popover',
+        toolbarColor: '#1a1a1a'
+      });
       
-      if (result.user) {
-        // Return a shim user object that matches FirebaseUser interface
-        const idTokenResult = await FirebaseAuthentication.getIdToken();
-        return createNativeUserShim(result.user, idTokenResult.token);
-      }
-      
+      // Auth will complete via deep link - return null here
+      // The deep link handler will complete the auth flow
       return null;
     }
     
@@ -98,6 +99,36 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
       await signInWithRedirect(auth, googleProvider);
       return null;
     }
+    throw error;
+  }
+}
+
+// Handle auth code exchange from deep link (called by native app)
+export async function exchangeAuthCode(code: string): Promise<FirebaseUser | null> {
+  try {
+    console.log("[NATIVE AUTH] Exchanging auth code...");
+    
+    const response = await fetch("https://the-traveling-church-brettlindstrom.replit.app/api/native-auth/exchange", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    });
+    
+    if (!response.ok) {
+      throw new Error("Failed to exchange auth code");
+    }
+    
+    const { idToken } = await response.json();
+    
+    // Sign in to Firebase with the credential
+    const credential = GoogleAuthProvider.credential(idToken);
+    const result = await signInWithCredential(auth, credential);
+    
+    console.log("[NATIVE AUTH] Auth code exchange complete, user:", result.user.email);
+    
+    return result.user;
+  } catch (error) {
+    console.error("[NATIVE AUTH] Auth code exchange failed:", error);
     throw error;
   }
 }

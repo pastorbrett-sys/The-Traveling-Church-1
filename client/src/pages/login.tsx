@@ -23,6 +23,7 @@ export default function Login() {
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/pastor-chat";
+  const isNativeFlow = params.get("native") === "true";
   
   const [activeTab, setActiveTab] = useState<string>("signin");
   const [isEmailSubmitting, setIsEmailSubmitting] = useState(false);
@@ -51,10 +52,40 @@ export default function Login() {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
+      // If this is the native flow, redirect back to the app via deep link
+      if (isNativeFlow) {
+        (async () => {
+          try {
+            const { auth } = await import("@/lib/firebase");
+            const user = auth.currentUser;
+            if (user) {
+              const idToken = await user.getIdToken();
+              
+              // Generate auth code
+              const response = await fetch("/api/native-auth/generate-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ idToken }),
+              });
+              
+              if (response.ok) {
+                const { code } = await response.json();
+                // Redirect to native app
+                window.location.href = `com.vagabondbible.app://auth-callback?code=${code}`;
+                return;
+              }
+            }
+          } catch (err) {
+            console.error("Native auth redirect failed:", err);
+          }
+        })();
+        return;
+      }
+      
       window.scrollTo(0, 0);
       setLocation(redirectTo);
     }
-  }, [isLoading, isAuthenticated, redirectTo, setLocation]);
+  }, [isLoading, isAuthenticated, redirectTo, setLocation, isNativeFlow]);
 
   const handleGoogleSignIn = async () => {
     setIsGoogleSubmitting(true);

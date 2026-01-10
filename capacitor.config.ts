@@ -28,12 +28,13 @@ const config: CapacitorConfig = {
       backgroundColor: '#1a1a2e',
     },
     FirebaseAuthentication: {
-      skipNativeAuth: false,
+      skipNativeAuth: true,
       providers: ["google.com"],
     },
   },
   ios: {
     contentInset: 'never',
+    scheme: 'com.vagabondbible.app',
   },
   android: {
     allowMixedContent: false,

@@ -21,11 +21,15 @@ import { getStripePublishableKey } from "./stripeClient";
 import bibleRoutes from "./bibleRoutes";
 import { registerRevenueCatWebhook } from "./revenueCatWebhook";
 import { isUserPro } from "./proStatusService";
+import { registerNativeAuthRoutes } from "./nativeAuthRoutes";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first (before other routes)
   await setupAuth(app);
   registerAuthRoutes(app);
+  
+  // Native auth routes (for iOS browser-based OAuth)
+  registerNativeAuthRoutes(app);
   
   // RevenueCat webhook (for native app subscriptions)
   registerRevenueCatWebhook(app);

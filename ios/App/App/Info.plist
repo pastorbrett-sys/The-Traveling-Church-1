@@ -49,6 +49,14 @@
         <array>
                 <dict>
                         <key>CFBundleURLName</key>
+                        <string>App Deep Link</string>
+                        <key>CFBundleURLSchemes</key>
+                        <array>
+                                <string>com.vagabondbible.app</string>
+                        </array>
+                </dict>
+                <dict>
+                        <key>CFBundleURLName</key>
                         <string>Google Sign-In</string>
                         <key>CFBundleURLSchemes</key>
                         <array>

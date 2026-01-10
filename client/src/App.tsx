@@ -11,6 +11,7 @@ import { PlatformProvider } from "@/contexts/platform-context";
 import { RevenueCatProvider } from "@/contexts/revenuecat-context";
 import { PlatformToggle } from "@/components/platform-toggle";
 import { NativeTabBar } from "@/components/native-tab-bar";
+import { useDeepLinks } from "@/hooks/use-deep-links";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -31,6 +32,7 @@ import Login from "@/pages/login";
 import CheckoutSuccess from "@/pages/checkout-success";
 import CheckoutCancel from "@/pages/checkout-cancel";
 import VagabondBible from "@/pages/vagabond-bible";
+import NativeAuthCallback from "@/pages/native-auth-callback";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -51,6 +53,7 @@ function VagabondBibleRouter() {
       <Route path="/notes">{() => <AuthGate><Notes /></AuthGate>}</Route>
       <Route path="/profile">{() => <AuthGate><Profile /></AuthGate>}</Route>
       <Route path="/login" component={Login} />
+      <Route path="/native-auth-callback" component={NativeAuthCallback} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
       <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
@@ -79,6 +82,7 @@ function ChurchRouter() {
       <Route path="/notes">{() => <AuthGate><Notes /></AuthGate>}</Route>
       <Route path="/profile">{() => <AuthGate><Profile /></AuthGate>}</Route>
       <Route path="/login" component={Login} />
+      <Route path="/native-auth-callback" component={NativeAuthCallback} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
       <Route path="/vagabond-bible" component={VagabondBible} />
@@ -92,6 +96,11 @@ function Router() {
   return isVagabond ? <VagabondBibleRouter /> : <ChurchRouter />;
 }
 
+function DeepLinkHandler() {
+  useDeepLinks();
+  return null;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -100,6 +109,7 @@ function App() {
           <TooltipProvider>
             <DynamicHead />
             <ScrollToTop />
+            <DeepLinkHandler />
             <Toaster />
             <Router />
             <NativeTabBar />
