@@ -77,16 +77,24 @@ export default function Login() {
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("[LOGIN DEBUG] Starting email sign in...");
     setIsEmailSubmitting(true);
     setError(null);
     
     try {
-      await signInWithEmail(signInEmail, signInPassword);
+      console.log("[LOGIN DEBUG] Calling signInWithEmail...");
+      const user = await signInWithEmail(signInEmail, signInPassword);
+      console.log("[LOGIN DEBUG] signInWithEmail SUCCESS, user:", user?.email);
+      console.log("[LOGIN DEBUG] Calling refetch...");
       await refetch();
+      console.log("[LOGIN DEBUG] refetch complete");
     } catch (err: any) {
-      console.error("Sign in error:", err);
+      console.error("[LOGIN DEBUG] Sign in FAILED:", err);
+      console.error("[LOGIN DEBUG] Error code:", err.code);
+      console.error("[LOGIN DEBUG] Error message:", err.message);
       setError(getFirebaseErrorMessage(err.code));
     } finally {
+      console.log("[LOGIN DEBUG] Finally block - stopping spinner");
       setIsEmailSubmitting(false);
     }
   };

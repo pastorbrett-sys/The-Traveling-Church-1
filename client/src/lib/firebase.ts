@@ -137,8 +137,20 @@ export async function resendVerificationEmail(): Promise<void> {
 }
 
 export async function signInWithEmail(email: string, password: string): Promise<FirebaseUser> {
-  const result = await signInWithEmailAndPassword(auth, email, password);
-  return result.user;
+  console.log("[FIREBASE DEBUG] signInWithEmail called");
+  console.log("[FIREBASE DEBUG] Auth instance:", auth ? "exists" : "null");
+  console.log("[FIREBASE DEBUG] Auth currentUser:", auth.currentUser?.email || "none");
+  
+  try {
+    console.log("[FIREBASE DEBUG] Calling signInWithEmailAndPassword...");
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    console.log("[FIREBASE DEBUG] signInWithEmailAndPassword SUCCESS");
+    return result.user;
+  } catch (error: any) {
+    console.error("[FIREBASE DEBUG] signInWithEmailAndPassword FAILED");
+    console.error("[FIREBASE DEBUG] Error:", error);
+    throw error;
+  }
 }
 
 export async function resetPassword(email: string): Promise<void> {
