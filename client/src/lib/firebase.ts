@@ -8,6 +8,7 @@ import {
   signInWithRedirect,
   getRedirectResult,
   signInWithCredential,
+  signInWithCustomToken,
   GoogleAuthProvider, 
   signOut,
   onAuthStateChanged,
@@ -118,11 +119,10 @@ export async function exchangeAuthCode(code: string): Promise<FirebaseUser | nul
       throw new Error("Failed to exchange auth code");
     }
     
-    const { idToken } = await response.json();
+    const { customToken } = await response.json();
     
-    // Sign in to Firebase with the credential
-    const credential = GoogleAuthProvider.credential(idToken);
-    const result = await signInWithCredential(auth, credential);
+    // Sign in to Firebase with the custom token
+    const result = await signInWithCustomToken(auth, customToken);
     
     console.log("[NATIVE AUTH] Auth code exchange complete, user:", result.user.email);
     
