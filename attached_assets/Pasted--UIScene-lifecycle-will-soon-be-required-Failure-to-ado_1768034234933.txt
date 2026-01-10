@@ -1,0 +1,55 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+*** Terminating app due to uncaught exception 'com.firebase.core', reason: '`FirebaseApp.configure()` could not find a valid GoogleService-Info.plist in your project. Please download one from https://console.firebase.google.com/.'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x00000001804f71d0 __exceptionPreprocess + 172
+	1   libobjc.A.dylib                     0x000000018009c094 objc_exception_throw + 72
+	2   CoreFoundation                      0x00000001804f70e0 -[NSException initWithCoder:] + 0
+	3   FirebaseCore                        0x00000001011b5314 +[FIRApp configure] + 120
+	4   App.debug.dylib                     0x000000010127e388 $s3App0A8DelegateC11application_29didFinishLaunchingWithOptionsSbSo13UIApplicationC_SDySo0i6LaunchH3KeyaypGSgtF + 60
+	5   App.debug.dylib                     0x000000010127e478 $s3App0A8DelegateC11application_29didFinishLaunchingWithOptionsSbSo13UIApplicationC_SDySo0i6LaunchH3KeyaypGSgtFTo + 220
+	6   UIKitCore                           0x0000000186344c2c -[UIApplication _handleDelegateCallbacksWithOptions:isSuspended:restoreState:] + 332
+	7   UIKitCore                           0x0000000186346168 -[UIApplication _callInitializationDelegatesWithActions:forScene:payload:fromOriginatingProcess:] + 3036
+	8   UIKitCore                           0x000000018634b584 -[UIApplication _runWithMainScene:transitionContext:completion:] + 800
+	9   UIKitCore                           0x00000001858c909c -[_UISceneLifecycleMultiplexer completeApplicationLaunchWithFBSScene:transitionContext:] + 88
+	10  UIKitCore                           0x0000000185e94cd0 _UIScenePerformActionsWithLifecycleActionMask + 96
+	11  UIKitCore                           0x00000001858c9978 __101-[_UISceneLifecycleMultiplexer _evalTransitionToSettings:fromSettings:forceExit:withTransitionStore:]_block_invoke + 224
+	12  UIKitCore                           0x00000001858c94d4 -[_UISceneLifecycleMultiplexer _performBlock:withApplicationOfDeactivationReasons:fromReasons:] + 204
+	13  UIKitCore                           0x00000001858c97ac -[_UISceneLifecycleMultiplexer _evalTransitionToSettings:fromSettings:forceExit:withTransitionStore:] + 576
+	14  UIKitCore                           0x00000001858c91c4 -[_UISceneLifecycleMultiplexer uiScene:transitionedFromState:withTransitionContext:] + 240
+	15  UIKitCore                           0x00000001858d51c0 __186-[_UIWindowSceneFBSSceneTransitionContextDrivenLifecycleSettingsDiffAction _performActionsForUIScene:withUpdatedFBSScene:settingsDiff:fromSettings:transitionContext:lifecycleActionType:]_blo	16  UIKitCore                           0x0000000185d7e4a4 +[BSAnimationSettings(UIKit) tryAnimatingWithSettings:fromCurrentState:actions:completion:] + 656
+	17  UIKitCore                           0x0000000185ead178 _UISceneSettingsDiffActionPerformChangesWithTransitionContextAndCompletion + 196
+	18  UIKitCore                           0x00000001858d4ecc -[_UIWindowSceneFBSSceneTransitionContextDrivenLifecycleSettingsDiffAction _performActionsForUIScene:withUpdatedFBSScene:settingsDiff:fromSettings:transitionContext:lifecycleActionType:] + 288
+	19  UIKitCore                           0x00000001856f64f0 __64-[UIScene scene:didUpdateWithDiff:transitionContext:completion:]_block_invoke.190 + 612
+	20  UIKitCore                           0x00000001856f5290 -[UIScene _emitSceneSettingsUpdateResponseForCompletion:afterSceneUpdateWork:] + 200
+	21  UIKitCore                           0x00000001856f6170 -[UIScene scene:didUpdateWithDiff:transitionContext:completion:] + 220
+	22  UIKitCore                           0x000000018634a2f0 -[UIApplication workspace:didCreateScene:withTransitionContext:completion:] + 452
+	23  UIKitCore                           0x0000000185da98b0 -[UIApplicationSceneClientAgent scene:didInitializeWithEvent:completion:] + 260
+	24  FrontBoardServices                  0x00000001886011d8 __95-[FBSScene _callOutQueue_didCreateWithTransitionContext:alternativeCreationCallout:completion:]_block_invoke + 304
+	25  FrontBoardServices                  0x0000000188601644 -[FBSScene _callOutQueue_maybeCoalesceClientSettingsUpdates:] + 116
+	26  FrontBoardServices                  0x000000018860102c -[FBSScene _callOutQueue_didCreateWithTransitionContext:alternativeCreationCallout:completion:] + 408
+	27  FrontBoardServices                  0x000000018866cfc4 __93-[FBSWorkspaceScenesClient _callOutQueue_sendDidCreateForScene:transitionContext:completion:]_block_invoke.274 + 232
+	28  FrontBoardServices                  0x000000018860e874 -[FBSWorkspace _calloutQueue_executeCalloutFromSource:withBlock:] + 160
+	29  FrontBoardServices                  0x000000018862ce44 -[FBSWorkspaceScenesClient _callOutQueue_sendDidCreateForScene:transitionContext:completion:] + 392
+	30  FrontBoardServices                  0x000000018862e518 __92-[FBSWorkspaceScenesClient createSceneWithIdentity:parameters:transitionContext:completion:]_block_invoke_2 + 204
+	31  FrontBoardServices                  0x000000018860e874 -[FBSWorkspace _calloutQueue_executeCalloutFromSource:withBlock:] + 160
+	32  libdispatch.dylib                   0x00000001017cd9dc _dispatch_client_callout + 12
+	33  libdispatch.dylib                   0x00000001017b7e80 _dispatch_block_invoke_direct + 388
+	34  BoardServices                       0x000000018807873c __BSSERVICEMAINRUNLOOPQUEUE_IS_CALLING_OUT_TO_A_BLOCK__ + 44
+	35  BoardServices                       0x000000018807776c BSServiceMainRunLoopSourceHandler + 180
+	36  CoreFoundation                      0x00000001804563a4 __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 24
+	37  CoreFoundation                      0x00000001804562ec __CFRunLoopDoSource0 + 168
+	38  CoreFoundation                      0x0000000180455ad4 __CFRunLoopDoSources0 + 312
+	39  CoreFoundation                      0x0000000180454c4c __CFRunLoopRun + 760
+	40  CoreFoundation                      0x000000018044fcec _CFRunLoopRunSpecificWithOptions + 496
+	41  GraphicsServices                    0x0000000192a669bc GSEventRunModal + 116
+	42  UIKitCore                           0x0000000186348574 -[UIApplication _run] + 772
+	43  UIKitCore                           0x000000018634c79c UIApplicationMain + 124
+	44  App.debug.dylib                     0x000000010127f124 __debug_main_executable_dylib_entry_point + 64
+	45  dyld                                0x000000010067d3d0 start_sim + 20
+	46  ???                                 0x00000001007c4d54 0x0 + 4303113556
+)
+libc++abi: terminating due to uncaught exception of type NSException
+*** Terminating app due to uncaught exception 'com.firebase.core', reason: '`FirebaseApp.configure()` could not find a valid GoogleService-Info.plist in your project. Please download one from https://console.firebase.google.com/.'
+CoreSimulator 1051.17.7 - Device: iPhone 17 Pro (8896DB79-7F31-4902-A207-4825A8B73AA2) - Runtime: iOS 26.2 (23C54) - DeviceType: iPhone 17 Pro
+terminating due to uncaught exception of type NSException
