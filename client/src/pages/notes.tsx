@@ -579,7 +579,7 @@ export default function Notes() {
       </main>
 
       <Dialog open={!!editingNote} onOpenChange={(open) => !open && setEditingNote(null)}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6">
           <DialogHeader>
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Edit3 className="w-5 h-5 text-[#c08e00]" />
@@ -588,7 +588,7 @@ export default function Notes() {
           </DialogHeader>
           
           {editingNote && (
-            <>
+            <div className="space-y-4 mt-4">
               <div className="border-l-2 border-[#c08e00] pl-3 py-1">
                 <p className="font-medium text-foreground">{editingNote.verseRef}</p>
                 <p className="text-sm text-muted-foreground italic line-clamp-2">"{editingNote.verseText}"</p>
@@ -639,7 +639,7 @@ export default function Notes() {
                   Save Changes
                 </Button>
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>
@@ -688,45 +688,43 @@ export default function Notes() {
           setNewNoteTags([]);
         }
       }}>
-        <DialogContent className="flex flex-col items-center justify-center sm:items-stretch sm:justify-start">
-          <div className="w-full max-w-md space-y-4">
-            <DialogHeader>
-              <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
-                <Plus className="w-5 h-5 text-[#c08e00]" />
-                New Note
-              </DialogTitle>
-            </DialogHeader>
-            
-            <div className="space-y-4">
-              <Textarea
-                placeholder="Write your thoughts..."
-                value={newNoteContent}
-                onChange={(e) => setNewNoteContent(e.target.value)}
-                rows={5}
-                className="resize-none"
-                autoFocus
-                data-testid="input-new-note-content"
-              />
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6">
+          <DialogHeader>
+            <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
+              <Plus className="w-5 h-5 text-[#c08e00]" />
+              New Note
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4 mt-4">
+            <Textarea
+              placeholder="Write your thoughts..."
+              value={newNoteContent}
+              onChange={(e) => setNewNoteContent(e.target.value)}
+              rows={5}
+              className="resize-none"
+              autoFocus
+              data-testid="input-new-note-content"
+            />
 
-              <div>
-                <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
-                <div className="flex flex-wrap gap-2">
-                  {TAGS.map(tag => (
-                    <button
-                      key={tag}
-                      onClick={() => toggleNewNoteTag(tag)}
-                      className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
-                        newNoteTags.includes(tag)
-                          ? "bg-[#c08e00] text-white border-[#c08e00]"
-                          : "border-border hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
-                      }`}
-                      style={{ color: newNoteTags.includes(tag) ? 'white' : 'hsl(var(--foreground))' }}
-                      data-testid={`new-note-tag-${tag.toLowerCase()}`}
-                    >
-                      {tag}
-                    </button>
-                  ))}
-                </div>
+            <div>
+              <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
+              <div className="flex flex-wrap gap-2">
+                {TAGS.map(tag => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleNewNoteTag(tag)}
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                      newNoteTags.includes(tag)
+                        ? "bg-[#c08e00] text-white border-[#c08e00]"
+                        : "border-border hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                    }`}
+                    style={{ color: newNoteTags.includes(tag) ? 'white' : 'hsl(var(--foreground))' }}
+                    data-testid={`new-note-tag-${tag.toLowerCase()}`}
+                  >
+                    {tag}
+                  </button>
+                ))}
               </div>
             </div>
 
