@@ -43,6 +43,7 @@ import {
 } from "@/components/ui/select";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -1704,9 +1705,9 @@ Reference: ${verseRef} (${translation})`;
             </div>
 
             <div 
-              className="border-t p-3 bg-background"
+              className="fixed left-0 right-0 border-t p-3 bg-background"
               style={{ 
-                marginBottom: isNative ? "64px" : "0",
+                bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
                 paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
               }}
             >
@@ -1822,9 +1823,9 @@ Reference: ${verseRef} (${translation})`;
             </div>
 
             <div 
-              className="border-t p-3 bg-background"
+              className="fixed left-0 right-0 border-t p-3 bg-background"
               style={{ 
-                marginBottom: isNative ? "64px" : "0",
+                bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
                 paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
               }}
             >
@@ -1959,8 +1960,14 @@ Reference: ${verseRef} (${translation})`;
       </Dialog>
 
       <Dialog open={showCompare} onOpenChange={setShowCompare}>
-        <DialogContent className="sm:max-w-2xl sm:w-[95vw] sm:max-h-[80vh] overflow-hidden flex flex-col p-0 sm:p-6" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
-          <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0">
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[80vh] sm:max-w-2xl sm:w-[95vw] sm:rounded-lg sm:border overflow-hidden flex flex-col p-0 sm:p-6 [&>button]:hidden" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
+          <div className="absolute right-4 z-10" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}>
+            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
+          </div>
+          <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0 pr-12">
             <DialogTitle className="font-serif text-foreground">Compare Translations</DialogTitle>
           </DialogHeader>
           <div className="text-sm text-muted-foreground px-4 sm:px-0 mb-2">

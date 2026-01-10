@@ -585,8 +585,14 @@ export default function Notes() {
       </main>
 
       <Dialog open={!!editingNote} onOpenChange={(open) => !open && setEditingNote(null)}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
-          <DialogHeader>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
+          <div className="absolute right-4 z-10" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
+            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
+          </div>
+          <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Edit3 className="w-5 h-5 text-[#c08e00]" />
               Edit Note
@@ -693,8 +699,14 @@ export default function Notes() {
           setNewNoteTags([]);
         }
       }}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
-          <DialogHeader>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
+          <div className="absolute right-4 z-10" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
+            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
+          </div>
+          <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Plus className="w-5 h-5 text-[#c08e00]" />
               New Note
@@ -758,7 +770,7 @@ export default function Notes() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 hover:bg-[#c08e00]/10 hover:text-[#c08e00] rounded-sm opacity-70 hover:opacity-100"
+              className="h-7 w-7 hover:bg-[#c08e00]/10 hover:text-[#c08e00] rounded-sm opacity-70 hover:opacity-100 text-foreground"
               onClick={() => {
                 if (viewingNote) {
                   handleEditNote(viewingNote);
@@ -772,7 +784,7 @@ export default function Notes() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 hover:bg-destructive/10 hover:text-destructive rounded-sm opacity-70 hover:opacity-100"
+              className="h-7 w-7 hover:bg-destructive/10 hover:text-destructive rounded-sm opacity-70 hover:opacity-100 text-foreground"
               onClick={() => {
                 if (viewingNote) {
                   setDeleteConfirm(viewingNote);
@@ -783,7 +795,7 @@ export default function Notes() {
             >
               <Trash2 className="w-5 h-5" />
             </Button>
-            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity">
+            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
               <X className="h-5 w-5" />
               <span className="sr-only">Close</span>
             </DialogClose>
@@ -791,7 +803,7 @@ export default function Notes() {
           <DialogHeader className="pr-24">
             <div className="flex items-center gap-2 min-w-0">
               <Bookmark className="w-5 h-5 text-[#c08e00] flex-shrink-0" />
-              <span className="font-serif font-semibold break-words">{viewingNote?.verseRef}</span>
+              <span className="font-serif font-semibold break-words text-foreground">{viewingNote?.verseRef}</span>
             </div>
           </DialogHeader>
           
