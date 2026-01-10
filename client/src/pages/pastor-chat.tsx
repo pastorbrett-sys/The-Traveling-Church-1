@@ -686,7 +686,7 @@ export default function PastorChat() {
 
       {/* Tab Toggle - only shown in web mode (native uses bottom tab bar) */}
       {!isNative && (
-        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3">
+        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3 relative z-0">
           <div className="flex items-center justify-between">
             <div className="inline-flex p-1 rounded-lg bg-muted">
               <button
@@ -705,7 +705,7 @@ export default function PastorChat() {
                     transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative flex items-center gap-2">
                   <Book className="w-4 h-4" />
                   Bible
                 </span>
@@ -726,7 +726,7 @@ export default function PastorChat() {
                     transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative flex items-center gap-2">
                   <MessageCircle className="w-4 h-4" />
                   Chat
                 </span>
