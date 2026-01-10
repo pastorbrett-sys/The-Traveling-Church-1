@@ -581,7 +581,7 @@ export default function Notes() {
       <Dialog open={!!editingNote} onOpenChange={(open) => !open && setEditingNote(null)}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle className="font-serif flex items-center gap-2">
+            <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Edit3 className="w-5 h-5 text-[#c08e00]" />
               Edit Note
             </DialogTitle>
@@ -590,7 +590,7 @@ export default function Notes() {
           {editingNote && (
             <>
               <div className="border-l-2 border-[#c08e00] pl-3 py-1">
-                <p className="font-medium">{editingNote.verseRef}</p>
+                <p className="font-medium text-foreground">{editingNote.verseRef}</p>
                 <p className="text-sm text-muted-foreground italic line-clamp-2">"{editingNote.verseText}"</p>
               </div>
 
@@ -612,7 +612,7 @@ export default function Notes() {
                       className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                         editTags.includes(tag)
                           ? "bg-[#c08e00] text-white border-[#c08e00]"
-                          : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                          : "border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
                       }`}
                       data-testid={`edit-tag-${tag.toLowerCase()}`}
                     >
@@ -690,7 +690,7 @@ export default function Notes() {
         <DialogContent className="flex flex-col items-center justify-center sm:items-stretch sm:justify-start">
           <div className="w-full max-w-md space-y-4">
             <DialogHeader>
-              <DialogTitle className="font-serif flex items-center gap-2">
+              <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
                 <Plus className="w-5 h-5 text-[#c08e00]" />
                 New Note
               </DialogTitle>
@@ -717,7 +717,7 @@ export default function Notes() {
                       className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                         newNoteTags.includes(tag)
                           ? "bg-[#c08e00] text-white border-[#c08e00]"
-                          : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                          : "border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
                       }`}
                       data-testid={`new-note-tag-${tag.toLowerCase()}`}
                     >

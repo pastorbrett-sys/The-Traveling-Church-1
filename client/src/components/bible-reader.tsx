@@ -1773,7 +1773,7 @@ Reference: ${verseRef} (${translation})`;
             <div className="flex-1 overflow-y-auto p-4 touch-auto overscroll-contain" ref={discussionChatRef} style={{ touchAction: "pan-y" }}>
               <div className="max-w-2xl mx-auto space-y-4">
                 <div className="border-l-2 border-[#c08e00] pl-3 mb-6 mt-2">
-                  <p className="text-lg font-serif font-bold mb-1">{discussionQuestion}</p>
+                  <p className="text-lg font-serif font-bold mb-1 text-foreground">{discussionQuestion}</p>
                 </div>
 
                 {discussionMessages.length === 0 ? (
@@ -1867,14 +1867,14 @@ Reference: ${verseRef} (${translation})`;
       }}>
         <DialogContent className={`max-w-lg transition-all duration-300 ${showSaveGlow ? "ring-4 ring-[#c08e00]/50 shadow-[0_0_30px_rgba(192,142,0,0.4)]" : ""}`}>
           <DialogHeader>
-            <DialogTitle className="font-serif flex items-center gap-2">
+            <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <StickyNote className="w-5 h-5 text-[#c08e00]" />
               Add Note
             </DialogTitle>
           </DialogHeader>
           
           <div className="border-l-2 border-[#c08e00] pl-3 py-1">
-            <p className="font-medium">{selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}</p>
+            <p className="font-medium text-foreground">{selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}</p>
             <p className="text-sm text-muted-foreground italic line-clamp-2">"{selectedVerse?.text}"</p>
           </div>
 
@@ -1890,7 +1890,7 @@ Reference: ${verseRef} (${translation})`;
                   <button
                     key={prompt}
                     onClick={() => insertPrompt(prompt)}
-                    className="text-xs px-3 py-1.5 rounded-full border hover:bg-[#c08e00]/10 hover:border-[#c08e00] hover:text-[#c08e00] transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-full border border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00] hover:text-[#c08e00] transition-colors"
                     data-testid={`chip-prompt-${prompt.slice(0, 10).replace(/\s/g, '-')}`}
                   >
                     {prompt}
@@ -1918,7 +1918,7 @@ Reference: ${verseRef} (${translation})`;
                     className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                       noteTags.includes(tag)
                         ? "bg-[#c08e00] text-white border-[#c08e00]"
-                        : "hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                        : "border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
                     }`}
                     data-testid={`tag-${tag.toLowerCase()}`}
                   >
@@ -1961,7 +1961,7 @@ Reference: ${verseRef} (${translation})`;
       <Dialog open={showCompare} onOpenChange={setShowCompare}>
         <DialogContent className="sm:max-w-2xl sm:w-[95vw] sm:max-h-[80vh] overflow-hidden flex flex-col p-0 sm:p-6">
           <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0">
-            <DialogTitle className="font-serif">Compare Translations</DialogTitle>
+            <DialogTitle className="font-serif text-foreground">Compare Translations</DialogTitle>
           </DialogHeader>
           <div className="text-sm text-muted-foreground px-4 sm:px-0 mb-2">
             {selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}
@@ -2013,7 +2013,7 @@ Reference: ${verseRef} (${translation})`;
                         </div>
                         {item.verses.map((v) => {
                           const { content } = parseVerseText(v.text);
-                          return <p key={v.pk} className="text-sm leading-relaxed">{content}</p>;
+                          return <p key={v.pk} className="text-sm leading-relaxed text-foreground">{content}</p>;
                         })}
                       </div>
                     );
