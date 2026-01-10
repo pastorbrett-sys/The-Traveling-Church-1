@@ -281,7 +281,7 @@ export default function Notes() {
 
   if (isLoading) {
     return (
-      <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+      <div className={`bg-background text-foreground antialiased flex flex-col ${isNative ? "h-screen overflow-hidden" : "min-h-screen"}`}>
         <Navigation customLogo={vagabondLogo} hideNavLinks={true} showAuth={true} />
         <main className="flex-1 flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-[#c08e00]" />
@@ -291,10 +291,10 @@ export default function Notes() {
   }
 
   return (
-    <div className="bg-background text-foreground antialiased min-h-screen flex flex-col">
+    <div className={`bg-background text-foreground antialiased flex flex-col ${isNative ? "h-screen overflow-hidden" : "min-h-screen"}`}>
       <Navigation customLogo={vagabondLogo} hideNavLinks={true} showAuth={true} />
 
-      <main className="flex-1">
+      <main className={`flex-1 ${isNative ? "overflow-y-auto pb-20" : ""}`}>
         <div className="max-w-4xl mx-auto px-4 pt-[14px] pb-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">

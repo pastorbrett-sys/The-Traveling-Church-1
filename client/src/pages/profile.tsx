@@ -190,7 +190,7 @@ export default function Profile() {
         isNative ? "h-screen overflow-hidden" : "min-h-screen"
       }`}>
         {!isNative && <VagabondHeader />}
-        <main className="flex-1 flex items-center justify-center">
+        <main className={`flex-1 flex items-center justify-center ${isNative ? "safe-area-top" : ""}`}>
           <Loader2 className="w-8 h-8 animate-spin text-[hsl(25,35%,45%)]" />
         </main>
       </div>
@@ -203,7 +203,7 @@ export default function Profile() {
         isNative ? "h-screen overflow-hidden" : "min-h-screen"
       }`}>
         {!isNative && <VagabondHeader />}
-        <main className={`flex-1 pt-5 overflow-y-auto ${isNative ? "pb-20" : "pb-16"}`}>
+        <main className={`flex-1 overflow-y-auto ${isNative ? "safe-area-top pb-20 pt-4" : "pt-5 pb-16"}`}>
           <div className="max-w-2xl mx-auto px-4 md:px-8">
             {!isNative && (
               <button
@@ -255,7 +255,7 @@ export default function Profile() {
     }`}>
       {!isNative && <VagabondHeader />}
 
-      <main className={`flex-1 pt-5 overflow-y-auto ${isNative ? "pb-20" : "pb-16"}`}>
+      <main className={`flex-1 overflow-y-auto ${isNative ? "safe-area-top pb-20 pt-4" : "pt-5 pb-16"}`}>
         <div className="max-w-2xl mx-auto px-4 md:px-8">
           {!isNative && (
             <button

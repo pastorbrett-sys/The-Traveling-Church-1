@@ -76,7 +76,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
+    <nav className={`sticky top-0 z-50 bg-card border-b border-border shadow-sm ${isNative ? "safe-area-top" : ""}`}>
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {customLogo ? (
