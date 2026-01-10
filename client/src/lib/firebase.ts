@@ -29,6 +29,14 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
+// Debug: Log Firebase config status (without exposing sensitive values)
+if (Capacitor.isNativePlatform()) {
+  console.log('[Firebase Config] Native platform detected');
+  console.log('[Firebase Config] API Key present:', !!firebaseConfig.apiKey);
+  console.log('[Firebase Config] Project ID:', firebaseConfig.projectId || 'MISSING');
+  console.log('[Firebase Config] App ID present:', !!firebaseConfig.appId);
+}
+
 const app = initializeApp(firebaseConfig);
 
 // Use initializeAuth with explicit persistence for Capacitor compatibility

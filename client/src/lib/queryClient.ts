@@ -1,5 +1,6 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { Capacitor } from '@capacitor/core';
+import { auth } from './firebase';
 
 // Production server URL for native apps
 const PRODUCTION_URL = 'https://the-traveling-church-brettlindstrom.replit.app';
@@ -15,13 +16,46 @@ export function getApiUrl(url: string): string {
   return url;
 }
 
+// Get Firebase ID token for Authorization header (native apps)
+async function getAuthHeaders(): Promise<HeadersInit> {
+  const headers: HeadersInit = {};
+  
+  // On native, use Bearer token since cookies don't work
+  if (Capacitor.isNativePlatform()) {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const idToken = await user.getIdToken();
+        headers['Authorization'] = `Bearer ${idToken}`;
+      }
+    } catch (error) {
+      console.error('Error getting Firebase ID token:', error);
+    }
+  }
+  
+  return headers;
+}
+
 // Helper for direct fetch calls that need the correct API URL
 export async function apiFetch(url: string, options?: RequestInit): Promise<Response> {
   const fullUrl = getApiUrl(url);
+  const authHeaders = await getAuthHeaders();
+  
   const defaultOptions: RequestInit = {
     credentials: "include",
   };
-  return fetch(fullUrl, { ...defaultOptions, ...options });
+  
+  // Merge auth headers with any existing headers
+  const mergedOptions = {
+    ...defaultOptions,
+    ...options,
+    headers: {
+      ...authHeaders,
+      ...(options?.headers || {}),
+    },
+  };
+  
+  return fetch(fullUrl, mergedOptions);
 }
 
 async function throwIfResNotOk(res: Response) {
@@ -36,9 +70,13 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
+  const authHeaders = await getAuthHeaders();
   const res = await fetch(getApiUrl(url), {
     method,
-    headers: data ? { "Content-Type": "application/json" } : {},
+    headers: {
+      ...authHeaders,
+      ...(data ? { "Content-Type": "application/json" } : {}),
+    },
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
   });
@@ -54,8 +92,10 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     const url = queryKey.join("/") as string;
+    const authHeaders = await getAuthHeaders();
     const res = await fetch(getApiUrl(url), {
       credentials: "include",
+      headers: authHeaders,
     });
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {
