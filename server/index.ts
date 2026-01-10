@@ -71,8 +71,6 @@ async function initStripe() {
   }
 }
 
-await initStripe();
-
 app.post(
   '/api/stripe/webhook',
   express.raw({ type: 'application/json' }),
@@ -146,6 +144,9 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Initialize Stripe first
+  await initStripe();
+  
   const { storagePromise } = await import("./storage");
   await storagePromise;
 
