@@ -87,12 +87,33 @@
     -webkit-overflow-scrolling: touch;
   }
   
+  /* iOS Safe Area CSS Variables - use these for consistent spacing */
+  :root {
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+    --tab-bar-height: 64px;
+    /* Total bottom offset = tab bar + safe area */
+    --bottom-nav-offset: calc(var(--tab-bar-height) + var(--safe-area-bottom));
+  }
+
   .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   
   .safe-area-top {
-    padding-top: env(safe-area-inset-top, 0);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  
+  /* Native app content padding - accounts for tab bar + safe area */
+  .native-content-bottom {
+    padding-bottom: var(--bottom-nav-offset);
+  }
+  
+  /* Fixed elements positioned above the native tab bar */
+  .native-fixed-bottom {
+    bottom: var(--bottom-nav-offset);
   }
 
   html {
