@@ -3,7 +3,7 @@ import { Capacitor } from '@capacitor/core';
 import { auth } from './firebase';
 
 // Production server URL for native apps
-const PRODUCTION_URL = 'https://the-traveling-church-brettlindstrom.replit.app';
+const PRODUCTION_URL = 'https://vagabondbible.com';
 
 // Evaluate platform at call time, not module initialization time
 export function getApiUrl(url: string): string {
