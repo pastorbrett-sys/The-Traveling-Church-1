@@ -97,6 +97,12 @@ Preferred communication style: Simple, everyday language.
 - **Native Tab Bar**: Dark gradient bottom navigation (#1a1a1a to #000000) with gold active states (#b8860b)
 - **Platform Detection**: `Capacitor.isNativePlatform()` for true native detection; `usePlatform()` hook for UI-level native simulation
 - **Full-screen Modals**: All mobile modals use full-screen layout with inset-0 positioning
+- **Safe Area Patterns**:
+  - Full-screen dialogs: Add `style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}` to DialogContent
+  - Paywall modals: Add `style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}` to DialogContent with inner div padding
+  - Absolute positioned buttons inside modals: Use `style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}`
+  - Bottom navigation: Fixed at `bottom: calc(env(safe-area-inset-bottom, 0px))` with 64px tab bar height
+  - Textarea visibility: Always add `text-foreground` class to ensure dark text on light backgrounds
 
 ## Native App Build Process (CRITICAL)
 

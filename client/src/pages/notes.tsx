@@ -585,7 +585,7 @@ export default function Notes() {
       </main>
 
       <Dialog open={!!editingNote} onOpenChange={(open) => !open && setEditingNote(null)}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6">
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
           <DialogHeader>
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Edit3 className="w-5 h-5 text-[#c08e00]" />
@@ -604,7 +604,7 @@ export default function Notes() {
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
                 rows={4}
-                className="resize-none"
+                className="resize-none text-foreground"
                 data-testid="input-edit-note"
               />
 
@@ -693,7 +693,7 @@ export default function Notes() {
           setNewNoteTags([]);
         }
       }}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6">
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
           <DialogHeader>
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Plus className="w-5 h-5 text-[#c08e00]" />
@@ -707,7 +707,7 @@ export default function Notes() {
               value={newNoteContent}
               onChange={(e) => setNewNoteContent(e.target.value)}
               rows={5}
-              className="resize-none"
+              className="resize-none text-foreground"
               autoFocus
               data-testid="input-new-note-content"
             />
@@ -753,8 +753,8 @@ export default function Notes() {
       </Dialog>
 
       <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto overflow-x-hidden [&>button]:hidden">
-          <div className="absolute right-4 top-4 flex items-center gap-1">
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto overflow-x-hidden [&>button]:hidden" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
+          <div className="absolute right-4 flex items-center gap-1" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}>
             <Button
               variant="ghost"
               size="icon"

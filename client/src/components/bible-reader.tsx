@@ -1630,7 +1630,7 @@ Reference: ${verseRef} (${translation})`;
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 bg-background flex flex-col touch-none"
-            style={{ touchAction: "none" }}
+            style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
           >
             <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
@@ -1723,7 +1723,7 @@ Reference: ${verseRef} (${translation})`;
                     }
                   }}
                   rows={1}
-                  className="resize-none min-h-[44px] max-h-32 py-[10px] flex items-center"
+                  className="resize-none min-h-[44px] max-h-32 py-[10px] flex items-center text-foreground"
                   data-testid="input-insight-followup"
                 />
                 <Button
@@ -1749,7 +1749,7 @@ Reference: ${verseRef} (${translation})`;
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 bg-background flex flex-col touch-none"
-            style={{ touchAction: "none" }}
+            style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
           >
             <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
@@ -1841,7 +1841,7 @@ Reference: ${verseRef} (${translation})`;
                     }
                   }}
                   rows={1}
-                  className="resize-none min-h-[44px] max-h-32 py-[10px] flex items-center"
+                  className="resize-none min-h-[44px] max-h-32 py-[10px] flex items-center text-foreground"
                   data-testid="input-discussion-followup"
                 />
                 <Button
@@ -1904,7 +1904,7 @@ Reference: ${verseRef} (${translation})`;
               value={noteText}
               onChange={(e) => setNoteText(e.target.value)}
               rows={4}
-              className="resize-none"
+              className="resize-none text-foreground"
               data-testid="input-note"
             />
 
@@ -1959,7 +1959,7 @@ Reference: ${verseRef} (${translation})`;
       </Dialog>
 
       <Dialog open={showCompare} onOpenChange={setShowCompare}>
-        <DialogContent className="sm:max-w-2xl sm:w-[95vw] sm:max-h-[80vh] overflow-hidden flex flex-col p-0 sm:p-6">
+        <DialogContent className="sm:max-w-2xl sm:w-[95vw] sm:max-h-[80vh] overflow-hidden flex flex-col p-0 sm:p-6" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
           <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0">
             <DialogTitle className="font-serif text-foreground">Compare Translations</DialogTitle>
           </DialogHeader>

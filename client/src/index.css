@@ -115,6 +115,21 @@
   .native-fixed-bottom {
     bottom: var(--bottom-nav-offset);
   }
+  
+  /* Native modal safe area - adds padding for iOS status bar */
+  .native-modal-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  
+  /* Ensure textarea text is always visible - dark text on light backgrounds */
+  textarea.native-input-fix {
+    color: hsl(20, 10%, 25%) !important;
+    caret-color: hsl(20, 10%, 25%);
+  }
+  
+  textarea.native-input-fix::placeholder {
+    color: hsl(20, 10%, 50%);
+  }
 
   html {
     scroll-behavior: smooth;
