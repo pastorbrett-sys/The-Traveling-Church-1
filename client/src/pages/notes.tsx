@@ -294,7 +294,13 @@ export default function Notes() {
     <div className={`bg-background text-foreground antialiased flex flex-col ${isNative ? "h-screen overflow-hidden" : "min-h-screen"}`}>
       <Navigation customLogo={vagabondLogo} hideNavLinks={true} showAuth={true} />
 
-      <main className={`flex-1 ${isNative ? "overflow-y-auto pb-20" : ""}`}>
+      <main 
+        className="flex-1"
+        style={isNative ? { 
+          overflowY: 'auto', 
+          paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
+        } : undefined}
+      >
         <div className="max-w-4xl mx-auto px-4 pt-[14px] pb-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">

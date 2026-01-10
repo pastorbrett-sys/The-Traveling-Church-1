@@ -203,7 +203,13 @@ export default function Profile() {
         isNative ? "h-screen overflow-hidden" : "min-h-screen"
       }`}>
         {!isNative && <VagabondHeader />}
-        <main className={`flex-1 overflow-y-auto ${isNative ? "safe-area-top pb-20 pt-4" : "pt-5 pb-16"}`}>
+        <main 
+          className="flex-1 overflow-y-auto"
+          style={isNative ? { 
+            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
+            paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
+          } : { paddingTop: '1.25rem', paddingBottom: '4rem' }}
+        >
           <div className="max-w-2xl mx-auto px-4 md:px-8">
             {!isNative && (
               <button
@@ -255,7 +261,13 @@ export default function Profile() {
     }`}>
       {!isNative && <VagabondHeader />}
 
-      <main className={`flex-1 overflow-y-auto ${isNative ? "safe-area-top pb-20 pt-4" : "pt-5 pb-16"}`}>
+      <main 
+        className="flex-1 overflow-y-auto"
+        style={isNative ? { 
+          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
+          paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
+        } : { paddingTop: '1.25rem', paddingBottom: '4rem' }}
+      >
         <div className="max-w-2xl mx-auto px-4 md:px-8">
           {!isNative && (
             <button

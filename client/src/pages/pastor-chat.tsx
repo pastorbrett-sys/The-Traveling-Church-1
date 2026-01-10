@@ -832,7 +832,7 @@ export default function PastorChat() {
         ref={footerRef}
         className="fixed left-0 right-0 p-4 bg-card border-t border-border"
         style={{ 
-          bottom: isNative ? "64px" : "0",
+          bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
           paddingBottom: isNative ? "16px" : "calc(env(safe-area-inset-bottom, 0px) + 16px)" 
         }}
       >

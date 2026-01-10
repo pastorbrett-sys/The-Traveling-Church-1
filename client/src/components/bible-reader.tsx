@@ -1568,7 +1568,7 @@ Reference: ${verseRef} (${translation})`;
             transition={{ type: "spring", stiffness: 500, damping: 35 }}
             className="fixed left-0 right-0 border-t p-3 bg-background shadow-lg z-50"
             style={{ 
-              bottom: isNative ? "64px" : "0",
+              bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
               paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
             }}
           >
