@@ -13,7 +13,7 @@ interface RevenueCatContextType {
 
 const RevenueCatContext = createContext<RevenueCatContextType | null>(null);
 
-const REVENUECAT_SDK_KEY = import.meta.env.VITE_REVENUECAT_SDK_KEY || '';
+const REVENUECAT_SDK_KEY = 'appl_IHuuguwDzrFpaSziwpBDtyAdmqg';
 
 export function RevenueCatProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);

@@ -23,13 +23,23 @@ async function getAuthHeaders(): Promise<HeadersInit> {
   // On native, use Bearer token since cookies don't work
   if (Capacitor.isNativePlatform()) {
     try {
-      const user = auth.currentUser;
-      if (user) {
-        const idToken = await user.getIdToken();
-        headers['Authorization'] = `Bearer ${idToken}`;
+      // Try native Firebase plugin first
+      const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication');
+      const result = await FirebaseAuthentication.getIdToken();
+      if (result.token) {
+        headers['Authorization'] = `Bearer ${result.token}`;
       }
     } catch (error) {
-      console.error('Error getting Firebase ID token:', error);
+      // Fallback to web SDK auth
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const idToken = await user.getIdToken();
+          headers['Authorization'] = `Bearer ${idToken}`;
+        }
+      } catch (fallbackError) {
+        console.error('Error getting Firebase ID token:', fallbackError);
+      }
     }
   }
   

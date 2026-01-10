@@ -22,40 +22,45 @@ import {
 import { Capacitor } from "@capacitor/core";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyD04isY5WpNZqfCPrbfeRJuZWDs8X15k7Q",
+  apiKey: "AIzaSyD04isY5WpNZqfCPrbfeRJuZWDs8X15k7Q",
   authDomain: "travelingchurch-1b4ab.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "travelingchurch-1b4ab",
+  projectId: "travelingchurch-1b4ab",
   storageBucket: "travelingchurch-1b4ab.firebasestorage.app",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:120766949732:web:710ac04f4a4a8e44a5b271",
+  appId: "1:120766949732:web:710ac04f4a4a8e44a5b271",
 };
 
-// Debug: Log Firebase config status (without exposing sensitive values)
+// Debug: Log Firebase config status
 if (Capacitor.isNativePlatform()) {
   console.log('[Firebase Config] Native platform detected');
   console.log('[Firebase Config] API Key present:', !!firebaseConfig.apiKey);
-  console.log('[Firebase Config] Project ID:', firebaseConfig.projectId || 'MISSING');
+  console.log('[Firebase Config] Project ID:', firebaseConfig.projectId);
   console.log('[Firebase Config] App ID present:', !!firebaseConfig.appId);
 }
 
-const app = initializeApp(firebaseConfig);
+let app: ReturnType<typeof initializeApp>;
+try {
+  app = initializeApp(firebaseConfig);
+  console.log('[Firebase] App initialized successfully');
+} catch (e: any) {
+  console.error('[Firebase] App initialization failed:', e.message);
+  throw e;
+}
 
 // Use initializeAuth with explicit persistence for Capacitor compatibility
-// WKWebView has issues with default persistence, causing onAuthStateChanged to never fire
+// On native, we use the native Firebase SDK for auth, so just use getAuth
 function createAuth(): Auth {
-  if (Capacitor.isNativePlatform()) {
-    // On native, use indexedDB persistence with fallback to browserLocal
-    // This avoids the WKWebView persistence deadlock
-    try {
-      return initializeAuth(app, {
-        persistence: [indexedDBLocalPersistence, browserLocalPersistence]
-      });
-    } catch (e) {
-      // If already initialized, return existing instance
+  try {
+    if (Capacitor.isNativePlatform()) {
+      // On native, just use getAuth - native SDK handles persistence
+      console.log('[Firebase] Using getAuth for native platform');
       return getAuth(app);
     }
+    // On web, use default getAuth
+    return getAuth(app);
+  } catch (e: any) {
+    console.error('[Firebase] Auth initialization failed:', e.message);
+    throw e;
   }
-  // On web, use default getAuth
-  return getAuth(app);
 }
 
 export const auth = createAuth();
