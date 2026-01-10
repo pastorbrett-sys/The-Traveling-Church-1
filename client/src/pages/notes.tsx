@@ -458,24 +458,24 @@ export default function Notes() {
                   {selectedBook && (
                     <Badge
                       variant="secondary"
-                      className="gap-1 cursor-pointer hover:bg-destructive/20"
+                      className="gap-1 cursor-pointer hover:bg-destructive/20 bg-[#c08e00]/20 text-[#c08e00] border border-[#c08e00]/30"
                       onClick={() => setSelectedBook(null)}
                     >
-                      <BookOpen className="w-3 h-3" />
+                      <BookOpen className="w-3 h-3 text-[#c08e00]" />
                       {selectedBook}
-                      <X className="w-3 h-3 ml-1" />
+                      <X className="w-3 h-3 ml-1 text-[#c08e00]" />
                     </Badge>
                   )}
                   {selectedTags.map(tag => (
                     <Badge
                       key={tag}
                       variant="secondary"
-                      className="gap-1 cursor-pointer hover:bg-destructive/20"
+                      className="gap-1 cursor-pointer hover:bg-destructive/20 bg-[#c08e00]/20 text-[#c08e00] border border-[#c08e00]/30"
                       onClick={() => setSelectedTags(prev => prev.filter(t => t !== tag))}
                     >
-                      <Tag className="w-3 h-3" />
+                      <Tag className="w-3 h-3 text-[#c08e00]" />
                       {tag}
-                      <X className="w-3 h-3 ml-1" />
+                      <X className="w-3 h-3 ml-1 text-[#c08e00]" />
                     </Badge>
                   ))}
                 </div>
@@ -547,7 +547,7 @@ export default function Notes() {
                                 <Badge
                                   key={tag}
                                   variant="outline"
-                                  className="text-xs"
+                                  className="text-xs bg-[#c08e00]/10 text-[#c08e00] border-[#c08e00]/30"
                                 >
                                   {tag}
                                 </Badge>
@@ -817,7 +817,7 @@ export default function Notes() {
                     <Badge
                       key={tag}
                       variant="outline"
-                      className="text-xs"
+                      className="text-xs bg-[#c08e00]/10 text-[#c08e00] border-[#c08e00]/30"
                     >
                       {tag}
                     </Badge>
