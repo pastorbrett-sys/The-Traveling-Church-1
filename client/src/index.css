@@ -70,17 +70,24 @@
   }
 
   html, body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased;
+    background-color: #000000;
+    color: #ffffff;
   }
   
-  /* Ensure safe area background matches app background on native */
+  /* Prevent white background showing when keyboard opens on iOS */
   html {
-    background-color: #000000;
+    background-color: #000000 !important;
+    height: 100%;
+    overflow: hidden;
   }
   
   body {
-    min-height: 100vh;
+    min-height: 100%;
     min-height: 100dvh;
+    background-color: #000000 !important;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .safe-area-bottom {
