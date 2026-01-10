@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { apiRequest, apiFetch } from "@/lib/queryClient";
+import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useToast } from "@/hooks/use-toast";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
@@ -81,7 +82,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
       const checkoutData = await checkoutRes.json();
       
       if (checkoutData.url) {
-        window.location.href = checkoutData.url;
+        await openExternalUrl(checkoutData.url);
       } else {
         throw new Error("No checkout URL returned");
       }

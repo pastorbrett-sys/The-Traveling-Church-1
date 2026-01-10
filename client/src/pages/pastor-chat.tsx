@@ -22,6 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
+import { openExternalUrl } from "@/lib/open-url";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/navigation";
@@ -407,7 +408,7 @@ export default function PastorChat() {
       console.log("Checkout response:", checkoutData);
       
       if (checkoutData.url) {
-        window.location.href = checkoutData.url;
+        await openExternalUrl(checkoutData.url);
       } else {
         alert("No checkout URL returned: " + JSON.stringify(checkoutData));
       }

@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest, apiFetch } from "@/lib/queryClient";
+import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
@@ -84,9 +85,8 @@ export default function Profile() {
       const res = await apiRequest("POST", "/api/stripe/my-portal");
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        await openExternalUrl(data.url);
       } else if (data.customerReset) {
-        // Customer was reset, reload the page to show updated state
         window.location.reload();
       }
     } catch (error) {
@@ -110,7 +110,7 @@ export default function Profile() {
       const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", { priceId: proPrice.id });
       const checkoutData = await checkoutRes.json();
       if (checkoutData.url) {
-        window.location.href = checkoutData.url;
+        await openExternalUrl(checkoutData.url);
       }
     } catch (error) {
       console.error("Checkout error:", error);

@@ -1,3 +1,5 @@
+import { Capacitor } from '@capacitor/core';
+
 export function isUnauthorizedError(error: Error): boolean {
   return /^401: .*Unauthorized/.test(error.message);
 }
@@ -16,6 +18,12 @@ export function redirectToLogin(toast?: (options: { title: string; description: 
     const loginUrl = currentPath && currentPath !== "/" 
       ? `/login?redirect=${encodeURIComponent(currentPath)}`
       : "/login";
-    window.location.href = loginUrl;
+    
+    // On native, use in-app navigation instead of window.location.href
+    if (Capacitor.isNativePlatform()) {
+      window.location.replace(loginUrl);
+    } else {
+      window.location.href = loginUrl;
+    }
   }, 500);
 }

@@ -58,11 +58,19 @@ export async function setupAuth(app: Express) {
   });
 
   app.get("/api/logout", (req, res) => {
+    // Check if request wants JSON (API call from native app)
+    const wantsJson = req.headers.accept?.includes('application/json') || 
+                      req.headers.authorization?.startsWith('Bearer ');
+    
     req.session.destroy((err) => {
       if (err) {
         console.error("Session destroy error:", err);
       }
-      res.redirect("/login");
+      if (wantsJson) {
+        res.json({ success: true, message: "Logged out" });
+      } else {
+        res.redirect("/login");
+      }
     });
   });
 }

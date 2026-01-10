@@ -16,7 +16,7 @@ interface NavigationProps {
 export default function Navigation({ customLogo, showAuth = false, hideNavLinks = false, rightContent }: NavigationProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const isHomePage = location === "/";
   const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
   const { isNative } = usePlatform();
@@ -47,7 +47,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
 
   const handleNavClick = (sectionId: string) => {
     if (!isHomePage) {
-      window.location.href = `/#${sectionId}`;
+      // Navigate to home page first, then scroll will happen via hash
+      setLocation(`/#${sectionId}`);
       return;
     }
     

@@ -86,8 +86,11 @@ export function useAuth() {
       await logoutFirebase();
       queryClient.setQueryData(["/api/auth/user"], null);
       queryClient.clear();
-      // Call backend logout without redirect
-      await apiFetch("/api/logout", { method: "GET" });
+      // Call backend logout - request JSON to prevent redirect on native
+      await apiFetch("/api/logout", { 
+        method: "GET",
+        headers: { "Accept": "application/json" }
+      });
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
