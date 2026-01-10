@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
   webDir: 'dist/public',
   server: {
     androidScheme: 'https',
-    iosScheme: 'https',
+    iosScheme: 'capacitor',
   },
   plugins: {
     CapacitorHttp: {
@@ -28,7 +28,7 @@ const config: CapacitorConfig = {
       backgroundColor: '#1a1a2e',
     },
     FirebaseAuthentication: {
-      skipNativeAuth: true,
+      skipNativeAuth: false,
       providers: ["google.com"],
     },
   },

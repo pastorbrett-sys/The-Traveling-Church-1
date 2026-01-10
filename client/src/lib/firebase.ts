@@ -64,30 +64,23 @@ const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<FirebaseUser | null> {
   try {
-    // On native apps, use Capacitor Firebase Authentication plugin
+    // On native apps, use Capacitor Firebase Authentication plugin with native auth
     if (Capacitor.isNativePlatform()) {
       const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
       
-      // Use skipNativeAuth to get credential, then sign in with web SDK
-      // This ensures the web Firebase SDK is aware of the auth state
-      const result = await FirebaseAuthentication.signInWithGoogle({
-        skipNativeAuth: true,
-        scopes: ['profile', 'email']
-      });
+      console.log("[NATIVE AUTH] Starting Google sign-in with native SDK...");
       
-      if (result.credential?.idToken) {
-        // Create Firebase credential from the native result
-        const credential = GoogleAuthProvider.credential(
-          result.credential.idToken,
-          result.credential.accessToken || null
-        );
-        
-        // Sign in to Firebase Web SDK with the credential
-        const userCredential = await signInWithCredential(auth, credential);
-        return userCredential.user;
+      // skipNativeAuth is now FALSE in config, so this uses native iOS Firebase SDK
+      const result = await FirebaseAuthentication.signInWithGoogle();
+      
+      console.log("[NATIVE AUTH] Google sign-in complete, user:", result.user?.email);
+      
+      if (result.user) {
+        // Return a shim user object that matches FirebaseUser interface
+        const idTokenResult = await FirebaseAuthentication.getIdToken();
+        return createNativeUserShim(result.user, idTokenResult.token);
       }
       
-      console.error("No credential returned from native Google sign-in");
       return null;
     }
     
@@ -102,6 +95,29 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
     }
     throw error;
   }
+}
+
+// Create a shim user object for native auth that matches FirebaseUser interface
+function createNativeUserShim(nativeUser: any, idToken: string): FirebaseUser {
+  return {
+    uid: nativeUser.uid,
+    email: nativeUser.email,
+    emailVerified: nativeUser.emailVerified ?? false,
+    displayName: nativeUser.displayName,
+    photoURL: nativeUser.photoUrl,
+    phoneNumber: nativeUser.phoneNumber,
+    isAnonymous: nativeUser.isAnonymous ?? false,
+    providerId: 'firebase',
+    metadata: {},
+    providerData: [],
+    refreshToken: '',
+    tenantId: null,
+    delete: async () => {},
+    getIdToken: async () => idToken,
+    getIdTokenResult: async () => ({ token: idToken } as any),
+    reload: async () => {},
+    toJSON: () => ({}),
+  } as FirebaseUser;
 }
 
 export async function handleRedirectResult(): Promise<FirebaseUser | null> {
@@ -119,6 +135,24 @@ export async function handleRedirectResult(): Promise<FirebaseUser | null> {
 }
 
 export async function signUpWithEmail(email: string, password: string, displayName?: string): Promise<FirebaseUser> {
+  // On native, use native Firebase SDK
+  if (Capacitor.isNativePlatform()) {
+    const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+    
+    console.log("[NATIVE AUTH] Starting email sign-up with native SDK...");
+    const result = await FirebaseAuthentication.createUserWithEmailAndPassword({ email, password });
+    
+    if (result.user) {
+      // Send verification email
+      await FirebaseAuthentication.sendEmailVerification();
+      const idTokenResult = await FirebaseAuthentication.getIdToken();
+      console.log("[NATIVE AUTH] Email sign-up complete, user:", result.user.email);
+      return createNativeUserShim(result.user, idTokenResult.token);
+    }
+    throw new Error("Sign up failed - no user returned");
+  }
+  
+  // On web, use Web SDK
   const result = await createUserWithEmailAndPassword(auth, email, password);
   if (displayName && result.user) {
     await updateProfile(result.user, { displayName });
@@ -137,20 +171,31 @@ export async function resendVerificationEmail(): Promise<void> {
 }
 
 export async function signInWithEmail(email: string, password: string): Promise<FirebaseUser> {
-  console.log("[FIREBASE DEBUG] signInWithEmail called");
-  console.log("[FIREBASE DEBUG] Auth instance:", auth ? "exists" : "null");
-  console.log("[FIREBASE DEBUG] Auth currentUser:", auth.currentUser?.email || "none");
-  
-  try {
-    console.log("[FIREBASE DEBUG] Calling signInWithEmailAndPassword...");
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    console.log("[FIREBASE DEBUG] signInWithEmailAndPassword SUCCESS");
-    return result.user;
-  } catch (error: any) {
-    console.error("[FIREBASE DEBUG] signInWithEmailAndPassword FAILED");
-    console.error("[FIREBASE DEBUG] Error:", error);
-    throw error;
+  // On native, use native Firebase SDK
+  if (Capacitor.isNativePlatform()) {
+    const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+    
+    console.log("[NATIVE AUTH] Starting email sign-in with native SDK...");
+    
+    try {
+      const result = await FirebaseAuthentication.signInWithEmailAndPassword({ email, password });
+      
+      if (result.user) {
+        const idTokenResult = await FirebaseAuthentication.getIdToken();
+        console.log("[NATIVE AUTH] Email sign-in complete, user:", result.user.email);
+        return createNativeUserShim(result.user, idTokenResult.token);
+      }
+      throw new Error("Sign in failed - no user returned");
+    } catch (error: any) {
+      console.error("[NATIVE AUTH] Email sign-in FAILED:", error);
+      throw error;
+    }
   }
+  
+  // On web, use Web SDK
+  console.log("[FIREBASE DEBUG] signInWithEmail called (web)");
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  return result.user;
 }
 
 export async function resetPassword(email: string): Promise<void> {
@@ -183,16 +228,68 @@ export function getFirebaseErrorMessage(code: string): string {
 }
 
 export async function logoutFirebase(): Promise<void> {
+  // On native, use native Firebase SDK
+  if (Capacitor.isNativePlatform()) {
+    const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+    await FirebaseAuthentication.signOut();
+    return;
+  }
+  
+  // On web, use Web SDK
   await signOut(auth);
 }
 
 export async function getIdToken(): Promise<string | null> {
+  // On native, use native Firebase SDK
+  if (Capacitor.isNativePlatform()) {
+    try {
+      const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+      const result = await FirebaseAuthentication.getIdToken();
+      return result.token;
+    } catch {
+      return null;
+    }
+  }
+  
+  // On web, use Web SDK
   const user = auth.currentUser;
   if (!user) return null;
   return user.getIdToken();
 }
 
 export function onAuthChange(callback: (user: FirebaseUser | null) => void): () => void {
+  // On native, use native Firebase SDK's auth state listener
+  if (Capacitor.isNativePlatform()) {
+    let unsubscribe: (() => void) | null = null;
+    
+    import("@capacitor-firebase/authentication").then(({ FirebaseAuthentication }) => {
+      FirebaseAuthentication.addListener('authStateChange', async (state) => {
+        console.log("[NATIVE AUTH] Auth state changed:", state.user?.email || "null");
+        
+        if (state.user) {
+          try {
+            const idTokenResult = await FirebaseAuthentication.getIdToken();
+            const shimUser = createNativeUserShim(state.user, idTokenResult.token);
+            callback(shimUser);
+          } catch (e) {
+            console.error("[NATIVE AUTH] Failed to get token on auth change:", e);
+            callback(null);
+          }
+        } else {
+          callback(null);
+        }
+      });
+    });
+    
+    // Return cleanup function
+    return () => {
+      import("@capacitor-firebase/authentication").then(({ FirebaseAuthentication }) => {
+        FirebaseAuthentication.removeAllListeners();
+      });
+    };
+  }
+  
+  // On web, use Web SDK
   return onAuthStateChanged(auth, callback);
 }
 
