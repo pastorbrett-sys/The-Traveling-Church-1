@@ -22,11 +22,11 @@ import {
 import { Capacitor } from "@capacitor/core";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebaseapp.com`,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebasestorage.app`,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyD04isY5WpNZqfCPrbfeRJuZWDs8X15k7Q",
+  authDomain: "travelingchurch-1b4ab.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "travelingchurch-1b4ab",
+  storageBucket: "travelingchurch-1b4ab.firebasestorage.app",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:120766949732:web:710ac04f4a4a8e44a5b271",
 };
 
 // Debug: Log Firebase config status (without exposing sensitive values)
