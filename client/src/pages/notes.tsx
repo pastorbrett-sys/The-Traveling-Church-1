@@ -612,8 +612,9 @@ export default function Notes() {
                       className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                         editTags.includes(tag)
                           ? "bg-[#c08e00] text-white border-[#c08e00]"
-                          : "border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                          : "border-border hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
                       }`}
+                      style={{ color: editTags.includes(tag) ? 'white' : 'hsl(var(--foreground))' }}
                       data-testid={`edit-tag-${tag.toLowerCase()}`}
                     >
                       {tag}
@@ -623,7 +624,7 @@ export default function Notes() {
               </div>
 
               <div className="flex justify-end gap-2 pt-2">
-                <Button variant="ghost" onClick={() => setEditingNote(null)}>
+                <Button variant="ghost" onClick={() => setEditingNote(null)} className="text-foreground">
                   Cancel
                 </Button>
                 <Button
@@ -717,8 +718,9 @@ export default function Notes() {
                       className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                         newNoteTags.includes(tag)
                           ? "bg-[#c08e00] text-white border-[#c08e00]"
-                          : "border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                          : "border-border hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
                       }`}
+                      style={{ color: newNoteTags.includes(tag) ? 'white' : 'hsl(var(--foreground))' }}
                       data-testid={`new-note-tag-${tag.toLowerCase()}`}
                     >
                       {tag}
@@ -729,7 +731,7 @@ export default function Notes() {
             </div>
 
             <div className="flex justify-end gap-2 pt-2">
-              <Button variant="ghost" onClick={() => setShowCreateNote(false)}>
+              <Button variant="ghost" onClick={() => setShowCreateNote(false)} className="text-foreground">
                 Cancel
               </Button>
               <Button
