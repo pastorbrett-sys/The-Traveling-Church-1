@@ -618,9 +618,8 @@ export default function Notes() {
                       className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                         editTags.includes(tag)
                           ? "bg-[#c08e00] text-white border-[#c08e00]"
-                          : "border-border hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                          : "border-gray-300 hover:bg-[#c08e00]/10 hover:border-[#c08e00] text-gray-800"
                       }`}
-                      style={{ color: editTags.includes(tag) ? 'white' : 'hsl(var(--foreground))' }}
                       data-testid={`edit-tag-${tag.toLowerCase()}`}
                     >
                       {tag}
@@ -723,9 +722,8 @@ export default function Notes() {
                     className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                       newNoteTags.includes(tag)
                         ? "bg-[#c08e00] text-white border-[#c08e00]"
-                        : "border-border hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
+                        : "border-gray-300 hover:bg-[#c08e00]/10 hover:border-[#c08e00] text-gray-800"
                     }`}
-                    style={{ color: newNoteTags.includes(tag) ? 'white' : 'hsl(var(--foreground))' }}
                     data-testid={`new-note-tag-${tag.toLowerCase()}`}
                   >
                     {tag}
