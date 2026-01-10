@@ -1,0 +1,188 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Failed to resolve host network app id to config: bundleID: com.apple.WebKit.Networking instance ID: Optional([_EXExtensionInstanceIdentifier: 402685A2-4AC9-4EDA-A427-88D903160021])
+⚡️  Loading app at capacitor://localhost...
+Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x60000024e220>
+-[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  Can only perform input operation for an active session. sessionID = B7A66C21-EB5E-45C7-8F22-E3B1B60F24BA
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = B7A66C21-EB5E-45C7-8F22-E3B1B60F24BA
+Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = B7A66C21-EB5E-45C7-8F22-E3B1B60F24BA
+Result accumulator timeout: 0.250000, exceeded.
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+Networking process (0x119078100) took 3.516486 seconds to launch
+WebContent process (0x1190f40c0) took 3.525910 seconds to launch
+GPU process (0x1191201e0) took 3.609689 seconds to launch
+WebContent[43930] Unable to hide query parameters from script (missing data)
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = B7A66C21-EB5E-45C7-8F22-E3B1B60F24BA
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 10165546
+⚡️  TO JS undefined
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+⚡️  To Native ->  CapacitorHttp request 10165547
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2 (Build 23C54)
+DEBUG: ℹ️ Using a simulator. Ensure you have a StoreKit Config file set up before trying to fetch products or make purchases.
+See https://errors.rev.cat/testing-in-simulator for more details.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+⚡️  TO JS {"customerInfo":{"allPurchaseDates":{},"activeSubscriptions":[],"firstSeenMillis":1767983811000,"subscriptionsByProductIdentifier":{},"allExpirationDatesMillis":{},"nonSubscriptionTransactions":[],"originalAppUserId":"$RCAnonymousID:9013ede0cfd74934b0cc7b1
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings' (304)
+ERROR: 🍎‼️ Error fetching offerings - The operation couldn’t be completed. (RevenueCat.OfferingsManager.Error error 1.)
+You have configured the SDK with an App Store API key, but there are no App Store products registered in the RevenueCat dashboard for your offerings. If you don't want to use the offerings system, you can safely ignore this message. To configure offerings and their products, follow the instructions in https://rev.cat/how-to-configure-offerings.
+More information: https://rev.cat/why-are-offerings-empty
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings, 0 requests left in the queue
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3'
+⚡️  TO JS {"headers":{"vary":"Origin, X-Origin, Referer","x-frame-options":"SAMEORIGIN","content-encoding":"gzip","date":"Sat, 10 Jan 2026 04:14:40 GMT","server":"ESF","content-type":"application\/json; charset=UTF-8","cache-control":"no-cache, no-store, max-age=0, 
+⚡️  To Native ->  CapacitorHttp request 10165548
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3, 0 requests left in the queue
+nw_connection_copy_connected_local_endpoint_block_invoke [C3] Connection has no local endpoint
+nw_connection_copy_connected_local_endpoint_block_invoke [C3] Connection has no local endpoint
+⚡️  TO JS {"data":{"users":[{"passwordUpdatedAt":1767252593231,"providerUserInfo":[{"displayName":"Brett Lindstrom","providerId":"password","email":"lindstrom.brett@yahoo.com","rawId":"lindstrom.brett@yahoo.com","federatedId":"lindstrom.brett@yahoo.com"}],"createdAt
+nw_connection_copy_connected_local_endpoint_block_invoke [C3] Connection has no local endpoint
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report_availability'
+nw_connection_copy_connected_local_endpoint_block_invoke [C5] Connection has no local endpoint
+nw_connection_copy_connected_local_endpoint_block_invoke [C5] Connection has no local endpoint
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report_availability' (200)
+⚡️  To Native ->  CapacitorHttp request 10165549
+nw_connection_copy_connected_local_endpoint_block_invoke [C7] Connection has no local endpoint
+nw_connection_copy_connected_local_endpoint_block_invoke [C7] Connection has no local endpoint
+⚡️  TO JS {"headers":{"alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","content-length":"9","via":"1.1 google","date":"Sat, 10 Jan 2026 04:20:47 GMT","content-type":"text\/plain; charset=utf-8"},"status":404,"url":"https:\/\/the-traveling-church-brettl
+⚡️  [error] - Failed to sync Firebase user
+⚡️  To Native ->  CapacitorHttp request 10165550
+⚡️  TO JS {"data":"Not Found","url":"https:\/\/the-traveling-church-brettlindstrom.replit.app\/api\/auth\/firebase","status":404,"headers":{"content-type":"text\/plain; charset=utf-8","content-length":"9","date":"Sat, 10 Jan 2026 04:20:47 GMT","alt-svc":"h3=\":443\"
+⚡️  [error] - Failed to sync Firebase user
+⚡️  To Native ->  FirebaseAuthentication signInWithGoogle 10165551
+Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+(
+    "<NSLayoutConstraint:0x600002149950 'accessoryView.bottom' _UIRemoteKeyboardPlaceholderView:0x10682c820.bottom == _UIKBCompatInputView:0x106e147b0.top - 17   (active)>",
+    "<NSLayoutConstraint:0x6000021548c0 'inputView.top' V:[_UIRemoteKeyboardPlaceholderView:0x10682c820]-(0)-[_UIKBCompatInputView:0x106e147b0]   (active)>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x6000021548c0 'inputView.top' V:[_UIRemoteKeyboardPlaceholderView:0x10682c820]-(0)-[_UIKBCompatInputView:0x106e147b0]   (active)>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKitCore/UIView.h> may also be helpful.
+Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+(
+    "<NSLayoutConstraint:0x60000216a990 _TtC5UIKitP33_DDE14AA6B49FCAFC5A54255A118E1D8713ButtonWrapper:0x106c7a820.width == _UIButtonBarButton:0x10682e4d0.width   (active)>",
+    "<NSLayoutConstraint:0x60000216d810 'IB_Leading_Leading' H:|-(8)-[_UIModernBarButton:0x107832140]   (active, names: '|':_UIButtonBarButton:0x10682e4d0 )>",
+    "<NSLayoutConstraint:0x60000216d860 'IB_Trailing_Trailing' H:[_UIModernBarButton:0x107832140]-(8)-|   (active, names: '|':_UIButtonBarButton:0x10682e4d0 )>",
+    "<NSLayoutConstraint:0x60000216ab20 'UIView-Encapsulated-Layout-Width' _TtC5UIKitP33_DDE14AA6B49FCAFC5A54255A118E1D8713ButtonWrapper:0x106c7a820.width == 0   (active)>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x60000216d860 'IB_Trailing_Trailing' H:[_UIModernBarButton:0x107832140]-(8)-|   (active, names: '|':_UIButtonBarButton:0x10682e4d0 )>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKitCore/UIView.h> may also be helpful.
+Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+(
+    "<NSLayoutConstraint:0x60000216b480 _TtC5UIKitP33_DDE14AA6B49FCAFC5A54255A118E1D8713ButtonWrapper:0x106c7cbb0.width == _UIButtonBarButton:0x106c7c4b0.width   (active)>",
+    "<NSLayoutConstraint:0x60000216b660 'IB_Leading_Leading' H:|-(8)-[_UIModernBarButton:0x106c7d7a0]   (active, names: '|':_UIButtonBarButton:0x106c7c4b0 )>",
+    "<NSLayoutConstraint:0x60000216b6b0 'IB_Trailing_Trailing' H:[_UIModernBarButton:0x106c7d7a0]-(8)-|   (active, names: '|':_UIButtonBarButton:0x106c7c4b0 )>",
+    "<NSLayoutConstraint:0x600002178aa0 'UIView-Encapsulated-Layout-Width' _TtC5UIKitP33_DDE14AA6B49FCAFC5A54255A118E1D8713ButtonWrapper:0x106c7cbb0.width == 0   (active)>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x60000216b6b0 'IB_Trailing_Trailing' H:[_UIModernBarButton:0x106c7d7a0]-(8)-|   (active, names: '|':_UIButtonBarButton:0x106c7c4b0 )>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKitCore/UIView.h> may also be helpful.
+Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+(
+    "<NSLayoutConstraint:0x600002170b40 _TtC5UIKitP33_DDE14AA6B49FCAFC5A54255A118E1D8713ButtonWrapper:0x106830290.width == _UIButtonBarButton:0x10682fb90.width   (active)>",
+    "<NSLayoutConstraint:0x6000021123a0 'IB_Leading_Leading' H:|-(8)-[_UIModernBarButton:0x106f17130]   (active, names: '|':_UIButtonBarButton:0x10682fb90 )>",
+    "<NSLayoutConstraint:0x600002111f40 'IB_Trailing_Trailing' H:[_UIModernBarButton:0x106f17130]-(8)-|   (active, names: '|':_UIButtonBarButton:0x10682fb90 )>",
+    "<NSLayoutConstraint:0x6000021124e0 'UIView-Encapsulated-Layout-Width' _TtC5UIKitP33_DDE14AA6B49FCAFC5A54255A118E1D8713ButtonWrapper:0x106830290.width == 0   (active)>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x600002111f40 'IB_Trailing_Trailing' H:[_UIModernBarButton:0x106f17130]-(8)-|   (active, names: '|':_UIButtonBarButton:0x10682fb90 )>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKitCore/UIView.h> may also be helpful.
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = B7A66C21-EB5E-45C7-8F22-E3B1B60F24BA
+Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+(
+    "<NSLayoutConstraint:0x600002149950 'accessoryView.bottom' _UIRemoteKeyboardPlaceholderView:0x10682c820.bottom == _UIKBCompatInputView:0x106e147b0.top - 17   (active)>",
+    "<NSLayoutConstraint:0x600002170410 'inputView.top' V:[_UIRemoteKeyboardPlaceholderView:0x10682c820]-(0)-[_UIKBCompatInputView:0x106e147b0]   (active)>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x600002170410 'inputView.top' V:[_UIRemoteKeyboardPlaceholderView:0x10682c820]-(0)-[_UIKBCompatInputView:0x106e147b0]   (active)>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKitCore/UIView.h> may also be helpful.
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd29a0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd29a0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd1800 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd1800 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd27f0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd27f0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd29a0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd29a0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd2a00 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd2a00 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd1800 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd1800 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd27f0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd27f0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd29a0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cd29a0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+       CHHapticPattern.mm:487   +[CHHapticPattern patternForKey:error:]: Failed to read pattern library data: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cedd70 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+<_UIKBFeedbackGenerator: 0x600003504a50>: Error creating CHHapticPattern: Error Domain=NSCocoaErrorDomain Code=260 "The file “hapticpatternlibrary.plist” couldn’t be opened because there is no such file." UserInfo={NSFilePath=/Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSURL=file:///Library/Audio/Tunings/Generic/Haptics/Library/hapticpatternlibrary.plist, NSUnderlyingError=0x600000cedd70 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/health_report
