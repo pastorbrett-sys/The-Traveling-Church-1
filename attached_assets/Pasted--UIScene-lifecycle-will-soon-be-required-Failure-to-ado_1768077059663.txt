@@ -1,0 +1,64 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Failed to resolve host network app id to config: bundleID: com.apple.WebKit.Networking instance ID: Optional([_EXExtensionInstanceIdentifier: 04E55B51-6383-4369-B2A9-4E6F23276EE4])
+⚡️  Loading app at capacitor://localhost...
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x60000023fc60>
+-[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  Can only perform input operation for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+Result accumulator timeout: 0.250000, exceeded.
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+GPU process (0x11611c1e0) took 24.733148 seconds to launch
+WebContent process (0x1160f00c0) took 24.815054 seconds to launch
+Networking process (0x116078100) took 25.052956 seconds to launch
+WebContent[28325] Unable to hide query parameters from script (missing data)
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+⚡️  WebView loaded
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+-[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  Can only perform input operation for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 53E8303C-87E0-4108-9F17-1FD2428D205A
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 107632840
+⚡️  TO JS undefined
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2 (Build 23C54)
+DEBUG: ℹ️ Using a simulator. Ensure you have a StoreKit Config file set up before trying to fetch products or make purchases.
+See https://errors.rev.cat/testing-in-simulator for more details.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings
+⚡️  TO JS {"customerInfo":{"allPurchaseDatesMillis":{},"entitlements":{"active":{},"all":{},"verification":"VERIFIED"},"nonSubscriptionTransactions":[],"subscriptionsByProductIdentifier":{},"firstSeen":"2026-01-09T18:36:51Z","allExpirationDatesMillis":{},"allExpirat
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings'
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings' (304)
+ERROR: 🍎‼️ Error fetching offerings - The operation couldn’t be completed. (RevenueCat.OfferingsManager.Error error 1.)
+You have configured the SDK with an App Store API key, but there are no App Store products registered in the RevenueCat dashboard for your offerings. If you don't want to use the offerings system, you can safely ignore this message. To configure offerings and their products, follow the instructions in https://rev.cat/how-to-configure-offerings.
+More information: https://rev.cat/why-are-offerings-empty
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3/offerings, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A9013ede0cfd74934b0cc7b1f5fb81aa3, 0 requests left in the queue
+⚡️  To Native ->  FirebaseAuthentication signInWithGoogle 107632841
