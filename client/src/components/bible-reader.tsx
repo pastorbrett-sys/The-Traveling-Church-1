@@ -114,7 +114,7 @@ function parseVerseText(text: string): { heading?: string; content: string } {
   return { content: text };
 }
 
-function BookHeaderImage({ src, bookName }: { src: string; bookName: string }) {
+function BookHeaderImage({ src, bookName, isNative }: { src: string; bookName: string; isNative: boolean }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -125,13 +125,18 @@ function BookHeaderImage({ src, bookName }: { src: string; bookName: string }) {
 
   if (hasError) return null;
 
+  // On native, prefix asset paths with production URL
+  const imageSrc = isNative && src.startsWith('/') 
+    ? `https://vagabondbible.com${src}` 
+    : src;
+
   return (
     <div className="relative w-full mb-4">
       {!isLoaded && (
         <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#f5f0e6] to-[#e8e0d0] animate-pulse rounded-lg" />
       )}
       <motion.img
-        src={src}
+        src={imageSrc}
         alt={`${bookName} decorative header`}
         className={`w-full h-auto rounded-lg ${!isLoaded ? 'absolute top-0 left-0 opacity-0' : ''}`}
         initial={{ opacity: 0, y: 8 }}
@@ -1472,6 +1477,7 @@ Reference: ${verseRef} (${translation})`;
               <BookHeaderImage 
                 src={imageSrc} 
                 bookName={selectedBook.name} 
+                isNative={isNative}
                 key={selectedBook.name}
               />
             ) : null;
