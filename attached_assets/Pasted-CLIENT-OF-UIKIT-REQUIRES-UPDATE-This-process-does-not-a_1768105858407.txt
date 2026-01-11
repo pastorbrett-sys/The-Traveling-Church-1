@@ -1,0 +1,497 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+Could not create a sandbox extension for '/var/containers/Bundle/Application/0ED71ADA-83E0-4B0E-8F49-C3D8AF140EC5/App.app'
+⚡️  Loading app at capacitor://localhost...
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x1170fdb60>
+App is being debugged, do not track this hang
+Hang detected: 0.72s (debugger attached, not reporting)
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [useIntroAnimation] Initial state, isNativePlatform: true
+⚡️  [log] - [IntroAnimation] Mounted, isNative: true video src: /assets/splash-intro-DqaDiT6c.mp4
+⚡️  [log] - [IntroAnimation] Attempting manual video.play()
+⚡️  To Native ->  App addListener 120229082
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 120229083
+⚡️  TO JS undefined
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 18.7.1 (Build 22H31)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+⚡️  [log] - [IntroAnimation] Manual play succeeded
+⚡️  TO JS {"customerInfo":{"latestExpirationDateMillis":null,"entitlements":{"verification":"VERIFIED","all":{},"active":{}},"originalAppUserId":"$RCAnonymousID:7ba925d3cb754a3e9c27e706e9bd9604","requestDateMillis":1768103990000,"allPurchaseDates":{},"originalApplic
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings'
+⚡️  To Native ->  CapacitorHttp request 120229084
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings' (304)
+ERROR: 🍎‼️ Error fetching offerings - The operation couldn’t be completed. (RevenueCat.OfferingsManager.Error error 1.)
+You have configured the SDK with an App Store API key, but there are no App Store products registered in the RevenueCat dashboard for your offerings. If you don't want to use the offerings system, you can safely ignore this message. To configure offerings and their products, follow the instructions in https://rev.cat/how-to-configure-offerings.
+More information: https://rev.cat/why-are-offerings-empty
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report, 0 requests left in the queue
+ERROR: 😿‼️ RevenueCat SDK Configuration is not valid
+
+Your app doesn't have any products set up, so users can't make any purchases. Please create and configure products in the RevenueCat website.
+
+Please visit the RevenueCat website to resolve the issue: https://app.revenuecat.com/projects/1ae39dfb/product-catalog/products
+Error enumerating all current transactions: Error Domain=ASDErrorDomain Code=500 "(null)" UserInfo={NSUnderlyingError=0x1171a6e80 {Error Domain=AMSErrorDomain Code=2 "Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe387840> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7700> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe291980 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}" UserInfo={AMSFailureReason=No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe387840> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7700> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe291980 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}, AMSDescription=Finance Authentication Error, AMSStatusCode=401, AMSURL=https://mzstorekit-sb.itunes.apple.com/inApps/v1/history?guid=00008120-00061D5C14D0A01E&reason=initial, AMSServerCorrelationKey=IG6NWJ4H6QOTSP6UFMOC3CFDRE, NSDebugDescription=Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe387840> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7700> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe291980 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}}}, storefront-country-code=USA, client-environment-type=Sandbox}
+⚡️  TO JS {"url":"https:\/\/developers.google.com\/","status":200,"headers":{"x-cloud-trace-context":"0f8bf00b095e9fa3ee01d98d062859aa","pragma":"no-cache","x-content-type-options":"nosniff","content-type":"text\/html; charset=utf-8","alt-svc":"h3=\":443\"; ma=25920
+Error enumerating unfinished transactions: Error Domain=ASDErrorDomain Code=500 "(null)" UserInfo={client-environment-type=Sandbox, storefront-country-code=USA, NSUnderlyingError=0x1170f6400 {Error Domain=AMSErrorDomain Code=2 "Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe2ed3e0> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7300> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe292600 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}" UserInfo={AMSFailureReason=No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe2ed3e0> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+
+  options = <AMSAuthenticateOptions: 0xafe0d7300> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe292600 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}, AMSDescription=Finance Authentication Error, AMSStatusCode=401, AMSURL=https://mzstorekit-sb.itunes.apple.com/inApps/v1/history?guid=00008120-00061D5C14D0A01E&reason=initial, AMSServerCorrelationKey=R6WS6WLIDMSILXU6QXPUYJTJ5A, NSDebugDescription=Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe2ed3e0> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7300> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe292600 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}}}}
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604, 0 requests left in the queue
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+Error enumerating unfinished transactions: Error Domain=ASDErrorDomain Code=500 "(null)" UserInfo={client-environment-type=Sandbox, storefront-country-code=USA, NSUnderlyingError=0x1171a7ea0 {Error Domain=AMSErrorDomain Code=2 "Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe873360> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d6400> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe291580 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}" UserInfo={AMSFailureReason=No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe873360> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d6400> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe291580 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}, AMSDescription=Finance Authentication Error, AMSStatusCode=401, AMSURL=https://mzstorekit-sb.itunes.apple.com/inApps/v1/history?guid=00008120-00061D5C14D0A01E&reason=initial, AMSServerCorrelationKey=MO4HSBMC5VLHXG2JO64V76VLHU, NSDebugDescription=Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe873360> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d6400> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe291580 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}}}}
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604, 0 requests left in the queue
+⚡️  [log] - [IntroAnimation] Video ended
+⚡️  [log] - [IntroAnimation] Mounted, isNative: true video src: /assets/splash-intro-DqaDiT6c.mp4
+Error enumerating unfinished transactions for first transaction listener: Error Domain=ASDErrorDomain Code=500 "(null)" UserInfo={NSUnderlyingError=0x11739c300 {Error Domain=AMSErrorDomain Code=2 "Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe873ea0> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7900> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe293080 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}" UserInfo={AMSFailureReason=No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe873ea0> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7900> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe293080 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}, AMSDescription=Finance Authentication Error, AMSStatusCode=401, AMSURL=https://mzstorekit-sb.itunes.apple.com/inApps/v1/history?guid=00008120-00061D5C14D0A01E&reason=initial, AMSServerCorrelationKey=4Z6FBUG65NES4EYQMXFYIHV3GI, NSDebugDescription=Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe873ea0> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe0d7900> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe293080 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}}}, storefront-country-code=USA, client-environment-type=Sandbox}
+Error enumerating all transactions: Error Domain=ASDErrorDomain Code=500 "(null)" UserInfo={NSUnderlyingError=0x11739c360 {Error Domain=AMSErrorDomain Code=2 "Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe176d00> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe880a00> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe08e180 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}" UserInfo={AMSFailureReason=No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe176d00> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe880a00> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe08e180 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}, AMSDescription=Finance Authentication Error, AMSStatusCode=401, AMSURL=https://mzstorekit-sb.itunes.apple.com/inApps/v1/history?guid=00008120-00061D5C14D0A01E&reason=initial, AMSServerCorrelationKey=4OW23W2LH7UBJR6IMCEYB7AFJA, NSDebugDescription=Finance Authentication Error No delegate to perform authentication: <AMSAuthenticateRequest: 0xafe176d00> {
+  account = lindstromcreativeinc@gmail.com (335762D0-2209-491D-A8BC-62689BEAD818),
+  logKey = 28DFE200,
+  options = <AMSAuthenticateOptions: 0xafe880a00> {
+  AMSAuthenticateOptionsAllowPasswordGeneration = 0,
+  AMSAuthenticateOptionsAllowSecondaryCredentialSource = 0,
+  AMSAuthenticateOptionsAllowServerDialogs = 0,
+  AMSAuthenticateOptionsAuthenticationTypeKey = 1,
+  AMSAuthenticateOptionsCanMakeAccountActiveKey = 0,
+  AMSAuthenticateOptionsClientInfo = <AMSProcessInfo: 0xafe08e180 name = storekitd | bundleIdentifier = com.apple.storekitd | clientVersion = 3.0 | mediaType = com.apple.AppleMediaServices.accountmediatype.appstore.sandbox | proxyAppBundleID = com.vagabondbible.app | treatmentNamespace = (null) | userAgentSuffix = (null)>,
+  AMSAuthenticateOptionsCredentialSourceKey = 0,
+  AMSAuthenticateOptionsDebugReason = no dialogResponse in AMSFinanceAuthenticateResponse,
+  AMSAuthenticateOptionsDelegateAuthEnabledKey = 0,
+  AMSAuthenticateOptionsEnableAccountCreationKey = 0,
+  AMSAuthenticateOptionsEphemeralKey = 0,
+  AMSAuthenticateOptionsForceSyncToPairedWatchKey = 0,
+  AMSAuthenticateOptionsIgnoreAccountConversion = 0,
+  AMSAuthenticateOptionsLogKeyKey = 28DFE200,
+  AMSAuthenticateOptionsRemoteProxyAuthenticationKey = 0,
+  AMSAuthenticateOptionsServiceTokenOnly = 0,
+  AMSAuthenticateOptionsServiceType = 2,
+},
+  server requested = 1,
+}}}, storefront-country-code=USA, client-environment-type=Sandbox}
+⚡️  [log] - [useIntroAnimation] completeIntro called
+App is being debugged, do not track this hang
+Hang detected: 0.54s (debugger attached, not reporting)
+⚡️  To Native ->  FirebaseAuthentication getIdToken 120229085
+⚡️  To Native ->  FirebaseAuthentication addListener 120229086
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x117184200>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  TO JS {"user":null}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [log] - [NATIVE AUTH] Auth state changed: null
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 120229087
+⚡️  To Native ->  ⚡️  TO JS FirebaseAuthentication addListener 120229088
+undefined
+⚡️  [log] - Firebase auth timeout - proceeding without Firebase auth state
+⚡️  [log] - [NATIVE AUTH] Starting browser-based Google sign-in...
+⚡️  To Native ->  Browser open 120229089
+⚡️  TO JS undefined
+⚡️  TO JS {"iosSourceApplication":"com.apple.SafariViewService","iosOpenInPlace":"","url":"com.vagabondbible.app:\/\/auth-callback?code=be1b6ff54102655fdbbb3b15bba9b328abc278003d1b5629b42597ee94767c30"}
+⚡️  To Native ->  Browser close 120229090
+⚡️  [log] - [DEEP LINK] Received URL: com.vagabondbible.app://auth-callback?code=be1b6ff54102655fdbbb3b15bba9b328abc278003d1b5629b42597ee94767c30
+⚡️  [log] - [DEEP LINK] Processing auth code...
+⚡️  TO JS undefined
+⚡️  [log] - [NATIVE AUTH] Exchanging auth code...
+⚡️  To Native ->  CapacitorHttp request 120229091
+⚡️  TO JS {"url":"https:\/\/vagabondbible.com\/api\/native-auth\/exchange","status":200,"data":{"customToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aX
+⚡️  To Native ->  CapacitorHttp request 120229092
+⚡️  TO JS {"status":200,"url":"https:\/\/identitytoolkit.googleapis.com\/v1\/accounts:signInWithCustomToken?key=AIzaSyD04isY5WpNZqfCPrbfeRJuZWDs8X15k7Q","data":{"kind":"identitytoolkit#VerifyCustomTokenResponse","refreshToken":"AMf-vBwxuZxMsIuRwkKyk9WZN5lIXzSECdRfMT
+⚡️  To Native ->  CapacitorHttp request 120229093
+⚡️  TO JS {"url":"https:\/\/identitytoolkit.googleapis.com\/v1\/accounts:lookup?key=AIzaSyD04isY5WpNZqfCPrbfeRJuZWDs8X15k7Q","status":200,"data":{"users":[{"passwordHash":"UkVEQUNURUQ=","photoUrl":"https:\/\/lh3.googleusercontent.com\/a\/ACg8ocL98kCkTG2DOulgeQQpudJi
+⚡️  [log] - [NATIVE AUTH] Starting browser-based Google sign-in...
+⚡️  To Native ->  Browser open 120229094
+⚡️  TO JS undefined
+DEBUG: ℹ️ Background task started: com.revenuecat.flushAllEvents
+⚡️  TO JS {"iosOpenInPlace":"","iosSourceApplication":"com.apple.SafariViewService","url":"com.vagabondbible.app:\/\/auth-callback?code=053661b55e35a12255be7d82ef23fb4762ad2038b8ca9a3fdd00b2ea3c25e2de"}
+⚡️  To Native ->  Browser close 120229095
+⚡️  [log] - [DEEP LINK] Received URL: com.vagabondbible.app://auth-callback?code=053661b55e35a12255be7d82ef23fb4762ad2038b8ca9a3fdd00b2ea3c25e2de
+⚡️  [log] - [DEEP LINK] Processing auth code...
+⚡️  TO JS undefined
+⚡️  [log] - [NATIVE AUTH] Exchanging auth code...
+⚡️  To Native ->  CapacitorHttp request 120229096
+⚡️  TO JS {"status":200,"headers":{"content-type":"application\/json; charset=utf-8","x-cloud-trace-context":"d6b08c9203059b9ebc2e8b333b689e36","via":"1.1 google","server":"Google Frontend","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","x-powered-by
+⚡️  To Native ->  CapacitorHttp request 120229097
+⚡️  TO JS {"headers":{"vary":"Origin, X-Origin, Referer","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","x-frame-options":"SAMEORIGIN","server":"ESF","content-type":"application\/json; charset=UTF-8","pragma":"no-cache","date":"Sun, 11 Jan 2026 04:29
+⚡️  To Native ->  CapacitorHttp request 120229098
+⚡️  TO JS {"headers":{"vary":"Origin, X-Origin, Referer","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","x-frame-options":"SAMEORIGIN","server":"ESF","content-type":"application\/json; charset=UTF-8","pragma":"no-cache","date":"Sun, 11 Jan 2026 04:29
+⚡️  [log] - [NATIVE AUTH] Starting browser-based Google sign-in...
+⚡️  To Native ->  Browser open 120229099
+⚡️  TO JS undefined
+⚡️  TO JS {"iosOpenInPlace":"","iosSourceApplication":"com.apple.SafariViewService","url":"com.vagabondbible.app:\/\/auth-callback?code=1f073eb4cf0cf587b631c52a963f9d1220d065a4c598a590d0db007c1c8886e9"}
+⚡️  [log] - [DEEP LINK] Received URL: com.vagabondbible.app://auth-callback?code=1f073eb4cf0cf587b631c52a963f9d1220d065a4c598a590d0db007c1c8886e9
+⚡️  To Native ->  Browser close 120229100
+⚡️  [log] - [DEEP LINK] Processing auth code...
+⚡️  TO JS undefined
+⚡️  To Native ->  CapacitorHttp request 120229101
+⚡️  [log] - [NATIVE AUTH] Exchanging auth code...
+⚡️  TO JS {"headers":{"content-type":"application\/json; charset=utf-8","x-cloud-trace-context":"c89e1af94b28e3fbb91e82de84498909","via":"1.1 google","server":"Google Frontend","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","x-powered-by":"Express","
+⚡️  To Native ->  CapacitorHttp request 120229102
+⚡️  TO JS {"headers":{"vary":"Origin, X-Origin, Referer","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","x-frame-options":"SAMEORIGIN","server":"ESF","content-type":"application\/json; charset=UTF-8","pragma":"no-cache","date":"Sun, 11 Jan 2026 04:29
+⚡️  To Native ->  CapacitorHttp request 120229103
+⚡️  TO JS {"headers":{"vary":"Origin, X-Origin, Referer","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","x-frame-options":"SAMEORIGIN","server":"ESF","content-type":"application\/json; charset=UTF-8","pragma":"no-cache","date":"Sun, 11 Jan 2026 04:29
+DEBUG: ℹ️ Background task started: com.revenuecat.flushAllEvents
