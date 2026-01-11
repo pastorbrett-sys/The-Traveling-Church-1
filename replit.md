@@ -112,14 +112,33 @@ Preferred communication style: Simple, everyday language.
 - `VITE_REVENUECAT_SDK_KEY` must be set to the ACTUAL API key value directly (e.g., `appl_xxxxx`), NOT a reference like `${REVENUECAT_SDK_KEY}`.
 - Environment variables are embedded at BUILD TIME by Vite. Changes require rebuild.
 
-### iOS Build Workflow (VagabondBible folder on Desktop)
-1. Download ZIP from Replit, extract to `~/Desktop/VagabondBible`
-2. Run: `npm install`
-3. Run: `sed -i '' "s/platform :ios, '14.0'/platform :ios, '15.0'/" ios/App/Podfile`
-4. Run: `cd ios/App && pod install && open App.xcworkspace`
-5. In Xcode: Set iOS 15.0 for both PROJECT and TARGET
-6. Configure signing: Team "Brett Lindstrom", Bundle ID `com.vagabondbible.app`
-7. Build and run on connected iPhone
+### iOS Build Workflow (The-Traveling-Church-1 folder on Desktop)
+
+**User prefers consolidated commands per step (fewer steps, multiple commands chained together):**
+
+**Step 1:** Download ZIP from Replit (three dots → Download as ZIP)
+
+**Step 2:** Extract to build folder, then in Terminal:
+```
+cd ~/Desktop/The-Traveling-Church-1
+```
+
+**Step 3:** Install and build:
+```
+npm install && npm run build && npx cap sync ios
+```
+
+**Step 4:** Update Podfile:
+```
+sed -i '' "s/platform :ios, '14.0'/platform :ios, '15.0'/" ios/App/Podfile
+```
+
+**Step 5:** Install pods and open Xcode:
+```
+cd ios/App && pod install && open App.xcworkspace
+```
+
+**Step 6:** In Xcode, press **Cmd+Shift+K** to clean, then **Cmd+R** to run on iPhone
 
 ### API Calls on Native
 - All `/api/...` calls use `apiFetch()` helper from `queryClient.ts`
