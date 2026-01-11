@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -101,7 +101,11 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
       const offerings = await Purchases.getOfferings();
       
       if (!offerings.current?.availablePackages?.length) {
-        throw new Error("No subscription packages available");
+        toast({
+          title: "Coming Soon",
+          description: "In-app purchases will be available once the app is live on the App Store.",
+        });
+        return;
       }
       
       const monthlyPackage = offerings.current.availablePackages.find(
@@ -121,11 +125,20 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
     } catch (error: any) {
       if (error.code !== "PURCHASE_CANCELLED") {
         console.error("Purchase error:", error);
-        toast({
-          title: "Purchase failed",
-          description: error.message || "Unable to complete purchase. Please try again.",
-          variant: "destructive",
-        });
+        // Check for configuration/offerings error
+        const errorMessage = error.message || "";
+        if (errorMessage.includes("offerings") || errorMessage.includes("configuration") || errorMessage.includes("no App Store products")) {
+          toast({
+            title: "Coming Soon",
+            description: "In-app purchases will be available once the app is live on the App Store.",
+          });
+        } else {
+          toast({
+            title: "Purchase failed",
+            description: "Unable to complete purchase. Please try again.",
+            variant: "destructive",
+          });
+        }
       }
     } finally {
       setIsPurchasing(false);
@@ -165,7 +178,17 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
+      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
+        {/* Custom close button with safe area support */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground z-10"
+          style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}
+          data-testid="button-close-upgrade"
+        >
+          <X className="h-5 w-5" />
+          <span className="sr-only">Close</span>
+        </button>
         <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
           <DialogHeader className="text-center">
             <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
