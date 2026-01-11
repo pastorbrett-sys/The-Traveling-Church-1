@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { usePlatform } from "@/contexts/platform-context";
+import { isNativePlatform } from "@/lib/host-detection";
 import splashVideo from "@/assets/splash-intro.mp4";
 
 interface IntroAnimationProps {
@@ -82,24 +83,19 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
   );
 }
 
-// Hook to manage intro state - always shows on native for now
+// Hook to manage intro state - shows on native first visit
 export function useIntroAnimation() {
   const { isNative } = usePlatform();
-  const [showIntro, setShowIntro] = useState(false);
-  const [isChecking, setIsChecking] = useState(true);
-
-  console.log("[useIntroAnimation] isNative:", isNative, "showIntro:", showIntro, "isChecking:", isChecking);
-
-  useEffect(() => {
-    console.log("[useIntroAnimation] useEffect running, isNative:", isNative);
-    // Always show intro on native platform (for testing)
+  
+  // Initialize showIntro synchronously based on native platform check
+  // This ensures the intro renders on the FIRST paint, not after a useEffect
+  const [showIntro, setShowIntro] = useState(() => {
+    const nativeNow = isNativePlatform();
+    console.log("[useIntroAnimation] Initial state, isNativePlatform:", nativeNow);
+    // Always show on native for testing
     // TODO: Add localStorage check for "first visit only" after video is verified working
-    if (isNative) {
-      console.log("[useIntroAnimation] Setting showIntro to true");
-      setShowIntro(true);
-    }
-    setIsChecking(false);
-  }, [isNative]);
+    return nativeNow;
+  });
 
   const completeIntro = () => {
     console.log("[useIntroAnimation] completeIntro called");
@@ -108,7 +104,7 @@ export function useIntroAnimation() {
 
   return {
     showIntro,
-    isChecking,
+    isChecking: false, // No longer needed since we check synchronously
     completeIntro,
   };
 }
