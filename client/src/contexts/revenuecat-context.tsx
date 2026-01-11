@@ -5,6 +5,7 @@ interface RevenueCatContextType {
   isInitialized: boolean;
   isProUser: boolean;
   isLoading: boolean;
+  isBootstrapping: boolean; // True until SDK init completes or fails
   error: string | null;
   purchaseProduct: (productId: string) => Promise<boolean>;
   restorePurchases: () => Promise<boolean>;
@@ -18,16 +19,21 @@ const REVENUECAT_SDK_KEY = 'appl_IHuuguwDzrFpaSziwpBDtyAdmqg';
 export function RevenueCatProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isProUser, setIsProUser] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  // isLoading only true during purchase/restore operations, not init
+  const [isLoading, setIsLoading] = useState(false);
+  // isBootstrapping true until SDK init completes or fails - prevents premature button access
+  const [isBootstrapping, setIsBootstrapping] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [Purchases, setPurchases] = useState<any>(null);
 
   const isTrueNative = Capacitor.isNativePlatform();
 
   useEffect(() => {
+    // Non-blocking initialization - app renders immediately
     const initializeRevenueCat = async () => {
       if (!isTrueNative) {
-        setIsLoading(false);
+        // Not native - no RevenueCat needed
+        setIsBootstrapping(false);
         return;
       }
 
@@ -43,6 +49,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
 
         setIsInitialized(true);
 
+        // Fetch entitlements in background - UI already rendered
         const customerInfo = await PurchasesModule.getCustomerInfo();
         const hasProEntitlement = customerInfo.customerInfo.entitlements.active['Vagabond Bible Pro'] !== undefined;
         setIsProUser(hasProEntitlement);
@@ -51,7 +58,8 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
         console.error('RevenueCat initialization error:', err);
         setError(err instanceof Error ? err.message : 'Failed to initialize RevenueCat');
       } finally {
-        setIsLoading(false);
+        // Always clear bootstrapping state so UI knows init is done (success or fail)
+        setIsBootstrapping(false);
       }
     };
 
@@ -140,6 +148,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
       isInitialized,
       isProUser,
       isLoading,
+      isBootstrapping,
       error,
       purchaseProduct,
       restorePurchases,

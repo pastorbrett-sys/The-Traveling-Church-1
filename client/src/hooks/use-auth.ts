@@ -44,12 +44,17 @@ async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null
 export function useAuth() {
   const queryClient = useQueryClient();
   const [isFirebaseLoading, setIsFirebaseLoading] = useState(true);
+  const [firebaseHandledAuth, setFirebaseHandledAuth] = useState(false);
 
+  // Fetch user from server - runs immediately for session-based auth,
+  // or after Firebase check sets data directly in cache
   const { data: user, isLoading: isQueryLoading, refetch } = useQuery<User | null>({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
     retry: false,
-    staleTime: 1000 * 60 * 10, // Cache for 10 minutes - reduces API calls on tab switches
+    staleTime: 1000 * 60 * 10, // Cache for 10 minutes
+    // Skip fetch only if Firebase already provided user data
+    enabled: !firebaseHandledAuth,
   });
 
   useEffect(() => {
@@ -57,18 +62,22 @@ export function useAuth() {
     
     // Reduced timeout for better UX - 2 seconds instead of 5
     timeoutId = setTimeout(() => {
-      console.log("Firebase auth timeout - proceeding without Firebase auth state");
+      console.log("Firebase auth timeout - falling back to session check");
       setIsFirebaseLoading(false);
     }, 2000);
 
     const unsubscribe = onAuthChange(async (firebaseUser) => {
       clearTimeout(timeoutId);
       if (firebaseUser) {
+        // Firebase user exists - sync returns user data
         const syncedUser = await syncFirebaseUser(firebaseUser);
         if (syncedUser) {
+          // Set user data directly in cache, skip the useQuery fetch
           queryClient.setQueryData(["/api/auth/user"], syncedUser);
+          setFirebaseHandledAuth(true);
         }
       }
+      // Always clear loading - Firebase check complete
       setIsFirebaseLoading(false);
     });
 
