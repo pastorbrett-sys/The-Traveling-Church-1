@@ -83,17 +83,16 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {customLogo ? (
-            <Link
-              href="/vagabond-bible"
+            <div
               className="flex items-center"
-              data-testid="link-home"
+              data-testid="logo-vagabond"
             >
               <img 
                 src={customLogo} 
                 alt="Vagabond Bible AI" 
                 className="h-11"
               />
-            </Link>
+            </div>
           ) : (
             <button
               onClick={() => handleNavClick("home")}
