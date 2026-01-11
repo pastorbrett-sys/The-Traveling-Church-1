@@ -539,7 +539,7 @@ export default function Notes() {
                             </div>
                           </div>
                           
-                          <p className="text-sm whitespace-pre-wrap line-clamp-3 break-words">{note.content}</p>
+                          <p className="text-sm whitespace-pre-wrap line-clamp-3 break-words text-foreground">{note.content}</p>
                           
                           {note.tags && note.tags.length > 0 && (
                             <div className="flex flex-wrap gap-1 mt-3">
@@ -819,7 +819,7 @@ export default function Notes() {
                 {formatDate(viewingNote.createdAt)}
               </p>
               
-              <p className="text-base whitespace-pre-wrap break-words overflow-wrap-anywhere" style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{viewingNote.content}</p>
+              <p className="text-base whitespace-pre-wrap break-words overflow-wrap-anywhere text-foreground" style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{viewingNote.content}</p>
               
               {viewingNote.tags && viewingNote.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 pt-2">
