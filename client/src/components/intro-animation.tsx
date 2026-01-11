@@ -9,7 +9,6 @@ interface IntroAnimationProps {
 export function IntroAnimation({ onComplete }: IntroAnimationProps) {
   const { isNative } = usePlatform();
   const [fadeOut, setFadeOut] = useState(false);
-  const [videoError, setVideoError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   console.log("[IntroAnimation] Mounted, isNative:", isNative, "video src:", splashVideo);
@@ -26,14 +25,22 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
     const video = e.currentTarget;
     const error = video.error;
     console.error("[IntroAnimation] Video error:", error?.message, error?.code);
-    setVideoError(error?.message || "Unknown error");
     // Still complete on error to not block the app
     setTimeout(() => onComplete(), 500);
   };
 
-  const handleVideoCanPlay = () => {
-    console.log("[IntroAnimation] Video can play");
-  };
+  // Manually trigger play for iOS (which can block autoplay)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      console.log("[IntroAnimation] Attempting manual video.play()");
+      video.play().then(() => {
+        console.log("[IntroAnimation] Manual play succeeded");
+      }).catch((err) => {
+        console.error("[IntroAnimation] Manual play failed:", err);
+      });
+    }
+  }, []);
 
   // Fallback in case video doesn't trigger onEnded
   useEffect(() => {
@@ -62,19 +69,15 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         autoPlay
         muted
         playsInline
+        webkit-playsinline="true"
         onEnded={handleVideoEnd}
         onError={handleVideoError}
-        onCanPlay={handleVideoCanPlay}
         className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectFit: 'cover' }}
         data-testid="video-intro-animation"
       >
         <source src={splashVideo} type="video/mp4" />
       </video>
-      {videoError && (
-        <div className="absolute inset-0 flex items-center justify-center text-white text-sm">
-          Video error: {videoError}
-        </div>
-      )}
     </div>
   );
 }
