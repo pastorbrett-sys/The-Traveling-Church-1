@@ -9,19 +9,37 @@ interface IntroAnimationProps {
 export function IntroAnimation({ onComplete }: IntroAnimationProps) {
   const { isNative } = usePlatform();
   const [fadeOut, setFadeOut] = useState(false);
+  const [videoError, setVideoError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  console.log("[IntroAnimation] Mounted, isNative:", isNative, "video src:", splashVideo);
+
   const handleVideoEnd = () => {
+    console.log("[IntroAnimation] Video ended");
     setFadeOut(true);
     setTimeout(() => {
       onComplete();
     }, 300);
   };
 
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const video = e.currentTarget;
+    const error = video.error;
+    console.error("[IntroAnimation] Video error:", error?.message, error?.code);
+    setVideoError(error?.message || "Unknown error");
+    // Still complete on error to not block the app
+    setTimeout(() => onComplete(), 500);
+  };
+
+  const handleVideoCanPlay = () => {
+    console.log("[IntroAnimation] Video can play");
+  };
+
   // Fallback in case video doesn't trigger onEnded
   useEffect(() => {
     const fallbackTimer = setTimeout(() => {
       if (!fadeOut) {
+        console.log("[IntroAnimation] Fallback timer triggered");
         handleVideoEnd();
       }
     }, 2500); // Video is 1.5s, give extra buffer
@@ -45,47 +63,49 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         muted
         playsInline
         onEnded={handleVideoEnd}
+        onError={handleVideoError}
+        onCanPlay={handleVideoCanPlay}
         className="absolute inset-0 w-full h-full object-cover"
         data-testid="video-intro-animation"
       >
         <source src={splashVideo} type="video/mp4" />
       </video>
+      {videoError && (
+        <div className="absolute inset-0 flex items-center justify-center text-white text-sm">
+          Video error: {videoError}
+        </div>
+      )}
     </div>
   );
 }
 
-// Hook to manage intro state with localStorage persistence
+// Hook to manage intro state - always shows on native for now
 export function useIntroAnimation() {
   const { isNative } = usePlatform();
   const [showIntro, setShowIntro] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
 
+  console.log("[useIntroAnimation] isNative:", isNative, "showIntro:", showIntro, "isChecking:", isChecking);
+
   useEffect(() => {
-    // Only show intro on native platform for first-time visitors
+    console.log("[useIntroAnimation] useEffect running, isNative:", isNative);
+    // Always show intro on native platform (for testing)
+    // TODO: Add localStorage check for "first visit only" after video is verified working
     if (isNative) {
-      const hasSeenIntro = localStorage.getItem("vagabond-intro-seen");
-      if (!hasSeenIntro) {
-        setShowIntro(true);
-      }
+      console.log("[useIntroAnimation] Setting showIntro to true");
+      setShowIntro(true);
     }
     setIsChecking(false);
   }, [isNative]);
 
   const completeIntro = () => {
-    localStorage.setItem("vagabond-intro-seen", "true");
+    console.log("[useIntroAnimation] completeIntro called");
     setShowIntro(false);
-  };
-
-  // For testing: reset intro
-  const resetIntro = () => {
-    localStorage.removeItem("vagabond-intro-seen");
-    setShowIntro(true);
   };
 
   return {
     showIntro,
     isChecking,
     completeIntro,
-    resetIntro,
   };
 }
