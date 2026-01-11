@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
-import { Mail, Loader2, Eye, EyeOff } from "lucide-react";
+import { Mail, Loader2, Eye, EyeOff, User } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,12 +13,13 @@ import {
   signUpWithEmail, 
   resetPassword,
   getFirebaseErrorMessage,
-  handleRedirectResult 
+  handleRedirectResult,
+  logoutFirebase
 } from "@/lib/firebase";
 import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
 
 export default function Login() {
-  const { isAuthenticated, isLoading, refetch } = useAuth();
+  const { user, isAuthenticated, isLoading, refetch } = useAuth();
   const [, setLocation] = useLocation();
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
@@ -31,6 +32,11 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  
+  // For native flow: track if user wants to use a different account
+  const [nativeWantsDifferentAccount, setNativeWantsDifferentAccount] = useState(false);
+  // For native flow: track if we're in the process of redirecting back to app
+  const [isNativeRedirecting, setIsNativeRedirecting] = useState(false);
   
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -50,67 +56,88 @@ export default function Login() {
     });
   }, [refetch]);
 
+  // Function to redirect back to native app with auth code
+  const handleNativeRedirect = async () => {
+    setIsNativeRedirecting(true);
+    setError(null);
+    
+    try {
+      console.log("[NATIVE AUTH] Starting redirect flow...");
+      const { auth } = await import("@/lib/firebase");
+      
+      // Wait for auth state to be ready
+      let firebaseUser = auth.currentUser;
+      if (!firebaseUser) {
+        console.log("[NATIVE AUTH] Waiting for auth.currentUser...");
+        for (let i = 0; i < 50 && !firebaseUser; i++) {
+          await new Promise(r => setTimeout(r, 100));
+          firebaseUser = auth.currentUser;
+        }
+      }
+      
+      if (!firebaseUser) {
+        console.error("[NATIVE AUTH] No user available after waiting");
+        setError("Unable to get user details. Please try again.");
+        setIsNativeRedirecting(false);
+        return;
+      }
+      
+      console.log("[NATIVE AUTH] User found:", firebaseUser.email);
+      const idToken = await firebaseUser.getIdToken();
+      console.log("[NATIVE AUTH] Got ID token, generating auth code...");
+      
+      const response = await fetch("/api/native-auth/generate-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
+      
+      if (response.ok) {
+        const { code } = await response.json();
+        console.log("[NATIVE AUTH] Auth code generated, redirecting to app...");
+        window.location.href = `com.vagabondbible.app://auth-callback?code=${code}`;
+      } else {
+        const errorText = await response.text();
+        console.error("[NATIVE AUTH] Failed to generate code:", response.status, errorText);
+        setError("Failed to complete authentication. Please try again.");
+        setIsNativeRedirecting(false);
+      }
+    } catch (err) {
+      console.error("[NATIVE AUTH] Redirect failed:", err);
+      setError("Authentication failed. Please try again.");
+      setIsNativeRedirecting(false);
+    }
+  };
+
+  // Handle native flow: when user signs out to use different account
+  const handleUseDifferentAccount = async () => {
+    setIsGoogleSubmitting(true);
+    setError(null);
+    try {
+      await logoutFirebase();
+      setNativeWantsDifferentAccount(true);
+      await refetch();
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      setIsGoogleSubmitting(false);
+    }
+  };
+
   useEffect(() => {
     console.log("[LOGIN] Auth state changed - isLoading:", isLoading, "isAuthenticated:", isAuthenticated, "isNativeFlow:", isNativeFlow);
     
     if (!isLoading && isAuthenticated) {
       console.log("[LOGIN] User is authenticated, handling redirect...");
       
-      // If this is the native flow, redirect back to the app via deep link
+      // For native flow: DON'T auto-redirect. Show confirmation screen instead.
+      // The user needs to explicitly tap "Continue" to redirect back to the app.
       if (isNativeFlow) {
-        (async () => {
-          try {
-            console.log("[NATIVE AUTH] Starting redirect flow...");
-            const { auth } = await import("@/lib/firebase");
-            
-            // Wait for auth state to be ready
-            let user = auth.currentUser;
-            if (!user) {
-              console.log("[NATIVE AUTH] Waiting for auth.currentUser...");
-              // Wait up to 5 seconds for user to be available
-              for (let i = 0; i < 50 && !user; i++) {
-                await new Promise(r => setTimeout(r, 100));
-                user = auth.currentUser;
-              }
-            }
-            
-            if (!user) {
-              console.error("[NATIVE AUTH] No user available after waiting");
-              setError("Authentication completed but unable to get user details. Please try again.");
-              return;
-            }
-            
-            console.log("[NATIVE AUTH] User found:", user.email);
-            const idToken = await user.getIdToken();
-            console.log("[NATIVE AUTH] Got ID token, generating auth code...");
-            
-            // Generate auth code
-            const response = await fetch("/api/native-auth/generate-code", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ idToken }),
-            });
-            
-            if (response.ok) {
-              const { code } = await response.json();
-              console.log("[NATIVE AUTH] Auth code generated, redirecting to app...");
-              // Redirect to native app
-              window.location.href = `com.vagabondbible.app://auth-callback?code=${code}`;
-              return;
-            } else {
-              const errorText = await response.text();
-              console.error("[NATIVE AUTH] Failed to generate code:", response.status, errorText);
-              setError("Failed to complete authentication. Please try again.");
-            }
-          } catch (err) {
-            console.error("[NATIVE AUTH] Redirect failed:", err);
-            setError("Authentication failed. Please try again.");
-          }
-        })();
+        console.log("[LOGIN] Native flow - showing confirmation screen, NOT auto-redirecting");
         return;
       }
       
-      // Regular flow - navigate to destination
+      // Regular web flow - navigate to destination
       console.log("[LOGIN] Navigating to:", redirectTo);
       window.scrollTo(0, 0);
       setLocation(redirectTo);
@@ -121,9 +148,14 @@ export default function Login() {
     setIsGoogleSubmitting(true);
     setError(null);
     try {
-      const user = await signInWithGoogle();
-      if (user) {
+      const signedInUser = await signInWithGoogle();
+      if (signedInUser) {
         await refetch();
+        // For native flow: after signing in, reset the "different account" flag
+        // so the confirmation screen shows with the new account
+        if (isNativeFlow) {
+          setNativeWantsDifferentAccount(false);
+        }
       }
     } catch (err: any) {
       if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') {
@@ -144,11 +176,15 @@ export default function Login() {
     
     try {
       console.log("[LOGIN DEBUG] Calling signInWithEmail...");
-      const user = await signInWithEmail(signInEmail, signInPassword);
-      console.log("[LOGIN DEBUG] signInWithEmail SUCCESS, user:", user?.email);
+      const signedInUser = await signInWithEmail(signInEmail, signInPassword);
+      console.log("[LOGIN DEBUG] signInWithEmail SUCCESS, user:", signedInUser?.email);
       console.log("[LOGIN DEBUG] Calling refetch...");
       await refetch();
       console.log("[LOGIN DEBUG] refetch complete");
+      // For native flow: after signing in, reset the "different account" flag
+      if (isNativeFlow) {
+        setNativeWantsDifferentAccount(false);
+      }
     } catch (err: any) {
       console.error("[LOGIN DEBUG] Sign in FAILED:", err);
       console.error("[LOGIN DEBUG] Error code:", err.code);
@@ -218,8 +254,82 @@ export default function Login() {
     );
   }
 
-  if (isAuthenticated) {
+  // For regular web flow, if authenticated, don't show login page
+  if (isAuthenticated && !isNativeFlow) {
     return null;
+  }
+
+  // Native flow: Show confirmation screen when authenticated
+  if (isNativeFlow && isAuthenticated && !nativeWantsDifferentAccount) {
+    return (
+      <div className="antialiased min-h-[100dvh] flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
+        <main className="flex-1 flex items-center justify-center px-5" style={{ paddingTop: 'max(3rem, env(safe-area-inset-top, 48px))', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))' }}>
+          <div className="max-w-md mx-auto w-full">
+            <Card className="border-0 shadow-none bg-transparent animate-fade-up" style={{ animationDuration: '0.4s' }}>
+              <CardHeader className="text-center pb-4 pt-0">
+                <div className="flex justify-center mb-4">
+                  <img src={vagabondLogoWhite} alt="Vagabond Bible" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
+                </div>
+                <h2 className="text-xl font-semibold text-white mt-4">Welcome Back!</h2>
+              </CardHeader>
+
+              <CardContent className="space-y-6 pt-4">
+                {error && (
+                  <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md" data-testid="error-message">
+                    {error}
+                  </div>
+                )}
+
+                {/* Show current user info */}
+                <div className="flex items-center gap-4 p-4 bg-[#2a2a2a] rounded-lg">
+                  <div className="w-12 h-12 rounded-full bg-[#3a3a3a] flex items-center justify-center">
+                    <User className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white font-medium truncate">{user?.email}</p>
+                    <p className="text-gray-400 text-sm">Signed in</p>
+                  </div>
+                </div>
+
+                {/* Continue button */}
+                <Button
+                  type="button"
+                  onClick={handleNativeRedirect}
+                  disabled={isNativeRedirecting}
+                  className="w-full h-12 bg-[#b8860b] hover:bg-[#a07608] text-white border-0 text-base"
+                  style={{ animation: 'subtleGlow 3s ease-in-out infinite' }}
+                  data-testid="button-native-continue"
+                >
+                  {isNativeRedirecting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Signing in...
+                    </>
+                  ) : (
+                    "Continue to App"
+                  )}
+                </Button>
+
+                {/* Use different account */}
+                <Button
+                  type="button"
+                  onClick={handleUseDifferentAccount}
+                  disabled={isNativeRedirecting || isGoogleSubmitting}
+                  variant="outline"
+                  className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
+                  data-testid="button-native-different-account"
+                >
+                  {isGoogleSubmitting ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : null}
+                  Use a Different Account
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </main>
+      </div>
+    );
   }
 
   return (
