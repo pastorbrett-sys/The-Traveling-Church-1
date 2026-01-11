@@ -12,11 +12,13 @@ import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
 import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 import burstIcon from "@assets/Burst_1767600505667.png";
 import { usePlatform } from "@/contexts/platform-context";
+import { IntroAnimation, useIntroAnimation } from "@/components/intro-animation";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { isNative } = usePlatform();
+  const { showIntro, isChecking, completeIntro } = useIntroAnimation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,9 +29,15 @@ export default function VagabondBible() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Show loading state while checking intro status
+  if (isNative && isChecking) {
+    return <div className="min-h-screen bg-[#B78D00]" />;
+  }
+
   if (isNative) {
     return (
       <div className="min-h-screen bg-black">
+        {showIntro && <IntroAnimation onComplete={completeIntro} />}
         <section className="relative min-h-[100svh] flex items-center justify-center">
           <div className="absolute inset-0 overflow-hidden">
             <video

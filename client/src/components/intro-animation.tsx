@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { usePlatform } from "@/contexts/platform-context";
 import splashVideo from "@/assets/splash-intro.mp4";
-import splashLadder from "@/assets/splash-ladder.png";
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -9,51 +8,37 @@ interface IntroAnimationProps {
 
 export function IntroAnimation({ onComplete }: IntroAnimationProps) {
   const { isNative } = usePlatform();
-  const [showLadder, setShowLadder] = useState(true);
-  const [fadeOutLadder, setFadeOutLadder] = useState(false);
-  const [fadeOutVideo, setFadeOutVideo] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    // Start fading out the ladder after a brief moment
-    const ladderFadeTimer = setTimeout(() => {
-      setFadeOutLadder(true);
-    }, 300);
-
-    // Hide ladder completely after fade
-    const ladderHideTimer = setTimeout(() => {
-      setShowLadder(false);
-    }, 600);
-
-    return () => {
-      clearTimeout(ladderFadeTimer);
-      clearTimeout(ladderHideTimer);
-    };
-  }, []);
-
   const handleVideoEnd = () => {
-    // Fade out the entire intro
-    setFadeOutVideo(true);
-    // Complete after fade animation
+    setFadeOut(true);
     setTimeout(() => {
       onComplete();
     }, 300);
   };
 
-  // Calculate ladder size to match iOS LaunchScreen (44% of screen width)
-  const ladderSize = Math.min(window.innerWidth * 0.44, window.innerHeight * 0.35);
+  // Fallback in case video doesn't trigger onEnded
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      if (!fadeOut) {
+        handleVideoEnd();
+      }
+    }, 2500); // Video is 1.5s, give extra buffer
+
+    return () => clearTimeout(fallbackTimer);
+  }, [fadeOut]);
 
   return (
     <div
       className={`fixed inset-0 z-[100] bg-[#B78D00] transition-opacity duration-300 ${
-        fadeOutVideo ? "opacity-0" : "opacity-100"
+        fadeOut ? "opacity-0" : "opacity-100"
       }`}
       style={{
         paddingTop: isNative ? "env(safe-area-inset-top, 0px)" : undefined,
         paddingBottom: isNative ? "env(safe-area-inset-bottom, 0px)" : undefined,
       }}
     >
-      {/* Video background */}
       <video
         ref={videoRef}
         autoPlay
@@ -65,26 +50,6 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       >
         <source src={splashVideo} type="video/mp4" />
       </video>
-
-      {/* Ladder overlay - matches iOS LaunchScreen positioning */}
-      {showLadder && (
-        <div
-          className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300 ${
-            fadeOutLadder ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <img
-            src={splashLadder}
-            alt=""
-            style={{
-              width: `${ladderSize}px`,
-              height: "auto",
-            }}
-            className="object-contain"
-            data-testid="img-intro-ladder"
-          />
-        </div>
-      )}
     </div>
   );
 }
