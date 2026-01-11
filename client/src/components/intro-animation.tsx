@@ -60,10 +60,6 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       className={`fixed inset-0 z-[100] bg-[#B78D00] transition-opacity duration-300 ${
         fadeOut ? "opacity-0" : "opacity-100"
       }`}
-      style={{
-        paddingTop: isNative ? "env(safe-area-inset-top, 0px)" : undefined,
-        paddingBottom: isNative ? "env(safe-area-inset-bottom, 0px)" : undefined,
-      }}
     >
       <video
         ref={videoRef}
@@ -74,7 +70,6 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         onEnded={handleVideoEnd}
         onError={handleVideoError}
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectFit: 'cover' }}
         data-testid="video-intro-animation"
       >
         <source src={splashVideo} type="video/mp4" />
