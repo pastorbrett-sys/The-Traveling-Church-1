@@ -1849,7 +1849,7 @@ Reference: ${verseRef} (${translation})`;
           setNoteTags([]);
         }
       }}>
-        <DialogContent className={`fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden transition-all duration-300 ${showSaveGlow ? "ring-4 ring-[#c08e00]/50 shadow-[0_0_30px_rgba(192,142,0,0.4)]" : ""}`} style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
+        <DialogContent className={`fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden transition-all duration-300 ${showSaveGlow ? "ring-4 ring-[#c08e00]/50 shadow-[0_0_30px_rgba(192,142,0,0.4)]" : ""}`} style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)', paddingBottom: 'calc(80px + env(safe-area-inset-bottom, 0px))' } : undefined}>
           <div className="absolute right-4 z-10" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
             <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
               <X className="h-5 w-5" />
@@ -1949,7 +1949,7 @@ Reference: ${verseRef} (${translation})`;
       </Dialog>
 
       <Dialog open={showCompare} onOpenChange={setShowCompare}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[80vh] sm:max-w-2xl sm:w-[95vw] sm:rounded-lg sm:border overflow-hidden flex flex-col p-0 sm:p-6 [&>button]:hidden" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[80vh] sm:max-w-2xl sm:w-[95vw] sm:rounded-lg sm:border overflow-hidden flex flex-col p-0 sm:p-6 [&>button]:hidden" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)', paddingBottom: 'calc(80px + env(safe-area-inset-bottom, 0px))' } : undefined}>
           <div className="absolute right-4 z-10" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}>
             <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
               <X className="h-5 w-5" />
