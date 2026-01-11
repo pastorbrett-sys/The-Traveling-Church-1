@@ -43,13 +43,19 @@ async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null
 
 export function useAuth() {
   const queryClient = useQueryClient();
-  const [isFirebaseLoading, setIsFirebaseLoading] = useState(true);
+  
+  // Check if we have cached user data - if so, skip loading state entirely
+  const cachedUser = queryClient.getQueryData<User | null>(["/api/auth/user"]);
+  const hasCachedUser = cachedUser !== undefined && cachedUser !== null;
+  
+  // Only show loading if we DON'T have cached user data
+  const [isFirebaseLoading, setIsFirebaseLoading] = useState(!hasCachedUser);
   // Track whether initial auth check is complete
   const [initialAuthComplete, setInitialAuthComplete] = useState(false);
   // Track if we've done the initial Firebase check
-  const initialCheckDoneRef = useRef(false);
+  const initialCheckDoneRef = useRef(hasCachedUser); // Skip initial check if we have cached user
   // Track if Firebase has successfully authenticated - prevents fallback from overwriting
-  const firebaseAuthSucceededRef = useRef(false);
+  const firebaseAuthSucceededRef = useRef(hasCachedUser);
 
   // Fetch user from server - only runs as fallback when no Firebase user
   const { data: user, isLoading: isQueryLoading, refetch } = useQuery<User | null>({
@@ -70,26 +76,30 @@ export function useAuth() {
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
     
-    // Wait for Firebase to be ready before enabling fallback
+    // Wait for Firebase to be ready before enabling fallback (shorter timeout)
     const waitForFirebaseReady = async () => {
       try {
         if (typeof auth.authStateReady === 'function') {
           await Promise.race([
             auth.authStateReady(),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000))
+            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 500))
           ]);
         }
       } catch (e) {
-        console.log("Firebase auth ready timeout - proceeding");
+        // Quick timeout is fine - Firebase will fire callback when ready
       }
     };
 
+    // Always subscribe to auth changes - this handles logout, session expiration, etc.
     const unsubscribe = onAuthChange(async (firebaseUser) => {
-      // For the initial callback, wait for Firebase to be ready first
+      // For the initial callback, wait for Firebase to be ready first (skip if we have cache)
       if (!initialCheckDoneRef.current) {
         initialCheckDoneRef.current = true;
         clearTimeout(timeoutId);
-        await waitForFirebaseReady();
+        // Only wait for Firebase if we don't have cached user
+        if (!hasCachedUser) {
+          await waitForFirebaseReady();
+        }
       }
       
       if (firebaseUser) {
@@ -114,21 +124,23 @@ export function useAuth() {
       setIsFirebaseLoading(false);
     });
     
-    // Fallback timeout for slow Firebase init
-    timeoutId = setTimeout(() => {
-      if (!initialCheckDoneRef.current) {
-        console.log("Firebase auth timeout - falling back to session check");
-        initialCheckDoneRef.current = true;
-        setInitialAuthComplete(true);
-        setIsFirebaseLoading(false);
-      }
-    }, 2500);
+    // Only set fallback timeout if we don't have cached user
+    if (!hasCachedUser) {
+      timeoutId = setTimeout(() => {
+        if (!initialCheckDoneRef.current) {
+          console.log("Firebase auth timeout - falling back to session check");
+          initialCheckDoneRef.current = true;
+          setInitialAuthComplete(true);
+          setIsFirebaseLoading(false);
+        }
+      }, 1500);
+    }
 
     return () => {
       clearTimeout(timeoutId);
       unsubscribe();
     };
-  }, [queryClient]);
+  }, [queryClient, hasCachedUser]);
 
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
