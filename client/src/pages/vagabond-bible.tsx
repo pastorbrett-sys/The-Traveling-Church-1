@@ -13,6 +13,8 @@ import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 import burstIcon from "@assets/Burst_1767600505667.png";
 import { usePlatform } from "@/contexts/platform-context";
 import { IntroAnimation, useIntroAnimation } from "@/components/intro-animation";
+import { Capacitor } from "@capacitor/core";
+import { SplashScreen } from "@capacitor/splash-screen";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,6 +30,15 @@ export default function VagabondBible() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Hide native splash screen when intro is not shown (returning users or web)
+  useEffect(() => {
+    if (!showIntro && Capacitor.isNativePlatform()) {
+      SplashScreen.hide({ fadeOutDuration: 200 }).catch(() => {
+        // Ignore errors - splash may already be hidden
+      });
+    }
+  }, [showIntro]);
 
   // Show loading state while checking intro status
   if (isNative && isChecking) {

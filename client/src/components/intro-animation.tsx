@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { usePlatform } from "@/contexts/platform-context";
 import { isNativePlatform } from "@/lib/host-detection";
+import { Capacitor } from "@capacitor/core";
+import { SplashScreen } from "@capacitor/splash-screen";
 import splashVideo from "@/assets/splash-intro.mp4";
 
 interface IntroAnimationProps {
@@ -30,17 +32,32 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
     setTimeout(() => onComplete(), 500);
   };
 
-  // Manually trigger play for iOS (which can block autoplay)
+  // Hide native splash screen and start video playback
   useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      console.log("[IntroAnimation] Attempting manual video.play()");
-      video.play().then(() => {
-        console.log("[IntroAnimation] Manual play succeeded");
-      }).catch((err) => {
-        console.error("[IntroAnimation] Manual play failed:", err);
-      });
-    }
+    const initVideo = async () => {
+      // Hide the native splash screen immediately - video is ready to take over
+      if (Capacitor.isNativePlatform()) {
+        try {
+          console.log("[IntroAnimation] Hiding native splash screen");
+          await SplashScreen.hide({ fadeOutDuration: 200 });
+        } catch (err) {
+          console.log("[IntroAnimation] Splash hide error (non-critical):", err);
+        }
+      }
+      
+      // Manually trigger play for iOS (which can block autoplay)
+      const video = videoRef.current;
+      if (video) {
+        console.log("[IntroAnimation] Attempting manual video.play()");
+        video.play().then(() => {
+          console.log("[IntroAnimation] Manual play succeeded");
+        }).catch((err) => {
+          console.error("[IntroAnimation] Manual play failed:", err);
+        });
+      }
+    };
+    
+    initVideo();
   }, []);
 
   // Fallback in case video doesn't trigger onEnded
