@@ -56,27 +56,51 @@ export default function Login() {
       if (isNativeFlow) {
         (async () => {
           try {
+            console.log("[NATIVE AUTH] Starting redirect flow...");
             const { auth } = await import("@/lib/firebase");
-            const user = auth.currentUser;
-            if (user) {
-              const idToken = await user.getIdToken();
-              
-              // Generate auth code
-              const response = await fetch("/api/native-auth/generate-code", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ idToken }),
-              });
-              
-              if (response.ok) {
-                const { code } = await response.json();
-                // Redirect to native app
-                window.location.href = `com.vagabondbible.app://auth-callback?code=${code}`;
-                return;
+            
+            // Wait for auth state to be ready
+            let user = auth.currentUser;
+            if (!user) {
+              console.log("[NATIVE AUTH] Waiting for auth.currentUser...");
+              // Wait up to 5 seconds for user to be available
+              for (let i = 0; i < 50 && !user; i++) {
+                await new Promise(r => setTimeout(r, 100));
+                user = auth.currentUser;
               }
             }
+            
+            if (!user) {
+              console.error("[NATIVE AUTH] No user available after waiting");
+              setError("Authentication completed but unable to get user details. Please try again.");
+              return;
+            }
+            
+            console.log("[NATIVE AUTH] User found:", user.email);
+            const idToken = await user.getIdToken();
+            console.log("[NATIVE AUTH] Got ID token, generating auth code...");
+            
+            // Generate auth code
+            const response = await fetch("/api/native-auth/generate-code", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ idToken }),
+            });
+            
+            if (response.ok) {
+              const { code } = await response.json();
+              console.log("[NATIVE AUTH] Auth code generated, redirecting to app...");
+              // Redirect to native app
+              window.location.href = `com.vagabondbible.app://auth-callback?code=${code}`;
+              return;
+            } else {
+              const errorText = await response.text();
+              console.error("[NATIVE AUTH] Failed to generate code:", response.status, errorText);
+              setError("Failed to complete authentication. Please try again.");
+            }
           } catch (err) {
-            console.error("Native auth redirect failed:", err);
+            console.error("[NATIVE AUTH] Redirect failed:", err);
+            setError("Authentication failed. Please try again.");
           }
         })();
         return;
