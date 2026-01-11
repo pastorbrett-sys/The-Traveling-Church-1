@@ -216,38 +216,21 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   }, [translation, selectedVerse]);
 
   // Lock body scroll when any fullscreen modal is open (prevents iOS background scrolling)
-  // Consolidated to prevent race conditions when multiple modals are open/closed
+  // Uses overflow:hidden instead of position:fixed to preserve nav bar visibility
   useEffect(() => {
     const anyModalOpen = showInsight || showContinueDiscussion;
     
     if (anyModalOpen) {
-      // Only set scroll position if not already locked
-      if (document.body.style.position !== "fixed") {
-        document.body.style.overflow = "hidden";
-        document.body.style.position = "fixed";
-        document.body.style.width = "100%";
-        document.body.style.top = `-${window.scrollY}px`;
-      }
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
     } else {
-      // Only restore if we had locked it
-      if (document.body.style.position === "fixed") {
-        const scrollY = document.body.style.top;
-        document.body.style.overflow = "";
-        document.body.style.position = "";
-        document.body.style.width = "";
-        document.body.style.top = "";
-        if (scrollY) {
-          window.scrollTo(0, parseInt(scrollY || "0") * -1);
-        }
-      }
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
     return () => {
-      // Only cleanup if no modals are open (component unmounting)
       if (!showInsight && !showContinueDiscussion) {
+        document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
-        document.body.style.position = "";
-        document.body.style.width = "";
-        document.body.style.top = "";
       }
     };
   }, [showInsight, showContinueDiscussion]);
@@ -1625,21 +1608,21 @@ Reference: ${verseRef} (${translation})`;
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[100] bg-background flex flex-col touch-none"
+              className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
             >
               <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { paddingTop: '12px' }}>
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
-                <span className="font-serif font-bold">Verse Insight</span>
+                <span className="font-serif font-bold text-foreground">Verse Insight</span>
               </div>
               <div className="flex-1 flex justify-end">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleCloseInsight}
-                className="hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                className="text-foreground hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
                 data-testid="button-close-insight"
               >
                 <X className="w-5 h-5" />
@@ -1650,8 +1633,8 @@ Reference: ${verseRef} (${translation})`;
             <div className="flex-1 overflow-y-auto p-4 touch-auto overscroll-contain" ref={insightChatRef} style={{ touchAction: "pan-y", paddingBottom: isNative ? "calc(160px + env(safe-area-inset-bottom, 0px))" : "100px" }}>
               <div className="max-w-2xl mx-auto space-y-4">
                 <div className="border-l-2 border-[#c08e00] pl-3 mb-6 mt-2">
-                  <p className="text-2xl font-serif font-bold mb-1">{insightVerseRef}</p>
-                  <p className="text-sm italic">"{insightVerseText}"</p>
+                  <p className="text-2xl font-serif font-bold mb-1 text-foreground">{insightVerseRef}</p>
+                  <p className="text-sm italic text-foreground">"{insightVerseText}"</p>
                 </div>
 
                 {isLoadingInsight && insightMessages.length === 0 ? (
@@ -1747,21 +1730,21 @@ Reference: ${verseRef} (${translation})`;
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[100] bg-background flex flex-col touch-none"
+              className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
             >
               <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { paddingTop: '12px' }}>
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-[#c08e00]" />
-                <span className="font-serif font-bold">Continue Discussion</span>
+                <span className="font-serif font-bold text-foreground">Continue Discussion</span>
               </div>
               <div className="flex-1 flex justify-end">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={handleCloseContinueDiscussion}
-                  className="hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                  className="text-foreground hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
                   data-testid="button-close-discussion"
                 >
                   <X className="w-5 h-5" />
