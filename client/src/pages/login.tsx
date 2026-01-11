@@ -142,7 +142,20 @@ export default function Login() {
     setIsGoogleSubmitting(true);
     setError(null);
     try {
+      // Call both Firebase logout and backend logout
       await logoutFirebase();
+      
+      // Also call backend logout to clear server session
+      try {
+        await fetch("/api/logout", { 
+          method: "GET",
+          headers: { "Accept": "application/json" },
+          credentials: "include"
+        });
+      } catch (e) {
+        console.log("Backend logout error (may be expected):", e);
+      }
+      
       setNativeWantsDifferentAccount(true);
       await refetch();
     } catch (err) {

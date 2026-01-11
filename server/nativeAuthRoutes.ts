@@ -45,21 +45,34 @@ setInterval(() => {
 }, 60000);
 
 export function registerNativeAuthRoutes(app: Express) {
-  // Step 1: Generate a short-lived auth code from Firebase ID token
-  // Called by the web callback page after Firebase auth completes
+  // Step 1: Generate a short-lived auth code
+  // Can use either Firebase ID token OR session cookie (for Safari View Controller)
   app.post("/api/native-auth/generate-code", async (req, res) => {
     try {
       const { idToken } = req.body;
+      let uid: string | undefined;
+      let userEmail: string | undefined;
       
-      if (!idToken) {
-        return res.status(400).json({ error: "Missing idToken" });
+      // Method 1: Use Firebase ID token if provided
+      if (idToken) {
+        const decodedToken = await verifyFirebaseToken(idToken);
+        if (decodedToken) {
+          uid = decodedToken.uid;
+          userEmail = decodedToken.email;
+          console.log("[Native Auth] Using ID token for user:", userEmail);
+        }
       }
       
-      // Verify the Firebase ID token and extract the UID
-      const decodedToken = await verifyFirebaseToken(idToken);
+      // Method 2: Fall back to session cookie (for Safari View Controller where Firebase client auth is unavailable)
+      if (!uid && (req.session as any)?.user?.firebaseUid) {
+        uid = (req.session as any).user.firebaseUid;
+        userEmail = (req.session as any).user.email;
+        console.log("[Native Auth] Using session cookie for user:", userEmail);
+      }
       
-      if (!decodedToken) {
-        return res.status(401).json({ error: "Invalid ID token" });
+      if (!uid) {
+        console.log("[Native Auth] No valid auth found - no ID token and no session");
+        return res.status(401).json({ error: "Not authenticated" });
       }
       
       // Generate a secure, random code
@@ -67,11 +80,11 @@ export function registerNativeAuthRoutes(app: Express) {
       
       // Store UID with 60 second expiry (single use)
       authCodes.set(code, {
-        uid: decodedToken.uid,
+        uid: uid,
         expiresAt: Date.now() + 60000,
       });
       
-      console.log("[Native Auth] Generated auth code for user:", decodedToken.email);
+      console.log("[Native Auth] Generated auth code for user:", userEmail);
       
       res.json({ code });
     } catch (error) {

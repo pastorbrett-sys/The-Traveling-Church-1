@@ -70,24 +70,49 @@ const googleProvider = new GoogleAuthProvider();
 
 export async function signInWithGoogle(): Promise<FirebaseUser | null> {
   try {
-    // On native apps, use browser-based OAuth flow
+    // On native apps, use native Firebase Authentication plugin
+    // This shows the native iOS/Android Google account picker (like Suno)
     if (Capacitor.isNativePlatform()) {
-      console.log("[NATIVE AUTH] Starting browser-based Google sign-in...");
+      console.log("[NATIVE AUTH] Starting native Google sign-in...");
       
-      const { Browser } = await import("@capacitor/browser");
+      const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
       
-      // Open the web login page in system browser
-      // After successful auth, the page will redirect back to app via deep link
-      const authUrl = "https://vagabondbible.com/login?native=true";
+      // Use the native Google Sign-In flow
+      const result = await FirebaseAuthentication.signInWithGoogle();
       
-      await Browser.open({ 
-        url: authUrl,
-        presentationStyle: 'popover',
-        toolbarColor: '#1a1a1a'
-      });
+      console.log("[NATIVE AUTH] Native sign-in result:", result.user?.email);
       
-      // Auth will complete via deep link - return null here
-      // The deep link handler will complete the auth flow
+      if (result.user && result.credential?.idToken) {
+        console.log("[NATIVE AUTH] Got ID token, signing into Firebase Web SDK...");
+        
+        // Sign into the Firebase Web SDK with the credential
+        const credential = GoogleAuthProvider.credential(result.credential.idToken);
+        const webResult = await signInWithCredential(auth, credential);
+        
+        console.log("[NATIVE AUTH] Firebase Web SDK sign-in complete:", webResult.user.email);
+        return webResult.user;
+      }
+      
+      // If we got a user but no credential, the native SDK signed in directly
+      // Wait for auth state to sync
+      if (result.user) {
+        console.log("[NATIVE AUTH] Native auth complete, waiting for auth state sync...");
+        return new Promise((resolve) => {
+          const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+              unsubscribe();
+              console.log("[NATIVE AUTH] Auth state synced:", user.email);
+              resolve(user);
+            }
+          });
+          // Timeout after 5 seconds
+          setTimeout(() => {
+            unsubscribe();
+            resolve(null);
+          }, 5000);
+        });
+      }
+      
       return null;
     }
     
