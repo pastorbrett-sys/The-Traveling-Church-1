@@ -1866,8 +1866,14 @@ Reference: ${verseRef} (${translation})`;
           setNoteTags([]);
         }
       }}>
-        <DialogContent className={`max-w-lg transition-all duration-300 ${showSaveGlow ? "ring-4 ring-[#c08e00]/50 shadow-[0_0_30px_rgba(192,142,0,0.4)]" : ""}`}>
-          <DialogHeader>
+        <DialogContent className={`fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden transition-all duration-300 ${showSaveGlow ? "ring-4 ring-[#c08e00]/50 shadow-[0_0_30px_rgba(192,142,0,0.4)]" : ""}`} style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
+          <div className="absolute right-4 z-10" style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
+            <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
+          </div>
+          <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <StickyNote className="w-5 h-5 text-[#c08e00]" />
               Add Note
@@ -1931,7 +1937,7 @@ Reference: ${verseRef} (${translation})`;
           </div>
 
           <div className="flex justify-end gap-2 pt-2">
-            <Button variant="ghost" onClick={() => setShowNote(false)} data-testid="button-cancel-note">
+            <Button variant="ghost" onClick={() => setShowNote(false)} className="text-foreground" data-testid="button-cancel-note">
               Cancel
             </Button>
             <Button 
