@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -600,7 +600,17 @@ export default function Profile() {
 
       {/* Upgrade Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
+          {/* Custom close button with safe area support */}
+          <button
+            onClick={() => setShowPaywall(false)}
+            className="absolute right-4 rounded-full p-2 bg-black/10 hover:bg-black/20 transition-colors focus:outline-none z-50"
+            style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { top: '12px' }}
+            data-testid="button-close-paywall"
+          >
+            <X className="h-5 w-5 text-[hsl(20,10%,30%)]" />
+            <span className="sr-only">Close</span>
+          </button>
           <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
             <DialogHeader className="text-center">
               <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
@@ -641,15 +651,15 @@ export default function Profile() {
                     ) : "Subscribe Now - $9.99/month"}
                   </Button>
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     onClick={handleRestorePurchases}
                     disabled={isRestoring}
-                    className="w-full text-sm hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                    className="w-full py-6 text-[16px] font-medium border-gray-300 bg-transparent text-black hover:bg-gray-100"
                     data-testid="button-restore-purchases"
                   >
                     {isRestoring ? (
                       <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                         Restoring...
                       </>
                     ) : "Restore Purchases"}
