@@ -23,7 +23,7 @@
                         <constraints>
                             <constraint firstItem="snD-IY-ifK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cX1-1"/>
                             <constraint firstItem="snD-IY-ifK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cY1-1"/>
-                            <constraint firstItem="snD-IY-ifK" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.35" id="w1-1"/>
+                            <constraint firstItem="snD-IY-ifK" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.44" id="w1-1"/>
                             <constraint firstItem="snD-IY-ifK" firstAttribute="height" secondItem="snD-IY-ifK" secondAttribute="width" id="h1-1"/>
                         </constraints>
                     </view>
