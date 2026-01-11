@@ -303,7 +303,7 @@ export default function Login() {
                   type="button"
                   onClick={handleNativeRedirect}
                   disabled={isNativeRedirecting}
-                  className="w-full h-12 bg-[#b8860b] hover:bg-[#a07608] text-white border-0 text-base"
+                  className="w-full h-11 bg-[#b8860b] hover:bg-[#a07608] text-white border-0 text-base"
                   style={{ animation: 'subtleGlow 3s ease-in-out infinite' }}
                   data-testid="button-native-continue"
                 >
