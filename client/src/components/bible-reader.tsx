@@ -215,55 +215,42 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     prevTranslationRef.current = translation;
   }, [translation, selectedVerse]);
 
-  // Lock body scroll when insight modal is open (prevents iOS background scrolling)
+  // Lock body scroll when any fullscreen modal is open (prevents iOS background scrolling)
+  // Consolidated to prevent race conditions when multiple modals are open/closed
   useEffect(() => {
-    if (showInsight) {
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
-      document.body.style.top = `-${window.scrollY}px`;
+    const anyModalOpen = showInsight || showContinueDiscussion;
+    
+    if (anyModalOpen) {
+      // Only set scroll position if not already locked
+      if (document.body.style.position !== "fixed") {
+        document.body.style.overflow = "hidden";
+        document.body.style.position = "fixed";
+        document.body.style.width = "100%";
+        document.body.style.top = `-${window.scrollY}px`;
+      }
     } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      // Only restore if we had locked it
+      if (document.body.style.position === "fixed") {
+        const scrollY = document.body.style.top;
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        }
       }
     }
     return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-    };
-  }, [showInsight]);
-
-  // Lock body scroll when Continue Discussion modal is open
-  useEffect(() => {
-    if (showContinueDiscussion) {
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
-      document.body.style.top = `-${window.scrollY}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      // Only cleanup if no modals are open (component unmounting)
+      if (!showInsight && !showContinueDiscussion) {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
       }
-    }
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
     };
-  }, [showContinueDiscussion]);
+  }, [showInsight, showContinueDiscussion]);
 
   useEffect(() => {
     if (searchDebounceRef.current) {
