@@ -51,7 +51,11 @@ export default function Login() {
   }, [refetch]);
 
   useEffect(() => {
+    console.log("[LOGIN] Auth state changed - isLoading:", isLoading, "isAuthenticated:", isAuthenticated, "isNativeFlow:", isNativeFlow);
+    
     if (!isLoading && isAuthenticated) {
+      console.log("[LOGIN] User is authenticated, handling redirect...");
+      
       // If this is the native flow, redirect back to the app via deep link
       if (isNativeFlow) {
         (async () => {
@@ -106,6 +110,8 @@ export default function Login() {
         return;
       }
       
+      // Regular flow - navigate to destination
+      console.log("[LOGIN] Navigating to:", redirectTo);
       window.scrollTo(0, 0);
       setLocation(redirectTo);
     }

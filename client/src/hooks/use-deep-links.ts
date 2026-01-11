@@ -37,18 +37,27 @@ export function useDeepLinks() {
               const user = await exchangeAuthCode(code);
               
               if (user) {
+                console.log("[DEEP LINK] User signed in:", user.email);
+                
                 // Sync with backend
                 const idToken = await user.getIdToken();
-                await apiFetch("/api/auth/firebase", {
+                const syncResponse = await apiFetch("/api/auth/firebase", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ idToken }),
                 });
                 
-                // Refresh auth state
-                queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
-                
-                console.log("[DEEP LINK] Auth completed successfully!");
+                if (syncResponse.ok) {
+                  const syncedUser = await syncResponse.json();
+                  console.log("[DEEP LINK] Backend sync complete:", syncedUser.email);
+                  
+                  // Directly set the user data to avoid race conditions
+                  queryClient.setQueryData(["/api/auth/user"], syncedUser);
+                  
+                  console.log("[DEEP LINK] Auth completed successfully!");
+                } else {
+                  console.error("[DEEP LINK] Backend sync failed:", syncResponse.status);
+                }
               }
             } catch (error) {
               console.error("[DEEP LINK] Auth failed:", error);
