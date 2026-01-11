@@ -49,17 +49,17 @@ export function useAuth() {
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
     retry: false,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 10, // Cache for 10 minutes - reduces API calls on tab switches
   });
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
     
-    // Timeout fallback in case Firebase auth state never fires (native app edge case)
+    // Reduced timeout for better UX - 2 seconds instead of 5
     timeoutId = setTimeout(() => {
       console.log("Firebase auth timeout - proceeding without Firebase auth state");
       setIsFirebaseLoading(false);
-    }, 5000);
+    }, 2000);
 
     const unsubscribe = onAuthChange(async (firebaseUser) => {
       clearTimeout(timeoutId);

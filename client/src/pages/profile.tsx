@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/hooks/use-auth";
 import { apiRequest, apiFetch } from "@/lib/queryClient";
 import { openExternalUrl } from "@/lib/open-url";
@@ -47,6 +48,11 @@ interface UsageSummary {
   isPro: boolean;
 }
 
+interface ProfileData {
+  subscription: SubscriptionStatus;
+  usage: UsageSummary;
+}
+
 
 export default function Profile() {
   const { user, isLoading: isAuthLoading, isAuthenticated, logout, isLoggingOut } = useAuth();
@@ -60,19 +66,19 @@ export default function Profile() {
   const { purchaseProduct, restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
 
-  const { data: subscriptionStatus, isLoading: isSubLoading } = useQuery<SubscriptionStatus>({
-    queryKey: ["/api/stripe/my-subscription"],
+  // Combined API call - fetches subscription and usage in one request
+  const { data: profileData, isLoading: isProfileLoading } = useQuery<ProfileData>({
+    queryKey: ["/api/profile/data"],
     enabled: isAuthenticated,
     retry: false,
+    staleTime: 60000, // Cache for 1 minute - prevents refetch on every tab switch
   });
 
-  const { data: usageSummary, isLoading: isUsageLoading } = useQuery<UsageSummary>({
-    queryKey: ["/api/usage/summary"],
-    enabled: isAuthenticated,
-    retry: false,
-    refetchOnMount: "always",
-    staleTime: 0,
-  });
+  // Extract data from combined response
+  const subscriptionStatus = profileData?.subscription;
+  const usageSummary = profileData?.usage;
+  const isSubLoading = isProfileLoading;
+  const isUsageLoading = isProfileLoading;
 
 
   useEffect(() => {
@@ -184,14 +190,92 @@ export default function Profile() {
     </nav>
   );
 
+  // Skeleton loader for perceived faster loading
+  const ProfileSkeleton = () => (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Skeleton className="w-5 h-5 rounded" />
+            <Skeleton className="h-6 w-24" />
+          </div>
+          <Skeleton className="h-4 w-48 mt-1" />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center gap-4">
+            <Skeleton className="w-16 h-16 rounded-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-6 w-32" />
+              <Skeleton className="h-4 w-24" />
+            </div>
+          </div>
+          <Separator className="my-4" />
+          <Skeleton className="h-10 w-full" />
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Skeleton className="w-5 h-5 rounded" />
+            <Skeleton className="h-6 w-28" />
+          </div>
+          <Skeleton className="h-4 w-40 mt-1" />
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <Skeleton className="h-6 w-20" />
+              <Skeleton className="h-6 w-24" />
+            </div>
+            <Separator />
+            <Skeleton className="h-10 w-full" />
+          </div>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Skeleton className="w-5 h-5 rounded" />
+            <Skeleton className="h-6 w-36" />
+          </div>
+          <Skeleton className="h-4 w-52 mt-1" />
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="flex items-center justify-between py-2">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="w-8 h-8 rounded-full" />
+                  <div className="space-y-1">
+                    <Skeleton className="h-4 w-28" />
+                    <Skeleton className="h-3 w-20" />
+                  </div>
+                </div>
+                <Skeleton className="h-6 w-12" />
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
   if (isAuthLoading) {
     return (
       <div className={`bg-[hsl(40,30%,96%)] text-foreground antialiased flex flex-col ${
         isNative ? "h-screen overflow-hidden" : "min-h-screen"
       }`}>
         {!isNative && <VagabondHeader />}
-        <main className={`flex-1 flex items-center justify-center ${isNative ? "safe-area-top" : ""}`}>
-          <Loader2 className="w-8 h-8 animate-spin text-[hsl(25,35%,45%)]" />
+        <main 
+          className="flex-1 overflow-y-auto"
+          style={isNative ? { 
+            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
+            paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
+          } : { paddingTop: '1.25rem', paddingBottom: '4rem' }}
+        >
+          <div className="max-w-2xl mx-auto px-4 md:px-8">
+            <ProfileSkeleton />
+          </div>
         </main>
       </div>
     );

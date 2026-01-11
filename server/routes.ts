@@ -333,6 +333,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Combined Profile Data endpoint - reduces API calls from 2 to 1
+  app.get("/api/profile/data", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user?.uid || req.session?.userId;
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const isPro = isUserPro(user);
+
+      // Fetch subscription and usage in parallel
+      const [subscription, usageSummary] = await Promise.all([
+        user.stripeCustomerId 
+          ? stripeStorage.getCustomerSubscription(user.stripeCustomerId)
+          : Promise.resolve(null),
+        getUsageSummary(userId, isPro),
+      ]);
+
+      // Determine Pro status from subscription
+      const isStripeProUser = subscription 
+        ? ((subscription as any).status === 'active' || (subscription as any).status === 'trialing') 
+          && !(subscription as any).cancel_at_period_end
+        : false;
+
+      res.json({
+        subscription: {
+          subscription,
+          isProUser: isStripeProUser || isPro,
+          stripeCustomerId: user.stripeCustomerId,
+        },
+        usage: usageSummary,
+      });
+    } catch (error) {
+      console.error("Error fetching profile data:", error);
+      res.status(500).json({ message: "Failed to fetch profile data" });
+    }
+  });
+
   app.patch("/api/notes/:id", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.session.userId;
