@@ -236,15 +236,15 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
                   )}
                 </Button>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   onClick={handleRestorePurchases}
                   disabled={isRestoring}
-                  className="w-full text-sm hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
+                  className="w-full py-6 text-[16px] font-medium border-[#c08e00]/30 text-[#9a7600] hover:bg-[#c08e00]/10 hover:text-[#9a7600]"
                   data-testid="button-restore-purchases"
                 >
                   {isRestoring ? (
                     <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                       Restoring...
                     </>
                   ) : "Restore Purchases"}
