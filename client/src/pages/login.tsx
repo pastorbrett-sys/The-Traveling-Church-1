@@ -71,16 +71,33 @@ export default function Login() {
     try {
       console.log("[NATIVE AUTH] Starting redirect flow...");
       const { auth } = await import("@/lib/firebase");
+      const { onAuthStateChanged } = await import("firebase/auth");
       
-      // Wait for auth state to be ready
-      let firebaseUser = auth.currentUser;
-      if (!firebaseUser) {
-        console.log("[NATIVE AUTH] Waiting for auth.currentUser...");
-        for (let i = 0; i < 50 && !firebaseUser; i++) {
-          await new Promise(r => setTimeout(r, 100));
-          firebaseUser = auth.currentUser;
+      // Use onAuthStateChanged to properly wait for auth state
+      const firebaseUser = await new Promise<any>((resolve, reject) => {
+        // First check if user is already available
+        if (auth.currentUser) {
+          console.log("[NATIVE AUTH] User immediately available:", auth.currentUser.email);
+          resolve(auth.currentUser);
+          return;
         }
-      }
+        
+        console.log("[NATIVE AUTH] Waiting for auth state via listener...");
+        
+        // Set up a timeout
+        const timeout = setTimeout(() => {
+          unsubscribe();
+          reject(new Error("Auth state timeout"));
+        }, 10000);
+        
+        // Listen for auth state changes
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          console.log("[NATIVE AUTH] onAuthStateChanged fired, user:", user?.email || "null");
+          clearTimeout(timeout);
+          unsubscribe();
+          resolve(user);
+        });
+      });
       
       if (!firebaseUser) {
         console.error("[NATIVE AUTH] No user available after waiting");
@@ -109,9 +126,13 @@ export default function Login() {
         setError("Failed to complete authentication. Please try again.");
         setIsNativeRedirecting(false);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("[NATIVE AUTH] Redirect failed:", err);
-      setError("Authentication failed. Please try again.");
+      if (err.message === "Auth state timeout") {
+        setError("Authentication timed out. Please try signing in again.");
+      } else {
+        setError("Authentication failed. Please try again.");
+      }
       setIsNativeRedirecting(false);
     }
   };
