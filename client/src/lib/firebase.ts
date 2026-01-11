@@ -78,7 +78,7 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
       
       // Open the web login page in system browser
       // After successful auth, the page will redirect back to app via deep link
-      const authUrl = "https://the-traveling-church-brettlindstrom.replit.app/login?native=true";
+      const authUrl = "https://vagabondbible.com/login?native=true";
       
       await Browser.open({ 
         url: authUrl,
@@ -109,7 +109,7 @@ export async function exchangeAuthCode(code: string): Promise<FirebaseUser | nul
   try {
     console.log("[NATIVE AUTH] Exchanging auth code...");
     
-    const response = await fetch("https://the-traveling-church-brettlindstrom.replit.app/api/native-auth/exchange", {
+    const response = await fetch("https://vagabondbible.com/api/native-auth/exchange", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code }),

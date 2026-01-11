@@ -142,7 +142,7 @@ cd ios/App && pod install && open App.xcworkspace
 
 ### API Calls on Native
 - All `/api/...` calls use `apiFetch()` helper from `queryClient.ts`
-- `apiFetch()` prepends production URL (`https://the-traveling-church-brettlindstrom.replit.app`) when `Capacitor.isNativePlatform()` is true
+- `apiFetch()` prepends production URL (`https://vagabondbible.com`) when `Capacitor.isNativePlatform()` is true
 - Server has CORS configured for `capacitor://localhost` and `https://localhost`
 - Session cookies use `sameSite: "none"` and `secure: true` for cross-origin requests
 
