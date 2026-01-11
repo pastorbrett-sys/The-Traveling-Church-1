@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
 import { Mail, Loader2, Eye, EyeOff, User } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
+import { Capacitor } from "@capacitor/core";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,6 +26,12 @@ export default function Login() {
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/pastor-chat";
   const isNativeFlow = params.get("native") === "true";
+  
+  // Distinguish between Safari View Controller (web) and native app WebView
+  // Safari View Controller: isNativeFlow=true but NOT running in Capacitor native platform
+  // Native app WebView: Capacitor.isNativePlatform() is true
+  const isInSafariSheet = isNativeFlow && !Capacitor.isNativePlatform();
+  const isInNativeApp = Capacitor.isNativePlatform();
   
   const [activeTab, setActiveTab] = useState<string>("signin");
   const [isEmailSubmitting, setIsEmailSubmitting] = useState(false);
@@ -125,24 +132,24 @@ export default function Login() {
   };
 
   useEffect(() => {
-    console.log("[LOGIN] Auth state changed - isLoading:", isLoading, "isAuthenticated:", isAuthenticated, "isNativeFlow:", isNativeFlow);
+    console.log("[LOGIN] Auth state changed - isLoading:", isLoading, "isAuthenticated:", isAuthenticated, "isInSafariSheet:", isInSafariSheet, "isInNativeApp:", isInNativeApp);
     
     if (!isLoading && isAuthenticated) {
       console.log("[LOGIN] User is authenticated, handling redirect...");
       
-      // For native flow: DON'T auto-redirect. Show confirmation screen instead.
-      // The user needs to explicitly tap "Continue" to redirect back to the app.
-      if (isNativeFlow) {
-        console.log("[LOGIN] Native flow - showing confirmation screen, NOT auto-redirecting");
+      // In Safari View Controller: Show confirmation screen, don't auto-redirect
+      // This lets the user see who they're signing in as before returning to app
+      if (isInSafariSheet) {
+        console.log("[LOGIN] Safari sheet - showing confirmation screen, NOT auto-redirecting");
         return;
       }
       
-      // Regular web flow - navigate to destination
+      // In native app OR regular web: Navigate to destination
       console.log("[LOGIN] Navigating to:", redirectTo);
       window.scrollTo(0, 0);
       setLocation(redirectTo);
     }
-  }, [isLoading, isAuthenticated, redirectTo, setLocation, isNativeFlow]);
+  }, [isLoading, isAuthenticated, redirectTo, setLocation, isInSafariSheet, isInNativeApp]);
 
   const handleGoogleSignIn = async () => {
     setIsGoogleSubmitting(true);
@@ -151,9 +158,9 @@ export default function Login() {
       const signedInUser = await signInWithGoogle();
       if (signedInUser) {
         await refetch();
-        // For native flow: after signing in, reset the "different account" flag
+        // For Safari sheet: after signing in, reset the "different account" flag
         // so the confirmation screen shows with the new account
-        if (isNativeFlow) {
+        if (isInSafariSheet) {
           setNativeWantsDifferentAccount(false);
         }
       }
@@ -181,8 +188,8 @@ export default function Login() {
       console.log("[LOGIN DEBUG] Calling refetch...");
       await refetch();
       console.log("[LOGIN DEBUG] refetch complete");
-      // For native flow: after signing in, reset the "different account" flag
-      if (isNativeFlow) {
+      // For Safari sheet: after signing in, reset the "different account" flag
+      if (isInSafariSheet) {
         setNativeWantsDifferentAccount(false);
       }
     } catch (err: any) {
@@ -254,13 +261,13 @@ export default function Login() {
     );
   }
 
-  // For regular web flow, if authenticated, don't show login page
-  if (isAuthenticated && !isNativeFlow) {
+  // If authenticated in native app or regular web, don't show login page (navigation will happen)
+  if (isAuthenticated && !isInSafariSheet) {
     return null;
   }
 
-  // Native flow: Show confirmation screen when authenticated
-  if (isNativeFlow && isAuthenticated && !nativeWantsDifferentAccount) {
+  // Safari sheet: Show confirmation screen when authenticated
+  if (isInSafariSheet && isAuthenticated && !nativeWantsDifferentAccount) {
     return (
       <div className="antialiased min-h-[100dvh] flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
         <main className="flex-1 flex items-center justify-center px-5" style={{ paddingTop: 'max(3rem, env(safe-area-inset-top, 48px))', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))' }}>
