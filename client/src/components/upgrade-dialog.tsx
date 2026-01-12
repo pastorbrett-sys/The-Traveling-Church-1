@@ -160,7 +160,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
         {/* Close button - sticky inside content for iOS WKWebView compatibility */}
         <div 
           className="sticky top-0 w-full flex justify-end z-50 pointer-events-none"
-          style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 20px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
+          style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) - 30px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
         >
           <button
             onClick={onClose}
