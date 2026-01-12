@@ -31,6 +31,7 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string | null; stripeSubscriptionId?: string | null }): Promise<User | undefined>;
+  deleteUser(userId: string): Promise<boolean>;
 
   // Locations
   getAllLocations(): Promise<Location[]>;
@@ -90,6 +91,35 @@ export class DbStorage implements IStorage {
   async updateUserStripeInfo(userId: string, stripeInfo: { stripeCustomerId?: string | null; stripeSubscriptionId?: string | null }): Promise<User | undefined> {
     const result = await db.update(schema.users).set(stripeInfo).where(eq(schema.users.id, userId)).returning();
     return result[0];
+  }
+
+  async deleteUser(userId: string): Promise<boolean> {
+    try {
+      // Delete all user data in a transaction
+      await db.transaction(async (tx) => {
+        // 1. Delete notes
+        await tx.delete(schema.notes).where(eq(schema.notes.userId, userId));
+        
+        // 2. Delete feature usage
+        await tx.delete(schema.featureUsage).where(eq(schema.featureUsage.userId, userId));
+        
+        // 3. Delete conversations (messages cascade delete)
+        await tx.delete(schema.conversations).where(eq(schema.conversations.sessionId, userId));
+        
+        // 4. Delete sessions associated with the user
+        await tx.delete(schema.sessions).where(
+          sql`sess->>'userId' = ${userId}`
+        );
+        
+        // 5. Delete the user
+        await tx.delete(schema.users).where(eq(schema.users.id, userId));
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      return false;
+    }
   }
 
   // Locations

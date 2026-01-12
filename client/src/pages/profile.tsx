@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +14,17 @@ import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
@@ -60,6 +71,7 @@ export default function Profile() {
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { isNative } = usePlatform();
   const { restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
@@ -125,6 +137,33 @@ export default function Profile() {
       });
     } finally {
       setIsRestoring(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    setIsDeleting(true);
+    try {
+      const res = await apiRequest("DELETE", "/api/account");
+      if (res.ok) {
+        toast({
+          title: "Account Deleted",
+          description: "Your account and all data have been permanently deleted.",
+        });
+        await logout();
+        setLocation("/");
+      } else {
+        const data = await res.json();
+        throw new Error(data.message || "Failed to delete account");
+      }
+    } catch (error: any) {
+      console.error("Delete account error:", error);
+      toast({
+        title: "Deletion Failed",
+        description: error.message || "Unable to delete account. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -624,8 +663,58 @@ export default function Profile() {
             </Card>
           </div>
 
+          {/* Delete Account */}
+          <div className="pt-6">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="w-full text-red-600 hover:text-red-700 hover:bg-red-50"
+                  data-testid="button-delete-account"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Delete Account
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="bg-[hsl(40,30%,96%)]">
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-red-600">Delete Account</AlertDialogTitle>
+                  <AlertDialogDescription className="text-left space-y-2">
+                    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                    <p className="font-medium">The following will be permanently deleted:</p>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li>Your profile and account information</li>
+                      <li>All saved notes and highlights</li>
+                      <li>Chat conversation history</li>
+                      <li>Usage data and preferences</li>
+                    </ul>
+                    <p className="text-sm mt-2 font-medium text-red-600">Important: If you have an active Pro subscription, you must cancel it separately in your device's Settings → Subscriptions to stop billing. Deleting your account does not automatically cancel your subscription.</p>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel data-testid="button-cancel-delete">Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleDeleteAccount}
+                    disabled={isDeleting}
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                    data-testid="button-confirm-delete"
+                  >
+                    {isDeleting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Deleting...
+                      </>
+                    ) : (
+                      "Delete Account"
+                    )}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+
           {/* Legal Links - inline at bottom of content */}
-          <div className={`text-center ${isNative ? 'pt-8 pb-32' : 'py-8'}`}>
+          <div className={`text-center ${isNative ? 'pt-4 pb-32' : 'py-4'}`}>
             <p className="text-xs text-[hsl(20,10%,50%)]">
               <button 
                 type="button"
