@@ -349,6 +349,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
           setShowSearch(false);
           setSearchQuery("");
           setSmartSearchResults(null);
+          // Reset viewport position (fixes iOS Safari visual viewport issue after keyboard dismissal)
+          window.scrollTo(0, 0);
         }
         break;
       case "book":
@@ -362,6 +364,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
           setSearchQuery("");
           setSmartSearchResults(null);
           contentRef.current?.scrollTo(0, 0);
+          // Reset viewport position (fixes iOS Safari visual viewport issue after keyboard dismissal)
+          window.scrollTo(0, 0);
         }
         break;
       case "question":
