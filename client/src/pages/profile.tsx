@@ -679,16 +679,18 @@ export default function Profile() {
               <AlertDialogContent className="bg-[hsl(40,30%,96%)]">
                 <AlertDialogHeader>
                   <AlertDialogTitle className="text-red-600">Delete Account</AlertDialogTitle>
-                  <AlertDialogDescription className="text-left space-y-2">
-                    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
-                    <p className="font-medium">The following will be permanently deleted:</p>
-                    <ul className="list-disc list-inside text-sm space-y-1">
-                      <li>Your profile and account information</li>
-                      <li>All saved notes and highlights</li>
-                      <li>Chat conversation history</li>
-                      <li>Usage data and preferences</li>
-                    </ul>
-                    <p className="text-sm mt-2 font-medium text-red-600">Important: If you have an active Pro subscription, you must cancel it separately in your device's Settings → Subscriptions to stop billing. Deleting your account does not automatically cancel your subscription.</p>
+                  <AlertDialogDescription asChild>
+                    <div className="text-left space-y-2 text-sm text-muted-foreground">
+                      <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                      <p className="font-medium text-foreground">The following will be permanently deleted:</p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Your profile and account information</li>
+                        <li>All saved notes and highlights</li>
+                        <li>Chat conversation history</li>
+                        <li>Usage data and preferences</li>
+                      </ul>
+                      <p className="mt-2 font-medium text-red-600">Important: If you have an active Pro subscription, you must cancel it separately in your device's Settings → Subscriptions to stop billing. Deleting your account does not automatically cancel your subscription.</p>
+                    </div>
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
