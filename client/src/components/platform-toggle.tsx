@@ -4,10 +4,7 @@ import { Smartphone, Globe } from "lucide-react";
 export function PlatformToggle() {
   const { isNative, isSimulating, toggleSimulation } = usePlatform();
 
-  // Temporarily hidden for testing
-  return null;
-  
-  // Only show in development mode on web (hide on actual native devices)
+  // Only show in development mode on web (hide on actual native devices and production)
   if (import.meta.env.PROD) return null;
   
   // Hide on actual native devices (only show web simulation toggle)
@@ -15,7 +12,7 @@ export function PlatformToggle() {
 
   return (
     <div 
-      className="fixed top-20 right-4 z-[9999] flex items-center gap-2 bg-background/95 backdrop-blur-sm border border-border rounded-lg p-2 shadow-lg"
+      className="fixed top-4 left-4 z-[999999] flex items-center gap-2 bg-black/90 backdrop-blur-sm border-2 border-yellow-400 rounded-lg p-2 shadow-xl"
       data-testid="platform-toggle-container"
     >
       <button
