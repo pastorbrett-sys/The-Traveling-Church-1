@@ -171,7 +171,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
             <span className="sr-only">Close</span>
           </button>
         </div>
-        <div className={`flex flex-col justify-center p-6 sm:p-6 ${isNative ? '-mt-8' : '-mt-6'}`}>
+        <div className={`flex flex-col justify-center p-6 sm:p-6 ${isNative ? 'mt-4' : '-mt-6'}`}>
           <DialogHeader className="text-center">
             <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
@@ -180,7 +180,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
               Upgrade to Pro
             </DialogTitle>
             <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-              Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
+              Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.{isNative ? " Subscription auto-renews monthly. Cancel anytime in Settings." : " Cancel anytime."}
             </DialogDescription>
           </DialogHeader>
 
@@ -226,29 +226,26 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                     </>
                   ) : "Restore Purchases"}
                 </Button>
-                <div className="pt-4 pb-4">
-                  <p className="text-xs text-center text-[hsl(20,10%,50%)] leading-relaxed">
-                    Subscription auto-renews monthly. Cancel anytime in Settings.<br />
-                    By subscribing, you agree to our{" "}
-                    <button 
-                      type="button"
-                      onClick={() => openExternalUrl("/privacy-policy")}
-                      className="underline hover:text-[hsl(20,10%,35%)]"
-                      data-testid="link-privacy-policy"
-                    >
-                      Privacy Policy
-                    </button>
-                    {" "}and{" "}
-                    <button 
-                      type="button"
-                      onClick={() => openExternalUrl("/terms-of-service")}
-                      className="underline hover:text-[hsl(20,10%,35%)]"
-                      data-testid="link-terms-of-service"
-                    >
-                      Terms of Service
-                    </button>.
-                  </p>
-                </div>
+                <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-3 leading-relaxed">
+                  By subscribing, you agree to our{" "}
+                  <button 
+                    type="button"
+                    onClick={() => openExternalUrl("/privacy-policy")}
+                    className="underline hover:text-[hsl(20,10%,35%)]"
+                    data-testid="link-privacy-policy"
+                  >
+                    Privacy Policy
+                  </button>
+                  {" "}and{" "}
+                  <button 
+                    type="button"
+                    onClick={() => openExternalUrl("/terms-of-service")}
+                    className="underline hover:text-[hsl(20,10%,35%)]"
+                    data-testid="link-terms-of-service"
+                  >
+                    Terms of Service
+                  </button>.
+                </p>
               </>
             ) : (
               <>
