@@ -684,15 +684,15 @@ export default function Profile() {
 
       {/* Upgrade Modal */}
       <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
           {/* Custom close button with safe area support */}
           <button
             onClick={() => setShowPaywall(false)}
-            className="absolute right-4 rounded-full p-2 bg-black/10 hover:bg-black/20 transition-colors focus:outline-none z-50"
-            style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { top: '12px' }}
+            className="absolute right-4 rounded-full p-2.5 bg-gray-200 hover:bg-gray-300 transition-colors focus:outline-none z-50"
+            style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}
             data-testid="button-close-paywall"
           >
-            <X className="h-5 w-5 text-[hsl(20,10%,30%)]" />
+            <X className="h-5 w-5 text-black" />
             <span className="sr-only">Close</span>
           </button>
           <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
