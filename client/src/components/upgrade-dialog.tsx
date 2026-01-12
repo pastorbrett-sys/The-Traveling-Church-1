@@ -21,34 +21,12 @@ interface UpgradeDialogProps {
   resetAt?: string | null;
 }
 
-const FEATURE_LABELS: Record<string, string> = {
-  smart_search: "Smart Search",
-  book_synopsis: "Book Synopsis",
-  verse_insight: "Verse Insights",
-  notes: "Notes",
-};
-
-const FEATURE_DESCRIPTIONS: Record<string, string> = {
-  smart_search: "AI-powered Bible searches",
-  book_synopsis: "AI book overviews",
-  verse_insight: "AI verse explanations",
-  notes: "saved notes",
-};
-
-export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialogProps) {
+export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const { isNative } = usePlatform();
   const { toast } = useToast();
-  
-  const isFeatureSpecific = !!feature;
-  const featureLabel = feature ? (FEATURE_LABELS[feature] || feature) : "";
-  const featureDescription = feature ? (FEATURE_DESCRIPTIONS[feature] || feature) : "";
-  
-  const resetDate = resetAt 
-    ? new Date(resetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
-    : null;
 
   const handleUpgrade = async () => {
     setIsCheckingOut(true);
@@ -179,7 +157,7 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
-        <div className="fixed right-4" style={{ top: '16px', zIndex: 10001 }}>
+        <div className="fixed right-4" style={{ top: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : '16px', zIndex: 10001 }}>
           <button
             onClick={onClose}
             className="rounded-full p-2.5 bg-gray-300 hover:bg-gray-400 transition-colors focus:outline-none"
@@ -195,21 +173,10 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
             </div>
             <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
-              {isFeatureSpecific ? `${featureLabel} Limit Reached` : "Upgrade to Pro"}
+              Upgrade to Pro
             </DialogTitle>
             <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-              {isFeatureSpecific ? (
-                <>
-                  You've used all your {featureDescription} for this {feature === 'notes' ? 'account' : 'month'}.
-                  {resetDate && feature !== 'notes' && (
-                    <span className="block mt-1">
-                      Your limit resets on {resetDate}.
-                    </span>
-                  )}
-                </>
-              ) : (
-                "Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime."
-              )}
+              Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
             </DialogDescription>
           </DialogHeader>
 
