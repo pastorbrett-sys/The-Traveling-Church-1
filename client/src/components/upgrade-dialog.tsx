@@ -156,8 +156,8 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
-        <div className="fixed right-4" style={{ top: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : '16px', zIndex: 10001 }}>
+      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' } : undefined}>
+        <div className="absolute right-4" style={{ top: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : '16px', zIndex: 10001 }}>
           <button
             onClick={onClose}
             className="rounded-full p-2.5 bg-gray-300 hover:bg-gray-400 transition-colors focus:outline-none"
@@ -167,7 +167,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
             <span className="sr-only">Close</span>
           </button>
         </div>
-        <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
+        <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-16' : ''}`}>
           <DialogHeader className="text-center">
             <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
