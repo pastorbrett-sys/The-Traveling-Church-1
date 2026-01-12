@@ -160,7 +160,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
         {/* Close button - sticky inside content for iOS WKWebView compatibility */}
         <div 
           className="sticky top-0 w-full flex justify-end z-50 pointer-events-none"
-          style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
+          style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 20px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
         >
           <button
             onClick={onClose}
@@ -171,7 +171,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
             <span className="sr-only">Close</span>
           </button>
         </div>
-        <div className={`flex flex-col justify-center p-6 sm:p-6 ${isNative ? 'mt-4' : '-mt-6'}`}>
+        <div className={`flex flex-col p-6 sm:p-6 ${isNative ? 'flex-1 justify-center -mt-16' : '-mt-6'}`}>
           <DialogHeader className="text-center">
             <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
