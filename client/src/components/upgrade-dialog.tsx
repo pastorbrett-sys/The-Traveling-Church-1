@@ -157,20 +157,21 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' } : undefined}>
+        {/* Close button - sticky inside content for iOS WKWebView compatibility */}
         <div 
-          className={isNative ? "fixed right-4 pointer-events-auto" : "absolute right-4"} 
-          style={{ top: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : '16px', zIndex: 10002 }}
+          className="sticky top-0 w-full flex justify-end z-50 pointer-events-none"
+          style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
         >
           <button
             onClick={onClose}
-            className="rounded-full p-2.5 bg-gray-300 hover:bg-gray-400 transition-colors focus:outline-none"
+            className="pointer-events-auto rounded-full w-12 h-12 flex items-center justify-center bg-[hsl(28,45%,48%)] shadow-xl border-2 border-white/80"
             data-testid="button-close-upgrade"
           >
-            <X className="h-6 w-6 text-black" />
+            <X className="h-6 w-6 text-white" strokeWidth={2.5} />
             <span className="sr-only">Close</span>
           </button>
         </div>
-        <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-16' : ''}`}>
+        <div className={`flex flex-col justify-center p-6 sm:p-6 ${isNative ? '-mt-8' : '-mt-6'}`}>
           <DialogHeader className="text-center">
             <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
