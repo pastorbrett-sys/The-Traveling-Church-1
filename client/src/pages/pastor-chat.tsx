@@ -879,7 +879,7 @@ export default function PastorChat() {
                       <MoreVertical className="w-5 h-5 text-muted-foreground" />
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-40">
+                  <DropdownMenuContent align="end" className="w-40 z-[200]">
                     <DropdownMenuItem
                       onClick={startNewChat}
                       data-testid="menu-clear-chat"
