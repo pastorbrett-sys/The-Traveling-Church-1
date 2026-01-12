@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Loader2, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,6 +14,19 @@ import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useToast } from "@/hooks/use-toast";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 interface UpgradeDialogProps {
   open: boolean;
@@ -167,30 +181,53 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
             <span className="sr-only">Close</span>
           </button>
         </div>
-        <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
-          <DialogHeader className="text-center">
-            <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
-              <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
-            </div>
-            <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
-              Upgrade to Pro
-            </DialogTitle>
-            <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-              Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
-            </DialogDescription>
-          </DialogHeader>
+        <AnimatePresence>
+          {open && (
+            <motion.div 
+              className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              <DialogHeader className="text-center">
+                <motion.div 
+                  className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}
+                  variants={fadeInUp}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
+                </motion.div>
+                <motion.div variants={fadeInUp} transition={{ duration: 0.4, ease: "easeOut" }}>
+                  <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
+                    Upgrade to Pro
+                  </DialogTitle>
+                </motion.div>
+                <motion.div variants={fadeInUp} transition={{ duration: 0.4, ease: "easeOut" }}>
+                  <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
+                    Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
+                  </DialogDescription>
+                </motion.div>
+              </DialogHeader>
 
-          <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}>
-            <h3 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">Upgrade to Pro for:</h3>
-            <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
-              <li>• Unlimited Smart Searches</li>
-              <li>• Unlimited Book Synopses</li>
-              <li>• Unlimited Verse Insights</li>
-              <li>• Unlimited Notes</li>
-            </ul>
-          </div>
+              <motion.div 
+                className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}
+                variants={fadeInUp}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                <h3 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">Upgrade to Pro for:</h3>
+                <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
+                  <li>• Unlimited Smart Searches</li>
+                  <li>• Unlimited Book Synopses</li>
+                  <li>• Unlimited Verse Insights</li>
+                  <li>• Unlimited Notes</li>
+                </ul>
+              </motion.div>
 
-          <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
+              <motion.div 
+                className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4"
+                variants={fadeInUp}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
             {isNative ? (
               <>
                 <Button 
@@ -245,8 +282,10 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                 </p>
               </>
             )}
-          </div>
-        </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </DialogContent>
     </Dialog>
   );
