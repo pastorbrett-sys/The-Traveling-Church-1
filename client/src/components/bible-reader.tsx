@@ -58,7 +58,6 @@ import { apiRequest, apiFetch } from "@/lib/queryClient";
 import ReactMarkdown from "react-markdown";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
 import { usePlatform } from "@/contexts/platform-context";
-import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 interface BibleBook {
   bookid: number;
@@ -1617,13 +1616,7 @@ Reference: ${verseRef} (${translation})`;
               style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
             >
               <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { paddingTop: '12px' }}>
-              <div className="flex-1 flex items-center gap-2">
-                <img 
-                  src={logoImage} 
-                  alt="Vagabond Bible" 
-                  className="h-8 w-auto"
-                />
-              </div>
+              <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
                 <span className="font-serif font-bold text-foreground">Verse Insight</span>
@@ -1745,13 +1738,7 @@ Reference: ${verseRef} (${translation})`;
               style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
             >
               <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { paddingTop: '12px' }}>
-              <div className="flex-1 flex items-center gap-2">
-                <img 
-                  src={logoImage} 
-                  alt="Vagabond Bible" 
-                  className="h-8 w-auto"
-                />
-              </div>
+              <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-[#c08e00]" />
                 <span className="font-serif font-bold text-foreground">Continue Discussion</span>
