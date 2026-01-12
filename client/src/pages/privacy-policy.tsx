@@ -108,7 +108,7 @@ export default function PrivacyPolicy() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">8. Account Deletion</h2>
             <p className="mb-4">
-              You can request deletion of your account and all associated data by contacting us at support@vagabondbible.com. We will process your request within 30 days.
+              You can request deletion of your account and all associated data by contacting us at pastorbrett@thetravelingchurch.com. We will process your request within 30 days.
             </p>
           </section>
 
@@ -132,7 +132,7 @@ export default function PrivacyPolicy() {
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
             <p className="mb-4">
-              <strong>Email:</strong> support@vagabondbible.com
+              <strong>Email:</strong> pastorbrett@thetravelingchurch.com
             </p>
           </section>
         </div>

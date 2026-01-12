@@ -72,7 +72,7 @@ export default function TermsOfService() {
             </p>
             <h3 className="text-lg font-medium text-[hsl(20,10%,25%)] mb-2">Refunds</h3>
             <p className="mb-4">
-              For iOS app purchases, refunds are handled by Apple according to their refund policy. For web purchases, please contact us at support@vagabondbible.com within 7 days of purchase.
+              For iOS app purchases, refunds are handled by Apple according to their refund policy. For web purchases, please contact us at pastorbrett@thetravelingchurch.com within 7 days of purchase.
             </p>
           </section>
 
@@ -139,7 +139,7 @@ export default function TermsOfService() {
               If you have any questions about these Terms of Service, please contact us at:
             </p>
             <p className="mb-4">
-              <strong>Email:</strong> support@vagabondbible.com
+              <strong>Email:</strong> pastorbrett@thetravelingchurch.com
             </p>
           </section>
         </div>
