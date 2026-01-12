@@ -212,7 +212,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                   variant="outline"
                   onClick={handleRestorePurchases}
                   disabled={isRestoring}
-                  className="w-full py-6 text-[16px] font-medium border-gray-300 bg-transparent text-black hover:bg-gray-100"
+                  className="w-full py-6 text-[16px] font-medium border-gray-300 bg-transparent text-black hover:bg-gray-100 hover:text-gray-600"
                   data-testid="button-restore-purchases"
                 >
                   {isRestoring ? (
