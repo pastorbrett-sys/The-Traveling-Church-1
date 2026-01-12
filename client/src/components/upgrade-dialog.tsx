@@ -182,11 +182,11 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
         {/* Custom close button with safe area support */}
         <button
           onClick={onClose}
-          className="absolute right-4 rounded-full p-2 bg-black/10 hover:bg-black/20 transition-colors focus:outline-none z-50"
-          style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { top: '12px' }}
+          className="absolute right-4 rounded-full p-2.5 bg-gray-200 hover:bg-gray-300 transition-colors focus:outline-none z-50"
+          style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}
           data-testid="button-close-upgrade"
         >
-          <X className="h-5 w-5 text-[hsl(20,10%,30%)]" />
+          <X className="h-5 w-5 text-black" />
           <span className="sr-only">Close</span>
         </button>
         <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
