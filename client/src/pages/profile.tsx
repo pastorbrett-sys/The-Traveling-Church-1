@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, X } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/hooks/use-auth";
-import { apiRequest, apiFetch } from "@/lib/queryClient";
+import { apiRequest } from "@/lib/queryClient";
 import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
+import { UpgradeDialog } from "@/components/upgrade-dialog";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
@@ -59,11 +59,9 @@ export default function Profile() {
   const [, setLocation] = useLocation();
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [isPurchasing, setIsPurchasing] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const { isNative } = usePlatform();
-  const { purchaseProduct, restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
+  const { restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
 
   // Combined API call - fetches subscription and usage in one request
@@ -99,54 +97,6 @@ export default function Profile() {
       console.error("Portal error:", error);
     } finally {
       setIsOpeningPortal(false);
-    }
-  };
-
-  const handleSubscribe = async () => {
-    setIsCheckingOut(true);
-    try {
-      const productsRes = await apiFetch("/api/stripe/products-with-prices");
-      if (!productsRes.ok) throw new Error("Failed to load products");
-      const productsData = await productsRes.json();
-      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
-      if (!proPlan) throw new Error("Pro plan not found");
-      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
-      if (!proPrice) throw new Error("Monthly price not found");
-      
-      const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", { priceId: proPrice.id });
-      const checkoutData = await checkoutRes.json();
-      if (checkoutData.url) {
-        await openExternalUrl(checkoutData.url);
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-      alert("Unable to start checkout. Please try again.");
-    } finally {
-      setIsCheckingOut(false);
-    }
-  };
-
-  const handleNativePurchase = async () => {
-    setIsPurchasing(true);
-    try {
-      const success = await purchaseProduct("vagabond_bible_pro_monthly");
-      if (success) {
-        setShowPaywall(false);
-        toast({
-          title: "Welcome to Pro!",
-          description: "Your subscription is now active. Enjoy unlimited access!",
-        });
-        await refreshEntitlements();
-      }
-    } catch (error) {
-      console.error("Native purchase error:", error);
-      toast({
-        title: "Purchase Failed",
-        description: "Unable to complete purchase. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsPurchasing(false);
     }
   };
 
@@ -682,93 +632,7 @@ export default function Profile() {
         </footer>
       )}
 
-      {/* Upgrade Modal */}
-      <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
-          {/* Custom close button - wrapped in div to bypass [&>button]:hidden */}
-          <div className="fixed right-4" style={{ top: '16px', zIndex: 10001 }}>
-            <button
-              onClick={() => setShowPaywall(false)}
-              className="rounded-full p-2.5 bg-gray-300 hover:bg-gray-400 transition-colors focus:outline-none"
-              data-testid="button-close-paywall"
-            >
-              <X className="h-6 w-6 text-black" />
-              <span className="sr-only">Close</span>
-            </button>
-          </div>
-          <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
-            <DialogHeader className="text-center">
-              <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
-                <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
-              </div>
-              <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]">
-                Upgrade to Pro
-              </DialogTitle>
-              <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-                Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
-              </DialogDescription>
-            </DialogHeader>
-            
-            <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}>
-              <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Upgrade to Pro for:</h3>
-              <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
-                <li>• Unlimited Smart Searches</li>
-                <li>• Unlimited Book Synopses</li>
-                <li>• Unlimited Verse Insights</li>
-                <li>• Unlimited Notes</li>
-              </ul>
-            </div>
-            
-            <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
-              {isNative ? (
-                <>
-                  <Button 
-                    onClick={handleNativePurchase} 
-                    className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium" 
-                    disabled={isPurchasing}
-                    data-testid="button-checkout"
-                  >
-                    {isPurchasing ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Processing...
-                      </>
-                    ) : "Subscribe Now - $9.99/month"}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={handleRestorePurchases}
-                    disabled={isRestoring}
-                    className="w-full py-6 text-[16px] font-medium border-gray-300 bg-transparent text-black hover:bg-gray-100"
-                    data-testid="button-restore-purchases"
-                  >
-                    {isRestoring ? (
-                      <>
-                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                        Restoring...
-                      </>
-                    ) : "Restore Purchases"}
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button 
-                    onClick={handleSubscribe} 
-                    className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium" 
-                    disabled={isCheckingOut}
-                    data-testid="button-checkout"
-                  >
-                    {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
-                  </Button>
-                  <p className="text-xs text-center text-[hsl(20,10%,40%)]">
-                    Cancel anytime. Secure payment via Stripe.
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} />
     </div>
   );
 }

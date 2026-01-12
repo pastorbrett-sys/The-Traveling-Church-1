@@ -17,7 +17,7 @@ import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 interface UpgradeDialogProps {
   open: boolean;
   onClose: () => void;
-  feature: string;
+  feature?: string;
   resetAt?: string | null;
 }
 
@@ -42,8 +42,9 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
   const { isNative } = usePlatform();
   const { toast } = useToast();
   
-  const featureLabel = FEATURE_LABELS[feature] || feature;
-  const featureDescription = FEATURE_DESCRIPTIONS[feature] || feature;
+  const isFeatureSpecific = !!feature;
+  const featureLabel = feature ? (FEATURE_LABELS[feature] || feature) : "";
+  const featureDescription = feature ? (FEATURE_DESCRIPTIONS[feature] || feature) : "";
   
   const resetDate = resetAt 
     ? new Date(resetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
@@ -125,7 +126,6 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
     } catch (error: any) {
       if (error.code !== "PURCHASE_CANCELLED") {
         console.error("Purchase error:", error);
-        // Check for configuration/offerings error
         const errorMessage = error.message || "";
         if (errorMessage.includes("offerings") || errorMessage.includes("configuration") || errorMessage.includes("no App Store products")) {
           toast({
@@ -179,7 +179,6 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
-        {/* Custom close button - wrapped in div to bypass [&>button]:hidden */}
         <div className="fixed right-4" style={{ top: '16px', zIndex: 10001 }}>
           <button
             onClick={onClose}
@@ -196,21 +195,27 @@ export function UpgradeDialog({ open, onClose, feature, resetAt }: UpgradeDialog
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
             </div>
             <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
-              {featureLabel} Limit Reached
+              {isFeatureSpecific ? `${featureLabel} Limit Reached` : "Upgrade to Pro"}
             </DialogTitle>
             <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-              You've used all your {featureDescription} for this {feature === 'notes' ? 'account' : 'month'}.
-              {resetDate && feature !== 'notes' && (
-                <span className="block mt-1">
-                  Your limit resets on {resetDate}.
-                </span>
+              {isFeatureSpecific ? (
+                <>
+                  You've used all your {featureDescription} for this {feature === 'notes' ? 'account' : 'month'}.
+                  {resetDate && feature !== 'notes' && (
+                    <span className="block mt-1">
+                      Your limit resets on {resetDate}.
+                    </span>
+                  )}
+                </>
+              ) : (
+                "Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime."
               )}
             </DialogDescription>
           </DialogHeader>
 
-          <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-2'}`}>
-            <h4 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">Upgrade to Pro for:</h4>
-            <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-1'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
+          <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}>
+            <h3 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">Upgrade to Pro for:</h3>
+            <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
               <li>• Unlimited Smart Searches</li>
               <li>• Unlimited Book Synopses</li>
               <li>• Unlimited Verse Insights</li>
