@@ -226,6 +226,29 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                     </>
                   ) : "Restore Purchases"}
                 </Button>
+                <div className="pt-4 pb-4">
+                  <p className="text-xs text-center text-[hsl(20,10%,50%)] leading-relaxed">
+                    Subscription auto-renews monthly. Cancel anytime in Settings.<br />
+                    By subscribing, you agree to our{" "}
+                    <button 
+                      type="button"
+                      onClick={() => openExternalUrl("/privacy-policy")}
+                      className="underline hover:text-[hsl(20,10%,35%)]"
+                      data-testid="link-privacy-policy"
+                    >
+                      Privacy Policy
+                    </button>
+                    {" "}and{" "}
+                    <button 
+                      type="button"
+                      onClick={() => openExternalUrl("/terms-of-service")}
+                      className="underline hover:text-[hsl(20,10%,35%)]"
+                      data-testid="link-terms-of-service"
+                    >
+                      Terms of Service
+                    </button>.
+                  </p>
+                </div>
               </>
             ) : (
               <>
@@ -244,8 +267,26 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                     "Subscribe Now"
                   )}
                 </Button>
-                <p className="text-xs text-center text-[hsl(20,10%,40%)]">
-                  Cancel anytime. Secure payment via Stripe.
+                <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
+                  Subscription auto-renews monthly. Cancel anytime.<br />
+                  By subscribing, you agree to our{" "}
+                  <button 
+                    type="button"
+                    onClick={() => openExternalUrl("/privacy-policy")}
+                    className="underline hover:text-[hsl(20,10%,35%)]"
+                    data-testid="link-privacy-policy-web"
+                  >
+                    Privacy Policy
+                  </button>
+                  {" "}and{" "}
+                  <button 
+                    type="button"
+                    onClick={() => openExternalUrl("/terms-of-service")}
+                    className="underline hover:text-[hsl(20,10%,35%)]"
+                    data-testid="link-terms-of-service-web"
+                  >
+                    Terms of Service
+                  </button>.
                 </p>
               </>
             )}

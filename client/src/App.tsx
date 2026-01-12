@@ -33,6 +33,8 @@ import CheckoutSuccess from "@/pages/checkout-success";
 import CheckoutCancel from "@/pages/checkout-cancel";
 import VagabondBible from "@/pages/vagabond-bible";
 import NativeAuthCallback from "@/pages/native-auth-callback";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsOfService from "@/pages/terms-of-service";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -56,6 +58,8 @@ function VagabondBibleRouter() {
       <Route path="/native-auth-callback" component={NativeAuthCallback} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
@@ -85,6 +89,8 @@ function ChurchRouter() {
       <Route path="/native-auth-callback" component={NativeAuthCallback} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/checkout/cancel" component={CheckoutCancel} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>

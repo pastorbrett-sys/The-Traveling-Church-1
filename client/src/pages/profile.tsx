@@ -626,6 +626,33 @@ export default function Profile() {
         </div>
       </main>
 
+      {/* Legal Links Section */}
+      <div className={`px-4 sm:px-6 lg:px-8 ${isNative ? 'pb-32' : 'pb-8'}`}>
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center pt-6 border-t border-[hsl(30,20%,88%)]">
+            <p className="text-xs text-[hsl(20,10%,50%)]">
+              <button 
+                type="button"
+                onClick={() => openExternalUrl("/privacy-policy")}
+                className="underline hover:text-[hsl(20,10%,35%)]"
+                data-testid="link-privacy-policy-profile"
+              >
+                Privacy Policy
+              </button>
+              <span className="mx-2">|</span>
+              <button 
+                type="button"
+                onClick={() => openExternalUrl("/terms-of-service")}
+                className="underline hover:text-[hsl(20,10%,35%)]"
+                data-testid="link-terms-of-service-profile"
+              >
+                Terms of Service
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
       {!isNative && (
         <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
           <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
