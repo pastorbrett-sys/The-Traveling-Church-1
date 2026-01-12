@@ -4,8 +4,11 @@ import { Smartphone, Globe } from "lucide-react";
 export function PlatformToggle() {
   const { isNative, isSimulating, toggleSimulation } = usePlatform();
 
-  // Only show in development mode
+  // Only show in development mode on web (hide on actual native devices)
   if (import.meta.env.PROD) return null;
+  
+  // Hide on actual native devices (only show web simulation toggle)
+  if (isNative && !isSimulating) return null;
 
   return (
     <div 
