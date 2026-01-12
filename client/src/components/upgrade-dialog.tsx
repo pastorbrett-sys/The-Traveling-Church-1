@@ -171,7 +171,7 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
             <span className="sr-only">Close</span>
           </button>
         </div>
-        <div className={`flex flex-col p-6 sm:p-6 ${isNative ? 'flex-1 justify-center -mt-16' : '-mt-6'}`}>
+        <div className="flex flex-col p-6 sm:p-6 flex-1 justify-center -mt-16 pt-[36px] pb-[36px]">
           <DialogHeader className="text-center">
             <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
