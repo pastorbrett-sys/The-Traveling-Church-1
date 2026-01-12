@@ -688,11 +688,11 @@ export default function Profile() {
           {/* Custom close button with safe area support */}
           <button
             onClick={() => setShowPaywall(false)}
-            className="absolute right-4 rounded-full p-2.5 bg-gray-200 hover:bg-gray-300 transition-colors focus:outline-none z-50"
-            style={isNative ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}
+            className="fixed right-4 rounded-full p-2.5 bg-gray-300 hover:bg-gray-400 transition-colors focus:outline-none"
+            style={{ top: '16px', zIndex: 10001 }}
             data-testid="button-close-paywall"
           >
-            <X className="h-5 w-5 text-black" />
+            <X className="h-6 w-6 text-black" />
             <span className="sr-only">Close</span>
           </button>
           <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
