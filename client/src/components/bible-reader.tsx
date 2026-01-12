@@ -216,16 +216,14 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   }, [translation, selectedVerse]);
 
   // Lock body scroll when portal modals are open (prevents iOS background scrolling)
-  // Uses overflow:hidden instead of position:fixed to preserve nav bar visibility
+  // Only touch document.body - never documentElement as it breaks env(safe-area-inset-*) values
   // Note: Dialog components (Add Note, Compare) handle their own scroll locking via Radix
   useEffect(() => {
     const anyPortalModalOpen = showInsight || showContinueDiscussion;
     
     if (anyPortalModalOpen) {
-      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     }
   }, [showInsight, showContinueDiscussion]);
@@ -233,7 +231,6 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   // Separate unmount cleanup to ensure scroll is restored when navigating away
   useEffect(() => {
     return () => {
-      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, []);
