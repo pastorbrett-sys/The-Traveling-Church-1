@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect, forwardRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Send, MessageCircle, Lock, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
-import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 import { Link, useSearch } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { UpgradeDialog } from "@/components/upgrade-dialog";
 import {
   Select,
   SelectContent,
@@ -22,9 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
-import { openExternalUrl } from "@/lib/open-url";
 import { useAuth } from "@/hooks/use-auth";
-import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/navigation";
 import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
@@ -113,9 +111,6 @@ export default function PastorChat() {
   const [isStreaming, setIsStreaming] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [isPurchasing, setIsPurchasing] = useState(false);
-  const [isRestoring, setIsRestoring] = useState(false);
   const [footerHeight, setFooterHeight] = useState(180);
   const [isNewChatMode, setIsNewChatMode] = useState(() => {
     // Check if user previously cleared their chat
@@ -357,149 +352,6 @@ export default function PastorChat() {
   useEffect(() => {
     document.title = "AI Bible Buddy | The Traveling Church";
   }, []);
-
-  const handleSubscribe = async () => {
-    // Require login before checkout
-    if (!isAuthenticated) {
-      setShowLoginPrompt(true);
-      return;
-    }
-
-    setIsCheckingOut(true);
-    try {
-      // Fetch the Pro plan price
-      const productsRes = await apiFetch("/api/stripe/products-with-prices");
-      
-      if (!productsRes.ok) {
-        const errText = await productsRes.text();
-        alert("Failed to load products: " + productsRes.status + " - " + errText);
-        return;
-      }
-      
-      const productsData = await productsRes.json();
-      console.log("Products data:", productsData);
-      
-      if (!productsData.data || productsData.data.length === 0) {
-        alert("No products found. Products count: " + (productsData.data?.length || 0));
-        return;
-      }
-      
-      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
-      console.log("Pro plan found:", proPlan);
-      
-      if (!proPlan) {
-        const allProducts = productsData.data.map((p: any) => p.name + " (tier=" + p.metadata?.tier + ")").join(", ");
-        alert("Pro plan not found. Available products: " + allProducts);
-        return;
-      }
-      
-      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
-      console.log("Pro price found:", proPrice);
-      
-      if (!proPrice) {
-        alert("Monthly price not found for Pro plan. Prices: " + JSON.stringify(proPlan.prices));
-        return;
-      }
-      
-      const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", {
-        priceId: proPrice.id,
-      });
-      const checkoutData = await checkoutRes.json();
-      console.log("Checkout response:", checkoutData);
-      
-      if (checkoutData.url) {
-        await openExternalUrl(checkoutData.url);
-      } else {
-        alert("No checkout URL returned: " + JSON.stringify(checkoutData));
-      }
-    } catch (error: any) {
-      console.error("Checkout error:", error);
-      // Try to extract more details from the error
-      let errorDetail = error?.message || String(error);
-      // If the error message contains JSON, try to parse it for more details
-      if (errorDetail.includes("{")) {
-        try {
-          const jsonPart = errorDetail.substring(errorDetail.indexOf("{"));
-          const parsed = JSON.parse(jsonPart);
-          if (parsed.error) errorDetail = parsed.error;
-        } catch {}
-      }
-      alert("Checkout failed: " + errorDetail);
-    } finally {
-      setIsCheckingOut(false);
-    }
-  };
-
-  const { toast } = useToast();
-
-  const handleNativePurchase = async () => {
-    setIsPurchasing(true);
-    try {
-      const { Purchases } = await import("@revenuecat/purchases-capacitor");
-      const offerings = await Purchases.getOfferings();
-      
-      if (!offerings.current?.availablePackages?.length) {
-        throw new Error("No subscription packages available");
-      }
-      
-      const monthlyPackage = offerings.current.availablePackages.find(
-        (pkg: any) => pkg.packageType === "MONTHLY"
-      ) || offerings.current.availablePackages[0];
-      
-      const result = await Purchases.purchasePackage({ aPackage: monthlyPackage });
-      
-      if (result.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
-        toast({
-          title: "Welcome to Pro!",
-          description: "You now have unlimited access to all features.",
-        });
-        setShowPaywall(false);
-        window.location.reload();
-      }
-    } catch (error: any) {
-      if (error.code !== "PURCHASE_CANCELLED") {
-        console.error("Purchase error:", error);
-        toast({
-          title: "Purchase failed",
-          description: error.message || "Unable to complete purchase. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } finally {
-      setIsPurchasing(false);
-    }
-  };
-
-  const handleRestorePurchases = async () => {
-    setIsRestoring(true);
-    try {
-      const { Purchases } = await import("@revenuecat/purchases-capacitor");
-      const customerInfo = await Purchases.restorePurchases();
-      
-      if (customerInfo.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
-        toast({
-          title: "Purchases restored!",
-          description: "Your Pro subscription has been restored.",
-        });
-        setShowPaywall(false);
-        window.location.reload();
-      } else {
-        toast({
-          title: "No purchases found",
-          description: "No previous Pro subscription was found for this account.",
-        });
-      }
-    } catch (error: any) {
-      console.error("Restore error:", error);
-      toast({
-        title: "Restore failed",
-        description: "Unable to restore purchases. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsRestoring(false);
-    }
-  };
 
   const sendMessage = async () => {
     if (!input.trim() || isStreaming) return;
@@ -896,82 +748,7 @@ export default function PastorChat() {
       </div>
       )}
 
-      {/* Subscription Paywall Modal */}
-      <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0" style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}>
-          <div className={`flex flex-col justify-center min-h-full p-6 sm:p-6 ${isNative ? 'pt-6' : ''}`}>
-            <DialogHeader className="text-center">
-              <div className={`mx-auto w-20 h-20 sm:w-16 sm:h-16 flex items-center justify-center ${isNative ? 'mb-6' : 'mb-4 sm:mb-2'}`}>
-                <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
-              </div>
-              <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]">
-                Upgrade to Pro
-              </DialogTitle>
-              <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-                Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight. Cancel anytime.
-              </DialogDescription>
-            </DialogHeader>
-            
-            <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}>
-              <h3 className="font-semibold text-lg sm:text-base mb-3 sm:mb-2 text-[hsl(20,10%,20%)]">Upgrade to Pro for:</h3>
-              <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
-                <li>• Unlimited Smart Searches</li>
-                <li>• Unlimited Book Synopses</li>
-                <li>• Unlimited Verse Insights</li>
-                <li>• Unlimited Notes</li>
-              </ul>
-            </div>
-            
-            <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
-              {isNative ? (
-                <>
-                  <Button 
-                    onClick={handleNativePurchase} 
-                    className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium" 
-                    disabled={isPurchasing}
-                    data-testid="button-checkout"
-                  >
-                    {isPurchasing ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Processing...
-                      </>
-                    ) : "Subscribe Now - $9.99/month"}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    onClick={handleRestorePurchases}
-                    disabled={isRestoring}
-                    className="w-full text-sm hover:bg-[#c08e00]/10 hover:text-[#c08e00]"
-                    data-testid="button-restore-purchases"
-                  >
-                    {isRestoring ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Restoring...
-                      </>
-                    ) : "Restore Purchases"}
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button 
-                    onClick={handleSubscribe} 
-                    className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium" 
-                    disabled={isCheckingOut}
-                    data-testid="button-checkout"
-                  >
-                    {isCheckingOut ? "Redirecting..." : "Subscribe Now"}
-                  </Button>
-                  <p className="text-xs text-center text-[hsl(20,10%,40%)]">
-                    Cancel anytime. Secure payment via Stripe.
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} feature="chat_message" />
 
       {/* Login Required Modal */}
       <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
