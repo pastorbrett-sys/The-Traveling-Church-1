@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
 import { Mail, Loader2, Eye, EyeOff, User } from "lucide-react";
-import { SiGoogle } from "react-icons/si";
+import { SiGoogle, SiApple } from "react-icons/si";
 import { Capacitor } from "@capacitor/core";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import { 
-  signInWithGoogle, 
+  signInWithGoogle,
+  signInWithApple,
   signInWithEmail, 
   signUpWithEmail, 
   resetPassword,
@@ -36,6 +37,7 @@ export default function Login() {
   const [activeTab, setActiveTab] = useState<string>("signin");
   const [isEmailSubmitting, setIsEmailSubmitting] = useState(false);
   const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
+  const [isAppleSubmitting, setIsAppleSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -192,8 +194,6 @@ export default function Login() {
       const signedInUser = await signInWithGoogle();
       if (signedInUser) {
         await refetch();
-        // For Safari sheet: after signing in, reset the "different account" flag
-        // so the confirmation screen shows with the new account
         if (isInSafariSheet) {
           setNativeWantsDifferentAccount(false);
         }
@@ -206,6 +206,28 @@ export default function Login() {
       setError(getFirebaseErrorMessage(err.code));
     } finally {
       setIsGoogleSubmitting(false);
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    setIsAppleSubmitting(true);
+    setError(null);
+    try {
+      const signedInUser = await signInWithApple();
+      if (signedInUser) {
+        await refetch();
+        if (isInSafariSheet) {
+          setNativeWantsDifferentAccount(false);
+        }
+      }
+    } catch (err: any) {
+      if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') {
+        return;
+      }
+      console.error("Apple sign in error:", err);
+      setError(getFirebaseErrorMessage(err.code));
+    } finally {
+      setIsAppleSubmitting(false);
     }
   };
 
@@ -473,24 +495,22 @@ export default function Login() {
                 </Button>
               </form>
 
-              {/* Forgot Password - Fixed position, just fades */}
-              <div className="h-10 flex items-center justify-center" style={{ marginTop: '8px' }}>
-                <button
-                  type="button"
-                  onClick={handleForgotPassword}
-                  className="text-sm hover:underline text-[#b8860b] transition-opacity duration-200"
-                  style={{ opacity: activeTab === "signin" ? 1 : 0, pointerEvents: activeTab === "signin" ? "auto" : "none" }}
-                  data-testid="button-forgot-password"
-                >
-                  Forgot password?
-                </button>
-              </div>
+              {/* Forgot Password - Only shows on sign in tab */}
+              {activeTab === "signin" && (
+                <div className="flex items-center justify-center">
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    className="text-sm hover:underline text-[#b8860b]"
+                    data-testid="button-forgot-password"
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+              )}
               
-              {/* Bottom Section - Slides up when on Create Account */}
-              <div 
-                className="space-y-4 transition-transform duration-300 ease-out"
-                style={{ transform: activeTab === "signup" ? "translateY(-44px)" : "translateY(-8px)" }}
-              >
+              {/* Social Sign-In Section */}
+              <div className="space-y-3">
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-[#333333]" />
                   <span className="text-sm text-gray-500">or</span>
@@ -500,7 +520,7 @@ export default function Login() {
                 <Button
                   type="button"
                   onClick={handleGoogleSignIn}
-                  disabled={isEmailSubmitting || isGoogleSubmitting}
+                  disabled={isEmailSubmitting || isGoogleSubmitting || isAppleSubmitting}
                   variant="outline"
                   className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
                   data-testid={activeTab === "signin" ? "button-signin-google" : "button-signup-google"}
@@ -513,7 +533,23 @@ export default function Login() {
                   {activeTab === "signin" ? "Continue with Google" : "Sign up with Google"}
                 </Button>
                 
-                <p className="text-xs text-center text-gray-500">
+                <Button
+                  type="button"
+                  onClick={handleAppleSignIn}
+                  disabled={isEmailSubmitting || isGoogleSubmitting || isAppleSubmitting}
+                  variant="outline"
+                  className="w-full h-11 bg-transparent border-[#333333] text-white hover:bg-[#222222]"
+                  data-testid={activeTab === "signin" ? "button-signin-apple" : "button-signup-apple"}
+                >
+                  {isAppleSubmitting ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <SiApple className="w-4 h-4 mr-2" />
+                  )}
+                  {activeTab === "signin" ? "Continue with Apple" : "Sign up with Apple"}
+                </Button>
+                
+                <p className="text-xs text-center text-gray-500 pt-1">
                   By continuing, you agree to our Terms of Service and Privacy Policy.
                 </p>
               </div>

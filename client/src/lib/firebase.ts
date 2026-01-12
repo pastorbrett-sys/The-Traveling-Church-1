@@ -9,7 +9,8 @@ import {
   getRedirectResult,
   signInWithCredential,
   signInWithCustomToken,
-  GoogleAuthProvider, 
+  GoogleAuthProvider,
+  OAuthProvider,
   signOut,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -125,6 +126,77 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
       await signInWithRedirect(auth, googleProvider);
       return null;
     }
+    throw error;
+  }
+}
+
+export async function signInWithApple(): Promise<FirebaseUser | null> {
+  try {
+    // On native apps, use native Firebase Authentication plugin
+    if (Capacitor.isNativePlatform()) {
+      console.log("[NATIVE AUTH] Starting native Apple sign-in...");
+      
+      const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+      
+      // Use the native Apple Sign-In flow
+      const result = await FirebaseAuthentication.signInWithApple();
+      
+      console.log("[NATIVE AUTH] Native Apple sign-in result:", result.user?.email);
+      
+      if (result.user && result.credential?.idToken) {
+        console.log("[NATIVE AUTH] Got Apple ID token, signing into Firebase Web SDK...");
+        
+        // Sign into the Firebase Web SDK with the credential
+        const appleProvider = new OAuthProvider('apple.com');
+        const credential = appleProvider.credential({
+          idToken: result.credential.idToken,
+          rawNonce: result.credential.nonce,
+        });
+        const webResult = await signInWithCredential(auth, credential);
+        
+        console.log("[NATIVE AUTH] Firebase Web SDK Apple sign-in complete:", webResult.user.email);
+        return webResult.user;
+      }
+      
+      // If we got a user but no credential, the native SDK signed in directly
+      if (result.user) {
+        console.log("[NATIVE AUTH] Native Apple auth complete, waiting for auth state sync...");
+        return new Promise((resolve) => {
+          const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+              unsubscribe();
+              console.log("[NATIVE AUTH] Auth state synced:", user.email);
+              resolve(user);
+            }
+          });
+          setTimeout(() => {
+            unsubscribe();
+            resolve(null);
+          }, 5000);
+        });
+      }
+      
+      return null;
+    }
+    
+    // On web, use Apple OAuth provider with popup
+    const appleProvider = new OAuthProvider('apple.com');
+    appleProvider.addScope('email');
+    appleProvider.addScope('name');
+    
+    try {
+      const result = await signInWithPopup(auth, appleProvider);
+      return result.user;
+    } catch (popupError: any) {
+      console.error("Apple sign-in popup error:", popupError);
+      if (popupError.code === 'auth/popup-blocked') {
+        await signInWithRedirect(auth, appleProvider);
+        return null;
+      }
+      throw popupError;
+    }
+  } catch (error: any) {
+    console.error("Apple sign-in error:", error);
     throw error;
   }
 }
