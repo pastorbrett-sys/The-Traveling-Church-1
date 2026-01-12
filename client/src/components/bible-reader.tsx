@@ -1613,9 +1613,9 @@ Reference: ${verseRef} (${translation})`;
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
-              style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
+              style={{ touchAction: "none" }}
             >
-              <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { paddingTop: '12px' }}>
+              <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
@@ -1735,9 +1735,9 @@ Reference: ${verseRef} (${translation})`;
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
-              style={{ touchAction: "none", paddingTop: isNative ? 'env(safe-area-inset-top, 0px)' : undefined }}
+              style={{ touchAction: "none" }}
             >
-              <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { paddingTop: '12px' }}>
+              <div className="flex items-center justify-between p-3 border-b" style={isNative ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-[#c08e00]" />
