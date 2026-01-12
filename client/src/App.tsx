@@ -11,6 +11,7 @@ import { PlatformProvider } from "@/contexts/platform-context";
 import { RevenueCatProvider } from "@/contexts/revenuecat-context";
 import { PlatformToggle } from "@/components/platform-toggle";
 import { NativeTabBar } from "@/components/native-tab-bar";
+import { OfflineBanner } from "@/components/offline-banner";
 import { useDeepLinks } from "@/hooks/use-deep-links";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -117,6 +118,7 @@ function App() {
             <ScrollToTop />
             <DeepLinkHandler />
             <Toaster />
+            <OfflineBanner />
             <Router />
             <NativeTabBar />
             <PlatformToggle />
