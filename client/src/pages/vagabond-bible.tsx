@@ -47,7 +47,7 @@ export default function VagabondBible() {
 
   if (isNative) {
     return (
-      <div className="min-h-screen bg-black">
+      <div className={`min-h-screen transition-colors duration-300 ${showIntro ? 'bg-[#B78D00]' : 'bg-black'}`}>
         {showIntro && <IntroAnimation onComplete={completeIntro} />}
         <section className="relative min-h-[100svh] flex items-center justify-center">
           <div className="absolute inset-0 overflow-hidden">
