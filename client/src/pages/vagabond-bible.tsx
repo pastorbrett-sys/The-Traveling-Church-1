@@ -21,10 +21,10 @@ import { SplashScreen } from "@capacitor/splash-screen";
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isNative, isSimulating } = usePlatform();
+  const { isNative, isSimulating, isLoading: isPlatformLoading } = usePlatform();
   const { showIntro, isChecking, completeIntro } = useIntroAnimation();
   
-  console.log("[VagabondBible] isNative:", isNative, "isSimulating:", isSimulating);
+  console.log("[VagabondBible] isNative:", isNative, "isSimulating:", isSimulating, "isPlatformLoading:", isPlatformLoading);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,6 +44,11 @@ export default function VagabondBible() {
     }
   }, [showIntro]);
 
+  // Wait for platform detection before rendering to prevent wrong video flash
+  if (isPlatformLoading) {
+    return <div className="min-h-screen bg-black" />;
+  }
+
   // Show loading state while checking intro status
   if (isNative && isChecking) {
     return <div className="min-h-screen bg-[#B78D00]" />;
@@ -56,6 +61,7 @@ export default function VagabondBible() {
         <section className="relative min-h-[100svh] flex items-center justify-center">
           <div className="absolute inset-0 overflow-hidden">
             <video
+              key="native-video"
               autoPlay
               muted
               loop
