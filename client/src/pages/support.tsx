@@ -85,7 +85,7 @@ export default function Support() {
             <div>
               <h3 className="font-medium text-[hsl(20,10%,20%)] mb-2">How do I cancel my subscription?</h3>
               <p className="text-[hsl(20,10%,40%)]">
-                Go to your Profile in the app and tap "Manage Subscription" to cancel or modify your plan. For iOS, this will take you to your Apple subscription settings.
+                Go to your Profile in the app and tap "Manage Subscription" to cancel or modify your plan. For iOS, this will take you to your Apple subscription settings. If you subscribed on the web, you'll be taken to Stripe to manage your subscription.
               </p>
             </div>
             
