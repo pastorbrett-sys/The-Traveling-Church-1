@@ -33,6 +33,7 @@ The application uses a component-based frontend architecture and an Express.js b
 - **Subscription Management**: Implements Free and Pro SaaS tiers using Stripe for web and RevenueCat for native in-app purchases. Pro plans offer unlimited AI Bible Buddy access and other premium features.
 - **User Authentication**: Integrates Replit's OpenID Connect for user sign-in (Google, GitHub, email/password), linking subscriptions to user accounts. Authenticated Pro users can manage subscriptions via Stripe Customer Portal.
 - **Native App (Capacitor)**: Supports iOS and Android via Capacitor, with platform-specific UI/UX adaptations like native tab bars, full-screen modals, and safe area handling. API calls from native platforms prepend the production URL and handle session cookies securely. App Transport Security (ATS) is configured for broader compatibility.
+- **Native Landing Video**: The native iOS app uses `native-landing-video.mp4` (app preview video). To revert to the original Moses/Red Sea video, change `nativeHeroVideo` back to `heroVideo` in `vagabond-bible.tsx`. The Moses video is `text-to-video-28b9692b_1767558425367.mp4`.
 
 ## External Dependencies
 
