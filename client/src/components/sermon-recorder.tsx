@@ -296,17 +296,17 @@ export function SermonRecorder({ open, onOpenChange, onUpgradeNeeded }: SermonRe
           {state === "recording" && (
             <div className="flex flex-col items-center py-8">
               <div className="relative mb-6">
-                <div className="w-20 h-20 rounded-full bg-red-500 flex items-center justify-center animate-pulse">
+                <div className="w-20 h-20 rounded-full bg-amber-500 flex items-center justify-center animate-pulse">
                   <Mic className="w-8 h-8 text-white" />
                 </div>
-                <div className="absolute -inset-2 rounded-full border-2 border-red-500 animate-ping opacity-50" />
+                <div className="absolute -inset-2 rounded-full border-2 border-amber-500 animate-ping opacity-50" />
               </div>
-              <p className="text-2xl font-mono font-bold text-red-500 mb-4">
+              <p className="text-2xl font-mono font-bold text-amber-500 mb-4">
                 {formatTime(recordingTime)}
               </p>
               <button
                 onClick={stopRecording}
-                className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center hover:bg-red-600 transition-all"
+                className="w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition-all"
                 data-testid="button-stop-recording"
               >
                 <Square className="w-6 h-6 text-white fill-white" />

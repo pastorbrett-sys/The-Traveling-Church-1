@@ -330,7 +330,7 @@ export default function Notes() {
             <div className="flex items-center gap-2 -translate-x-[11px] sm:translate-x-0">
               <button
                 onClick={() => setShowSermonRecorder(true)}
-                className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center hover:bg-red-600 transition-colors"
+                className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition-colors"
                 data-testid="button-record-sermon"
                 title="Record sermon"
               >
