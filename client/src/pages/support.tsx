@@ -85,14 +85,14 @@ export default function Support() {
             <div>
               <h3 className="font-medium text-[hsl(20,10%,20%)] mb-2">How do I cancel my subscription?</h3>
               <p className="text-[hsl(20,10%,40%)]">
-                For iOS subscriptions, manage your subscription through your Apple ID settings. For web subscriptions, contact us at the email above.
+                Go to your Profile in the app and tap "Manage Subscription" to cancel or modify your plan. For iOS, this will take you to your Apple subscription settings.
               </p>
             </div>
             
             <div>
               <h3 className="font-medium text-[hsl(20,10%,20%)] mb-2">How do I delete my account?</h3>
               <p className="text-[hsl(20,10%,40%)]">
-                To delete your account and all associated data, please email us at pastorbrett@thetravelingchurch.com. We will process your request within 30 days.
+                Go to your Profile in the app and tap "Delete Account." This will permanently remove your account and all associated data.
               </p>
             </div>
             
