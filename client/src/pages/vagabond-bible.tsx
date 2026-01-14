@@ -21,8 +21,10 @@ import { SplashScreen } from "@capacitor/splash-screen";
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isNative } = usePlatform();
+  const { isNative, isSimulating } = usePlatform();
   const { showIntro, isChecking, completeIntro } = useIntroAnimation();
+  
+  console.log("[VagabondBible] isNative:", isNative, "isSimulating:", isSimulating);
 
   useEffect(() => {
     const handleScroll = () => {
