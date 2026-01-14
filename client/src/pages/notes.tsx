@@ -16,8 +16,7 @@ import {
   Loader2,
   SortAsc,
   SortDesc,
-  Plus,
-  Mic
+  Plus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,7 +47,6 @@ import vagabondLogo from "@/assets/vagabond-logo.png";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
-import { SermonRecorder } from "@/components/sermon-recorder";
 
 type NotesResponse = {
   notes: Note[];
@@ -92,7 +90,6 @@ export default function Notes() {
   const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
   const [viewingNote, setViewingNote] = useState<Note | null>(null);
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
-  const [showSermonRecorder, setShowSermonRecorder] = useState(false);
 
   useEffect(() => {
     document.title = "My Notes | Vagabond Bible AI";
@@ -327,23 +324,13 @@ export default function Notes() {
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-2 -translate-x-[11px] sm:translate-x-0">
-              <button
-                onClick={() => setShowSermonRecorder(true)}
-                className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition-colors"
-                data-testid="button-record-sermon"
-                title="Record sermon"
-              >
-                <Mic className="w-5 h-5 text-white" />
-              </button>
-              <button
-                onClick={() => setShowCreateNote(true)}
-                className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors"
-                data-testid="button-create-note"
-              >
-                <Plus className="w-5 h-5 text-white" />
-              </button>
-            </div>
+            <button
+              onClick={() => setShowCreateNote(true)}
+              className="w-10 h-10 rounded-full bg-[#c08e00] flex items-center justify-center hover:bg-[#a07800] transition-colors -translate-x-[11px] sm:translate-x-0"
+              data-testid="button-create-note"
+            >
+              <Plus className="w-5 h-5 text-white" />
+            </button>
           </div>
 
           {notes.length > 0 ? (
@@ -857,12 +844,6 @@ export default function Notes() {
         onClose={() => setUpgradeDialogOpen(false)}
         feature="notes"
         resetAt={null}
-      />
-
-      <SermonRecorder
-        open={showSermonRecorder}
-        onOpenChange={setShowSermonRecorder}
-        onUpgradeNeeded={() => setUpgradeDialogOpen(true)}
       />
     </div>
   );

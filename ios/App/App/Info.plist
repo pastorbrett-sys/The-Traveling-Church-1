@@ -73,8 +73,6 @@
                 <string>googlechrome</string>
                 <string>com-google-gidconsent</string>
         </array>
-        <key>NSMicrophoneUsageDescription</key>
-        <string>Vagabond Bible needs microphone access to record and transcribe sermons and voice notes.</string>
         <key>NSAppTransportSecurity</key>
         <dict>
                 <key>NSAllowsArbitraryLoads</key>

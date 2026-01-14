@@ -1,5 +1,5 @@
 import { storage } from "./storage";
-import { FEATURE_LIMITS, PRO_FEATURE_LIMITS, type FeatureUsageType } from "@shared/schema";
+import { FEATURE_LIMITS, type FeatureUsageType } from "@shared/schema";
 
 export interface UsageLimitResult {
   allowed: boolean;
@@ -88,41 +88,6 @@ export async function checkNotesLimit(
     remaining,
     resetAt: null,
   };
-}
-
-// Check transcription limit - Pro-only feature with monthly limits
-export async function checkTranscriptionLimit(
-  userId: string,
-  isPro: boolean
-): Promise<UsageLimitResult> {
-  // Non-Pro users cannot use transcription at all
-  if (!isPro) {
-    return {
-      allowed: false,
-      currentUsage: 0,
-      limit: 0,
-      remaining: 0,
-      resetAt: null,
-    };
-  }
-
-  // Pro users have a monthly limit
-  const currentUsage = await storage.getFeatureUsage(userId, 'sermon_transcription');
-  const limit = PRO_FEATURE_LIMITS.sermon_transcription;
-  const remaining = Math.max(0, limit - currentUsage);
-
-  return {
-    allowed: currentUsage < limit,
-    currentUsage,
-    limit,
-    remaining,
-    resetAt: getNextMonthStart(),
-  };
-}
-
-// Increment transcription usage for Pro users
-export async function incrementTranscriptionUsage(userId: string): Promise<number> {
-  return await storage.incrementFeatureUsage(userId, 'sermon_transcription');
 }
 
 export async function getUsageSummary(userId: string, isPro: boolean): Promise<UsageSummary> {

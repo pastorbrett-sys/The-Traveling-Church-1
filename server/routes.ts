@@ -10,7 +10,7 @@ import {
   insertNoteSchema,
   FEATURE_LIMITS,
 } from "@shared/schema";
-import { getUsageSummary, checkNotesLimit, checkTranscriptionLimit, incrementTranscriptionUsage } from "./usageService";
+import { getUsageSummary, checkNotesLimit } from "./usageService";
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
 import { registerChatRoutes } from "./replit_integrations/chat";
@@ -22,8 +22,6 @@ import bibleRoutes from "./bibleRoutes";
 import { registerRevenueCatWebhook } from "./revenueCatWebhook";
 import { isUserPro } from "./proStatusService";
 import { registerNativeAuthRoutes } from "./nativeAuthRoutes";
-import multer from "multer";
-import OpenAI from "openai";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first (before other routes)
@@ -274,77 +272,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error creating note:", error);
       res.status(400).json({ message: "Invalid note data" });
-    }
-  });
-
-  // Audio transcription endpoint for sermon recording
-  const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 25 * 1024 * 1024 } }); // 25MB limit
-  
-  app.post("/api/transcribe", isAuthenticated, upload.single("audio"), async (req: any, res) => {
-    try {
-      const userId = req.session.userId;
-      const user = await storage.getUser(userId);
-      const isPro = isUserPro(user);
-      
-      // Only Pro users can use transcription
-      if (!isPro) {
-        return res.status(403).json({
-          code: "PRO_REQUIRED",
-          message: "Sermon transcription is a Pro feature. Upgrade to access.",
-        });
-      }
-      
-      // Check monthly transcription limit (even Pro users have limits)
-      const limitResult = await checkTranscriptionLimit(userId, isPro);
-      if (!limitResult.allowed) {
-        return res.status(429).json({
-          code: "USAGE_LIMIT_REACHED",
-          feature: "sermon_transcription",
-          remaining: 0,
-          limit: limitResult.limit,
-          used: limitResult.currentUsage,
-          resetAt: limitResult.resetAt?.toISOString(),
-          message: `You've used all ${limitResult.limit} sermon transcriptions this month. Your limit resets next month.`,
-        });
-      }
-      
-      if (!req.file) {
-        return res.status(400).json({ message: "No audio file provided" });
-      }
-      
-      if (!process.env.OPENAI_API_KEY) {
-        console.error("OPENAI_API_KEY not configured");
-        return res.status(500).json({ message: "Transcription service not configured" });
-      }
-      
-      // Create OpenAI client per-request to handle missing API key gracefully
-      const transcriptionOpenai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-      
-      // Convert buffer to file for OpenAI
-      const audioFile = new File([req.file.buffer], req.file.originalname || "audio.webm", {
-        type: req.file.mimetype || "audio/webm",
-      });
-      
-      const transcription = await transcriptionOpenai.audio.transcriptions.create({
-        file: audioFile,
-        model: "whisper-1",
-        language: "en",
-      });
-      
-      // Increment usage after successful transcription
-      await incrementTranscriptionUsage(userId);
-      
-      // Return transcription with remaining usage info
-      res.json({ 
-        text: transcription.text,
-        usage: {
-          remaining: limitResult.remaining - 1,
-          limit: limitResult.limit,
-        }
-      });
-    } catch (error: any) {
-      console.error("Transcription error:", error);
-      res.status(500).json({ message: "Failed to transcribe audio" });
     }
   });
 
