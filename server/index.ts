@@ -17,12 +17,27 @@ const ALLOWED_ORIGINS = [
   'http://localhost',
   'http://localhost:5000',
   'http://localhost:5173',
+  // Android WebView origins
+  'http://10.0.2.2:5000',
+  'http://10.0.2.2',
 ];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
+  const userAgent = req.headers['user-agent'] || '';
+  const isAndroidApp = userAgent.includes('Android') && (
+    userAgent.includes('capacitor') || 
+    userAgent.includes('wv') ||
+    req.headers['x-requested-with'] === 'com.vagabondbible.app'
+  );
+  
   if (origin && ALLOWED_ORIGINS.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  } else if (!origin && isAndroidApp) {
+    res.header('Access-Control-Allow-Origin', 'https://vagabondbible.com');
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');

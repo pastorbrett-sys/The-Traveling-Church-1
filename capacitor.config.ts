@@ -14,14 +14,15 @@ const config: CapacitorConfig = {
       enabled: true,
     },
     SplashScreen: {
-      launchShowDuration: 0, // Don't auto-hide, we'll hide manually when ready
-      launchAutoHide: false, // Manual control for faster transition
-      backgroundColor: '#B78C00',
+      launchShowDuration: 0,
+      launchAutoHide: false,
+      backgroundColor: '#0A0A0A',
       showSpinner: false,
       androidSplashResourceName: 'splash',
-      androidScaleType: 'CENTER_CROP',
+      androidScaleType: 'CENTER_INSIDE',
       splashFullScreen: true,
       splashImmersive: true,
+      iosSpinnerStyle: 'small',
     },
     StatusBar: {
       style: 'dark',
