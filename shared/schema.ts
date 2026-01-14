@@ -115,7 +115,7 @@ export type InsertNote = z.infer<typeof insertNoteSchema>;
 export type Note = typeof notes.$inferSelect;
 
 // Feature usage tracking for subscription gates
-export const featureUsageTypeEnum = ['smart_search', 'book_synopsis', 'verse_insight', 'chat_message'] as const;
+export const featureUsageTypeEnum = ['smart_search', 'book_synopsis', 'verse_insight', 'chat_message', 'sermon_transcription'] as const;
 export type FeatureUsageType = typeof featureUsageTypeEnum[number];
 
 export const featureUsage = pgTable("feature_usage", {
@@ -140,6 +140,12 @@ export const FEATURE_LIMITS = {
   verse_insight: 6,
   notes: 3,
   chat_message: 10,
+  sermon_transcription: 4, // 4 sermons/month for Pro users
+} as const;
+
+// Pro-only features with their limits (even Pro users have limits on these)
+export const PRO_FEATURE_LIMITS = {
+  sermon_transcription: 4, // 4 sermons/month
 } as const;
 
 export * from "./models/chat";
