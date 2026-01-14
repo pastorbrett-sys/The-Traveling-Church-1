@@ -65,6 +65,7 @@ export default function VagabondBible() {
                 video.currentTime = 0;
               }}
             />
+            <div className="absolute inset-0 bg-black/15" />
           </div>
           <div 
             className="absolute left-0 right-0 z-10 w-full px-6"
