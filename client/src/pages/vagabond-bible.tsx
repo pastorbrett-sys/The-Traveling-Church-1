@@ -60,6 +60,10 @@ export default function VagabondBible() {
               loop
               playsInline
               className="w-full h-full object-cover"
+              onLoadedData={(e) => {
+                const video = e.currentTarget;
+                video.currentTime = 0;
+              }}
             />
             <div className="absolute inset-0 bg-black/50" />
           </div>
