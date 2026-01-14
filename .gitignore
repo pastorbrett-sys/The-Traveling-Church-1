@@ -4,3 +4,6 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Ignore future chat screenshots (timestamp pattern)
+attached_assets/image_*.png

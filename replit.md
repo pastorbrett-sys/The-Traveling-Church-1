@@ -7,6 +7,7 @@ The Traveling Church is a full-stack web application designed for a global, trav
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Git/GitHub: NEVER commit chat screenshots to git. Screenshots shared during conversation go to attached_assets/ but should be excluded from commits via .gitignore patterns.
 
 ## System Architecture
 
