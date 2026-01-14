@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ArrowLeft, Mail, MessageCircle, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import vagabondLogo from "@/assets/vagabond-logo.png";
@@ -17,12 +17,15 @@ export default function Support() {
             <Link href="/">
               <img src={vagabondLogo} alt="Vagabond Bible" className="h-10" />
             </Link>
-            <Link href="/">
-              <Button variant="ghost" size="sm" className="text-[hsl(20,10%,40%)]">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
-              </Button>
-            </Link>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-[hsl(20,10%,40%)]"
+              onClick={() => window.history.back()}
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back
+            </Button>
           </div>
         </div>
       </nav>
