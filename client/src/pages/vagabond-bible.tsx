@@ -6,8 +6,6 @@ import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, 
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
-// Native app landing video - to revert to Moses video, change nativeHeroVideo back to heroVideo
-import nativeHeroVideo from "@assets/native-landing-video.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
@@ -21,10 +19,8 @@ import { SplashScreen } from "@capacitor/splash-screen";
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isNative, isSimulating, isLoading: isPlatformLoading } = usePlatform();
+  const { isNative } = usePlatform();
   const { showIntro, isChecking, completeIntro } = useIntroAnimation();
-  
-  console.log("[VagabondBible] isNative:", isNative, "isSimulating:", isSimulating, "isPlatformLoading:", isPlatformLoading);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,11 +40,6 @@ export default function VagabondBible() {
     }
   }, [showIntro]);
 
-  // Wait for platform detection before rendering to prevent wrong video flash
-  if (isPlatformLoading) {
-    return <div className="min-h-screen bg-black" />;
-  }
-
   // Show loading state while checking intro status
   if (isNative && isChecking) {
     return <div className="min-h-screen bg-[#B78D00]" />;
@@ -61,14 +52,13 @@ export default function VagabondBible() {
         <section className="relative min-h-[100svh] flex items-center justify-center">
           <div className="absolute inset-0 overflow-hidden">
             <video
-              key="native-video"
               autoPlay
               muted
               loop
               playsInline
               className="w-full h-full object-cover"
             >
-              <source src={nativeHeroVideo} type="video/mp4" />
+              <source src={heroVideo} type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-black/50" />
           </div>

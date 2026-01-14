@@ -11,7 +11,6 @@ interface PlatformContextType {
   platform: Platform;
   isNative: boolean;
   isSimulating: boolean;
-  isLoading: boolean;
   toggleSimulation: () => void;
 }
 
@@ -19,11 +18,9 @@ const PlatformContext = createContext<PlatformContextType | null>(null);
 
 export function PlatformProvider({ children }: { children: ReactNode }) {
   const [isSimulating, setIsSimulating] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     setIsSimulating(isSimulatingNativeApp());
-    setIsLoading(false);
   }, []);
   
   const platform = getPlatform();
@@ -38,7 +35,6 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
       platform: isSimulating ? 'ios' : platform,
       isNative, 
       isSimulating,
-      isLoading,
       toggleSimulation 
     }}>
       {children}
