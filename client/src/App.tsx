@@ -36,6 +36,7 @@ import VagabondBible from "@/pages/vagabond-bible";
 import NativeAuthCallback from "@/pages/native-auth-callback";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
+import AdminEthiopianBible from "@/pages/admin-ethiopian-bible";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -61,6 +62,7 @@ function VagabondBibleRouter() {
       <Route path="/checkout/cancel" component={CheckoutCancel} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/admin/ethiopian-bible" component={AdminEthiopianBible} />
       <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
@@ -92,6 +94,7 @@ function ChurchRouter() {
       <Route path="/checkout/cancel" component={CheckoutCancel} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/admin/ethiopian-bible" component={AdminEthiopianBible} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>

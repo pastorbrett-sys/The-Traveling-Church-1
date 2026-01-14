@@ -154,3 +154,35 @@ export interface SmartSearchResponse {
   results: SmartSearchResult[];
   interpretation: string;
 }
+
+// Ethiopian Orthodox Bible (81 books)
+export const ethiopianBibleBooks = pgTable("ethiopian_bible_books", {
+  id: integer("id").primaryKey(),
+  name: text("name").notNull(),
+  nameAmharic: text("name_amharic"),
+  chapters: integer("chapters").notNull(),
+  testament: text("testament").notNull(), // 'OT' or 'NT'
+  category: text("category").notNull(), // e.g., 'Pentateuch', 'Historical', 'Wisdom', 'Prophets', 'Gospels', 'Epistles', 'Deuterocanonical'
+  displayOrder: integer("display_order").notNull(),
+});
+
+export const ethiopianBibleVerses = pgTable("ethiopian_bible_verses", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  bookId: integer("book_id").notNull().references(() => ethiopianBibleBooks.id),
+  chapter: integer("chapter").notNull(),
+  verse: integer("verse").notNull(),
+  textEnglish: text("text_english").notNull(),
+  textAmharic: text("text_amharic"),
+  heading: text("heading"), // Section heading if applicable
+});
+
+export const insertEthiopianBibleBookSchema = createInsertSchema(ethiopianBibleBooks);
+export const insertEthiopianBibleVerseSchema = createInsertSchema(ethiopianBibleVerses).omit({
+  id: true,
+});
+
+export type InsertEthiopianBibleBook = z.infer<typeof insertEthiopianBibleBookSchema>;
+export type EthiopianBibleBook = typeof ethiopianBibleBooks.$inferSelect;
+
+export type InsertEthiopianBibleVerse = z.infer<typeof insertEthiopianBibleVerseSchema>;
+export type EthiopianBibleVerse = typeof ethiopianBibleVerses.$inferSelect;

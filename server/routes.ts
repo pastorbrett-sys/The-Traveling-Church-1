@@ -22,6 +22,7 @@ import bibleRoutes from "./bibleRoutes";
 import { registerRevenueCatWebhook } from "./revenueCatWebhook";
 import { isUserPro } from "./proStatusService";
 import { registerNativeAuthRoutes } from "./nativeAuthRoutes";
+import * as ethiopianBibleService from "./ethiopianBibleService";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first (before other routes)
@@ -38,6 +39,117 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Bible routes
   app.use("/api/bible", bibleRoutes);
+
+  // Ethiopian Bible Admin Routes (protected - admin only)
+  const ADMIN_PASSWORD = process.env.ETHIOPIAN_ADMIN_PASSWORD;
+  
+  // Middleware to check admin password
+  const isAdmin = (req: any, res: any, next: any) => {
+    if (!ADMIN_PASSWORD) {
+      return res.status(503).json({ message: "Admin access not configured" });
+    }
+    const authHeader = req.headers.authorization;
+    if (authHeader === `Bearer ${ADMIN_PASSWORD}`) {
+      next();
+    } else {
+      res.status(401).json({ message: "Unauthorized" });
+    }
+  };
+
+  // Admin login verification endpoint
+  app.post("/api/admin/ethiopian-bible/verify", async (req, res) => {
+    const { password } = req.body;
+    if (!ADMIN_PASSWORD) {
+      return res.status(503).json({ message: "Admin access not configured" });
+    }
+    if (password === ADMIN_PASSWORD) {
+      res.json({ success: true });
+    } else {
+      res.status(401).json({ message: "Invalid password" });
+    }
+  });
+
+  // Get all Ethiopian books with stats
+  app.get("/api/admin/ethiopian-bible/books", isAdmin, async (_req, res) => {
+    try {
+      const books = await ethiopianBibleService.getAllEthiopianBooksWithStats();
+      res.json(books);
+    } catch (error) {
+      console.error("Error fetching Ethiopian books:", error);
+      res.status(500).json({ message: "Failed to fetch books" });
+    }
+  });
+
+  // Get chapter data for a book
+  app.get("/api/admin/ethiopian-bible/books/:bookId/chapters/:chapter", isAdmin, async (req, res) => {
+    try {
+      const { bookId, chapter } = req.params;
+      const chapterData = await ethiopianBibleService.getEthiopianChapter(
+        parseInt(bookId),
+        parseInt(chapter)
+      );
+      res.json(chapterData);
+    } catch (error) {
+      console.error("Error fetching Ethiopian chapter:", error);
+      res.status(500).json({ message: "Failed to fetch chapter" });
+    }
+  });
+
+  // Add verses bulk
+  app.post("/api/admin/ethiopian-bible/verses/bulk", isAdmin, async (req, res) => {
+    try {
+      const { verses } = req.body;
+      if (!Array.isArray(verses) || verses.length === 0) {
+        return res.status(400).json({ message: "Verses array required" });
+      }
+      
+      // Validate each verse
+      const validatedVerses = [];
+      for (const v of verses) {
+        if (typeof v.bookId !== "number" || v.bookId < 1 || v.bookId > 81) {
+          return res.status(400).json({ message: `Invalid bookId: ${v.bookId}` });
+        }
+        if (typeof v.chapter !== "number" || v.chapter < 1) {
+          return res.status(400).json({ message: `Invalid chapter: ${v.chapter}` });
+        }
+        if (typeof v.verse !== "number" || v.verse < 1) {
+          return res.status(400).json({ message: `Invalid verse number: ${v.verse}` });
+        }
+        if (typeof v.textEnglish !== "string" || v.textEnglish.trim().length === 0) {
+          return res.status(400).json({ message: "textEnglish is required for each verse" });
+        }
+        validatedVerses.push({
+          bookId: v.bookId,
+          chapter: v.chapter,
+          verse: v.verse,
+          textEnglish: v.textEnglish.trim(),
+          textAmharic: v.textAmharic?.trim() || undefined,
+          heading: v.heading?.trim() || undefined,
+        });
+      }
+      
+      const results = await ethiopianBibleService.addEthiopianVersesBulk(validatedVerses);
+      res.json({ added: results.length });
+    } catch (error) {
+      console.error("Error adding Ethiopian verses:", error);
+      res.status(500).json({ message: "Failed to add verses" });
+    }
+  });
+
+  // Delete chapter verses (for re-import)
+  app.delete("/api/admin/ethiopian-bible/books/:bookId/chapters/:chapter", isAdmin, async (req, res) => {
+    try {
+      const { bookId, chapter } = req.params;
+      await ethiopianBibleService.deleteEthiopianChapterVerses(
+        parseInt(bookId),
+        parseInt(chapter)
+      );
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting Ethiopian chapter:", error);
+      res.status(500).json({ message: "Failed to delete chapter" });
+    }
+  });
 
   // Public assets from Object Storage - from blueprint:javascript_object_storage
   app.get("/public-objects/:filePath(*)", async (req, res) => {
