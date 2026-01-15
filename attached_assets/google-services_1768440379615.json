@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "120766949732",
+    "project_id": "travelingchurch-1b4ab",
+    "storage_bucket": "travelingchurch-1b4ab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120766949732:android:a24c1c2118ddfc8da5b271",
+        "android_client_info": {
+          "package_name": "com.vagabondbible.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120766949732-e63bqaju4jcjnvfndnlrf3f2bq3ddf6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbLEvuvNYnlNv43ueeZQTqNTrZWLNaK74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120766949732-e63bqaju4jcjnvfndnlrf3f2bq3ddf6l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "120766949732-5fu6t0hegaaaf8fdqenn2gu0mplghh5e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vagabondbible.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
