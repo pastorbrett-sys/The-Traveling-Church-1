@@ -37,7 +37,7 @@ const config: CapacitorConfig = {
   ios: {
     contentInset: 'never',
     scheme: 'com.vagabondbible.app',
-    backgroundColor: '#000000',
+    backgroundColor: '#B78D00',
   },
   android: {
     allowMixedContent: false,
