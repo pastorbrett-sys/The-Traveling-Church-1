@@ -16,7 +16,7 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 0,
       launchAutoHide: false,
-      backgroundColor: '#0A0A0A',
+      backgroundColor: '#B78D00',
       showSpinner: false,
       androidSplashResourceName: 'splash',
       androidScaleType: 'CENTER_INSIDE',
@@ -36,6 +36,7 @@ const config: CapacitorConfig = {
   ios: {
     contentInset: 'never',
     scheme: 'com.vagabondbible.app',
+    backgroundColor: '#B78D00',
   },
   android: {
     allowMixedContent: false,
