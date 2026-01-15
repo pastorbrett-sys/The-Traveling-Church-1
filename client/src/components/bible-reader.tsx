@@ -1616,14 +1616,8 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              {/* Android status bar spacer - use Capacitor directly to avoid context issues with createPortal */}
-              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android' && (
-                <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0, backgroundColor: 'blue' }} />
-              )}
-              {/* iOS safe area spacer */}
-              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios' && (
-                <div style={{ height: 'env(safe-area-inset-top, 0px)', flexShrink: 0 }} />
-              )}
+              {/* UNCONDITIONAL 44px blue spacer for debugging */}
+              <div style={{ height: '44px', flexShrink: 0, backgroundColor: 'blue' }} />
               <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
               <div className="flex items-center gap-2">
