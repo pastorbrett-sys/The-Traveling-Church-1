@@ -32,32 +32,43 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
     setTimeout(() => onComplete(), 500);
   };
 
-  // Hide native splash screen and start video playback
+  // Wait for video to be ready, then hide native splash and play
   useEffect(() => {
-    const initVideo = async () => {
-      // Hide the native splash screen immediately - video is ready to take over
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleCanPlay = async () => {
+      console.log("[IntroAnimation] Video ready to play");
+      
+      // Hide the native splash screen AFTER video is ready
       if (Capacitor.isNativePlatform()) {
         try {
           console.log("[IntroAnimation] Hiding native splash screen");
-          await SplashScreen.hide({ fadeOutDuration: 200 });
+          await SplashScreen.hide({ fadeOutDuration: 0 }); // No fade - instant switch
         } catch (err) {
           console.log("[IntroAnimation] Splash hide error (non-critical):", err);
         }
       }
       
-      // Manually trigger play for iOS (which can block autoplay)
-      const video = videoRef.current;
-      if (video) {
-        console.log("[IntroAnimation] Attempting manual video.play()");
-        video.play().then(() => {
-          console.log("[IntroAnimation] Manual play succeeded");
-        }).catch((err) => {
-          console.error("[IntroAnimation] Manual play failed:", err);
-        });
-      }
+      // Start playing immediately after splash is hidden
+      console.log("[IntroAnimation] Attempting manual video.play()");
+      video.play().then(() => {
+        console.log("[IntroAnimation] Manual play succeeded");
+      }).catch((err) => {
+        console.error("[IntroAnimation] Manual play failed:", err);
+      });
     };
-    
-    initVideo();
+
+    // Check if video is already ready (cached)
+    if (video.readyState >= 3) {
+      handleCanPlay();
+    } else {
+      video.addEventListener('canplaythrough', handleCanPlay, { once: true });
+    }
+
+    return () => {
+      video.removeEventListener('canplaythrough', handleCanPlay);
+    };
   }, []);
 
   // Fallback in case video doesn't trigger onEnded
