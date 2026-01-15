@@ -30,22 +30,19 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function configureStatusBar() {
       if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
+        // Set CSS variable immediately with reliable value for high-density displays
+        // Most modern Android phones have status bar around 24dp = ~48-56px at 2-2.5x density
+        const reliableHeight = 48;
+        document.documentElement.style.setProperty('--android-status-bar-height', `${reliableHeight}px`);
+        setStatusBarHeight(reliableHeight);
+        
         try {
           // Make status bar transparent and overlay content
           await StatusBar.setOverlaysWebView({ overlay: true });
           await StatusBar.setBackgroundColor({ color: '#00000000' }); // Transparent
           await StatusBar.setStyle({ style: 'LIGHT' as any }); // Light icons for dark backgrounds
-          
-          // Get the status bar height
-          const info = await StatusBar.getInfo();
-          const height = (info as any).height || 28;
-          setStatusBarHeight(height);
-          document.documentElement.style.setProperty('--android-status-bar-height', `${height}px`);
-          console.log('[Android] Status bar height:', height);
         } catch (e) {
           console.error('[Android] Status bar config error:', e);
-          setStatusBarHeight(28);
-          document.documentElement.style.setProperty('--android-status-bar-height', '28px');
         }
       }
     }
