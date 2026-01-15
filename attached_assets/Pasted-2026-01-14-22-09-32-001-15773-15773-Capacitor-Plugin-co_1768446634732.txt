@@ -1,0 +1,41 @@
+2026-01-14 22:09:32.001 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094692, pluginId: FirebaseAuthentication, methodName: signInWithGoogle
+2026-01-14 22:09:32.001 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094692, pluginId: FirebaseAuthentication, methodName: signInWithGoogle, methodData: {}
+2026-01-14 22:09:32.204 15773-15922 CredManProvService      com.vagabondbible.app                I  GetCredentialResponse error returned from framework
+2026-01-14 22:09:32.207 15773-15922 FirebaseAuthentication  com.vagabondbible.app                E  No credentials available
+                                                                                                    androidx.credentials.exceptions.NoCredentialException: No credentials available
+                                                                                                    	at androidx.credentials.CredentialProviderFrameworkImpl.convertToJetpackGetException$credentials_release(CredentialProviderFrameworkImpl.kt:308)
+                                                                                                    	at androidx.credentials.CredentialProviderFrameworkImpl$onGetCredential$outcome$2.onError(CredentialProviderFrameworkImpl.kt:172)
+                                                                                                    	at androidx.credentials.CredentialProviderFrameworkImpl$onGetCredential$outcome$2.onError(CredentialProviderFrameworkImpl.kt:160)
+                                                                                                    	at android.credentials.CredentialManager$GetCredentialTransport.lambda$onError$2(CredentialManager.java:820)
+                                                                                                    	at android.credentials.CredentialManager$GetCredentialTransport.$r8$lambda$_rg2Q59c21DJrPoh5aAnwNR78wQ(Unknown Source:0)
+                                                                                                    	at android.credentials.CredentialManager$GetCredentialTransport$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1563)
+2026-01-14 22:09:32.207 15773-15922 Capacitor               com.vagabondbible.app                D  Sending plugin error: {"save":false,"callbackId":"108094692","pluginId":"FirebaseAuthentication","methodName":"signInWithGoogle","success":false,"error":{"message":"No credentials available"}}
+2026-01-14 22:09:32.211 15773-15773 Capacitor/Console       com.vagabondbible.app                E  File:  - Line 330 - Msg: [object Object]
+2026-01-14 22:09:32.212 15773-15773 Capacitor/Console       com.vagabondbible.app                E  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: Google sign-in error: Error: No credentials available
+2026-01-14 22:09:32.213 15773-15773 Capacitor/Console       com.vagabondbible.app                E  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: Sign in error: Error: No credentials available
+2026-01-14 22:09:33.544 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0x73c91e032538 : 0(0 size) total buffers - 0(0 size) used buffers - 89/95 (recycle/alloc) - 6/92 (fetch/transfer)
+2026-01-14 22:09:33.544 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0x73c91e0304d8 : 5(31457280 size) total buffers - 4(25165824 size) used buffers - 76/81 (recycle/alloc) - 5/77 (fetch/transfer)
+2026-01-14 22:09:33.544 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  evictor expired: 2, evicted: 2
+2026-01-14 22:09:43.530 15773-15812 cr_MediaCodecBridge     com.vagabondbible.app                W  Releasing: c2.goldfish.h264.decoder
+2026-01-14 22:09:43.530 15773-15892 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e028700, reason connectToSurface
+2026-01-14 22:09:43.530 15773-15892 MediaCodec              com.vagabondbible.app                I  [c2.goldfish.h264.decoder] setting surface generation to 16151556
+2026-01-14 22:09:43.530 15773-15892 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e028700, reason connectToSurface(reconnect)
+2026-01-14 22:09:43.530 15773-15892 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e0286f0, reason connectToSurface(reconnect-with-listener)
+2026-01-14 22:09:43.536 15773-15892 Codec2-Out...ufferQueue com.vagabondbible.app                D  remote graphic buffer migration 0/0
+2026-01-14 22:09:43.536 15773-15892 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+2026-01-14 22:09:43.536 15773-15892 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- generation=16151556 consumer usage=0x900
+2026-01-14 22:09:43.568 15773-15892 Codec2Client            com.vagabondbible.app                D  Surface configure completed
+2026-01-14 22:09:43.568 15773-15892 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e029a50, reason disconnectFromSurface
+2026-01-14 22:09:43.572 15773-15892 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] MediaCodec discarded an unknown buffer
+2026-01-14 22:09:43.572 15773-15892 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] MediaCodec discarded an unknown buffer
+2026-01-14 22:09:43.572 15773-15892 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] MediaCodec discarded an unknown buffer
+2026-01-14 22:09:43.572 15773-15892 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] MediaCodec discarded an unknown buffer
+2026-01-14 22:09:43.573 15773-15812 cr_MediaCodecBridge     com.vagabondbible.app                W  Codec released
+2026-01-14 22:09:43.619 15773-15892 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e028700, reason disconnectFromSurface
+2026-01-14 22:09:43.620 15773-15893 hw-BpHwBinder           com.vagabondbible.app                I  onLastStrongRef automatically unlinking death recipients
+2026-01-14 22:09:43.628 15773-15893 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0x73c91e0304d8 : 0(0 size) total buffers - 0(0 size) used buffers - 76/81 (recycle/alloc) - 5/77 (fetch/transfer)
+2026-01-14 22:09:48.634 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0x73c91e0304d8 : 0(0 size) total buffers - 0(0 size) used buffers - 76/81 (recycle/alloc) - 5/77 (fetch/transfer)
+2026-01-14 22:09:48.634 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  evictor expired: 1, evicted: 1
