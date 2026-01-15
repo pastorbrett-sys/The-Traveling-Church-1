@@ -16,7 +16,7 @@ import { usePlatform } from "@/contexts/platform-context";
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isNative } = usePlatform();
+  const { isNative, platform } = usePlatform();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +45,7 @@ export default function VagabondBible() {
           </div>
           <div 
             className="absolute left-0 right-0 z-10 w-full px-6"
-            style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 32px)' }}
+            style={{ bottom: platform === 'android' ? '32px' : 'calc(env(safe-area-inset-bottom, 0px) + 32px)' }}
           >
             <div className="max-w-md mx-auto text-center">
               <h1 className="font-heading text-[36px] sm:text-5xl mb-4 text-white font-extrabold leading-[1.12]">
@@ -72,7 +72,7 @@ export default function VagabondBible() {
           </div>
           <div 
             className="absolute left-0 right-0 z-10 flex items-center px-4" 
-            style={{ top: 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
+            style={{ top: platform === 'android' ? 'calc(var(--android-status-bar-height, 28px) + 12px)' : 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
             data-testid="native-header-logo"
           >
             <div className="flex-1 h-px bg-gray-400/15" />
