@@ -12,14 +12,11 @@ import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
 import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 import burstIcon from "@assets/Burst_1767600505667.png";
 import { usePlatform } from "@/contexts/platform-context";
-import { Capacitor } from "@capacitor/core";
-import { SplashScreen } from "@capacitor/splash-screen";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { isNative } = usePlatform();
-  const [splashHidden, setSplashHidden] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,22 +25,6 @@ export default function VagabondBible() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Function to hide splash - called when video is ready
-  const hideSplash = () => {
-    if (!splashHidden && Capacitor.isNativePlatform()) {
-      setSplashHidden(true);
-      SplashScreen.hide({ fadeOutDuration: 0 }).catch(() => {});
-    }
-  };
-
-  // Fallback: hide splash after 2 seconds max (in case video fails to load)
-  useEffect(() => {
-    if (Capacitor.isNativePlatform()) {
-      const timer = setTimeout(hideSplash, 2000);
-      return () => clearTimeout(timer);
-    }
   }, []);
 
   if (isNative) {
@@ -56,7 +37,6 @@ export default function VagabondBible() {
               muted
               loop
               playsInline
-              onCanPlay={hideSplash}
               className="w-full h-full object-cover"
             >
               <source src={heroVideo} type="video/mp4" />
