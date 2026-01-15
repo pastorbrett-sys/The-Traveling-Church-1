@@ -1615,7 +1615,7 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              <div className="flex items-center justify-between p-3 border-b" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 44px) + 12px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
+              <div className="flex items-center justify-between p-3 border-b" style={isNative && platform === 'android' ? { paddingTop: '100px', backgroundColor: 'blue' } : isNative && platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
@@ -1737,7 +1737,7 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              <div className="flex items-center justify-between p-3 border-b" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 44px) + 12px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
+              <div className="flex items-center justify-between p-3 border-b" style={isNative && platform === 'android' ? { paddingTop: '100px', backgroundColor: 'green' } : isNative && platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-[#c08e00]" />
