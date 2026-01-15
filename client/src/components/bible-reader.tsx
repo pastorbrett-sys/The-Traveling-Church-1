@@ -1606,7 +1606,7 @@ Reference: ${verseRef} (${translation})`;
 
       {createPortal(
         <AnimatePresence>
-          {showInsight && console.log('[VerseInsight] isNative:', isNative, 'platform:', platform) === undefined && (
+          {showInsight && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1615,7 +1615,15 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              <div className="flex items-center justify-between p-3 border-b" style={isNative && platform === 'android' ? { paddingTop: '100px', backgroundColor: 'blue' } : isNative && platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
+              {/* Android status bar spacer - only render on Android native */}
+              {isNative && platform === 'android' && (
+                <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0, backgroundColor: 'blue' }} />
+              )}
+              {/* iOS safe area spacer */}
+              {isNative && platform === 'ios' && (
+                <div style={{ height: 'env(safe-area-inset-top, 0px)', flexShrink: 0 }} />
+              )}
+              <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
@@ -1737,7 +1745,15 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              <div className="flex items-center justify-between p-3 border-b" style={isNative && platform === 'android' ? { paddingTop: '100px', backgroundColor: 'green' } : isNative && platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)' } : { paddingTop: '12px' }}>
+              {/* Android status bar spacer */}
+              {isNative && platform === 'android' && (
+                <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0, backgroundColor: 'green' }} />
+              )}
+              {/* iOS safe area spacer */}
+              {isNative && platform === 'ios' && (
+                <div style={{ height: 'env(safe-area-inset-top, 0px)', flexShrink: 0 }} />
+              )}
+              <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-[#c08e00]" />
