@@ -93,7 +93,8 @@ export default function Profile() {
 
   useEffect(() => {
     document.title = "My Profile | Vagabond Bible";
-  }, []);
+    console.log('[Profile] platform:', platform, 'isNative:', isNative);
+  }, [platform, isNative]);
 
   const handleManageSubscription = async () => {
     setIsOpeningPortal(true);

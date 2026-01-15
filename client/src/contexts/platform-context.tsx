@@ -29,18 +29,24 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     async function configureStatusBar() {
-      if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
+      const currentPlatform = Capacitor.getPlatform();
+      const isNativePlatformCheck = Capacitor.isNativePlatform();
+      console.log('[Platform] isNative:', isNativePlatformCheck, 'platform:', currentPlatform);
+      
+      if (isNativePlatformCheck && currentPlatform === 'android') {
         // Set CSS variable immediately with reliable value for high-density displays
         // 48px base + 30px extra spacing = 78px total
         const reliableHeight = 78;
         document.documentElement.style.setProperty('--android-status-bar-height', `${reliableHeight}px`);
         setStatusBarHeight(reliableHeight);
+        console.log('[Android] Set status bar height CSS variable to:', reliableHeight);
         
         try {
           // Make status bar transparent and overlay content
           await StatusBar.setOverlaysWebView({ overlay: true });
           await StatusBar.setBackgroundColor({ color: '#00000000' }); // Transparent
           await StatusBar.setStyle({ style: 'LIGHT' as any }); // Light icons for dark backgrounds
+          console.log('[Android] Status bar configured: transparent, overlay mode');
         } catch (e) {
           console.error('[Android] Status bar config error:', e);
         }
