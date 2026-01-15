@@ -1,0 +1,49 @@
+brettlindstrom@Bretts-MacBook-Pro The-Traveling-Church-1 % cd ~/Desktop/The-Traveling-Church-1
+git pull origin main
+npm run build
+npx cap sync ios
+cd: no such file or directory: /Users/brettlindstrom/Desktop/The-Traveling-Church-1
+fatal: Unable to read current working directory: Operation not permitted
+/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli/validate-engines.js:31
+    throw err
+    ^
+
+Error: EPERM: operation not permitted, uv_cwd
+    at process.wrappedCwd (node:internal/bootstrap/switches/does_own_process_state:142:28)
+    at process.cwd (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:10:19)
+    at new Config (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/node_modules/@npmcli/config/lib/index.js:71:19)
+    at new Npm (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/npm.js:67:19)
+    at module.exports (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli/entry.js:21:15)
+    at module.exports (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli/validate-engines.js:39:10)
+    at module.exports (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli.js:12:31)
+    at Object.<anonymous> (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/bin/npm-cli.js:2:25)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'uv_cwd'
+}
+
+Node.js v22.17.1
+/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli/validate-engines.js:31
+    throw err
+    ^
+
+Error: EPERM: operation not permitted, uv_cwd
+    at process.wrappedCwd (node:internal/bootstrap/switches/does_own_process_state:142:28)
+    at process.cwd (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:10:19)
+    at new Config (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/node_modules/@npmcli/config/lib/index.js:71:19)
+    at new Npm (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/npm.js:67:19)
+    at module.exports (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli/entry.js:21:15)
+    at module.exports (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli/validate-engines.js:39:10)
+    at module.exports (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/lib/cli.js:12:31)
+    at Object.<anonymous> (/Users/brettlindstrom/.nvm/versions/node/v22.17.1/lib/node_modules/npm/bin/npx-cli.js:130:1)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'uv_cwd'
+}
+
+Node.js v22.17.1
+brettlindstrom@Bretts-MacBook-Pro The-Traveling-Church-1 % 
