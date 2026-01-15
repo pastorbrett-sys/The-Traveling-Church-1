@@ -98,16 +98,13 @@ export default function Profile() {
 
   // Helper function to get Android/iOS status bar padding - same pattern as navigation.tsx
   const getMainStyle = (): React.CSSProperties => {
-    console.log('[Profile getMainStyle] isNative:', isNative, 'platform:', platform);
     if (!isNative) {
       return { paddingTop: '1.25rem', paddingBottom: '4rem' };
     }
     if (platform === 'android') {
-      // DEBUG: Using bright red background and 100px padding to test if styles apply
       return { 
-        paddingTop: '100px',
-        paddingBottom: 'calc(64px + 16px)',
-        backgroundColor: 'red'
+        paddingTop: 'calc(var(--android-status-bar-height, 44px) + 16px)',
+        paddingBottom: 'calc(64px + 16px)'
       };
     }
     // iOS

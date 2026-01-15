@@ -1616,8 +1616,14 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              {/* UNCONDITIONAL 150px RED spacer - MUST be visible */}
-              <div style={{ height: '150px', minHeight: '150px', flexShrink: 0, backgroundColor: 'red', width: '100%' }} />
+              {/* Android status bar spacer */}
+              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android' && (
+                <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0 }} />
+              )}
+              {/* iOS safe area spacer */}
+              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios' && (
+                <div style={{ height: 'env(safe-area-inset-top, 0px)', flexShrink: 0 }} />
+              )}
               <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
               <div className="flex items-center gap-2">
@@ -1740,9 +1746,9 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              {/* Android status bar spacer - use Capacitor directly to avoid context issues with createPortal */}
+              {/* Android status bar spacer */}
               {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android' && (
-                <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0, backgroundColor: 'green' }} />
+                <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0 }} />
               )}
               {/* iOS safe area spacer */}
               {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios' && (
