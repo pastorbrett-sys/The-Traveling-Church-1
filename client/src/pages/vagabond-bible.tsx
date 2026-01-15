@@ -72,7 +72,7 @@ export default function VagabondBible() {
           </div>
           <div 
             className="absolute left-0 right-0 z-10 flex items-center px-4" 
-            style={{ top: platform === 'android' ? 'calc(var(--android-status-bar-height, 28px) + 12px)' : 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
+            style={{ top: platform === 'android' ? 'calc(var(--android-status-bar-height, 44px) + 12px)' : 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
             data-testid="native-header-logo"
           >
             <div className="flex-1 h-px bg-gray-400/15" />

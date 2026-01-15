@@ -156,11 +156,11 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={platform === 'android' ? { paddingTop: 'var(--android-status-bar-height, 28px)', paddingBottom: '100px' } : platform === 'ios' ? { paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 100px)' } : undefined}>
+      <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-[hsl(40,30%,96%)] sm:border-[hsl(30,20%,88%)] overflow-y-auto p-0 [&>button]:hidden z-[10000]" style={platform === 'android' ? { paddingTop: 'var(--android-status-bar-height, 44px)', paddingBottom: '100px' } : platform === 'ios' ? { paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 100px)' } : undefined}>
         {/* Close button - sticky inside content for iOS WKWebView compatibility */}
         <div 
           className="sticky top-0 w-full flex justify-end z-50 pointer-events-none"
-          style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 28px) - 20px)', paddingRight: '16px' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) - 20px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
+          style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 44px) - 20px)', paddingRight: '16px' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) - 20px)', paddingRight: '16px' } : { paddingTop: '12px', paddingRight: '12px' }}
         >
           <button
             onClick={onClose}

@@ -585,8 +585,8 @@ export default function Notes() {
       </main>
 
       <Dialog open={!!editingNote} onOpenChange={(open) => !open && setEditingNote(null)}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 28px) + 24px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
-          <div className="absolute right-4 z-10" style={platform === 'android' ? { top: 'calc(var(--android-status-bar-height, 28px) + 24px)' } : platform === 'ios' ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 44px) + 24px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
+          <div className="absolute right-4 z-10" style={platform === 'android' ? { top: 'calc(var(--android-status-bar-height, 44px) + 24px)' } : platform === 'ios' ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
             <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
               <X className="h-5 w-5" />
               <span className="sr-only">Close</span>
@@ -699,8 +699,8 @@ export default function Notes() {
           setNewNoteTags([]);
         }
       }}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 28px) + 24px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
-          <div className="absolute right-4 z-10" style={platform === 'android' ? { top: 'calc(var(--android-status-bar-height, 28px) + 24px)' } : platform === 'ios' ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-md sm:rounded-lg sm:border bg-background overflow-y-auto p-6 [&>button]:hidden" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 44px) + 24px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : undefined}>
+          <div className="absolute right-4 z-10" style={platform === 'android' ? { top: 'calc(var(--android-status-bar-height, 44px) + 24px)' } : platform === 'ios' ? { top: 'calc(env(safe-area-inset-top, 0px) + 24px)' } : { top: '24px' }}>
             <DialogClose className="h-7 w-7 flex items-center justify-center rounded-sm opacity-70 hover:opacity-100 transition-opacity text-foreground">
               <X className="h-5 w-5" />
               <span className="sr-only">Close</span>
@@ -765,8 +765,8 @@ export default function Notes() {
       </Dialog>
 
       <Dialog open={!!viewingNote} onOpenChange={(open) => !open && setViewingNote(null)}>
-        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto overflow-x-hidden [&>button]:hidden" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 28px) + 16px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
-          <div className="absolute right-4 flex items-center gap-1" style={platform === 'android' ? { top: 'calc(var(--android-status-bar-height, 28px) + 16px)' } : platform === 'ios' ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}>
+        <DialogContent className="fixed left-0 top-0 translate-x-0 translate-y-0 h-[100dvh] max-h-[100dvh] w-full rounded-none border-0 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-auto sm:max-h-[85vh] sm:max-w-lg sm:rounded-lg sm:border bg-background overflow-y-auto overflow-x-hidden [&>button]:hidden" style={platform === 'android' ? { paddingTop: 'calc(var(--android-status-bar-height, 44px) + 16px)' } : platform === 'ios' ? { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : undefined}>
+          <div className="absolute right-4 flex items-center gap-1" style={platform === 'android' ? { top: 'calc(var(--android-status-bar-height, 44px) + 16px)' } : platform === 'ios' ? { top: 'calc(env(safe-area-inset-top, 0px) + 16px)' } : { top: '16px' }}>
             <Button
               variant="ghost"
               size="icon"

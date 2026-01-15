@@ -96,6 +96,24 @@ export default function Profile() {
     console.log('[Profile] platform:', platform, 'isNative:', isNative);
   }, [platform, isNative]);
 
+  // Helper function to get Android/iOS status bar padding - same pattern as navigation.tsx
+  const getMainStyle = () => {
+    if (!isNative) {
+      return { paddingTop: '1.25rem', paddingBottom: '4rem' };
+    }
+    if (platform === 'android') {
+      return { 
+        paddingTop: 'calc(var(--android-status-bar-height, 44px) + 16px)',
+        paddingBottom: 'calc(64px + 16px)' 
+      };
+    }
+    // iOS
+    return { 
+      paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
+      paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
+    };
+  };
+
   const handleManageSubscription = async () => {
     setIsOpeningPortal(true);
     try {
@@ -258,13 +276,7 @@ export default function Profile() {
         {!isNative && <VagabondHeader />}
         <main 
           className="flex-1 overflow-y-auto"
-          style={platform === 'android' ? { 
-            paddingTop: 'calc(var(--android-status-bar-height, 28px) + 16px)',
-            paddingBottom: 'calc(64px + 16px)' 
-          } : platform === 'ios' ? { 
-            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
-            paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
-          } : { paddingTop: '1.25rem', paddingBottom: '4rem' }}
+          style={getMainStyle()}
         >
           <div className="max-w-2xl mx-auto px-4 md:px-8">
             <ProfileSkeleton />
@@ -282,13 +294,7 @@ export default function Profile() {
         {!isNative && <VagabondHeader />}
         <main 
           className="flex-1 overflow-y-auto"
-          style={platform === 'android' ? { 
-            paddingTop: 'calc(var(--android-status-bar-height, 28px) + 16px)',
-            paddingBottom: 'calc(64px + 16px)' 
-          } : platform === 'ios' ? { 
-            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
-            paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
-          } : { paddingTop: '1.25rem', paddingBottom: '4rem' }}
+          style={getMainStyle()}
         >
           <div className="max-w-2xl mx-auto px-4 md:px-8">
             {!isNative && (
@@ -343,13 +349,7 @@ export default function Profile() {
 
       <main 
         className="flex-1 overflow-y-auto"
-        style={platform === 'android' ? { 
-          paddingTop: 'calc(var(--android-status-bar-height, 28px) + 16px)',
-          paddingBottom: 'calc(64px + 16px)' 
-        } : platform === 'ios' ? { 
-          paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)',
-          paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
-        } : { paddingTop: '1.25rem', paddingBottom: '4rem' }}
+        style={getMainStyle()}
       >
         <div className="max-w-2xl mx-auto px-4 md:px-8">
           {!isNative && (

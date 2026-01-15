@@ -34,12 +34,19 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
       console.log('[Platform] isNative:', isNativePlatformCheck, 'platform:', currentPlatform);
       
       if (isNativePlatformCheck && currentPlatform === 'android') {
-        // Set CSS variable immediately with reliable value for high-density displays
-        // 48px base + 30px extra spacing = 78px total
-        const reliableHeight = 78;
-        document.documentElement.style.setProperty('--android-status-bar-height', `${reliableHeight}px`);
-        setStatusBarHeight(reliableHeight);
-        console.log('[Android] Set status bar height CSS variable to:', reliableHeight);
+        // Get actual height from StatusBar plugin first
+        try {
+          const info = await StatusBar.getInfo();
+          const actualHeight = (info as any).height || 44;
+          document.documentElement.style.setProperty('--android-status-bar-height', `${actualHeight}px`);
+          setStatusBarHeight(actualHeight);
+          console.log('[Android] Set status bar height from device:', actualHeight);
+        } catch (e) {
+          // Fallback to 44px (actual Solana Saga 2 value)
+          document.documentElement.style.setProperty('--android-status-bar-height', '44px');
+          setStatusBarHeight(44);
+          console.log('[Android] Using fallback status bar height: 44px');
+        }
         
         try {
           // Make status bar transparent and overlay content

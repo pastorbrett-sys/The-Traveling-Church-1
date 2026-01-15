@@ -78,7 +78,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const getNavStyle = () => {
     if (!isNative) return undefined;
     if (platform === 'android') {
-      return { paddingTop: 'var(--android-status-bar-height, 28px)' };
+      return { paddingTop: 'var(--android-status-bar-height, 44px)' };
     }
     return { paddingTop: 'env(safe-area-inset-top, 0px)' };
   };
