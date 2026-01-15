@@ -37,7 +37,12 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleCanPlay = async () => {
+    let hasStarted = false;
+
+    const startPlayback = async () => {
+      if (hasStarted) return;
+      hasStarted = true;
+      
       console.log("[IntroAnimation] Video ready to play");
       
       // Hide the native splash screen AFTER video is ready
@@ -61,13 +66,22 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
     // Check if video is already ready (cached)
     if (video.readyState >= 3) {
-      handleCanPlay();
+      startPlayback();
     } else {
-      video.addEventListener('canplaythrough', handleCanPlay, { once: true });
+      video.addEventListener('canplaythrough', startPlayback, { once: true });
     }
 
+    // Safety timeout - never wait more than 1 second for video
+    const timeout = setTimeout(() => {
+      if (!hasStarted) {
+        console.log("[IntroAnimation] Timeout - starting anyway");
+        startPlayback();
+      }
+    }, 1000);
+
     return () => {
-      video.removeEventListener('canplaythrough', handleCanPlay);
+      video.removeEventListener('canplaythrough', startPlayback);
+      clearTimeout(timeout);
     };
   }, []);
 
