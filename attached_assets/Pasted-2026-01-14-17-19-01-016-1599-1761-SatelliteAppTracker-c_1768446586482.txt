@@ -1,0 +1,556 @@
+2026-01-14 17:19:01.016  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 17:19:01.318  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 17:19:03.370  6326-6400  Finsky                  com.android.vending                  E  [69] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 17:19:03.373  6326-6398  Finsky                  com.android.vending                  E  [67] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 17:46:54.682   799-967   InputDispatcher         system_server                        E  channel '3ef3905 com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 20:15:47.089  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 20:15:47.093  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 20:15:49.013  6326-6385  Finsky                  com.android.vending                  E  [59] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 20:15:49.066  6326-6398  Finsky                  com.android.vending                  E  [67] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 20:16:48.988   799-967   InputDispatcher         system_server                        E  channel '445f57 com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 20:28:14.416   799-967   InputDispatcher         system_server                        E  channel 'a64266 com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 20:45:42.482  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 20:45:42.499  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 20:45:44.021  6326-6400  Finsky                  com.android.vending                  E  [69] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 20:45:44.021  6326-6393  Finsky                  com.android.vending                  E  [63] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 20:46:50.031   799-967   InputDispatcher         system_server                        E  channel '2c0c8b1 com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 20:49:07.594   799-1350  ClipboardService        system_server                        E  Denying clipboard access to com.vagabondbible.app, application is not in focus nor is it a system service for user 0
+2026-01-14 21:15:54.813  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 21:15:54.820  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 21:15:56.463  6326-6385  Finsky                  com.android.vending                  E  [59] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 21:15:56.464  6326-6398  Finsky                  com.android.vending                  E  [67] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 21:46:11.612   799-967   InputDispatcher         system_server                        E  channel 'ac8090f com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 21:59:21.416   799-967   InputDispatcher         system_server                        E  channel 'ce8bc22 com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 22:08:06.284   799-967   InputDispatcher         system_server                        E  channel '199787d com.vagabondbible.app/com.vagabondbible.app.MainActivity' ~ Channel is unrecoverably broken and will be disposed!
+2026-01-14 22:09:18.955  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+2026-01-14 22:09:18.959  1599-1761  SatelliteAppTracker     com.android.phone                    E  packageName: com.vagabondbible.app, value: null
+---------------------------- PROCESS STARTED (15773) for package com.vagabondbible.app ----------------------------
+2026-01-14 22:09:20.767  6326-6398  Finsky                  com.android.vending                  E  [67] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 22:09:20.768  6326-6385  Finsky                  com.android.vending                  E  [59] ItemStore: getItems RPC failed for item com.vagabondbible.app
+2026-01-14 22:09:20.797 15773-15773 nativeloader            com.vagabondbible.app                D  Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+2026-01-14 22:09:21.143 15773-15773 nativeloader            com.vagabondbible.app                D  Configuring clns-9 for other apk /data/app/~~R73xMRehZ6XrJJoymsNcxQ==/com.vagabondbible.app-V9t6jnw50NgYubZw4z-pEg==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~R73xMRehZ6XrJJoymsNcxQ==/com.vagabondbible.app-V9t6jnw50NgYubZw4z-pEg==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vagabondbible.app
+2026-01-14 22:09:21.175 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V  Currently set values for:
+2026-01-14 22:09:21.175 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V    angle_gl_driver_selection_pkgs=[]
+2026-01-14 22:09:21.175 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V    angle_gl_driver_selection_values=[]
+2026-01-14 22:09:21.175 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V  com.vagabondbible.app is not listed in per-application setting
+2026-01-14 22:09:21.176 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V  ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+2026-01-14 22:09:21.176 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V  No special selections for ANGLE, returning default driver choice
+2026-01-14 22:09:21.176 15773-15773 GraphicsEnvironment     com.vagabondbible.app                V  Neither updatable production driver nor prerelease driver is supported.
+2026-01-14 22:09:21.294 15773-15773 FirebaseApp             com.vagabondbible.app                I  Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+2026-01-14 22:09:21.308 15773-15773 FirebaseInitProvider    com.vagabondbible.app                I  FirebaseApp initialization successful
+2026-01-14 22:09:21.366 15773-15791 DisplayManager          com.vagabondbible.app                I  Choreographer implicitly registered for the refresh rate.
+2026-01-14 22:09:21.450 15773-15773 DesktopExperienceFlags  com.vagabondbible.app                D  Toggle override initialized to: false
+2026-01-14 22:09:21.460 15773-15791 GFXSTREAM               com.vagabondbible.app                I  [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+2026-01-14 22:09:21.462 15773-15791 GFXSTREAM               com.vagabondbible.app                I  [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+2026-01-14 22:09:21.472 15773-15791 HWUI                    com.vagabondbible.app                W  Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2026-01-14 22:09:21.473 15773-15791 HWUI                    com.vagabondbible.app                W  Failed to initialize 101010-2 format, error = EGL_SUCCESS
+2026-01-14 22:09:21.483 15773-15773 AppCompatDelegate       com.vagabondbible.app                D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-01-14 22:09:21.499 15773-15773 ashmem                  com.vagabondbible.app                E  Pinning is deprecated since Android Q. Please use trim or other methods.
+2026-01-14 22:09:21.592 15773-15773 CompatChangeReporter    com.vagabondbible.app                D  Compat change id reported: 377864165; UID 10227; state: ENABLED
+2026-01-14 22:09:21.592 15773-15773 DesktopModeFlags        com.vagabondbible.app                D  Toggle override initialized to: OVERRIDE_UNSET
+2026-01-14 22:09:21.634 15773-15773 gabondbible.app         com.vagabondbible.app                I  hiddenapi: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/appcompat/widget/ViewUtils; (domain=app, TargetSdkVersion=36) using reflection: allowed
+2026-01-14 22:09:21.671 15773-15773 WebViewFactory          com.vagabondbible.app                I  Loading com.google.android.webview version 134.0.6998.135 (code 699813538)
+2026-01-14 22:09:21.679 15773-15773 ResourcesManager        com.vagabondbible.app                V  The following library key has been added: ResourcesKey{ mHash=2cbb283c mResDir=null mSplitDirs=[] mOverlayDirs=[] mLibDirs=[/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/WebViewGoogle.apk,/data/app/~~M_hDiRO6IlkVWj2ppJ80Iw==/com.google.android.trichromelibrary_699813538-mkSv8huRZOJGYaNCBaPSDQ==/TrichromeLibrary.apk,/system_ext/framework/androidx.window.extensions.jar] mDisplayId=0 mOverrideConfig=v36 mCompatInfo={420dpi always-compat} mLoaders=[]}
+2026-01-14 22:09:21.683 15773-15773 gabondbible.app         com.vagabondbible.app                W  Failed to find entry 'classes.dex': Entry not found
+2026-01-14 22:09:21.686 15773-15773 nativeloader            com.vagabondbible.app                D  Configuring clns-10 for other apk /data/app/~~M_hDiRO6IlkVWj2ppJ80Iw==/com.google.android.trichromelibrary_699813538-mkSv8huRZOJGYaNCBaPSDQ==/TrichromeLibrary.apk. target_sdk_version=35, uses_libraries=ALL, library_path=/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/lib/x86_64:/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~M_hDiRO6IlkVWj2ppJ80Iw==/com.google.android.trichromelibrary_699813538-mkSv8huRZOJGYaNCBaPSDQ==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+2026-01-14 22:09:21.691 15773-15773 ApplicationLoaders      com.vagabondbible.app                D  Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+2026-01-14 22:09:21.702 15773-15773 nativeloader            com.vagabondbible.app                D  Configuring clns-11 for other apk /data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/WebViewGoogle.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/lib/x86_64:/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~M_hDiRO6IlkVWj2ppJ80Iw==/com.google.android.trichromelibrary_699813538-mkSv8huRZOJGYaNCBaPSDQ==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+2026-01-14 22:09:21.805 15773-15773 cr_WVCFactoryProvider   com.vagabondbible.app                I  version=134.0.6998.135 (699813538) minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+2026-01-14 22:09:21.834 15773-15773 nativeloader            com.vagabondbible.app                D  Load /data/app/~~M_hDiRO6IlkVWj2ppJ80Iw==/com.google.android.trichromelibrary_699813538-mkSv8huRZOJGYaNCBaPSDQ==/TrichromeLibrary.apk!/lib/x86_64/libmonochrome_64.so using class loader ns clns-11 (caller=/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/WebViewGoogle.apk): ok
+2026-01-14 22:09:21.841 15773-15773 nativeloader            com.vagabondbible.app                D  Load /system/lib64/libwebviewchromium_plat_support.so using class loader ns clns-11 (caller=/data/app/~~6EJzGYVatxK3xSNB5u971Q==/com.google.android.webview-hjE327QGdTozBoHS50jjnA==/WebViewGoogle.apk): ok
+2026-01-14 22:09:21.867 15773-15795 chromium                com.vagabondbible.app                E  [0114/220921.863036:ERROR:variations_seed_loader.cc(39)] Seed missing signature.
+2026-01-14 22:09:21.873 15773-15795 chromium                com.vagabondbible.app                I  [INFO:variations_seed_loader.cc(67)] Failed to open file for reading.: No such file or directory (2)
+2026-01-14 22:09:21.884 15773-15773 cr_LibraryLoader        com.vagabondbible.app                I  Successfully loaded native library
+2026-01-14 22:09:21.888 15773-15773 cr_CachingUmaRecorder   com.vagabondbible.app                I  Flushed 6 samples from 6 histograms, 0 samples were dropped.
+2026-01-14 22:09:21.899 15773-15773 cr_CombinedPProvider    com.vagabondbible.app                I  #registerProvider() provider:WV.I8@c693855 isPolicyCacheEnabled:false policyProvidersSize:0
+2026-01-14 22:09:21.901 15773-15773 cr_PolicyProvider       com.vagabondbible.app                I  #setManagerAndSource() 0
+2026-01-14 22:09:22.014 15773-15773 cr_CombinedPProvider    com.vagabondbible.app                I  #linkNativeInternal() 1
+2026-01-14 22:09:22.020 15773-15773 cr_AppResProvider       com.vagabondbible.app                I  #getApplicationRestrictionsFromUserManager() Bundle[EMPTY_PARCEL]
+2026-01-14 22:09:22.020 15773-15773 cr_PolicyProvider       com.vagabondbible.app                I  #notifySettingsAvailable() 0
+2026-01-14 22:09:22.020 15773-15773 cr_CombinedPProvider    com.vagabondbible.app                I  #onSettingsAvailable() 0
+2026-01-14 22:09:22.020 15773-15773 cr_CombinedPProvider    com.vagabondbible.app                I  #flushPolicies()
+2026-01-14 22:09:22.475 15773-15773 Capacitor               com.vagabondbible.app                D  Starting BridgeActivity
+2026-01-14 22:09:22.542 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: CapacitorCookies
+2026-01-14 22:09:22.551 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: WebView
+2026-01-14 22:09:22.555 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: CapacitorHttp
+2026-01-14 22:09:22.558 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: SystemBars
+2026-01-14 22:09:22.565 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: FirebaseAuthentication
+2026-01-14 22:09:22.797 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: App
+2026-01-14 22:09:22.799 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Browser
+2026-01-14 22:09:22.805 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: SplashScreen
+2026-01-14 22:09:22.816 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: StatusBar
+2026-01-14 22:09:22.829 15773-15773 Capacitor/...sBarPlugin com.vagabondbible.app                V  Notifying listeners for event statusBarOverlayChanged
+2026-01-14 22:09:22.830 15773-15773 Capacitor/...sBarPlugin com.vagabondbible.app                D  No listeners found for event statusBarOverlayChanged
+2026-01-14 22:09:22.831 15773-15773 Capacitor/...sBarPlugin com.vagabondbible.app                V  Notifying listeners for event statusBarOverlayChanged
+2026-01-14 22:09:22.831 15773-15773 Capacitor/...sBarPlugin com.vagabondbible.app                D  No listeners found for event statusBarOverlayChanged
+2026-01-14 22:09:22.831 15773-15773 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Purchases
+2026-01-14 22:09:22.863 15773-15773 Capacitor               com.vagabondbible.app                W  Unable to read file at path public/plugins
+2026-01-14 22:09:22.877 15773-15773 Capacitor               com.vagabondbible.app                D  Loading app at https://localhost
+2026-01-14 22:09:22.934 15773-15818 cr_media                com.vagabondbible.app                W  BLUETOOTH_CONNECT permission is missing.
+2026-01-14 22:09:22.936 15773-15818 cr_media                com.vagabondbible.app                W  getBluetoothAdapter() requires BLUETOOTH permission
+2026-01-14 22:09:22.936 15773-15818 cr_media                com.vagabondbible.app                W  registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+2026-01-14 22:09:22.991 15773-15841 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.mesa.log"
+2026-01-14 22:09:22.991 15773-15841 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.mesa.log.file"
+2026-01-14 22:09:22.991 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:22.991 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.012 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.012 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.014 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.014 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.017 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.017 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.018 15773-15841 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.mesa.vk.trace.per.submit"
+2026-01-14 22:09:23.018 15773-15841 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.mesa.gallium.print.optio"
+2026-01-14 22:09:23.018 15773-15841 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.mesa.vk.trace.frame"
+2026-01-14 22:09:23.028 15773-15773 Capacitor               com.vagabondbible.app                D  App started
+2026-01-14 22:09:23.030 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.032 15773-15841 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.mesa.vk.wsi.headless.swa"
+2026-01-14 22:09:23.032 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.033 15773-15841 MESA                    com.vagabondbible.app                E  Failed to open rendernode: No such file or directory
+2026-01-14 22:09:23.035 15773-15773 Capacitor/AppPlugin     com.vagabondbible.app                D  Firing change: true
+2026-01-14 22:09:23.035 15773-15773 Capacitor/AppPlugin     com.vagabondbible.app                V  Notifying listeners for event appStateChange
+2026-01-14 22:09:23.035 15773-15773 Capacitor/AppPlugin     com.vagabondbible.app                D  No listeners found for event appStateChange
+2026-01-14 22:09:23.049 15773-15773 Capacitor/BrowserPlugin com.vagabondbible.app                V  Notifying listeners for event browserFinished
+2026-01-14 22:09:23.050 15773-15773 Capacitor/BrowserPlugin com.vagabondbible.app                D  No listeners found for event browserFinished
+2026-01-14 22:09:23.050 15773-15773 Capacitor               com.vagabondbible.app                D  App resumed
+2026-01-14 22:09:23.088 15773-15773 HWUI                    com.vagabondbible.app                W  Unknown dataspace 0
+2026-01-14 22:09:23.124 15773-15841 chromium                com.vagabondbible.app                W  [WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+2026-01-14 22:09:23.142 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/
+2026-01-14 22:09:23.199 15773-15857 CameraManagerGlobal     com.vagabondbible.app                I  Connecting to camera service
+2026-01-14 22:09:23.235 15773-15773 Capacitor/...tionPlugin com.vagabondbible.app                V  Notifying listeners for event authStateChange
+2026-01-14 22:09:23.235 15773-15773 Capacitor/...tionPlugin com.vagabondbible.app                D  No listeners found for event authStateChange
+2026-01-14 22:09:23.242 15773-15773 FirebaseAuthentication  com.vagabondbible.app                E  No user is signed in.
+                                                                                                    java.lang.Exception: No user is signed in.
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.getIdToken(FirebaseAuthentication.java:175)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthenticationPlugin.handleIdTokenChange(FirebaseAuthenticationPlugin.java:1037)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.lambda$new$1(FirebaseAuthentication.java:80)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.$r8$lambda$3cIeZ-HtwDcmC2SfeKpGPL5cdos(Unknown Source:0)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication$$ExternalSyntheticLambda8.onIdTokenChanged(D8$$SyntheticClass:0)
+                                                                                                    	at com.google.firebase.auth.zzh.run(com.google.firebase:firebase-auth@@24.0.1:2)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:1070)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:125)
+                                                                                                    	at android.os.Looper.dispatchMessage(Looper.java:333)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:263)
+                                                                                                    	at android.os.Looper.loop(Looper.java:367)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:9287)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+2026-01-14 22:09:23.249 15773-15773 WindowOnBackDispatcher  com.vagabondbible.app                D  setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@90162cc
+2026-01-14 22:09:23.250 15773-15773 WindowOnBackDispatcher  com.vagabondbible.app                D  setTopOnBackInvokedCallback (unwrapped): androidx.activity.OnBackPressedDispatcher$Api34Impl$createOnBackAnimationCallback$1@7796915
+2026-01-14 22:09:23.258 15773-15773 VRI[MainActivity]       com.vagabondbible.app                D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-01-14 22:09:23.351 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-Vncr4j1y.js
+2026-01-14 22:09:23.353 15773-15814 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-C0krcrs5.css
+2026-01-14 22:09:23.523 15773-15773 InsetsController        com.vagabondbible.app                D  hide(ime())
+2026-01-14 22:09:23.524 15773-15773 ImeTracker              com.vagabondbible.app                I  com.vagabondbible.app:1a9d1b19: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+2026-01-14 22:09:23.621 15773-15873 HWUI                    com.vagabondbible.app                I  Using FreeType backend (prop=Auto)
+2026-01-14 22:09:23.778 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [Firebase Config] Native platform detected
+2026-01-14 22:09:23.778 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [Firebase Config] API Key present: true
+2026-01-14 22:09:23.779 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [Firebase Config] Project ID: travelingchurch-1b4ab
+2026-01-14 22:09:23.779 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [Firebase Config] App ID present: true
+2026-01-14 22:09:23.779 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [Firebase] App initialized successfully
+2026-01-14 22:09:23.779 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [Firebase] Using getAuth for native platform
+2026-01-14 22:09:23.910 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/Pastor_Brett_Chat_Icon_1767476985840-ChGfprkT.png
+2026-01-14 22:09:23.948 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [useIntroAnimation] Initial state, isNativePlatform: true
+2026-01-14 22:09:23.949 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Mounted, isNative: true video src: /assets/splash-intro-DqaDiT6c.mp4
+2026-01-14 22:09:23.985 15773-15814 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/Bigger_White_Logo_1767824644015-yoZIbkGk.png
+2026-01-14 22:09:23.988 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Hiding native splash screen
+2026-01-14 22:09:23.995 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:23.997 15773-15824 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-Xw9qNZtF.js
+2026-01-14 22:09:23.999 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:24.001 15773-15824 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-BsrsPTcp.js
+2026-01-14 22:09:24.010 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094684, pluginId: SplashScreen, methodName: hide
+2026-01-14 22:09:24.016 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094684, pluginId: SplashScreen, methodName: hide, methodData: {"fadeOutDuration":200}
+2026-01-14 22:09:24.019 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094685, pluginId: StatusBar, methodName: getInfo
+2026-01-14 22:09:24.020 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094685, pluginId: StatusBar, methodName: getInfo, methodData: {}
+2026-01-14 22:09:24.080 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/splash-intro-DqaDiT6c.mp4
+2026-01-14 22:09:24.088 15773-15814 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/text-to-video-28b9692b_1767558425367-Dr7kuZnw.mp4
+2026-01-14 22:09:24.091 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-14 22:09:24.092 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Attempting manual video.play()
+2026-01-14 22:09:24.105 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"visible":true,"style":"LIGHT","color":"#000000","overlays":true,"height":24}
+2026-01-14 22:09:24.130 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Mounted, isNative: true video src: /assets/splash-intro-DqaDiT6c.mp4
+2026-01-14 22:09:24.142 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:24.156 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:24.158 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:24.160 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:24.169 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094686, pluginId: App, methodName: addListener
+2026-01-14 22:09:24.170 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094686, pluginId: App, methodName: addListener, methodData: {"eventName":"appUrlOpen"}
+2026-01-14 22:09:24.177 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: -1, pluginId: Purchases, methodName: setLogLevel
+2026-01-14 22:09:24.177 15773-15773 Capacitor               com.vagabondbible.app                V  callback: -1, pluginId: Purchases, methodName: setLogLevel, methodData: {"level":"DEBUG"}
+2026-01-14 22:09:24.179 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: -1, pluginId: Purchases, methodName: configure
+2026-01-14 22:09:24.179 15773-15773 Capacitor               com.vagabondbible.app                V  callback: -1, pluginId: Purchases, methodName: configure, methodData: {"apiKey":"appl_IHuuguwDzrFpaSziwpBDtyAdmqg"}
+2026-01-14 22:09:24.180 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094687, pluginId: Purchases, methodName: getCustomerInfo
+2026-01-14 22:09:24.180 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094687, pluginId: Purchases, methodName: getCustomerInfo, methodData: {}
+2026-01-14 22:09:24.234 15773-15841 GFXSTREAM               com.vagabondbible.app                E  [GLClientState.cpp(298)] set vao to self, no-op (1)
+2026-01-14 22:09:24.304 15773-15812 cr_MediaCodecBridge     com.vagabondbible.app                I  create MediaCodec video decoder, mime video/avc, decoder name c2.goldfish.h264.decoder, block_model=false
+2026-01-14 22:09:24.308 15773-15818 AudioSystem             com.vagabondbible.app                D  onNewServiceWithAdapter: media.audio_flinger service obtained 0x73c86e08a270
+2026-01-14 22:09:24.318 15773-15834 [Purchases] - ERROR     com.vagabondbible.app                E  The specified API Key is not recognized.
+                                                                                                    Ensure that you are using the public app-specific API key, which should look like 'goog_1a2b3c4d5e6f7h' or 'amzn_1a2b3c4d5e6f7h'.
+                                                                                                    See https://rev.cat/auth for more details.
+2026-01-14 22:09:24.320 15773-15818 AudioSystem             com.vagabondbible.app                D  getService: IAudioFlingerService retrieved: 0x73c83e01ff10  IAudioFlinger cached: 0x73c86e08a270
+2026-01-14 22:09:24.332 15773-15818 AudioSystem             com.vagabondbible.app                D  onNewService: media.audio_policy service obtained 0x73c83e09a990
+2026-01-14 22:09:24.344 15773-15818 AudioSystem             com.vagabondbible.app                D  getService: IAudioPolicyService retrieved: 0x73c83e09a990  cached: 0x73c83e09a990
+2026-01-14 22:09:24.393 15773-15884 CCodec                  com.vagabondbible.app                D  allocate(c2.goldfish.h264.decoder)
+2026-01-14 22:09:24.455 15773-15884 ApexCodecsLazy          com.vagabondbible.app                I  ApexCodecs loaded
+2026-01-14 22:09:24.455 15773-15884 Codec2Client            com.vagabondbible.app                I  Available Codec2 services: "default" "software" "__ApexCodecs__"
+2026-01-14 22:09:24.474 15773-15884 CCodec                  com.vagabondbible.app                I  setting up 'default' as default (vendor) store
+2026-01-14 22:09:24.498 15773-15884 CCodec                  com.vagabondbible.app                I  Created component [c2.goldfish.h264.decoder] for [c2.goldfish.h264.decoder]
+2026-01-14 22:09:24.499 15773-15884 CCodecConfig            com.vagabondbible.app                D  read media type: video/avc
+2026-01-14 22:09:24.501 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: algo.buffers.max-count.values
+2026-01-14 22:09:24.501 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.subscribed-indices.values
+2026-01-14 22:09:24.502 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: input.buffers.allocator-ids.values
+2026-01-14 22:09:24.502 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.buffers.allocator-ids.values
+2026-01-14 22:09:24.503 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
+2026-01-14 22:09:24.503 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-01-14 22:09:24.503 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: algo.buffers.pool-ids.values
+2026-01-14 22:09:24.504 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  ignored struct field coded.color-format.locations
+2026-01-14 22:09:24.505 15773-15884 CCodecConfig            com.vagabondbible.app                D  ignoring local param raw.size (0xd2001800) as it is already supported
+2026-01-14 22:09:24.505 15773-15884 CCodecConfig            com.vagabondbible.app                D  ignoring local param default.color (0x5200180b) as it is already supported
+2026-01-14 22:09:24.506 15773-15884 ReflectedParamUpdater   com.vagabondbible.app                D  ignored struct field raw.hdr-static-info.mastering
+2026-01-14 22:09:24.510 15773-15884 CCodecConfig            com.vagabondbible.app                I  query failed after returning 12 values (BAD_INDEX)
+2026-01-14 22:09:24.510 15773-15884 CCodecConfig            com.vagabondbible.app                D  c2 config diff is Dict {
+                                                                                                      c2::u32 coded.pl.level = 20496
+                                                                                                      c2::u32 coded.pl.profile = 20481
+                                                                                                      c2::u32 coded.vui.color.matrix = 0
+                                                                                                      c2::u32 coded.vui.color.primaries = 0
+                                                                                                      c2::u32 coded.vui.color.range = 2
+                                                                                                      c2::u32 coded.vui.color.transfer = 0
+                                                                                                      c2::u32 default.color.matrix = 0
+                                                                                                      c2::u32 default.color.primaries = 0
+                                                                                                      c2::u32 default.color.range = 0
+                                                                                                      c2::u32 default.color.transfer = 0
+                                                                                                      c2::u32 input.buffers.max-size.value = 6291456
+                                                                                                      c2::u32 input.delay.value = 0
+                                                                                                      string input.media-type.value = "video/avc"
+                                                                                                      c2::u32 output.delay.value = 8
+                                                                                                      string output.media-type.value = "video/raw"
+                                                                                                      c2::u32 raw.color.matrix = 0
+                                                                                                      c2::u32 raw.color.primaries = 0
+                                                                                                      c2::u32 raw.color.range = 2
+                                                                                                      c2::u32 raw.color.transfer = 0
+                                                                                                      c2::u32 raw.max-size.height = 240
+                                                                                                      c2::u32 raw.max-size.width = 320
+                                                                                                      c2::u32 raw.pixel-format.value = 35
+                                                                                                      c2::i32 raw.rotation.flip = 0
+                                                                                                      c2::i32 raw.rotation.value = 0
+                                                                                                      c2::u32 raw.sar.height = 1
+                                                                                                      c2::u32 raw.sar.width = 1
+                                                                                                      c2::u32 raw.size.height = 240
+                                                                                                      c2::u32 raw.size.width = 320
+                                                                                                      c2:
+2026-01-14 22:09:24.511 15773-15884 ColorUtils              com.vagabondbible.app                W  expected specified color aspects (2:0:0:0)
+2026-01-14 22:09:24.520 15773-15882 MediaCodec              com.vagabondbible.app                I  MediaCodec will operate in async mode
+2026-01-14 22:09:24.522 15773-15812 MediaCodec              com.vagabondbible.app                I  media_quality service unavailable, skipping updatePictureProfile
+2026-01-14 22:09:24.523 15773-15882 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e02dab0, reason connectToSurface
+2026-01-14 22:09:24.523 15773-15882 MediaCodec              com.vagabondbible.app                I  [c2.goldfish.h264.decoder] setting surface generation to 16151553
+2026-01-14 22:09:24.523 15773-15882 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e02dab0, reason connectToSurface(reconnect)
+2026-01-14 22:09:24.523 15773-15882 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e02daa0, reason connectToSurface(reconnect-with-listener)
+2026-01-14 22:09:24.524 15773-15884 CCodec                  com.vagabondbible.app                D  [c2.goldfish.h264.decoder] buffers are bound to CCodec for this session
+2026-01-14 22:09:24.524 15773-15884 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for csd-1
+2026-01-14 22:09:24.524 15773-15884 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for native-window
+2026-01-14 22:09:24.524 15773-15884 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for native-window-generation
+2026-01-14 22:09:24.524 15773-15884 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for flags
+2026-01-14 22:09:24.524 15773-15884 CCodecConfig            com.vagabondbible.app                D  config failed => CORRUPTED
+2026-01-14 22:09:24.525 15773-15884 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 raw.max-size.height = 1920
+                                                                                                      c2::u32 raw.max-size.width = 1080
+                                                                                                      c2::u32 raw.size.height = 1920
+                                                                                                      c2::u32 raw.size.width = 1080
+2026-01-14 22:09:24.525 15773-15884 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1107298332.
+2026-01-14 22:09:24.525 15773-15884 CCodec                  com.vagabondbible.app                D  client requested max input size 2764800, which is smaller than what component recommended (6291456); overriding with component recommendation.
+2026-01-14 22:09:24.525 15773-15884 CCodec                  com.vagabondbible.app                W  This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+2026-01-14 22:09:24.525 15773-15884 CCodec                  com.vagabondbible.app                D  encoding statistics level = 0
+2026-01-14 22:09:24.525 15773-15884 CCodec                  com.vagabondbible.app                D  setup formats input: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t height = 1920
+                                                                                                      int32_t level = 65536
+                                                                                                      int32_t max-input-size = 6291456
+                                                                                                      string mime = "video/avc"
+                                                                                                      int32_t profile = 65536
+                                                                                                      int32_t width = 1080
+                                                                                                      Rect crop(0, 0, 1079, 1919)
+                                                                                                    }
+2026-01-14 22:09:24.525 15773-15884 CCodec                  com.vagabondbible.app                D  setup formats output: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t android._color-format = 2135033992
+                                                                                                      int32_t android._video-scaling = 1
+                                                                                                      int32_t rotation-degrees = 0
+                                                                                                      int32_t color-standard = 1
+                                                                                                      int32_t color-range = 2
+                                                                                                      int32_t color-transfer = 3
+                                                                                                      int32_t sar-height = 1
+                                                                                                      int32_t sar-width = 1
+                                                                                                      Rect crop(0, 0, 1079, 1919)
+                                                                                                      int32_t width = 1080
+                                                                                                      int32_t height = 1920
+                                                                                                      int32_t max-height = 1920
+                                                                                                      int32_t max-width = 1080
+                                                                                                      string mime = "video/raw"
+                                                                                                      int32_t android._dataspace = 260
+                                                                                                      int32_t color-format = 2130708361
+                                                                                                    }
+2026-01-14 22:09:24.526 15773-15884 CCodecConfig            com.vagabondbible.app                I  query failed after returning 12 values (BAD_INDEX)
+2026-01-14 22:09:24.526 15773-15884 gabondbible.app         com.vagabondbible.app                E  Failed to query component interface for required system resources: 6
+2026-01-14 22:09:24.528 15773-15812 MediaCodec              com.vagabondbible.app                D  keep callback message for reclaim
+2026-01-14 22:09:24.529 15773-15884 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1342179345.
+2026-01-14 22:09:24.530 15773-15884 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 2415921170.
+2026-01-14 22:09:24.530 15773-15884 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1610614798.
+2026-01-14 22:09:24.530 15773-15884 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 2684356609.
+2026-01-14 22:09:24.531 15773-15884 C2Store                 com.vagabondbible.app                D  Using DMABUF Heaps
+2026-01-14 22:09:24.534 15773-15884 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#99] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+2026-01-14 22:09:24.536 15773-15884 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#99] Query output surface allocator returned 0 params => BAD_INDEX (6)
+2026-01-14 22:09:24.536 15773-15884 CCodecBufferChannel     com.vagabondbible.app                I  [c2.goldfish.h264.decoder#99] Created output block pool with allocatorID 18 => poolID 29 - OK
+2026-01-14 22:09:24.536 15773-15884 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#99] Configured output block pool ids 29 => OK
+2026-01-14 22:09:24.536 15773-15884 Codec2-Out...ufferQueue com.vagabondbible.app                D  remote graphic buffer migration 0/0
+2026-01-14 22:09:24.536 15773-15884 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+2026-01-14 22:09:24.536 15773-15884 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- generation=16151553 consumer usage=0x900
+2026-01-14 22:09:24.551 15773-15884 Codec2Client            com.vagabondbible.app                D  Surface configure completed
+2026-01-14 22:09:24.551 15773-15884 DMABUFHEAPS             com.vagabondbible.app                I  Using DMA-BUF heap named: system
+2026-01-14 22:09:24.576 15773-15812 cr_MediaCodecBridge     com.vagabondbible.app                I  create MediaCodec video decoder, mime video/avc, decoder name c2.goldfish.h264.decoder, block_model=false
+2026-01-14 22:09:24.586 15773-15893 CCodec                  com.vagabondbible.app                D  allocate(c2.goldfish.h264.decoder)
+2026-01-14 22:09:24.683 15773-15893 CCodec                  com.vagabondbible.app                I  setting up 'default' as default (vendor) store
+2026-01-14 22:09:24.687 15773-15893 CCodec                  com.vagabondbible.app                I  Created component [c2.goldfish.h264.decoder] for [c2.goldfish.h264.decoder]
+2026-01-14 22:09:24.688 15773-15893 CCodecConfig            com.vagabondbible.app                D  read media type: video/avc
+2026-01-14 22:09:24.693 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: algo.buffers.max-count.values
+2026-01-14 22:09:24.695 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.subscribed-indices.values
+2026-01-14 22:09:24.696 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: input.buffers.allocator-ids.values
+2026-01-14 22:09:24.698 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.buffers.allocator-ids.values
+2026-01-14 22:09:24.698 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: algo.buffers.allocator-ids.values
+2026-01-14 22:09:24.699 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-01-14 22:09:24.699 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: algo.buffers.pool-ids.values
+2026-01-14 22:09:24.702 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  ignored struct field coded.color-format.locations
+2026-01-14 22:09:24.704 15773-15893 CCodecConfig            com.vagabondbible.app                D  ignoring local param raw.size (0xd2001800) as it is already supported
+2026-01-14 22:09:24.704 15773-15893 CCodecConfig            com.vagabondbible.app                D  ignoring local param default.color (0x5200180b) as it is already supported
+2026-01-14 22:09:24.704 15773-15893 ReflectedParamUpdater   com.vagabondbible.app                D  ignored struct field raw.hdr-static-info.mastering
+2026-01-14 22:09:24.705 15773-15893 CCodecConfig            com.vagabondbible.app                I  query failed after returning 12 values (BAD_INDEX)
+2026-01-14 22:09:24.705 15773-15893 CCodecConfig            com.vagabondbible.app                D  c2 config diff is Dict {
+                                                                                                      c2::u32 coded.pl.level = 20496
+                                                                                                      c2::u32 coded.pl.profile = 20481
+                                                                                                      c2::u32 coded.vui.color.matrix = 0
+                                                                                                      c2::u32 coded.vui.color.primaries = 0
+                                                                                                      c2::u32 coded.vui.color.range = 2
+                                                                                                      c2::u32 coded.vui.color.transfer = 0
+                                                                                                      c2::u32 default.color.matrix = 0
+                                                                                                      c2::u32 default.color.primaries = 0
+                                                                                                      c2::u32 default.color.range = 0
+                                                                                                      c2::u32 default.color.transfer = 0
+                                                                                                      c2::u32 input.buffers.max-size.value = 6291456
+                                                                                                      c2::u32 input.delay.value = 0
+                                                                                                      string input.media-type.value = "video/avc"
+                                                                                                      c2::u32 output.delay.value = 8
+                                                                                                      string output.media-type.value = "video/raw"
+                                                                                                      c2::u32 raw.color.matrix = 0
+                                                                                                      c2::u32 raw.color.primaries = 0
+                                                                                                      c2::u32 raw.color.range = 2
+                                                                                                      c2::u32 raw.color.transfer = 0
+                                                                                                      c2::u32 raw.max-size.height = 240
+                                                                                                      c2::u32 raw.max-size.width = 320
+                                                                                                      c2::u32 raw.pixel-format.value = 35
+                                                                                                      c2::i32 raw.rotation.flip = 0
+                                                                                                      c2::i32 raw.rotation.value = 0
+                                                                                                      c2::u32 raw.sar.height = 1
+                                                                                                      c2::u32 raw.sar.width = 1
+                                                                                                      c2::u32 raw.size.height = 240
+                                                                                                      c2::u32 raw.size.width = 320
+                                                                                                      c2:
+2026-01-14 22:09:24.706 15773-15893 ColorUtils              com.vagabondbible.app                W  expected specified color aspects (2:0:0:0)
+2026-01-14 22:09:24.714 15773-15892 MediaCodec              com.vagabondbible.app                I  MediaCodec will operate in async mode
+2026-01-14 22:09:24.716 15773-15812 MediaCodec              com.vagabondbible.app                I  media_quality service unavailable, skipping updatePictureProfile
+2026-01-14 22:09:24.716 15773-15892 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e029a50, reason connectToSurface
+2026-01-14 22:09:24.716 15773-15892 MediaCodec              com.vagabondbible.app                I  [c2.goldfish.h264.decoder] setting surface generation to 16151554
+2026-01-14 22:09:24.717 15773-15892 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e029a50, reason connectToSurface(reconnect)
+2026-01-14 22:09:24.717 15773-15892 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e029a40, reason connectToSurface(reconnect-with-listener)
+2026-01-14 22:09:24.718 15773-15893 CCodec                  com.vagabondbible.app                D  [c2.goldfish.h264.decoder] buffers are bound to CCodec for this session
+2026-01-14 22:09:24.718 15773-15893 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for csd-1
+2026-01-14 22:09:24.718 15773-15893 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for native-window
+2026-01-14 22:09:24.718 15773-15893 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for native-window-generation
+2026-01-14 22:09:24.718 15773-15893 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for flags
+2026-01-14 22:09:24.719 15773-15893 CCodecConfig            com.vagabondbible.app                D  config failed => CORRUPTED
+2026-01-14 22:09:24.719 15773-15893 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 raw.max-size.height = 1080
+                                                                                                      c2::u32 raw.max-size.width = 1920
+                                                                                                      c2::u32 raw.size.height = 1080
+                                                                                                      c2::u32 raw.size.width = 1920
+2026-01-14 22:09:24.721 15773-15893 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1107298332.
+2026-01-14 22:09:24.721 15773-15893 CCodec                  com.vagabondbible.app                D  client requested max input size 1566720, which is smaller than what component recommended (6291456); overriding with component recommendation.
+2026-01-14 22:09:24.721 15773-15893 CCodec                  com.vagabondbible.app                W  This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+2026-01-14 22:09:24.721 15773-15893 CCodec                  com.vagabondbible.app                D  encoding statistics level = 0
+2026-01-14 22:09:24.721 15773-15893 CCodec                  com.vagabondbible.app                D  setup formats input: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t height = 1080
+                                                                                                      int32_t level = 65536
+                                                                                                      int32_t max-input-size = 6291456
+                                                                                                      string mime = "video/avc"
+                                                                                                      int32_t profile = 65536
+                                                                                                      int32_t width = 1920
+                                                                                                      Rect crop(0, 0, 1919, 1079)
+                                                                                                    }
+2026-01-14 22:09:24.721 15773-15893 CCodec                  com.vagabondbible.app                D  setup formats output: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t android._color-format = 2135033992
+                                                                                                      int32_t android._video-scaling = 1
+                                                                                                      int32_t rotation-degrees = 0
+                                                                                                      int32_t color-standard = 1
+                                                                                                      int32_t color-range = 2
+                                                                                                      int32_t color-transfer = 3
+                                                                                                      int32_t sar-height = 1
+                                                                                                      int32_t sar-width = 1
+                                                                                                      Rect crop(0, 0, 1919, 1079)
+                                                                                                      int32_t width = 1920
+                                                                                                      int32_t height = 1080
+                                                                                                      int32_t max-height = 1080
+                                                                                                      int32_t max-width = 1920
+                                                                                                      string mime = "video/raw"
+                                                                                                      int32_t android._dataspace = 260
+                                                                                                      int32_t color-format = 2130708361
+                                                                                                    }
+2026-01-14 22:09:24.721 15773-15893 CCodecConfig            com.vagabondbible.app                I  query failed after returning 12 values (BAD_INDEX)
+2026-01-14 22:09:24.742 15773-15893 gabondbible.app         com.vagabondbible.app                E  Failed to query component interface for required system resources: 6
+2026-01-14 22:09:24.745 15773-15812 MediaCodec              com.vagabondbible.app                D  keep callback message for reclaim
+2026-01-14 22:09:24.754 15773-15893 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1342179345.
+2026-01-14 22:09:24.754 15773-15893 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 2415921170.
+2026-01-14 22:09:24.754 15773-15893 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1610614798.
+2026-01-14 22:09:24.755 15773-15893 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 2684356609.
+2026-01-14 22:09:24.822 15773-15893 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] Created input block pool with allocatorID 16 => poolID 18 - OK (0)
+2026-01-14 22:09:24.823 15773-15884 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 raw.crop.height = 1920
+                                                                                                      c2::u32 raw.crop.left = 0
+                                                                                                      c2::u32 raw.crop.top = 0
+                                                                                                      c2::u32 raw.crop.width = 1080
+2026-01-14 22:09:24.828 15773-15893 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] Query output surface allocator returned 0 params => BAD_INDEX (6)
+2026-01-14 22:09:24.830 15773-15893 CCodecBufferChannel     com.vagabondbible.app                I  [c2.goldfish.h264.decoder#64] Created output block pool with allocatorID 18 => poolID 30 - OK
+2026-01-14 22:09:24.830 15773-15893 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#64] Configured output block pool ids 30 => OK
+2026-01-14 22:09:24.830 15773-15893 Codec2-Out...ufferQueue com.vagabondbible.app                D  remote graphic buffer migration 0/0
+2026-01-14 22:09:24.831 15773-15893 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+2026-01-14 22:09:24.831 15773-15893 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- generation=16151554 consumer usage=0x900
+2026-01-14 22:09:24.846 15773-15893 Codec2Client            com.vagabondbible.app                D  Surface configure completed
+2026-01-14 22:09:25.141 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Manual play succeeded
+2026-01-14 22:09:25.212 15773-15893 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 raw.crop.height = 1080
+                                                                                                      c2::u32 raw.crop.left = 0
+                                                                                                      c2::u32 raw.crop.top = 0
+                                                                                                      c2::u32 raw.crop.width = 1920
+2026-01-14 22:09:25.593 15773-15778 gabondbible.app         com.vagabondbible.app                I  Compiler allocated 5087KB to compile void android.view.ViewRootImpl.performTraversals()
+2026-01-14 22:09:25.648 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Debug logging enabled
+2026-01-14 22:09:25.648 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ SDK Version - 9.18.0
+2026-01-14 22:09:25.649 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Package name - com.vagabondbible.app
+2026-01-14 22:09:25.650 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  👤 Initial App User ID - null
+2026-01-14 22:09:25.652 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Purchases configured with response verification: INFORMATIONAL
+2026-01-14 22:09:25.786 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  👤 Identifying App User ID: $RCAnonymousID:b99003c05b824a4e9674605a3812bf3a
+2026-01-14 22:09:25.793 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Deleting old synced subscriber attributes that don't belong to $RCAnonymousID:b99003c05b824a4e9674605a3812bf3a
+2026-01-14 22:09:25.871 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Listener set
+2026-01-14 22:09:25.873 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Sending latest CustomerInfo to listener.
+2026-01-14 22:09:25.873 15773-15834 Capacitor/AppPlugin     com.vagabondbible.app                D  Firing restored result
+2026-01-14 22:09:25.874 15773-15834 Capacitor/AppPlugin     com.vagabondbible.app                V  Notifying listeners for event appRestoredResult
+2026-01-14 22:09:25.874 15773-15834 Capacitor/AppPlugin     com.vagabondbible.app                D  No listeners found for event appRestoredResult
+2026-01-14 22:09:25.887 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  Retrieving customer info with policy: CACHED_OR_FETCHED
+2026-01-14 22:09:25.889 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Vending CustomerInfo from cache.
+2026-01-14 22:09:25.890 15773-15834 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Checking if cache is stale AppInBackground true
+2026-01-14 22:09:25.965 15773-15773 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Starting connection for com.android.billingclient.api.BillingClientImpl@8190533
+2026-01-14 22:09:25.980 15773-15773 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ App foregrounded
+2026-01-14 22:09:25.982 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+2026-01-14 22:09:25.983 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  Retrieving customer info with policy: FETCH_CURRENT
+2026-01-14 22:09:25.986 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Updating pending purchase queue
+2026-01-14 22:09:25.988 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Offerings cache is stale, updating from network in foreground
+2026-01-14 22:09:25.991 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  😻 Start Offerings update from network.
+2026-01-14 22:09:25.996 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Querying purchases
+2026-01-14 22:09:26.012 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  Request already scheduled with jitter delay, adding existing callbacks to unjittered request with key: BackgroundAwareCallbackCacheKey(cacheKey=[/v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a/offerings], appInBackground=false)
+2026-01-14 22:09:26.012 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Updating pending purchase queue
+2026-01-14 22:09:26.015 15773-15900 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ No subscriber attributes to synchronize.
+2026-01-14 22:09:26.016 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  Getting storefront from cache was null.
+2026-01-14 22:09:26.031 15773-15773 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Starting connection for com.android.billingclient.api.BillingClientImpl@8190533
+2026-01-14 22:09:26.031 15773-15773 BillingClient           com.vagabondbible.app                W  Client is already in the process of connecting to billing service.
+2026-01-14 22:09:26.116 15773-15903 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://api.revenuecat.com/v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a/offerings'
+2026-01-14 22:09:26.182 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"customerInfo":{"entitlements":{"all":{},"active":{},"verification":"VERIFIED"},"activeSubscriptions":[],"allPurchasedProductIdentifiers":[],"latestExpirationDate":null,"latestExpirationDateMillis":null,"firstSeen":"2026-01-14T22:20:20.000Z","firstSeenMillis":1768429220000,"originalAppUserId":"$RCAnonymousID:b99003c05b824a4e9674605a3812bf3a","requestDate":"2026-01-15T03:04:14.569Z","requestDateMillis":1768446254569,"allExpirationDates":{},"allExpirationDatesMillis":{},"allPurchaseDates":{},"allPurchaseDatesMillis":{},"originalApplicationVersion":null,"managementURL":null,"originalPurchaseDate":null,"originalPurchaseDateMillis":null,"nonSubscriptionTransactions":[],"subscriptionsByProductIdentifier":{}}}
+2026-01-14 22:09:26.389 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  API request started: GET /v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a/offerings
+2026-01-14 22:09:26.391 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  API request completed with status: GET /v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a/offerings 304
+2026-01-14 22:09:26.486 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Fallback timer triggered
+2026-01-14 22:09:26.489 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Video ended
+2026-01-14 22:09:26.489 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [IntroAnimation] Mounted, isNative: true video src: /assets/splash-intro-DqaDiT6c.mp4
+2026-01-14 22:09:26.615 15773-15910 BillingClient           com.vagabondbible.app                W  In-app billing API version 3 is not supported on this device.
+2026-01-14 22:09:26.647 15773-15773 [Purchases] - ERROR     com.vagabondbible.app                E  🤖‼️ PurchasesError(code=PurchaseNotAllowedError, underlyingErrorMessage=Billing is not available in this device. DebugMessage: Billing service unavailable on device.. ErrorCode: BILLING_UNAVAILABLE. SubResponseCode: NO_APPLICABLE_SUB_RESPONSE_CODE., message='The device or user is not allowed to make the purchase.')
+2026-01-14 22:09:26.670 15773-15773 [Purchases] - ERROR     com.vagabondbible.app                E  🤖‼️ PurchasesError(code=PurchaseNotAllowedError, underlyingErrorMessage=Billing is not available in this device. DebugMessage: Billing service unavailable on device.. ErrorCode: BILLING_UNAVAILABLE. SubResponseCode: NO_APPLICABLE_SUB_RESPONSE_CODE., message='The device or user is not allowed to make the purchase.')
+2026-01-14 22:09:26.685 15773-15773 [Purchases] - DEBUG     com.vagabondbible.app                D  Request already scheduled with jitter delay, adding existing callbacks to unjittered request with key: BackgroundAwareCallbackCacheKey(cacheKey=[/v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a], appInBackground=false)
+2026-01-14 22:09:26.823 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [useIntroAnimation] completeIntro called
+2026-01-14 22:09:26.831 15773-15913 ProfileInstaller        com.vagabondbible.app                D  Installing profile for com.vagabondbible.app
+2026-01-14 22:09:26.832 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:26.833 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094688, pluginId: SplashScreen, methodName: hide
+2026-01-14 22:09:26.833 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094688, pluginId: SplashScreen, methodName: hide, methodData: {"fadeOutDuration":200}
+2026-01-14 22:09:26.847 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-14 22:09:26.849 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-14 22:09:26.855 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-14 22:09:26.856 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-14 22:09:26.856 15773-15814 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-14 22:09:27.547 15773-15812 cr_MediaCodecBridge     com.vagabondbible.app                W  Releasing: c2.goldfish.h264.decoder
+2026-01-14 22:09:27.548 15773-15882 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e02ada0, reason connectToSurface
+2026-01-14 22:09:27.548 15773-15882 MediaCodec              com.vagabondbible.app                I  [c2.goldfish.h264.decoder] setting surface generation to 16151555
+2026-01-14 22:09:27.548 15773-15882 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e02ada0, reason connectToSurface(reconnect)
+2026-01-14 22:09:27.548 15773-15882 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0x73c75e02ad90, reason connectToSurface(reconnect-with-listener)
+2026-01-14 22:09:27.553 15773-15882 Codec2-Out...ufferQueue com.vagabondbible.app                D  remote graphic buffer migration 0/0
+2026-01-14 22:09:27.554 15773-15882 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+2026-01-14 22:09:27.555 15773-15882 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- generation=16151555 consumer usage=0x900
+2026-01-14 22:09:27.563 15773-15882 Codec2Client            com.vagabondbible.app                D  Surface configure completed
+2026-01-14 22:09:27.563 15773-15882 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e02dab0, reason disconnectFromSurface
+2026-01-14 22:09:27.570 15773-15882 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#99] MediaCodec discarded an unknown buffer
+2026-01-14 22:09:27.570 15773-15882 CCodecBufferChannel     com.vagabondbible.app                D  [c2.goldfish.h264.decoder#99] MediaCodec discarded an unknown buffer
+2026-01-14 22:09:27.611 15773-15916 hw-BpHwBinder           com.vagabondbible.app                I  onLastStrongRef automatically unlinking death recipients
+2026-01-14 22:09:27.611 15773-15882 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0x73c75e02ada0, reason disconnectFromSurface
+2026-01-14 22:09:27.615 15773-15812 cr_MediaCodecBridge     com.vagabondbible.app                W  Codec released
+2026-01-14 22:09:27.667 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Requesting products from the store with identifiers: vagabond_bible_pro_monthly
+2026-01-14 22:09:27.670 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Querying purchases
+2026-01-14 22:09:27.671 15773-15773 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Starting connection for com.android.billingclient.api.BillingClientImpl@8190533
+2026-01-14 22:09:27.679 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  Getting storefront from cache was null.
+2026-01-14 22:09:27.681 15773-15773 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Starting connection for com.android.billingclient.api.BillingClientImpl@8190533
+2026-01-14 22:09:27.681 15773-15773 BillingClient           com.vagabondbible.app                W  Client is already in the process of connecting to billing service.
+2026-01-14 22:09:27.682 15773-15903 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://api.revenuecat.com/v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a'
+2026-01-14 22:09:27.747 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  API request started: GET /v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a
+2026-01-14 22:09:27.748 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  API request completed with status: GET /v1/subscribers/%24RCAnonymousID%3Ab99003c05b824a4e9674605a3812bf3a 304
+2026-01-14 22:09:27.797 15773-15903 [Purchases] - DEBUG     com.vagabondbible.app                D  😻 CustomerInfo updated from network.
+2026-01-14 22:09:27.802 15773-15917 BillingClient           com.vagabondbible.app                W  In-app billing API version 3 is not supported on this device.
+2026-01-14 22:09:27.812 15773-15773 [Purchases] - ERROR     com.vagabondbible.app                E  🤖‼️ PurchasesError(code=PurchaseNotAllowedError, underlyingErrorMessage=Billing is not available in this device. DebugMessage: Billing service unavailable on device.. ErrorCode: BILLING_UNAVAILABLE. SubResponseCode: NO_APPLICABLE_SUB_RESPONSE_CODE., message='The device or user is not allowed to make the purchase.')
+2026-01-14 22:09:27.816 15773-15773 [Purchases] - ERROR     com.vagabondbible.app                E  🤖‼️ Error fetching offerings - PurchasesError(code=PurchaseNotAllowedError, underlyingErrorMessage=Billing is not available in this device. DebugMessage: Billing service unavailable on device.. ErrorCode: BILLING_UNAVAILABLE. SubResponseCode: NO_APPLICABLE_SUB_RESPONSE_CODE., message='The device or user is not allowed to make the purchase.')
+2026-01-14 22:09:27.818 15773-15773 [Purchases] - ERROR     com.vagabondbible.app                E  🤖‼️ PurchasesError(code=PurchaseNotAllowedError, underlyingErrorMessage=Billing is not available in this device. DebugMessage: Billing service unavailable on device.. ErrorCode: BILLING_UNAVAILABLE. SubResponseCode: NO_APPLICABLE_SUB_RESPONSE_CODE., message='The device or user is not allowed to make the purchase.')
+2026-01-14 22:09:28.481 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/vagabond-logo-C9q_FyPk.png
+2026-01-14 22:09:28.483 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-D2pXG3kd.js
+2026-01-14 22:09:28.499 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-14 22:09:28.508 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-14 22:09:28.513 15773-15814 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-14 22:09:28.520 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-14 22:09:28.549 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:28.571 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094689, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-14 22:09:28.571 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094689, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-14 22:09:28.573 15773-15834 Capacitor/...tionPlugin com.vagabondbible.app                V  Notifying listeners for event authStateChange
+2026-01-14 22:09:28.595 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"user":null}
+2026-01-14 22:09:28.595 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [NATIVE AUTH] Auth state changed: null
+2026-01-14 22:09:28.599 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [LOGIN] Auth state changed - isLoading: true isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+2026-01-14 22:09:28.600 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:28.601 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:28.603 15773-15813 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-14 22:09:28.603 15773-15817 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-14 22:09:28.604 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-14 22:09:28.604 15773-15814 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-14 22:09:28.615 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094690, pluginId: FirebaseAuthentication, methodName: removeAllListeners
+2026-01-14 22:09:28.617 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094690, pluginId: FirebaseAuthentication, methodName: removeAllListeners, methodData: {}
+2026-01-14 22:09:28.618 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094691, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-14 22:09:28.618 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094691, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-14 22:09:28.622 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-14 22:09:30.095 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2262 - Msg: Firebase auth timeout - falling back to session check
+2026-01-14 22:09:30.104 15773-15812 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/White_Logo_Big_1767755759050-lc-FDA9Z.png
+2026-01-14 22:09:30.114 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: [LOGIN] Auth state changed - isLoading: false isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+2026-01-14 22:09:30.986 15773-15779 gabondbible.app         com.vagabondbible.app                W  userfaultfd: MOVE ioctl seems unsupported: Try again
+2026-01-14 22:09:31.003 15773-15779 gabondbible.app         com.vagabondbible.app                I  Background concurrent mark compact GC freed 14MB AllocSpace bytes, 52(1944KB) LOS objects, 49% free, 5380KB/10MB, paused 1.358ms,3.272ms total 159.791ms
+2026-01-14 22:09:31.991 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: [NATIVE AUTH] Starting native Google sign-in...
+2026-01-14 22:09:32.000 15773-15773 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-14 22:09:32.001 15773-15773 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 108094692, pluginId: FirebaseAuthentication, methodName: signInWithGoogle
+2026-01-14 22:09:32.001 15773-15773 Capacitor               com.vagabondbible.app                V  callback: 108094692, pluginId: FirebaseAuthentication, methodName: signInWithGoogle, methodData: {}
+2026-01-14 22:09:32.204 15773-15922 CredManProvService      com.vagabondbible.app                I  GetCredentialResponse error returned from framework
+2026-01-14 22:09:32.207 15773-15922 FirebaseAuthentication  com.vagabondbible.app                E  No credentials available
+                                                                                                    androidx.credentials.exceptions.NoCredentialException: No credentials available
+                                                                                                    	at androidx.credentials.CredentialProviderFrameworkImpl.convertToJetpackGetException$credentials_release(CredentialProviderFrameworkImpl.kt:308)
+                                                                                                    	at androidx.credentials.CredentialProviderFrameworkImpl$onGetCredential$outcome$2.onError(CredentialProviderFrameworkImpl.kt:172)
+                                                                                                    	at androidx.credentials.CredentialProviderFrameworkImpl$onGetCredential$outcome$2.onError(CredentialProviderFrameworkImpl.kt:160)
+                                                                                                    	at android.credentials.CredentialManager$GetCredentialTransport.lambda$onError$2(CredentialManager.java:820)
+                                                                                                    	at android.credentials.CredentialManager$GetCredentialTransport.$r8$lambda$_rg2Q59c21DJrPoh5aAnwNR78wQ(Unknown Source:0)
+                                                                                                    	at android.credentials.CredentialManager$GetCredentialTransport$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+                                                                                                    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+                                                                                                    	at java.lang.Thread.run(Thread.java:1563)
+2026-01-14 22:09:32.207 15773-15922 Capacitor               com.vagabondbible.app                D  Sending plugin error: {"save":false,"callbackId":"108094692","pluginId":"FirebaseAuthentication","methodName":"signInWithGoogle","success":false,"error":{"message":"No credentials available"}}
+2026-01-14 22:09:32.211 15773-15773 Capacitor/Console       com.vagabondbible.app                E  File:  - Line 330 - Msg: [object Object]
+2026-01-14 22:09:32.212 15773-15773 Capacitor/Console       com.vagabondbible.app                E  File: https://localhost/assets/index-Vncr4j1y.js - Line 1922 - Msg: Google sign-in error: Error: No credentials available
+2026-01-14 22:09:32.213 15773-15773 Capacitor/Console       com.vagabondbible.app                E  File: https://localhost/assets/index-Vncr4j1y.js - Line 2343 - Msg: Sign in error: Error: No credentials available
+2026-01-14 22:09:33.544 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0x73c91e032538 : 0(0 size) total buffers - 0(0 size) used buffers - 89/95 (recycle/alloc) - 6/92 (fetch/transfer)
+2026-01-14 22:09:33.544 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0x73c91e0304d8 : 5(31457280 size) total buffers - 4(25165824 size) used buffers - 76/81 (recycle/alloc) - 5/77 (fetch/transfer)
+2026-01-14 22:09:33.544 15773-15888 BufferPoolAccessor2.0   com.vagabondbible.app                D  evictor expired: 2, evicted: 2
