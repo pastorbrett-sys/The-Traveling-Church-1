@@ -1616,8 +1616,8 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              {/* UNCONDITIONAL 44px blue spacer for debugging */}
-              <div style={{ height: '44px', flexShrink: 0, backgroundColor: 'blue' }} />
+              {/* UNCONDITIONAL 150px RED spacer - MUST be visible */}
+              <div style={{ height: '150px', minHeight: '150px', flexShrink: 0, backgroundColor: 'red', width: '100%' }} />
               <div className="flex items-center justify-between p-3 border-b">
               <div className="flex-1" />
               <div className="flex items-center gap-2">
