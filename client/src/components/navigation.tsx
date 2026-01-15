@@ -19,7 +19,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const [location, setLocation] = useLocation();
   const isHomePage = location === "/";
   const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
-  const { isNative } = usePlatform();
+  const { isNative, platform } = usePlatform();
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -75,10 +75,18 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 
+  const getNavStyle = () => {
+    if (!isNative) return undefined;
+    if (platform === 'android') {
+      return { paddingTop: 'var(--android-status-bar-height, 28px)' };
+    }
+    return { paddingTop: 'env(safe-area-inset-top, 0px)' };
+  };
+
   return (
     <nav 
       className="sticky top-0 z-50 bg-card border-b border-border shadow-sm"
-      style={isNative ? { paddingTop: 'env(safe-area-inset-top, 0px)' } : undefined}
+      style={getNavStyle()}
     >
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
