@@ -19,6 +19,7 @@ export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { isNative } = usePlatform();
+  const [splashHidden, setSplashHidden] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,15 +30,18 @@ export default function VagabondBible() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Hide native splash screen after a brief delay to ensure content is painted
+  // Function to hide splash - called when video is ready
+  const hideSplash = () => {
+    if (!splashHidden && Capacitor.isNativePlatform()) {
+      setSplashHidden(true);
+      SplashScreen.hide({ fadeOutDuration: 0 }).catch(() => {});
+    }
+  };
+
+  // Fallback: hide splash after 2 seconds max (in case video fails to load)
   useEffect(() => {
     if (Capacitor.isNativePlatform()) {
-      // Small delay to ensure WebView content is rendered
-      const timer = setTimeout(() => {
-        SplashScreen.hide({ fadeOutDuration: 300 }).catch(() => {
-          // Ignore errors - splash may already be hidden
-        });
-      }, 100);
+      const timer = setTimeout(hideSplash, 2000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -52,6 +56,7 @@ export default function VagabondBible() {
               muted
               loop
               playsInline
+              onCanPlay={hideSplash}
               className="w-full h-full object-cover"
             >
               <source src={heroVideo} type="video/mp4" />
