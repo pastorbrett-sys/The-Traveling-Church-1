@@ -31,8 +31,8 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
     async function configureStatusBar() {
       if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
         // Set CSS variable immediately with reliable value for high-density displays
-        // Most modern Android phones have status bar around 24dp = ~48-56px at 2-2.5x density
-        const reliableHeight = 48;
+        // 48px base + 30px extra spacing = 78px total
+        const reliableHeight = 78;
         document.documentElement.style.setProperty('--android-status-bar-height', `${reliableHeight}px`);
         setStatusBarHeight(reliableHeight);
         
