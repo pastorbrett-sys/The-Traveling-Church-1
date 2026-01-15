@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
+import { Capacitor } from "@capacitor/core";
 import { 
   Book, 
   Bookmark,
@@ -1615,12 +1616,12 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              {/* Android status bar spacer - only render on Android native */}
-              {isNative && platform === 'android' && (
+              {/* Android status bar spacer - use Capacitor directly to avoid context issues with createPortal */}
+              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android' && (
                 <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0, backgroundColor: 'blue' }} />
               )}
               {/* iOS safe area spacer */}
-              {isNative && platform === 'ios' && (
+              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios' && (
                 <div style={{ height: 'env(safe-area-inset-top, 0px)', flexShrink: 0 }} />
               )}
               <div className="flex items-center justify-between p-3 border-b">
@@ -1745,12 +1746,12 @@ Reference: ${verseRef} (${translation})`;
               className="fixed inset-0 z-[100] bg-background text-foreground flex flex-col touch-none"
               style={{ touchAction: "none" }}
             >
-              {/* Android status bar spacer */}
-              {isNative && platform === 'android' && (
+              {/* Android status bar spacer - use Capacitor directly to avoid context issues with createPortal */}
+              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android' && (
                 <div style={{ height: 'var(--android-status-bar-height, 44px)', flexShrink: 0, backgroundColor: 'green' }} />
               )}
               {/* iOS safe area spacer */}
-              {isNative && platform === 'ios' && (
+              {Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios' && (
                 <div style={{ height: 'env(safe-area-inset-top, 0px)', flexShrink: 0 }} />
               )}
               <div className="flex items-center justify-between p-3 border-b">
