@@ -29,12 +29,16 @@ export default function VagabondBible() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Hide native splash screen immediately on native platforms
+  // Hide native splash screen after a brief delay to ensure content is painted
   useEffect(() => {
     if (Capacitor.isNativePlatform()) {
-      SplashScreen.hide({ fadeOutDuration: 300 }).catch(() => {
-        // Ignore errors - splash may already be hidden
-      });
+      // Small delay to ensure WebView content is rendered
+      const timer = setTimeout(() => {
+        SplashScreen.hide({ fadeOutDuration: 300 }).catch(() => {
+          // Ignore errors - splash may already be hidden
+        });
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, []);
 
