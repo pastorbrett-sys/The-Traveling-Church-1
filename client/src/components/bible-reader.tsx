@@ -1606,7 +1606,7 @@ Reference: ${verseRef} (${translation})`;
 
       {createPortal(
         <AnimatePresence>
-          {showInsight && (
+          {showInsight && console.log('[VerseInsight] isNative:', isNative, 'platform:', platform) === undefined && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
