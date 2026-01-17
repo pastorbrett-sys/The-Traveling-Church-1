@@ -518,7 +518,7 @@ export default function Notes() {
                           data-testid={`note-card-${note.id}`}
                           onClick={() => setViewingNote(note)}
                         >
-                          <div className={`flex items-start justify-between gap-2 mb-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                          <div className="flex items-start justify-between gap-2 mb-2">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 flex-wrap">
                                 <span className="font-medium text-[#c08e00] truncate">{note.verseRef}</span>
@@ -528,7 +528,7 @@ export default function Notes() {
                                 "{note.verseText}"
                               </p>
                             </div>
-                            <div className="flex gap-1 flex-shrink-0">
+                            <div className={`flex gap-1 flex-shrink-0 ${isRTL ? 'order-first' : ''}`}>
                               <Button
                                 variant="ghost"
                                 size="icon"
