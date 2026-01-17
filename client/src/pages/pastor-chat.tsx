@@ -463,7 +463,7 @@ export default function PastorChat() {
       const response = await apiFetch(`/api/conversations/${convId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: savedInput }),
+        body: JSON.stringify({ content: savedInput, translation: bibleTranslation }),
       });
 
       // Handle payment required (message limit reached) - check both 402 and 429

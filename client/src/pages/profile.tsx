@@ -55,6 +55,10 @@ const profileUiText = {
     status: "Status",
     active: "Active",
     month: "month",
+    canceled: "Canceled",
+    pastDue: "Past Due",
+    trialing: "Trial",
+    incomplete: "Incomplete",
     activeSubscription: "Active Subscription",
     canceledEnds: "Canceled - ends",
     cancelling: "Cancelling",
@@ -130,6 +134,10 @@ const profileUiText = {
     status: "ሁኔታ",
     active: "ንቁ",
     month: "ወር",
+    canceled: "ተሰርዟል",
+    pastDue: "ያለፈበት ክፍያ",
+    trialing: "ሙከራ",
+    incomplete: "ያልተጠናቀቀ",
     activeSubscription: "ንቁ ምዝገባ",
     canceledEnds: "ተሰርዟል - ያበቃል",
     cancelling: "በመሰረዝ ላይ",
@@ -189,6 +197,18 @@ const profileUiText = {
 
 function getProfileLocalizedText(translation: string) {
   return isAmharicTranslation(translation) ? profileUiText.am : profileUiText.en;
+}
+
+// Helper to translate Stripe subscription status
+function getLocalizedStatus(status: string, t: ReturnType<typeof getProfileLocalizedText>): string {
+  const statusMap: Record<string, string> = {
+    active: t.active,
+    canceled: t.canceled || "Canceled",
+    past_due: t.pastDue || "Past Due",
+    trialing: t.trialing || "Trial",
+    incomplete: t.incomplete || "Incomplete",
+  };
+  return statusMap[status] || status;
 }
 
 interface SubscriptionStatus {
@@ -650,7 +670,7 @@ export default function Profile() {
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Calendar className="w-4 h-4" />
                         <span data-testid="text-status">
-                          {t.status}: <span className="text-foreground font-medium capitalize">{subscription?.status || t.active}</span>
+                          {t.status}: <span className="text-foreground font-medium capitalize">{getLocalizedStatus(subscription?.status || "active", t)}</span>
                         </span>
                       </div>
                       {subscription?.current_period_end && (

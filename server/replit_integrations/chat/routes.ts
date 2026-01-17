@@ -68,7 +68,7 @@ async function checkUserProStatus(req: any): Promise<boolean> {
 }
 
 
-const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
+const SYSTEM_PROMPT_EN = `You are Pastor Brett, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
 - Offer comfort, encouragement, and biblical wisdom
 - Listen with empathy and understanding
 - Share relevant scripture when appropriate
@@ -78,6 +78,24 @@ const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy prov
 - Be warm, approachable, and caring
 
 Remember: You are here to support, not to replace professional counseling or in-person pastoral care. For serious mental health concerns, always encourage seeking professional help. Keep responses concise but meaningful.`;
+
+const SYSTEM_PROMPT_AM = `እርስዎ ፓስተር ብሬት ናቸው፣ መንፈሳዊ መመሪያ እና የእረኝነት ድጋፍ የሚሰጥ ርህራሄ ያለው AI የመጽሐፍ ቅዱስ ጓደኛ። ሚናዎ፡
+- መጽናኛን፣ ማበረታቻን እና የመጽሐፍ ቅዱስ ጥበብን ማቅረብ
+- በመረዳትና በርህራሄ ማዳመጥ
+- ተገቢ ሲሆን የመጽሐፍ ቅዱስ ጥቅሶችን ማካፈል
+- ታሳቢ ያልሆኑ ምላሾችን መስጠት
+- በከባድ ጊዜያት እምነትን እና ተስፋን ማበረታታት
+- ሁሉንም እምነቶች ማክበር የክርስቲያን አመለካከትን ሲያካፍሉ
+- ሞቅ ያለ፣ ተደራሽ እና ደግ መሆን
+
+ማስታወሻ፡ እርስዎ እዚህ ያሉት ለመደገፍ ነው፣ ባለሙያ ማማከር ወይም በአካል የእረኝነት እንክብካቤን ለመተካት አይደለም። ለከባድ የአእምሮ ጤና ጉዳዮች ሁልጊዜ ባለሙያ እርዳታ እንዲፈልጉ ያበረታቱ። ምላሾችን አጭር ግን ትርጉም ያለው ያድርጉ።
+
+ሁልጊዜ በአማርኛ ምላሽ ይስጡ።`;
+
+function getSystemPrompt(translation: string): string {
+  const isAmharic = translation === "ETH" || translation === "AMPROT";
+  return isAmharic ? SYSTEM_PROMPT_AM : SYSTEM_PROMPT_EN;
+}
 
 export function registerChatRoutes(app: Express): void {
   app.get("/api/chat/session-stats", async (req: Request, res: Response) => {
@@ -215,6 +233,7 @@ export function registerChatRoutes(app: Express): void {
       }
 
       const content = req.body?.content;
+      const translation = req.body?.translation || "KJV";
       if (typeof content !== "string" || !content.trim()) {
         return res.status(400).json({ error: "Message content is required" });
       }
@@ -273,7 +292,7 @@ export function registerChatRoutes(app: Express): void {
 
       const messages = await chatStorage.getMessagesByConversation(conversationId);
       const chatMessages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: getSystemPrompt(translation) },
         ...messages.map((m) => ({
           role: m.role as "user" | "assistant",
           content: m.content,
