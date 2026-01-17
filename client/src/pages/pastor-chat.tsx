@@ -104,7 +104,15 @@ export default function PastorChat() {
     }
   }, [tabParam]);
   
-  const [bibleTranslation, setBibleTranslation] = useState("KJV");
+  const [bibleTranslation, setBibleTranslation] = useState(() => {
+    // Load from localStorage or default to KJV
+    return localStorage.getItem("bibleTranslation") || "KJV";
+  });
+  
+  // Persist translation choice to localStorage
+  useEffect(() => {
+    localStorage.setItem("bibleTranslation", bibleTranslation);
+  }, [bibleTranslation]);
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { Link } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { 
@@ -54,6 +54,89 @@ type NotesResponse = {
 };
 
 const TAGS = ["Faith", "Hope", "Gratitude", "Prayer", "Question"];
+
+// Check if translation is Amharic-based
+function isAmharicTranslation(translation: string): boolean {
+  return translation === "ETH" || translation === "AMPROT";
+}
+
+// Localized UI text for Notes page
+const notesUiText = {
+  en: {
+    myNotes: "My Notes",
+    noNotesYet: "No notes yet",
+    captureThoughts: "Capture your thoughts, reflections, and insights. Your saved notes will appear here.",
+    takeNote: "Take a Note",
+    searchNotes: "Search notes...",
+    filters: "Filters",
+    book: "Book",
+    tags: "Tags",
+    clearAllFilters: "Clear all filters",
+    sort: "Sort",
+    newest: "Newest first",
+    oldest: "Oldest first",
+    byBook: "By book order",
+    noNotesMatch: "No notes match your filters",
+    tryAdjusting: "Try adjusting your search or filters",
+    edit: "Edit",
+    delete: "Delete",
+    editNote: "Edit Note",
+    deleteNote: "Delete Note",
+    deleteConfirmation: "Are you sure you want to delete this note? This action cannot be undone.",
+    cancel: "Cancel",
+    save: "Save",
+    createNote: "Create Note",
+    writeThoughts: "Write your thoughts...",
+    today: "Today",
+    yesterday: "Yesterday",
+    daysAgo: "days ago",
+    viewNote: "View Note",
+    faith: "Faith",
+    hope: "Hope",
+    gratitude: "Gratitude",
+    prayer: "Prayer",
+    question: "Question",
+  },
+  am: {
+    myNotes: "ማስታወሻዎቼ",
+    noNotesYet: "ገና ማስታወሻዎች የሉም",
+    captureThoughts: "ሀሳቦችዎን፣ ማንፀባረቆችዎን እና ግንዛቤዎችዎን ይያዙ። የተቀመጡ ማስታወሻዎችዎ እዚህ ይታያሉ።",
+    takeNote: "ማስታወሻ ይያዙ",
+    searchNotes: "ማስታወሻዎችን ፈልግ...",
+    filters: "ማጣሪያዎች",
+    book: "መጽሐፍ",
+    tags: "መለያዎች",
+    clearAllFilters: "ሁሉንም ማጣሪያዎች ያጽዱ",
+    sort: "አስቀምጥ",
+    newest: "አዲስ መጀመሪያ",
+    oldest: "የቆየ መጀመሪያ",
+    byBook: "በመጽሐፍ ቅደም ተከተል",
+    noNotesMatch: "ከማጣሪያዎችዎ ጋር የሚዛመድ ማስታወሻ የለም",
+    tryAdjusting: "ፍለጋዎን ወይም ማጣሪያዎችዎን ያስተካክሉ",
+    edit: "አርትዕ",
+    delete: "ሰርዝ",
+    editNote: "ማስታወሻ አርትዕ",
+    deleteNote: "ማስታወሻ ሰርዝ",
+    deleteConfirmation: "ይህን ማስታወሻ መሰረዝ እንደሚፈልጉ እርግጠኛ ነዎት? ይህ እርምጃ ሊቀለበስ አይችልም።",
+    cancel: "ሰርዝ",
+    save: "አስቀምጥ",
+    createNote: "ማስታወሻ ፍጠር",
+    writeThoughts: "ሀሳቦችዎን ይጻፉ...",
+    today: "ዛሬ",
+    yesterday: "ትናንት",
+    daysAgo: "ቀናት በፊት",
+    viewNote: "ማስታወሻ ይመልከቱ",
+    faith: "እምነት",
+    hope: "ተስፋ",
+    gratitude: "ምስጋና",
+    prayer: "ጸሎት",
+    question: "ጥያቄ",
+  }
+};
+
+function getNotesLocalizedText(translation: string) {
+  return isAmharicTranslation(translation) ? notesUiText.am : notesUiText.en;
+}
 const BIBLE_BOOKS = [
   "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",
   "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel",
@@ -90,10 +173,33 @@ export default function Notes() {
   const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
   const [viewingNote, setViewingNote] = useState<Note | null>(null);
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
+  
+  // Get translation from localStorage for localization
+  const [translation, setTranslation] = useState(() => {
+    return localStorage.getItem("bibleTranslation") || "KJV";
+  });
+  
+  // Listen for storage changes (when user switches translation in another tab/page)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      setTranslation(newTranslation);
+    };
+    window.addEventListener("storage", handleStorageChange);
+    // Also check on focus for same-tab navigation
+    window.addEventListener("focus", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("focus", handleStorageChange);
+    };
+  }, []);
+  
+  // Get localized text
+  const t = getNotesLocalizedText(translation);
 
   useEffect(() => {
-    document.title = "My Notes | Vagabond Bible AI";
-  }, []);
+    document.title = `${t.myNotes} | Vagabond Bible AI`;
+  }, [t.myNotes]);
 
   const { data: notesData, isLoading } = useQuery<NotesResponse>({
     queryKey: ["/api/notes"],
@@ -239,16 +345,17 @@ export default function Notes() {
     return Array.from(tags);
   }, [notes]);
 
-  const formatDate = (date: Date | string) => {
+  const formatDate = useCallback((date: Date | string) => {
     const d = new Date(date);
     const now = new Date();
     const diffDays = Math.floor((now.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
+    const isAmharic = isAmharicTranslation(translation);
     
-    if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "Yesterday";
-    if (diffDays < 7) return `${diffDays} days ago`;
-    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined });
-  };
+    if (diffDays === 0) return t.today;
+    if (diffDays === 1) return t.yesterday;
+    if (diffDays < 7) return `${diffDays} ${t.daysAgo}`;
+    return d.toLocaleDateString(isAmharic ? "am-ET" : "en-US", { month: "short", day: "numeric", year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined });
+  }, [translation, t]);
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -318,7 +425,7 @@ export default function Notes() {
               )}
               <div className="flex items-center gap-2">
                 <Bookmark className="w-6 h-6 text-[#c08e00]" />
-                <h1 className="text-2xl font-serif font-bold">My Notes</h1>
+                <h1 className="text-2xl font-serif font-bold">{t.myNotes}</h1>
                 <span className="text-sm text-muted-foreground">
                   ({notes.length})
                 </span>
@@ -339,7 +446,7 @@ export default function Notes() {
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
-                    placeholder="Search notes..."
+                    placeholder={t.searchNotes}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-9"
@@ -360,7 +467,7 @@ export default function Notes() {
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" className="gap-2" data-testid="button-filter">
                         <Filter className="w-4 h-4" />
-                        Filters
+                        {t.filters}
                         {hasActiveFilters && (
                           <Badge variant="secondary" className="ml-1 bg-[#c08e00] text-white">
                             {(selectedTags.length > 0 ? 1 : 0) + (selectedBook ? 1 : 0)}
@@ -373,7 +480,7 @@ export default function Notes() {
                         <>
                           <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground flex items-center gap-2">
                             <BookOpen className="w-3 h-3" />
-                            Book
+                            {t.book}
                           </div>
                           {usedBooks.map(book => (
                             <DropdownMenuCheckboxItem
@@ -392,7 +499,7 @@ export default function Notes() {
                         <>
                           <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground flex items-center gap-2">
                             <Tag className="w-3 h-3" />
-                            Tags
+                            {t.tags}
                           </div>
                           {usedTags.map(tag => (
                             <DropdownMenuCheckboxItem
@@ -414,7 +521,7 @@ export default function Notes() {
                       {hasActiveFilters && (
                         <DropdownMenuItem onClick={clearFilters} className="text-destructive">
                           <X className="w-4 h-4 mr-2" />
-                          Clear all filters
+                          {t.clearAllFilters}
                         </DropdownMenuItem>
                       )}
                     </DropdownMenuContent>
@@ -435,17 +542,17 @@ export default function Notes() {
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem onClick={() => setSortBy("newest")}>
                         <SortDesc className="w-4 h-4 mr-2" />
-                        Newest first
+                        {t.newest}
                         {sortBy === "newest" && " ✓"}
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => setSortBy("oldest")}>
                         <SortAsc className="w-4 h-4 mr-2" />
-                        Oldest first
+                        {t.oldest}
                         {sortBy === "oldest" && " ✓"}
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => setSortBy("book")}>
                         <BookOpen className="w-4 h-4 mr-2" />
-                        By book order
+                        {t.byBook}
                         {sortBy === "book" && " ✓"}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -484,9 +591,9 @@ export default function Notes() {
               {filteredAndSortedNotes.length === 0 ? (
                 <div className="text-center py-12">
                   <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="text-muted-foreground">No notes match your filters</p>
+                  <p className="text-muted-foreground">{t.noNotesMatch}</p>
                   <Button variant="link" onClick={clearFilters} className="mt-2">
-                    Clear filters
+                    {t.clearAllFilters}
                   </Button>
                 </div>
               ) : (
@@ -568,16 +675,16 @@ export default function Notes() {
                 alt="Ancient scroll" 
                 className="w-48 h-48 object-contain mb-4 opacity-80"
               />
-              <h2 className="text-xl font-semibold mb-2">No notes yet</h2>
+              <h2 className="text-xl font-semibold mb-2">{t.noNotesYet}</h2>
               <p className="text-muted-foreground max-w-sm mb-6">
-                Capture your thoughts, reflections, and insights. Your saved notes will appear here.
+                {t.captureThoughts}
               </p>
               <Button 
                 onClick={() => setShowCreateNote(true)}
                 className="bg-[#c08e00] hover:bg-[#a07800] text-white" 
                 data-testid="button-take-note"
               >
-                Take a Note
+                {t.takeNote}
               </Button>
             </div>
           )}
@@ -595,7 +702,7 @@ export default function Notes() {
           <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Edit3 className="w-5 h-5 text-[#c08e00]" />
-              Edit Note
+              {t.editNote}
             </DialogTitle>
           </DialogHeader>
           
@@ -615,7 +722,7 @@ export default function Notes() {
               />
 
               <div>
-                <p className="text-xs text-muted-foreground mb-2">Tags</p>
+                <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
                 <div className="flex flex-wrap gap-2">
                   {TAGS.map(tag => (
                     <button
@@ -636,7 +743,7 @@ export default function Notes() {
 
               <div className="flex justify-end gap-2 pt-2">
                 <Button variant="ghost" onClick={() => setEditingNote(null)} className="text-foreground">
-                  Cancel
+                  {t.cancel}
                 </Button>
                 <Button
                   onClick={handleSaveEdit}
@@ -647,7 +754,7 @@ export default function Notes() {
                   {updateNoteMutation.isPending ? (
                     <Loader2 className="w-4 h-4 animate-spin mr-1" />
                   ) : null}
-                  Save Changes
+                  {t.save}
                 </Button>
               </div>
             </div>
@@ -658,9 +765,9 @@ export default function Notes() {
       <Dialog open={!!deleteConfirm} onOpenChange={(open) => !open && setDeleteConfirm(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete Note</DialogTitle>
+            <DialogTitle>{t.deleteNote}</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this note? This action cannot be undone.
+              {t.deleteConfirmation}
             </DialogDescription>
           </DialogHeader>
           
@@ -673,7 +780,7 @@ export default function Notes() {
 
           <div className="flex justify-end gap-2">
             <Button variant="ghost" onClick={() => setDeleteConfirm(null)}>
-              Cancel
+              {t.cancel}
             </Button>
             <Button
               variant="destructive"
@@ -686,7 +793,7 @@ export default function Notes() {
               ) : (
                 <Trash2 className="w-4 h-4 mr-1" />
               )}
-              Delete
+              {t.delete}
             </Button>
           </div>
         </DialogContent>
@@ -709,13 +816,13 @@ export default function Notes() {
           <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Plus className="w-5 h-5 text-[#c08e00]" />
-              New Note
+              {t.createNote}
             </DialogTitle>
           </DialogHeader>
           
           <div className="space-y-4 mt-4">
             <Textarea
-              placeholder="Write your thoughts..."
+              placeholder={t.writeThoughts}
               value={newNoteContent}
               onChange={(e) => setNewNoteContent(e.target.value)}
               rows={5}
@@ -725,7 +832,7 @@ export default function Notes() {
             />
 
             <div>
-              <p className="text-xs text-muted-foreground mb-2">Tags (optional)</p>
+              <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
               <div className="flex flex-wrap gap-2">
                 {TAGS.map(tag => (
                   <button
@@ -746,7 +853,7 @@ export default function Notes() {
 
             <div className="flex justify-end gap-2 pt-2">
               <Button variant="ghost" onClick={() => setShowCreateNote(false)} className="text-foreground">
-                Cancel
+                {t.cancel}
               </Button>
               <Button
                 onClick={handleCreateNote}
@@ -757,7 +864,7 @@ export default function Notes() {
                 {createNoteMutation.isPending ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-1" />
                 ) : null}
-                Save
+                {t.save}
               </Button>
             </div>
           </div>
