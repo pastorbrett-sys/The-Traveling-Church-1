@@ -29,7 +29,59 @@ import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
 
-const WelcomeMessage = forwardRef<HTMLDivElement>((_, ref) => {
+// Check if translation is Amharic-based
+function isAmharicTranslation(translation: string): boolean {
+  return translation === "ETH" || translation === "AMPROT";
+}
+
+// Localized UI text for Pastor Chat
+const chatUiText = {
+  en: {
+    welcomeMessage: "Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!",
+    pastorBrett: "Pastor Brett",
+    askAnything: "Ask Pastor Brett anything...",
+    send: "Send",
+    chatTab: "Chat",
+    bibleTab: "Bible",
+    startNewChat: "Start new chat",
+    signInRequired: "Sign in Required",
+    signInToChat: "Sign in to chat with Pastor Brett",
+    signIn: "Sign In",
+    messageLimitReached: "Message Limit Reached",
+    messageLimitDesc: "You've reached your free message limit. Upgrade to Pro for unlimited access.",
+    upgrade: "Upgrade to Pro",
+    messagesRemaining: "messages remaining",
+    unlimited: "Unlimited",
+  },
+  am: {
+    welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ። ስለ እምነት፣ ቅዱሳን ጽሑፎች ወይም ሕይወት ማንኛውንም ነገር ይጠይቁኝ!",
+    pastorBrett: "ፓስተር ብሬት",
+    askAnything: "ፓስተር ብሬትን ማንኛውንም ነገር ይጠይቁ...",
+    send: "ላክ",
+    chatTab: "ውይይት",
+    bibleTab: "መጽሐፍ ቅዱስ",
+    startNewChat: "አዲስ ውይይት ጀምር",
+    signInRequired: "መግባት ያስፈልጋል",
+    signInToChat: "ከፓስተር ብሬት ጋር ለመወያየት ይግቡ",
+    signIn: "ግባ",
+    messageLimitReached: "የመልዕክት ገደብ ደርሷል",
+    messageLimitDesc: "ነፃ የመልዕክት ገደብዎን ደርሰዋል። ላልተገደበ መዳረሻ ወደ ፕሮ ያሻሽሉ።",
+    upgrade: "ወደ ፕሮ አሻሽል",
+    messagesRemaining: "መልዕክቶች ቀርተዋል",
+    unlimited: "ያልተገደበ",
+  }
+};
+
+function getChatLocalizedText(translation: string) {
+  return isAmharicTranslation(translation) ? chatUiText.am : chatUiText.en;
+}
+
+interface WelcomeMessageProps {
+  translation: string;
+}
+
+const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation }, ref) => {
+  const t = getChatLocalizedText(translation);
   return (
     <motion.div
       ref={ref}
@@ -44,11 +96,11 @@ const WelcomeMessage = forwardRef<HTMLDivElement>((_, ref) => {
       >
         <img
           src={pastorBrettIcon}
-          alt="Pastor Brett"
+          alt={t.pastorBrett}
           className="w-12 h-12 rounded-full flex-shrink-0"
         />
         <p className="text-sm text-foreground">
-          Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!
+          {t.welcomeMessage}
         </p>
       </div>
     </motion.div>
@@ -113,6 +165,26 @@ export default function PastorChat() {
   useEffect(() => {
     localStorage.setItem("bibleTranslation", bibleTranslation);
   }, [bibleTranslation]);
+  
+  // Listen for storage changes (when user switches translation in another tab/page)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      if (newTranslation !== bibleTranslation) {
+        setBibleTranslation(newTranslation);
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("focus", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("focus", handleStorageChange);
+    };
+  }, [bibleTranslation]);
+  
+  // Get localized text based on translation
+  const t = getChatLocalizedText(bibleTranslation);
+  
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -629,10 +701,10 @@ export default function PastorChat() {
             <div ref={scrollAreaRef} className="space-y-4 pt-4">
             <AnimatePresence mode="popLayout">
               {displayMessages.map((message, index) => {
-                const isWelcomeMessage = index === 0 && messages.length === 0 && message.content.includes("Hey there! I'm Pastor Brett");
+                const isWelcomeMessage = index === 0 && messages.length === 0 && message.role === "assistant";
                 
                 if (isWelcomeMessage) {
-                  return <WelcomeMessage key="welcome-message" />;
+                  return <WelcomeMessage key="welcome-message" translation={bibleTranslation} />;
                 }
                 
                 const shouldAnimate = index >= animateFromIndex;
@@ -701,10 +773,10 @@ export default function PastorChat() {
             <div className="text-center py-2">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
                 <Lock className="w-5 h-5" />
-                <span>You've reached your free message limit</span>
+                <span>{t.messageLimitReached}</span>
               </div>
               <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
-                Upgrade to Pro for Unlimited Access
+                {t.upgrade}
               </Button>
             </div>
           ) : (
@@ -714,7 +786,7 @@ export default function PastorChat() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Share what's on your heart..."
+                placeholder={t.askAnything}
                 className="min-h-[60px] resize-none w-full text-foreground"
                 disabled={isStreaming}
                 data-testid="input-message"
@@ -727,7 +799,7 @@ export default function PastorChat() {
                   data-testid="button-send"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                  {t.send}
                 </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -745,7 +817,7 @@ export default function PastorChat() {
                       data-testid="menu-clear-chat"
                     >
                       <RefreshCw className="w-4 h-4 mr-2" />
-                      Clear Chat
+                      {t.startNewChat}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -764,23 +836,20 @@ export default function PastorChat() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <LogIn className="w-5 h-5 text-primary" />
-              Sign In Required
+              {t.signInRequired}
             </DialogTitle>
             <DialogDescription>
-              Please sign in to your account to subscribe to the Pro plan. This ensures your subscription is linked to your account.
+              {t.signInToChat}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <p className="text-sm text-muted-foreground">
-              After signing in, you'll be able to subscribe and your Pro access will be remembered across all your devices.
-            </p>
             <Link href="/login?redirect=/pastor-chat">
               <Button 
                 className="w-full"
                 data-testid="button-signin-modal"
               >
                 <LogIn className="w-4 h-4 mr-2" />
-                Sign In to Continue
+                {t.signIn}
               </Button>
             </Link>
           </div>

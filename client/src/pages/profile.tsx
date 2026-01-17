@@ -28,6 +28,125 @@ import {
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
+// Check if translation is Amharic-based
+function isAmharicTranslation(translation: string): boolean {
+  return translation === "ETH" || translation === "AMPROT";
+}
+
+// Localized UI text for Profile page
+const profileUiText = {
+  en: {
+    myProfile: "My Profile",
+    back: "Back",
+    signInRequired: "Sign In Required",
+    signInDescription: "Please sign in to view your profile and manage your subscription.",
+    signInToContinue: "Sign In to Continue",
+    accountInformation: "Account Information",
+    manageAccountDetails: "Manage your account details",
+    name: "Name",
+    email: "Email",
+    signOut: "Sign Out",
+    subscription: "Subscription",
+    currentPlanAndBilling: "Your current plan and billing",
+    currentPlan: "Current Plan",
+    free: "Free",
+    pro: "Pro",
+    activeSubscription: "Active Subscription",
+    canceledEnds: "Canceled - ends",
+    manageSubscription: "Manage Subscription",
+    restorePurchases: "Restore Purchases",
+    upgradeToPro: "Upgrade to Pro",
+    usageThisPeriod: "Usage This Period",
+    trackDailyUsage: "Track your daily feature usage",
+    resetsAt: "Resets",
+    smartSearch: "Smart Search",
+    bookSynopsis: "Book Synopsis",
+    verseInsight: "Verse Insights",
+    notes: "Notes",
+    chatMessages: "Chat Messages",
+    unlimited: "Unlimited",
+    used: "used",
+    remaining: "remaining",
+    deleteAccount: "Delete Account",
+    deleteAccountWarning: "This action cannot be undone. This will permanently delete your account and all associated data.",
+    cancel: "Cancel",
+    confirmDelete: "Yes, Delete My Account",
+    signingOut: "Signing out...",
+    deleting: "Deleting...",
+    restoring: "Restoring...",
+    loading: "Loading...",
+    perMonth: "per month",
+    perYear: "per year",
+    purchasesRestored: "Purchases Restored",
+    purchasesRestoredDesc: "Your Pro subscription has been restored successfully!",
+    noPurchasesFound: "No Purchases Found",
+    noPurchasesFoundDesc: "No previous purchases were found for this account.",
+    restoreFailed: "Restore Failed",
+    restoreFailedDesc: "Unable to restore purchases. Please try again.",
+    accountDeleted: "Account Deleted",
+    accountDeletedDesc: "Your account and all data have been permanently deleted.",
+    deletionFailed: "Deletion Failed",
+    deletionFailedDesc: "Unable to delete account. Please try again.",
+  },
+  am: {
+    myProfile: "የእኔ መገለጫ",
+    back: "ተመለስ",
+    signInRequired: "መግባት ያስፈልጋል",
+    signInDescription: "መገለጫዎን ለማየት እና ምዝገባዎን ለማስተዳደር እባክዎ ይግቡ።",
+    signInToContinue: "ለመቀጠል ይግቡ",
+    accountInformation: "የመለያ መረጃ",
+    manageAccountDetails: "የመለያዎን ዝርዝሮች ያስተዳድሩ",
+    name: "ስም",
+    email: "ኢሜይል",
+    signOut: "ውጣ",
+    subscription: "ምዝገባ",
+    currentPlanAndBilling: "የአሁኑ እቅድዎ እና ክፍያ",
+    currentPlan: "የአሁኑ እቅድ",
+    free: "ነፃ",
+    pro: "ፕሮ",
+    activeSubscription: "ንቁ ምዝገባ",
+    canceledEnds: "ተሰርዟል - ያበቃል",
+    manageSubscription: "ምዝገባ ያስተዳድሩ",
+    restorePurchases: "ግዢዎችን መልስ",
+    upgradeToPro: "ወደ ፕሮ አሻሽል",
+    usageThisPeriod: "በዚህ ጊዜ ውስጥ አጠቃቀም",
+    trackDailyUsage: "የዕለታዊ ባህሪ አጠቃቀምዎን ይከታተሉ",
+    resetsAt: "ይዘጋጃል",
+    smartSearch: "ብልጥ ፍለጋ",
+    bookSynopsis: "የመጽሐፍ ማጠቃለያ",
+    verseInsight: "የጥቅስ ግንዛቤዎች",
+    notes: "ማስታወሻዎች",
+    chatMessages: "የውይይት መልዕክቶች",
+    unlimited: "ያልተገደበ",
+    used: "ጥቅም ላይ ውሏል",
+    remaining: "ቀርቷል",
+    deleteAccount: "መለያ ሰርዝ",
+    deleteAccountWarning: "ይህ እርምጃ ሊቀለበስ አይችልም። ይህ መለያዎን እና ሁሉንም ተዛማጅ ውሂብ በቋሚነት ይሰርዛል።",
+    cancel: "ሰርዝ",
+    confirmDelete: "አዎ፣ መለያዬን ሰርዝ",
+    signingOut: "በመውጣት ላይ...",
+    deleting: "በመሰረዝ ላይ...",
+    restoring: "በማደስ ላይ...",
+    loading: "በመጫን ላይ...",
+    perMonth: "በወር",
+    perYear: "በዓመት",
+    purchasesRestored: "ግዢዎች ተመልሰዋል",
+    purchasesRestoredDesc: "የፕሮ ምዝገባዎ በተሳካ ሁኔታ ተመልሷል!",
+    noPurchasesFound: "ምንም ግዢዎች አልተገኙም",
+    noPurchasesFoundDesc: "ለዚህ መለያ ምንም ቀድሞ የተገዙ ነገሮች አልተገኙም።",
+    restoreFailed: "መመለስ አልተሳካም",
+    restoreFailedDesc: "ግዢዎችን መመለስ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+    accountDeleted: "መለያ ተሰርዟል",
+    accountDeletedDesc: "መለያዎ እና ሁሉም ውሂብ በቋሚነት ተሰርዟል።",
+    deletionFailed: "መሰረዝ አልተሳካም",
+    deletionFailedDesc: "መለያን መሰረዝ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+  }
+};
+
+function getProfileLocalizedText(translation: string) {
+  return isAmharicTranslation(translation) ? profileUiText.am : profileUiText.en;
+}
+
 interface SubscriptionStatus {
   subscription: {
     id: string;
@@ -75,6 +194,28 @@ export default function Profile() {
   const { isNative, platform } = usePlatform();
   const { restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
+  
+  // Get translation from localStorage for localization
+  const [translation, setTranslation] = useState(() => {
+    return localStorage.getItem("bibleTranslation") || "KJV";
+  });
+  
+  // Listen for storage changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      setTranslation(newTranslation);
+    };
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("focus", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("focus", handleStorageChange);
+    };
+  }, []);
+  
+  // Get localized text
+  const t = getProfileLocalizedText(translation);
 
   // Combined API call - fetches subscription and usage in one request
   const { data: profileData, isLoading: isProfileLoading } = useQuery<ProfileData>({
@@ -92,9 +233,9 @@ export default function Profile() {
 
 
   useEffect(() => {
-    document.title = "My Profile | Vagabond Bible";
+    document.title = `${t.myProfile} | Vagabond Bible`;
     console.log('[Profile] platform:', platform, 'isNative:', isNative);
-  }, [platform, isNative]);
+  }, [platform, isNative, t.myProfile]);
 
   // Helper function to get Android/iOS status bar padding - same pattern as navigation.tsx
   const getMainStyle = (): React.CSSProperties => {
@@ -137,21 +278,21 @@ export default function Profile() {
       const success = await restorePurchases();
       if (success) {
         toast({
-          title: "Purchases Restored",
-          description: "Your Pro subscription has been restored successfully!",
+          title: t.purchasesRestored,
+          description: t.purchasesRestoredDesc,
         });
         await refreshEntitlements();
       } else {
         toast({
-          title: "No Purchases Found",
-          description: "No previous purchases were found for this account.",
+          title: t.noPurchasesFound,
+          description: t.noPurchasesFoundDesc,
         });
       }
     } catch (error) {
       console.error("Restore error:", error);
       toast({
-        title: "Restore Failed",
-        description: "Unable to restore purchases. Please try again.",
+        title: t.restoreFailed,
+        description: t.restoreFailedDesc,
         variant: "destructive",
       });
     } finally {
@@ -165,8 +306,8 @@ export default function Profile() {
       const res = await apiRequest("DELETE", "/api/account");
       if (res.ok) {
         toast({
-          title: "Account Deleted",
-          description: "Your account and all data have been permanently deleted.",
+          title: t.accountDeleted,
+          description: t.accountDeletedDesc,
         });
         await logout();
         setLocation("/");
@@ -177,8 +318,8 @@ export default function Profile() {
     } catch (error: any) {
       console.error("Delete account error:", error);
       toast({
-        title: "Deletion Failed",
-        description: error.message || "Unable to delete account. Please try again.",
+        title: t.deletionFailed,
+        description: t.deletionFailedDesc,
         variant: "destructive",
       });
     } finally {
@@ -304,7 +445,7 @@ export default function Profile() {
                 data-testid="link-back-home"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
+                {t.back}
               </button>
             )}
 
@@ -313,15 +454,15 @@ export default function Profile() {
                 <div className="mx-auto w-16 h-16 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center mb-4">
                   <User className="w-8 h-8 text-[hsl(25,35%,45%)]" />
                 </div>
-                <CardTitle data-testid="heading-login-required">Sign In Required</CardTitle>
+                <CardTitle data-testid="heading-login-required">{t.signInRequired}</CardTitle>
                 <CardDescription>
-                  Please sign in to view your profile and manage your subscription.
+                  {t.signInDescription}
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <Link href="/login?redirect=/profile">
                   <Button className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)]" data-testid="button-login">
-                    Sign In to Continue
+                    {t.signInToContinue}
                   </Button>
                 </Link>
               </CardContent>
@@ -359,7 +500,7 @@ export default function Profile() {
               data-testid="link-back-home"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
+              {t.back}
             </button>
           )}
 
@@ -368,10 +509,10 @@ export default function Profile() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2" data-testid="heading-profile">
                   <User className="w-5 h-5" />
-                  My Profile
+                  {t.myProfile}
                 </CardTitle>
                 <CardDescription>
-                  Manage your account and subscription
+                  {t.manageAccountDetails}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -415,12 +556,12 @@ export default function Profile() {
                   {isLoggingOut ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Signing Out...
+                      {t.signingOut}
                     </>
                   ) : (
                     <>
                       <LogOut className="w-4 h-4 mr-2" />
-                      Sign Out
+                      {t.signOut}
                     </>
                   )}
                 </Button>
@@ -431,10 +572,10 @@ export default function Profile() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2" data-testid="heading-subscription">
                   <CreditCard className="w-5 h-5" />
-                  Subscription
+                  {t.subscription}
                 </CardTitle>
                 <CardDescription>
-                  Your current plan and billing
+                  {t.currentPlanAndBilling}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -534,7 +675,7 @@ export default function Profile() {
                             ) : (
                               <>
                                 <CreditCard className="w-4 h-4 mr-2" />
-                                Manage Subscription
+                                {t.manageSubscription}
                               </>
                             )}
                           </Button>
@@ -549,7 +690,7 @@ export default function Profile() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <Badge variant="secondary" className="text-[#ffffff]" data-testid="badge-free">
-                        Free Plan
+                        {t.free}
                       </Badge>
                     </div>
 
@@ -558,13 +699,13 @@ export default function Profile() {
                     <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-4 border border-[hsl(25,35%,45%)]/20">
                       <h3 className="font-semibold flex items-center gap-2 mb-2 text-[hsl(20,10%,20%)]">
                         <img src={upgradeIcon} alt="" className="w-5 h-5" />
-                        Upgrade to Pro
+                        {t.upgradeToPro}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-3">
-                        Get unlimited conversations and exclusive features for $9.99/month.
+                        $9.99/{t.perMonth}
                       </p>
                       <Button size="sm" className="btn-upgrade" data-testid="button-upgrade" onClick={() => setShowPaywall(true)}>
-                        Upgrade Now!
+                        {t.upgradeToPro}
                       </Button>
                     </div>
                   </div>
@@ -643,7 +784,7 @@ export default function Profile() {
                           {usageSummary?.isPro ? (
                             <Badge variant="outline" className="border-[hsl(25,35%,45%)] text-[hsl(25,35%,45%)]" data-testid={`badge-unlimited-${key}`}>
                               <Infinity className="w-3 h-3 mr-1" />
-                              Unlimited
+                              {t.unlimited}
                             </Badge>
                           ) : (
                             <span className="text-sm font-medium" data-testid={`text-usage-${key}`}>
@@ -662,7 +803,7 @@ export default function Profile() {
                             Want unlimited access to all features?
                           </p>
                           <Button size="sm" className="btn-upgrade" data-testid="button-upgrade-usage" onClick={() => setShowPaywall(true)}>
-                            Upgrade to Pro
+                            {t.upgradeToPro}
                           </Button>
                         </div>
                       </>
@@ -683,28 +824,18 @@ export default function Profile() {
                   data-testid="button-delete-account"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
-                  Delete Account
+                  {t.deleteAccount}
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent className="bg-[hsl(40,30%,96%)]">
                 <AlertDialogHeader>
-                  <AlertDialogTitle className="text-red-600">Delete Account</AlertDialogTitle>
-                  <AlertDialogDescription asChild>
-                    <div className="text-left space-y-2 text-sm text-muted-foreground">
-                      <p>Are you sure you want to delete your account? This action cannot be undone.</p>
-                      <p className="font-medium text-foreground">The following will be permanently deleted:</p>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Your profile and account information</li>
-                        <li>All saved notes and highlights</li>
-                        <li>Chat conversation history</li>
-                        <li>Usage data and preferences</li>
-                      </ul>
-                      <p className="mt-2 font-medium text-red-600">Important: If you have an active Pro subscription, you must cancel it separately in your device's Settings → Subscriptions to stop billing. Deleting your account does not automatically cancel your subscription.</p>
-                    </div>
+                  <AlertDialogTitle className="text-red-600">{t.deleteAccount}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {t.deleteAccountWarning}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel data-testid="button-cancel-delete">Cancel</AlertDialogCancel>
+                  <AlertDialogCancel data-testid="button-cancel-delete">{t.cancel}</AlertDialogCancel>
                   <AlertDialogAction
                     onClick={handleDeleteAccount}
                     disabled={isDeleting}
@@ -714,10 +845,10 @@ export default function Profile() {
                     {isDeleting ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Deleting...
+                        {t.deleting}
                       </>
                     ) : (
-                      "Delete Account"
+                      t.confirmDelete
                     )}
                   </AlertDialogAction>
                 </AlertDialogFooter>

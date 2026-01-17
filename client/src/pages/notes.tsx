@@ -96,6 +96,12 @@ const notesUiText = {
     gratitude: "Gratitude",
     prayer: "Prayer",
     question: "Question",
+    noteUpdated: "Note updated",
+    noteDeleted: "Note deleted",
+    noteCreated: "Note created",
+    failedToUpdate: "Failed to update note",
+    failedToDelete: "Failed to delete note",
+    failedToCreate: "Failed to create note",
   },
   am: {
     myNotes: "ማስታወሻዎቼ",
@@ -131,6 +137,12 @@ const notesUiText = {
     gratitude: "ምስጋና",
     prayer: "ጸሎት",
     question: "ጥያቄ",
+    noteUpdated: "ማስታወሻ ተዘምኗል",
+    noteDeleted: "ማስታወሻ ተሰርዟል",
+    noteCreated: "ማስታወሻ ተፈጠረ",
+    failedToUpdate: "ማስታወሻን ማዘመን አልተሳካም",
+    failedToDelete: "ማስታወሻን መሰረዝ አልተሳካም",
+    failedToCreate: "ማስታወሻ መፍጠር አልተሳካም",
   }
 };
 
@@ -216,12 +228,12 @@ export default function Notes() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Note updated" });
+      toast({ title: t.noteUpdated });
       setEditingNote(null);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
     onError: () => {
-      toast({ title: "Failed to update note", variant: "destructive" });
+      toast({ title: t.failedToUpdate, variant: "destructive" });
     },
   });
 
@@ -230,12 +242,12 @@ export default function Notes() {
       await apiRequest("DELETE", `/api/notes/${id}`);
     },
     onSuccess: () => {
-      toast({ title: "Note deleted" });
+      toast({ title: t.noteDeleted });
       setDeleteConfirm(null);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
     onError: () => {
-      toast({ title: "Failed to delete note", variant: "destructive" });
+      toast({ title: t.failedToDelete, variant: "destructive" });
     },
   });
 
@@ -256,7 +268,7 @@ export default function Notes() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: "Note created" });
+      toast({ title: t.noteCreated });
       setShowCreateNote(false);
       setNewNoteContent("");
       setNewNoteTags([]);
@@ -267,7 +279,7 @@ export default function Notes() {
         setUpgradeDialogOpen(true);
         return;
       }
-      toast({ title: error.message || "Failed to create note", variant: "destructive" });
+      toast({ title: t.failedToCreate, variant: "destructive" });
     },
   });
 
