@@ -173,6 +173,23 @@ const uiText = {
     upgradeForUnlimited: "Upgrade to Pro for unlimited access",
     consultingBigGuy: "Consulting THE Big Guy...",
     current: "Current",
+    quickPrompts: "Quick prompts",
+    whatDoesThisMean: "What does this mean to me?",
+    prayerBasedOnThis: "A prayer based on this",
+    howCanIApply: "How can I apply this?",
+    writeReflection: "Write your reflection...",
+    tags: "Tags",
+    faith: "Faith",
+    hope: "Hope",
+    gratitude: "Gratitude",
+    prayer: "Prayer",
+    question: "Question",
+    insight: "Insight",
+    note: "Note",
+    searchingWithAI: "Searching with AI...",
+    usedAllSearches: "You've used all your AI-powered searches for this month.",
+    resetsOn: "Resets on",
+    upgradeToProUnlimited: "Upgrade to Pro for Unlimited",
   },
   am: {
     search: "ፈልግ",
@@ -224,6 +241,23 @@ const uiText = {
     upgradeForUnlimited: "ለያልተገደበ መዳረሻ ወደ ፕሮ ያሻሽሉ",
     consultingBigGuy: "እግዚአብሔርን በመጠየቅ ላይ...",
     current: "አሁኑኑ",
+    quickPrompts: "ፈጣን ጥቆማዎች",
+    whatDoesThisMean: "ይህ ለእኔ ምን ማለት ነው?",
+    prayerBasedOnThis: "በዚህ ላይ የተመሰረተ ጸሎት",
+    howCanIApply: "ይህን እንዴት ልተገብር?",
+    writeReflection: "ማንፀባረቅዎን ይጻፉ...",
+    tags: "መለያዎች",
+    faith: "እምነት",
+    hope: "ተስፋ",
+    gratitude: "ምስጋና",
+    prayer: "ጸሎት",
+    question: "ጥያቄ",
+    insight: "ግንዛቤ",
+    note: "ማስታወሻ",
+    searchingWithAI: "በ AI ፍለጋ ላይ...",
+    usedAllSearches: "የዚህ ወር የ AI ፍለጋዎችዎን ሙሉ በሙሉ ተጠቅመዋል።",
+    resetsOn: "የሚታደስበት",
+    upgradeToProUnlimited: "ለያልተገደበ ወደ ፕሮ ያሻሽሉ",
   }
 };
 
@@ -789,7 +823,13 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       const conversation = await response.json();
       setInsightConversationId(conversation.id);
 
-      const prompt = `Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
+      const isAmharic = isAmharicTranslation(translation);
+      const languageInstruction = isAmharic 
+        ? "IMPORTANT: Please respond entirely in Amharic (አማርኛ). Do not use English."
+        : "";
+      
+      const prompt = `${languageInstruction}
+Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
 
 Verse: "${selectedVerse.text}"
 Reference: ${verseRef} (${translation})`;
@@ -1195,7 +1235,7 @@ Reference: ${verseRef} (${translation})`;
                 {isSmartSearching && (
                   <div className="flex flex-col items-center justify-center py-8 gap-3">
                     <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
-                    <p className="text-sm text-muted-foreground">Searching with AI...</p>
+                    <p className="text-sm text-muted-foreground">{t.searchingWithAI}</p>
                   </div>
                 )}
                 
@@ -1211,11 +1251,11 @@ Reference: ${verseRef} (${translation})`;
                     <div>
                       <h3 className="font-semibold text-lg mb-1">{t.smartSearchLimitReached}</h3>
                       <p className="text-sm text-muted-foreground mb-1">
-                        You've used all your AI-powered searches for this month.
+                        {t.usedAllSearches}
                       </p>
                       {searchLimitResetAt && (
                         <p className="text-xs text-muted-foreground">
-                          Resets on {new Date(searchLimitResetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}
+                          {t.resetsOn} {new Date(searchLimitResetAt).toLocaleDateString(isAmharicTranslation(translation) ? 'am-ET' : 'en-US', { month: 'long', day: 'numeric' })}
                         </p>
                       )}
                     </div>
@@ -1225,7 +1265,7 @@ Reference: ${verseRef} (${translation})`;
                         data-testid="button-upgrade-search"
                       >
                         <Sparkles className="w-4 h-4 mr-2" />
-                        Upgrade to Pro for Unlimited
+                        {t.upgradeToProUnlimited}
                       </Button>
                     </Link>
                   </motion.div>
@@ -1691,9 +1731,9 @@ Reference: ${verseRef} (${translation})`;
               </AnimatePresence>
               <div className="flex items-center gap-1">
                 {[
-                  { icon: Sparkles, label: "Insight", onClick: handleGetInsight, testId: "button-get-insight" },
-                  { icon: Columns2, label: "Compare", onClick: () => setShowCompare(true), testId: "button-compare" },
-                  { icon: StickyNote, label: "Note", onClick: () => setShowNote(true), testId: "button-add-note" },
+                  { icon: Sparkles, label: t.insight, onClick: handleGetInsight, testId: "button-get-insight" },
+                  { icon: Columns2, label: t.compare, onClick: () => setShowCompare(true), testId: "button-compare" },
+                  { icon: StickyNote, label: t.note, onClick: () => setShowNote(true), testId: "button-add-note" },
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
                   { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
                 ].map((item, index) => (
@@ -2012,27 +2052,27 @@ Reference: ${verseRef} (${translation})`;
 
           <div className="space-y-3">
             <div>
-              <p className="text-xs text-muted-foreground mb-2">Quick prompts</p>
+              <p className="text-xs text-muted-foreground mb-2">{t.quickPrompts}</p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  "What does this mean to me?",
-                  "A prayer based on this",
-                  "How can I apply this?"
+                  { key: "whatDoesThisMean", text: t.whatDoesThisMean },
+                  { key: "prayerBasedOnThis", text: t.prayerBasedOnThis },
+                  { key: "howCanIApply", text: t.howCanIApply }
                 ].map((prompt) => (
                   <button
-                    key={prompt}
-                    onClick={() => insertPrompt(prompt)}
+                    key={prompt.key}
+                    onClick={() => insertPrompt(prompt.text)}
                     className="text-xs px-3 py-1.5 rounded-full border border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00] hover:text-[#c08e00] transition-colors"
-                    data-testid={`chip-prompt-${prompt.slice(0, 10).replace(/\s/g, '-')}`}
+                    data-testid={`chip-prompt-${prompt.key}`}
                   >
-                    {prompt}
+                    {prompt.text}
                   </button>
                 ))}
               </div>
             </div>
 
             <Textarea
-              placeholder="Write your reflection..."
+              placeholder={t.writeReflection}
               value={noteText}
               onChange={(e) => setNoteText(e.target.value)}
               rows={4}
@@ -2041,20 +2081,26 @@ Reference: ${verseRef} (${translation})`;
             />
 
             <div>
-              <p className="text-xs text-muted-foreground mb-2">Tags</p>
+              <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
               <div className="flex flex-wrap gap-2">
-                {["Faith", "Hope", "Gratitude", "Prayer", "Question"].map((tag) => (
+                {[
+                  { key: "Faith", text: t.faith },
+                  { key: "Hope", text: t.hope },
+                  { key: "Gratitude", text: t.gratitude },
+                  { key: "Prayer", text: t.prayer },
+                  { key: "Question", text: t.question }
+                ].map((tag) => (
                   <button
-                    key={tag}
-                    onClick={() => toggleTag(tag)}
+                    key={tag.key}
+                    onClick={() => toggleTag(tag.key)}
                     className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
-                      noteTags.includes(tag)
+                      noteTags.includes(tag.key)
                         ? "bg-[#c08e00] text-white border-[#c08e00]"
                         : "border-border text-foreground hover:bg-[#c08e00]/10 hover:border-[#c08e00]"
                     }`}
-                    data-testid={`tag-${tag.toLowerCase()}`}
+                    data-testid={`tag-${tag.key.toLowerCase()}`}
                   >
-                    {tag}
+                    {tag.text}
                   </button>
                 ))}
               </div>
@@ -2063,7 +2109,7 @@ Reference: ${verseRef} (${translation})`;
 
           <div className="flex justify-end gap-2 pt-2">
             <Button variant="ghost" onClick={() => setShowNote(false)} className="text-foreground" data-testid="button-cancel-note">
-              Cancel
+              {t.cancel}
             </Button>
             <Button 
               onClick={handleSaveNote}
