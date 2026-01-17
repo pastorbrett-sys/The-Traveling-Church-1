@@ -55,6 +55,8 @@ interface ProtestantAmharicBible {
 
 let orthodoxBooksCache: BibleBook[] | null = null;
 let orthodoxDataCache: Map<number, EthiopianOrthodoxBook> = new Map();
+let orthodoxEnglishBooksCache: BibleBook[] | null = null;
+let orthodoxEnglishDataCache: Map<number, EthiopianOrthodoxBook> = new Map();
 let protestantBooksCache: BibleBook[] | null = null;
 let protestantDataCache: ProtestantAmharicBible | null = null;
 
@@ -171,6 +173,87 @@ function loadProtestantData(): ProtestantAmharicBible | null {
     console.error("Error loading Protestant Amharic Bible:", error);
     return null;
   }
+}
+
+function loadOrthodoxEnglishBook(bookId: number): EthiopianOrthodoxBook | null {
+  if (orthodoxEnglishDataCache.has(bookId)) {
+    return orthodoxEnglishDataCache.get(bookId)!;
+  }
+  
+  const filename = ORTHODOX_FILE_MAPPING[bookId];
+  if (!filename) return null;
+  
+  const filePath = path.join(ETHIOPIAN_ORTHODOX_ENGLISH_DIR, filename);
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    orthodoxEnglishDataCache.set(bookId, data);
+    return data;
+  } catch (error) {
+    console.error(`Error loading English Orthodox book ${bookId}:`, error);
+    return null;
+  }
+}
+
+export async function getOrthodoxEnglishBooks(): Promise<BibleBook[]> {
+  if (orthodoxEnglishBooksCache) return orthodoxEnglishBooksCache;
+  
+  const books: BibleBook[] = [];
+  
+  for (let i = 1; i <= 81; i++) {
+    const book = loadOrthodoxEnglishBook(i);
+    if (book) {
+      books.push({
+        bookid: book.book_number,
+        name: book.book_name_en,
+        chapters: book.chapters.length,
+      });
+    }
+  }
+  
+  orthodoxEnglishBooksCache = books;
+  return books;
+}
+
+export async function getOrthodoxEnglishChapter(
+  bookId: number,
+  chapter: number
+): Promise<BibleChapter> {
+  const book = loadOrthodoxEnglishBook(bookId);
+  
+  if (!book) {
+    throw new Error(`Book ${bookId} not found`);
+  }
+  
+  const chapterData = book.chapters.find(c => c.chapter === chapter);
+  if (!chapterData) {
+    throw new Error(`Chapter ${chapter} not found in book ${bookId}`);
+  }
+  
+  const verses: BibleVerse[] = [];
+  
+  for (const section of chapterData.sections) {
+    for (const verse of section.verses) {
+      const verseText = section.title 
+        ? `§${section.title}§ ${verse.text}`
+        : verse.text;
+      
+      verses.push({
+        pk: verse.verse,
+        verse: verse.verse,
+        text: verseText,
+      });
+    }
+  }
+  
+  verses.sort((a, b) => a.verse - b.verse);
+  
+  return {
+    book: book.book_name_en,
+    bookId: book.book_number,
+    chapter,
+    verses,
+    translation: "ETHE",
+  };
 }
 
 export async function getOrthodoxBooks(): Promise<BibleBook[]> {
