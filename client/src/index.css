@@ -46,7 +46,6 @@
 
 /* RTL Support - automatically flip margins, paddings, and text alignment for Arabic */
 [dir="rtl"] {
-  /* Flip text alignment */
   text-align: right;
 }
 
@@ -88,19 +87,19 @@
 [dir="rtl"] .border-l-2 { border-left-width: 0; border-right-width: 2px; }
 [dir="rtl"] .border-l-4 { border-left-width: 0; border-right-width: 4px; }
 
-/* RTL flex-row should reverse */
-[dir="rtl"] .flex-row { flex-direction: row-reverse; }
-[dir="rtl"] .flex-row-reverse { flex-direction: row; }
-
-/* Keep certain elements from flipping (like icons in specific positions) */
-[dir="rtl"] .gap-2.flex-row, [dir="rtl"] .gap-3.flex-row { flex-direction: row-reverse; }
-[dir="rtl"] .items-center.gap-2, [dir="rtl"] .items-center.gap-3 { flex-direction: row-reverse; }
-
-/* RTL - Flip justify-between layout */
-[dir="rtl"] .justify-between { flex-direction: row-reverse; justify-content: space-between; }
+/* RTL - Flip horizontal flex layouts with justify-between (card headers, toolbars, etc.) */
+[dir="rtl"] .flex.justify-between {
+  flex-direction: row-reverse;
+}
 
 /* RTL input icon positioning fix */
 [dir="rtl"] input.pl-9 { padding-left: 0.75rem; padding-right: 2.25rem; }
+
+/* RTL - keep flex items in same internal order but flip container */
+[dir="rtl"] .flex.items-start.justify-between,
+[dir="rtl"] .flex.items-center.justify-between {
+  flex-direction: row-reverse;
+}
 
 @layer base {
   * {
