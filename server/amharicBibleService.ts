@@ -483,3 +483,61 @@ export async function searchProtestantBible(
   
   return { total: results.length, results };
 }
+
+export async function getOrthodoxEnglishVerse(
+  bookId: number,
+  chapter: number,
+  verse: number
+): Promise<BibleVerse | null> {
+  try {
+    const chapterData = await getOrthodoxEnglishChapter(bookId, chapter);
+    const verseData = chapterData.verses.find(v => v.verse === verse);
+    
+    if (!verseData) return null;
+    
+    return {
+      pk: verseData.pk,
+      verse: verseData.verse,
+      text: verseData.text,
+      book: bookId,
+      chapter,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export async function searchOrthodoxEnglishBible(
+  query: string,
+  limit: number = 50
+): Promise<{ total: number; results: BibleVerse[] }> {
+  const lowerQuery = query.toLowerCase();
+  const results: BibleVerse[] = [];
+  
+  for (let bookId = 1; bookId <= 81 && results.length < limit; bookId++) {
+    const book = loadOrthodoxEnglishBook(bookId);
+    if (!book) continue;
+    
+    for (const chapter of book.chapters) {
+      if (results.length >= limit) break;
+      
+      for (const section of chapter.sections) {
+        for (const verse of section.verses) {
+          if (verse.text.toLowerCase().includes(lowerQuery)) {
+            results.push({
+              pk: verse.verse,
+              verse: verse.verse,
+              text: verse.text,
+              book: bookId,
+              chapter: chapter.chapter,
+            });
+            if (results.length >= limit) break;
+          }
+        }
+        if (results.length >= limit) break;
+      }
+    }
+  }
+  
+  return { total: results.length, results };
+}

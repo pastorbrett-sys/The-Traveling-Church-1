@@ -283,6 +283,7 @@ router.get("/translations", async (req, res) => {
     const allTranslations = [
       ...translations,
       amharicBibleService.AMHARIC_ORTHODOX_TRANSLATION,
+      amharicBibleService.ENGLISH_ORTHODOX_TRANSLATION,
       amharicBibleService.AMHARIC_PROTESTANT_TRANSLATION,
     ];
     res.json(allTranslations);
@@ -297,6 +298,10 @@ router.get("/books/:translation", async (req, res) => {
     const { translation } = req.params;
     if (translation === "ETH") {
       const books = await amharicBibleService.getOrthodoxBooks();
+      return res.json(books);
+    }
+    if (translation === "ETHE") {
+      const books = await amharicBibleService.getOrthodoxEnglishBooks();
       return res.json(books);
     }
     if (translation === "AMPROT") {
@@ -316,6 +321,13 @@ router.get("/chapter/:translation/:bookId/:chapter", async (req, res) => {
     const { translation, bookId, chapter } = req.params;
     if (translation === "ETH") {
       const chapterData = await amharicBibleService.getOrthodoxChapter(
+        parseInt(bookId),
+        parseInt(chapter)
+      );
+      return res.json(chapterData);
+    }
+    if (translation === "ETHE") {
+      const chapterData = await amharicBibleService.getOrthodoxEnglishChapter(
         parseInt(bookId),
         parseInt(chapter)
       );
@@ -345,6 +357,17 @@ router.get("/verse/:translation/:bookId/:chapter/:verse", async (req, res) => {
     const { translation, bookId, chapter, verse } = req.params;
     if (translation === "ETH") {
       const verseData = await amharicBibleService.getOrthodoxVerse(
+        parseInt(bookId),
+        parseInt(chapter),
+        parseInt(verse)
+      );
+      if (!verseData) {
+        return res.status(404).json({ message: "Verse not found" });
+      }
+      return res.json(verseData);
+    }
+    if (translation === "ETHE") {
+      const verseData = await amharicBibleService.getOrthodoxEnglishVerse(
         parseInt(bookId),
         parseInt(chapter),
         parseInt(verse)
@@ -392,6 +415,10 @@ router.get("/search/:translation", async (req, res) => {
       const results = await amharicBibleService.searchOrthodoxBible(query);
       return res.json(results);
     }
+    if (translation === "ETHE") {
+      const results = await amharicBibleService.searchOrthodoxEnglishBible(query);
+      return res.json(results);
+    }
     if (translation === "AMPROT") {
       const results = await amharicBibleService.searchProtestantBible(query);
       return res.json(results);
@@ -407,7 +434,7 @@ router.get("/search/:translation", async (req, res) => {
 router.post("/compare", async (req, res) => {
   try {
     const { translations, bookId, chapter, verses } = req.body;
-    const englishTranslations = translations.filter((t: string) => !["ETH", "AMPROT"].includes(t));
+    const englishTranslations = translations.filter((t: string) => !["ETH", "ETHE", "AMPROT"].includes(t));
     const results = await helloaoBibleService.compareTranslations(
       englishTranslations,
       bookId,

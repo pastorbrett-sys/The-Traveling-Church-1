@@ -1127,7 +1127,7 @@ Reference: ${verseRef} (${translation})`;
   const groupedBooks = books?.reduce((acc, book) => {
     const isOT = book.bookid <= 39;
     // For Ethiopian Orthodox (81 books), add Apocrypha section
-    const isApocrypha = isAmharicTranslation(translation) && translation === "ETH" && book.bookid > 66;
+    const isApocrypha = (translation === "ETH" || translation === "ETHE") && book.bookid > 66;
     const key = isApocrypha ? t.apocrypha : (isOT ? t.oldTestament : t.newTestament);
     if (!acc[key]) acc[key] = [];
     acc[key].push(book);
