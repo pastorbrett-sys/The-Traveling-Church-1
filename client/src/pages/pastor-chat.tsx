@@ -104,7 +104,7 @@ export default function PastorChat() {
     }
   }, [tabParam]);
   
-  const [bibleTranslation, setBibleTranslation] = useState("NIV");
+  const [bibleTranslation, setBibleTranslation] = useState("KJV");
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
