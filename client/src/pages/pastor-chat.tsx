@@ -53,6 +53,7 @@ const chatUiText = {
     messagesRemaining: "messages remaining",
     unlimited: "Unlimited",
     consultingBigGuy: "Consulting THE Big Guy 👆...",
+    bibleVersion: "Bible Version",
   },
   am: {
     welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ። ስለ እምነት፣ ቅዱሳን ጽሑፎች ወይም ሕይወት ማንኛውንም ነገር ይጠይቁኝ!",
@@ -71,6 +72,7 @@ const chatUiText = {
     messagesRemaining: "መልዕክቶች ቀርተዋል",
     unlimited: "ያልተገደበ",
     consultingBigGuy: "እግዚአብሔርን በመጠየቅ ላይ 👆...",
+    bibleVersion: "የመጽሐፍ ቅዱስ ትርጉም",
   }
 };
 
@@ -643,7 +645,7 @@ export default function PastorChat() {
                 )}
                 <span className="relative flex items-center gap-2">
                   <Book className="w-4 h-4" />
-                  Bible
+                  {t.bibleTab}
                 </span>
               </button>
               <button
@@ -664,14 +666,14 @@ export default function PastorChat() {
                 )}
                 <span className="relative flex items-center gap-2">
                   <MessageCircle className="w-4 h-4" />
-                  Chat
+                  {t.chatTab}
                 </span>
               </button>
             </div>
             <div className="flex items-center gap-2">
               {activeTab === "bible" && (
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground hidden sm:inline">Bible Version</span>
+                  <span className="text-sm text-muted-foreground hidden sm:inline">{t.bibleVersion}</span>
                   <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
                     <SelectTrigger className="w-20" data-testid="select-bible-translation">
                       <SelectValue />
