@@ -87,6 +87,21 @@ const profileUiText = {
     accountDeletedDesc: "Your account and all data have been permanently deleted.",
     deletionFailed: "Deletion Failed",
     deletionFailedDesc: "Unable to delete account. Please try again.",
+    manageSubDescription: "Update payment method, view invoices, or cancel your subscription",
+    aiCreditsRemaining: "AI Credits Remaining",
+    unlimitedAccess: "You have unlimited access to all features",
+    usageResets: "Your usage resets",
+    pastorChatMessages: "Pastor Chat Messages",
+    aiPastoralConversations: "AI pastoral conversations",
+    smartSearches: "Smart Searches",
+    aiPoweredBibleSearches: "AI-powered Bible searches",
+    bookSynopses: "Book Synopses",
+    aiBookOverviews: "AI book overviews",
+    verseInsightsLabel: "Verse Insights",
+    aiVerseExplanations: "AI verse explanations",
+    savedNotes: "Saved Notes",
+    personalStudyNotes: "Personal study notes",
+    wantUnlimitedAccess: "Want unlimited access to all features?",
   },
   am: {
     myProfile: "የእኔ መገለጫ",
@@ -140,6 +155,21 @@ const profileUiText = {
     accountDeletedDesc: "መለያዎ እና ሁሉም ውሂብ በቋሚነት ተሰርዟል።",
     deletionFailed: "መሰረዝ አልተሳካም",
     deletionFailedDesc: "መለያን መሰረዝ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+    manageSubDescription: "የክፍያ ዘዴን ያዘምኑ፣ ደረሰኞችን ይመልከቱ ወይም ምዝገባዎን ይሰርዙ",
+    aiCreditsRemaining: "የ AI ክሬዲቶች ቀሪ",
+    unlimitedAccess: "ወደ ሁሉም ባህሪያት ያልተገደበ መዳረሻ አለዎት",
+    usageResets: "አጠቃቀምዎ ይዘጋጃል",
+    pastorChatMessages: "የፓስተር ውይይት መልዕክቶች",
+    aiPastoralConversations: "የ AI የእረኝነት ውይይቶች",
+    smartSearches: "ብልጥ ፍለጋዎች",
+    aiPoweredBibleSearches: "በ AI የተደገፉ የመጽሐፍ ቅዱስ ፍለጋዎች",
+    bookSynopses: "የመጽሐፍ ማጠቃለያዎች",
+    aiBookOverviews: "የ AI የመጽሐፍ ማጠቃለያዎች",
+    verseInsightsLabel: "የጥቅስ ግንዛቤዎች",
+    aiVerseExplanations: "የ AI የጥቅስ ማብራሪያዎች",
+    savedNotes: "የተቀመጡ ማስታወሻዎች",
+    personalStudyNotes: "የግል ጥናት ማስታወሻዎች",
+    wantUnlimitedAccess: "ወደ ሁሉም ባህሪያት ያልተገደበ መዳረሻ ይፈልጋሉ?",
   }
 };
 
@@ -680,7 +710,7 @@ export default function Profile() {
                             )}
                           </Button>
                           <p className="text-xs text-muted-foreground mt-2">
-                            Update payment method, view invoices, or cancel your subscription
+                            {t.manageSubDescription}
                           </p>
                         </>
                       )}
@@ -717,12 +747,12 @@ export default function Profile() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2" data-testid="heading-usage">
                   <img src={upgradeIcon} alt="" className="w-5 h-5" />
-                  AI Credits Remaining
+                  {t.aiCreditsRemaining}
                 </CardTitle>
                 <CardDescription>
                   {usageSummary?.isPro 
-                    ? "You have unlimited access to all features"
-                    : `Your usage resets ${usageSummary?.resetAt ? new Date(usageSummary.resetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : 'next month'}`
+                    ? t.unlimitedAccess
+                    : `${t.usageResets} ${usageSummary?.resetAt ? new Date(usageSummary.resetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : ''}`
                   }
                 </CardDescription>
               </CardHeader>
@@ -736,38 +766,38 @@ export default function Profile() {
                     {[
                       { 
                         key: 'chat_message', 
-                        label: 'Pastor Chat Messages', 
+                        label: t.pastorChatMessages, 
                         icon: MessagesSquare,
                         data: usageSummary?.chat_message,
-                        description: 'AI pastoral conversations'
+                        description: t.aiPastoralConversations
                       },
                       { 
                         key: 'smart_search', 
-                        label: 'Smart Searches', 
+                        label: t.smartSearches, 
                         icon: Search,
                         data: usageSummary?.smart_search,
-                        description: 'AI-powered Bible searches'
+                        description: t.aiPoweredBibleSearches
                       },
                       { 
                         key: 'book_synopsis', 
-                        label: 'Book Synopses', 
+                        label: t.bookSynopses, 
                         icon: BookOpen,
                         data: usageSummary?.book_synopsis,
-                        description: 'AI book overviews'
+                        description: t.aiBookOverviews
                       },
                       { 
                         key: 'verse_insight', 
-                        label: 'Verse Insights', 
+                        label: t.verseInsightsLabel, 
                         icon: MessageSquare,
                         data: usageSummary?.verse_insight,
-                        description: 'AI verse explanations'
+                        description: t.aiVerseExplanations
                       },
                       { 
                         key: 'notes', 
-                        label: 'Saved Notes', 
+                        label: t.savedNotes, 
                         icon: StickyNote,
                         data: usageSummary?.notes,
-                        description: 'Personal study notes'
+                        description: t.personalStudyNotes
                       },
                     ].map(({ key, label, icon: Icon, data, description }) => (
                       <div key={key} className="flex items-center justify-between py-2" data-testid={`usage-row-${key}`}>
@@ -800,7 +830,7 @@ export default function Profile() {
                         <Separator className="my-4" />
                         <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-4 border border-[hsl(25,35%,45%)]/20">
                           <p className="text-sm text-muted-foreground mb-3">
-                            Want unlimited access to all features?
+                            {t.wantUnlimitedAccess}
                           </p>
                           <Button size="sm" className="btn-upgrade" data-testid="button-upgrade-usage" onClick={() => setShowPaywall(true)}>
                             {t.upgradeToPro}
