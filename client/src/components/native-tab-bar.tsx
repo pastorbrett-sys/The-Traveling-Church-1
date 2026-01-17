@@ -52,21 +52,31 @@ export function NativeTabBar() {
     return localStorage.getItem("bibleTranslation") || "KJV";
   });
   
-  // Listen for translation changes
+  // Listen for translation changes (storage for cross-tab, custom event for same-tab)
   useEffect(() => {
     const handleStorageChange = () => {
       const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
-      if (newTranslation !== translation) {
-        setTranslation(newTranslation);
-      }
+      setTranslation(newTranslation);
     };
+    
+    // Custom event for same-tab updates
+    const handleTranslationChange = (e: CustomEvent) => {
+      setTranslation(e.detail || "KJV");
+    };
+    
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("focus", handleStorageChange);
+    window.addEventListener("translationChanged", handleTranslationChange as EventListener);
+    
+    // Check on mount in case it changed
+    handleStorageChange();
+    
     return () => {
       window.removeEventListener("storage", handleStorageChange);
       window.removeEventListener("focus", handleStorageChange);
+      window.removeEventListener("translationChanged", handleTranslationChange as EventListener);
     };
-  }, [translation]);
+  }, []);
   
   const labels = getLocalizedLabels(translation);
   

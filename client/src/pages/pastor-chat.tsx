@@ -163,9 +163,11 @@ export default function PastorChat() {
     return localStorage.getItem("bibleTranslation") || "KJV";
   });
   
-  // Persist translation choice to localStorage
+  // Persist translation choice to localStorage and notify other components
   useEffect(() => {
     localStorage.setItem("bibleTranslation", bibleTranslation);
+    // Dispatch custom event for same-tab listeners (like native tab bar)
+    window.dispatchEvent(new CustomEvent("translationChanged", { detail: bibleTranslation }));
   }, [bibleTranslation]);
   
   // Listen for storage changes (when user switches translation in another tab/page)
