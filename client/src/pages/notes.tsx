@@ -53,7 +53,8 @@ type NotesResponse = {
   count: number;
 };
 
-const TAGS = ["Faith", "Hope", "Gratitude", "Prayer", "Question"];
+// Tag keys for internal use - display names come from localization
+const TAG_KEYS = ["faith", "hope", "gratitude", "prayer", "question"] as const;
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -148,6 +149,24 @@ const notesUiText = {
 
 function getNotesLocalizedText(translation: string) {
   return isAmharicTranslation(translation) ? notesUiText.am : notesUiText.en;
+}
+
+// Helper to get localized tag name from internal key
+function getLocalizedTagName(tagKey: string, t: ReturnType<typeof getNotesLocalizedText>): string {
+  const tagMap: Record<string, string> = {
+    faith: t.faith,
+    hope: t.hope,
+    gratitude: t.gratitude,
+    prayer: t.prayer,
+    question: t.question,
+    // Handle legacy capitalized tags
+    Faith: t.faith,
+    Hope: t.hope,
+    Gratitude: t.gratitude,
+    Prayer: t.prayer,
+    Question: t.question,
+  };
+  return tagMap[tagKey] || tagKey;
 }
 const BIBLE_BOOKS = [
   "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",
@@ -523,7 +542,7 @@ export default function Notes() {
                                 )
                               }
                             >
-                              {tag}
+                              {getLocalizedTagName(tag, t)}
                             </DropdownMenuCheckboxItem>
                           ))}
                           <DropdownMenuSeparator />
@@ -593,7 +612,7 @@ export default function Notes() {
                       onClick={() => setSelectedTags(prev => prev.filter(t => t !== tag))}
                     >
                       <Tag className="w-3 h-3 text-[#c08e00]" />
-                      {tag}
+                      {getLocalizedTagName(tag, t)}
                       <X className="w-3 h-3 ml-1 text-[#c08e00]" />
                     </Badge>
                   ))}
@@ -668,7 +687,7 @@ export default function Notes() {
                                   variant="outline"
                                   className="text-xs bg-[#c08e00]/10 text-[#c08e00] border-[#c08e00]/30"
                                 >
-                                  {tag}
+                                  {getLocalizedTagName(tag, t)}
                                 </Badge>
                               ))}
                             </div>
@@ -736,18 +755,18 @@ export default function Notes() {
               <div>
                 <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
                 <div className="flex flex-wrap gap-2">
-                  {TAGS.map(tag => (
+                  {TAG_KEYS.map(tagKey => (
                     <button
-                      key={tag}
-                      onClick={() => toggleEditTag(tag)}
+                      key={tagKey}
+                      onClick={() => toggleEditTag(tagKey)}
                       className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
-                        editTags.includes(tag)
+                        editTags.includes(tagKey)
                           ? "bg-[#c08e00] text-white border-[#c08e00]"
                           : "border-gray-300 hover:bg-[#c08e00]/10 hover:border-[#c08e00] text-gray-800"
                       }`}
-                      data-testid={`edit-tag-${tag.toLowerCase()}`}
+                      data-testid={`edit-tag-${tagKey}`}
                     >
-                      {tag}
+                      {getLocalizedTagName(tagKey, t)}
                     </button>
                   ))}
                 </div>
@@ -846,18 +865,18 @@ export default function Notes() {
             <div>
               <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
               <div className="flex flex-wrap gap-2">
-                {TAGS.map(tag => (
+                {TAG_KEYS.map(tagKey => (
                   <button
-                    key={tag}
-                    onClick={() => toggleNewNoteTag(tag)}
+                    key={tagKey}
+                    onClick={() => toggleNewNoteTag(tagKey)}
                     className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
-                      newNoteTags.includes(tag)
+                      newNoteTags.includes(tagKey)
                         ? "bg-[#c08e00] text-white border-[#c08e00]"
                         : "border-gray-300 hover:bg-[#c08e00]/10 hover:border-[#c08e00] text-gray-800"
                     }`}
-                    data-testid={`new-note-tag-${tag.toLowerCase()}`}
+                    data-testid={`new-note-tag-${tagKey}`}
                   >
-                    {tag}
+                    {getLocalizedTagName(tagKey, t)}
                   </button>
                 ))}
               </div>
@@ -948,7 +967,7 @@ export default function Notes() {
                       variant="outline"
                       className="text-xs bg-[#c08e00]/10 text-[#c08e00] border-[#c08e00]/30"
                     >
-                      {tag}
+                      {getLocalizedTagName(tag, t)}
                     </Badge>
                   ))}
                 </div>

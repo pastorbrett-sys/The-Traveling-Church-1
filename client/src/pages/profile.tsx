@@ -51,8 +51,15 @@ const profileUiText = {
     currentPlan: "Current Plan",
     free: "Free",
     pro: "Pro",
+    proPlan: "Pro Plan",
+    status: "Status",
+    active: "Active",
+    month: "month",
     activeSubscription: "Active Subscription",
     canceledEnds: "Canceled - ends",
+    cancelling: "Cancelling",
+    accessUntil: "Access until: ",
+    nextBilling: "Next billing: ",
     manageSubscription: "Manage Subscription",
     restorePurchases: "Restore Purchases",
     upgradeToPro: "Upgrade to Pro",
@@ -119,8 +126,15 @@ const profileUiText = {
     currentPlan: "የአሁኑ እቅድ",
     free: "ነፃ",
     pro: "ፕሮ",
+    proPlan: "ፕሮ እቅድ",
+    status: "ሁኔታ",
+    active: "ንቁ",
+    month: "ወር",
     activeSubscription: "ንቁ ምዝገባ",
     canceledEnds: "ተሰርዟል - ያበቃል",
+    cancelling: "በመሰረዝ ላይ",
+    accessUntil: "መዳረሻ እስከ: ",
+    nextBilling: "ቀጣይ ክፍያ: ",
     manageSubscription: "ምዝገባ ያስተዳድሩ",
     restorePurchases: "ግዢዎችን መልስ",
     upgradeToPro: "ወደ ፕሮ አሻሽል",
@@ -619,15 +633,15 @@ export default function Profile() {
                       <div className="flex items-center gap-2">
                         <Badge variant="default" className="bg-[hsl(25,35%,45%)]" data-testid="badge-pro">
                           <img src={upgradeIcon} alt="" className="w-3 h-3 mr-1" />
-                          Pro Plan
+                          {t.proPlan}
                         </Badge>
                         {isCancelling && (
                           <Badge variant="outline" className="text-orange-500 border-orange-500" data-testid="badge-cancelling">
-                            Cancelling
+                            {t.canceledEnds}
                           </Badge>
                         )}
                       </div>
-                      <span className="text-lg font-semibold" data-testid="text-price">$9.99/month</span>
+                      <span className="text-lg font-semibold" data-testid="text-price">$9.99/{t.month}</span>
                     </div>
 
                     <Separator />
@@ -636,14 +650,14 @@ export default function Profile() {
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Calendar className="w-4 h-4" />
                         <span data-testid="text-status">
-                          Status: <span className="text-foreground font-medium capitalize">{subscription?.status || "Active"}</span>
+                          {t.status}: <span className="text-foreground font-medium capitalize">{subscription?.status || t.active}</span>
                         </span>
                       </div>
                       {subscription?.current_period_end && (
                         <div className="flex items-center gap-2 text-muted-foreground">
                           <Calendar className="w-4 h-4" />
                           <span data-testid="text-period-end">
-                            {isCancelling ? "Access until: " : "Next billing: "}
+                            {isCancelling ? t.accessUntil : t.nextBilling}
                             <span className="text-foreground font-medium">
                               {new Date(subscription.current_period_end * 1000).toLocaleDateString()}
                             </span>
