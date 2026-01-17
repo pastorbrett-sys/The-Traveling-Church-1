@@ -43,6 +43,7 @@ import { apiRequest, queryClient, apiFetch } from "@/lib/queryClient";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
+import { useLanguage } from "@/contexts/language-context";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
@@ -56,117 +57,10 @@ type NotesResponse = {
 // Tag keys for internal use - display names come from localization
 const TAG_KEYS = ["faith", "hope", "gratitude", "prayer", "question"] as const;
 
-// Check if translation is Amharic-based
-function isAmharicTranslation(translation: string): boolean {
-  return translation === "ETH" || translation === "AMPROT";
-}
-
-// Localized UI text for Notes page
-const notesUiText = {
-  en: {
-    myNotes: "My Notes",
-    noNotesYet: "No notes yet",
-    captureThoughts: "Capture your thoughts, reflections, and insights. Your saved notes will appear here.",
-    takeNote: "Take a Note",
-    searchNotes: "Search notes...",
-    filters: "Filters",
-    book: "Book",
-    tags: "Tags",
-    clearAllFilters: "Clear all filters",
-    sort: "Sort",
-    newest: "Newest first",
-    oldest: "Oldest first",
-    byBook: "By book order",
-    noNotesMatch: "No notes match your filters",
-    tryAdjusting: "Try adjusting your search or filters",
-    edit: "Edit",
-    delete: "Delete",
-    editNote: "Edit Note",
-    deleteNote: "Delete Note",
-    deleteConfirmation: "Are you sure you want to delete this note? This action cannot be undone.",
-    cancel: "Cancel",
-    save: "Save",
-    createNote: "Create Note",
-    writeThoughts: "Write your thoughts...",
-    today: "Today",
-    yesterday: "Yesterday",
-    daysAgo: "days ago",
-    viewNote: "View Note",
-    faith: "Faith",
-    hope: "Hope",
-    gratitude: "Gratitude",
-    prayer: "Prayer",
-    question: "Question",
-    noteUpdated: "Note updated",
-    noteDeleted: "Note deleted",
-    noteCreated: "Note created",
-    failedToUpdate: "Failed to update note",
-    failedToDelete: "Failed to delete note",
-    failedToCreate: "Failed to create note",
-  },
-  am: {
-    myNotes: "ማስታወሻዎቼ",
-    noNotesYet: "ገና ማስታወሻዎች የሉም",
-    captureThoughts: "ሀሳቦችዎን፣ ማንፀባረቆችዎን እና ግንዛቤዎችዎን ይያዙ። የተቀመጡ ማስታወሻዎችዎ እዚህ ይታያሉ።",
-    takeNote: "ማስታወሻ ይያዙ",
-    searchNotes: "ማስታወሻዎችን ፈልግ...",
-    filters: "ማጣሪያዎች",
-    book: "መጽሐፍ",
-    tags: "መለያዎች",
-    clearAllFilters: "ሁሉንም ማጣሪያዎች ያጽዱ",
-    sort: "አስቀምጥ",
-    newest: "አዲስ መጀመሪያ",
-    oldest: "የቆየ መጀመሪያ",
-    byBook: "በመጽሐፍ ቅደም ተከተል",
-    noNotesMatch: "ከማጣሪያዎችዎ ጋር የሚዛመድ ማስታወሻ የለም",
-    tryAdjusting: "ፍለጋዎን ወይም ማጣሪያዎችዎን ያስተካክሉ",
-    edit: "አርትዕ",
-    delete: "ሰርዝ",
-    editNote: "ማስታወሻ አርትዕ",
-    deleteNote: "ማስታወሻ ሰርዝ",
-    deleteConfirmation: "ይህን ማስታወሻ መሰረዝ እንደሚፈልጉ እርግጠኛ ነዎት? ይህ እርምጃ ሊቀለበስ አይችልም።",
-    cancel: "ሰርዝ",
-    save: "አስቀምጥ",
-    createNote: "ማስታወሻ ፍጠር",
-    writeThoughts: "ሀሳቦችዎን ይጻፉ...",
-    today: "ዛሬ",
-    yesterday: "ትናንት",
-    daysAgo: "ቀናት በፊት",
-    viewNote: "ማስታወሻ ይመልከቱ",
-    faith: "እምነት",
-    hope: "ተስፋ",
-    gratitude: "ምስጋና",
-    prayer: "ጸሎት",
-    question: "ጥያቄ",
-    noteUpdated: "ማስታወሻ ተዘምኗል",
-    noteDeleted: "ማስታወሻ ተሰርዟል",
-    noteCreated: "ማስታወሻ ተፈጠረ",
-    failedToUpdate: "ማስታወሻን ማዘመን አልተሳካም",
-    failedToDelete: "ማስታወሻን መሰረዝ አልተሳካም",
-    failedToCreate: "ማስታወሻ መፍጠር አልተሳካም",
-  }
-};
-
-function getNotesLocalizedText(translation: string) {
-  return isAmharicTranslation(translation) ? notesUiText.am : notesUiText.en;
-}
-
 // Helper to get localized tag name from internal key
-function getLocalizedTagName(tagKey: string, t: ReturnType<typeof getNotesLocalizedText>): string {
-  const tagMap: Record<string, string> = {
-    faith: t.faith,
-    hope: t.hope,
-    gratitude: t.gratitude,
-    prayer: t.prayer,
-    question: t.question,
-    // Handle legacy capitalized tags
-    Faith: t.faith,
-    Hope: t.hope,
-    Gratitude: t.gratitude,
-    Prayer: t.prayer,
-    Question: t.question,
-  };
-  return tagMap[tagKey] || tagKey;
+function getLocalizedTagName(tagKey: string, tags: Record<string, string>): string {
+  const lowerKey = tagKey.toLowerCase();
+  return tags[lowerKey as keyof typeof tags] || tagKey;
 }
 const BIBLE_BOOKS = [
   "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",
@@ -190,6 +84,9 @@ type SortOption = "newest" | "oldest" | "book";
 export default function Notes() {
   const { toast } = useToast();
   const { isNative, platform } = usePlatform();
+  const { t: uiText } = useLanguage();
+  const notesText = uiText.notes;
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
@@ -204,33 +101,10 @@ export default function Notes() {
   const [newNoteTags, setNewNoteTags] = useState<string[]>([]);
   const [viewingNote, setViewingNote] = useState<Note | null>(null);
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
-  
-  // Get translation from localStorage for localization
-  const [translation, setTranslation] = useState(() => {
-    return localStorage.getItem("bibleTranslation") || "KJV";
-  });
-  
-  // Listen for storage changes (when user switches translation in another tab/page)
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
-      setTranslation(newTranslation);
-    };
-    window.addEventListener("storage", handleStorageChange);
-    // Also check on focus for same-tab navigation
-    window.addEventListener("focus", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("focus", handleStorageChange);
-    };
-  }, []);
-  
-  // Get localized text
-  const t = getNotesLocalizedText(translation);
 
   useEffect(() => {
-    document.title = `${t.myNotes} | Vagabond Bible AI`;
-  }, [t.myNotes]);
+    document.title = `${notesText.title} | Vagabond Bible AI`;
+  }, [notesText.title]);
 
   const { data: notesData, isLoading } = useQuery<NotesResponse>({
     queryKey: ["/api/notes"],
@@ -247,12 +121,12 @@ export default function Notes() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: t.noteUpdated });
+      toast({ title: notesText.noteUpdated });
       setEditingNote(null);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
     onError: () => {
-      toast({ title: t.failedToUpdate, variant: "destructive" });
+      toast({ title: notesText.failedToUpdate, variant: "destructive" });
     },
   });
 
@@ -261,12 +135,12 @@ export default function Notes() {
       await apiRequest("DELETE", `/api/notes/${id}`);
     },
     onSuccess: () => {
-      toast({ title: t.noteDeleted });
+      toast({ title: notesText.noteDeleted });
       setDeleteConfirm(null);
       queryClient.invalidateQueries({ queryKey: ["/api/notes"] });
     },
     onError: () => {
-      toast({ title: t.failedToDelete, variant: "destructive" });
+      toast({ title: notesText.failedToDelete, variant: "destructive" });
     },
   });
 
@@ -287,7 +161,7 @@ export default function Notes() {
       return res.json();
     },
     onSuccess: () => {
-      toast({ title: t.noteCreated });
+      toast({ title: notesText.noteCreated });
       setShowCreateNote(false);
       setNewNoteContent("");
       setNewNoteTags([]);
@@ -298,7 +172,7 @@ export default function Notes() {
         setUpgradeDialogOpen(true);
         return;
       }
-      toast({ title: t.failedToCreate, variant: "destructive" });
+      toast({ title: notesText.failedToCreate, variant: "destructive" });
     },
   });
 
@@ -312,7 +186,7 @@ export default function Notes() {
 
   const toggleNewNoteTag = (tag: string) => {
     setNewNoteTags(prev =>
-      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter(item => item !== tag) : [...prev, tag]
     );
   };
 
@@ -380,13 +254,12 @@ export default function Notes() {
     const d = new Date(date);
     const now = new Date();
     const diffDays = Math.floor((now.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
-    const isAmharic = isAmharicTranslation(translation);
     
-    if (diffDays === 0) return t.today;
-    if (diffDays === 1) return t.yesterday;
-    if (diffDays < 7) return `${diffDays} ${t.daysAgo}`;
-    return d.toLocaleDateString(isAmharic ? "am-ET" : "en-US", { month: "short", day: "numeric", year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined });
-  }, [translation, t]);
+    if (diffDays === 0) return notesText.today;
+    if (diffDays === 1) return notesText.yesterday;
+    if (diffDays < 7) return `${diffDays} ${notesText.daysAgo}`;
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined });
+  }, [notesText]);
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -413,7 +286,7 @@ export default function Notes() {
 
   const toggleEditTag = (tag: string) => {
     setEditTags(prev =>
-      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter(item => item !== tag) : [...prev, tag]
     );
   };
 
@@ -456,7 +329,7 @@ export default function Notes() {
               )}
               <div className="flex items-center gap-2">
                 <Bookmark className="w-6 h-6 text-[#c08e00]" />
-                <h1 className="text-2xl font-serif font-bold">{t.myNotes}</h1>
+                <h1 className="text-2xl font-serif font-bold">{notesText.title}</h1>
                 <span className="text-sm text-muted-foreground">
                   ({notes.length})
                 </span>
@@ -477,7 +350,7 @@ export default function Notes() {
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
-                    placeholder={t.searchNotes}
+                    placeholder={notesText.searchNotes}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-9"
@@ -498,7 +371,7 @@ export default function Notes() {
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" className="gap-2" data-testid="button-filter">
                         <Filter className="w-4 h-4" />
-                        {t.filters}
+                        {notesText.filters}
                         {hasActiveFilters && (
                           <Badge variant="secondary" className="ml-1 bg-[#c08e00] text-white">
                             {(selectedTags.length > 0 ? 1 : 0) + (selectedBook ? 1 : 0)}
@@ -511,7 +384,7 @@ export default function Notes() {
                         <>
                           <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground flex items-center gap-2">
                             <BookOpen className="w-3 h-3" />
-                            {t.book}
+                            {notesText.book}
                           </div>
                           {usedBooks.map(book => (
                             <DropdownMenuCheckboxItem
@@ -530,7 +403,7 @@ export default function Notes() {
                         <>
                           <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground flex items-center gap-2">
                             <Tag className="w-3 h-3" />
-                            {t.tags}
+                            {notesText.tagsLabel}
                           </div>
                           {usedTags.map(tag => (
                             <DropdownMenuCheckboxItem
@@ -538,11 +411,11 @@ export default function Notes() {
                               checked={selectedTags.includes(tag)}
                               onCheckedChange={() =>
                                 setSelectedTags(prev =>
-                                  prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+                                  prev.includes(tag) ? prev.filter(item => item !== tag) : [...prev, tag]
                                 )
                               }
                             >
-                              {getLocalizedTagName(tag, t)}
+                              {getLocalizedTagName(tag, notesText.tags)}
                             </DropdownMenuCheckboxItem>
                           ))}
                           <DropdownMenuSeparator />
@@ -552,7 +425,7 @@ export default function Notes() {
                       {hasActiveFilters && (
                         <DropdownMenuItem onClick={clearFilters} className="text-destructive">
                           <X className="w-4 h-4 mr-2" />
-                          {t.clearAllFilters}
+                          {notesText.clearAllFilters}
                         </DropdownMenuItem>
                       )}
                     </DropdownMenuContent>
@@ -573,17 +446,17 @@ export default function Notes() {
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem onClick={() => setSortBy("newest")}>
                         <SortDesc className="w-4 h-4 mr-2" />
-                        {t.newest}
+                        {notesText.newest}
                         {sortBy === "newest" && " ✓"}
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => setSortBy("oldest")}>
                         <SortAsc className="w-4 h-4 mr-2" />
-                        {t.oldest}
+                        {notesText.oldest}
                         {sortBy === "oldest" && " ✓"}
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => setSortBy("book")}>
                         <BookOpen className="w-4 h-4 mr-2" />
-                        {t.byBook}
+                        {notesText.byBook}
                         {sortBy === "book" && " ✓"}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -609,10 +482,10 @@ export default function Notes() {
                       key={tag}
                       variant="secondary"
                       className="gap-1 cursor-pointer hover:bg-destructive/20 bg-[#c08e00]/20 text-[#c08e00] border border-[#c08e00]/30"
-                      onClick={() => setSelectedTags(prev => prev.filter(t => t !== tag))}
+                      onClick={() => setSelectedTags(prev => prev.filter(item => item !== tag))}
                     >
                       <Tag className="w-3 h-3 text-[#c08e00]" />
-                      {getLocalizedTagName(tag, t)}
+                      {getLocalizedTagName(tag, notesText.tags)}
                       <X className="w-3 h-3 ml-1 text-[#c08e00]" />
                     </Badge>
                   ))}
@@ -622,9 +495,9 @@ export default function Notes() {
               {filteredAndSortedNotes.length === 0 ? (
                 <div className="text-center py-12">
                   <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="text-muted-foreground">{t.noNotesMatch}</p>
+                  <p className="text-muted-foreground">{notesText.noNotesMatch}</p>
                   <Button variant="link" onClick={clearFilters} className="mt-2">
-                    {t.clearAllFilters}
+                    {notesText.clearAllFilters}
                   </Button>
                 </div>
               ) : (
@@ -687,7 +560,7 @@ export default function Notes() {
                                   variant="outline"
                                   className="text-xs bg-[#c08e00]/10 text-[#c08e00] border-[#c08e00]/30"
                                 >
-                                  {getLocalizedTagName(tag, t)}
+                                  {getLocalizedTagName(tag, notesText.tags)}
                                 </Badge>
                               ))}
                             </div>
@@ -706,16 +579,16 @@ export default function Notes() {
                 alt="Ancient scroll" 
                 className="w-48 h-48 object-contain mb-4 opacity-80"
               />
-              <h2 className="text-xl font-semibold mb-2">{t.noNotesYet}</h2>
+              <h2 className="text-xl font-semibold mb-2">{notesText.noNotes}</h2>
               <p className="text-muted-foreground max-w-sm mb-6">
-                {t.captureThoughts}
+                {notesText.captureThoughts}
               </p>
               <Button 
                 onClick={() => setShowCreateNote(true)}
                 className="bg-[#c08e00] hover:bg-[#a07800] text-white" 
                 data-testid="button-take-note"
               >
-                {t.takeNote}
+                {notesText.takeNote}
               </Button>
             </div>
           )}
@@ -733,7 +606,7 @@ export default function Notes() {
           <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Edit3 className="w-5 h-5 text-[#c08e00]" />
-              {t.editNote}
+              {notesText.editNote}
             </DialogTitle>
           </DialogHeader>
           
@@ -753,7 +626,7 @@ export default function Notes() {
               />
 
               <div>
-                <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
+                <p className="text-xs text-muted-foreground mb-2">{notesText.tagsLabel}</p>
                 <div className="flex flex-wrap gap-2">
                   {TAG_KEYS.map(tagKey => (
                     <button
@@ -766,7 +639,7 @@ export default function Notes() {
                       }`}
                       data-testid={`edit-tag-${tagKey}`}
                     >
-                      {getLocalizedTagName(tagKey, t)}
+                      {getLocalizedTagName(tagKey, notesText.tags)}
                     </button>
                   ))}
                 </div>
@@ -774,7 +647,7 @@ export default function Notes() {
 
               <div className="flex justify-end gap-2 pt-2">
                 <Button variant="ghost" onClick={() => setEditingNote(null)} className="text-foreground">
-                  {t.cancel}
+                  {notesText.cancel}
                 </Button>
                 <Button
                   onClick={handleSaveEdit}
@@ -785,7 +658,7 @@ export default function Notes() {
                   {updateNoteMutation.isPending ? (
                     <Loader2 className="w-4 h-4 animate-spin mr-1" />
                   ) : null}
-                  {t.save}
+                  {notesText.save}
                 </Button>
               </div>
             </div>
@@ -796,9 +669,9 @@ export default function Notes() {
       <Dialog open={!!deleteConfirm} onOpenChange={(open) => !open && setDeleteConfirm(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t.deleteNote}</DialogTitle>
+            <DialogTitle>{notesText.deleteNote}</DialogTitle>
             <DialogDescription>
-              {t.deleteConfirmation}
+              {notesText.confirmDelete}
             </DialogDescription>
           </DialogHeader>
           
@@ -811,7 +684,7 @@ export default function Notes() {
 
           <div className="flex justify-end gap-2">
             <Button variant="ghost" onClick={() => setDeleteConfirm(null)}>
-              {t.cancel}
+              {notesText.cancel}
             </Button>
             <Button
               variant="destructive"
@@ -824,7 +697,7 @@ export default function Notes() {
               ) : (
                 <Trash2 className="w-4 h-4 mr-1" />
               )}
-              {t.delete}
+              {notesText.delete}
             </Button>
           </div>
         </DialogContent>
@@ -847,13 +720,13 @@ export default function Notes() {
           <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <Plus className="w-5 h-5 text-[#c08e00]" />
-              {t.createNote}
+              {notesText.createNote}
             </DialogTitle>
           </DialogHeader>
           
           <div className="space-y-4 mt-4">
             <Textarea
-              placeholder={t.writeThoughts}
+              placeholder={notesText.writeThoughts}
               value={newNoteContent}
               onChange={(e) => setNewNoteContent(e.target.value)}
               rows={5}
@@ -863,7 +736,7 @@ export default function Notes() {
             />
 
             <div>
-              <p className="text-xs text-muted-foreground mb-2">{t.tags}</p>
+              <p className="text-xs text-muted-foreground mb-2">{notesText.tagsLabel}</p>
               <div className="flex flex-wrap gap-2">
                 {TAG_KEYS.map(tagKey => (
                   <button
@@ -876,7 +749,7 @@ export default function Notes() {
                     }`}
                     data-testid={`new-note-tag-${tagKey}`}
                   >
-                    {getLocalizedTagName(tagKey, t)}
+                    {getLocalizedTagName(tagKey, notesText.tags)}
                   </button>
                 ))}
               </div>
@@ -884,7 +757,7 @@ export default function Notes() {
 
             <div className="flex justify-end gap-2 pt-2">
               <Button variant="ghost" onClick={() => setShowCreateNote(false)} className="text-foreground">
-                {t.cancel}
+                {notesText.cancel}
               </Button>
               <Button
                 onClick={handleCreateNote}
@@ -895,7 +768,7 @@ export default function Notes() {
                 {createNoteMutation.isPending ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-1" />
                 ) : null}
-                {t.save}
+                {notesText.save}
               </Button>
             </div>
           </div>
@@ -967,7 +840,7 @@ export default function Notes() {
                       variant="outline"
                       className="text-xs bg-[#c08e00]/10 text-[#c08e00] border-[#c08e00]/30"
                     >
-                      {getLocalizedTagName(tag, t)}
+                      {getLocalizedTagName(tag, notesText.tags)}
                     </Badge>
                   ))}
                 </div>

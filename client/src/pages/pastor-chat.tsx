@@ -28,62 +28,13 @@ import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
-
-// Check if translation is Amharic-based
-function isAmharicTranslation(translation: string): boolean {
-  return translation === "ETH" || translation === "AMPROT";
-}
-
-// Localized UI text for Pastor Chat
-const chatUiText = {
-  en: {
-    welcomeMessage: "Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!",
-    pastorBrett: "Pastor Brett",
-    askAnything: "Ask Pastor Brett anything...",
-    send: "Send",
-    chatTab: "Chat",
-    bibleTab: "Bible",
-    startNewChat: "Start new chat",
-    signInRequired: "Sign in Required",
-    signInToChat: "Sign in to chat with Pastor Brett",
-    signIn: "Sign In",
-    messageLimitReached: "Message Limit Reached",
-    messageLimitDesc: "You've reached your free message limit. Upgrade to Pro for unlimited access.",
-    upgrade: "Upgrade to Pro",
-    messagesRemaining: "messages remaining",
-    unlimited: "Unlimited",
-    consultingBigGuy: "Consulting THE Big Guy 👆...",
-  },
-  am: {
-    welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ። ስለ እምነት፣ ቅዱሳን ጽሑፎች ወይም ሕይወት ማንኛውንም ነገር ይጠይቁኝ!",
-    pastorBrett: "ፓስተር ብሬት",
-    askAnything: "ፓስተር ብሬትን ማንኛውንም ነገር ይጠይቁ...",
-    send: "ላክ",
-    chatTab: "ውይይት",
-    bibleTab: "መጽሐፍ ቅዱስ",
-    startNewChat: "አዲስ ውይይት ጀምር",
-    signInRequired: "መግባት ያስፈልጋል",
-    signInToChat: "ከፓስተር ብሬት ጋር ለመወያየት ይግቡ",
-    signIn: "ግባ",
-    messageLimitReached: "የመልዕክት ገደብ ደርሷል",
-    messageLimitDesc: "ነፃ የመልዕክት ገደብዎን ደርሰዋል። ላልተገደበ መዳረሻ ወደ ፕሮ ያሻሽሉ።",
-    upgrade: "ወደ ፕሮ አሻሽል",
-    messagesRemaining: "መልዕክቶች ቀርተዋል",
-    unlimited: "ያልተገደበ",
-    consultingBigGuy: "እግዚአብሔርን በመጠየቅ ላይ 👆...",
-  }
-};
-
-function getChatLocalizedText(translation: string) {
-  return isAmharicTranslation(translation) ? chatUiText.am : chatUiText.en;
-}
+import { useLanguage } from "@/contexts/language-context";
 
 interface WelcomeMessageProps {
-  translation: string;
+  chatText: typeof import("@/lib/translations").translations.en.chat;
 }
 
-const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation }, ref) => {
-  const t = getChatLocalizedText(translation);
+const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ chatText }, ref) => {
   return (
     <motion.div
       ref={ref}
@@ -98,11 +49,11 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
       >
         <img
           src={pastorBrettIcon}
-          alt={t.pastorBrett}
+          alt={chatText.pastorBrett}
           className="w-12 h-12 rounded-full flex-shrink-0"
         />
         <p className="text-sm text-foreground">
-          {t.welcomeMessage}
+          {chatText.welcomeMessage}
         </p>
       </div>
     </motion.div>
@@ -140,6 +91,7 @@ preloadedPastorImage.src = pastorBrettIcon;
 
 export default function PastorChat() {
   const { isNative } = usePlatform();
+  const { t: uiText } = useLanguage();
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const tabParam = urlParams.get("tab");
@@ -186,8 +138,8 @@ export default function PastorChat() {
     };
   }, [bibleTranslation]);
   
-  // Get localized text based on translation
-  const t = getChatLocalizedText(bibleTranslation);
+  // Get localized chat text from centralized i18n
+  const chatText = uiText.chat;
   
   const [currentConversationId, setCurrentConversationId] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -708,7 +660,7 @@ export default function PastorChat() {
                 const isWelcomeMessage = index === 0 && messages.length === 0 && message.role === "assistant";
                 
                 if (isWelcomeMessage) {
-                  return <WelcomeMessage key="welcome-message" translation={bibleTranslation} />;
+                  return <WelcomeMessage key="welcome-message" chatText={chatText} />;
                 }
                 
                 const shouldAnimate = index >= animateFromIndex;
@@ -750,7 +702,7 @@ export default function PastorChat() {
                   <div className="bg-muted rounded-2xl px-4 py-3">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>{t.consultingBigGuy}</span>
+                      <span>{chatText.consultingBigGuy}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -777,10 +729,10 @@ export default function PastorChat() {
             <div className="text-center py-2">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-3">
                 <Lock className="w-5 h-5" />
-                <span>{t.messageLimitReached}</span>
+                <span>{chatText.messageLimitReached}</span>
               </div>
               <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
-                {t.upgrade}
+                {chatText.upgrade}
               </Button>
             </div>
           ) : (
@@ -790,7 +742,7 @@ export default function PastorChat() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder={t.askAnything}
+                placeholder={chatText.askAnything}
                 className="min-h-[60px] resize-none w-full text-foreground"
                 disabled={isStreaming}
                 data-testid="input-message"
@@ -803,7 +755,7 @@ export default function PastorChat() {
                   data-testid="button-send"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  {t.send}
+                  {chatText.send}
                 </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -821,7 +773,7 @@ export default function PastorChat() {
                       data-testid="menu-clear-chat"
                     >
                       <RefreshCw className="w-4 h-4 mr-2" />
-                      {t.startNewChat}
+                      {chatText.startNewChat}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -840,10 +792,10 @@ export default function PastorChat() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <LogIn className="w-5 h-5 text-primary" />
-              {t.signInRequired}
+              {chatText.signInRequired}
             </DialogTitle>
             <DialogDescription>
-              {t.signInToChat}
+              {chatText.signInToChat}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -853,7 +805,7 @@ export default function PastorChat() {
                 data-testid="button-signin-modal"
               >
                 <LogIn className="w-4 h-4 mr-2" />
-                {t.signIn}
+                {chatText.signIn}
               </Button>
             </Link>
           </div>
