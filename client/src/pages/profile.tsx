@@ -37,13 +37,22 @@ import {
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 
-// Check if translation is Amharic-based
-function isAmharicTranslation(translation: string): boolean {
-  return translation === "ETH" || translation === "AMPROT";
+// Inline profileUiText removed - now using centralized translations from translations.ts
+
+// Helper to translate Stripe subscription status
+function getLocalizedStatus(status: string, t: { active: string; canceled: string; pastDue: string; trialing: string; incomplete: string }): string {
+  const statusMap: Record<string, string> = {
+    active: t.active,
+    canceled: t.canceled || "Canceled",
+    past_due: t.pastDue || "Past Due",
+    trialing: t.trialing || "Trial",
+    incomplete: t.incomplete || "Incomplete",
+  };
+  return statusMap[status] || status;
 }
 
-// Localized UI text for Profile page
-const profileUiText = {
+interface SubscriptionStatus {
+  subscription: {
   en: {
     myProfile: "My Profile",
     back: "Back",
@@ -215,7 +224,7 @@ function getProfileLocalizedText(translation: string) {
 }
 
 // Helper to translate Stripe subscription status
-function getLocalizedStatus(status: string, t: ReturnType<typeof getProfileLocalizedText>): string {
+function getLocalizedStatus(status: string, t: { active: string; canceled: string; pastDue: string; trialing: string; incomplete: string }): string {
   const statusMap: Record<string, string> = {
     active: t.active,
     canceled: t.canceled || "Canceled",
@@ -273,29 +282,10 @@ export default function Profile() {
   const { isNative, platform } = usePlatform();
   const { restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
-  const { language: appLanguage, setLanguage: setAppLanguage } = useLanguage();
+  const { language: appLanguage, setLanguage: setAppLanguage, t: translations } = useLanguage();
   
-  // Get translation from localStorage for localization
-  const [translation, setTranslation] = useState(() => {
-    return localStorage.getItem("bibleTranslation") || "KJV";
-  });
-  
-  // Listen for storage changes
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
-      setTranslation(newTranslation);
-    };
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("focus", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("focus", handleStorageChange);
-    };
-  }, []);
-  
-  // Get localized text
-  const t = getProfileLocalizedText(translation);
+  // Get localized text from centralized translations
+  const t = translations.profile;
 
   // Combined API call - fetches subscription and usage in one request
   const { data: profileData, isLoading: isProfileLoading } = useQuery<ProfileData>({
