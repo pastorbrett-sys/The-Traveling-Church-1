@@ -1,0 +1,3831 @@
+{
+  "book_number": 3,
+  "book_name_am": "ኦሪት ዘሌዋውያን",
+  "book_short_name_am": "ዘሌ",
+  "book_name_en": "Leviticus",
+  "book_short_name_en": "Lev",
+  "testament": "old",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Concerning the offerings that are made.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord called unto Moses out of the tabernacle of the congregation, and spake unto him, saying,"
+            },
+            {
+              "verse": 2,
+              "text": "\"Speak unto the children of Israel, saying, If any man of you bring an offering unto the Lord, ye shall bring your offering of the cattle, of the herd, and of the flock.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"And if his offering be of the herd, let him offer a male without blemish; he shall offer it of his own voluntary will at the door of the tabernacle of the congregation before the Lord.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And he shall put his hand upon the head of the burnt offering; and it shall be accepted for him to make atonement for him.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"And he shall kill the bullock before the Lord: and the priests, Aaron's sons, shall bring the blood, and sprinkle the blood round about upon the altar that is by the door of the tabernacle of the congregation.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And he shall flay the burnt offering, and cut it into his pieces.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And the sons of Aaron the priest shall put fire upon the altar, and lay the wood in order upon the fire.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And the priests, Aaron's sons, shall lay the parts, the head, and the fat, in order upon the wood that is on the fire which is upon the altar.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"But his inwards and his legs shall he wash in water: and the priest shall burn all on the altar, to be a burnt sacrifice, an offering made by fire, of a sweet savour unto the Lord.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And if the offering to the Lord be of the flock, male or female, he shall offer it without blemish: if it be a lamb, let him offer it according to the burnt offering, and he shall put his hand upon the head of it, and it shall be accepted for him.\""
+            },
+            {
+              "verse": 11,
+              "text": "And beside the altar, they shall bow down before the Lord; and the sons of Aaron, the priests, shall sprinkle the blood upon the altar round about."
+            },
+            {
+              "verse": 12,
+              "text": "Each shall cut off its own head, and the priests shall sprinkle the blood upon the altar that is upon the wood that is on the fire."
+            },
+            {
+              "verse": 13,
+              "text": "But the innards and the legs shall be washed with water. And the priest shall offer all upon the altar for a burnt offering; it is an offering made by fire, a sweet savor unto the Lord."
+            },
+            {
+              "verse": 14,
+              "text": "\"And the offering that is presented to the Lord, if it be a burnt offering of the flock, he shall offer it either from the sheep or from the goats.\""
+            },
+            {
+              "verse": 15,
+              "text": "And the priest shall present it at the altar; and he shall cut off its head, and it shall be laid upon the altar. And its blood shall be sprinkled round about upon the altar."
+            },
+            {
+              "verse": 16,
+              "text": "And the innards shall be separated from the lambs, and they shall be placed beside the altar on the east side, in the place of the assembly."
+            },
+            {
+              "verse": 17,
+              "text": "From the shoulders, it shall be separated; yet it shall not be divided. And the priest shall offer it upon the altar that is upon the wood that is on the fire; the offering is a sweet savor unto the Lord."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": "The offering of fine flour.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"Any man who offers a sacrifice to the Lord shall present it as a grain offering of fine flour; it shall be mixed with oil, and shall contain frankincense; this is the offering.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"And he shall bring it to the priest, to the sons of Aaron; of the fine flour of the grain offering and of the oil, he shall take a handful, and all the frankincense; and the priest shall burn it as a memorial on the altar, an offering made by fire to the Lord.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"And what remains of the offering shall belong to Aaron and his sons; this is a holy portion from the Lord's offerings.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"When you present the grain offering that has been baked in the oven, it shall be of fine flour mixed with oil, or of unleavened cakes anointed with oil, or of unleavened wafers spread with oil.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"And if your offering is a grain offering baked on a griddle, it shall be of fine flour mixed with oil.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"You shall not allow your grain offering to be leavened; for it is the offering of the Lord.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And if your offering is a grain offering prepared in a pan, it shall be made of fine flour with oil.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And you shall bring your offering which you have made to the Lord; and you shall present it to the priest; and the priest shall offer it on the altar.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And the priest shall take from your offering its memorial portion, and he shall burn it on the altar; it is an offering made by fire, a sweet aroma to the Lord.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And what remains of the offering shall belong to Aaron and his sons; this is a holy portion from the Lord's offerings.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"The grain offering which you shall present to the Lord shall not be leavened; for you shall not offer leaven or honey as a fire offering to the Lord."
+            },
+            {
+              "verse": 12,
+              "text": "\"These ten you shall offer to the Lord; however, you shall not offer them as a good aroma in the sanctuary of the Lord."
+            },
+            {
+              "verse": 13,
+              "text": "\"All the offerings you present shall be seasoned with salt; the covenant of your God shall not be lacking salt from your offering; you shall add salt to all your offerings."
+            },
+            {
+              "verse": 14,
+              "text": "\"And when you bring the first of your grain offerings to the Lord, you shall present it as a fire offering, baked with fire, of fine flour."
+            },
+            {
+              "verse": 15,
+              "text": "\"You shall not leave it unleavened; you shall add oil to it; for it is a grain offering."
+            },
+            {
+              "verse": 16,
+              "text": "\"And the priest shall take from the grain offering, its portion with the oil and all the frankincense; this is the memorial portion for the Lord, a fire offering.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "The offerings of safety.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"The offering that is presented to the Lord as a sacrifice of peace shall be from the flock, whether it be a male or female, without blemish, shall be offered before the Lord.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"And his hand shall be upon the head of the offering; and it shall be killed at the door of the tabernacle of the congregation; and the sons of Aaron, the priests, shall sprinkle the blood upon the altar round about.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"And from the sacrifice of peace offerings for the Lord, they shall offer an offering made by fire; and the fat that covers the inward parts, and all the fat that is upon the inward parts,\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And the two kidneys, and the fat that is upon them, which is by the flanks, and the caul above the liver, with the kidneys, it shall be taken away.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"The sons of Aaron shall offer it upon the altar, upon the wood that is on the fire, which is upon the altar; it is an offering made by fire, of a sweet savor unto the Lord.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And for the peace offerings unto the Lord, the sacrifice that is offered shall be from the flock, whether it be a male or female, without blemish, shall be offered.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"If he offers a lamb for his offering, he shall offer it before the Lord;\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And his hand shall be upon the head of the offering; and it shall be killed at the door of the tabernacle of the congregation; and the priests, the sons of Aaron, shall sprinkle the blood upon the altar round about.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And from the sacrifice of peace offerings for the Lord, he shall offer an offering made by fire; the fat thereof, even all the fat that covereth the inwards, and the fat that is upon the inwards,\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And the two kidneys, and the fat that is upon them, which is by the flanks, and the caul above the liver, with the kidneys, shall he take away.\""
+            },
+            {
+              "verse": 11,
+              "text": "And the priest shall offer it upon the altar; it is a sacrifice of sweet aroma to the Lord, that which is offered with a good intention."
+            },
+            {
+              "verse": 12,
+              "text": "\"And if it be a burnt offering, it shall be presented before the Lord;"
+            },
+            {
+              "verse": 13,
+              "text": "his hand shall rest upon his own head; and the witness shall be the dwelling place of the offering; and the sons of Aaron shall sprinkle the blood round about upon the altar."
+            },
+            {
+              "verse": 14,
+              "text": "And from him shall be offered a burnt offering to the Lord; the fat that covers the entrails, and all the fat that is upon the entrails,"
+            },
+            {
+              "verse": 15,
+              "text": "and the two kidneys, and the fat that is upon them, which is by the flanks, and the caul above the liver, with the kidneys shall he take away."
+            },
+            {
+              "verse": 16,
+              "text": "And the priest shall offer it upon the altar; it is a sacrifice of sweet aroma to the Lord, that which is offered with a good intention. All the fat is for the Lord."
+            },
+            {
+              "verse": 17,
+              "text": "\"And the flesh and the blood shall not be eaten; in all your dwellings it is a perpetual statute for your generations.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": "The offering for the atonement of sin.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Speak unto the children of Israel, saying: If any man shall sin against the Lord, and he be unaware, then the Lord shall not hold him guiltless, if he transgresses any of the commandments."
+            },
+            {
+              "verse": 3,
+              "text": "And if the priest who is anointed shall sin, causing the people to bear guilt, he shall bring for his sin, which he hath committed, a young bullock without blemish unto the Lord for a sin offering."
+            },
+            {
+              "verse": 4,
+              "text": "And he shall bring the bullock unto the door of the tabernacle of the congregation before the Lord; and he shall lay his hand upon the head of the bullock, and the bullock shall be killed before the Lord."
+            },
+            {
+              "verse": 5,
+              "text": "And the priest that is anointed shall take of the blood of the bullock in his hand and bring it unto the tabernacle of the congregation;"
+            },
+            {
+              "verse": 6,
+              "text": "And the priest shall dip his finger in the blood and sprinkle of the blood seven times before the Lord, before the veil of the sanctuary."
+            },
+            {
+              "verse": 7,
+              "text": "And the priest shall put some of the blood upon the horns of the altar of sweet incense before the Lord, which is in the tabernacle of the congregation; and shall pour all the blood of the bullock at the bottom of the altar of the burnt offering, which is at the door of the tabernacle of the congregation."
+            },
+            {
+              "verse": 8,
+              "text": "And he shall take away all the fat of the bullock for the sin offering; the fat that covereth the inwards, and all the fat that is upon the inwards,"
+            },
+            {
+              "verse": 9,
+              "text": "And the two kidneys, and the fat that is upon them, which is by the flanks, and the caul above the liver, with the kidneys, it shall he take away."
+            },
+            {
+              "verse": 10,
+              "text": "And the priest shall burn them upon the altar for the burnt offering, as it is appointed; and the priest shall offer it for the sin offering upon the altar, as it is commanded."
+            },
+            {
+              "verse": 11,
+              "text": "The offering of the fat, the flesh thereof, and all its parts, even his own self, and his legs, and the belly, and the fat;"
+            },
+            {
+              "verse": 12,
+              "text": "And all the fat shall be taken from the dwelling and brought forth unto the outside, to the place where it shall be burned, to the clean place; and upon the wood it shall be consumed by fire; it shall be burnt in the place where it shall be offered."
+            },
+            {
+              "verse": 13,
+              "text": "\"If the whole congregation of Israel sins unintentionally, and the matter is hidden from the eyes of the congregation, and they have done any one of the commandments of the Lord concerning things which ought not to be done, and are guilty;"
+            },
+            {
+              "verse": 14,
+              "text": "After this, if their sin is made known, and they come to repentance, the congregation shall offer a sin offering and a burnt offering for the sin; and they shall bring it before the sanctuary of the witness."
+            },
+            {
+              "verse": 15,
+              "text": "And the elders of the congregation shall place their hands upon the head of the sin offering before the Lord, and the sin offering shall be accepted before the Lord."
+            },
+            {
+              "verse": 16,
+              "text": "The priest who is anointed shall bring the blood of the sin offering into the sanctuary of the witness;"
+            },
+            {
+              "verse": 17,
+              "text": "And the priest shall dip his finger in the blood and sprinkle it seven times before the Lord, before the veil of the sanctuary."
+            },
+            {
+              "verse": 18,
+              "text": "In the sanctuary of the witness, before the Lord, upon the altar of incense, he shall place the blood upon the horns of the altar, and all the blood shall be poured out at the base of the altar of the witness."
+            },
+            {
+              "verse": 19,
+              "text": "And all the fat shall be taken from it and offered upon the altar."
+            },
+            {
+              "verse": 20,
+              "text": "Thus shall he do with the sin offering; as he has done with the sin offering, so shall he do with this; and the priest shall make atonement for them, and their sin shall be forgiven them."
+            },
+            {
+              "verse": 21,
+              "text": "And they shall carry all that is offered outside the camp; and they shall burn the sin offering as they burn the burnt offering, for it is the sin offering of the congregation."
+            },
+            {
+              "verse": 22,
+              "text": "\"And if the priest shall sin, and know it not, the Lord God shall say: If he shall neglect the commandment that is laid upon him, and if he shall transgress in this manner,"
+            },
+            {
+              "verse": 23,
+              "text": "the sin that he has committed shall be known, and if it is to be atoned for, he shall bring a sin offering that is without blemish for his atonement."
+            },
+            {
+              "verse": 24,
+              "text": "And he shall lay his hand upon the head of the sin offering; and the offering that is to be sacrificed shall be presented in the place where the Lord is; for it is the sin offering."
+            },
+            {
+              "verse": 25,
+              "text": "And the priest shall take the blood of the sin offering in his hand and shall sprinkle it upon the altar of the sin offering that is to be made; and he shall pour all the blood at the base of the altar of the sin offering."
+            },
+            {
+              "verse": 26,
+              "text": "And all the fat shall be as the fat of the peace offering, and it shall be placed upon the altar. And the priest shall make atonement for the sin, and the sin shall be forgiven."
+            },
+            {
+              "verse": 27,
+              "text": "\"And if one man of the people of the land shall sin, and know it not, and the Lord shall say: If he shall neglect the commandment that is laid upon him, and if he shall transgress in this manner,"
+            },
+            {
+              "verse": 28,
+              "text": "for his sin that he has committed shall be known, and if it is to be atoned for, he shall bring a sin offering that is without blemish for his atonement."
+            },
+            {
+              "verse": 29,
+              "text": "And he shall lay his hand upon the head of the sin offering; and for the offering that is to be sacrificed, the sin offering shall be presented in the place where the sin offering is to be made."
+            },
+            {
+              "verse": 30,
+              "text": "And the priest shall take the blood from it in his hand and shall sprinkle it upon the altar of the sin offering that is to be made; and he shall pour all the blood at the base of the altar of the sin offering."
+            },
+            {
+              "verse": 31,
+              "text": "All the fat shall be taken away from the peace offerings, as it is to be removed; all the fat shall be offered. And the priest shall make it a good offering to the Lord upon the altar; and the priest shall make atonement for him; and the sin shall be forgiven him."
+            },
+            {
+              "verse": 32,
+              "text": "\"If a goat is offered as a sin offering, it shall bring forth a creature that has no blemish.\""
+            },
+            {
+              "verse": 33,
+              "text": "And he shall put his hand upon the head of the sin offering; and the sin offering shall be at the place where it is slaughtered."
+            },
+            {
+              "verse": 34,
+              "text": "And the priest shall take the blood of the sin offering in his hand and sprinkle it upon the altar of the sin offering on the day of atonement; and all the blood shall be poured out beneath the altar."
+            },
+            {
+              "verse": 35,
+              "text": "All the fat shall be taken from the peace offerings, as it is to be removed from the goat; and the priest shall place it upon the altar of the Lord, upon the fire of the burnt offering. And the priest shall make atonement for the sin he has committed; and the sin shall be forgiven him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "The reasons for the offering of the sacrifice of sin.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"If a man sins, and hears the word that he swears, and becomes a witness, he shall not bear false witness, nor shall he speak as if it were so, or if he sees it as if it were so, he shall not speak; for he shall bear his iniquity.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"If there be a man who is unclean, whether he has touched a dead body, or a carcass that has been torn, or any creeping thing that is unclean, and he shall be among them;\""
+            },
+            {
+              "verse": 3,
+              "text": "\"Or if a man who is unclean touches an unclean thing without knowing it, and in any manner he becomes unclean, when the matter is known, it shall be counted as iniquity.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"If a man speaks evil or good without thinking, and if he speaks with his mouth without considering, even if it be from this or that matter, when it is known, it shall be counted as iniquity.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"If any of these matters be counted as iniquity, he shall bear the iniquity of his work.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"Concerning the iniquity of his work, if there be no good animal for sacrifice, he shall bring a goat or a ram; and the priest shall make atonement for his iniquity, and the iniquity shall be forgiven him.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"Concerning the iniquity of his work, if there be no money in his hand, he shall bring two turtledoves or two young pigeons, one for a sin offering and the other for a burnt offering, which he shall offer unto the Lord. And he shall bring them to the priest;\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And the priest shall offer the sin offering that is his, and he shall wave his own hand before the altar; but he shall not be separated.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And the blood of the sin offering shall be poured out upon the wall of the altar; and the remainder of the blood shall be poured out at the base of the altar; for it is the sin offering.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"According to the ordinance, he shall prepare the second for the burnt offering. And the priest shall make atonement for the iniquity of his work; and the iniquity shall be forgiven him.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"If two turtledoves or two young pigeons are brought for the offering, and there is no money in his hand for the sin offering, he shall bring a tenth of an ephah of fine flour for the sin offering; it is a sin offering, and oil shall not be put upon it, nor shall frankincense be added to it.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"And he shall bring it to the priest; and the priest shall make atonement for him concerning his sin, and he shall bring it as a full offering to the Lord upon the altar, and he shall add it to the burnt offering that is consumed by fire; for it is a sin offering.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"And the priest shall make atonement for him concerning his sin, and his sin shall be forgiven him. And the remainder shall be as a grain offering for the priest.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the offerings for sin.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 15,
+              "text": "\"If a man sins unintentionally, and does not know it, he shall bring as his offering to the Lord a ram without blemish from the flock, according to your estimation in silver by shekels, for a sin offering.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"He shall make restitution for the sin he has committed in the holy thing, and he shall add a fifth to it and give it to the priest. And the priest shall make atonement for him with the ram of the guilt offering, and the sin shall be forgiven him.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"If a person sins and does not know it, and the Lord says: 'Do not transgress any of these commandments,' if he is made aware of it, he shall be guilty for his sin.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"The ram without blemish, which is estimated in silver, shall be brought to the priest as a guilt offering; and the priest shall make atonement for him, for the error he has committed unknowingly, and the sin shall be forgiven him.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"He has become guilty before the Lord.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"If a man commits sin, and transgresses the commandment of the Lord, and he takes the offering of his neighbor, or if he oppresses him, or if he commits violence against his neighbor,"
+            },
+            {
+              "verse": 3,
+              "text": "or if he finds that which was lost, and swears falsely concerning it, in any of these things wherein he may sin,"
+            },
+            {
+              "verse": 4,
+              "text": "if he be found guilty and afterward he repent, he shall restore that which he took away, or that which he obtained by oppression, or that which was delivered unto him for safekeeping, or that which he found,"
+            },
+            {
+              "verse": 5,
+              "text": "or if he returns that which he falsely claimed, he shall restore it in full; and he shall add a fifth part thereto, and give it unto him to whom it belongs on the day he offers his trespass offering."
+            },
+            {
+              "verse": 6,
+              "text": "As for the trespass offering, it shall be without blemish, according to the value estimated for the trespass, and it shall be brought unto the Lord."
+            },
+            {
+              "verse": 7,
+              "text": "And the priest shall make atonement for him before the Lord; therefore, he shall be forgiven for all that he hath done in trespassing.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the law of the sacrifice of atonement.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 9,
+              "text": "\"Speak unto Aaron and his sons, saying: This is the law of the burnt offering; it is the burnt offering that shall remain upon the altar all night until the morning, and the fire of the altar shall be kept burning on it.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And the priest's garment shall be made of linen; the linen breeches shall be upon his flesh, and he shall be girded with a linen girdle, and with a linen mitre shall he be attired; these are holy garments; and he shall wash his flesh in water, and so put them on.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"And he shall put on his garments, and he shall take the other garments, and carry forth the ashes without the camp unto a clean place.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"The fire shall ever be burning upon the altar; it shall never go out; and the priest shall burn wood on it every morning, and lay the burnt offering in order upon it; and he shall burn thereon the fat of the peace offerings.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"The fire shall ever be burning upon the altar; it shall never go out.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the offering of the first fruits.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "\"This is the law of the offering which the sons of Aaron shall present before the Lord at the altar, face to face.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"And the priest shall take from the grain offering of the fine flour of wheat mixed with oil, a handful of it, and all the frankincense that is upon the grain offering; and he shall burn it on the altar as a memorial, an offering made by fire, a sweet aroma to the Lord.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"And from it, Aaron and his sons shall eat; it shall be eaten in a holy place, for it is most holy, in the court of the tabernacle of meeting shall they eat it.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"It shall not be baked with leaven. The offering of the Lord made by fire is their portion; for it is most holy, like the sin offering and the trespass offering.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"Every male among the priests shall eat it; it is a statute forever throughout your generations concerning the offerings of the Lord made by fire. All that touches the offerings shall be holy.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"And the Lord spoke to Moses, saying,\""
+            },
+            {
+              "verse": 20,
+              "text": "\"This is the offering which you shall present to the Lord from among the sons of Aaron and from his sons, the grain offering of fine flour, a tenth part of an ephah, mixed with oil, in the morning; and in the evening, it shall be offered continually.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"They shall offer it with oil upon the altar; it is an offering made by fire, a sweet aroma to the Lord.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"And the priest who is anointed from among his sons shall offer it; it is a perpetual statute throughout your generations.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"And every grain offering which the priests shall offer shall be entirely consumed; none of it shall be eaten.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the offering for sin.",
+          "verses": [
+            {
+              "verse": 24,
+              "text": "እግዚአብሔርም ሙሴን እንዲህ ሲል ተናገረው፦"
+            },
+            {
+              "verse": 25,
+              "text": "“አሮንንና ልጆቹን እንዲህ ብለህ ንገራቸው፦ የኀጢአት መሥዋዕት ሕግ ይህ ነው፤ የሚቃጠል መሥዋዕት በሚታረድበት ስፍራ የኀጢአቱ መሥዋዕት በእግዚአብሔር ፊት ይታረዳል፤ እርሱም ቅዱሰ ቅዱሳን ነው።"
+            },
+            {
+              "verse": 26,
+              "text": "የሚሠዋው ካህን ይበላዋል፤ በምስክሩ ድንኳን ዙሪያ በአለው አደባባይ በተቀደሰ ስፍራ ይበሉታል።"
+            },
+            {
+              "verse": 27,
+              "text": "ሥጋውን የሚነካ ሁሉ ቅዱስ ይሆናል፤ ማናቸውም ልብስ ደም ቢረጭበት የተረጨበትን በተቀደሰ ስፍራ ያጥቡታል።"
+            },
+            {
+              "verse": 28,
+              "text": "የሚቀቀልበትን ሸክላ ይሰብሩታል፤ በናስም ዕቃ ቢቀቀል ይፈገፍጉታል፤ በውኃም ያጥቡታል።"
+            },
+            {
+              "verse": 29,
+              "text": "ከካህናት ወገን የሆነ ወንድ ሁሉ ከእርሱ ይበላል፤ እርሱም ቅዱሰ ቅዱሳን ነው።"
+            },
+            {
+              "verse": 30,
+              "text": "ነገር ግን በመቅደሱ ውስጥ ለማስተስረያ ይሆን ዘንድ ከደሙ ወደ ምስክሩ ድንኳን የሚገባው የኀጢአት መሥዋዕት ሁሉ አይበላም፤ በእሳት ይቃጠላል።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": "Concerning the law of sin offerings.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"This is the law of the sacrifice for sin; it is holy unto the holy ones."
+            },
+            {
+              "verse": 2,
+              "text": "The sacrifice that is to be offered shall be offered in the place where the sin offering is slaughtered; its blood shall be sprinkled round about upon the altar."
+            },
+            {
+              "verse": 3,
+              "text": "And all the fat, and all that is the fat of the inward parts, and the fat that covereth the inwards, which is upon the liver;"
+            },
+            {
+              "verse": 4,
+              "text": "And the two kidneys, and the fat that is upon them, which is by the flanks, and the caul above the liver, shall the priest separate."
+            },
+            {
+              "verse": 5,
+              "text": "And the priest shall burn it upon the altar as an offering made by fire unto the Lord; it is the sin offering."
+            },
+            {
+              "verse": 6,
+              "text": "Every male of the priest's family shall eat thereof; in a holy place shall they eat it; it is most holy."
+            },
+            {
+              "verse": 7,
+              "text": "As the sin offering is, so is the trespass offering; there is one law for them; the priest that maketh atonement therewith shall have it."
+            },
+            {
+              "verse": 8,
+              "text": "And the priest that offereth the man's sin offering shall have the offering that is to be offered for his sin; it shall be for that priest."
+            },
+            {
+              "verse": 9,
+              "text": "Every oblation that is baked in the oven, and all that is dressed in the frying pan, or in the pan, shall be the priest's that offereth it."
+            },
+            {
+              "verse": 10,
+              "text": "And every oblation, whether it be mixed with oil, or dry, shall be for all the sons of Aaron, to one as well as another shall it be."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Law of Safety and Protection",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "\"This is the law of the peace offering which shall be presented to the Lord.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"If he offers it for thanksgiving, he shall present with the sacrifice of thanksgiving unleavened cakes mixed with oil, unleavened wafers anointed with oil, and cakes of fine flour well mixed with oil.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"And when he offers the peace offering for thanksgiving, he shall present with it an offering of leavened bread.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"From all the sacrifices of the Lord, he shall offer one of them as his portion. And it shall be the blood of the peace offering that is to be sprinkled by the priest.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"The flesh of the peace offering for thanksgiving shall be eaten on the day it is offered; none of it shall be left until morning.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"If the sacrifice is for a vow or a voluntary offering, it shall be eaten on the day it is offered; and what remains of it shall be eaten on the next day.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"But the flesh of the sacrifice shall be burned with fire on the third day.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"If any of the flesh of the peace offering is eaten on the third day, it shall not be accepted; it shall not be imputed to him who offered it, but it shall be an abomination; and the person who eats of it shall bear his iniquity.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"You shall not eat any fat that is torn by beasts in the field; you shall throw it to the dogs. But every clean person shall eat of the flesh.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"If a man eats of the flesh of the peace offering that belongs to the Lord, while he is unclean, that person shall be cut off from his people.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"From every unclean thing, or from the person who is defiled, or from any beast that is not clean, if one eats the flesh of the sacrifice of the Lord, which is offered for the safety of the people, that person shall be cut off from his people.\""
+            }
+          ]
+        },
+        {
+          "title": "For it is not fitting to eat flesh and blood.",
+          "verses": [
+            {
+              "verse": 22,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 23,
+              "text": "\"Thus shalt thou say unto the children of Israel: Ye shall not eat any fat of oxen, or of sheep, or of goats."
+            },
+            {
+              "verse": 24,
+              "text": "The fat of the dead and the flesh of that which hath been torn by beasts shall ye employ for any other purpose; but ye shall not eat thereof."
+            },
+            {
+              "verse": 25,
+              "text": "Every soul that eateth the fat of the beast which is offered to the Lord shall be cut off from his people."
+            },
+            {
+              "verse": 26,
+              "text": "In all your dwellings, whether of fowl or of beast, ye shall not eat the blood."
+            },
+            {
+              "verse": 27,
+              "text": "Every soul that eateth blood, that soul shall be cut off from his people.\""
+            }
+          ]
+        },
+        {
+          "title": "The opportunity of the priests is a refuge from their safety and from the sacrifices that are offered.",
+          "verses": [
+            {
+              "verse": 28,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 29,
+              "text": "\"Speak unto the children of Israel, saying: 'He who offers a sacrifice of peace offerings unto the Lord shall bring his offering of peace offerings unto the Lord from the sacrifice of his peace offerings.'\""
+            },
+            {
+              "verse": 30,
+              "text": "\"His hands shall bring the fire offerings unto the Lord; and the fat thereof shall be offered before the Lord, along with the breast of the offering, which shall be brought before the Lord.\""
+            },
+            {
+              "verse": 31,
+              "text": "\"And the priest shall place the fat upon the altar; and the breast shall be for Aaron and his sons.\""
+            },
+            {
+              "verse": 32,
+              "text": "\"From your peace offerings, you shall give the right thigh to the priest as a contribution.\""
+            },
+            {
+              "verse": 33,
+              "text": "\"And for Aaron's sons, the blood and the fat of the peace offerings shall be given to him as a portion of the right thigh.\""
+            },
+            {
+              "verse": 34,
+              "text": "\"The breast and the right thigh from the children of Israel's peace offerings I have taken; and it shall be a perpetual statute for Aaron and his sons from the children of Israel.\""
+            },
+            {
+              "verse": 35,
+              "text": "\"This is the law concerning the fire offerings of Aaron and his sons, which they shall offer unto the Lord on the day when they are anointed.\""
+            },
+            {
+              "verse": 36,
+              "text": "\"On the day when they are anointed, the children of Israel shall give unto them as a perpetual statute, as the Lord has commanded.\""
+            },
+            {
+              "verse": 37,
+              "text": "\"This is the law of the offerings, of the sin offerings and the guilt offerings, of the offerings of holiness and of peace offerings.\""
+            },
+            {
+              "verse": 38,
+              "text": "The Lord commanded that they present their offerings before the Lord in the wilderness of Sinai, as He instructed Moses on the mountain of Sinai during the time He gave commandments to the children of Israel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": "Concerning Aaron and his sons, the priesthood is established.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እግዚአብሔርም ሙሴን እንዲህ ብሎ ተናገረው፦"
+            },
+            {
+              "verse": 2,
+              "text": "“አሮንን፥ ከእርሱም ጋር ልጆቹን፥ ልብሱንም፥ የቅብዐቱንም ዘይት፥ ለኀጢአት መሥዋዕትም የሆነውን ወይፈን፥ ሁለቱንም አውራ በጎች፥ የቂጣውንም እንጀራ መሶብ ውሰድ፤"
+            },
+            {
+              "verse": 3,
+              "text": "ማኅበሩንም ሁሉ ወደ ምስክሩ ድንኳን ደጃፍ ሰብስባቸው።”"
+            },
+            {
+              "verse": 4,
+              "text": "ሙሴም እግዚአብሔር እንዳዘዘው አደረገ፤ ማኅበሩንም ሁሉ ወደ ምስክሩ ድንኳን ደጃፍ ሰበሰበ።"
+            },
+            {
+              "verse": 5,
+              "text": "ሙሴም ማኅበሩን፥ “እግዚአብሔር ታደርጉ ዘንድ ያዘዘው ነገር ይህ ነው” አላቸው።"
+            },
+            {
+              "verse": 6,
+              "text": "ሙሴም አሮንንና ልጆቹን አቀረበ፤ በውኃም አጠባቸው።"
+            },
+            {
+              "verse": 7,
+              "text": "እጀ ጠባብም አለበሰው፤ በመታጠቂያም አስታጠቀው፤ የበፍታ ቀሚስም አለበሰው፤ ልብሰ መትከፍም ደረበለት፤ በልብሰ መትከፉም አሠራር ላይ በብልሃት በተጠለፈ ቋድ አስታጠቀውና በእርሱ ላይ አሰረው።"
+            },
+            {
+              "verse": 8,
+              "text": "ልብሰ እንግድዓውንም በእርሱ ላይ አደረገ፤ በልብሰ እንግድዓውም ላይ የምልክትና የእውነት መገለጫዎችን አኖረበት።"
+            },
+            {
+              "verse": 9,
+              "text": "እግዚአብሔርም ሙሴን እንዳዘዘው በራሱ ላይ አክሊል አደረገለት፤ በአክሊሉም ላይ በፊቱ በኩል የተቀደሰውን የወርቅ መርገፍ አደረገ።"
+            },
+            {
+              "verse": 10,
+              "text": "ሙሴም የቅብዐቱን ዘይት ወሰደ፤ ከእርሱም በመሠዊያው ላይ ሰባት ጊዜ ረጨ፤"
+            },
+            {
+              "verse": 11,
+              "text": "And they shall sanctify it, and the tabernacle and all its vessels, and the altar of the burnt offering, and the place of its standing; and they shall sanctify the sanctuary and all its vessels."
+            },
+            {
+              "verse": 12,
+              "text": "And he poured the anointing oil upon the head of Aaron, and he anointed him, and sanctified him."
+            },
+            {
+              "verse": 13,
+              "text": "And the Lord commanded Moses, and Moses brought forth the sons of Aaron; and he put upon them the tunics, and girded them with sashes, and put the hats upon them; and he consecrated them."
+            },
+            {
+              "verse": 14,
+              "text": "And he offered the sin offering and the ram of the atonement; and Aaron and his sons laid their hands upon the heads of the sin offering and the ram of the atonement."
+            },
+            {
+              "verse": 15,
+              "text": "And he took the blood, and Moses sprinkled it round about upon the altar, and he purified the altar; and he poured the blood at the base of the altar, and sanctified it, to make atonement for it."
+            },
+            {
+              "verse": 16,
+              "text": "And Moses took all the fat that was upon the inwards, and the lobe of the liver, and the two kidneys, and their fat, and he burned them upon the altar."
+            },
+            {
+              "verse": 17,
+              "text": "And the Lord commanded Moses concerning the wave offering, and the breast, and the flesh, and they burned it with fire outside the camp."
+            },
+            {
+              "verse": 18,
+              "text": "And Moses brought forth the bullock for the sin offering; and Aaron and his sons laid their hands upon the head of the bullock."
+            },
+            {
+              "verse": 19,
+              "text": "And Moses brought forth the ram; and he sprinkled its blood round about upon the altar."
+            },
+            {
+              "verse": 20,
+              "text": "And he cut the ram into pieces; and Moses burned the head, and the pieces, and the fat."
+            },
+            {
+              "verse": 21,
+              "text": "And he washed the entrails and the legs in water; and Moses put the blood upon the altar all around, and this was a sweet savor unto the Lord, as the Lord had commanded Moses, for it was a burnt offering unto the Lord."
+            },
+            {
+              "verse": 22,
+              "text": "And Moses presented the second ram, which is for consecration; and Aaron and his sons laid their hands upon the head of the ram."
+            },
+            {
+              "verse": 23,
+              "text": "And they laid hold of him. And Moses took of the blood and put it upon the right ear of Aaron, and upon the right hand, and upon the right foot."
+            },
+            {
+              "verse": 24,
+              "text": "And he presented the sons of Aaron; and Moses put the blood upon the right ear of them, and upon the right hand, and upon the right foot; and he sprinkled the blood around the altar."
+            },
+            {
+              "verse": 25,
+              "text": "And he took the fat and the kidneys, and all the fat that was upon the entrails, and the two kidneys, and their fat, and the right shoulder."
+            },
+            {
+              "verse": 26,
+              "text": "And from before the Lord, he took one unleavened cake, and one unleavened wafer, and one cake of oil, and placed them upon the fat and upon the right shoulder."
+            },
+            {
+              "verse": 27,
+              "text": "And he did all this upon the hands of Aaron and his sons; and he offered the burnt offerings before the Lord."
+            },
+            {
+              "verse": 28,
+              "text": "And Moses took the blood from their hands and placed it upon the altar of the burnt offering. It was a sweet savor, a burnt offering for the Lord."
+            },
+            {
+              "verse": 29,
+              "text": "And Moses took the ram of consecration and presented it before the Lord; and the Lord commanded Moses, and this became a portion of the consecration of Moses."
+            },
+            {
+              "verse": 30,
+              "text": "And Moses took the anointing oil and sprinkled it upon the altar, and upon Aaron and his garments, and upon his sons and their garments; thus he consecrated Aaron and his garments, and his sons and their garments."
+            },
+            {
+              "verse": 31,
+              "text": "And Moses said unto Aaron and his sons, “The flesh shall be taken and placed at the entrance of the tent of meeting, in the holy place, and Aaron and his sons shall eat it, as the Lord hath commanded me, and they shall eat the bread that is in the holy place.”"
+            },
+            {
+              "verse": 32,
+              "text": "And that which remaineth of the flesh and of the bread, ye shall burn with fire."
+            },
+            {
+              "verse": 33,
+              "text": "For seven days shall ye be consecrated, and from the day that your priesthood is fulfilled, ye shall not go out from the entrance of the tent of meeting for seven days."
+            },
+            {
+              "verse": 34,
+              "text": "On this day, as it hath been done, it shall be done for you for your consecration; thus hath the Lord commanded."
+            },
+            {
+              "verse": 35,
+              "text": "The Lord hath so commanded me, that ye may not die; therefore, at the entrance of the tent of meeting, ye shall abide for seven days, both by night and by day; keep the commandments of the Lord."
+            },
+            {
+              "verse": 36,
+              "text": "And Aaron and his sons did all that the Lord commanded Moses."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "sections": [
+        {
+          "title": "Aaron's Offering Concerning the Presentation",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "በስምንተኛውም ቀን እንዲህ ሆነ፤ ሙሴ አሮንንና ልጆቹን፥ የእስራኤልንም ሽማግሌዎች ጠራ።"
+            },
+            {
+              "verse": 2,
+              "text": "ሙሴም አሮንን አለው፥ “ስለ ኀጢአት መሥዋዕት ከመንጋው እንቦሳውን፥ ስለሚቃጠልም መሥዋዕት አውራውን በግ ወስደህ በእግዚአብሔር ፊት አቅርባቸው።"
+            },
+            {
+              "verse": 3,
+              "text": "የእስራኤልንም ልጆች፦ ለኀጢአት መሥዋዕት አውራ ፍየልን፥ ለሚቃጠልም መሥዋዕት ነውር የሌለባቸውን አንድ ዓመት የሆናቸውን ጥጃና ጠቦትን፥"
+            },
+            {
+              "verse": 4,
+              "text": "ለደኅንነትም መሥዋዕት በሬንና አውራ በግን፥ በዘይትም የተለወሰ የእህልን ቍርባን በእግዚአብሔር ፊት ይሠዉ ዘንድ ውሰዱ፤ ዛሬ እግዚአብሔር ይገለጥላችኋልና ብለህ ንገራቸው።”"
+            },
+            {
+              "verse": 5,
+              "text": "ሙሴም ያዘዛቸውን ወደ ምስክሩ ድንኳን ደጃፍ አመጡ፤ ማኅበሩም ሁሉ ቀርበው በእግዚአብሔር ፊት ቆሙ።"
+            },
+            {
+              "verse": 6,
+              "text": "ሙሴም፥ “ታደርጉት ዘንድ እግዚአብሔር ያዘዛችሁ ቃል ይህ ነው፤ የእግዚአብሔርም ክብር ይገለጥላችኋል” አለ።"
+            },
+            {
+              "verse": 7,
+              "text": "ሙሴም አሮንን፥ “ወደ መሠዊያው ቀርበህ የኀጢአትህን መሥዋዕትና የሚቃጠለውን መሥዋዕትህን ሠዋ፤ ለራስህና ለወገንህ አስተስርይ፤ እግዚአብሔርም እንዳዘዘ የሕዝቡን ቍርባን አቅርብ፤ አስተስርይላቸውም” አለው።"
+            },
+            {
+              "verse": 8,
+              "text": "አሮንም ወደ መሠዊያው ቀርቦ ስለ ራሱ ኀጢአት መሥዋዕት የሆነውን ጥጃ አረደ።"
+            },
+            {
+              "verse": 9,
+              "text": "የአሮንም ልጆች ደሙን አቀረቡለት፤ ጣቱንም በደሙ ውስጥ ነክሮ የመሠዊያውን ቀንዶች ቀባ፤ ደሙንም ከመሠዊያው በታች አፈሰሰው።"
+            },
+            {
+              "verse": 10,
+              "text": "እግዚአብሔርም ሙሴን እንዳዘዘው ከኀጢአቱ መሥዋዕት ስቡንና ኵላሊቶቹን፥ የጉበቱንም መረብ በመሠዊያው ላይ ጨመረ።"
+            },
+            {
+              "verse": 11,
+              "text": "They burned the flesh and the offering outside the camp with fire."
+            },
+            {
+              "verse": 12,
+              "text": "And he took the sin offering, and the sons of Aaron brought forth his blood; and he sprinkled it around upon the altar."
+            },
+            {
+              "verse": 13,
+              "text": "He took the sin offering according to its portion, and he brought forth his own blood; and he sprinkled it upon the altar."
+            },
+            {
+              "verse": 14,
+              "text": "And he washed the entrails and the legs in water; and he sprinkled them upon the sin offering upon the altar."
+            },
+            {
+              "verse": 15,
+              "text": "After this, he presented the people's offering; for the sin offering of the people, he took the goat and brought it forth; and he set it free, as was done with the first."
+            },
+            {
+              "verse": 16,
+              "text": "And he presented the sin offering; as the law commanded, so he did."
+            },
+            {
+              "verse": 17,
+              "text": "And he presented the sin offering of the grain; and from it, he took a full handful and brought it forth, and he placed it upon the altar beside the sin offering."
+            },
+            {
+              "verse": 18,
+              "text": "For the people's offering of safety, he brought the bull and the ram; and the sons of Aaron brought forth his blood; and he sprinkled it around upon the altar."
+            },
+            {
+              "verse": 19,
+              "text": "And he took the fat of the bull and the ram, and the fat that covers the entrails, and both kidneys, and the fat that is upon them, and the lobe of the liver, he brought forth."
+            },
+            {
+              "verse": 20,
+              "text": "And he placed the fat upon the fire upon the altar; and he sprinkled the fat upon the altar."
+            },
+            {
+              "verse": 21,
+              "text": "And the Lord commanded Moses, saying, \"Aaron shall bring forth his offerings and his right hand before the Lord.\""
+            },
+            {
+              "verse": 22,
+              "text": "And Aaron lifted his hands toward the people and blessed them; and he offered the sin offering, and the offering for the people’s transgressions, and the offering for their safety, and he descended after making the offerings."
+            },
+            {
+              "verse": 23,
+              "text": "And Moses and Aaron entered into the tent of meeting; and they came out and blessed the people; and the glory of the Lord was revealed to all the people."
+            },
+            {
+              "verse": 24,
+              "text": "And fire came forth from before the Lord and consumed the burnt offering that was upon the altar; and all the people saw it and shouted, and fell on their faces."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "sections": [
+        {
+          "title": "Concerning Nadab and Abihu, in their transgression.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the sons of Aaron, Nadab and Abihu, each took his censer and put fire in it, and offered strange fire before the Lord, which He had not commanded them."
+            },
+            {
+              "verse": 2,
+              "text": "And there went out fire from the Lord and devoured them; and they died before the Lord."
+            },
+            {
+              "verse": 3,
+              "text": "And Moses said unto Aaron, \"This is it that the Lord spake, saying, I will be sanctified in them that come nigh me, and before all the people I will be glorified.\" And Aaron held his peace."
+            },
+            {
+              "verse": 4,
+              "text": "And Moses called unto Mishael and Elzaphan, the sons of Uzziel, the uncle of Aaron, and said unto them, \"Come near, carry your brethren from before the sanctuary out of the camp.\""
+            },
+            {
+              "verse": 5,
+              "text": "And they went near, and carried them in their coats out of the camp; as Moses had said."
+            },
+            {
+              "verse": 6,
+              "text": "And Moses said unto Aaron, and unto Eleazar and Ithamar, his sons, \"Uncover not your heads, neither rend your clothes; lest ye die, and lest wrath come upon all the people: but let your brethren, the whole house of Israel, bewail the burning which the Lord hath kindled.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And ye shall not go out from the door of the tabernacle of the congregation, lest ye die: for the anointing oil of the Lord is upon you.\" And they did according to the word of Moses."
+            }
+          ]
+        },
+        {
+          "title": "Laws that were given for Aaron and his sons.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "And the Lord spoke unto Aaron, saying:"
+            },
+            {
+              "verse": 9,
+              "text": "“That ye die not, when ye go into the sanctuary, or when ye come near unto the altar, thou and thy sons, ye shall not drink wine or strong drink; this shall be a statute forever throughout your generations.”"
+            },
+            {
+              "verse": 10,
+              "text": "“And ye shall make a distinction between the holy and the unholy, and between the clean and the unclean.”"
+            },
+            {
+              "verse": 11,
+              "text": "And the Lord spake unto Moses, saying, “All the statutes which I have spoken unto thee shall be taught unto the children of Israel.”"
+            },
+            {
+              "verse": 12,
+              "text": "And Moses said unto Aaron, and unto his remaining sons, Eleazar and Ithamar, “Ye are holy priests; therefore, take the remainder of the offerings for the Lord from the fire, and bring the grain offering that remains to the altar.”"
+            },
+            {
+              "verse": 13,
+              "text": "And the Lord hath commanded me, saying, “This is an ordinance for thee and for thy sons, to be eaten in the holy place.”"
+            },
+            {
+              "verse": 14,
+              "text": "These are given as statutes for thee and for thy sons from the offerings of the children of Israel, that ye may eat in a holy place, separated from the common, with thy household."
+            },
+            {
+              "verse": 15,
+              "text": "The remainder of the offerings and the grain shall be brought before the Lord, along with the burnt offering; as the Lord hath commanded, it shall be an everlasting statute for thee and for thy sons, both for men and women.”"
+            },
+            {
+              "verse": 16,
+              "text": "And Moses sought greatly for the sin offering; and when he sought, behold, it was burnt; and Moses was angry with the remaining sons of Aaron, Eleazar and Ithamar, and said unto them:"
+            },
+            {
+              "verse": 17,
+              "text": "“Ye are holy priests; why have ye not borne the iniquity of the people, and why have ye not made atonement for them before the Lord? This is what ye have been given, so why have ye not eaten the sin offering in the holy place?”"
+            },
+            {
+              "verse": 18,
+              "text": "Behold, you have not brought your blood into the sanctuary; I have commanded you that you should eat in the holy place."
+            },
+            {
+              "verse": 19,
+              "text": "And Aaron spoke unto Moses, saying, \"Behold, this day they bring their sin offerings, and the offerings that are to be consumed before the Lord at the appointed time; this has been given to me; and today, to eat the sin offerings before the Lord is not good.\""
+            },
+            {
+              "verse": 20,
+              "text": "And Moses heard, and it was pleasing to him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "sections": [
+        {
+          "title": "Concerning the creatures that are eaten and those that are not eaten.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እግዚአብሔርም ሙሴንና አሮንን እንዲህ ብሎ ተናገራቸው፦"
+            },
+            {
+              "verse": 2,
+              "text": "“ለእስራኤል ልጆች እንዲህ ብላችሁ ንገሩአቸው፦ በምድር ካሉት እንስሳት ሁሉ የምትበሉአቸው እንስሳት እነዚህ ናቸው።"
+            },
+            {
+              "verse": 3,
+              "text": "የተሰነጠቀ ሰኰና ያለውንና የሚያመሰኳውን እንስሳ ሁሉ ብሉ።"
+            },
+            {
+              "verse": 4,
+              "text": "ነገር ግን ከሚያመሰኩት ፥ ሰኰናቸውም ስንጥቅ ከሆነው ከእነዚህ አትበሉም፤ ግመል ያመሰኳል፤ ነገር ግን ሰኰናው ስላልተሰነጠቀ ለእናንተ ርኩስ ነው።"
+            },
+            {
+              "verse": 5,
+              "text": "ጥንቸል ያመሰኳል፤ ነገር ግን ሰኰናው ስላልተሰነጠቀ ይህ ለእናንተ ርኩስ ነው።"
+            },
+            {
+              "verse": 6,
+              "text": "ሽኮኮ ያመሰኳል፤ ነገር ግን ሰኰናው ስላልተሰነጠቀ ለእናንተ ርኩስ ነው።"
+            },
+            {
+              "verse": 7,
+              "text": "እርያም ሰኰናው ተሰንጥቆአል፤ ነገር ግን ስለማያመሰኳ ለእናንተ ርኩስ ነው።"
+            },
+            {
+              "verse": 8,
+              "text": "የእነዚህን ሥጋ አትበሉም፤ በድናቸውንም አትነኩም፤ ለእናንተ ርኩሳን ናቸው።"
+            },
+            {
+              "verse": 9,
+              "text": "“በውኃ ውስጥ ከሚኖሩት ሁሉ እነዚህን ትበላላችሁ፤ በውኆች፥ በባሕሮችም፥ በወንዞችም ውስጥ ከሚኖሩት ሁሉ ክንፍና ቅርፊት ያላቸውን ትበላላችሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "በውኆች ውስጥ ከሚንቀሳቀሱ፥ በውኆች ውስጥ የሕይወት ነፍስ ከአላቸው ሁሉ፥ በባሕሮችና በወንዞች ውስጥ ክንፍና ቅርፊት የሌላቸው ሁሉ በእናንተ ዘንድ የተጸየፉ ናቸው።"
+            },
+            {
+              "verse": 11,
+              "text": "በእናንተም ዘንድ የተጸየፉ ይሆናሉ። ሥጋቸውንም አትበሉም፤ በድናቸውንም ትጸየፋላችሁ።"
+            },
+            {
+              "verse": 12,
+              "text": "ክንፍና ቅርፊትም የሌላቸው በውኃ ውስጥ የሚኖሩት ሁሉ ለእናንተ ርኩሳን ናቸው።"
+            },
+            {
+              "verse": 13,
+              "text": "“ከወፎችም ወገን የምትጸየፉአቸው እነዚህ ናቸው፤ አይበሉም፤ የተጸየፉ ናቸው፤ ንስር፥ ገዴ አሞራ፥ ዓሣ አውጭ፥"
+            },
+            {
+              "verse": 14,
+              "text": "ጭላት፥ ጭልፊት፥ አንጭ አሞራ በየወገኑ፤"
+            },
+            {
+              "verse": 15,
+              "text": "ቁራ ሁሉ በየወገኑ፤"
+            },
+            {
+              "verse": 16,
+              "text": "ሰጎን በየወገኑ፤ ጠለቋ፥ ዝዪ፥ በቋል በየወገኑ፤"
+            },
+            {
+              "verse": 17,
+              "text": "ጉጉት፥ እርኩም፥ ጋጋኖ፥"
+            },
+            {
+              "verse": 18,
+              "text": "የውኃ ዶሮ፥ ይብራ፥ ጥምብ አንሣ አሞራ፥"
+            },
+            {
+              "verse": 19,
+              "text": "ሸመላ፥ ሳቢሳ በየወገኑ፤ ጅንጅላቴ ወፍ፥ የሌሊት ወፍ።"
+            },
+            {
+              "verse": 20,
+              "text": "“የሚበርርም፥ በአራት እግሮችም የሚሄድ ተንቀሳቃሽ ሁሉ ለእናንተ ርኩስ ነው።"
+            },
+            {
+              "verse": 21,
+              "text": "Nevertheless, of those that are unclean, if they have four legs, and if they crawl upon the earth, these shall you not eat; they are an abomination to you."
+            },
+            {
+              "verse": 22,
+              "text": "Of these you shall not eat; the weasel, the rat, the great lizard after its kind, and the chameleon."
+            },
+            {
+              "verse": 23,
+              "text": "Every creature that crawls on its belly, having four legs, is unclean to you."
+            },
+            {
+              "verse": 24,
+              "text": "\"By these you shall be unclean; and all that crawls on the ground shall be unclean until evening.\""
+            },
+            {
+              "verse": 25,
+              "text": "Of all that crawls on the ground, you shall not eat; until evening, it is unclean."
+            },
+            {
+              "verse": 26,
+              "text": "The hedgehog is unclean; however, the hedgehog that is not separated, and every creature that does not chew the cud is unclean to you; all that touches it shall be unclean."
+            },
+            {
+              "verse": 27,
+              "text": "Every animal that moves on all fours is unclean to you; all that crawls upon the earth is unclean to you; all that touches it shall be unclean until evening."
+            },
+            {
+              "verse": 28,
+              "text": "And every animal that rises upon its belly, you shall not eat; until evening, it is unclean. They are unclean to you."
+            },
+            {
+              "verse": 29,
+              "text": "\"On the earth, every creature that crawls is unclean to you; the mole, the mouse, and the tortoise after its kind.\""
+            },
+            {
+              "verse": 30,
+              "text": "The hedgehog, the rat, the gecko, the lizard, and the chameleon."
+            },
+            {
+              "verse": 31,
+              "text": "Among all that which is moved, these are the unclean things before you. And all that which touches them in their uncleanness until evening is unclean."
+            },
+            {
+              "verse": 32,
+              "text": "If any of them falls upon anything, he is unclean; whether it be a wooden vessel, or a garment, or a skin, or any work that is made of leather, all that which is touched by him shall be washed in water; until evening he is unclean; and thereafter he shall be clean."
+            },
+            {
+              "verse": 33,
+              "text": "And whatever is within it that has fallen from the unclean thing, all of it is unclean."
+            },
+            {
+              "verse": 34,
+              "text": "That which is within it; whether it be water that is used for drinking, or any food that is eaten, all is unclean; and in this, every drink that is drunk is unclean."
+            },
+            {
+              "verse": 35,
+              "text": "And whatever falls upon these things is unclean; whether it be a stone or a piece of earth, it shall be unclean; for they are unclean, and they shall be unclean unto you."
+            },
+            {
+              "verse": 36,
+              "text": "Nevertheless, the source, the pit, and the water therein are clean; but that which touches them in their uncleanness is unclean."
+            },
+            {
+              "verse": 37,
+              "text": "If any of the seed that is sown falls upon them, he is clean."
+            },
+            {
+              "verse": 38,
+              "text": "But if water is poured upon the seed, and thereafter any of the seed falls upon them, it is unclean unto you."
+            },
+            {
+              "verse": 39,
+              "text": "“If there be any beast that dies among you, and it be unclean, all that which touches it until evening is unclean."
+            },
+            {
+              "verse": 40,
+              "text": "He who eats of the flesh of it shall wash his clothes; until evening he is unclean; and he who carries it shall wash his clothes; until evening he is unclean."
+            },
+            {
+              "verse": 41,
+              "text": "\"Every creeping thing that moveth upon the earth is an abomination unto you; ye shall not eat of it.\""
+            },
+            {
+              "verse": 42,
+              "text": "\"That which creepeth upon the earth, and that which hath four feet, and many feet, all creeping things that creep upon the earth are an abomination unto you; ye shall not eat of them.\""
+            },
+            {
+              "verse": 43,
+              "text": "\"Ye shall not make your bodies unclean by any creeping thing that creepeth upon the earth; and ye shall not make your bodies unclean by them.\""
+            },
+            {
+              "verse": 44,
+              "text": "\"I am the Lord your God; ye shall sanctify yourselves; and ye shall be holy; for I am holy, saith the Lord your God.\""
+            },
+            {
+              "verse": 45,
+              "text": "\"Ye shall not make your bodies unclean by any creeping thing that creepeth upon the earth. I am the Lord your God, which brought you out of the land of Egypt; therefore, ye shall be holy, for I am holy.\""
+            },
+            {
+              "verse": 46,
+              "text": "\"Of the beasts and of the fowl, and of every living thing that moveth in the waters, and of every living thing that moveth upon the earth, this is the law.\""
+            },
+            {
+              "verse": 47,
+              "text": "\"Between the unclean and the clean, it is that ye may discern between that which is eaten and that which is not eaten.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "sections": [
+        {
+          "title": "And when a woman hath borne a child, for the time of her purification from her childbirth.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እግዚአብሔርም ሙሴን እንዲህ ብሎ ተናገረው፦"
+            },
+            {
+              "verse": 2,
+              "text": "“ለእስራኤል ልጆች እንዲህ ብለህ ተናገራቸው፦ ሴት ብታረግዝ ወንድ ልጅም ብትወልድ፥ ሰባት ቀን ያህል የረከሰች ናት፤"
+            },
+            {
+              "verse": 3,
+              "text": "እንደ ግዳጅዋ ወራት ትረክሳለች። በስምንተኛውም ቀን ልጁ ከሥጋው ሸለፈት ይገረዝ።"
+            },
+            {
+              "verse": 4,
+              "text": "ከደምዋም እስክትነጻ ሠላሳ ሦስት ቀን ትቈይ፤ የመንጻቷ ቀንም እስኪፈጸም ድረስ የተቀደሰን ነገር አትንካ፤ ወደ መቅደስም አትግባ።"
+            },
+            {
+              "verse": 5,
+              "text": "ሴት ልጅም ብትወልድ እንደ ግዳጅዋ ወራት ሁለት ሳምንት ያህል የረከሰች ናት፤ ከደምዋም እስክትነጻ ድረስ ስድሳ ስድስት ቀን ትቈይ።"
+            },
+            {
+              "verse": 6,
+              "text": "“የመንጻቷ ወራትም በተፈጸመ ጊዜ፥ ለወንድ ልጅ ወይም ለሴት ልጅ፥ የአንድ ዓመት ጠቦት ለሚቃጠል መሥዋዕት፥ የርግብም ግልገል ወይም ዋኖስ ለኀጢአት መሥዋዕት ወደ ምስክሩ ድንኳን ደጃፍ ወደ ካህኑ ታመጣለች።"
+            },
+            {
+              "verse": 7,
+              "text": "ካህኑም በእግዚአብሔር ፊት ያቀርበዋል፤ ያስተሰርይላትማል፤ ከደምዋም ፈሳሽ ትነጻለች። ወንድ ወይም ሴት ለምትወልድ ሴት ሕጉ ይህ ነው።"
+            },
+            {
+              "verse": 8,
+              "text": "ጠቦት ለማምጣት የሚበቃ ገንዘብ በእጅዋ ባይኖራት ሁለት ዋኖሶች፥ ወይም ሁለት የርግብ ግልገሎች፥ አንዱን ለሚቃጠል መሥዋዕት፥ ሌላውንም ለኀጢአት መሥዋዕት ታቀርባለች፤ ካህኑም ያስተሰርይላታል፤ እርስዋም ትነጻለች።”"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "sections": [
+        {
+          "title": "The Law of the Covenant",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እግዚአብሔር ሙሴንና አሮንን እንዲህ ብሎ ተናገራቸው፦"
+            },
+            {
+              "verse": 2,
+              "text": "“ሰው በሥጋው ቆዳ ላይ እባጭ ብትወጣበት፥ ብትነጣም፥ በሥጋውም ቆዳ እንደ ለምጽ ደዌ ብትመስል፥ ወደ ካህኑ ወደ አሮን ወይም ከካህናቱ ልጆች ወደ አንዱ ያምጡት።"
+            },
+            {
+              "verse": 3,
+              "text": "ካህኑም በሥጋው ቆዳ ያለችውን ያችን ደዌ ይያት፤ ጠጕሯም ተለውጣ ብትነጣ በሥጋው ቆዳ ያለች የዚያች ደዌ መልክ ቢከፋ፥ ደዌውም ወደ ሥጋው ቆዳ ቢጠልቅ፥ እርስዋ የለምጽ ደዌ ናት፤ ካህኑም አይቶ፦ ‘ርኩስ ነው’ ይበለው።"
+            },
+            {
+              "verse": 4,
+              "text": "ቋቍቻውም በሥጋው ቆዳ ላይ ቢነጣ፥ ከቆዳውም የጠለቀ ባይመስል፥ ጠጕሩም ባይነጣ፥ ካህኑ የታመመውን ሰው ሰባት ቀን ይዘጋበታል።"
+            },
+            {
+              "verse": 5,
+              "text": "በሰባተኛውም ቀን ካህኑ ያችን ደዌ ይያት፤ እነሆም፥ ያች ደዌ በፊት እንደ ነበረች ብትሆን፥ በቆዳውም ላይ ባትሰፋ፥ ካህኑ ሰባት ቀን ደግሞ ይለየዋል።"
+            },
+            {
+              "verse": 6,
+              "text": "ደግሞ በሰባተኛው ቀን ካህኑ ያየዋል፤ እነሆም፥ ያች ደዌ ብትከስም፥ በቆዳውም ላይ ባትሰፋ፥ ካህኑ፦ ‘ንጹሕ ነው’ ይለዋል፤ ምልክት ነውና፥ ልብሱንም አጥቦ ንጹሕ ይሆናል።"
+            },
+            {
+              "verse": 7,
+              "text": "ስለ መንጻቱ በካህኑ ዘንድ ከታየ በኋላ ምልክቱ በቆዳው ላይ ቢሰፋ፥ እንደገና ሊታይ ወደ ካህኑ ይቀርባል።"
+            },
+            {
+              "verse": 8,
+              "text": "ካህኑም ያያል፤ እነሆም፥ ምልክቱ በቆዳው ላይ ቢሰፋ ካህኑ፦ ‘ርኩስ ነው’ ይለዋል፤ ለምጽ ነውና።"
+            },
+            {
+              "verse": 9,
+              "text": "“የለምጽ ደዌ በሰው ላይ ቢወጣ እርሱ ወደ ካህኑ ይሄዳል።"
+            },
+            {
+              "verse": 10,
+              "text": "ካህኑም ያየዋል፤ እነሆም፥ በቆዳው ላይ ነጭ እባጭ ቢሆን፥ ጠጕሩም ተለውጦ ቢነጣ፥ ሥጋውም በእባጩ ውስጥ ቢያዥ፥"
+            },
+            {
+              "verse": 11,
+              "text": "He is unclean because of a sore on his flesh; and the priest shall say, \"He is unclean,\" for he is unclean and shall be separated."
+            },
+            {
+              "verse": 12,
+              "text": "If the sore spreads upon the skin, and it appears to the priest as if the man who is afflicted has the sore all over his body, from his head to his feet, as it appears to the priest;"
+            },
+            {
+              "verse": 13,
+              "text": "The priest shall examine him; and behold, if the sore has covered all his skin, the afflicted man shall be declared clean by the priest, for the leprosy has turned white, and he is clean."
+            },
+            {
+              "verse": 14,
+              "text": "On the day when he is seen, the healthy skin shall be declared unclean."
+            },
+            {
+              "verse": 15,
+              "text": "And the priest shall look upon the healthy skin and say, \"He is unclean,\" therefore he is unclean."
+            },
+            {
+              "verse": 16,
+              "text": "If the healthy skin turns again and returns to the priest,"
+            },
+            {
+              "verse": 17,
+              "text": "The priest shall examine him; and behold, if the sore has turned again, the priest shall declare him, \"He is clean,\" for he is clean."
+            },
+            {
+              "verse": 18,
+              "text": "\"If there is a sore on the skin of his flesh, and it is a scab,"
+            },
+            {
+              "verse": 19,
+              "text": "And if there is a white spot in the place of the scab, or if it is bright and has a shiny appearance, it shall be shown to the priest."
+            },
+            {
+              "verse": 20,
+              "text": "The priest shall examine it; and behold, if it appears in the skin of his flesh, and the hair has turned white, the priest shall say, \"He is unclean,\" for it is a leprous sore; it has broken out from the scab."
+            },
+            {
+              "verse": 21,
+              "text": "And if the priest sees it, and it is white and does not have a bald spot, but if it becomes a scab, the priest shall declare it unclean for seven days."
+            },
+            {
+              "verse": 22,
+              "text": "And if it spreads upon the skin, the priest shall say: \"It is unclean; it is a leprous sore; for it has appeared upon the skin.\""
+            },
+            {
+              "verse": 23,
+              "text": "But if this sore remains in its place, and does not spread, it is a scab; and the priest shall say: \"It is clean.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"If there be a burning on the skin of his flesh, and it be a white spot or a bright spot,"
+            },
+            {
+              "verse": 25,
+              "text": "the priest shall examine it; and behold, if the bright spot has turned white and it has spread upon the skin, it is unclean; for it has appeared in the place of the burning; and the priest shall say: \"It is unclean; it is a leprous sore.\""
+            },
+            {
+              "verse": 26,
+              "text": "And if the priest sees it, and there is no white spot upon the bright spot, and it does not spread upon the skin, but if it becomes a scab, the priest shall declare it unclean for seven days."
+            },
+            {
+              "verse": 27,
+              "text": "And the priest shall examine it on the seventh day; and if it has spread upon the skin, the priest shall say: \"It is unclean; it is a leprous sore; for it has appeared upon the skin.\""
+            },
+            {
+              "verse": 28,
+              "text": "And if the bright spot remains in its place, and does not spread upon the skin, but if it becomes a scab, it is a leprous sore; and the priest shall say: \"It is clean.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"If any man or woman has in their flesh a leprous sore, the priest shall examine the leprous sore."
+            },
+            {
+              "verse": 30,
+              "text": "And behold, if it spreads upon the skin, and there is a bright red spot within it, the priest shall say: \"It is unclean; it is a leprous sore; it is a scab of the head or of the beard.\""
+            },
+            {
+              "verse": 31,
+              "text": "And if the priest sees the leprous sore, and it does not appear to be deep in the skin, nor is there a white hair in it, then the priest shall pronounce the person with the leprous sore unclean for seven days."
+            },
+            {
+              "verse": 32,
+              "text": "And the priest shall examine it on the seventh day; and behold, if the leprosy has not spread, and if there is no white hair in it, and if the appearance of the leprosy has not changed, then he shall declare it clean."
+            },
+            {
+              "verse": 33,
+              "text": "But if the leprosy has not changed, the priest shall declare the person with the leprous sore unclean for seven days again."
+            },
+            {
+              "verse": 34,
+              "text": "And the priest shall examine the leprosy on the seventh day; and behold, if the leprosy has not spread upon the skin, nor has its appearance changed, the priest shall say, \"It is clean,\" and he shall wash his clothes, and it shall be clean."
+            },
+            {
+              "verse": 35,
+              "text": "But if after the washing the leprosy spreads upon the skin, the priest shall see it;"
+            },
+            {
+              "verse": 36,
+              "text": "And behold, if the leprosy spreads upon the skin, the priest shall not seek for the white hair; for it is unclean."
+            },
+            {
+              "verse": 37,
+              "text": "But if the leprosy remains in its place as it was, and if the white hair does not appear in it, the leprosy is healed; and he is clean; and the priest shall say, \"It is clean.\""
+            },
+            {
+              "verse": 38,
+              "text": "\"If a man or a woman has a sore on the skin of their flesh,"
+            },
+            {
+              "verse": 39,
+              "text": "the priest shall examine it; and behold, if there is a sore on their flesh that appears to be deeper than the skin, it is a leprous sore; it has broken out of the skin; it is unclean."
+            },
+            {
+              "verse": 40,
+              "text": "\"And if the flesh of a man's skin turns white, he is clean; but it is unclean.\""
+            },
+            {
+              "verse": 41,
+              "text": "The leper, when he turns from his dwelling, is unclean; he is unclean indeed."
+            },
+            {
+              "verse": 42,
+              "text": "Whether in his leprosy or in the whiteness of his skin, or if there be a bright spot upon him, he is a leper, for he is declared unclean by his leprosy or by the whiteness of his skin."
+            },
+            {
+              "verse": 43,
+              "text": "And the priest shall look upon him; behold, if the leprosy hath appeared in the skin of his flesh, and it be white or bright, he is declared unclean, whether in his leprosy or in the whiteness of his skin."
+            },
+            {
+              "verse": 44,
+              "text": "It is unclean for the man; it is indeed unclean; the priest shall say: \"It is unclean indeed,\" for the leprosy is upon him."
+            },
+            {
+              "verse": 45,
+              "text": "\"The man who hath leprosy, let his garments be torn; and let him himself be uncovered; and let him cover his upper lip; he shall be called unclean.\""
+            },
+            {
+              "verse": 46,
+              "text": "In the time when the leprosy is upon him, he shall be unclean; he is unclean indeed; he shall dwell alone; his habitation shall be outside the camp."
+            }
+          ]
+        },
+        {
+          "title": "There shall not be upon the garment a mingled thread, a sign of the law.",
+          "verses": [
+            {
+              "verse": 47,
+              "text": "\"If there be a plague upon the garment, whether it be of wool or linen,"
+            },
+            {
+              "verse": 48,
+              "text": "whether it be upon the warp or upon the woof, whether it be of wool or linen, if there be a sore or a thing made of sore,"
+            },
+            {
+              "verse": 49,
+              "text": "and the plague be in the garment, or in the warp, or in the woof, or in the sore, or in the thing made of sore, if it be greenish or reddish, it is a plague of leprosy; it shall be shown to the priest."
+            },
+            {
+              "verse": 50,
+              "text": "And the priest shall look upon the plague, and if the plague be in the garment for seven days, it shall be declared unclean."
+            },
+            {
+              "verse": 51,
+              "text": "On the seventh day he shall look upon the plague; and if the plague be in the garment, or in the warp, or in the woof, or in the sore, or in the thing made of sore, if it spreadeth, the plague is a burning leprosy; it is unclean."
+            },
+            {
+              "verse": 52,
+              "text": "It shall be burnt; whether the warp or the woof be of wool or linen, or whether it be made of sore, the plague that is in it is a burning leprosy; it shall be burnt with fire."
+            },
+            {
+              "verse": 53,
+              "text": "\"If the priest see, and behold, the plague be in the warp or in the woof, or in the sore, and it spread not upon the garment,"
+            },
+            {
+              "verse": 54,
+              "text": "the priest shall command that the thing be washed; and it shall be seen again after seven days."
+            },
+            {
+              "verse": 55,
+              "text": "And if the plague be washed, and the priest see it, and behold, if the plague have not changed its appearance, nor spread, it is unclean; it shall be burnt with fire; it is a leprosy in the garment, whether in the warp or in the woof."
+            },
+            {
+              "verse": 56,
+              "text": "\"And if the priest see, and behold, after it is washed, if it appear still in the garment, or in the warp, or in the woof, or in the sore, it is a plague.\""
+            },
+            {
+              "verse": 57,
+              "text": "If there be anything upon the garment, or upon the skin, or upon the flesh, or upon the hair, that is seen, it is a leprous plague; they shall declare that which is in the place where the plague is found."
+            },
+            {
+              "verse": 58,
+              "text": "When the garment, or the skin, or the flesh, or the hair hath been washed, if the plague doth appear again a second time, it shall be washed again; and it shall be clean."
+            },
+            {
+              "verse": 59,
+              "text": "\"If there be a garment of wool, or of linen, or of skin, or of flesh, or of hair, upon which there is a plague, whether clean or unclean, this is the law concerning the leprous plague.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 14,
+      "sections": [
+        {
+          "title": "The Law of the Cleansing of Leprosy",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"This is the law for the leper; on the day of his cleansing, he shall be brought unto the priest."
+            },
+            {
+              "verse": 3,
+              "text": "And the priest shall go forth out of the camp; and the priest shall look, and behold,"
+            },
+            {
+              "verse": 4,
+              "text": "if the leprosy be healed in the leper, then shall the priest command to take for him two clean birds, and cedar wood, and scarlet, and hyssop, to bring them unto him."
+            },
+            {
+              "verse": 5,
+              "text": "And the priest shall command one of the birds to be killed in an earthen vessel over running water;"
+            },
+            {
+              "verse": 6,
+              "text": "as for the living bird, he shall take it, and the cedar wood, and the scarlet, and the hyssop, and shall dip them and the living bird in the blood of the bird that was killed over the running water."
+            },
+            {
+              "verse": 7,
+              "text": "And he shall sprinkle upon him that is to be cleansed from the leprosy seven times, and shall pronounce him clean; and shall let go the living bird out of the city into the open fields."
+            },
+            {
+              "verse": 8,
+              "text": "And he that is to be cleansed shall wash his clothes, and shave off all his hair, and wash himself in water, that he may be clean; and after that he shall come into the camp, and shall tarry abroad out of his tent seven days."
+            },
+            {
+              "verse": 9,
+              "text": "But on the seventh day he shall shave off all his hair; he shall shave his head, and his beard, and his eyebrows, even all his hair he shall shave; and he shall wash his clothes, and he shall bathe his flesh in water, and he shall be clean."
+            },
+            {
+              "verse": 10,
+              "text": "\"And on the eighth day he shall take two he lambs without blemish, and one ewe lamb of the first year without blemish, and three-tenth deals of fine flour for a meat offering, mingled with oil, and one log of oil.\""
+            },
+            {
+              "verse": 11,
+              "text": "The priest who shall make atonement for these things, the man who shall be cleansed, shall present them before the Lord at the entrance of the tent of meeting."
+            },
+            {
+              "verse": 12,
+              "text": "And the priest shall take one goat and offer it as a sin offering; and that goat shall be distinguished before the Lord for the unique sacrifice."
+            },
+            {
+              "verse": 13,
+              "text": "The sin offering and the guilt offering shall be presented at the holy place; the goat shall be offered there; the sin offering for the priest shall be as it is for the sinner; it is holy among the holy."
+            },
+            {
+              "verse": 14,
+              "text": "And the priest shall take the blood of the sin offering and put it upon the right ear of the one to be cleansed, and upon the thumb of his right hand, and upon the big toe of his right foot."
+            },
+            {
+              "verse": 15,
+              "text": "And the priest shall take the oil and put it in his left hand."
+            },
+            {
+              "verse": 16,
+              "text": "And the priest shall dip his right finger in the oil that is in his left hand and sprinkle some of the oil with his finger seven times before the Lord."
+            },
+            {
+              "verse": 17,
+              "text": "And the priest shall take of the remaining oil in his hand and put it upon the right ear of the one to be cleansed, and upon the thumb of his right hand, and upon the big toe of his right foot, upon the place where the blood of the sin offering was put."
+            },
+            {
+              "verse": 18,
+              "text": "And the priest shall put the remaining oil upon the head of the one to be cleansed; thus the priest shall make atonement for him before the Lord."
+            },
+            {
+              "verse": 19,
+              "text": "And the priest shall offer the sin offering; and the priest shall make atonement for the one who is to be cleansed before the Lord; and thereafter the priest shall offer the guilt offering."
+            },
+            {
+              "verse": 20,
+              "text": "And the priest shall offer the guilt offering and the grain offering upon the altar before the Lord; and the priest shall make atonement for him; and he shall be clean."
+            },
+            {
+              "verse": 21,
+              "text": "\"Though he be poor, and have no money in his hand, let there be a single goat for a sin offering, and from the requirement, let there be one-tenth of an ephah of fine flour mixed with oil for the grain offering, and one log of oil shall be brought forth.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"Two turtle doves, or two young pigeons, shall be brought by his hand, one for a sin offering, and the other for a burnt offering.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"On the eighth day, he shall bring them to the priest at the entrance of the tent of meeting before the Lord.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"And the priest shall take the goat for the sin offering, and the oil from the grain offering; and he shall present it before the Lord for the burnt offering.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"The goat for the sin offering shall be slaughtered; and the priest shall take the blood of the sin offering and put it on the right ear of the one to be cleansed, and on the thumb of his right hand, and on the big toe of his right foot.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"And the priest shall dip his right hand in the oil that is in his left hand.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"And the priest shall sprinkle with his right hand from the oil that is in his left hand seven times before the Lord.\""
+            },
+            {
+              "verse": 28,
+              "text": "\"And the priest shall put some of the oil that is in his hand upon the right ear of the one to be cleansed, and upon the thumb of his right hand, and upon the big toe of his right foot, where the blood of the sin offering was placed.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"And the priest shall put the remaining oil in his hand upon the head of the one to be cleansed; and the priest shall make atonement for him before the Lord.\""
+            },
+            {
+              "verse": 30,
+              "text": "\"He shall bring one of his offerings from among the turtle doves or from among the young pigeons.\""
+            },
+            {
+              "verse": 31,
+              "text": "One shall offer a sacrifice for sin, and another shall offer a sacrifice for the guilt of the trespass, and the priest shall make atonement for the one who is to be cleansed before the Lord."
+            },
+            {
+              "verse": 32,
+              "text": "For the one who is unable to obtain what is required for his cleansing, the law is this: \"Let him bring a lamb for a sin offering.\""
+            }
+          ]
+        },
+        {
+          "title": "There is no sign of a leprous plague that shall be seen upon the house.",
+          "verses": [
+            {
+              "verse": 33,
+              "text": "እግዚአብሔርም ሙሴንና አሮንን እንዲህ ብሎ ተናገራቸው፦"
+            },
+            {
+              "verse": 34,
+              "text": "“ትወርሱአት ዘንድ እኔ ወደምሰጣችሁ ርስት ወደ ከነዓን ምድር በገባችሁ ጊዜ፥ እኔም የለምጽ ደዌ ምልክት በርስታችሁ ምድር ቤቶች ባደረግሁ ጊዜ፥"
+            },
+            {
+              "verse": 35,
+              "text": "ባለቤቱ መጥቶ ካህኑን፦ ‘ደዌ በቤቴ ውስጥ እንዳለ አይቻለሁ’ ብሎ ይንገረው።"
+            },
+            {
+              "verse": 36,
+              "text": "ካህኑም በቤቱ ውስጥ ያለው ዕቃ ሁሉ እንዳይረክስ፥ እርሱ የለምጹን ምልክት ለማየት ወደ ቤት ሳይገባ፥ ቤቱን ባዶ እንዲያደርጉት ያዝዛል፤ በኋላም ካህኑ ቤቱን ለማየት ይገባል።"
+            },
+            {
+              "verse": 37,
+              "text": "የለምጹንም ምልክት ያያል፤ እነሆም፥ የለምጹ ምልክት በግንቡ ላይ በአረንጓዴና በቀይ ቢዥጐረጐር፥ መልኩም ወደ ግንቡ ውስጥ ቢጠልቅ፥"
+            },
+            {
+              "verse": 38,
+              "text": "ካህኑ ከቤቱ ውስጥ ወደ ቤቱ በር ወጥቶ ሰባት ቀን ቤቱን ይዘጋዋል።"
+            },
+            {
+              "verse": 39,
+              "text": "ካህኑም በሰባተኛው ቀን ተመልሶ ቤቱን ያያል፤"
+            },
+            {
+              "verse": 40,
+              "text": "እነሆም፥ ደዌው በቤቱ ግንብ ላይ ቢሰፋ፥ ካህኑ ደዌ ያለባቸውን ድንጋዮች እንዲያወጡ፥ ከከተማውም ወደ ውጭ ወደ ረከሰው ስፍራ እንዲጥሉአቸው ያዝዛል።"
+            },
+            {
+              "verse": 41,
+              "text": "ቤቱንም በውስጡ በዙሪያው ያስፍቀዋል፤ የፋቁትንም የምርጊቱን አፈር ከከተማው ወደ ውጭ ወደ ረከሰ ስፍራ ያፈስሱታል።"
+            },
+            {
+              "verse": 42,
+              "text": "በእነዚያም ድንጋዮች ስፍራ ሌሎች ድንጋዮችን ያገባሉ፤ ሌላም ጭቃ ወስደው ቤቱን ይመርጉታል።"
+            },
+            {
+              "verse": 43,
+              "text": "\"And if the plague returns, and the stones are removed, and the house is broken down and made bare, if it spreads within the house,"
+            },
+            {
+              "verse": 44,
+              "text": "the priest shall come and see; behold, if the plague spreads within the house, it is a spreading leprosy; it is unclean.\""
+            },
+            {
+              "verse": 45,
+              "text": "\"He shall break down the house, and the stones thereof, and the timber thereof, and all the plaster of the house shall he carry forth out of the city unto an unclean place.\""
+            },
+            {
+              "verse": 46,
+              "text": "\"And in the time that it is shut up, it shall be unclean until the evening.\""
+            },
+            {
+              "verse": 47,
+              "text": "\"And he that lieth in the house shall wash his clothes; and he that eateth in the house shall wash his clothes; and it shall be unclean until the evening.\""
+            },
+            {
+              "verse": 48,
+              "text": "\"And if the priest shall come in and see, behold, if the house be made bare after the plague, and if the plague be not spread within the house, then the priest shall declare the house clean; for it is clean.\""
+            },
+            {
+              "verse": 49,
+              "text": "\"And the priest shall take to cleanse the house two birds, and cedar wood, and scarlet, and hyssop.\""
+            },
+            {
+              "verse": 50,
+              "text": "\"And he shall kill the one of the birds in an earthen vessel over running water.\""
+            },
+            {
+              "verse": 51,
+              "text": "\"And he shall take the cedar wood, and the hyssop, and the scarlet, and the living bird, and dip them in the blood of the slain bird, and in the running water, and sprinkle the house seven times.\""
+            },
+            {
+              "verse": 52,
+              "text": "\"And he shall cleanse the house with the blood of the bird, and with the running water, and with the living bird, and with the cedar wood, and with the hyssop, and with the scarlet.\""
+            },
+            {
+              "verse": 53,
+              "text": "The one who is in danger shall be sent from the city to the field; for his house shall be made secure; and he shall be clean."
+            },
+            {
+              "verse": 54,
+              "text": "\"This is the law; for every kind of uncleanliness, this is the law of the unclean.\""
+            },
+            {
+              "verse": 55,
+              "text": "Concerning garments and concerning houses, for the unclean,"
+            },
+            {
+              "verse": 56,
+              "text": "for the leprous, for the afflicted, for the defiled;"
+            },
+            {
+              "verse": 57,
+              "text": "In the time of affliction and in the time of deliverance, this is the law of the unclean.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 15,
+      "sections": [
+        {
+          "title": "Concerning the law of purification for one who is defiled by a dead body.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses and Aaron, saying,"
+            },
+            {
+              "verse": 2,
+              "text": "\"Thus shall ye say unto the children of Israel: If a man be in a state of uncleanness by reason of his issue, he is unclean.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"This is the law of his uncleanness for a man who hath an issue: every man whose issue floweth from him shall be unclean all the days that his issue runneth; he is unclean.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"Every bed whereon he lieth, and all whereon he sitteth shall be unclean.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"And whosoever toucheth his bed shall wash his clothes, and bathe himself in water; and be unclean until the evening.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And he that sitteth on anything whereon he sat that hath an issue shall wash his clothes, and bathe himself in water; and be unclean until the evening.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And he that toucheth the flesh of a man that hath an issue shall wash his clothes, and bathe himself in water; and be unclean until the evening.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And if he that hath an issue touch a clean man, he shall be unclean; and he that toucheth the flesh of a man that hath an issue shall wash his clothes, and bathe himself in water; and be unclean until the evening.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And every seat whereon he that hath an issue sitteth shall be unclean.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And whatsoever he toucheth that hath an issue shall be unclean until the evening; and he that beareth these things shall wash his clothes, and bathe himself in water; and be unclean until the evening.\""
+            },
+            {
+              "verse": 11,
+              "text": "A person who has a discharge shall not wash his hands in water, and all that he touches shall be unclean; he shall also wash in water; until evening he is unclean."
+            },
+            {
+              "verse": 12,
+              "text": "A person who has a discharge shall wash the vessel from which he drinks; and all the vessels of wood shall be washed in water; and he shall be clean."
+            },
+            {
+              "verse": 13,
+              "text": "\"A person who has a discharge shall be counted unclean for seven days after his discharge; he shall wash his garments; and he shall bathe himself in running water; and he shall be clean.\""
+            },
+            {
+              "verse": 14,
+              "text": "On the eighth day, he shall bring two turtledoves or two young pigeons to the priest at the entrance of the tent of meeting before the Lord; and the priest shall offer them."
+            },
+            {
+              "verse": 15,
+              "text": "The priest shall offer one for a sin offering and the other for a burnt offering; and the priest shall make atonement for him before the Lord for his discharge."
+            },
+            {
+              "verse": 16,
+              "text": "\"If any man has a discharge from his body, he shall wash all his garments in water; until evening he is unclean.\""
+            },
+            {
+              "verse": 17,
+              "text": "Every garment that has a discharge shall be washed in water; until evening it is unclean."
+            },
+            {
+              "verse": 18,
+              "text": "If a woman has a discharge of blood for her menstruation, both she and the man with whom she lies shall be unclean; until evening they are unclean."
+            },
+            {
+              "verse": 19,
+              "text": "\"If a woman has a discharge of blood, she shall remain in her impurity for seven days; and all that she touches shall be unclean until evening.\""
+            },
+            {
+              "verse": 20,
+              "text": "Whatever she lies upon during her impurity shall be unclean; and everything she sits upon shall be unclean."
+            },
+            {
+              "verse": 21,
+              "text": "መኝታዋንም የሚነካ ሁሉ ልብሶቹን ያጥባል፤ በውኃም ሰውነቱን ይታጠባል፤ እስከ ማታም ድረስ ርኩስ ነው።"
+            },
+            {
+              "verse": 22,
+              "text": "የምትቀመጥበትንም ነገር ሁሉ የሚነካ ሁሉ ልብሶቹን ያጥባል፤ በውኃም ሰውነቱን ይታጠባል፤ እስከ ማታም ርኩስ ነው።"
+            },
+            {
+              "verse": 23,
+              "text": "በመኝታዋም ላይ ወይም በምትቀመጥበት ነገር ላይ ቢሆን ሲነካው እስከ ማታ ድረስ ርኩስ ነው።"
+            },
+            {
+              "verse": 24,
+              "text": "ማንም ከእርስዋ ጋር ቢተኛ፥ ግዳጅዋም ቢነካው፥ ሰባት ቀን ርኩስ ነው፤ የሚተኛበትም መኝታ ሁሉ ርኩስ ነው።"
+            },
+            {
+              "verse": 25,
+              "text": "“ሴትም ከግዳጅዋ ቀን ሌላ ደምዋ ብዙ ቀን ቢፈስስ፥ ወይም ደምዋ ከግዳጅዋ ወራት በኋላ ቢፈስስ፥ በግዳጅዋ ወራት እንደ ሆነች እንዲሁ በፈሳሽዋ ርኩስነት ወራት ትሆናለች፤ ርኵስት ናት።"
+            },
+            {
+              "verse": 26,
+              "text": "ደምዋም በሚፈስስበት ወራት ሁሉ የምትተኛበት መኝታ ሁሉ በግዳጅዋ ጊዜ እንደ ነበረው መኝታ ያለ ይሆንባታል፤ የምትቀመጥበት ነገር ሁሉ እንደ ግዳጅዋ ርኩስነት ርኩስ ነው።"
+            },
+            {
+              "verse": 27,
+              "text": "እነዚህንም ነገሮች የሚነካ ሁሉ ርኩስ ነው፤ ልብሱንም ያጥባል፤ በውኃም ይታጠባል፤ እስከ ማታም ርኩስ ነው።"
+            },
+            {
+              "verse": 28,
+              "text": "ከፈሳሽዋም ብትነጻ ሰባት ቀን ትቈጥራለች፤ ከዚያም በኋላ ንጽሕት ትሆናለች።"
+            },
+            {
+              "verse": 29,
+              "text": "በስምንተኛውም ቀን ሁለት ዋኖሶች ወይም ሁለት የርግብ ግልገሎች ይዛ ወደ ካህኑ ወደ ምስክሩ ድንኳን ደጃፍ ታመጣቸዋለች።"
+            },
+            {
+              "verse": 30,
+              "text": "ካህኑም አንዲቱን ለኀጢአት መሥዋዕት፥ አንዲቱንም ለሚቃጠል መሥዋዕት ያቀርባል፤ ካህኑም ስለ ፈሳሽዋ ርኩስነት በእግዚአብሔር ፊት ያስተሰርይላታል።"
+            },
+            {
+              "verse": 31,
+              "text": "\"And likewise, when they consecrate the sanctuary that is among them, let them cleanse the children of Israel from their uncleanness, that they may not perish in their uncleanness.\""
+            },
+            {
+              "verse": 32,
+              "text": "\"For a man who is unclean, let him be cleansed; and for the one who is about to go forth, let him be purified.\""
+            },
+            {
+              "verse": 33,
+              "text": "\"And for the one who is to be cleansed by the blood of the sacrifice, this is the law for the brother, for the sister, and for the woman who lies with the man.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 16,
+      "sections": [
+        {
+          "title": "The Day of Judgment",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And it came to pass that after the death of the two sons of Aaron, who died when they offered strange fire before the Lord, the Lord spoke unto Moses."
+            },
+            {
+              "verse": 2,
+              "text": "And the Lord said unto Moses, “Behold, I will appear in the cloud upon the mercy seat; and thou shalt not enter into the holy place within the veil, lest thou die: for I will appear in the cloud upon the mercy seat.”"
+            },
+            {
+              "verse": 3,
+              "text": "Likewise, Aaron shall enter with a young bullock for a sin offering, and for the burnt offering, he shall bring a ram without blemish unto the holy place."
+            },
+            {
+              "verse": 4,
+              "text": "And he shall put on the holy linen coat, and he shall have the linen breeches upon his flesh; and he shall be girded with a linen girdle, and with the linen mitre shall he be attired: these are holy garments; therefore shall he wash his flesh in water, and so put them on."
+            },
+            {
+              "verse": 5,
+              "text": "And from the children of Israel, he shall take two kids of the goats for a sin offering, and one ram for a burnt offering."
+            },
+            {
+              "verse": 6,
+              "text": "“And Aaron shall offer the sin offering for himself, and for his house shall he make atonement.”"
+            },
+            {
+              "verse": 7,
+              "text": "And he shall take both the goats, and present them before the Lord at the door of the tabernacle of the congregation."
+            },
+            {
+              "verse": 8,
+              "text": "And Aaron shall cast lots upon the two goats; one lot for the Lord, and the other lot for the scapegoat."
+            },
+            {
+              "verse": 9,
+              "text": "And Aaron shall bring the goat upon which the Lord's lot fell, and offer him for a sin offering; but the goat on which the lot fell to be the scapegoat shall be presented alive before the Lord, to make an atonement with him, and to let him go for a scapegoat into the wilderness."
+            },
+            {
+              "verse": 10,
+              "text": "And Aaron shall bring the goat upon which the lot for the scapegoat fell, and shall present him alive before the Lord, to make an atonement, and shall let him go into the wilderness."
+            },
+            {
+              "verse": 11,
+              "text": "\"And Aaron shall offer the sin offering for himself and for his house; he shall make atonement for himself and for his household; for his sin offering shall be accepted before the Lord.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"And before the Lord, he shall bring the fire of the altar, and it shall be filled with incense; and he shall take his hand full of the fine incense, and bring it within the veil.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"That he may not die, he shall take the incense that is upon the testimony and put it upon the fire before the Lord; and the incense shall be upon the fire.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"And he shall take the blood of the sin offering and sprinkle it upon the altar, eastward; and the blood shall be sprinkled seven times before the altar.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"And for the sin of the people, he shall offer the sin offering; and he shall bring the blood within the veil; and as he did for his own sin offering, so shall he do for the sin of the people; and he shall sprinkle it upon the altar and before the altar.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"From the uncleanness of the children of Israel, from their transgressions, and from their sins, he shall make atonement for the sanctuary; and likewise, in the midst of their uncleanness, he shall dwell with them.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"When he goes in to make atonement in the sanctuary, he shall make atonement for himself, for his household, and for all the congregation of Israel, until he has made atonement; no man shall be in the tabernacle of meeting while he makes atonement.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"And before the Lord, he shall take the sin offering and the burnt offering, and he shall sprinkle the blood upon the altar round about.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"And he shall sprinkle the blood upon himself seven times; and he shall cleanse the uncleanness of the children of Israel; and he shall be consecrated.\""
+            }
+          ]
+        },
+        {
+          "title": "Bearing the iniquity of the people, as the scapegoat is sent into the wilderness.",
+          "verses": [
+            {
+              "verse": 20,
+              "text": "\"Concerning the sanctuary, concerning the witness, and concerning the place of atonement, and concerning the priests, after the sin offering has been performed, he shall present the scapegoat alive.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"And Aaron shall lay both his hands upon the head of the live goat, and confess over it all the iniquities of the children of Israel, and all their transgressions in all their sins; and he shall put them upon the head of the goat, and shall send it away by the hand of a fit man into the wilderness.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"And the goat shall bear upon him all their iniquities unto a land not inhabited; and he shall let go the goat in the wilderness.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"And Aaron shall come into the tabernacle of the congregation; and he shall put off the linen garments which he put on when he went into the holy place, and shall leave them there.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"And he shall wash his flesh in water in the holy place, and put on his garments, and come forth, and offer his burnt offering, and the burnt offering of the people, and make an atonement for himself, and for the people.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"And he shall burn the fat of the sin offering upon the altar.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"And he that let go the goat for the scapegoat shall wash his clothes, and bathe his flesh in water, and afterward come into the camp.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"And the bullock for the sin offering, and the goat for the sin offering, whose blood was brought in to make atonement in the holy place, shall be carried forth without the camp; and they shall burn in the fire their skins, and their flesh, and their dung.\""
+            },
+            {
+              "verse": 28,
+              "text": "\"And he that burneth them shall wash his clothes, and bathe his flesh in water, and afterward he shall come into the camp.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"This shall be a statute forever unto you.\""
+            },
+            {
+              "verse": 30,
+              "text": "On this day, you shall be cleansed; it shall be a day of atonement for you. In the seventh month, on the tenth day of the month, you shall afflict your souls; and you shall do no work, neither the native nor the stranger that sojourneth among you; for on that day shall atonement be made for you before the Lord from all your sins."
+            },
+            {
+              "verse": 31,
+              "text": "It shall be a great Sabbath for you; you shall humble yourselves; it is a statute forever."
+            },
+            {
+              "verse": 32,
+              "text": "And he that is to be accepted shall be anointed by his father as a priest; he shall wear the holy garments, even the robe of the consecrated."
+            },
+            {
+              "verse": 33,
+              "text": "He shall also be anointed for the holy saints; for the witness, for the sanctuary, he shall be anointed; for the priests, and for the assembly of all the people, he shall be anointed."
+            },
+            {
+              "verse": 34,
+              "text": "This shall be a statute forever for the children of Israel, for all their sins, once a year shall atonement be made. And the Lord did as He commanded Moses."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 17,
+      "sections": [
+        {
+          "title": "Regarding the consumption of blood, for it is the life of the flesh.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 2,
+              "text": "\"Speak unto Aaron and unto his sons, and unto all the children of Israel, saying, This is the thing which the Lord hath commanded, saying,"
+            },
+            {
+              "verse": 3,
+              "text": "Any man of the house of Israel, or of the strangers that sojourn among them, that offereth a burnt offering, whether it be a bullock, or a sheep, or a goat, in the camp or without the camp,"
+            },
+            {
+              "verse": 4,
+              "text": "And if he bringeth it for an offering unto the Lord, a perfect sacrifice, whether it be for a freewill offering or for a vow, and he bringeth it not unto the door of the tabernacle of the congregation, to offer it unto the Lord; that man shall be cut off from among his people, for his blood shall be upon him; he hath shed blood, and that man shall be cut off from among the people."
+            },
+            {
+              "verse": 5,
+              "text": "Therefore, the children of Israel shall bring their sacrifices which they offer in the open field unto the Lord, unto the door of the tabernacle of the congregation, and shall bring them unto the priest for their freewill offerings unto the Lord."
+            },
+            {
+              "verse": 6,
+              "text": "And the priest shall sprinkle the blood upon the altar of the Lord at the door of the tabernacle of the congregation, and shall burn the fat for a sweet savour unto the Lord."
+            },
+            {
+              "verse": 7,
+              "text": "And they shall not bring their sacrifices unto the devils, after whom they have gone a whoring. This shall be a statute forever unto them throughout their generations.\""
+            },
+            {
+              "verse": 8,
+              "text": "And thus shalt thou say unto them, \"Any man of the house of Israel, or of the strangers that sojourn among them, that offereth a burnt offering or any other sacrifice,"
+            },
+            {
+              "verse": 9,
+              "text": "And bringeth it not unto the door of the tabernacle of the congregation, that man shall be cut off from among his people.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And any man of the children of Israel, or of the strangers that sojourn among them, that eateth blood, I will set my face against that soul that eateth blood, and will cut him off from among his people.\""
+            },
+            {
+              "verse": 11,
+              "text": "For the life of all flesh is its blood; and its blood is what sustains its life. Therefore, I have given it to you upon the altar to make atonement for your souls."
+            },
+            {
+              "verse": 12,
+              "text": "Therefore, to the children of Israel, I say: \"You shall not eat the blood of any creature; neither shall any stranger who dwells among you eat blood.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"And if any man of the children of Israel, or of the strangers who sojourn among them, eats any manner of blood, I will set my face against that soul that eats blood, and will cut him off from among his people.\""
+            },
+            {
+              "verse": 14,
+              "text": "For the life of all flesh is its blood; therefore, I say to the children of Israel: \"You shall not eat the blood of any flesh, for the life of all flesh is its blood; whoever eats it shall be cut off.\""
+            },
+            {
+              "verse": 15,
+              "text": "Any person who eats of the carcass of a dead animal or of that which has been torn by beasts, whether he is a native of the land or a stranger, shall wash his clothes and bathe in water, and be unclean until evening; then he shall be clean."
+            },
+            {
+              "verse": 16,
+              "text": "But if he does not wash them or bathe his flesh, he shall bear his iniquity.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 18,
+      "sections": [
+        {
+          "title": "The Rejected Stone",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እግዚአብሔርም ሙሴን እንዲህ ብሎ ተናገረው፦"
+            },
+            {
+              "verse": 2,
+              "text": "“ለእስራኤል ልጆች እንዲህ ብለህ ንገራቸው፦ እኔ እግዚአብሔር አምላካችሁ ነኝ።"
+            },
+            {
+              "verse": 3,
+              "text": "እንደ ተቀመጣችሁባት እንደ ግብፅ ምድር ሥራ አትሥሩ፤ እኔም ወደ እርስዋ እንደማገባችሁ እንደ ከነዓን ምድር ሥራ አትሥሩ፤ በሥርዐታቸውም አትሂዱ።"
+            },
+            {
+              "verse": 4,
+              "text": "ፍርዴን አድርጉ፤ በእርስዋም ትሄዱ ዘንድ ሥርዐቴን ጠብቁ፤ እኔ እግዚአብሔር አምላካችሁ ነኝ።"
+            },
+            {
+              "verse": 5,
+              "text": "የሚሠራቸው ሰው በእነርሱ በሕይወት ይኖራልና ሥርዐቴንና ፍርዴን ጠብቁ፤ እኔ እግዚአብሔር አምላካችሁ ነኝ።"
+            },
+            {
+              "verse": 6,
+              "text": "“ከእናንተም ማንም ሰው ኀፍረተ ሥጋውን ይገልጥ ዘንድ ወደ ሥጋ ዘመዱ ሁሉ አይቅረብ፤ እኔ እግዚአብሔር አምላካችሁ ነኝ።"
+            },
+            {
+              "verse": 7,
+              "text": "የአባትህን ኀፍረተ ሥጋና የእናትህን ኀፍረተ ሥጋ አትግለጥ፤ እናትህ ናትና ኀፍረተ ሥጋዋን አትግለጥ።"
+            },
+            {
+              "verse": 8,
+              "text": "የአባትህን ሚስት ኀፍረተ ሥጋ አትግለጥ፤ የአባትህ ኀፍረተ ሥጋ ነው።"
+            },
+            {
+              "verse": 9,
+              "text": "የእኅትህን ኀፍረተ ሥጋ አትግለጥ፤ የአባትህ ልጅ ወይም የእናትህ ልጅ በቤት ወይም በውጭ የተወለደች ብትሆን፥ ኀፍረተ ሥጋዋን አትግለጥ።"
+            },
+            {
+              "verse": 10,
+              "text": "የወንድ ልጅህን ሴት ልጅ ኀፍረተ ሥጋ ወይም የሴት ልጅህን ሴት ልጅ ኀፍረተ ሥጋ አትግለጥ፤ የአንተ ኀፍረተ ሥጋ ነውና።"
+            },
+            {
+              "verse": 11,
+              "text": "Thou shalt not uncover the nakedness of thy father's wife, for she is thy father's daughter; thou shalt not uncover her nakedness."
+            },
+            {
+              "verse": 12,
+              "text": "Thou shalt not uncover the nakedness of thy father's sister, for she is thy father's near kin."
+            },
+            {
+              "verse": 13,
+              "text": "Thou shalt not uncover the nakedness of thy mother's sister, for she is thy mother's near kin."
+            },
+            {
+              "verse": 14,
+              "text": "Thou shalt not uncover the nakedness of thy father's brother's wife, for she is thy father's near kin."
+            },
+            {
+              "verse": 15,
+              "text": "Thou shalt not uncover the nakedness of thy wife’s mother, for she is thy child's wife; thou shalt not uncover her nakedness."
+            },
+            {
+              "verse": 16,
+              "text": "Thou shalt not uncover the nakedness of thy brother's wife, for she is thy brother's nakedness."
+            },
+            {
+              "verse": 17,
+              "text": "Thou shalt not uncover the nakedness of a woman and her daughter, nor shalt thou take her son's daughter or her daughter's daughter to uncover her nakedness; they are near kin, it is wickedness."
+            },
+            {
+              "verse": 18,
+              "text": "Thou shalt not take thy sister to wife while she liveth, to uncover her nakedness; thou shalt not uncover the nakedness of thy sister."
+            },
+            {
+              "verse": 19,
+              "text": "\"Neither shalt thou approach unto a woman to uncover her nakedness, as long as she is put apart for her uncleanness.\""
+            },
+            {
+              "verse": 20,
+              "text": "Thou shalt not lie with thy neighbor's wife, nor shalt thou defile thy seed."
+            },
+            {
+              "verse": 21,
+              "text": "You shall not give your seed to Molech, nor shall you profane the name of your God; I am the Lord your God."
+            },
+            {
+              "verse": 22,
+              "text": "You shall not lie with a woman as with a man; it is an abomination."
+            },
+            {
+              "verse": 23,
+              "text": "You shall not sow your seed upon her, nor shall you cause her to be unclean; you shall not go to a beast to lie with it; neither shall any woman stand before a beast to lie down with it; it is a perversion."
+            },
+            {
+              "verse": 24,
+              "text": "\"For the nations that I cast out before you have become defiled, and the land is defiled; therefore do not defile yourselves with any of these things.\""
+            },
+            {
+              "verse": 25,
+              "text": "The land also is defiled; therefore I visit the iniquity thereof upon it, and the land itself vomiteth out her inhabitants."
+            },
+            {
+              "verse": 26,
+              "text": "Keep my statutes and my judgments; and do not commit any of these abominations, neither you nor any of your children, nor any stranger that sojourneth among you."
+            },
+            {
+              "verse": 27,
+              "text": "For all these abominations have the men of the land done, which were before you, and the land is defiled;"
+            },
+            {
+              "verse": 28,
+              "text": "That the land spew not you out also, when ye defile it, as it spewed out the nations that were before you."
+            },
+            {
+              "verse": 29,
+              "text": "For whosoever shall do any of these abominations, even the souls that do them shall be cut off from among their people."
+            },
+            {
+              "verse": 30,
+              "text": "Therefore shall ye keep mine ordinance, that ye commit not any one of these abominable customs, which were committed before you, and that ye defile not yourselves therein: I am the Lord your God.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 19,
+      "sections": [
+        {
+          "title": "The Law of Holiness and Justice",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Speak unto all the congregation of the children of Israel, saying: I am the Lord your God; I am holy, therefore you shall be holy.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"Let each of you revere his father and his mother; and keep My Sabbaths; I am the Lord your God.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"You shall not turn unto idols; neither shall you make to yourselves molten gods; I am the Lord your God.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"When you offer the sacrifices of your peace offerings unto the Lord, you shall offer it at your own will.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"On the day you offer it, it shall be eaten; and on the morrow, and if any remain until the third day, it shall be burnt with fire.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And if it be eaten on the third day, it is an abomination; it shall not be accepted.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And he that eats of the flesh of the sacrifice of peace offerings that pertain unto the Lord, having his uncleanness upon him, that soul shall be cut off from his people.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And when you reap the harvest of your land, you shall not wholly reap the corners of your field, neither shall you gather the gleanings of your harvest.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And you shall not glean your vineyard, neither shall you gather every grape of your vineyard; you shall leave them for the poor and the stranger; I am the Lord your God.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"Do not oppress; do not be unjust; for the eye that looks upon your neighbor with contempt shall not be spared.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"In my name, do not bear false witness; do not profane the holy name of your God; for I am the Lord your God.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"Do not commit violence against your neighbor; do not conspire against him. The price of the slain shall not come upon you until the morrow.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"Do not oppress the poor; do not pervert justice in the gate; but fear your God, for I am the Lord your God.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"In judgment, do not be partial; do not favor the poor; nor shall you honor the rich; but judge your neighbor in righteousness.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"Do not slander among your people; do not stand against the blood of your neighbor; for I am the Lord your God.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"Do not hate your brother in your heart; you shall surely rebuke your neighbor, and not bear sin because of him; you shall not take vengeance.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"Do not bear grudges; do not let your children weep among your people; but love your neighbor as yourself; for I am the Lord your God.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"Keep my statutes; do not let your cattle breed with different kinds; do not sow your field with mixed seed; for it is an abomination to wear garments made of two kinds of fabric.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"If any man lies with a woman who is a slave, given to another man, and her price has not been paid, she shall be punished; for she has not been freed, and they shall not be put to death.\""
+            },
+            {
+              "verse": 21,
+              "text": "And he shall bring the sin offering of the transgressor to the Lord, to the tabernacle of witness, and he shall be accepted."
+            },
+            {
+              "verse": 22,
+              "text": "And the priest shall make atonement for the sin that he has committed before the Lord with the sin offering of the transgressor; and the sin that he has committed shall be forgiven him."
+            },
+            {
+              "verse": 23,
+              "text": "\"The Lord your God shall bring you into the land which He gives you; and every tree that bears fruit shall be pruned during your time of harvest; for the first three years, its fruit shall be uncircumcised; it shall not be eaten.\""
+            },
+            {
+              "verse": 24,
+              "text": "In the fourth year, all its fruit shall be a holy offering to the Lord."
+            },
+            {
+              "verse": 25,
+              "text": "In the fifth year, you shall eat its fruit; and it shall increase for you; I am the Lord your God."
+            },
+            {
+              "verse": 26,
+              "text": "\"Do not plant your vineyard with diverse seeds; do not sow your field with mingled seed, nor shall a garment of mixed fabric come upon you.\""
+            },
+            {
+              "verse": 27,
+              "text": "You shall not shave around the sides of your head, nor shall you disfigure the edges of your beard."
+            },
+            {
+              "verse": 28,
+              "text": "When a man dies, do not defile yourself for him; nor shall you make any cuts in your flesh; for I am the Lord your God."
+            },
+            {
+              "verse": 29,
+              "text": "\"The land shall not be defiled, nor shall it be filled with uncleanness; do not let your daughter become a harlot, lest the land fall into harlotry.\""
+            },
+            {
+              "verse": 30,
+              "text": "Keep my Sabbaths; and reverence my sanctuary; for I am the Lord your God."
+            },
+            {
+              "verse": 31,
+              "text": "\"And do not go after the diviners and the sorcerers; do not seek them, lest you be defiled by them; for I am the Lord your God.\""
+            },
+            {
+              "verse": 32,
+              "text": "\"Rise before the gray-headed, and honor the presence of an old man; and fear your God: I am the Lord your God.\""
+            },
+            {
+              "verse": 33,
+              "text": "\"If a stranger dwells with you in your land, you shall not mistreat him.\""
+            },
+            {
+              "verse": 34,
+              "text": "\"You shall treat the stranger who sojourns among you as the native among you, and you shall love him as yourself; for you were strangers in the land of Egypt: I am the Lord your God.\""
+            },
+            {
+              "verse": 35,
+              "text": "\"You shall not do injustice in judgment, in measurement of length, weight, or volume.\""
+            },
+            {
+              "verse": 36,
+              "text": "\"You shall have honest scales, honest weights, an honest ephah, and an honest hin: I am the Lord your God, who brought you out of the land of Egypt.\""
+            },
+            {
+              "verse": 37,
+              "text": "\"You shall observe all my statutes and all my judgments, and do them: I am the Lord your God.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 20,
+      "sections": [
+        {
+          "title": "The Penalty for Transgressing the Law",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Moreover, thou shalt say unto the children of Israel, Any man of the children of Israel, or of the strangers that sojourn among them, that giveth any of his seed unto Molech, he shall surely be put to death; the people of the land shall stone him with stones.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"And I will set my face against that man, and will cut him off from among his people; because he hath given of his seed unto Molech, to defile my sanctuary, and to profane my holy name.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And if the people of the land do any ways hide their eyes from the man, when he giveth of his seed unto Molech, and kill him not: then I will set my face against that man, and against his family, and will cut him off, and all that go a-whoring after him, from among their people.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"And I will set my face against those that turn unto familiar spirits, and against the wizards, and I will cut them off from among their people.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And the soul that turneth after such as have familiar spirits, and after wizards, to go a whoring after them, I will even set my face against that soul, and will cut him off from among his people.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"Thus shall ye be holy; for I the Lord your God am holy.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"Ye shall keep my statutes, and do them: I am the Lord which sanctify you.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"For every one that curseth his father or his mother shall be surely put to death: he hath cursed his father or his mother; his blood shall be upon him.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And the man that taketh his brother's wife, it is an unclean thing; he hath uncovered his brother's nakedness; they shall be childless.\""
+            },
+            {
+              "verse": 11,
+              "text": "If any man lies with his father's wife, he has uncovered his father's nakedness; both of them shall surely be put to death; they are guilty of a crime."
+            },
+            {
+              "verse": 12,
+              "text": "If any man lies with his mother-in-law, both of them shall surely be put to death; they have committed a detestable act; they are guilty of a crime."
+            },
+            {
+              "verse": 13,
+              "text": "If any man lies with a woman as he lies with a man, both of them have committed a detestable act; they shall surely be put to death; they are guilty of a crime."
+            },
+            {
+              "verse": 14,
+              "text": "If any man has relations with his mother and his daughter, it is a sin; let him be consumed by fire, lest sin be among them."
+            },
+            {
+              "verse": 15,
+              "text": "If any man has relations with an animal, he shall surely be put to death; and you shall kill the animal as well."
+            },
+            {
+              "verse": 16,
+              "text": "Any woman who approaches an animal to mate with it, and any man who lies with an animal, both the woman and the animal shall surely be put to death; they are guilty of a crime."
+            },
+            {
+              "verse": 17,
+              "text": "\"If any man lies with his father's daughter or his mother's daughter, or his sister, and sees her nakedness, and she sees his nakedness, this is a detestable act; they shall surely be put to death in the presence of their people; he has uncovered his sister's nakedness and shall bear his iniquity.\""
+            },
+            {
+              "verse": 18,
+              "text": "If any man lies with a woman who is a slave and uncovers her nakedness, and she uncovers his blood, both of them shall be cast out from among their people."
+            },
+            {
+              "verse": 19,
+              "text": "You shall not uncover the nakedness of your father's sister or your mother's sister; whoever does this has uncovered their relative's nakedness; they shall bear their iniquity."
+            },
+            {
+              "verse": 20,
+              "text": "If a man lies with a close relative's wife, he has uncovered his relative's nakedness; they shall surely be put to death; without children they shall die."
+            },
+            {
+              "verse": 21,
+              "text": "If a man takes his brother's wife, it is a wickedness; he has uncovered his brother's nakedness; they shall be childless."
+            },
+            {
+              "verse": 22,
+              "text": "\"Therefore, you shall keep all My statutes and all My judgments, and perform them, lest the land where I bring you to dwell spew you out.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"Do not walk in the customs of the people whom I am casting out before you; for they did all these things, and therefore I abhorred them.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"But as for you, you shall inherit their land, and I will give it to you to possess, a land flowing with milk and honey; I am the Lord your God, who has separated you from the peoples.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"And you shall make a distinction between the clean animals and the unclean, and between the unclean birds and the clean; and you shall not bring abomination upon yourselves by beast or by bird or by any living thing that creeps on the ground, which I have separated from you as unclean.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"For I am the Lord your God; you shall therefore consecrate yourselves, and you shall be holy; for I am holy. I have separated you from the peoples, that you should be Mine.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"If a man or a woman has a medium or who is a spiritist, they shall surely be put to death; they shall stone them with stones; their blood shall be upon them.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 21,
+      "sections": [
+        {
+          "title": "Concerning the sanctity of the priests.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እግዚአብሔርም ሙሴን እንዲህ ሲል ተናገረው፥ “ከወገናቸው በሞተ ሰው ራሳቸውን እንዳያረክሱ ለካህናቱ ለአሮን ልጆች ንገራቸው።"
+            },
+            {
+              "verse": 2,
+              "text": "ከቅርብ ዘመዶቻቸው፥ ከአባቶቻቸው፥ ወይም ከእናቶቻቸው፥ ወይም ከወንዶች ልጆቻቸው፥ ወይም ከሴቶች ልጆቻቸው፥ ወይም ከወንድሞቻቸው፥"
+            },
+            {
+              "verse": 3,
+              "text": "ወይም ከቀረበች ያላገባች ድንግል እኅት በቀር ራሳቸውን አያርክሱ።"
+            },
+            {
+              "verse": 4,
+              "text": "ራሱን ያጐሰቍል ዘንድ ከሕዝቡ በማንም አይርከስ።"
+            },
+            {
+              "verse": 5,
+              "text": "ስለ ሞተው ሰው ራሳቸውን አይላጩ፤ ጢማቸውንም አይላጩ፤ ሥጋቸውንም አይንጩ።"
+            },
+            {
+              "verse": 6,
+              "text": "ለአምላካቸው ቅዱሳን ይሁኑ፤ የአምላካቸውንም ስም አያርክሱ፤ የእግዚአብሔርን መሥዋዕትና የአምላካቸውን መባ ያቀርባሉና ቅዱሳን ይሁኑ።"
+            },
+            {
+              "verse": 7,
+              "text": "ለአምላኩ ለእግዚአብሔር የተቀደሰ ነውና ጋለሞታን ሴት ወይም የረከሰችውን አያግባ፤ ወይም ከባልዋ የተፋታችውን አያግባ።"
+            },
+            {
+              "verse": 8,
+              "text": "የአምላክህን መባ ያቀርባልና ስለዚህ ትቀድሰዋለህ፤ እኔም የምቀድሳችሁ እግዚአብሔር ቅዱስ ነኝና እርሱ ቅዱስ ይሁንልህ።"
+            },
+            {
+              "verse": 9,
+              "text": "የካህንም ሰው ልጅ በግልሙትና ራስዋን ብታረክስ በግልሙትና አባቷን ታረክሰዋለች፤ በእሳት ትቃጠል።"
+            },
+            {
+              "verse": 10,
+              "text": "“በራሱም ላይ የቅባት ዘይት የፈሰሰበት፥ የክህነትም ልብስ ይለብስ ዘንድ የተቀደሰ፥ ከወንድሞቹ የተለየው ካህን ራሱን አይላጭ፤ ልብሱንም አይቅደድ።"
+            },
+            {
+              "verse": 11,
+              "text": "And let no man who is dead be accepted; neither shall he be defiled by his father or by his mother."
+            },
+            {
+              "verse": 12,
+              "text": "For the offering of the Lord is holy, and it shall not go out from the sanctuary; neither shall he profane the holy name of his God; I am the Lord."
+            },
+            {
+              "verse": 13,
+              "text": "And he shall take a woman of his kindred, a virgin."
+            },
+            {
+              "verse": 14,
+              "text": "He shall not take a widow, nor one who is put away, nor one who is defiled; but he shall take a virgin of his own people."
+            },
+            {
+              "verse": 15,
+              "text": "For I am the Lord your God, and I will not defile my sanctuary among the people."
+            },
+            {
+              "verse": 16,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 17,
+              "text": "\"Speak unto Aaron, saying, 'There shall not be any man among your descendants who is unclean in his generations, to offer the bread of his God.'"
+            },
+            {
+              "verse": 18,
+              "text": "No man who is unclean shall offer; whether he be blind, or lame, or has a flat nose, or any blemish,"
+            },
+            {
+              "verse": 19,
+              "text": "Or a man who has a broken foot, or a broken hand,"
+            },
+            {
+              "verse": 20,
+              "text": "Or a hunchback, or a dwarf, or that has a blemish in his eye, or is scabbed, or has a sore, or has a broken testicle; no man who has any blemish shall come near to offer the offerings of the Lord."
+            },
+            {
+              "verse": 21,
+              "text": "A man who is of the lineage of Aaron the priest shall not offer the offerings of the Lord; he is unclean; he shall not offer the bread of his God."
+            },
+            {
+              "verse": 22,
+              "text": "Let him eat the holy things and the holy offerings of his God."
+            },
+            {
+              "verse": 23,
+              "text": "Nevertheless, since he is unclean, let him not enter the sanctuaries, nor approach the altar; for I am the Lord who sanctifies them."
+            },
+            {
+              "verse": 24,
+              "text": "And Moses spoke this to Aaron, and to his sons, and to all the children of Israel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 22,
+      "sections": [
+        {
+          "title": "The holiness of the sacrifice.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"The children of Israel shall separate themselves from the holy things which they dedicate unto Me, and they shall not profane My holy name; I am the Lord.\""
+            },
+            {
+              "verse": 3,
+              "text": "Thus He spoke unto them: \"Any man of your seed throughout your generations who is unclean by reason of a bodily issue, if he come near unto the holy things which the children of Israel offer unto the Lord, that soul shall be cut off from My presence; I am the Lord.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And of the seed of Aaron, if he be a leper or have a running issue, until he be clean, he shall not eat of the holy things which are of the offerings of the Lord made by fire; and if he touch the uncleanness of a dead body, or if he be defiled by any unclean thing,\""
+            },
+            {
+              "verse": 5,
+              "text": "\"or if he touch any creeping thing whereby he may be made unclean, or if he touch any man by whom he may be made unclean,\""
+            },
+            {
+              "verse": 6,
+              "text": "\"the soul that touches any such shall be unclean until the evening; and shall not eat of the holy things unless he wash his flesh with water.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And when the sun is down, he shall be clean, and afterward he may eat of the holy things; for it is his food.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And he shall not profane the holy things of the children of Israel, which they offer unto the Lord; and he shall not eat the dead body or the broken limb; for I am the Lord.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"If he profane them, he shall die; and he shall not bear sin for her, nor for the sin of her people; but he shall keep My laws; for I am the Lord.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"A stranger shall not eat of the holy things; a sojourner of the priest shall not eat of the holy things.\""
+            },
+            {
+              "verse": 11,
+              "text": "But if the priest buys a servant with his money, he shall eat of the food; and those born in his house shall eat of his bread."
+            },
+            {
+              "verse": 12,
+              "text": "And if the son of the priest should marry a woman of another lineage, she shall not eat of the holy things, even though she is consecrated."
+            },
+            {
+              "verse": 13,
+              "text": "However, if the son of the priest's wife dies, or if she is divorced, and she has no children, and she returns to her father's house, she shall eat of her father's bread; but a man of another lineage shall not eat of it."
+            },
+            {
+              "verse": 14,
+              "text": "Any man who unknowingly eats of the holy thing shall add a fifth part to it and give it to the priest."
+            },
+            {
+              "verse": 15,
+              "text": "And concerning those things that are offered to the Lord, do not profane the holy things among the children of Israel."
+            },
+            {
+              "verse": 16,
+              "text": "While they are in sin, if they eat of the holy offerings, sin and iniquity shall be upon them; for I am the Lord your God who sanctifies them.”"
+            },
+            {
+              "verse": 17,
+              "text": "And the Lord spoke to Moses, saying:"
+            },
+            {
+              "verse": 18,
+              "text": "“Speak to Aaron and his sons, and to all the children of Israel, saying: Any man of the house of Israel or of your strangers who dwells among you, who offers his sacrifice to the Lord,"
+            },
+            {
+              "verse": 19,
+              "text": "shall bring it from the herd, or from the flock, or from the goats, without blemish."
+            },
+            {
+              "verse": 20,
+              "text": "But you shall not offer to the Lord anything that has a blemish, for it shall not be accepted on your behalf.”"
+            },
+            {
+              "verse": 21,
+              "text": "Whatever man may offer as a sacrifice, whether for the fulfillment of his vow or for the offering of his freewill, whether it be a peace offering, or a bull, or a sheep, let it be perfect; there shall be no blemish in it."
+            },
+            {
+              "verse": 22,
+              "text": "A blind animal, or one that is broken, or one that has a mutilated member, or one that is scabbed, or one that is diseased, do not offer these to the Lord your God; nor shall you make any such offerings as a burnt offering to the Lord your God."
+            },
+            {
+              "verse": 23,
+              "text": "If your bull, or your sheep, or your goat has a broken limb, do not offer it; rather, take your own money and make an offering, for it shall not be accepted as a sacrifice."
+            },
+            {
+              "verse": 24,
+              "text": "Do not offer to the Lord your God any animal that is bruised, or broken, or maimed, or that has a blemish; nor shall you do any such thing in your land."
+            },
+            {
+              "verse": 25,
+              "text": "And if there be a man among you who is of a foreign lineage, do not offer his hand to your God; for he is unclean, and he shall not be accepted by you."
+            },
+            {
+              "verse": 26,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 27,
+              "text": "\"If a lamb, or a goat, or a kid be born, let it remain with its mother for seven days; and on the eighth day, let it be offered as a burnt offering to the Lord.\""
+            },
+            {
+              "verse": 28,
+              "text": "If it be a lamb, or a goat, or a kid, do not sacrifice them and their offspring on the same day."
+            },
+            {
+              "verse": 29,
+              "text": "And when you offer the sacrifices of thanksgiving to the Lord, offer them in such a manner that they may be accepted by you."
+            },
+            {
+              "verse": 30,
+              "text": "On that day, it shall be said: \"Do not leave anything of it until the morning; for I am the Lord your God.\""
+            },
+            {
+              "verse": 31,
+              "text": "ትእዛዛቴን ጠብቁ፤ አድርጉትም፤ እኔ እግዚአብሔር ነኝና።"
+            },
+            {
+              "verse": 32,
+              "text": "የተቀደሰውንም ስሜን አታርክሱ፤ እኔ ግን በእስራኤል ልጆች መካከል እቀደሳለሁ፤"
+            },
+            {
+              "verse": 33,
+              "text": "የምቀድሳችሁ እኔ እግዚአብሔር ነኝና። አምላካችሁም እሆን ዘንድ ከግብፅ ምድር ያወጣኋችሁ እኔ እግዚአብሔር ነኝና።”"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 23,
+      "sections": [
+        {
+          "title": "The Festivals of Faith",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 2,
+              "text": "\"Speak unto the children of Israel, saying, 'These are the feasts of the Lord, which ye shall proclaim to be holy convocations; even these are My feasts.'\""
+            },
+            {
+              "verse": 3,
+              "text": "\"Six days shalt thou labor, and do all thy work; but the seventh day is the sabbath of rest, a holy convocation to the Lord; thou shalt do no work therein; it is the sabbath of the Lord in all your dwellings.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"These are the feasts of the Lord, which ye shall proclaim in their seasons; they are holy convocations.\""
+            }
+          ]
+        },
+        {
+          "title": "In the feast of Passover and in the feast of Unleavened Bread.",
+          "verses": [
+            {
+              "verse": 5,
+              "text": "\"In the first month, on the fourteenth day of the month, is the Passover of the Lord.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And in this month, on the fifteenth day, is the Feast of Unleavened Bread to the Lord; seven days you shall eat unleavened bread.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"The first day shall be a holy assembly for you; you shall do no work of any kind.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And on the seventh day, you shall present an offering made by fire to the Lord; the seventh day shall be a holy assembly for you; you shall do no work of any kind.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And the Lord spoke to Moses, saying,\""
+            },
+            {
+              "verse": 10,
+              "text": "\"Speak to the children of Israel, saying: When you come into the land which I give to you, and reap its harvest, then you shall bring a sheaf of the firstfruits of your harvest to the priest.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"And he shall wave the sheaf before the Lord, to be accepted on your behalf; on the day after the Sabbath the priest shall wave it.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"And on the day when you wave the sheaf, you shall offer a male lamb of the first year without blemish as a burnt offering to the Lord.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"And the grain offering shall be two-tenths of an ephah of fine flour mixed with oil, an offering made by fire to the Lord for a sweet aroma; and the drink offering shall be of wine, one-fourth of a hin.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"And you shall eat neither bread nor roasted grain nor fresh grain until this same day, until you have brought an offering to your God. It shall be a statute forever throughout your generations in all your dwellings.\""
+            }
+          ]
+        },
+        {
+          "title": "In the world of the spirit.",
+          "verses": [
+            {
+              "verse": 15,
+              "text": "\"You shall count seven complete weeks from the day you bring the sheaf of the wave offering, after the Sabbath.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"Count fifty days to the end of the seventh week, and bring a new grain offering to the Lord.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"From your dwelling place, if there be two hands of fine flour made from good wheat, you shall bring two loaves of bread for the offering; and from your first fruits, let them be offered to the Lord.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"With the lambs that have no blemish, you shall offer seven lambs of the first year, and from the herd, one bullock and two rams without blemish; and let their offerings and sacrifices be acceptable to the Lord.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"One unblemished goat for a sin offering, and two lambs of the first year for a peace offering, you shall offer with the first of your grain offerings for safety.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"The priest shall offer it before the Lord with the two lambs; for it is a holy offering to the Lord; let it be for the priest who offers it.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"This day shall be a holy assembly for you; you shall do no work; it is a statute forever in all your dwellings for your generations.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"When you reap the harvest of your land, you shall not wholly reap the corners of your field, nor shall you gather the gleanings of your harvest; you shall leave them for the poor and for the stranger; I am the Lord your God.\""
+            }
+          ]
+        },
+        {
+          "title": "In the world of creation.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 24,
+              "text": "\"Thus shalt thou say unto the children of Israel: In the seventh month, on the first day of the month, shall be a sabbath of rest, a memorial of blowing of trumpets, a holy convocation unto you.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"Ye shall do no manner of work therein; but ye shall offer an offering made by fire unto the Lord.\""
+            }
+          ]
+        },
+        {
+          "title": "The Day of Atonement",
+          "verses": [
+            {
+              "verse": 26,
+              "text": "And the Lord spoke unto Moses, saying,"
+            },
+            {
+              "verse": 27,
+              "text": "“In this seventh month, on the tenth day of the month, it shall be a day of atonement for you; it shall be a holy convocation for you; you shall afflict your souls, and you shall offer an offering made by fire unto the Lord."
+            },
+            {
+              "verse": 28,
+              "text": "For you shall have a day of atonement before your God; it is a day of atonement, and on that day you shall do no work."
+            },
+            {
+              "verse": 29,
+              "text": "And on that day, any person who does not afflict his soul shall be cut off from among his people."
+            },
+            {
+              "verse": 30,
+              "text": "And any person who does any work on that day shall be cut off from among his people."
+            },
+            {
+              "verse": 31,
+              "text": "You shall do no work at all; it is a perpetual statute throughout your generations in all your dwellings."
+            },
+            {
+              "verse": 32,
+              "text": "It shall be a Sabbath of rest for you, and you shall afflict your souls; from the evening of the ninth day of the month until the evening of the tenth day, you shall celebrate your Sabbath.”"
+            }
+          ]
+        },
+        {
+          "title": "The Feast of the Dedication",
+          "verses": [
+            {
+              "verse": 33,
+              "text": "እግዚአብሔር ሙሴን እንዲህ ብሎ ተናገረው፦"
+            },
+            {
+              "verse": 34,
+              "text": "“ለእስራኤል ልጆች እንዲህ ብለህ ንገራቸው፦ በዚህ በሰባተኛው ወር ከዐሥራ አምስተኛው ቀን ጀምሮ ሰባት ቀን ለእግዚአብሔር የዳስ በዓል ይሆናል።"
+            },
+            {
+              "verse": 35,
+              "text": "የመጀመሪያዋ ቀን ቅድስት ጉባኤ ትሁንላችሁ፤ የተግባር ሥራ ሁሉ አታድርጉባት።"
+            },
+            {
+              "verse": 36,
+              "text": "ሰባት ቀን ለእግዚአብሔር የሚቃጠል መሥዋዕት አቅርቡ፤ ስምንተኛዋም ቀን የተቀደሰች ጉባኤ ትሁንላችሁ፤ ለእግዚአብሔርም የሚቃጠለውን መሥዋዕት አቅርቡ፤ የመሰናበቻ በዓል ነውና፤ የተግባር ሥራ ሁሉ አትሥሩበት።"
+            },
+            {
+              "verse": 37,
+              "text": "“የሚቃጠለውን መሥዋዕት፥ የእህሉንም ቍርባን፥ መሥዋዕቱንም፥ የመጠጡንም ቍርባን፥ በየቀኑ የሚቃጠል መሥዋዕት ለእግዚአብሔር ታቀርቡባቸው ዘንድ የተቀደሱ በዓላት እንዲሆኑ የምታውጁአቸው የእግዚአብሔር በዓላት እነዚህ ናቸው።"
+            },
+            {
+              "verse": 38,
+              "text": "እነዚህም ከእግዚአብሔር ሰንበታት ሌላ፥ ለእግዚአብሔርም ከምትሰጡት ከስጦታችሁ ሌላ፥ ከስእለቶቻችሁም ሁሉ ሌላ፥ በፈቃዳችሁም ከምታቀርቡአቸው ሁሉ ሌላ ናቸው።"
+            },
+            {
+              "verse": 39,
+              "text": "ከሰባተኛውም ወር በዐሥራ አምስተኛው ቀን የምድሩን ፍሬ ካከማቻችሁ በኋላ፥ የእግዚአብሔርን በዓል ሰባት ቀን ታደርጋላችሁ፤ የመጀመሪያዋ ቀን ዕረፍት ትሁን፤ ስምንተኛዋም ቀን ዕረፍት ትሁን።"
+            },
+            {
+              "verse": 40,
+              "text": "በመጀመሪያዋ ቀን የመልካም ዛፍ ፍሬ፥ የዘንባባውንም ቅርንጫፍ፥ የለመለመውንም ዛፍ ቅርንጫፍ፥ የወንዝም አኻያ ዛፍ ውሰዱ፤ በአምላካችሁም በእግዚአብሔር ፊት በየዓመቱ ሰባት ቀን ደስ ይበላችሁ።"
+            },
+            {
+              "verse": 41,
+              "text": "በየዓመቱ በሰባተኛው ወር ይህን በዓል ታደርጉ ዘንድ ለልጅ ልጃችሁ የዘለዓለም ሕግ ይሁንላችሁ።"
+            },
+            {
+              "verse": 42,
+              "text": "ሰባት ቀን በዳሶች ውስጥ ትቀመጣላችሁ፤"
+            },
+            {
+              "verse": 43,
+              "text": "\"When I brought forth the children of Israel out of the land of Egypt, I commanded that your sons should be kept in the house, that all the children of the land who are in Israel should dwell in the house; for I am the Lord your God.\""
+            },
+            {
+              "verse": 44,
+              "text": "\"And Moses spoke of all the feasts of the Lord unto the children of Israel.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 24,
+      "sections": [
+        {
+          "title": "Concerning the steadfast love.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Let the lamps be continually burning; for the good oil, which is pure and pressed from olives, shall be brought unto thee, that thou mayest command the children of Israel.\""
+            },
+            {
+              "verse": 3,
+              "text": "Aaron and his sons shall keep the lamps burning from evening until morning before the Lord, it shall be a statute forever for your generations."
+            },
+            {
+              "verse": 4,
+              "text": "Before the Lord, upon the pure altar, let the lamps be kept burning continually until the morning."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the face of the earth.",
+          "verses": [
+            {
+              "verse": 5,
+              "text": "\"Take fine flour of wheat, and you shall bring it in two tenths for each offering; in each tenth, let there be two hands of the measure of ten.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And these six shall you prepare in two portions, and before the Lord, upon a clean table, shall you set them.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"You shall make pure frankincense and salt for both; and these things shall be for a memorial before the Lord for the prepared offerings.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"Before the Lord, at all times, on every Sabbath day, you shall perform this; for it is an everlasting covenant for the children of Israel.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"For Aaron and his sons, it shall be; for the offering made by fire unto the Lord is an everlasting ordinance, and it is holy of holies, and they shall eat it in a holy place.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the wrath that shall be poured out upon the Lord.",
+          "verses": [
+            {
+              "verse": 10,
+              "text": "And the father of the daughter of the Israelite woman was an Egyptian; and she went out among the children of Israel; and the son of the Israelite woman and a certain Israelite man were quarreling in the camp."
+            },
+            {
+              "verse": 11,
+              "text": "And the daughter of the Israelite woman named the name of the Lord and blasphemed; and they brought her to Moses. And her mother was of the tribe of Dan, the daughter of Dabere; and her name was Shelomith."
+            },
+            {
+              "verse": 12,
+              "text": "And they dwelt in confinement until the word of the Lord should declare their judgment."
+            },
+            {
+              "verse": 13,
+              "text": "And the Lord spoke to Moses, saying:"
+            },
+            {
+              "verse": 14,
+              "text": "“Bring the blasphemer outside the camp; and let all who heard him lay their hands upon his head; and let all the congregation stone him.”"
+            },
+            {
+              "verse": 15,
+              "text": "Thus you shall speak to the children of Israel, saying, “If any man blasphemes his God, he shall bear his sin.”"
+            },
+            {
+              "verse": 16,
+              "text": "And all who blaspheme the name of the Lord shall surely be put to death; and the congregation shall stone him; whether he be a stranger or a native of the land, if he blasphemes the name of the Lord, he shall be put to death."
+            },
+            {
+              "verse": 17,
+              "text": "Whoever kills a man shall surely be put to death."
+            },
+            {
+              "verse": 18,
+              "text": "And if an animal kills a man, the animal shall be put to death, and its life shall be required."
+            },
+            {
+              "verse": 19,
+              "text": "And if a man injures his neighbor, as he has done, so shall it be done to him."
+            },
+            {
+              "verse": 20,
+              "text": "ስብራት በስብራት ፋንታ፥ ዐይን በዐይን ፋንታ፥ ጥርስ በጥርስ ፋንታ፥ ሰውን እንደ ጎዳ እንዲሁ ይደረግበት።"
+            },
+            {
+              "verse": 21,
+              "text": "ሰውንም የመታና የገደለ ፈጽሞ ይገደል።"
+            },
+            {
+              "verse": 22,
+              "text": "እኔ እግዚአብሔር አምላካችሁ ነኝና ለመጻተኛና ለሀገር ልጅ አንድ ዐይነት ሕግ ይሁንላችሁ።”"
+            },
+            {
+              "verse": 23,
+              "text": "ሙሴም ለእስራኤል ልጆች ተናገራቸው፤ ተሳዳቢውንም ከሰፈር ወደ ውጭ አወጡት፤ በድንጋይም ወገሩት። የእስራኤልም ልጆች እግዚአብሔር ሙሴን እንዳዘዘው አደረጉ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 25,
+      "sections": [
+        {
+          "title": "Concerning the Sabbath year of rest.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses on Mount Sinai, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Thus shalt thou say unto the children of Israel: When ye come into the land which I give unto you, the land shall keep a Sabbath unto the Lord.\""
+            },
+            {
+              "verse": 3,
+              "text": "Six years thou shalt sow thy field; and six years thou shalt prune thy vineyard, and gather in the fruits thereof."
+            },
+            {
+              "verse": 4,
+              "text": "But in the seventh year shall be a Sabbath of rest unto the land, a Sabbath for the Lord; thou shalt neither sow thy field, nor prune thy vineyard."
+            },
+            {
+              "verse": 5,
+              "text": "Thou shalt not oppress the hire of thy neighbor, nor the widow's garment; for it shall be a year of rest for the land."
+            },
+            {
+              "verse": 6,
+              "text": "And the Sabbath of the land shall be for thee, for thy male servant, and for thy female servant, and for thy hired servant, and for the stranger that sojourneth with thee."
+            },
+            {
+              "verse": 7,
+              "text": "And for thy cattle, and for the beasts that are in thy land, shall all the increase thereof be meat."
+            }
+          ]
+        },
+        {
+          "title": "The days of Job.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "\"You shall count for yourself seven Sabbaths of years, seven times seven years; and the days of the seven Sabbaths of years shall be forty-nine years.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"Then you shall cause the trumpet of the jubilee to sound on the tenth day of the seventh month; on the Day of Atonement you shall make the trumpet to sound throughout all your land.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And you shall consecrate the fiftieth year, and proclaim liberty throughout all the land to all its inhabitants; it shall be a jubilee for you; and each of you shall return to his possession, and each of you shall return to his family.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"That fiftieth year shall be a jubilee for you; in it you shall not sow, nor reap what grows of itself, nor gather the grapes of your untended vine.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"For it is the jubilee; it shall be holy to you; you shall eat the produce of your field.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"In this jubilee year, each of you shall return to his possession.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"And if you sell anything to your neighbor or buy from your neighbor's hand, you shall not oppress one another.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"According to the number of years after the jubilee, you shall buy from your neighbor; and according to the number of years of crops, he shall sell to you.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"The more numerous the years, the more you shall increase its price; and the fewer the years, the lesser shall be its price; for he sells to you according to the number of the crops.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"I am the Lord your God; you shall not oppress one another; but you shall fear your God, for I am the Lord your God.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"You shall observe My statutes, and keep My judgments, and do them; and you shall dwell in the land securely.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"The land shall yield its fruit, and you shall eat your fill; and you shall dwell in it securely.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"And if you shall say, 'What shall we eat in the seventh year, if we do not sow, nor gather in our produce?'\""
+            },
+            {
+              "verse": 21,
+              "text": "\"Then I will command My blessing upon you in the sixth year, and it shall bring forth fruit for three years.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"And you shall sow in the eighth year, and eat of the old store until the ninth year; until her fruits come in, you shall eat of the old store.\""
+            }
+          ]
+        },
+        {
+          "title": "The Year of Jubilee.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "\"The earth is mine, and you are but strangers and sojourners before me; therefore, do not sell the land forever, for it is mine.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"And concerning your possession, you shall make a redemption for the land of your inheritance.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"And if your brother becomes impoverished and sells some of his possession, then his nearest relative shall come and redeem what his brother has sold.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"If a man has no one to redeem it, but he himself becomes able to redeem it, then he shall count the years since its sale and return the remainder to the man to whom he sold it.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"The time of the sale shall return to the man, and he shall return to his possession.\""
+            },
+            {
+              "verse": 28,
+              "text": "\"If he is unable to pay what is due, the sale shall remain in the hand of the buyer until the year of jubilee; in the jubilee year, it shall be released, and he shall return to his possession.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"If a man sells a dwelling in a walled city, he may redeem it within a year after its sale; for a full year he may redeem it.\""
+            },
+            {
+              "verse": 30,
+              "text": "\"But if it is not redeemed within the space of a full year, then the house that is in the walled city shall belong to the buyer throughout his generations; it shall not be released in the jubilee year.\""
+            },
+            {
+              "verse": 31,
+              "text": "\"However, the houses of villages which have no wall around them shall be counted as the fields of the country; they may be redeemed, and they shall be released in the jubilee year.\""
+            },
+            {
+              "verse": 32,
+              "text": "\"As for the cities of the Levites, the Levites shall have the right to redeem the houses in the cities of their possession forever.\""
+            },
+            {
+              "verse": 33,
+              "text": "If any man should purchase a house from the Levites, it shall be returned in the Jubilee year, for the houses of the Levites are their inheritance among the children of Israel, and a house that is sold without a city of refuge shall return in the Jubilee year."
+            },
+            {
+              "verse": 34,
+              "text": "And their fields that are around their cities are an everlasting inheritance, and they shall not be sold."
+            }
+          ]
+        },
+        {
+          "title": "For the poor, there is no refuge in birth.",
+          "verses": [
+            {
+              "verse": 35,
+              "text": "\"If your brother is struck by you, and his hand is laid upon you, you shall assist him as a stranger and as a sojourner; let him dwell with you.\""
+            },
+            {
+              "verse": 36,
+              "text": "\"Let your brother dwell with you, and take not from him any offspring or profit; but fear your God, for I am the Lord your God.\""
+            },
+            {
+              "verse": 37,
+              "text": "\"Do not oppress the poor, nor give your bread to the rich.\""
+            },
+            {
+              "verse": 38,
+              "text": "\"I will give you the land of Canaan, and I will bring you out of the land of Egypt; I am the Lord your God.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the freedom of the servant.",
+          "verses": [
+            {
+              "verse": 39,
+              "text": "\"If your brother is in distress and he sells himself to you, you shall not make him serve as a slave.\""
+            },
+            {
+              "verse": 40,
+              "text": "\"Whether he is a hired servant or a sojourner with you, he shall serve you until the year of Jubilee.\""
+            },
+            {
+              "verse": 41,
+              "text": "\"In the year of Jubilee, he shall go out with his children; and he shall return to his own family and to the possession of his fathers.\""
+            },
+            {
+              "verse": 42,
+              "text": "\"For they are My servants whom I brought out of the land of Egypt; they shall not be sold as slaves.\""
+            },
+            {
+              "verse": 43,
+              "text": "\"You shall not rule over him with rigor, but you shall fear your God.\""
+            },
+            {
+              "verse": 44,
+              "text": "\"If you desire male or female servants, you may buy them from the nations around you; and from the children of the strangers who dwell among you, you may buy male and female servants.\""
+            },
+            {
+              "verse": 45,
+              "text": "\"And you may buy the children of the strangers who dwell among you, and they shall be your possession; and they shall be to you as a heritage for your children.\""
+            },
+            {
+              "verse": 46,
+              "text": "\"And you shall pass them on to your children after you, to inherit them as a possession forever; but over your brethren, the children of Israel, you shall not rule one over another with rigor.\""
+            },
+            {
+              "verse": 47,
+              "text": "\"If a sojourner or a hired servant lives with you, and he becomes poor and sells himself to you, or if he sells himself to a sojourner or to a stranger's family,\""
+            },
+            {
+              "verse": 48,
+              "text": "\"After he is sold, he may be redeemed; one of his brothers may redeem him.\""
+            },
+            {
+              "verse": 49,
+              "text": "Or his uncle, or the son of his uncle, shall redeem him; or if there be any that is near of kin unto him, he may redeem him; or if he be able, he may redeem himself."
+            },
+            {
+              "verse": 50,
+              "text": "From the year that he was sold unto him, until the year of jubilee shall he count; his redemption money shall be according to the number of years, according to the time of a hired servant shall it be with him."
+            },
+            {
+              "verse": 51,
+              "text": "And if there be yet many years behind, according to them he shall return the price of his redemption out of the money that he was sold for."
+            },
+            {
+              "verse": 52,
+              "text": "If there remain but a few years until the year of jubilee, then he shall count with him according unto his years; and according to the time of a hired servant shall he return the price of his redemption."
+            },
+            {
+              "verse": 53,
+              "text": "In proportion to the number of years shall he be with him; as a yearly hired servant shall he be with him: and he shall not rule with rigor over him in thy sight."
+            },
+            {
+              "verse": 54,
+              "text": "And if he be not redeemed in those years, then he shall go out in the year of jubilee, he and his children with him."
+            },
+            {
+              "verse": 55,
+              "text": "For the children of Israel are servants unto me; they are my servants whom I brought forth out of the land of Egypt: I am the LORD your God."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 26,
+      "sections": [
+        {
+          "title": "A blessing that is found in humility.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"You shall not make for yourselves a carved image, nor a likeness of anything that is in heaven above, or on the earth beneath, or in the water under the earth; you shall not bow down to them or serve them; for I, the Lord your God, am a jealous God.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"Keep My Sabbaths, and revere My sanctuary; I am the Lord your God.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"If you walk in My statutes, and keep My commandments, and perform them,\""
+            },
+            {
+              "verse": 4,
+              "text": "\"I will send you rain in its season, and the land shall yield its produce, and the trees of the field shall bear their fruit.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"The threshing floor shall be filled with grain, and the vats shall overflow with new wine and oil; and you shall eat and be satisfied, and dwell securely in your land.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"I will grant peace in the land, and you shall lie down, and none shall make you afraid; and I will remove harmful beasts from the land, and no sword shall go through your land.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"You shall chase your enemies, and they shall fall before you by the sword.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"Five of you shall chase a hundred, and a hundred of you shall put ten thousand to flight; your enemies shall fall before you by the sword.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"I will look upon you favorably and make you fruitful, multiply you, and confirm My covenant with you.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"You shall eat the old harvest, and clear out the old because of the new.\""
+            },
+            {
+              "verse": 11,
+              "text": "I will make my dwelling among you; and my soul shall not abhor you."
+            },
+            {
+              "verse": 12,
+              "text": "I will dwell among you; I am the Lord your God, and you shall be my people."
+            },
+            {
+              "verse": 13,
+              "text": "I am the Lord your God, who brought you out of the land of Egypt, out of the house of bondage; I have broken the yoke of your burden and made you walk upright."
+            }
+          ]
+        },
+        {
+          "title": "The punishment that cometh upon the unyielding.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "\"However, if you do not listen to me, and if you do not carry out all these commandments,"
+            },
+            {
+              "verse": 15,
+              "text": "if you despise my statutes, and if you do not observe all my commandments, and if you break my covenant, then I will bring upon you the terror, the wasting disease, and the fever that consumes the eyes and causes sorrow in the heart; and you shall sow your seed in vain, for your enemies shall eat it.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"I will set my face against you; and you shall be defeated by your enemies; those who hate you shall reign over you; and you shall flee when no one pursues you.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"And if, in spite of this, you do not listen to me, I will increase your punishment sevenfold for your sins.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"I will break the pride of your power; and I will make your heavens like iron and your earth like bronze.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"And your strength shall be spent in vain; for your land shall not yield its produce, nor shall the trees of the land yield their fruit.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"Then, if you walk contrary to me and will not listen to me, I will bring upon you a sword that shall execute vengeance for the covenant; and you shall be gathered together within your cities.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"And if you do not listen to me, I will bring upon you the wild beasts of the field, which shall rob you of your children; and destroy your livestock; and make you few in number; and your roads shall be desolate.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"And if, in spite of these things, you do not turn to me, but walk contrary to me,\""
+            },
+            {
+              "verse": 23,
+              "text": "\"then I will also walk contrary to you in fury; and I, even I, will chastise you seven times for your sins.\""
+            },
+            {
+              "verse": 24,
+              "text": "I, indeed, will go forth in wrath; for your iniquities, I will strike you sevenfold."
+            },
+            {
+              "verse": 25,
+              "text": "I will bring upon you a sword to execute the word of my covenant; and you shall flee to your cities; I will send pestilence among you."
+            },
+            {
+              "verse": 26,
+              "text": "When you are besieged by hunger, ten women shall bake your bread in one oven; and they shall deliver your bread again by weight; and you shall eat, but not be satisfied."
+            },
+            {
+              "verse": 27,
+              "text": "Until this time, if you will not hearken unto me, I will go forth in wrath against you."
+            },
+            {
+              "verse": 28,
+              "text": "I, indeed, will go forth in wrath; and for your iniquities, I will punish you sevenfold."
+            },
+            {
+              "verse": 29,
+              "text": "You shall eat the flesh of your sons; and you shall eat the flesh of your daughters."
+            },
+            {
+              "verse": 30,
+              "text": "I will destroy your high places; and I will cut down your images, and cast your carcasses upon the carcasses of your idols; and my soul shall abhor you."
+            },
+            {
+              "verse": 31,
+              "text": "I will make your cities waste; and I will bring your sanctuaries to desolation; and I will not smell the savor of your sweet odors."
+            },
+            {
+              "verse": 32,
+              "text": "I will make the land desolate; and your enemies who dwell therein shall be astonished at it."
+            },
+            {
+              "verse": 33,
+              "text": "I will bring you to ruin among the nations; and in the places where you shall flee, the sword shall overtake you; and your land shall be desolate; and your cities shall be waste."
+            },
+            {
+              "verse": 34,
+              "text": "\"And in that time, when you are in the land of your enemies, the land shall rejoice in making its Sabbath; and at that time the land shall rest; it shall rejoice in making its Sabbath.\""
+            },
+            {
+              "verse": 35,
+              "text": "\"You were not forsaken while you dwelt in your Sabbaths, for in the time of your enemies, it shall rest.\""
+            },
+            {
+              "verse": 36,
+              "text": "\"Even in the lands of your enemies, I shall strike their hearts with a stone, as they are separated from you; and the sound of the wind shall terrify them, as they flee from the sword.\""
+            },
+            {
+              "verse": 37,
+              "text": "\"None shall pursue them, and they shall be terrified, each one of them turning upon their neighbor; and you shall not be able to stand before your enemies.\""
+            },
+            {
+              "verse": 38,
+              "text": "\"Among the nations, you shall perish; and the land of your enemies shall devour you.\""
+            },
+            {
+              "verse": 39,
+              "text": "\"And those who remain separated from you shall perish because of their iniquities; and their fathers' iniquities shall also be upon the land of their enemies.\""
+            },
+            {
+              "verse": 40,
+              "text": "\"As I have been forsaken, so they shall be forsaken before me; they shall bear their iniquities and the iniquities of their fathers.\""
+            },
+            {
+              "verse": 41,
+              "text": "\"I too have been angry and have gone with them to destruction; I shall destroy their land of enemies. Nevertheless, at that time, their unrepentant hearts shall tremble; for their iniquities, they shall bear.\""
+            },
+            {
+              "verse": 42,
+              "text": "\"At that time, I shall remember the covenant I made with Jacob; likewise, the covenant I made with Isaac, and the covenant I made with Abraham; I shall remember the land.\""
+            },
+            {
+              "verse": 43,
+              "text": "\"The land shall be desolate because of them; it shall remain barren, and in the time of their enemies, it shall observe rest; and because of their iniquities, their souls shall bear the punishment of their sins.\""
+            },
+            {
+              "verse": 44,
+              "text": "Yet I am the Lord their God, and as they dwell in the land of their adversaries, I will not forsake them until I have brought them to an end, nor will I break my covenant with them; I will not be unmindful of them."
+            },
+            {
+              "verse": 45,
+              "text": "I will be their God, and I have remembered my covenant with them, as they have seen my deliverance from the land of Egypt, from the house of bondage; for I am the Lord."
+            },
+            {
+              "verse": 46,
+              "text": "And the Lord gave commandments and judgments to the children of Israel through Moses on Mount Sinai; these are the statutes and ordinances."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 27,
+      "sections": [
+        {
+          "title": "Concerning the offering presented unto the Lord, a law was given.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord spoke unto Moses, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Thus shalt thou say unto the children of Israel: If any man shall make a vow concerning the value of his soul unto the Lord, according to thy estimation, so shall the valuation be for his body.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"From twenty years old and upward, even unto sixty years old, shall thy valuation be fifty shekels of silver, after the shekel of the sanctuary.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And if it be a female, then thy valuation shall be thirty shekels.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"And from five years old and upward, even unto twenty years old, thy valuation for a male shall be twenty shekels, and for a female, ten shekels.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"And from one month old even unto five years old, thy valuation for a male shall be five shekels of silver, and for a female, thy valuation shall be three shekels of silver.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"And from sixty years old and upward, if it be a male, then thy valuation shall be fifteen shekels, and for a female, ten shekels.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"But if he be poorer than thy estimation, then he shall present himself before the priest, and the priest shall value him; according to his ability that the hand of the priest shall find, so shall the priest value him.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"And if it be an animal that men may bring as an offering unto the Lord, all that any man giveth of such unto the Lord shall be holy.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"The good shall not be exchanged for the bad, nor the bad for the good; and if the animal be changed for an animal, then both it and the exchange shall be holy.\""
+            },
+            {
+              "verse": 11,
+              "text": "The beast shall not be an abomination unto the Lord, even if it be unclean; let it be set before the priest."
+            },
+            {
+              "verse": 12,
+              "text": "Whether it be good or evil, let the priest judge; and according to the judgment of the priest, so shall it be."
+            },
+            {
+              "verse": 13,
+              "text": "If it be a thing to be redeemed, let the fifth part be added above the valuation."
+            },
+            {
+              "verse": 14,
+              "text": "\"If a man shall sanctify his house unto the Lord, the priest shall estimate it, whether it be good or evil; and according to the estimation of the priest, so shall it stand.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"If a man shall redeem his house, let the fifth part be added above the valuation; and the house shall be his.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"If a man shall sow his field unto the Lord, let the estimation be according to its sowing; a field that is sown with barley shall be estimated at fifty shekels of silver.\""
+            },
+            {
+              "verse": 17,
+              "text": "And if he shall sow his field from the year of Jubilee, let it stand according to the estimation."
+            },
+            {
+              "verse": 18,
+              "text": "And if he shall sow his field after the year of Jubilee, the priest shall reckon unto him according to the years that remain unto the year of Jubilee; and it shall be reduced from the valuation."
+            },
+            {
+              "verse": 19,
+              "text": "If a man shall redeem his field, let the fifth part be added above the valuation; and it shall be his."
+            },
+            {
+              "verse": 20,
+              "text": "If he shall not redeem his field, or if he shall sell it to another man, it shall not be redeemed again."
+            },
+            {
+              "verse": 21,
+              "text": "The field, however, shall be a holy field unto the Lord in the year of Jubilee; and the inheritance shall belong to the priest."
+            },
+            {
+              "verse": 22,
+              "text": "If a man shall sell his own field that is not of the inheritance unto the Lord,"
+            },
+            {
+              "verse": 23,
+              "text": "the priest shall reckon the value of the sale until the year of Jubilee; and in that day, he shall return the valuation as a holy thing unto the Lord."
+            },
+            {
+              "verse": 24,
+              "text": "In the year of Jubilee, the field shall return to its owner, to him to whom it belonged, for it is his own land."
+            },
+            {
+              "verse": 25,
+              "text": "And all valuations shall be as the sanctuary's shekel; twenty gerahs shall be the shekel."
+            },
+            {
+              "verse": 26,
+              "text": "\"Every firstling of your livestock that is born shall be holy unto the Lord; no man shall change it, whether it be an ox or a sheep, it is holy unto the Lord."
+            },
+            {
+              "verse": 27,
+              "text": "And if it be a blemished beast, it shall be valued according to the valuation; and he shall add a fifth part thereof to it; but if it be unvalued, it shall be sold according to the valuation."
+            },
+            {
+              "verse": 28,
+              "text": "\"And every devoted thing that a man shall devote unto the Lord, whether of man or beast, or of the field of his possession, shall not be sold or redeemed; every devoted thing is most holy unto the Lord."
+            },
+            {
+              "verse": 29,
+              "text": "And if it be of men, that which is devoted shall not be redeemed until he is dead."
+            },
+            {
+              "verse": 30,
+              "text": "\"And the tithe of the land, whether of the seed of the land or of the fruit of the tree, is the Lord's; it is holy unto the Lord.\""
+            },
+            {
+              "verse": 31,
+              "text": "ሰውም ዐሥራቱን ሊቤዥ ቢወድድ፥ አምስተኛ እጅ ይጨመርበታል።"
+            },
+            {
+              "verse": 32,
+              "text": "ከበሬም ሁሉ ከዐሥር አንድ፥ ከበግም ሁሉ ከዐሥር አንድ፥ ከእረኛውም በትር በታች ከሚያልፍ ሁሉ ከዐሥር አንድ ለእግዚአብሔር የተቀደሰ ይሆናል።"
+            },
+            {
+              "verse": 33,
+              "text": "መልካሙን በክፉ፥ ክፉውንም በመልካም አይለውጥ፤ ቢለውጠውም እርሱና ልዋጩ የተቀደሱ ይሆናሉ፤ አይቤዠውም።”"
+            },
+            {
+              "verse": 34,
+              "text": "እግዚአብሔር በሲና ተራራ ላይ ለእስራኤል ልጆች ያስተምራቸው ዘንድ ሙሴን ያዘዘው ትእዛዛት እነዚህ ናቸው።"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
