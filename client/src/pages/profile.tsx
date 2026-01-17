@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, Trash2 } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, Trash2, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +14,15 @@ import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
+import { useLanguage } from "@/contexts/language-context";
+import { SUPPORTED_LANGUAGES, SupportedLanguage } from "@/lib/translations";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -113,6 +122,9 @@ const profileUiText = {
     savedNotes: "Saved Notes",
     personalStudyNotes: "Personal study notes",
     wantUnlimitedAccess: "Want unlimited access to all features?",
+    language: "Language",
+    languageSettings: "Language Settings",
+    selectAppLanguage: "Select your preferred language for the app",
   },
   am: {
     myProfile: "የእኔ መገለጫ",
@@ -192,6 +204,9 @@ const profileUiText = {
     savedNotes: "የተቀመጡ ማስታወሻዎች",
     personalStudyNotes: "የግል ጥናት ማስታወሻዎች",
     wantUnlimitedAccess: "ወደ ሁሉም ባህሪያት ያልተገደበ መዳረሻ ይፈልጋሉ?",
+    language: "ቋንቋ",
+    languageSettings: "የቋንቋ ቅንብሮች",
+    selectAppLanguage: "ለመተግበሪያው የሚፈልጉትን ቋንቋ ይምረጡ",
   }
 };
 
@@ -258,6 +273,7 @@ export default function Profile() {
   const { isNative, platform } = usePlatform();
   const { restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
+  const { language: appLanguage, setLanguage: setAppLanguage } = useLanguage();
   
   // Get translation from localStorage for localization
   const [translation, setTranslation] = useState(() => {
@@ -874,6 +890,39 @@ export default function Profile() {
                     )}
                   </div>
                 )}
+              </CardContent>
+            </Card>
+
+            {/* Language Settings */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2" data-testid="heading-language">
+                  <Globe className="w-5 h-5" />
+                  {t.languageSettings}
+                </CardTitle>
+                <CardDescription>
+                  {t.selectAppLanguage}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Select
+                  value={appLanguage}
+                  onValueChange={(value: SupportedLanguage) => setAppLanguage(value)}
+                >
+                  <SelectTrigger className="w-full" data-testid="select-language">
+                    <SelectValue placeholder={t.language} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SUPPORTED_LANGUAGES.map((lang) => (
+                      <SelectItem key={lang.code} value={lang.code} data-testid={`option-language-${lang.code}`}>
+                        <span className="flex items-center gap-2">
+                          <span>{lang.nativeName}</span>
+                          <span className="text-muted-foreground">({lang.name})</span>
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </CardContent>
             </Card>
           </div>

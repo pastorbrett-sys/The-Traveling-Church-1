@@ -1,37 +1,13 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
+import { useLanguage } from "@/contexts/language-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Check if translation is Amharic-based
-function isAmharicTranslation(translation: string): boolean {
-  return translation === "ETH" || translation === "AMPROT";
-}
-
-// Localized tab labels
-const tabLabels = {
-  en: {
-    bible: "Bible",
-    chat: "Chat",
-    notes: "Notes",
-    profile: "Profile",
-  },
-  am: {
-    bible: "መጽሐፍ ቅዱስ",
-    chat: "ውይይት",
-    notes: "ማስታወሻዎች",
-    profile: "መገለጫ",
-  }
-};
-
-function getLocalizedLabels(translation: string) {
-  return isAmharicTranslation(translation) ? tabLabels.am : tabLabels.en;
-}
-
 interface TabItem {
   id: string;
-  labelKey: keyof typeof tabLabels.en;
+  labelKey: "bible" | "chat" | "notes" | "profile";
   href: string;
   icon: typeof Book;
 }
@@ -45,40 +21,10 @@ const tabs: TabItem[] = [
 
 export function NativeTabBar() {
   const { isNative } = usePlatform();
+  const { t } = useLanguage();
   const [location, setLocation] = useLocation();
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
   const [tappedTab, setTappedTab] = useState<string | null>(null);
-  const [translation, setTranslation] = useState(() => {
-    return localStorage.getItem("bibleTranslation") || "KJV";
-  });
-  
-  // Listen for translation changes (storage for cross-tab, custom event for same-tab)
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
-      setTranslation(newTranslation);
-    };
-    
-    // Custom event for same-tab updates
-    const handleTranslationChange = (e: CustomEvent) => {
-      setTranslation(e.detail || "KJV");
-    };
-    
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("focus", handleStorageChange);
-    window.addEventListener("translationChanged", handleTranslationChange as EventListener);
-    
-    // Check on mount in case it changed
-    handleStorageChange();
-    
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("focus", handleStorageChange);
-      window.removeEventListener("translationChanged", handleTranslationChange as EventListener);
-    };
-  }, []);
-  
-  const labels = getLocalizedLabels(translation);
   
   // Track URL changes including query params
   useEffect(() => {
@@ -163,7 +109,7 @@ export function NativeTabBar() {
                 <Icon className={`w-5 h-5 ${active ? "stroke-[2.5px]" : ""}`} />
               </motion.div>
               <span className={`text-[10px] ${active ? "font-semibold" : "font-medium"}`}>
-                {labels[tab.labelKey]}
+                {t.tabs[tab.labelKey]}
               </span>
             </button>
           );
