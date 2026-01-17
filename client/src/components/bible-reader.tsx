@@ -1509,7 +1509,7 @@ Reference: ${verseRef} (${translation})`;
                     {heading && (
                       <>
                         {showSpacer && <div className="block w-full h-6" />}
-                        <h3 className={`block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mb-1 ${showSpacer ? 'mt-4' : 'mt-0'}`}>
+                        <h3 className={`block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mb-3 ${showSpacer ? 'mt-4' : 'mt-0'}`}>
                           {heading}
                         </h3>
                       </>
