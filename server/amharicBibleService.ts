@@ -184,6 +184,11 @@ function loadOrthodoxEnglishBook(bookId: number): EthiopianOrthodoxBook | null {
   if (!filename) return null;
   
   const filePath = path.join(ETHIOPIAN_ORTHODOX_ENGLISH_DIR, filename);
+  
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+  
   try {
     const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
     orthodoxEnglishDataCache.set(bookId, data);
