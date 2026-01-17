@@ -116,6 +116,122 @@ function parseVerseText(text: string): { heading?: string; content: string } {
   return { content: text };
 }
 
+// Check if translation is Amharic-based
+function isAmharicTranslation(translation: string): boolean {
+  return translation === "ETH" || translation === "AMPROT";
+}
+
+// Localized UI text
+const uiText = {
+  en: {
+    search: "Search",
+    searchPlaceholder: "Search the Bible...",
+    books: "Books",
+    chapters: "Chapters",
+    notes: "Notes",
+    compare: "Compare",
+    compareTranslations: "Compare Translations",
+    verseInsights: "Verse Insights",
+    copy: "Copy",
+    share: "Share",
+    addNote: "Add Note",
+    saveNote: "Save Note",
+    cancel: "Cancel",
+    close: "Close",
+    oldTestament: "Old Testament",
+    newTestament: "New Testament",
+    apocrypha: "Apocrypha",
+    selectBook: "Select a book to begin reading",
+    loading: "Loading...",
+    noResults: "No results found",
+    askQuestion: "Ask a question about this verse...",
+    continueDiscussion: "Continue Discussion",
+    typeMessage: "Type a message...",
+    send: "Send",
+    bookSynopsis: "Book Synopsis",
+    copied: "Copied!",
+    verseCopied: "Verse copied to clipboard",
+    noteSaved: "Note saved",
+    noteAddedTo: "Note added to",
+    searchLimitReached: "Search limit reached",
+    upgradeForMore: "Upgrade for unlimited searches",
+    resetsAt: "Resets at",
+    chapter: "Chapter",
+    verse: "Verse",
+    translation: "Translation",
+    noteTags: "Tags",
+    enterTags: "Enter tags separated by commas",
+    writeNote: "Write your note here...",
+    relatedVerses: "Related Verses",
+    topics: "Topics",
+    questions: "Questions",
+    wordStudy: "Word Study",
+    characters: "Characters",
+    bookInfo: "Book Info",
+    smartSearch: "Smart Search",
+    smartSearchLimitReached: "Smart Search Limit Reached",
+    upgradeForUnlimited: "Upgrade to Pro for unlimited access",
+    consultingBigGuy: "Consulting THE Big Guy...",
+    current: "Current",
+  },
+  am: {
+    search: "ፈልግ",
+    searchPlaceholder: "መጽሐፍ ቅዱስን ፈልግ...",
+    books: "መጻሕፍት",
+    chapters: "ምዕራፎች",
+    notes: "ማስታወሻዎች",
+    compare: "አወዳድር",
+    compareTranslations: "ትርጉሞችን አወዳድር",
+    verseInsights: "የጥቅስ ግንዛቤዎች",
+    copy: "ቅዳ",
+    share: "አጋራ",
+    addNote: "ማስታወሻ ጨምር",
+    saveNote: "ማስታወሻ አስቀምጥ",
+    cancel: "ሰርዝ",
+    close: "ዝጋ",
+    oldTestament: "ብሉይ ኪዳን",
+    newTestament: "አዲስ ኪዳን",
+    apocrypha: "መጻሕፍተ ሰለሞን",
+    selectBook: "ለማንበብ መጽሐፍ ይምረጡ",
+    loading: "በመጫን ላይ...",
+    noResults: "ውጤት አልተገኘም",
+    askQuestion: "ስለዚህ ጥቅስ ጥያቄ ይጠይቁ...",
+    continueDiscussion: "ውይይት ቀጥል",
+    typeMessage: "መልዕክት ይጻፉ...",
+    send: "ላክ",
+    bookSynopsis: "የመጽሐፍ ማጠቃለያ",
+    copied: "ተቀድቷል!",
+    verseCopied: "ጥቅሱ ተቀድቷል",
+    noteSaved: "ማስታወሻ ተቀምጧል",
+    noteAddedTo: "ማስታወሻ ተጨምሯል ወደ",
+    searchLimitReached: "የፍለጋ ገደብ ደርሷል",
+    upgradeForMore: "ለተጨማሪ ፍለጋ ያሻሽሉ",
+    resetsAt: "የሚታደስበት",
+    chapter: "ምዕራፍ",
+    verse: "ጥቅስ",
+    translation: "ትርጉም",
+    noteTags: "መለያዎች",
+    enterTags: "መለያዎችን በኮማ ለይተው ያስገቡ",
+    writeNote: "ማስታወሻዎን እዚህ ይጻፉ...",
+    relatedVerses: "ተዛማጅ ጥቅሶች",
+    topics: "ርዕሶች",
+    questions: "ጥያቄዎች",
+    wordStudy: "የቃላት ጥናት",
+    characters: "ገፀ ባህሪያት",
+    bookInfo: "የመጽሐፍ መረጃ",
+    smartSearch: "ብልጥ ፍለጋ",
+    smartSearchLimitReached: "የፍለጋ ገደብ ደርሷል",
+    upgradeForUnlimited: "ለያልተገደበ መዳረሻ ወደ ፕሮ ያሻሽሉ",
+    consultingBigGuy: "እግዚአብሔርን በመጠየቅ ላይ...",
+    current: "አሁኑኑ",
+  }
+};
+
+// Get localized text based on translation
+function getLocalizedText(translation: string) {
+  return isAmharicTranslation(translation) ? uiText.am : uiText.en;
+}
+
 function BookHeaderImage({ src, bookName, isNative }: { src: string; bookName: string; isNative: boolean }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -207,6 +323,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const prevTranslationRef = useRef<string>(translation);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  
+  // Get localized UI text based on current translation
+  const t = getLocalizedText(translation);
 
   // When translation changes and there's a selected verse, scroll to it
   useEffect(() => {
@@ -920,7 +1039,7 @@ Reference: ${verseRef} (${translation})`;
     if (!selectedVerse || !selectedBook) return;
     const text = `"${selectedVerse.text}" - ${selectedBook.name} ${selectedChapter}:${selectedVerse.verse} (${translation})`;
     navigator.clipboard.writeText(text);
-    toast({ title: "Verse copied" });
+    toast({ title: t.verseCopied });
   };
 
   const handleBookSynopsis = async () => {
@@ -965,7 +1084,9 @@ Reference: ${verseRef} (${translation})`;
 
   const groupedBooks = books?.reduce((acc, book) => {
     const isOT = book.bookid <= 39;
-    const key = isOT ? "Old Testament" : "New Testament";
+    // For Ethiopian Orthodox (81 books), add Apocrypha section
+    const isApocrypha = isAmharicTranslation(translation) && translation === "ETH" && book.bookid > 66;
+    const key = isApocrypha ? t.apocrypha : (isOT ? t.oldTestament : t.newTestament);
     if (!acc[key]) acc[key] = [];
     acc[key].push(book);
     return acc;
@@ -1010,7 +1131,7 @@ Reference: ${verseRef} (${translation})`;
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     ref={searchInputRef}
-                    placeholder="Search verses, topics, keywords..."
+                    placeholder={t.searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 h-10 focus-visible:ring-[#c08e00]"
@@ -1047,7 +1168,7 @@ Reference: ${verseRef} (${translation})`;
                   className="text-xl font-semibold font-serif flex items-center gap-2"
                 >
                   <Search className="w-5 h-5 text-muted-foreground" />
-                  Smart Search
+                  {t.smartSearch}
                 </motion.h2>
                 {!isNative && (
                   <div 
@@ -1088,7 +1209,7 @@ Reference: ${verseRef} (${translation})`;
                       <Sparkles className="w-8 h-8 text-[hsl(25,35%,45%)]" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-1">Smart Search Limit Reached</h3>
+                      <h3 className="font-semibold text-lg mb-1">{t.smartSearchLimitReached}</h3>
                       <p className="text-sm text-muted-foreground mb-1">
                         You've used all your AI-powered searches for this month.
                       </p>
@@ -1628,7 +1749,7 @@ Reference: ${verseRef} (${translation})`;
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[#c08e00]" />
-                <span className="font-serif font-bold text-foreground">Verse Insight</span>
+                <span className="font-serif font-bold text-foreground">{t.verseInsights}</span>
               </div>
               <div className="flex-1 flex justify-end">
               <Button
@@ -1653,7 +1774,7 @@ Reference: ${verseRef} (${translation})`;
                 {isLoadingInsight && insightMessages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-8 gap-2">
                     <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
-                    <span className="text-sm text-muted-foreground">Consulting THE Big Guy 👆...</span>
+                    <span className="text-sm text-muted-foreground">{t.consultingBigGuy} 👆</span>
                   </div>
                 ) : (
                   insightMessages.map((msg, index) => (
@@ -1689,7 +1810,7 @@ Reference: ${verseRef} (${translation})`;
                 {isStreamingInsight && (
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Loader2 className="w-4 h-4 animate-spin text-[#c08e00]" />
-                    <span className="text-sm">Consulting THE Big Guy 👆...</span>
+                    <span className="text-sm">{t.consultingBigGuy} 👆</span>
                   </div>
                 )}
               </div>
@@ -1782,7 +1903,7 @@ Reference: ${verseRef} (${translation})`;
                 {discussionMessages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-8 gap-2">
                     <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
-                    <span className="text-sm text-muted-foreground">Consulting THE Big Guy 👆...</span>
+                    <span className="text-sm text-muted-foreground">{t.consultingBigGuy} 👆</span>
                   </div>
                 ) : (
                   discussionMessages.map((msg, index) => (
@@ -1818,7 +1939,7 @@ Reference: ${verseRef} (${translation})`;
                 {isStreamingDiscussion && (
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Loader2 className="w-4 h-4 animate-spin text-[#c08e00]" />
-                    <span className="text-sm">Consulting THE Big Guy 👆...</span>
+                    <span className="text-sm">{t.consultingBigGuy} 👆</span>
                   </div>
                 )}
               </div>
@@ -1880,7 +2001,7 @@ Reference: ${verseRef} (${translation})`;
           <DialogHeader className="pr-10">
             <DialogTitle className="font-serif flex items-center gap-2 text-foreground">
               <StickyNote className="w-5 h-5 text-[#c08e00]" />
-              Add Note
+              {t.addNote}
             </DialogTitle>
           </DialogHeader>
           
@@ -1963,7 +2084,7 @@ Reference: ${verseRef} (${translation})`;
               ) : (
                 <Check className="w-4 h-4 mr-1" />
               )}
-              {showSaveGlow ? "Saved!" : "Save Note"}
+              {showSaveGlow ? t.noteSaved : t.saveNote}
             </Button>
           </div>
         </DialogContent>
@@ -1978,7 +2099,7 @@ Reference: ${verseRef} (${translation})`;
             </DialogClose>
           </div>
           <DialogHeader className="p-4 sm:p-0 pb-0 sm:pb-0 pr-12">
-            <DialogTitle className="font-serif text-foreground">Compare Translations</DialogTitle>
+            <DialogTitle className="font-serif text-foreground">{t.compareTranslations}</DialogTitle>
           </DialogHeader>
           <div className="text-sm text-muted-foreground px-4 sm:px-0 mb-2">
             {selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}
@@ -2024,7 +2145,7 @@ Reference: ${verseRef} (${translation})`;
                           </p>
                           {isCurrent && (
                             <span className="text-xs bg-[#c08e00] text-white px-2 py-0.5 rounded-full">
-                              Current
+                              {t.current}
                             </span>
                           )}
                         </div>
