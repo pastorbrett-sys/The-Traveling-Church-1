@@ -3,11 +3,17 @@ import * as path from "path";
 import type { BibleBook, BibleChapter, BibleVerse, BibleTranslation } from "@shared/models/bible";
 
 const ETHIOPIAN_ORTHODOX_DIR = path.join(process.cwd(), "server/data/ethiopian-orthodox");
+const ETHIOPIAN_ORTHODOX_ENGLISH_DIR = path.join(process.cwd(), "server/data/ethiopian-orthodox-english");
 const AMHARIC_PROTESTANT_FILE = path.join(process.cwd(), "server/data/amharic-protestant/amharic_bible.json");
 
 export const AMHARIC_ORTHODOX_TRANSLATION: BibleTranslation = {
   short_name: "ETH",
   full_name: "አማርኛ ኦርቶዶክስ (81 መጻሕፍት)"
+};
+
+export const ENGLISH_ORTHODOX_TRANSLATION: BibleTranslation = {
+  short_name: "ETHE",
+  full_name: "Ethiopian Orthodox (81 Books)"
 };
 
 export const AMHARIC_PROTESTANT_TRANSLATION: BibleTranslation = {
