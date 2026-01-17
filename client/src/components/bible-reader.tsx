@@ -168,7 +168,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [showSaveGlow, setShowSaveGlow] = useState(false);
   const [insight, setInsight] = useState("");
   const [isLoadingInsight, setIsLoadingInsight] = useState(false);
-  const [compareTranslations, setCompareTranslations] = useState<string[]>(["KJV", "NIV", "NIV2011", "ESV", "NLT", "NKJV", "NASB", "AMP", "MSG"]);
+  const [compareTranslations, setCompareTranslations] = useState<string[]>(["KJV", "BSB", "WEB", "ASV"]);
   const [footerKey, setFooterKey] = useState(0);
   const [wasFooterOpen, setWasFooterOpen] = useState(false);
   const [insightMessages, setInsightMessages] = useState<InsightMessage[]>([]);
