@@ -4,18 +4,43 @@ import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Check if translation is Amharic-based
+function isAmharicTranslation(translation: string): boolean {
+  return translation === "ETH" || translation === "AMPROT";
+}
+
+// Localized tab labels
+const tabLabels = {
+  en: {
+    bible: "Bible",
+    chat: "Chat",
+    notes: "Notes",
+    profile: "Profile",
+  },
+  am: {
+    bible: "መጽሐፍ ቅዱስ",
+    chat: "ውይይት",
+    notes: "ማስታወሻዎች",
+    profile: "መገለጫ",
+  }
+};
+
+function getLocalizedLabels(translation: string) {
+  return isAmharicTranslation(translation) ? tabLabels.am : tabLabels.en;
+}
+
 interface TabItem {
   id: string;
-  label: string;
+  labelKey: keyof typeof tabLabels.en;
   href: string;
   icon: typeof Book;
 }
 
 const tabs: TabItem[] = [
-  { id: "bible", label: "Bible", href: "/pastor-chat?tab=bible", icon: Book },
-  { id: "chat", label: "Chat", href: "/pastor-chat?tab=chat", icon: MessageCircle },
-  { id: "notes", label: "Notes", href: "/notes", icon: FileText },
-  { id: "profile", label: "Profile", href: "/profile", icon: User },
+  { id: "bible", labelKey: "bible", href: "/pastor-chat?tab=bible", icon: Book },
+  { id: "chat", labelKey: "chat", href: "/pastor-chat?tab=chat", icon: MessageCircle },
+  { id: "notes", labelKey: "notes", href: "/notes", icon: FileText },
+  { id: "profile", labelKey: "profile", href: "/profile", icon: User },
 ];
 
 export function NativeTabBar() {
@@ -23,6 +48,27 @@ export function NativeTabBar() {
   const [location, setLocation] = useLocation();
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
   const [tappedTab, setTappedTab] = useState<string | null>(null);
+  const [translation, setTranslation] = useState(() => {
+    return localStorage.getItem("bibleTranslation") || "KJV";
+  });
+  
+  // Listen for translation changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      if (newTranslation !== translation) {
+        setTranslation(newTranslation);
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("focus", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("focus", handleStorageChange);
+    };
+  }, [translation]);
+  
+  const labels = getLocalizedLabels(translation);
   
   // Track URL changes including query params
   useEffect(() => {
@@ -107,7 +153,7 @@ export function NativeTabBar() {
                 <Icon className={`w-5 h-5 ${active ? "stroke-[2.5px]" : ""}`} />
               </motion.div>
               <span className={`text-[10px] ${active ? "font-semibold" : "font-medium"}`}>
-                {tab.label}
+                {labels[tab.labelKey]}
               </span>
             </button>
           );

@@ -52,6 +52,7 @@ const chatUiText = {
     upgrade: "Upgrade to Pro",
     messagesRemaining: "messages remaining",
     unlimited: "Unlimited",
+    consultingBigGuy: "Consulting THE Big Guy 👆...",
   },
   am: {
     welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ። ስለ እምነት፣ ቅዱሳን ጽሑፎች ወይም ሕይወት ማንኛውንም ነገር ይጠይቁኝ!",
@@ -69,6 +70,7 @@ const chatUiText = {
     upgrade: "ወደ ፕሮ አሻሽል",
     messagesRemaining: "መልዕክቶች ቀርተዋል",
     unlimited: "ያልተገደበ",
+    consultingBigGuy: "እግዚአብሔርን በመጠየቅ ላይ 👆...",
   }
 };
 
@@ -746,7 +748,7 @@ export default function PastorChat() {
                   <div className="bg-muted rounded-2xl px-4 py-3">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Consulting THE Big Guy 👆...</span>
+                      <span>{t.consultingBigGuy}</span>
                     </div>
                   </div>
                 </motion.div>
