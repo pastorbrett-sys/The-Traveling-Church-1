@@ -190,6 +190,7 @@ const uiText = {
     usedAllSearches: "You've used all your AI-powered searches for this month.",
     resetsOn: "Resets on",
     upgradeToProUnlimited: "Upgrade to Pro for Unlimited",
+    askFollowUp: "Ask a follow-up question...",
   },
   am: {
     search: "ፈልግ",
@@ -258,6 +259,7 @@ const uiText = {
     usedAllSearches: "የዚህ ወር የ AI ፍለጋዎችዎን ሙሉ በሙሉ ተጠቅመዋል።",
     resetsOn: "የሚታደስበት",
     upgradeToProUnlimited: "ለያልተገደበ ወደ ፕሮ ያሻሽሉ",
+    askFollowUp: "ተጨማሪ ጥያቄ ይጠይቁ...",
   }
 };
 
@@ -1449,7 +1451,7 @@ Reference: ${verseRef} (${translation})`;
                           data-testid={`book-${book.bookid}`}
                         >
                           <p className="font-medium text-sm">{book.name}</p>
-                          <p className="text-xs text-muted-foreground">{book.chapters} chapters</p>
+                          <p className="text-xs text-muted-foreground">{book.chapters} {t.chapters}</p>
                         </motion.button>
                       ))}
                     </div>
@@ -1866,7 +1868,7 @@ Reference: ${verseRef} (${translation})`;
               <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
                 <Textarea
                   ref={insightInputRef}
-                  placeholder="Ask a follow-up question..."
+                  placeholder={t.askFollowUp}
                   value={insightInput}
                   onChange={(e) => setInsightInput(e.target.value)}
                   onKeyDown={(e) => {
@@ -1919,7 +1921,7 @@ Reference: ${verseRef} (${translation})`;
               <div className="flex-1" />
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-[#c08e00]" />
-                <span className="font-serif font-bold text-foreground">Continue Discussion</span>
+                <span className="font-serif font-bold text-foreground">{t.continueDiscussion}</span>
               </div>
               <div className="flex-1 flex justify-end">
                 <Button
@@ -1995,7 +1997,7 @@ Reference: ${verseRef} (${translation})`;
               <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
                 <Textarea
                   ref={discussionInputRef}
-                  placeholder="Ask a follow-up question..."
+                  placeholder={t.askFollowUp}
                   value={discussionInput}
                   onChange={(e) => setDiscussionInput(e.target.value)}
                   onKeyDown={(e) => {
