@@ -38,6 +38,10 @@ import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import Support from "@/pages/support";
 import AdminEthiopianBible from "@/pages/admin-ethiopian-bible";
+import AmbassadorLogin from "@/pages/ambassador/login";
+import AmbassadorPending from "@/pages/ambassador/pending";
+import AmbassadorDashboard from "@/pages/ambassador/dashboard";
+import AdminPanel from "@/pages/admin/index";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -65,6 +69,10 @@ function VagabondBibleRouter() {
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/support" component={Support} />
       <Route path="/admin/ethiopian-bible" component={AdminEthiopianBible} />
+      <Route path="/ambassador" component={AmbassadorLogin} />
+      <Route path="/ambassador/pending" component={AmbassadorPending} />
+      <Route path="/ambassador/dashboard" component={AmbassadorDashboard} />
+      <Route path="/admin" component={AdminPanel} />
       <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
@@ -98,6 +106,10 @@ function ChurchRouter() {
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/support" component={Support} />
       <Route path="/admin/ethiopian-bible" component={AdminEthiopianBible} />
+      <Route path="/ambassador" component={AmbassadorLogin} />
+      <Route path="/ambassador/pending" component={AmbassadorPending} />
+      <Route path="/ambassador/dashboard" component={AmbassadorDashboard} />
+      <Route path="/admin" component={AdminPanel} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>
