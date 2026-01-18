@@ -72,6 +72,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
+    { id: "ambassador", label: "Ambassadors", type: "link", href: "/ambassador" },
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 
@@ -123,7 +124,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   key={item.id}
                   href={item.href!}
                   className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
-                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") ? "text-primary" : ""
+                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") || (location.startsWith("/ambassador") && item.id === "ambassador") || (location === "/admin" && item.id === "ambassador") ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -223,7 +224,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     href={item.href!}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-fade-in-up ${
-                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") ? "bg-muted text-primary" : ""
+                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") || (location.startsWith("/ambassador") && item.id === "ambassador") || (location === "/admin" && item.id === "ambassador") ? "bg-muted text-primary" : ""
                     }`}
                     style={{ animationDelay: `${index * 50}ms` }}
                     data-testid={`link-${item.id}`}

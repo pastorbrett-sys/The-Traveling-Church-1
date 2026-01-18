@@ -4,6 +4,7 @@ import { ambassadors, referralClicks, referralSignups } from "@shared/schema";
 import { eq, desc, sql } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import crypto from "crypto";
+import { isAuthenticated } from "./firebaseAdmin";
 
 const router = Router();
 
@@ -192,8 +193,18 @@ router.post("/track-conversion", async (req, res) => {
   }
 });
 
-router.get("/admin/all", async (req, res) => {
+async function checkSuperAdmin(userId: string): Promise<boolean> {
+  const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.userId, userId)).limit(1);
+  return ambassador?.isSuperAdmin === true;
+}
+
+router.get("/admin/all", isAuthenticated, async (req: any, res) => {
   try {
+    const userId = req.user?.uid;
+    if (!userId || !await checkSuperAdmin(userId)) {
+      return res.status(403).json({ error: "Super admin access required" });
+    }
+    
     const allAmbassadors = await db.select().from(ambassadors).orderBy(desc(ambassadors.createdAt));
 
     const ambassadorsWithStats = await Promise.all(allAmbassadors.map(async (amb) => {
@@ -229,8 +240,13 @@ router.get("/admin/all", async (req, res) => {
   }
 });
 
-router.post("/admin/approve/:id", async (req, res) => {
+router.post("/admin/approve/:id", isAuthenticated, async (req: any, res) => {
   try {
+    const userId = req.user?.uid;
+    if (!userId || !await checkSuperAdmin(userId)) {
+      return res.status(403).json({ error: "Super admin access required" });
+    }
+    
     const { id } = req.params;
 
     const [updated] = await db.update(ambassadors)
@@ -245,8 +261,13 @@ router.post("/admin/approve/:id", async (req, res) => {
   }
 });
 
-router.post("/admin/pause/:id", async (req, res) => {
+router.post("/admin/pause/:id", isAuthenticated, async (req: any, res) => {
   try {
+    const userId = req.user?.uid;
+    if (!userId || !await checkSuperAdmin(userId)) {
+      return res.status(403).json({ error: "Super admin access required" });
+    }
+    
     const { id } = req.params;
 
     const [updated] = await db.update(ambassadors)
@@ -261,8 +282,13 @@ router.post("/admin/pause/:id", async (req, res) => {
   }
 });
 
-router.post("/admin/set-super-admin/:id", async (req, res) => {
+router.post("/admin/set-super-admin/:id", isAuthenticated, async (req: any, res) => {
   try {
+    const userId = req.user?.uid;
+    if (!userId || !await checkSuperAdmin(userId)) {
+      return res.status(403).json({ error: "Super admin access required" });
+    }
+    
     const { id } = req.params;
     const { isSuperAdmin } = req.body;
 
@@ -278,8 +304,13 @@ router.post("/admin/set-super-admin/:id", async (req, res) => {
   }
 });
 
-router.get("/admin/tree", async (req, res) => {
+router.get("/admin/tree", isAuthenticated, async (req: any, res) => {
   try {
+    const userId = req.user?.uid;
+    if (!userId || !await checkSuperAdmin(userId)) {
+      return res.status(403).json({ error: "Super admin access required" });
+    }
+    
     const allAmbassadors = await db.select().from(ambassadors);
     
     const buildTree = (parentId: string | null): any[] => {

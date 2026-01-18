@@ -194,6 +194,9 @@ export default function Login() {
     try {
       const signedInUser = await signInWithGoogle();
       if (signedInUser) {
+        if (signedInUser.metadata?.creationTime === signedInUser.metadata?.lastSignInTime) {
+          trackReferralSignup(signedInUser.uid).catch(console.error);
+        }
         await refetch();
         if (isInSafariSheet) {
           setNativeWantsDifferentAccount(false);
@@ -216,6 +219,9 @@ export default function Login() {
     try {
       const signedInUser = await signInWithApple();
       if (signedInUser) {
+        if (signedInUser.metadata?.creationTime === signedInUser.metadata?.lastSignInTime) {
+          trackReferralSignup(signedInUser.uid).catch(console.error);
+        }
         await refetch();
         if (isInSafariSheet) {
           setNativeWantsDifferentAccount(false);
