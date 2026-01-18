@@ -151,7 +151,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     <div className="h-8 w-20 bg-muted animate-pulse rounded" />
                   </div>
                 ) : isAuthenticated ? (
-                  <div className="flex items-center gap-3 ml-2 pl-4 border-l border-border">
+                  <div className="flex items-center gap-3 ml-2">
                     <Link
                       href="/ambassador"
                       className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors ${location.startsWith("/ambassador") || location === "/admin" ? "text-primary" : ""}`}
@@ -160,6 +160,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                       <Award className="w-4 h-4" />
                       Ambassadors
                     </Link>
+                    <div className="h-4 border-l border-border" />
                     <Link
                       href="/profile"
                       className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
