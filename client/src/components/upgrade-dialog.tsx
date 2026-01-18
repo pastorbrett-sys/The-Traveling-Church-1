@@ -19,14 +19,89 @@ interface UpgradeDialogProps {
   onClose: () => void;
   feature?: string;
   resetAt?: string | null;
+  translation?: string;
 }
 
-export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
+const uiText = {
+  en: {
+    upgradeTitle: "Upgrade to Pro",
+    description: "Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.",
+    descriptionNativeSuffix: " Subscription auto-renews monthly. Cancel anytime in Settings.",
+    descriptionWebSuffix: " Cancel anytime.",
+    upgradeFor: "Upgrade to Pro for:",
+    unlimitedSmartSearch: "Unlimited Smart Searches",
+    unlimitedSynopsis: "Unlimited Book Synopses",
+    unlimitedInsights: "Unlimited Verse Insights",
+    unlimitedNotes: "Unlimited Notes",
+    subscribeNow: "Subscribe Now",
+    subscribePrice: "Subscribe Now - $9.99/month",
+    processing: "Processing...",
+    loading: "Loading...",
+    restorePurchases: "Restore Purchases",
+    restoring: "Restoring...",
+    subscriptionTerms: "Subscription auto-renews monthly. Cancel anytime.",
+    bySubscribing: "By subscribing, you agree to our",
+    privacyPolicy: "Privacy Policy",
+    and: "and",
+    termsOfService: "Terms of Service",
+    comingSoon: "Coming Soon",
+    comingSoonDesc: "In-app purchases will be available once the app is live on the App Store.",
+    welcomePro: "Welcome to Pro!",
+    welcomeProDesc: "You now have unlimited access to all features.",
+    purchaseFailed: "Purchase failed",
+    purchaseFailedDesc: "Unable to complete purchase. Please try again.",
+    purchasesRestored: "Purchases restored!",
+    purchasesRestoredDesc: "Your Pro subscription has been restored.",
+    noPurchases: "No purchases found",
+    noPurchasesDesc: "No previous Pro subscription was found for this account.",
+    restoreFailed: "Restore failed",
+    restoreFailedDesc: "Unable to restore purchases. Please try again.",
+  },
+  am: {
+    upgradeTitle: "ወደ ፕሮ አሻሽል",
+    description: "Vagabond Bible በነጻ በማንኛውም ጊዜ ይደሰቱ። ለጥልቅ ጥናትና ግንዛቤ የላቀ የAI ባህሪያትን ለመክፈት ወደ ፕሮ ያሻሽሉ።",
+    descriptionNativeSuffix: " ምዝገባ በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ በቅንብሮች ውስጥ ይሰርዙ።",
+    descriptionWebSuffix: " በማንኛውም ጊዜ ይሰርዙ።",
+    upgradeFor: "ወደ ፕሮ ያሻሽሉ ለ፡",
+    unlimitedSmartSearch: "ያልተገደበ ብልጥ ፍለጋዎች",
+    unlimitedSynopsis: "ያልተገደበ የመጽሐፍ ማጠቃለያዎች",
+    unlimitedInsights: "ያልተገደበ የጥቅስ ግንዛቤዎች",
+    unlimitedNotes: "ያልተገደበ ማስታወሻዎች",
+    subscribeNow: "አሁን ይመዝገቡ",
+    subscribePrice: "አሁን ይመዝገቡ - $9.99/ወር",
+    processing: "በማስኬድ ላይ...",
+    loading: "በመጫን ላይ...",
+    restorePurchases: "ግዢዎችን መልስ",
+    restoring: "በመመለስ ላይ...",
+    subscriptionTerms: "ምዝገባ በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ ይሰርዙ።",
+    bySubscribing: "በመመዝገብ እርስዎ ተስማምተዋል ከ",
+    privacyPolicy: "የግላዊነት ፖሊሲ",
+    and: "እና",
+    termsOfService: "የአገልግሎት ውል",
+    comingSoon: "በቅርቡ ይመጣል",
+    comingSoonDesc: "የመተግበሪያ ውስጥ ግዢዎች መተግበሪያው በApp Store ላይ ሲገኝ ይገኛሉ።",
+    welcomePro: "እንኳን ወደ ፕሮ በደህና መጡ!",
+    welcomeProDesc: "አሁን ለሁሉም ባህሪያት ያልተገደበ መዳረሻ አለዎት።",
+    purchaseFailed: "ግዢ አልተሳካም",
+    purchaseFailedDesc: "ግዢን ማጠናቀቅ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+    purchasesRestored: "ግዢዎች ተመልሰዋል!",
+    purchasesRestoredDesc: "የፕሮ ምዝገባዎ ተመልሷል።",
+    noPurchases: "ግዢዎች አልተገኙም",
+    noPurchasesDesc: "ለዚህ መለያ ምንም የቀደመ የፕሮ ምዝገባ አልተገኘም።",
+    restoreFailed: "መመለስ አልተሳካም",
+    restoreFailedDesc: "ግዢዎችን መመለስ አልተቻለም። እባክዎ እንደገና ይሞክሩ።",
+  }
+};
+
+export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const { isNative, platform } = usePlatform();
   const { toast } = useToast();
+  
+  const isAmharic = translation === "ETH" || translation === "AMPROT";
+  const t = isAmharic ? uiText.am : uiText.en;
 
   const handleUpgrade = async () => {
     setIsCheckingOut(true);
@@ -81,8 +156,8 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
       
       if (!offerings.current?.availablePackages?.length) {
         toast({
-          title: "Coming Soon",
-          description: "In-app purchases will be available once the app is live on the App Store.",
+          title: t.comingSoon,
+          description: t.comingSoonDesc,
         });
         return;
       }
@@ -95,8 +170,8 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
       
       if (result.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
         toast({
-          title: "Welcome to Pro!",
-          description: "You now have unlimited access to all features.",
+          title: t.welcomePro,
+          description: t.welcomeProDesc,
         });
         onClose();
         window.location.reload();
@@ -107,13 +182,13 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
         const errorMessage = error.message || "";
         if (errorMessage.includes("offerings") || errorMessage.includes("configuration") || errorMessage.includes("no App Store products")) {
           toast({
-            title: "Coming Soon",
-            description: "In-app purchases will be available once the app is live on the App Store.",
+            title: t.comingSoon,
+            description: t.comingSoonDesc,
           });
         } else {
           toast({
-            title: "Purchase failed",
-            description: "Unable to complete purchase. Please try again.",
+            title: t.purchaseFailed,
+            description: t.purchaseFailedDesc,
             variant: "destructive",
           });
         }
@@ -131,22 +206,22 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
       
       if (customerInfo.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
         toast({
-          title: "Purchases restored!",
-          description: "Your Pro subscription has been restored.",
+          title: t.purchasesRestored,
+          description: t.purchasesRestoredDesc,
         });
         onClose();
         window.location.reload();
       } else {
         toast({
-          title: "No purchases found",
-          description: "No previous Pro subscription was found for this account.",
+          title: t.noPurchases,
+          description: t.noPurchasesDesc,
         });
       }
     } catch (error: any) {
       console.error("Restore error:", error);
       toast({
-        title: "Restore failed",
-        description: "Unable to restore purchases. Please try again.",
+        title: t.restoreFailed,
+        description: t.restoreFailedDesc,
         variant: "destructive",
       });
     } finally {
@@ -177,20 +252,20 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
               <img src={upgradeIcon} alt="Upgrade" className="w-20 h-20 sm:w-16 sm:h-16" />
             </div>
             <DialogTitle className="text-2xl sm:text-xl text-[hsl(20,10%,20%)]" data-testid="heading-upgrade-dialog">
-              Upgrade to Pro
+              {t.upgradeTitle}
             </DialogTitle>
             <DialogDescription className={`text-[hsl(20,10%,40%)] ${isNative ? 'text-sm mt-3' : 'text-base sm:text-sm'}`}>
-              Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.{isNative ? " Subscription auto-renews monthly. Cancel anytime in Settings." : " Cancel anytime."}
+              {t.description}{isNative ? t.descriptionNativeSuffix : t.descriptionWebSuffix}
             </DialogDescription>
           </DialogHeader>
 
           <div className={`bg-white/50 rounded-lg p-5 sm:p-4 border border-[hsl(30,20%,88%)] ${isNative ? 'mt-8' : 'mt-6 sm:mt-4'}`}>
-            <h3 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">Upgrade to Pro for:</h3>
+            <h3 className="font-semibold text-[hsl(20,10%,20%)] mb-3 sm:mb-2 text-lg sm:text-base">{t.upgradeFor}</h3>
             <ul className={`${isNative ? 'space-y-3' : 'space-y-2 sm:space-y-2'} text-base sm:text-sm text-[hsl(20,10%,35%)]`}>
-              <li>• Unlimited Smart Searches</li>
-              <li>• Unlimited Book Synopses</li>
-              <li>• Unlimited Verse Insights</li>
-              <li>• Unlimited Notes</li>
+              <li>• {t.unlimitedSmartSearch}</li>
+              <li>• {t.unlimitedSynopsis}</li>
+              <li>• {t.unlimitedInsights}</li>
+              <li>• {t.unlimitedNotes}</li>
             </ul>
           </div>
 
@@ -206,10 +281,10 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                   {isPurchasing ? (
                     <>
                       <Loader2 className="w-5 h-5 sm:w-4 sm:h-4 mr-2 animate-spin" />
-                      Processing...
+                      {t.processing}
                     </>
                   ) : (
-                    "Subscribe Now - $9.99/month"
+                    t.subscribePrice
                   )}
                 </Button>
                 <Button
@@ -222,28 +297,28 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                   {isRestoring ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Restoring...
+                      {t.restoring}
                     </>
-                  ) : "Restore Purchases"}
+                  ) : t.restorePurchases}
                 </Button>
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-1 leading-relaxed">
-                  By subscribing, you agree to our{" "}
+                  {t.bySubscribing}{" "}
                   <button 
                     type="button"
                     onClick={() => openExternalUrl("/privacy-policy")}
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-privacy-policy"
                   >
-                    Privacy Policy
+                    {t.privacyPolicy}
                   </button>
-                  {" "}and{" "}
+                  {" "}{t.and}{" "}
                   <button 
                     type="button"
                     onClick={() => openExternalUrl("/terms-of-service")}
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-terms-of-service"
                   >
-                    Terms of Service
+                    {t.termsOfService}
                   </button>.
                 </p>
               </>
@@ -258,31 +333,31 @@ export function UpgradeDialog({ open, onClose }: UpgradeDialogProps) {
                   {isCheckingOut ? (
                     <>
                       <Loader2 className="w-5 h-5 sm:w-4 sm:h-4 mr-2 animate-spin" />
-                      Loading...
+                      {t.loading}
                     </>
                   ) : (
-                    "Subscribe Now"
+                    t.subscribeNow
                   )}
                 </Button>
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
-                  Subscription auto-renews monthly. Cancel anytime.<br />
-                  By subscribing, you agree to our{" "}
+                  {t.subscriptionTerms}<br />
+                  {t.bySubscribing}{" "}
                   <button 
                     type="button"
                     onClick={() => openExternalUrl("/privacy-policy")}
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-privacy-policy-web"
                   >
-                    Privacy Policy
+                    {t.privacyPolicy}
                   </button>
-                  {" "}and{" "}
+                  {" "}{t.and}{" "}
                   <button 
                     type="button"
                     onClick={() => openExternalUrl("/terms-of-service")}
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-terms-of-service-web"
                   >
-                    Terms of Service
+                    {t.termsOfService}
                   </button>.
                 </p>
               </>

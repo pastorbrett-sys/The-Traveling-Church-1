@@ -2215,6 +2215,7 @@ Reference: ${verseRef} (${translation})`;
         onClose={() => setUpgradeDialogOpen(false)}
         feature={upgradeFeature}
         resetAt={upgradeResetAt}
+        translation={translation}
       />
     </div>
   );
