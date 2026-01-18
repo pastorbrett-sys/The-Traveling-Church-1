@@ -94,17 +94,6 @@
     padding-bottom: var(--bottom-nav-offset);
   }
   
-  /* Only apply bottom nav padding in standalone/native mode, not mobile web browser */
-  .pb-safe {
-    padding-bottom: 16px;
-  }
-  
-  @media (display-mode: standalone) {
-    .pb-safe {
-      padding-bottom: 93px;
-    }
-  }
-  
   /* Fixed elements positioned above the native tab bar */
   .native-fixed-bottom {
     bottom: var(--bottom-nav-offset);
