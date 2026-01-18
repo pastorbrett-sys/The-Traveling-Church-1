@@ -10,15 +10,27 @@ export function PlatformToggle() {
   // Hide on actual native devices (only show web simulation toggle)
   if (isNative && !isSimulating) return null;
 
+  const handleWebClick = () => {
+    if (isSimulating) {
+      toggleSimulation();
+    }
+  };
+  
+  const handleNativeClick = () => {
+    if (!isSimulating) {
+      toggleSimulation();
+    }
+  };
+
   return (
     <div 
       className="fixed top-4 left-4 z-[999999] flex items-center gap-2 bg-black/90 backdrop-blur-sm border-2 border-yellow-400 rounded-lg p-2 shadow-xl"
       data-testid="platform-toggle-container"
     >
       <button
-        onClick={() => isSimulating && toggleSimulation()}
+        onClick={handleWebClick}
         className={`p-2 rounded-md transition-colors ${
-          !isNative ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+          !isSimulating ? "bg-primary text-primary-foreground" : "hover:bg-muted text-white"
         }`}
         title="Web mode"
         data-testid="button-web-mode"
@@ -26,9 +38,9 @@ export function PlatformToggle() {
         <Globe className="w-4 h-4" />
       </button>
       <button
-        onClick={() => !isSimulating && toggleSimulation()}
+        onClick={handleNativeClick}
         className={`p-2 rounded-md transition-colors ${
-          isNative ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+          isSimulating ? "bg-primary text-primary-foreground" : "hover:bg-muted text-white"
         }`}
         title="Native mode"
         data-testid="button-native-mode"

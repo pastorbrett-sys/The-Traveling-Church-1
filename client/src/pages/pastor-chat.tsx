@@ -834,7 +834,7 @@ export default function PastorChat() {
       </div>
       )}
 
-      <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} feature="chat_message" />
+      <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} feature="chat_message" translation={bibleTranslation} />
 
       {/* Login Required Modal */}
       <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>

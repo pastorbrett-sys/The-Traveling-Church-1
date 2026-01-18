@@ -982,6 +982,7 @@ export default function Notes() {
         onClose={() => setUpgradeDialogOpen(false)}
         feature="notes"
         resetAt={null}
+        translation={translation}
       />
     </div>
   );

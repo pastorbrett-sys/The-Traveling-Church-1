@@ -945,7 +945,7 @@ export default function Profile() {
         </div>
       </main>
 
-      <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} />
+      <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} translation={translation} />
     </div>
   );
 }

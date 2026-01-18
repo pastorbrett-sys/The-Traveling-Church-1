@@ -363,6 +363,13 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   // Get localized UI text based on current translation
   const t = getLocalizedText(translation);
 
+  // Store translation in localStorage for other pages to access
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('bibleTranslation', translation);
+    }
+  }, [translation]);
+
   // When translation changes and there's a selected verse, scroll to it
   useEffect(() => {
     if (prevTranslationRef.current !== translation && selectedVerse) {
