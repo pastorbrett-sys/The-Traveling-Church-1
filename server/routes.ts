@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import path from "path";
 import { storage, db } from "./storage";
 import { sql } from "drizzle-orm";
 import {
@@ -38,6 +39,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Bible routes
   app.use("/api/bible", bibleRoutes);
+
+  // Dynamic OG image serving based on domain
+  app.get("/og-image.png", (req, res) => {
+    const host = req.get("host") || "";
+    const isVagabond = host.includes("vagabondbible") || host.includes("localhost") || host.includes("replit");
+    const imagePath = isVagabond 
+      ? path.resolve(process.cwd(), "client/public/og-image.png")
+      : path.resolve(process.cwd(), "client/public/church-og-image.png");
+    res.sendFile(imagePath);
+  });
 
   // Public assets from Object Storage - from blueprint:javascript_object_storage
   app.get("/public-objects/:filePath(*)", async (req, res) => {

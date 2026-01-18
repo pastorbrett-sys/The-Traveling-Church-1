@@ -2,21 +2,23 @@ import { useEffect } from "react";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 const VAGABOND_META = {
-  title: "Vagabond Bible - The Best AI Bible Ever Built",
-  description: "The best AI Bible ever built. Analyze verses, ask questions, dive deeper, and chat with our 24/7 AI pastor wherever, whenever.",
+  title: "Vagabond Bible - AI-Powered Study Bible",
+  description: "The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.",
   url: "https://vagabondbible.com/",
   themeColor: "#be9009",
   manifest: "/manifest.json",
   appleTouchIcon: "/vagabond-apple-touch-icon.png",
+  ogImage: "https://vagabondbible.com/og-image.png",
 };
 
 const CHURCH_META = {
-  title: "The Traveling Church - A Global Ministry",
-  description: "A global, traveling ministry connecting believers worldwide. Join our community for events, resources, and the AI Bible Buddy.",
-  url: "https://travelingchurch.com/",
+  title: "The Global Travel Ministry",
+  description: "We travel to where people are to spread the love of God.",
+  url: "https://thetravelingchurch.com/",
   themeColor: "#0F172A",
   manifest: "/church-manifest.json",
   appleTouchIcon: "/apple-touch-icon.png",
+  ogImage: "https://thetravelingchurch.com/og-image.png",
 };
 
 function updateOrCreateMeta(selector: string, content: string, createFn?: () => Element) {
@@ -35,9 +37,11 @@ function updateMetadata(meta: typeof VAGABOND_META) {
   updateOrCreateMeta('meta[property="og:title"]', meta.title);
   updateOrCreateMeta('meta[property="og:description"]', meta.description);
   updateOrCreateMeta('meta[property="og:url"]', meta.url);
+  updateOrCreateMeta('meta[property="og:image"]', meta.ogImage);
   updateOrCreateMeta('meta[name="twitter:title"]', meta.title);
   updateOrCreateMeta('meta[name="twitter:description"]', meta.description);
   updateOrCreateMeta('meta[name="twitter:url"]', meta.url);
+  updateOrCreateMeta('meta[name="twitter:image"]', meta.ogImage);
   
   updateOrCreateMeta('meta[name="theme-color"]', meta.themeColor, () => {
     const el = document.createElement('meta');
