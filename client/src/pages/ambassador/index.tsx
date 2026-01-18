@@ -376,18 +376,28 @@ export default function AmbassadorPage() {
             <img 
               src={ambassadorLogo} 
               alt="Vagabond Bible Ambassador" 
-              className="h-14 object-contain"
+              className="h-16 md:h-20 object-contain"
             />
           </div>
           {ambassador?.isSuperAdmin && (
-            <Button
-              onClick={() => setLocation("/admin")}
-              className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
-              data-testid="button-admin-panel"
-            >
-              <Shield className="w-4 h-4 mr-2" />
-              Admin Panel
-            </Button>
+            <>
+              <Button
+                onClick={() => setLocation("/admin")}
+                size="icon"
+                className="bg-[#c08e00] hover:bg-[#a07800] text-black md:hidden"
+                data-testid="button-admin-panel-mobile"
+              >
+                <Shield className="w-5 h-5" />
+              </Button>
+              <Button
+                onClick={() => setLocation("/admin")}
+                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium hidden md:flex"
+                data-testid="button-admin-panel"
+              >
+                <Shield className="w-4 h-4 mr-2" />
+                Admin Panel
+              </Button>
+            </>
           )}
         </div>
 
