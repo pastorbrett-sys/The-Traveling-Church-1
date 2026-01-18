@@ -37,6 +37,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   registerChatRoutes(app);
   
+  // Social media crawler middleware - serves correct OG meta tags per domain
+  app.use((req, res, next) => {
+    const userAgent = req.get("user-agent") || "";
+    const isCrawler = /facebookexternalhit|Facebot|Twitterbot|WhatsApp|LinkedInBot|Slackbot|TelegramBot|Pinterest|Discordbot/i.test(userAgent);
+    
+    if (!isCrawler || req.path.startsWith("/api/") || req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+      return next();
+    }
+    
+    const host = req.get("host") || "";
+    const isVagabond = host.includes("vagabondbible") || host.includes("localhost") || host.includes("replit");
+    
+    if (isVagabond) {
+      res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vagabond Bible - AI-Powered Study Bible</title>
+  <meta name="description" content="The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vagabondbible.com/">
+  <meta property="og:title" content="Vagabond Bible - AI-Powered Study Bible">
+  <meta property="og:description" content="The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.">
+  <meta property="og:image" content="https://vagabondbible.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://vagabondbible.com/">
+  <meta name="twitter:title" content="Vagabond Bible - AI-Powered Study Bible">
+  <meta name="twitter:description" content="The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.">
+  <meta name="twitter:image" content="https://vagabondbible.com/og-image.png">
+</head>
+<body></body>
+</html>`);
+    } else {
+      res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Global Travel Ministry</title>
+  <meta name="description" content="We travel to where people are to spread the love of God.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thetravelingchurch.com/">
+  <meta property="og:title" content="The Global Travel Ministry">
+  <meta property="og:description" content="We travel to where people are to spread the love of God.">
+  <meta property="og:image" content="https://thetravelingchurch.com/church-og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://thetravelingchurch.com/">
+  <meta name="twitter:title" content="The Global Travel Ministry">
+  <meta name="twitter:description" content="We travel to where people are to spread the love of God.">
+  <meta name="twitter:image" content="https://thetravelingchurch.com/church-og-image.png">
+</head>
+<body></body>
+</html>`);
+    }
+  });
+  
   // Bible routes
   app.use("/api/bible", bibleRoutes);
 
