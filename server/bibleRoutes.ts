@@ -284,7 +284,6 @@ router.get("/translations", async (req, res) => {
       ...translations,
       amharicBibleService.AMHARIC_ORTHODOX_TRANSLATION,
       amharicBibleService.AMHARIC_PROTESTANT_TRANSLATION,
-      amharicBibleService.ENGLISH_ORTHODOX_TRANSLATION,
     ];
     res.json(allTranslations);
   } catch (error) {
