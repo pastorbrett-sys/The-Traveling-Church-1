@@ -492,8 +492,7 @@ export default function AmbassadorPage() {
               </div>
               <Button
                 onClick={handleCopyInvite}
-                variant="outline"
-                className="border-[#333] hover:bg-[#c08e00]/10 hover:border-[#c08e00] text-gray-300"
+                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
                 data-testid="button-copy-invite"
               >
                 {copiedInvite ? (
