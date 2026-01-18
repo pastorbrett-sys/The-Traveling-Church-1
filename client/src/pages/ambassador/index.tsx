@@ -383,18 +383,14 @@ export default function AmbassadorPage() {
             {ambassador?.isSuperAdmin && (
               <Button
                 onClick={() => setLocation("/admin")}
-                variant="outline"
-                className="border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
+                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
                 data-testid="button-admin-panel"
               >
                 <Shield className="w-4 h-4 mr-2" />
                 Admin Panel
               </Button>
             )}
-            <div className="text-right">
-              <p className="text-gray-400 text-sm">Welcome back,</p>
-              <p className="text-white font-medium">{ambassador?.name}</p>
-            </div>
+            <p className="text-white font-medium">{ambassador?.name}</p>
           </div>
         </div>
 
