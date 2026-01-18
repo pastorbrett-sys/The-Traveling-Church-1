@@ -481,9 +481,7 @@ export default function AmbassadorPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-gray-400 text-sm">
-              Invite others to join the Ambassador Program and grow your team
-            </p>
+            <p className="text-gray-400 text-sm">Invite others to join the Ambassador Program and grow your team when they earn, you earn</p>
             <div className="flex items-center gap-2">
               <div className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-gray-300 truncate font-mono text-sm">
                 vagabondbible.com/ambassador?invite={ambassador?.inviteCode}
