@@ -20,6 +20,7 @@ import { stripeStorage } from "./stripeStorage";
 import { stripeService } from "./stripeService";
 import { getStripePublishableKey } from "./stripeClient";
 import bibleRoutes from "./bibleRoutes";
+import ambassadorRoutes from "./ambassadorRoutes";
 import { registerRevenueCatWebhook } from "./revenueCatWebhook";
 import { isUserPro } from "./proStatusService";
 import { registerNativeAuthRoutes } from "./nativeAuthRoutes";
@@ -98,6 +99,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Bible routes
   app.use("/api/bible", bibleRoutes);
+
+  // Ambassador program routes (completely separate from Bible app)
+  app.use("/api/ambassador", ambassadorRoutes);
 
   // Dynamic OG image serving based on domain
   app.get("/og-image.png", (req, res) => {
