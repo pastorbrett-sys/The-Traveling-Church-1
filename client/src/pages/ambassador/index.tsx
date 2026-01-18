@@ -367,7 +367,7 @@ export default function AmbassadorPage() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => window.history.back()}
+              onClick={() => setLocation("/bible-reader")}
               className="text-gray-400 hover:text-white"
               data-testid="button-back-home"
             >
