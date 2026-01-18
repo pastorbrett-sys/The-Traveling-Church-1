@@ -405,7 +405,7 @@ export default function AmbassadorPage() {
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-white flex items-center gap-2">
               <LinkIcon className="w-5 h-5 text-[#c08e00]" />
-              Your Referral Link
+              Invite New Users
             </CardTitle>
           </CardHeader>
           <CardContent>
