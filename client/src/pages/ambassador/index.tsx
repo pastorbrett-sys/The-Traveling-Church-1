@@ -384,14 +384,14 @@ export default function AmbassadorPage() {
               <Button
                 onClick={() => setLocation("/admin")}
                 size="icon"
-                className="bg-[#c08e00] hover:bg-[#a07800] text-black md:hidden mt-[5px]"
+                className="bg-[#c08e00] hover:bg-[#a07800] text-black md:hidden mt-[7px]"
                 data-testid="button-admin-panel-mobile"
               >
                 <Shield className="w-5 h-5" />
               </Button>
               <Button
                 onClick={() => setLocation("/admin")}
-                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium hidden md:flex mt-[5px]"
+                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium hidden md:flex mt-[7px]"
                 data-testid="button-admin-panel"
               >
                 <Shield className="w-4 h-4 mr-2" />
