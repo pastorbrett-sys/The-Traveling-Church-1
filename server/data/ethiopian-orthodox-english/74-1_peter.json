@@ -1,0 +1,463 @@
+{
+  "book_number": 74,
+  "book_name_am": "1ኛ የጴጥሮስ መልእክት",
+  "book_short_name_am": "1 ጴጥ",
+  "book_name_en": "1 Peter",
+  "book_short_name_en": "1 Pet",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Greetings",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Peter, an apostle of Jesus Christ, to the elect who are scattered throughout Pontus, Galatia, Cappadocia, Asia, and Bithynia, chosen according to the foreknowledge of God the Father, in sanctification of the Spirit, for obedience and sprinkling of the blood of Jesus Christ: Grace and peace be multiplied to you."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the hope of the living.",
+          "verses": [
+            {
+              "verse": 3,
+              "text": "ኢየሱስ ክርስቶስ ከሙታን በመነሣቱ ለሕያው ተስፋና ለማይጠፋ፥ እድፈትም ለሌለበት፥ ለማያልፍም ርስት እንደ ምሕረቱ ብዛት ሁለተኛ የወለደን የጌታችን የኢየሱስ ክርስቶስ አባት እግዚአብሔር ይመስገን፤ ይህም ርስት በመጨረሻው ዘመን ይገለጥ ዘንድ ለተዘጋጀ መዳን በእምነት በእግዚአብሔር ኀይል ለተጠበቃችሁ ለእናንተ በሰማይ ቀርቶላችኋል።"
+            },
+            {
+              "verse": 6,
+              "text": "በዚህም እጅግ ደስ ይላችኋል፤ ነገር ግን በእሳት ምንም ቢፈተን ከሚጠፋው ወርቅ ይልቅ አብልጦ የሚከብር የተፈተነ እምነታችሁ፥ ኢየሱስ ክርስቶስ ሲገለጥ፥ ለምስጋናና ለክብር ለውዳሴም ይገኝ ዘንድ አሁን ለጥቂት ጊዜ ቢያስፈልግ በልዩ ልዩ ፈተና አዝናችኋል።"
+            },
+            {
+              "verse": 8,
+              "text": "እርሱንም ሳታዩት ትወዱታላችሁ፤ አሁንም ምንም ባታዩት በእርሱ አምናችሁ፥ የእምነታችሁን ፍፃሜ እርሱም የነፍሳችሁን መዳን እየተቀበላችሁ፥ በማይነገርና ክብር በሞላበት ሐሤት ደስ ይላችኋል።"
+            },
+            {
+              "verse": 10,
+              "text": "ለእናንተም ስለሚሰጠው ጸጋ ትንቢት የተናገሩት ነቢያት ስለዚህ መዳን ተግተው እየፈለጉ መረመሩት፤"
+            },
+            {
+              "verse": 11,
+              "text": "በእነርሱም የነበረ የክርስቶስ መንፈስ፥ ስለ ክርስቶስ መከራ ከእርሱም በኋላ ስለሚመጣው ክብር አስቀድሞ እየመሰከረ፥ በምን ወይም እንዴት ባለ ዘመን እንዳመለከተ ይመረምሩ ነበር።"
+            },
+            {
+              "verse": 12,
+              "text": "ለእነርሱም ከሰማይ በተላከ በመንፈስ ቅዱስ ወንጌልን የሰበኩላችሁ ሰዎች አሁን ባወሩላችሁ ነገር እናንተን እንጂ ራሳቸውን እንዳላገለገሉ ተገለጠላቸው፤ ይህንም ነገር መላእክቱ ሊመለከቱ ይመኛሉ።"
+            }
+          ]
+        },
+        {
+          "title": "A call to dwell in holiness.",
+          "verses": [
+            {
+              "verse": 13,
+              "text": "Therefore, guard your hearts and live in moderation; when Jesus Christ is revealed, hope for the grace that you shall receive."
+            },
+            {
+              "verse": 14,
+              "text": "As obedient children, do not conform to the desires you had when you lived in ignorance."
+            },
+            {
+              "verse": 15,
+              "text": "For it is written, \"I am holy; therefore, you shall be holy in all your conduct.\""
+            },
+            {
+              "verse": 17,
+              "text": "Do not call anyone on earth your father; for you have one Father, who is in heaven. Live in fear during your time as strangers here."
+            },
+            {
+              "verse": 18,
+              "text": "Knowing that you were not redeemed with perishable things like silver or gold from your futile way of life inherited from your forefathers, but with the precious blood of Christ, as of a lamb without blemish and without spot."
+            },
+            {
+              "verse": 20,
+              "text": "The world was known before it was created; however, let your faith and hope be in God, for He has given you glory in the resurrection of the dead, as you believe in Him, and it has been revealed to you at the end of your time."
+            },
+            {
+              "verse": 22,
+              "text": "While you are being sanctified in truth, do not neglect your brotherly love; let your souls be pure, and love one another fervently from the heart."
+            },
+            {
+              "verse": 23,
+              "text": "The seed that is born again of you does not perish; it is the imperishable seed that lives and abides forever, through the word of God that endures."
+            },
+            {
+              "verse": 24,
+              "text": "\"All flesh is as grass, and all the glory of man as the flower of the grass.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"The word of the Lord endures forever.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": "The living stone and the chosen people.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Therefore, cast away all malice and all deceit, hypocrisy and envy, and all slander."
+            },
+            {
+              "verse": 2,
+              "text": "As you have been called to the Lord, who is gracious, so that you may be nourished by Him, like newborn infants, long for the pure spiritual milk, that by it you may grow up into salvation."
+            },
+            {
+              "verse": 4,
+              "text": "And as you come to Him, the living Stone rejected by men but chosen by God and precious, you also, like living stones, are being built into a spiritual house, to be a holy priesthood, offering spiritual sacrifices acceptable to God through Jesus Christ."
+            },
+            {
+              "verse": 5,
+              "text": "But you are a chosen generation, a royal priesthood, a holy nation, His own special people, that you may proclaim the praises of Him who called you out of darkness into His marvelous light."
+            },
+            {
+              "verse": 6,
+              "text": "In the Scriptures"
+            },
+            {
+              "verse": 9,
+              "text": "But you are a chosen generation, a royal priesthood, a holy nation, His own special people, that you may proclaim the praises of Him who called you out of darkness into His marvelous light."
+            },
+            {
+              "verse": 10,
+              "text": "Once you were not a people, but now you are the people of God; once you had not received mercy, but now you have received mercy."
+            }
+          ]
+        },
+        {
+          "title": "To dwell as servants of the Lord.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "O brethren! I beseech you, as you are guests and sojourners, to refrain from the lusts of the flesh that war against the soul;"
+            },
+            {
+              "verse": 12,
+              "text": "Concerning your good works, may your lives be pleasing among the nations, as you honor the Lord on the day when you are called to account for the evil you may do."
+            },
+            {
+              "verse": 13,
+              "text": "As you speak of the Lord, be subject to every human institution; whether to a king as supreme, for he is above all."
+            },
+            {
+              "verse": 14,
+              "text": "Even if it pertains to governors, be subject to them, for they are sent by him for the punishment of evildoers and for the praise of those who do good."
+            },
+            {
+              "verse": 15,
+              "text": "While you do good, let your silence regarding the ignorant be such, for this is the will of God."
+            },
+            {
+              "verse": 16,
+              "text": "Be free, but do not use your freedom as a cover-up for evil; rather, be servants of God."
+            },
+            {
+              "verse": 17,
+              "text": "Honor all; love the brethren; fear God; honor the king."
+            }
+          ]
+        },
+        {
+          "title": "The Suffering of Christ as an Example",
+          "verses": [
+            {
+              "verse": 18,
+              "text": "O ye who are called! Purchase not only for your lords and for your masters, but also for the needy, with all reverence."
+            },
+            {
+              "verse": 19,
+              "text": "A man who receives affliction through violence, if he should grieve while contemplating the Lord, shall be worthy of praise."
+            },
+            {
+              "verse": 20,
+              "text": "What honor is there when ye are afflicted for your sins? But if ye should receive affliction while doing good, this matter shall be worthy of praise before the Lord."
+            },
+            {
+              "verse": 21,
+              "text": "For this ye have been called; and Christ also has set forth an example that ye should follow, for your affliction has been received for your sake."
+            },
+            {
+              "verse": 22,
+              "text": "\"And He did not commit sin;"
+            },
+            {
+              "verse": 23,
+              "text": "when He was reviled, He did not revile in return; when He suffered, He did not threaten; but committed Himself to Him who judges righteously;"
+            },
+            {
+              "verse": 24,
+              "text": "that we might die to sin and live to righteousness; He Himself bore our sins in His own body on the tree, that we, having died to sins, might live for righteousness."
+            },
+            {
+              "verse": 25,
+              "text": "As sheep ye were going astray; but now ye have returned to the Shepherd and Overseer of your souls."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "Concerning the husband and wife.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Likewise, O ye wives! If any of your husbands be disobedient to the word, they may without the word be won by the conversation of their wives, while they behold your chaste conversation coupled with fear."
+            },
+            {
+              "verse": 3,
+              "text": "Let not your adornment be that outward adorning of plaiting the hair, and of wearing of gold, or of putting on of apparel;"
+            },
+            {
+              "verse": 4,
+              "text": "But let it be the hidden man of the heart, in that which is not corruptible, even the ornament of a meek and quiet spirit, which is in the sight of God of great price."
+            },
+            {
+              "verse": 5,
+              "text": "For after this manner in the old time the holy women also, who trusted in God, adorned themselves, being in subjection unto their own husbands:"
+            },
+            {
+              "verse": 6,
+              "text": "Even as Sarah obeyed Abraham, calling him lord: whose daughters ye are, as long as ye do well, and are not afraid with any amazement."
+            },
+            {
+              "verse": 7,
+              "text": "Likewise, ye husbands, dwell with them according to knowledge, giving honour unto the wife, as unto the weaker vessel, and as being heirs together of the grace of life; that your prayers be not hindered."
+            }
+          ]
+        },
+        {
+          "title": "To do good is to accept suffering.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "በመጨረሻው ሁላችሁ በአንድ ልብ ሁኑ፤ የሌላው መከራ ለእናንተ እንደሚሆን አድርጉ፤ እንደወንድሞች ተዋደዱ፤ ርኅሩኆችና ትሑታን ሁኑ፤"
+            },
+            {
+              "verse": 9,
+              "text": "ክፉን በክፉ ፈንታ ወይም ስድብን በስድብ ፈንታ አትመልሱ፤ በዚህ ፈንታ ባርኩ እንጂ፤ በረከትን ልትወርሱ ለዚህ ተጠርታችኋልና።"
+            },
+            {
+              "verse": 10,
+              "text": "“ሕይወትን ሊወድ መልካሞችንም ቀኖች ሊያይ የሚፈልግ ሰው፥"
+            },
+            {
+              "verse": 11,
+              "text": "ከክፉ ፈቀቅ ይበል፤ መልካምንም ያድርግ፤"
+            },
+            {
+              "verse": 12,
+              "text": "የጌታ ዐይኖች ወደ ጻድቃን ናቸውና፤"
+            },
+            {
+              "verse": 13,
+              "text": "በጎንም ለማድረግ ብትቀኑ የሚያስጨንቃችሁ ማን ነው?"
+            },
+            {
+              "verse": 14,
+              "text": "ነገር ግን ስለ ጽድቅ እንኳ መከራን ብትቀበሉ ብፁዓን ናችሁ። ማስፈራራታቸውንም አትፍሩ፤ አትናወጡም፤"
+            },
+            {
+              "verse": 15,
+              "text": "ዳሩ ግን ጌታን እርሱም ክርስቶስ በልባችሁ ቀድሱት። በእናንተ ስላለ ተስፋ ምክንያትን ለሚጠይቁዋችሁ ሁሉ መልስ ለመስጠት ዘወትር የተዘጋጃችሁ ሁኑ፤ ነገር ግን በየዋህነትና በፍርሃት ይሁን።"
+            },
+            {
+              "verse": 16,
+              "text": "በክርስቶስ ያለውን መልካሙን ኑሮአችሁን የሚሳደቡ ሰዎች ክፉን እንደምታደርጉ በሚያሙበት ነገር እንዲያፍሩ በጎ ሕሊና ይኑራችሁ።"
+            },
+            {
+              "verse": 17,
+              "text": "የእግዚአብሔር ፈቃድ እንዲህ ቢሆን፥ ክፉ ስለ ማድረግ ሳይሆን በጎ ስለ ማድረግ መከራን ብትቀበሉ ይሻላችኋልና።"
+            },
+            {
+              "verse": 18,
+              "text": "Christ, being righteous, has offered Himself to God once for the sins of the world; He died for our transgressions, having died in the flesh, yet being alive in the Spirit."
+            },
+            {
+              "verse": 19,
+              "text": "And He also went and preached to the spirits that were in prison;"
+            },
+            {
+              "verse": 20,
+              "text": "For a few, that is, eight souls were saved through water, and the patience of God in the days of Noah was not previously delayed."
+            },
+            {
+              "verse": 21,
+              "text": "This water signifies the baptism that now saves us; it is not the removal of the filth of the flesh, but the appeal to God for a good conscience, through the resurrection of Jesus Christ."
+            },
+            {
+              "verse": 22,
+              "text": "He, having ascended after the angels and authorities and powers were made subject to Him, is at the right hand of God in heaven."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": "Blessed is the servant of grace.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And Christ, having suffered in the flesh for us, from now on, let none of you live according to the desires of the flesh, but according to the will of God; and you also, let that thought be as a weapon of warfare, for you have left behind the sin that was received through suffering in the flesh."
+            },
+            {
+              "verse": 3,
+              "text": "The will of the Gentiles, which you have followed, is in excess of drinking and the desires of the flesh, and in the revelries and abominable idolatries, which you have been entangled in, let that former time be sufficient."
+            },
+            {
+              "verse": 4,
+              "text": "In this matter, they shall be astonished, as they are being led astray, for they do not run with you to the same excess of riot."
+            },
+            {
+              "verse": 5,
+              "text": "But they shall give an account to Him who is ready to judge the living and the dead."
+            },
+            {
+              "verse": 6,
+              "text": "As men are judged according to the flesh, so shall they live according to the Spirit, for this reason the gospel was also preached to the dead."
+            },
+            {
+              "verse": 7,
+              "text": "But the end of all things is at hand. Therefore, be sober-minded and watchful in prayer."
+            },
+            {
+              "verse": 8,
+              "text": "And above all things, have fervent love for one another, for love will cover a multitude of sins."
+            },
+            {
+              "verse": 9,
+              "text": "Without grumbling, be hospitable to one another."
+            },
+            {
+              "verse": 10,
+              "text": "Each one of you, as a good steward of the manifold grace of God, minister it to one another, as good stewards of the grace of God."
+            },
+            {
+              "verse": 11,
+              "text": "If anyone speaks, let him speak as the oracles of God; if anyone ministers, let him do it as with the ability which God supplies, that in all things God may be glorified through Jesus Christ, to whom belong the glory and the dominion forever and ever. Amen."
+            }
+          ]
+        },
+        {
+          "title": "To receive tribulations as a Christian.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "O brethren! Do not be dismayed by the trials that may come upon you, as they are like fire that seeks to test you; for such tribulations are a wondrous thing that has come upon you."
+            },
+            {
+              "verse": 13,
+              "text": "Yet, when your honor is revealed, rejoice and be glad, for in the same manner you shall be glad in the sufferings of Christ, in which you partake."
+            },
+            {
+              "verse": 14,
+              "text": "If you are reviled for the name of Christ, the spirit of glory and of God rests upon you, and you are blessed."
+            },
+            {
+              "verse": 15,
+              "text": "Let none among you suffer as a murderer or a thief or an evildoer, or as a busybody in other men’s matters; for such shall not receive tribulation."
+            },
+            {
+              "verse": 16,
+              "text": "But if any man suffers as a Christian, let him not be ashamed, but let him glorify God on this behalf."
+            },
+            {
+              "verse": 17,
+              "text": "For the time has come that judgment must begin at the house of God; and if it first begins at us, what shall the end be of them that obey not the gospel of God?"
+            },
+            {
+              "verse": 18,
+              "text": "And if the righteous scarcely be saved, where shall the ungodly and the sinner appear?"
+            },
+            {
+              "verse": 19,
+              "text": "Therefore, let those who receive tribulation according to the will of God commit their souls to Him in well-doing, as unto a faithful Creator."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "Concerning the keeping of the commandments of the Lord.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እንግዲህ እኔ ከእነርሱ ጋር ሽማግሌ የክርስቶስም መከራ ምስክር ደግሞም ሊገለጥ ካለው ክብር ተካፋይ የሆንሁ፥ በመካከላቸው ያሉትን ሽማግሌዎች እመክራቸዋለሁ፤"
+            },
+            {
+              "verse": 2,
+              "text": "በእናንተ ዘንድ ያለውን የእግዚአብሔርን መንጋ ጠብቁ፤ እንደ እግዚአብሔር ፈቃድ በውድ እንጂ በግድ ሳይሆን፥ በበጎ ፈቃድ እንጂ መጥፎውን ረብ በመመኘት ሳይሆን ጐብኙት፤"
+            },
+            {
+              "verse": 3,
+              "text": "ለመንጋው ምሳሌ ሁኑ እንጂ ማኅበሮቻችሁን በኀይል አትግዙ፤"
+            },
+            {
+              "verse": 4,
+              "text": "የእረኞችም አለቃ በሚገለጥበት ጊዜ የማያልፈውን የክብርን አክሊል ትቀበላላችሁ።"
+            },
+            {
+              "verse": 5,
+              "text": "እንዲሁም ጐበዞች ሆይ! ለሽማግሌዎች ተገዙ፤ ሁላችሁም እርስ በርሳችሁ እየተዋረዳችሁ ትሕትናን እንደ ልብስ ልበሱ፤ እግዚአብሔር ትዕቢተኞችን ይቃወማልና፤ ለትሑታኑ ግን ጸጋን ይሰጣል።"
+            },
+            {
+              "verse": 6,
+              "text": "እንግዲህ በጊዜው ከፍ እንዲያደርጋችሁ ከኀይለኛው ከእግዚአብሔር እጅ በታች ራሳችሁን አዋርዱ፤"
+            },
+            {
+              "verse": 7,
+              "text": "እርሱ ስለ እናንተ ያስባልና የሚያስጨንቃችሁን ሁሉ በእርሱ ላይ ጣሉት።"
+            },
+            {
+              "verse": 8,
+              "text": "በመጠን ኑሩ፤ ንቁም፤ ባላጋራችሁ ዲያብሎስ የሚውጠውን ፈልጎ እንደሚያገሣ አንበሳ ይዞራልና፤"
+            },
+            {
+              "verse": 9,
+              "text": "በዓለም ያሉት ወንድሞቻችሁ ያን መከራ በሙሉ እንዲቀበሉ እያወቃችሁ በእምነት ጸንታችሁ ተቃወሙት።"
+            },
+            {
+              "verse": 10,
+              "text": "በክርስቶስ ኢየሱስ ወደ ዘላለም ክብሩ የጠራችሁ የጸጋ ሁሉ አምላክ ለጥቂት ጊዜ መከራን ከተቀበላችሁ በኋላ፥ ራሱ ፍጹማን ያደርጋችኋል፤ ያጸናችሁማል፤ ያበረታችሁማል።"
+            },
+            {
+              "verse": 11,
+              "text": "To Him be glory and power forever and ever; Amen."
+            }
+          ]
+        },
+        {
+          "title": "The final greeting and blessing.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "As I am laboring among you, that the grace of the Lord God may be true and abundant, I write to you in the shortness of my hand, as a faithful brother, in the name of Silvanus."
+            },
+            {
+              "verse": 13,
+              "text": "Chosen together with you, the church that is in Babylon, my son Mark sends you greetings."
+            },
+            {
+              "verse": 14,
+              "text": "In love, let peace be given to one another. May peace be unto you all in Christ. Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

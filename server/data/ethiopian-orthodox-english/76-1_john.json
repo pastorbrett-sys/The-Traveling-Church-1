@@ -1,0 +1,472 @@
+{
+  "book_number": 76,
+  "book_name_am": "1ኛ የዮሐንስ መልእክት",
+  "book_short_name_am": "1 ዮሐ",
+  "book_name_en": "1 John",
+  "book_short_name_en": "1 John",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Concerning the word of life, which was from the beginning, which we have heard, which we have seen with our eyes, which we have looked upon, and our hands have handled, we declare unto you;"
+            },
+            {
+              "verse": 2,
+              "text": "And life was manifested, and we have seen it, and bear witness, and show unto you that eternal life, which was with the Father, and was manifested unto us;"
+            },
+            {
+              "verse": 3,
+              "text": "And you also, that you may have fellowship with us, we declare unto you what we have seen and heard. And truly our fellowship is with the Father and with His Son Jesus Christ."
+            },
+            {
+              "verse": 4,
+              "text": "And these things we write unto you, that your joy may be full."
+            },
+            {
+              "verse": 5,
+              "text": "And this is the message which we have heard of Him and declare unto you: that God is light, and in Him is no darkness at all."
+            },
+            {
+              "verse": 6,
+              "text": "If we say that we have fellowship with Him and walk in darkness, we lie and do not the truth;"
+            },
+            {
+              "verse": 7,
+              "text": "But if we walk in the light, as He is in the light, we have fellowship one with another, and the blood of Jesus Christ His Son cleanseth us from all sin."
+            },
+            {
+              "verse": 8,
+              "text": "If we say that we have no sin, we deceive ourselves, and the truth is not in us."
+            },
+            {
+              "verse": 9,
+              "text": "If we confess our sins, He is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness."
+            },
+            {
+              "verse": 10,
+              "text": "If we say that we have not sinned, we make Him a liar, and His word is not in us."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ልጆቼ ሆይ፥ ኃጢአትን እንዳታደርጉ ይህን እጽፍላችኋለሁ። ማንም ኃጢአትን ቢያደርግ ከአብ ዘንድ ጠበቃ አለን እርሱም ጻድቅ የሆነ ኢየሱስ ክርስቶስ ነው።"
+            },
+            {
+              "verse": 2,
+              "text": "እርሱም የኃጢአታችን ማስተስሪያ ነው፥ ለኃጢአታችንም ብቻ አይደለም፥ ነገር ግን ለዓለሙ ሁሉ ኃጢአት እንጂ።"
+            },
+            {
+              "verse": 3,
+              "text": "ትእዛዛቱንም ብንጠብቅ በዚህ እንዳወቅነው እናውቃለን።"
+            },
+            {
+              "verse": 4,
+              "text": "አውቄዋለሁ የሚል ትእዛዛቱንም የማይጠብቅ ውሸተኛ ነው እውነትም በእርሱ ውስጥ የለም።"
+            },
+            {
+              "verse": 5,
+              "text": "ቃሉን ግን የሚጠብቅ ሁሉ በእርሱ የእግዚአብሔር ፍቅር በእውነት ተፈጽሞአል። በእርሱ እንዳለን በዚህ እናውቃለን፤"
+            },
+            {
+              "verse": 6,
+              "text": "በእርሱ እኖራለሁ የሚል እርሱ እንደ ተመላለሰ ራሱ ደግሞ ሊመላለስ ይገባዋል።"
+            },
+            {
+              "verse": 7,
+              "text": "ወንድሞች ሆይ፥ ከመጀመሪያ የነበረቻችሁ አሮጌ ትእዛዝ እንጂ የምጽፍላችሁ አዲስ ትእዛዝ አይደለችም፤ አሮጌይቱ ትእዛዝ የሰማችኋት ቃል ናት።"
+            },
+            {
+              "verse": 8,
+              "text": "ዳግመኛ አዲስ ትእዛዝን እጽፍላችኋለሁ፥ ይህም ነገር በእርሱ በእናንተም እውነተኛ ነው፤ ጨለማው ያልፋልና እውነተኛውም ብርሃን አሁን ይበራል።"
+            },
+            {
+              "verse": 9,
+              "text": "በብርሃን አለሁ የሚል ወንድሙንም የሚጠላ እስከ አሁን በጨለማ አለ።"
+            },
+            {
+              "verse": 10,
+              "text": "ወንድሙንም የሚወድ በብርሃን ይኖራል ማሰናከያም የለበትም፤"
+            },
+            {
+              "verse": 11,
+              "text": "ወንድሙን የሚጠላ ግን በጨለማ አለ፥ በጨለማም ይመላለሳል፥ የሚሄድበትንም አያውቅም፥ ጨለማው ዓይኖቹን አሳውሮታልና።"
+            },
+            {
+              "verse": 12,
+              "text": "ልጆች ሆይ፥ ኃጢአታችሁ ስለ ስሙ ተሰርዮላችኋልና እጽፍላችኋለሁ።"
+            },
+            {
+              "verse": 13,
+              "text": "አባቶች ሆይ፥ ከመጀመሪያ የነበረውን አውቃችኋልና እጽፍላችኋለሁ። ጎበዞች ሆይ፥ ክፉውን አሸንፋችኋልና እጽፍላችኋለሁ። ልጆች ሆይ፥ አብን አውቃችኋልና እጽፍላችኋለሁ።"
+            },
+            {
+              "verse": 14,
+              "text": "አባቶች ሆይ፥ ከመጀመሪያ የነበረውን አውቃችኋልና እጽፍላችኋለሁ። ጐበዞች ሆይ፥ ብርቱዎች ስለ ሆናችሁ የእግዚአብሔርም ቃል በእናንተ ስለሚኖር ክፉውንም ስለ አሸነፋችሁ እጽፍላችኋለሁ።"
+            },
+            {
+              "verse": 15,
+              "text": "ዓለምን ወይም በዓለም ያሉትን አትውደዱ፤ በዓለም ያለው ሁሉ እርሱም የሥጋ ምኞትና የዓይን አምሮት ስለ ገንዘብም መመካት ከዓለም ስለ ሆነ እንጂ ከአባት ስላልሆነ፥ ማንም ዓለምን ቢወድ የአባት ፍቅር በእርሱ ውስጥ የለም።"
+            },
+            {
+              "verse": 17,
+              "text": "ዓለሙም ምኞቱም ያልፋሉ፤ የእግዚአብሔርን ፈቃድ የሚያደርግ ግን ለዘላለም ይኖራል።"
+            },
+            {
+              "verse": 18,
+              "text": "ልጆች ሆይ፥ መጨረሻው ሰዓት ነው፥ የክርስቶስም ተቃዋሚ ይመጣ ዘንድ እንደ ሰማችሁ አሁን እንኳ ብዙዎች የክርስቶስ ተቃዋሚዎች ተነሥተዋል፤ ስለዚህም መጨረሻው ሰዓት እንደ ሆነ እናውቃለን።"
+            },
+            {
+              "verse": 19,
+              "text": "ከእኛ ዘንድ ወጡ፥ ዳሩ ግን ከእኛ ወገን አልነበሩም፤ ከእኛ ወገንስ ቢሆኑ ከእኛ ጋር ጸንተው በኖሩ ነበር፤ ነገር ግን ሁሉ ከእኛ ወገን እንዳልሆኑ ይገለጡ ዘንድ ወጡ።"
+            },
+            {
+              "verse": 20,
+              "text": "እናንተም ከቅዱሱ ቅባት ተቀብላችኋል፥ ሁሉንም ታውቃላችሁ።"
+            },
+            {
+              "verse": 21,
+              "text": "እውነትን የምታውቁ ስለ ሆናችሁ፥ ውሸትም ሁሉ ከእውነት እንዳልሆነ ስለምታውቁ እንጂ እውነትን ስለማታውቁ አልጽፍላችሁም።"
+            },
+            {
+              "verse": 22,
+              "text": "ክርስቶስ አይደለም ብሎ ኢየሱስን ከሚክድ በቀር ውሸተኛው ማን ነው? አብንና ወልድን የሚክድ ይህ የክርስቶስ ተቃዋሚ ነው።"
+            },
+            {
+              "verse": 23,
+              "text": "ወልድን የሚክድ ሁሉ አብ እንኳ የለውም፤ በወልድ የሚታመን አብ ደግሞ አለው።"
+            },
+            {
+              "verse": 24,
+              "text": "እናንተስ ከመጀመሪያ የሰማችሁት በእናንተ ጸንቶ ይኑር። ከመጀመሪያ የሰማችሁት በእናንተ ቢኖር፥ እናንተ ደግሞ በወልድና በአብ ትኖራላችሁ።"
+            },
+            {
+              "verse": 25,
+              "text": "እርሱም የሰጠን ተስፋ ይህ የዘላለም ሕይወት ነው።"
+            },
+            {
+              "verse": 26,
+              "text": "ስለሚያስቱአችሁ ሰዎች ይህን ጽፌላችኋለሁ።"
+            },
+            {
+              "verse": 27,
+              "text": "እናንተስ ከእርሱ የተቀበላችሁት ቅባት በእናንተ ይኖራል፥ ማንም ሊያስተምራችሁ አያስፈልጋችሁም፤ ነገር ግን የእርሱ ቅባት ስለ ሁሉ እንደሚያስተምራችሁ፥ እውነተኛም እንደ ሆነ ውሸትም እንዳልሆነ፥ እናንተንም እንዳስተማራችሁ፥ በእርሱ ኑሩ።"
+            },
+            {
+              "verse": 28,
+              "text": "አሁንም፥ ልጆች ሆይ፥ በሚገለጥበት ጊዜ እምነት እንዲሆንልን በመምጣቱም በእርሱ ፊት እንዳናፍር በእርሱ ኑሩ።"
+            },
+            {
+              "verse": 29,
+              "text": "ጻድቅ እንደ ሆነ ካወቃችሁ ጽድቅን የሚያደርግ ሁሉ ከእርሱ እንደ ተወለደ እወቁ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "We are called the children of God, and such we are, for He has bestowed upon us a love that is most profound. Therefore, the world knows Him not, for it does not recognize us."
+            },
+            {
+              "verse": 2,
+              "text": "Beloved, now we are the children of God, and it has not yet been revealed what we shall be. But we know that when He is revealed, we shall be like Him, for we shall see Him as He is."
+            },
+            {
+              "verse": 3,
+              "text": "And everyone who has this hope in Him purifies himself, just as He is pure."
+            },
+            {
+              "verse": 4,
+              "text": "Whoever commits sin also commits lawlessness, and sin is lawlessness."
+            },
+            {
+              "verse": 5,
+              "text": "You know that He was manifested to take away our sins, and in Him there is no sin."
+            },
+            {
+              "verse": 6,
+              "text": "Whoever abides in Him does not sin; whoever sins has neither seen Him nor known Him."
+            },
+            {
+              "verse": 7,
+              "text": "Little children, let no one deceive you. He who practices righteousness is righteous, just as He is righteous."
+            },
+            {
+              "verse": 8,
+              "text": "He who sins is of the devil, for the devil has sinned from the beginning."
+            },
+            {
+              "verse": 9,
+              "text": "For this purpose the Son of God was manifested, that He might destroy the works of the devil. Whoever has been born of God does not sin, for His seed remains in him; and he cannot sin, because he has been born of God."
+            },
+            {
+              "verse": 10,
+              "text": "In this the children of God and the children of the devil are manifest: whoever does not practice righteousness is not of God, nor is he who does not love his brother."
+            },
+            {
+              "verse": 11,
+              "text": "ከመጀመሪያ የሰማችኋት መልእክት፦ እርስ በርሳችን እንዋደድ የምትል ይህች ናትና፤"
+            },
+            {
+              "verse": 12,
+              "text": "ከክፉው እንደ ነበረ ወንድሙንም እንደ ገደለ እንደ ቃየል አይደለም፤ ስለ ምንስ ገደለው? የገዛ ሥራው ክፉ፥ የወንድሙም ሥራ ጽድቅ ስለ ነበረ ነው።"
+            },
+            {
+              "verse": 13,
+              "text": "ወንድሞች ሆይ፥ ዓለም ቢጠላችሁ አትደነቁ።"
+            },
+            {
+              "verse": 14,
+              "text": "እኛ ወንድሞችን የምንወድ ስለ ሆንን ከሞት ወደ ሕይወት እንደ ተሻገርን እናውቃለን፤ ወንድሙን የማይወድ በሞት ይኖራል።"
+            },
+            {
+              "verse": 15,
+              "text": "ወንድሙን የሚጠላ ሁሉ ነፍሰ ገዳይ ነው፥ ነፍሰ ገዳይም የሆነ ሁሉ የዘላለም ሕይወት በእርሱ እንዳይኖር ታውቃላችሁ።"
+            },
+            {
+              "verse": 16,
+              "text": "እርሱ ስለ እኛ ነፍሱን አሳልፎ ሰጥቶአልና በዚህ ፍቅርን አውቀናል፤ እኛም ስለ ወንድሞቻችን ነፍሳችንን አሳልፈን እንድንሰጥ ይገባናል።"
+            },
+            {
+              "verse": 17,
+              "text": "ነገር ግን የዚህ ዓለም ገንዘብ ያለው፥ ወንድሙም የሚያስፈልገው ሲያጣ አይቶ ያልራራለት ማንም ቢሆን፥ የእግዚአብሔር ፍቅር በእርሱ እንዴት ይኖራል?"
+            },
+            {
+              "verse": 18,
+              "text": "ልጆቼ ሆይ፥ በሥራና በእውነት እንጂ በቃልና በአንደበት አንዋደድ።"
+            },
+            {
+              "verse": 19,
+              "text": "ልባችንም በእኛ ላይ በሚፈርድበት ሁሉ፥ ከእውነት እንደ ሆንን በዚህ እናውቃለን በፊቱም ልባችንን እናሳርፋለን፥ እግዚአብሔር ከልባችን ይልቅ ታላቅ ነውና ሁሉንም ያውቃል።"
+            },
+            {
+              "verse": 21,
+              "text": "ወዳጆች ሆይ፥ ልባችንስ ባይፈርድብን በእግዚአብሔር ዘንድ ድፍረት አለን፥"
+            },
+            {
+              "verse": 22,
+              "text": "We keep His commandments, and because it brings joy before Him, we shall declare all that we have received from Him."
+            },
+            {
+              "verse": 23,
+              "text": "This is His commandment, that we believe in the name of His Son, Jesus Christ, and love one another just as He has commanded us."
+            },
+            {
+              "verse": 24,
+              "text": "He who keeps His commandments abides in Him, and He in them; and by this we know that He abides in us, by the Spirit whom He has given us."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Beloved, do not believe every spirit, but test the spirits to see whether they are from God; for many false prophets have gone out into the world."
+            },
+            {
+              "verse": 2,
+              "text": "You know the Spirit of God; every spirit that confesses that Jesus Christ has come in the flesh is from God."
+            },
+            {
+              "verse": 3,
+              "text": "And every spirit that does not confess Jesus is not from God; this is the spirit of the antichrist, which you heard was coming and now is in the world already."
+            },
+            {
+              "verse": 4,
+              "text": "Children, you are from God and have overcome them, for he who is in you is greater than he who is in the world."
+            },
+            {
+              "verse": 5,
+              "text": "They are from the world; therefore they speak from the world, and the world listens to them."
+            },
+            {
+              "verse": 6,
+              "text": "We are from God; whoever knows God listens to us; whoever is not from God does not listen to us. By this we know the Spirit of truth and the spirit of error."
+            },
+            {
+              "verse": 7,
+              "text": "Beloved, let us love one another, for love is from God, and whoever loves has been born of God and knows God."
+            },
+            {
+              "verse": 8,
+              "text": "Anyone who does not love does not know God, because God is love."
+            },
+            {
+              "verse": 9,
+              "text": "In this the love of God was made manifest among us, that God sent his only Son into the world, so that we might live through him."
+            },
+            {
+              "verse": 10,
+              "text": "In this is love, not that we have loved God but that he loved us and sent his Son to be the propitiation for our sins."
+            },
+            {
+              "verse": 11,
+              "text": "ወዳጆች ሆይ፥ እግዚአብሔር እንዲህ አድርጎ ከወደደን እኛ ደግሞ እርስ በርሳችን ልንዋደድ ይገባናል።"
+            },
+            {
+              "verse": 12,
+              "text": "እግዚአብሔርን ማንም ከቶ አላየውም፤ እርስ በርሳችን ብንዋደድ እግዚአብሔር በእኛ ይኖራል ፍቅሩም በእኛ ፍጹም ሆኖአል።"
+            },
+            {
+              "verse": 13,
+              "text": "ከመንፈሱ ስለ ሰጠን፥ በእርሱ እንድንኖር እሱም በእኛ እንዲኖር በዚህ እናውቃለን።"
+            },
+            {
+              "verse": 14,
+              "text": "እኛም አይተናል አባትም ልጁን የዓለም መድኃኒት ሊሆን እንደ ላከው እንመሰክራለን።"
+            },
+            {
+              "verse": 15,
+              "text": "ኢየሱስ የእግዚአብሔር ልጅ እንደ ሆነ በሚታመን ሁሉ እግዚአብሔር በእርሱ ይኖራል እርሱም በእግዚአብሔር ይኖራል።"
+            },
+            {
+              "verse": 16,
+              "text": "እኛም እግዚአብሔር ለእኛ ያለውን ፍቅር አውቀናል አምነንማል። እግዚአብሔር ፍቅር ነው፥ በፍቅርም የሚኖር በእግዚአብሔር ይኖራል እግዚአብሔርም በእርሱ ይኖራል።"
+            },
+            {
+              "verse": 17,
+              "text": "በፍርድ ቀን ድፍረት ይሆንልን ዘንድ ፍቅር በዚህ ከእኛ ጋር ተፈጽሞአል፤ እርሱ እንዳለ እኛ ደግሞ እንዲሁ በዚህ ዓለም ነንና።"
+            },
+            {
+              "verse": 18,
+              "text": "ፍጹም ፍቅር ፍርሃትን አውጥቶ ይጥላል እንጂ በፍቅር ፍርሃት የለም፥ ፍርሃት ቅጣት አለውና፤ የሚፈራም ሰው ፍቅሩ ፍጹም አይደለም።"
+            },
+            {
+              "verse": 19,
+              "text": "እርሱ አስቀድሞ ወዶናልና እኛ እንወደዋለን።"
+            },
+            {
+              "verse": 20,
+              "text": "ማንም፦ እግዚአብሔርን እወዳለሁ እያለ ወንድሙን ቢጠላ ሐሰተኛ ነው፤ ያየውን ወንድሙን የማይወድ ያላየውን እግዚአብሔርን ሊወደው እንዴት ይችላል?"
+            },
+            {
+              "verse": 21,
+              "text": "And he who loves the Lord shall also love his brother; this commandment has been given to us from Him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Christ is he; all who believe in Jesus are born of God, and everyone who loves the Father loves the one born of Him."
+            },
+            {
+              "verse": 2,
+              "text": "If we love God and keep His commandments, we know that we are to love the children of God."
+            },
+            {
+              "verse": 3,
+              "text": "For this is the love of God, that we keep His commandments; and His commandments are not burdensome."
+            },
+            {
+              "verse": 4,
+              "text": "For everyone born of God overcomes the world; and our faith is what overcomes the world."
+            },
+            {
+              "verse": 5,
+              "text": "Who is it that overcomes the world except the one who believes that Jesus is the Son of God?"
+            },
+            {
+              "verse": 6,
+              "text": "This is He who came by water and blood—Jesus Christ; not by water only, but by water and blood."
+            },
+            {
+              "verse": 7,
+              "text": "And the Spirit is the truth; the Spirit is what bears witness."
+            },
+            {
+              "verse": 8,
+              "text": "For there are three that bear witness: the Spirit, the water, and the blood; and these three are one."
+            },
+            {
+              "verse": 9,
+              "text": "If we receive the testimony of men, the testimony of God is greater; for this is the testimony of God that He has borne concerning His Son."
+            },
+            {
+              "verse": 10,
+              "text": "Whoever believes in the Son of God has the testimony in himself; whoever does not believe God has made Him a liar, because he has not believed in the testimony that God has borne concerning His Son."
+            },
+            {
+              "verse": 11,
+              "text": "እግዚአብሔርም የዘላለምን ሕይወት እንደ ሰጠን ይህም ሕይወት በልጁ እንዳለ ምስክሩ ይህ ነው።"
+            },
+            {
+              "verse": 12,
+              "text": "ልጁ ያለው ሕይወት አለው፤ የእግዚአብሔር ልጅ የሌለው ሕይወት የለውም።"
+            },
+            {
+              "verse": 13,
+              "text": "የዘላለም ሕይወት እንዳላችሁ ታውቁ ዘንድ በእግዚአብሔር ልጅ ስም ለምታምኑ ይህን ጽፌላችኋለሁ።"
+            },
+            {
+              "verse": 14,
+              "text": "በእርሱ ዘንድ ያለን ድፍረት ይህ ነው፤ እንደ ፈቃዱ አንዳች ብንለምን ይሰማናል።"
+            },
+            {
+              "verse": 15,
+              "text": "የምንለምነውንም ሁሉ እንዲሰማልን ብናውቅ ከእርሱ የለመነውን ልመና እንደ ተቀበልን እናውቃለን።"
+            },
+            {
+              "verse": 16,
+              "text": "ማንም ወንድሙን ሞት የማይገባውን ኃጢአት ሲያደርግ ቢያየው ይለምን፥ ሞትም የማይገባውን ኃጢአት ላደረጉት ሕይወት ይሰጥለታል። ሞት የሚገባው ኃጢአት አለ፤ ስለዚያ እንዲጠይቅ አልልም።"
+            },
+            {
+              "verse": 17,
+              "text": "ዓመፃ ሁሉ ኃጢአት ነው፥ ሞትም የማይገባው ኃጢአት አለ።"
+            },
+            {
+              "verse": 18,
+              "text": "ከእግዚአብሔር የተወለደ ሁሉ ኃጢአትን እንዳያደርግ፥ ነገር ግን ከእግዚአብሔር የተወለደው ራሱን እንዲጠብቅ ክፉውም እንዳይነካው እናውቃለን።"
+            },
+            {
+              "verse": 19,
+              "text": "ከእግዚአብሔር እንደ ሆንን ዓለምም በሞላው በክፉው እንደ ተያዘ እናውቃለን።"
+            },
+            {
+              "verse": 20,
+              "text": "የእግዚአብሔርም ልጅ እንደ መጣ፥ እውነተኛም የሆነውን እናውቅ ዘንድ ልቡናን እንደ ሰጠን እናውቃለን፤ እውነተኛም በሆነው በእርሱ አለን፥ እርሱም ልጁ ኢየሱስ ክርስቶስ ነው። እርሱ እውነተኛ አምላክና የዘላለም ሕይወት ነው።"
+            },
+            {
+              "verse": 21,
+              "text": "Children, take heed to keep yourselves from idols."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

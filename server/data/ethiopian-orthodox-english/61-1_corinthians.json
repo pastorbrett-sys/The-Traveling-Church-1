@@ -1,0 +1,2003 @@
+{
+  "book_number": 61,
+  "book_name_am": "1ኛ ወደ ቆሮንቶስ ሰዎች",
+  "book_short_name_am": "1 ቆሮ",
+  "book_name_en": "1 Corinthians",
+  "book_short_name_en": "1 Cor",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Paul, called to be an apostle of Jesus Christ by the will of God, and our brother Sosthenes,"
+            },
+            {
+              "verse": 2,
+              "text": "To the church of God which is at Corinth, to those who are sanctified in Christ Jesus, called to be saints, with all who in every place call on the name of Jesus Christ our Lord, both theirs and ours:"
+            },
+            {
+              "verse": 3,
+              "text": "Grace to you and peace from God our Father and the Lord Jesus Christ."
+            },
+            {
+              "verse": 4,
+              "text": "I thank my God always concerning you for the grace of God which was given to you by Christ Jesus."
+            },
+            {
+              "verse": 5,
+              "text": "That you were enriched in everything by Him in all utterance and all knowledge,"
+            },
+            {
+              "verse": 6,
+              "text": "Even as the testimony of Christ was confirmed in you,"
+            },
+            {
+              "verse": 7,
+              "text": "So that you come short in no gift, eagerly waiting for the revelation of our Lord Jesus Christ,"
+            },
+            {
+              "verse": 8,
+              "text": "Who will also confirm you to the end, that you may be blameless in the day of our Lord Jesus Christ."
+            },
+            {
+              "verse": 9,
+              "text": "God is faithful, by whom you were called into the fellowship of His Son, Jesus Christ our Lord."
+            }
+          ]
+        },
+        {
+          "title": "Separation as it ought not to be.",
+          "verses": [
+            {
+              "verse": 10,
+              "text": "Brethren! I beseech you that you all speak the same thing, and that there be no divisions among you; but that you be perfectly joined together in the same mind and in the same judgment, in the name of our Lord Jesus Christ."
+            },
+            {
+              "verse": 11,
+              "text": "O brethren! As you are striving and as you are contending, I have spoken concerning you to the household of Chloe."
+            },
+            {
+              "verse": 12,
+              "text": "Behold, each of you says, “I am of Paul; I am of Apollos; I am of Cephas; I am of Christ.” I speak this to you."
+            },
+            {
+              "verse": 13,
+              "text": "Is Christ divided? Was Paul crucified for you? Or were you baptized in the name of Paul?"
+            },
+            {
+              "verse": 14,
+              "text": "I give thanks to God that I baptized none of you except Crispus and Gaius, lest any should say that I had baptized in my own name."
+            },
+            {
+              "verse": 15,
+              "text": "That no one should say that you were baptized in my name."
+            },
+            {
+              "verse": 16,
+              "text": "But I do not know if I have baptized any other besides the household of Stephanas; for I know not that I have baptized any other."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Cross",
+          "verses": [
+            {
+              "verse": 17,
+              "text": "Christ sent me not to baptize, but to preach the gospel; not in the wisdom of words, lest the cross of Christ should be made of none effect."
+            },
+            {
+              "verse": 18,
+              "text": "For the message of the cross is foolishness to those who are perishing; but unto us who are saved it is the power of God."
+            },
+            {
+              "verse": 19,
+              "text": "The scripture says thus: \"I will destroy the wisdom of the wise, and will bring to nothing the understanding of the prudent.\""
+            },
+            {
+              "verse": 20,
+              "text": "Who then is the wise man? Who is the scribe? Who is the disputer of this world? Has not God made foolish the wisdom of this world?"
+            },
+            {
+              "verse": 21,
+              "text": "For men, in their ignorance of wisdom, trust in the wisdom of God, and God has chosen to confound those who seem wise."
+            },
+            {
+              "verse": 22,
+              "text": "The Jews require a sign; and the Greeks seek after wisdom."
+            },
+            {
+              "verse": 23,
+              "text": "But we preach Christ crucified, unto the Jews a stumbling block, and unto the Greeks foolishness."
+            },
+            {
+              "verse": 24,
+              "text": "For us, who are called, both Jews and Greeks, Christ is the power of God, and the wisdom of God."
+            },
+            {
+              "verse": 25,
+              "text": "For the foolishness of God is wiser than men; and the weakness of God is stronger than men."
+            },
+            {
+              "verse": 26,
+              "text": "Brethren! How then are you called? Not many wise men after the flesh, not many mighty, not many noble are called."
+            },
+            {
+              "verse": 27,
+              "text": "Yet, the Lord hath chosen the wise of this world to confound the mighty; and He hath also chosen the weak of this world to confound the strong."
+            },
+            {
+              "verse": 28,
+              "text": "He hath chosen those who are called, both the foolish and the weak, and those who are not, to bring to naught the things that are."
+            },
+            {
+              "verse": 29,
+              "text": "Let not any man be esteemed in the sight of the Lord."
+            },
+            {
+              "verse": 30,
+              "text": "And ye are in Christ Jesus; and in Him, we have received the wisdom and righteousness, sanctification and redemption from God."
+            },
+            {
+              "verse": 31,
+              "text": "As it is written in the Scriptures, \"He who is esteemed shall be esteemed in the sight of the Lord.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Brethren, I did not come to you with the intention of teaching you the word of God through mere conversation and idle talk."
+            },
+            {
+              "verse": 2,
+              "text": "I had not thought to hear anything else from you, save that which comes from Jesus Christ."
+            },
+            {
+              "verse": 3,
+              "text": "I too have come in weakness and in fear, and with much trembling."
+            },
+            {
+              "verse": 4,
+              "text": "My speech and my preaching were not with persuasive words of human wisdom, but in demonstration of the Spirit and of power."
+            },
+            {
+              "verse": 5,
+              "text": "Let your faith be in the power of God, and not in the wisdom of men."
+            }
+          ]
+        },
+        {
+          "title": "Concerning true wisdom.",
+          "verses": [
+            {
+              "verse": 6,
+              "text": "To the wise, we shall speak of wisdom; however, the wisdom of this world or that which is fleeting is not the wisdom of the world."
+            },
+            {
+              "verse": 7,
+              "text": "But behold, the Lord God, having predetermined from ages past for our glory, we shall speak of the wisdom of God which was hidden in mystery."
+            },
+            {
+              "verse": 8,
+              "text": "The rulers of this world have not known it; had they known it, they would not have crucified the Lord of glory."
+            },
+            {
+              "verse": 9,
+              "text": "But is it not written, \"What eye has not seen, nor ear heard, nor has it entered into the heart of man, God has prepared for those who love Him\"?"
+            },
+            {
+              "verse": 10,
+              "text": "For the Lord has revealed to us by His Spirit; the Holy Spirit knows the deep things of God."
+            },
+            {
+              "verse": 11,
+              "text": "Who knows the heart of man except the spirit of the man which is in him? Likewise, no one knows the thoughts of God except the Spirit of God."
+            },
+            {
+              "verse": 12,
+              "text": "We do not receive the spirit of this world; however, we have received the Spirit that is from God, that we might know the things freely given to us by God."
+            },
+            {
+              "verse": 13,
+              "text": "This is not a teaching derived from man; it is not the wisdom of words; rather, it is the teaching revealed by the Holy Spirit, and spiritual wisdom is discerned by the spiritual."
+            },
+            {
+              "verse": 14,
+              "text": "But to the natural man, the things of the Spirit of God seem foolishness, and he cannot receive them; for they are spiritually discerned."
+            },
+            {
+              "verse": 15,
+              "text": "But he who is spiritual judges all things; yet he himself is rightly judged by no one."
+            },
+            {
+              "verse": 16,
+              "text": "Who has known the mind of the Lord? Or who has been His counselor? But we have the knowledge that is revealed in Christ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "Concerning the First Teaching",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And brethren, I could not speak to you as to spiritual men, but as to carnal, even as unto babes in Christ."
+            },
+            {
+              "verse": 2,
+              "text": "And when you come together, it is not for the better, but for the worse; for you are not yet discerning."
+            },
+            {
+              "verse": 3,
+              "text": "For ye are yet carnal; for whereas there is among you envying, and strife, and divisions, are ye not carnal, and walk as men?"
+            },
+            {
+              "verse": 4,
+              "text": "For while one saith, “I am of Paul,” and another, “I am of Apollos,” are ye not carnal?"
+            },
+            {
+              "verse": 5,
+              "text": "What then is Paul? and what is Apollos? but ministers by whom ye believed, even as the Lord gave to every man."
+            },
+            {
+              "verse": 6,
+              "text": "I have planted, Apollos watered; but God gave the increase."
+            },
+            {
+              "verse": 7,
+              "text": "Now he that planteth and he that watereth are one: and every man shall receive his own reward according to his own labour."
+            },
+            {
+              "verse": 8,
+              "text": "For we are labourers together with God: ye are God’s husbandry, ye are God’s building."
+            },
+            {
+              "verse": 9,
+              "text": "According to the grace of God which is given unto me, as a wise master builder I have laid the foundation, and another buildeth thereon. But let every man take heed how he buildeth thereupon."
+            },
+            {
+              "verse": 10,
+              "text": "For other foundation can no man lay than that is laid, which is Jesus Christ."
+            },
+            {
+              "verse": 11,
+              "text": "ነገር ግን ከተመሠረተው በቀር ሌላ መሠረት ሊመሠርት የሚችል የለም፤ መሠረቱም ኢየሱስ ክርስቶስ ነው።"
+            },
+            {
+              "verse": 12,
+              "text": "በዚህ መሠረት ላይ በወርቅና በብር፥ በከበረ ድንጋይና በእንጨት፥ በሣርና በአገዳ የሚያንጽ ቢኖርም፥"
+            },
+            {
+              "verse": 13,
+              "text": "የእያንዳንዱ ሥራ ይገለጻል፤ እሳትም በፈተነው ጊዜ ቀኑ ይገልጠዋል፤ የእያንዳንዱንም ሥራ እሳት ይፈትነዋል።"
+            },
+            {
+              "verse": 14,
+              "text": "ሥራው ጸንቶ የተገኘለት ሰው ዋጋውን የሚቀበል እርሱ ነው።"
+            },
+            {
+              "verse": 15,
+              "text": "ሥራው የተቃጠለበት ግን ዋጋውን ያጣል፤ እርሱም ከእሳት እንደሚድን ሰው ይድናል።"
+            },
+            {
+              "verse": 16,
+              "text": "እናንተ የእግዚአብሔር ቤተ መቅደስ እንደ ሆናችሁ፥ የእግዚአብሔር መንፈስም በእናንተ ላይ አድሮ እንደሚኖር አታውቁምን?"
+            },
+            {
+              "verse": 17,
+              "text": "የእግዚአብሔርን ቤተ መቅደስ የሚያፈርሰውን ግን እርሱን ደግሞ እግዚአብሔር ያፈርሰዋል፤ የእግዚአብሔር ቤተ መቅደስ ነውና፤ የእግዚአብሔር ቤተ መቅደስም እናንተ ራሳችሁ ናችሁ፤ እንግዲያስ የእግዚአብሔርን ቤተ መቅደስ አታርክሱ።"
+            },
+            {
+              "verse": 18,
+              "text": "ራሳችሁን አታስቱ፤ ከመካከላችሁ በዚህ ዓለም ጥበበኛ እንደ ሆነ የሚያስብ ሰው ጥበበኛ ይሆን ዘንድ ራሱን ዐላዋቂ ያድርግ።"
+            },
+            {
+              "verse": 19,
+              "text": "የዚህ ዓለም ጥበብ በእግዚአብሔር ዘንድ ድንቍርና ነውና፤ መጽሐፍ እንዲህ ብሎአልና፥ “ጠቢባንን የሚገታቸው ተንኰላቸው ነው።”"
+            },
+            {
+              "verse": 20,
+              "text": "ዳግመኛ “የጥበበኞች አሳብ ከንቱ እንደ ሆነ እግዚአብሔር ያውቃል” ብሎአል።"
+            },
+            {
+              "verse": 21,
+              "text": "Therefore, let no one boast in men; for all things are yours."
+            },
+            {
+              "verse": 22,
+              "text": "Whether Paul, or Apollos, or Cephas, or the world, or life, or death, or the present, or the future, all are yours."
+            },
+            {
+              "verse": 23,
+              "text": "But you are Christ's, and Christ is God's."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": "Concerning the Apostolic Ministry",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Let us consider ourselves as servants of Christ and as stewards of the mysteries of God."
+            },
+            {
+              "verse": 2,
+              "text": "Therefore, each of these stewards ought to be found faithful and commendable."
+            },
+            {
+              "verse": 3,
+              "text": "For me, to be esteemed among you is a matter of lowliness; if you call me righteous, and if you say that I am commendable in the sight of a worldly man, I shall not be judged by myself."
+            },
+            {
+              "verse": 4,
+              "text": "There is nothing that can accuse or condemn me; in this, I do not justify myself; for God is the one who judges me."
+            },
+            {
+              "verse": 5,
+              "text": "Why do you examine yourselves today, before the time comes? Our Lord, who shines in the darkness and reveals the thoughts of the heart, will come; at that time, all will receive their due from God."
+            },
+            {
+              "verse": 6,
+              "text": "Brethren, I too, if I were to be Apollos, would suffer for your sake; that you may learn, lest you be puffed up against your brethren by the words of the Scriptures."
+            },
+            {
+              "verse": 7,
+              "text": "Who has made you to differ? And what do you have that you did not receive? If you received it, why do you boast as if you had not received it?"
+            },
+            {
+              "verse": 8,
+              "text": "You are now full; you are now rich; you have reigned without us; and I would that you did reign, that we also might reign with you."
+            },
+            {
+              "verse": 9,
+              "text": "I also, as being ready for death, am like the apostles; the Lord has made us a spectacle to the world, to men and to angels."
+            },
+            {
+              "verse": 10,
+              "text": "We are, for Christ's sake, fools; but you are wise in Christ; we are weak, but you are strong; you are honorable, but we are despised."
+            },
+            {
+              "verse": 11,
+              "text": "We have been hungry until this day; we are thirsty; we are weary; we are distressed; and there is no refuge for us, as if we are forsaken."
+            },
+            {
+              "verse": 12,
+              "text": "While we labor with our hands, as if we are toiling; they mock us; but we shall not be moved; they have oppressed us; yet we shall pray for them; we shall also forgive them."
+            },
+            {
+              "verse": 13,
+              "text": "They shall be delivered to us, and we shall not be shaken; let us be as a rock in the world; let us be steadfast in all things."
+            },
+            {
+              "verse": 14,
+              "text": "This I have written to you not to confuse you; but as children and brethren, I desire to instruct you and to teach you; for I am your father; yet you have not honored me."
+            },
+            {
+              "verse": 15,
+              "text": "Though there may be many teachers among you in Christ, your fathers are not many; for I have begotten you through the teaching of Jesus Christ."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the teachers, let us reflect.",
+          "verses": [
+            {
+              "verse": 16,
+              "text": "Brethren, I beseech you to be as I am."
+            },
+            {
+              "verse": 17,
+              "text": "Therefore, in every place, I instruct you that you may know the way in which I have walked in Christ Jesus, and I send to you Timothy, my beloved son and faithful servant in the Lord."
+            },
+            {
+              "verse": 18,
+              "text": "Behold, there are those who have been left behind among you, for I have not come to you."
+            },
+            {
+              "verse": 19,
+              "text": "If the Lord wills, I shall come to you quickly; however, I do not desire the things of the proud, but I desire their strength."
+            },
+            {
+              "verse": 20,
+              "text": "The kingdom of God is not in word, but in power."
+            },
+            {
+              "verse": 21,
+              "text": "How is it that I should come to you? Is it in a spirit of contention, or in love and sincerity?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "The punishment that is given to those who perform unworthy deeds.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "A lament shall be heard among you; for such a lament is that which even the locusts do not perform; for it is said, \"He who takes his father's wife.\""
+            },
+            {
+              "verse": 2,
+              "text": "And you are proud, for you say, \"Why should we be grieved for what he has done, when it is not among us?\""
+            },
+            {
+              "verse": 3,
+              "text": "I am not with you in the flesh, but I am with you in spirit; behold, as I am with you, I shall judge this work that has been done."
+            },
+            {
+              "verse": 4,
+              "text": "In the name of our Lord Jesus Christ, you are gathered together, by my authority, and by the power of our Lord Jesus."
+            },
+            {
+              "verse": 5,
+              "text": "When our Lord Jesus Christ shall come, let your soul be prepared, so that you may deliver such a one to Satan for the destruction of the flesh."
+            },
+            {
+              "verse": 6,
+              "text": "Therefore, your boasting is not good; do you not know that a little leaven leavens the whole lump?"
+            },
+            {
+              "verse": 7,
+              "text": "Therefore, let us keep the feast, not with the old leaven, nor with the leaven of malice and wickedness, but with the unleavened bread of sincerity and truth."
+            },
+            {
+              "verse": 8,
+              "text": "Now, let us celebrate your feast; however, it is with unleavened bread that truth and purity dwell, and not with the old leaven, nor with sin and wickedness."
+            },
+            {
+              "verse": 9,
+              "text": "I have written to you in this epistle, that you should not be one with the wicked."
+            },
+            {
+              "verse": 10,
+              "text": "The lament of this world is not only that; for there are also the proud and the deceivers, who worship idols; and besides these, it is fitting to separate yourselves from this world."
+            },
+            {
+              "verse": 11,
+              "text": "Now, I write unto you that ye should not be one with such a man, whether he be a singer among brethren, or one who coveteth money, or one who maketh an idol, or a blasphemer, or a reviler, or a thief, or one who is idle; even if he be present, do not eat with such a man."
+            },
+            {
+              "verse": 12,
+              "text": "What have I to do with judging those who are without? Do ye not judge those who are within?"
+            },
+            {
+              "verse": 13,
+              "text": "But those who are without, God shall judge them; therefore put away the wicked from among you."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": "For it is not fitting to contend against the judgment of the ancients.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Therefore, do not be afraid to admonish those who are in error; is there not one who can admonish the erring among friends? Is it not so among the righteous? Even if there is contention with a brother, let him be admonished among the holy; but among those who are in error and the erring, it is not so."
+            },
+            {
+              "verse": 2,
+              "text": "Do you not know that all the saints are capable of admonishing? If you are among those who can admonish all men, is it not fitting for you to admonish this small matter?"
+            },
+            {
+              "verse": 3,
+              "text": "Have you not known that the judgment of this world is cast aside, and that we are to judge among the angels?"
+            },
+            {
+              "verse": 4,
+              "text": "However, if there are those who have disputes of this world, let the brethren who are gathered in the house of Christ hear them."
+            },
+            {
+              "verse": 5,
+              "text": "This is what you say to one another; therefore, is there not a sister among you who can separate the brethren from their brothers?"
+            },
+            {
+              "verse": 6,
+              "text": "Yet a brother will contend with his brother; this will occur before those who do not believe."
+            },
+            {
+              "verse": 7,
+              "text": "Therefore, if you have strife and contention, know that from the beginning it will lead to downfall; how then do you not tremble? How do you not fear?"
+            },
+            {
+              "verse": 8,
+              "text": "Even now, you are the erring and the lost; thus, you will continue to lead your brethren astray."
+            }
+          ]
+        },
+        {
+          "title": "For those who do not inherit the kingdom of heaven.",
+          "verses": [
+            {
+              "verse": 9,
+              "text": "Do you not know that the unrighteous shall not inherit the kingdom of God? Be not deceived; neither fornicators, nor idolaters, nor adulterers, nor effeminate, nor abusers of themselves with mankind, shall inherit the kingdom of God."
+            },
+            {
+              "verse": 10,
+              "text": "Neither thieves, nor covetous, nor drunkards, nor revilers, nor extortioners shall inherit the kingdom of God."
+            },
+            {
+              "verse": 11,
+              "text": "And now, what are you? But ye are washed, but ye are sanctified, but ye are justified in the name of the Lord Jesus Christ, and by the Spirit of our God."
+            }
+          ]
+        },
+        {
+          "title": "To honor the body for the Lord God.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "All authority is given unto me; yet not all things are expedient for me. All things are lawful for me; but I will not be brought under the power of any."
+            },
+            {
+              "verse": 13,
+              "text": "The belly is for food, and food is for the belly; but God shall destroy both it and them. Now the body is not for fornication, but for the Lord; and the Lord for the body."
+            },
+            {
+              "verse": 14,
+              "text": "Our Lord Jesus Christ, who raised from the dead, shall also raise us up by His own power."
+            },
+            {
+              "verse": 15,
+              "text": "Know ye not that your body is the temple of Christ? Therefore, shall ye take the temple of Christ and make it a temple of harlotry? It is not fitting."
+            },
+            {
+              "verse": 16,
+              "text": "Do ye not know that he who is joined to a harlot is one body? For it is said, \"The two shall become one flesh.\""
+            },
+            {
+              "verse": 17,
+              "text": "He who is united with the Lord is one spirit with Him."
+            },
+            {
+              "verse": 18,
+              "text": "Flee fornication; every sin that a man doeth is without the body; but he that committeth fornication sinneth against his own body."
+            },
+            {
+              "verse": 19,
+              "text": "Know ye not that your body is the temple of the Holy Spirit which is in you, which ye have of God, and ye are not your own?"
+            },
+            {
+              "verse": 20,
+              "text": "For ye are bought with a price; therefore glorify God in your body and in your spirit, which are God's."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": "Concerning Marriage",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Concerning your writing, it is better for a man not to approach a woman."
+            },
+            {
+              "verse": 2,
+              "text": "However, let each man have his own wife, and let each woman have her own husband."
+            },
+            {
+              "verse": 3,
+              "text": "Let the husband render to his wife the affection due her, and likewise also the wife to her husband."
+            },
+            {
+              "verse": 4,
+              "text": "The wife does not have authority over her own body, but the husband does; and likewise the husband does not have authority over his own body, but the wife does."
+            },
+            {
+              "verse": 5,
+              "text": "For prayer, let them not separate except for a time, that they may devote themselves to fasting and prayer; and come together again so that Satan does not tempt you because of your lack of self-control."
+            },
+            {
+              "verse": 6,
+              "text": "But this I say by way of concession, not of command."
+            },
+            {
+              "verse": 7,
+              "text": "For I wish that all men were even as I myself; but each one has his own gift from God, one in this manner and another in that."
+            },
+            {
+              "verse": 8,
+              "text": "But I say to the unmarried and to widows: It is good for them if they remain even as I am."
+            },
+            {
+              "verse": 9,
+              "text": "But if they cannot exercise self-control, let them marry; for it is better to marry than to burn with passion."
+            },
+            {
+              "verse": 10,
+              "text": "And I give this charge, not as a command, but as a concession; for the wife should not depart from her husband."
+            },
+            {
+              "verse": 11,
+              "text": "ከተፋታችም ብቻዋን ትኑር፤ ያለዚያ ከባልዋ ጋር ትታረቅ፤ ባልም ሚስቱን አይፍታ።"
+            },
+            {
+              "verse": 12,
+              "text": "ሌላውን ግን ከራሴ እናገራለሁ፤ ከጌታችንም አይደለም፤ ከወንድሞቻችን መካከል የማታምን፥ ባልዋንም የምታፈቅር ከእርሱም ጋር ለመኖር የምትወድ ሚስት ያለችው ሰው ቢኖር ሚስቱን አይፍታ።"
+            },
+            {
+              "verse": 13,
+              "text": "ሴቲቱም የማያምንና ሚስቱንም የሚያፈቅር ከእርስዋም ጋር ሊኖር የሚወድ ባል ቢኖራት ባልዋን አትፍታ።"
+            },
+            {
+              "verse": 14,
+              "text": "የማያምን ባል በሚስቱ ይቀደሳልና፤ የማታምን ሚስትም በባልዋ ትቀደሳለችና፤ ያለዚያማ ልጆቻቸው ርኩሳን ይሆናሉ፤ አሁን ግን ቅዱሳን ናቸው።"
+            },
+            {
+              "verse": 15,
+              "text": "የማያምን ግን ቢፈታ ይፍታ፤ ወንድምና እኅት እግዚአብሔር ለሰላም ስለ ጠራቸው እንደዚህ ላለ ግብር አይገዙምና።"
+            },
+            {
+              "verse": 16,
+              "text": "ሚስትም ባልዋን ታድነው እንደ ሆነ አታውቅምና፤ ባልም ሚስቱን ያድናት እንደ ሆነ አያውቅምና።"
+            },
+            {
+              "verse": 17,
+              "text": "ነገር ግን ሁሉ እግዚአብሔር እንደ አደለው፥ ሁሉም እግዚአብሔር እንደ ጠራው እንዲሁ ይኑር፤ ለአብያተ ክርስቲያናትም ሁሉ እንዲህ ሥርዐት እንሠራለን።"
+            },
+            {
+              "verse": 18,
+              "text": "ተገዝሮ ሳለ የተጠራ ቢኖር አለመገዘርን አይመኝ፤ ያልተገዘረም ቢጠራ ከዚያ ወዲያ አይገዘር።"
+            },
+            {
+              "verse": 19,
+              "text": "የእግዚአብሔርን ትእዛዝ መጠበቅ ነው እንጂ መገዘርም አይጠቅምም፤ አለመገዘርም አይጎዳም።"
+            }
+          ]
+        },
+        {
+          "title": "And concerning the calling unto faith.",
+          "verses": [
+            {
+              "verse": 20,
+              "text": "Let all be as they are called."
+            },
+            {
+              "verse": 21,
+              "text": "While you are a servant, if you believe, you shall not be troubled; but if it is possible for you, obtain your freedom."
+            },
+            {
+              "verse": 22,
+              "text": "The servant who is called is free in the sight of God; thus, he who possesses freedom is also a servant of Christ who is called."
+            },
+            {
+              "verse": 23,
+              "text": "For you have been bought at a price; do not become servants of men."
+            },
+            {
+              "verse": 24,
+              "text": "And all our brethren, as you have been called, so live in the Lord."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the righteous and concerning the wicked.",
+          "verses": [
+            {
+              "verse": 25,
+              "text": "For I speak to you concerning the matter of righteousness; the command of the Lord God is not so; that I may be faithful, the Lord grant me mercy, as I am, I shall speak to you concerning my case."
+            },
+            {
+              "verse": 26,
+              "text": "However, it seems to me thus; by necessity, this may be preferred, and if it were to be so, it would be better for a man."
+            },
+            {
+              "verse": 27,
+              "text": "While you are with your wife, do not forsake her; but if you have no wife, do not forsake a wife."
+            },
+            {
+              "verse": 28,
+              "text": "Even if you are united, it shall not be counted as sin against you; and if the virgin is united, it shall not be counted as sin against her; but they who are united shall suffer for themselves; and I say this to you because I care for you."
+            },
+            {
+              "verse": 29,
+              "text": "Nevertheless, our brethren shall be thus; the life of this world has passed away; even now they shall be as if they have not been united."
+            },
+            {
+              "verse": 30,
+              "text": "They shall be as if they have not been; they shall be as if they have no joy; they shall be as if they have not sold; they shall be as if they have not bought."
+            },
+            {
+              "verse": 31,
+              "text": "They shall be as if they have not eaten; they shall be as if they have not drunk; for the vanity of this world shall pass away."
+            },
+            {
+              "verse": 32,
+              "text": "I desire that you may dwell without thought; for he who is not united shall delight in the Lord, for he shall think of the things of the Lord."
+            },
+            {
+              "verse": 33,
+              "text": "But he who is united shall think of the things of this world to please his wife."
+            },
+            {
+              "verse": 34,
+              "text": "If this be the case, however, it is different; a woman who is taken captive, even if she be a virgin, shall think of the Lord, for her soul and her flesh are consecrated; but she who is united shall think of the things of this world to please her husband."
+            },
+            {
+              "verse": 35,
+              "text": "This is that which I say unto you, that it may be well with you; but it is not for your destruction; that your life may be one and that you may serve the Lord without strife."
+            },
+            {
+              "verse": 36,
+              "text": "In the time of the overshadowing, if there be a man who thinks of the Virgin, let it be thus; let him do that which he desires; if he does so, there is no sin upon him."
+            },
+            {
+              "verse": 37,
+              "text": "Though his heart may be troubled and he knows not peace, he can still do that which he desires; let not the heart be troubled; and let him keep the Virgin, for if he is steadfast in heart, he has done well."
+            },
+            {
+              "verse": 38,
+              "text": "He who has done well to the Virgin has done rightly; but he who has not done so has done that which is worse."
+            },
+            {
+              "verse": 39,
+              "text": "A woman is bound to her husband while he liveth; but if her husband be dead, she is free; let her do that which she desires; however, let it be in the Lord."
+            },
+            {
+              "verse": 40,
+              "text": "In my counsel, if you remain steadfast, you are indeed wise; and the Spirit of the Lord upon me seems to be upon you."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": "For the food offered to idols is not to be consumed.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ለጣዖታት ስለሚሠዉ መሥዋዕቶች ሁላችንም ዕውቀት እንዳለን እናውቃለን፤ ዕውቀት ያስታብያል፤ ፍቅር ግን ያንጻል።"
+            },
+            {
+              "verse": 2,
+              "text": "ዐወቅሁ የሚል ቢኖር፥ ሊያውቅ የሚገባውን ገና አላወቀም።"
+            },
+            {
+              "verse": 3,
+              "text": "እግዚአብሔርን የሚወድ ሰው ግን እርሱ በእርሱ ዘንድ በእውነት የታወቀ ነው።"
+            },
+            {
+              "verse": 4,
+              "text": "ለጣዖታት የተሠዋውን ስለመብላት ግን ጣዖት ሁሉ በዓለም ከንቱ እንደሆነ፥ ከአንድ እግዚአብሔርም በቀር ሌላ አምላክ እንደሌለ እናውቃለን።"
+            },
+            {
+              "verse": 5,
+              "text": "አማልክት የሚሉአቸው ነገሮች አሉና፤ በሰማይም ቢሆን፥ በምድርም ቢሆን፥ ብዙ አማልክትና ብዙ ጌቶች ቢኖሩ፥"
+            },
+            {
+              "verse": 6,
+              "text": "ለእኛስ ሁሉ ከእርሱ የሆነ፥ እኛም ለእርሱ የሆን አንድ እግዚአብሔር አብ አለን፤ ሁሉ በእርሱ የሆነ፥ እኛም በእርሱ የሆን አንድ ጌታ ኢየሱስ ክርስቶስም አለን።"
+            },
+            {
+              "verse": 7,
+              "text": "ነገር ግን ሁሉ የሚያውቀው አይደለም፤ እስከ ዛሬ በጣዖታት ልማድ፥ ለጣዖት የተሠዋውን የሚበሉ አሉ፤ ኅሊናቸውም ደካማ ስለሆነ ይረክሳል።"
+            },
+            {
+              "verse": 8,
+              "text": "መብል ግን ወደ እግዚአብሔር አያደርሰንም፤ ብንበላም አይረባንም፤ ባንበላም አይጎዳንም።"
+            },
+            {
+              "verse": 9,
+              "text": "ነገር ግን እናንተን በማየት ሌላው እንዳይሰናከል ተጠንቀቁ።"
+            },
+            {
+              "verse": 10,
+              "text": "አንተ አማኙ በጣዖት ቤት በማዕድ ተቀምጠህ ያየህ ቢኖር ያ ልቡ ደካማ የሆነ ሰው ወዲያው ለጣዖት የተሠዋውን ደፍሮ ይበላል።"
+            },
+            {
+              "verse": 11,
+              "text": "Christ, for His sake, shall trouble you when you behold a weak brother who has died."
+            },
+            {
+              "verse": 12,
+              "text": "If you thus offend against your brethren, and wound their weak conscience, you sin against Christ."
+            },
+            {
+              "verse": 13,
+              "text": "But if, for the sake of food, your brother is grieved, I shall not eat flesh forever, lest I cause my brother to stumble."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "sections": [
+        {
+          "title": "Concerning himself and concerning Barnabas.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እኔ ነጻ አይደለሁምን? ሐዋርያስ አይደለሁምን? ጌታችን ኢየሱስ ክርስቶስን ያየሁ አይደለሁምን? እናንተስ በጌታችን ሥራዬ አይደላችሁምን?"
+            },
+            {
+              "verse": 2,
+              "text": "ለሌሎች ሐዋርያቸው ባልሆንም ለእናንተስ ሐዋርያችሁ እኔ ነኝ፤ በጌታችን የሐዋርያነቴ ማኅተም እናንተ ናችሁና።"
+            },
+            {
+              "verse": 3,
+              "text": "ለሚከራከሩኝ መልሴ እንዲህ ነው።"
+            },
+            {
+              "verse": 4,
+              "text": "በውኑ ልንበላና ልንጠጣ አይገባንምን?"
+            },
+            {
+              "verse": 5,
+              "text": "እንደ ሌሎች ሐዋርያት ሁሉና፥ እንደ ጌታችን ወንድሞች እንደ ኬፋም ከሴቶች እኅታችንን ይዘን ልንዞር አይገባንምን?"
+            },
+            {
+              "verse": 6,
+              "text": "ወይስ ሥራን ለመተው መብት የሌለን እኔና በርናባስ ብቻ ነን?"
+            },
+            {
+              "verse": 7,
+              "text": "የሚያገለግልም ምግቡን ያገኝ ዘንድ ነው፤ ወይን ተክሎ ፍሬውን የማይበላ ማን ነው? መንጋውንስ ጠብቆ ወተቱን የማይጠጣ ማን ነው?"
+            },
+            {
+              "verse": 8,
+              "text": "በውኑ ለሰው ይምሰል እናገራለሁን? የሙሴ መጽሐፍ ኦሪትስ እንዲህ ብሎ የለምን፦"
+            },
+            {
+              "verse": 9,
+              "text": "“እህልህን በምታበራይበት ጊዜ የበሬውን አፉን አትሰረው።” እንግዲህ ይህን የጻፈ ለእግዚአብሔር በሬ አሳዝኖት ነውን?"
+            },
+            {
+              "verse": 10,
+              "text": "ይህን የሚለው ፈጽሞ ስለ እኛ አይደለምን? የሚያርስ በተስፋ ሊያርስ፥ የሚያበራይም እንዲካፈል በተስፋ ሊያበራይ ስለሚገባው በእውነት ስለ እኛ ተጽፎአል።"
+            },
+            {
+              "verse": 11,
+              "text": "እኛ መንፈሳዊውን ነገር ከዘራንላችሁ ሥጋዊውን ነገር ብናጭድ ታላቅ ነገር ነውን?"
+            },
+            {
+              "verse": 12,
+              "text": "በእኛ ሹመት ሌላ የሚቀድመን ከሆነ የሚሻላችሁን እናንተ ታውቃላችሁ፤ እኔ ይህን አልፈለግሁትም፤ ነገር ግን የክርስቶስን ትምህርት እንዳላሰናክል በሁሉ እታገሣለሁ።"
+            },
+            {
+              "verse": 13,
+              "text": "የጣዖታቱ ካህናት የጣዖታቱን መባ እንደሚበሉ አታውቁምን? መሠዊያውን የሚያገለግሉም መሥዋዕቱን እንደሚካፈሉ አታውቁምን? ለቤተ እግዚአብሔር ሹሞች መተዳደሪያቸው የቤተ እግዚአብሔር መባ ነው።"
+            },
+            {
+              "verse": 14,
+              "text": "ጌታችንም እንዲሁ ወንጌልን ለሚያስተምሩ ሰዎች ለሕይወታቸው መተዳደሪያ በዚያው ወንጌልን በማስተማር ይሆን ዘንድ አዘዘ።"
+            },
+            {
+              "verse": 15,
+              "text": "እኔ ግን ይህንም ቢሆን አልፈቀድሁትም፤ ይህን የጻፍሁም ይህን እንዳገኝ ብዬ አይደለም፤ እኔ ግን ምስጋናዬ ከሚቀርብኝ ሞት ይሻለኛል።"
+            },
+            {
+              "verse": 16,
+              "text": "ወንጌልን ባስተምርም መመስገን አይገባኝም፤ ታዝዤ አድርጌዋለሁና፤ ወንጌልን ባላስተምር ደግሞ ወዮልኝ።"
+            },
+            {
+              "verse": 17,
+              "text": "ይህንስ በፈቃዴ አድርጌው ብሆን ዋጋዬን ባገኘሁ ነበር፤ በግድ ከሆነ ግን በተሰጠኝ መጋቢነት አገለገልሁ።"
+            },
+            {
+              "verse": 18,
+              "text": "እንግዲህ ዋጋዬ ምንድን ነው? ወንጌልን ባስተምርም በሹመቴ የማገኘው ሳይኖር ወንጌልን ያለ ዋጋ እንዳስተምር ባደርግ ነው።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the use of many.",
+          "verses": [
+            {
+              "verse": 19,
+              "text": "I, being free above all, have made myself a servant to many, that I might win them to the faith."
+            },
+            {
+              "verse": 20,
+              "text": "To the Jews I became as a Jew, that I might win the Jews; to those under the law I became as under the law, though I myself was not under the law, that I might win those under the law."
+            },
+            {
+              "verse": 21,
+              "text": "I am not without the law of God, but I am under the law of Christ, that I might win those who are without the law."
+            },
+            {
+              "verse": 22,
+              "text": "To the weak I became as weak, that I might win the weak; I have become all things to all men, that I might by all means save some."
+            },
+            {
+              "verse": 23,
+              "text": "For the sake of the unity of the gospel, I will do all things pertaining to the gospel."
+            },
+            {
+              "verse": 24,
+              "text": "Do you not know that those who run in a race all run, but one receives the prize? Run in such a way that you may obtain it."
+            },
+            {
+              "verse": 25,
+              "text": "Everyone who competes for the prize is temperate in all things; now they do it to obtain a perishable crown, but we for an imperishable crown."
+            },
+            {
+              "verse": 26,
+              "text": "I therefore run thus: not with uncertainty. Thus I fight: not as one who beats the air."
+            },
+            {
+              "verse": 27,
+              "text": "But I discipline my body and bring it into subjection, lest, when I have preached to others, I myself should become disqualified."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "sections": [
+        {
+          "title": "Concerning faith, for it is not to falter.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Brethren, behold, all our fathers, like clouds, have not passed through the sea; I desire that you may know how they went."
+            },
+            {
+              "verse": 2,
+              "text": "And Moses gathered them all together in the cloud and in the sea."
+            },
+            {
+              "verse": 3,
+              "text": "All partook of that spiritual food."
+            },
+            {
+              "verse": 4,
+              "text": "All drank of that spiritual drink; for they drank from the spiritual rock that followed them, and that rock was Christ."
+            },
+            {
+              "verse": 5,
+              "text": "Yet the Lord was not pleased with most of them; for they were overthrown in the wilderness."
+            },
+            {
+              "verse": 6,
+              "text": "As they desired, let us also not desire evil, for they became an example for us."
+            },
+            {
+              "verse": 7,
+              "text": "\"Let the nations gather; let them eat and drink,\" as it was said in the book, and some of them, like the ones who were led astray, do not be like them."
+            },
+            {
+              "verse": 8,
+              "text": "And some of them, like the ones who were slain, on one day three and twenty thousand people fell."
+            },
+            {
+              "verse": 9,
+              "text": "And some of them, as they tempted the Lord, were destroyed by serpents; let us not tempt the Lord."
+            },
+            {
+              "verse": 10,
+              "text": "And some of them, as they murmured, were destroyed by the destroyer; let us not murmur."
+            },
+            {
+              "verse": 11,
+              "text": "እነርሱን ያገኛቸው ይህ ሁሉ ነገር በኋላ ዘመን ለምንነሣው ለእኛ ትምህርትና ምክር ሊሆነን ምሳሌ ሆኖ ተጻፈ።"
+            },
+            {
+              "verse": 12,
+              "text": "አሁንም ያ ቆሜአለሁ ብሎ በራሱ የሚታመን ሰው እርሱ እንዳይወድቅ ይጠንቀቅ።"
+            },
+            {
+              "verse": 13,
+              "text": "በሰው ላይ እንደሚደርሰው ያለ ፈተና ነው እንጂ ሌላ ፈተና አያገኛችሁም። በምትችሉት መከራ ነው እንጂ በማትችሉት መከራ ትፈተኑ ዘንድ ያልተዋችሁ እግዚአብሔር የተመሰገነ ነው፤ እርሱም ከፈተና ትድኑ ዘንድ በመከራ ጊዜ ይረዳችኋል።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Abominations of the Nations.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "ወንድሞች! አሁንም ጣዖት ከማምለክ ሽሹ።"
+            },
+            {
+              "verse": 15,
+              "text": "ለዐዋቂዎች እንደሚነገር እነግራችኋለሁ፤ ትክክለኛውንም እናንተ ራሳችሁ ፍረዱ።"
+            },
+            {
+              "verse": 16,
+              "text": "ይህ የምንባርከው የበረከት ጽዋ ከክርስቶስ ደም ጋር አንድ አይደለምን? የምንፈትተው ይህስ ኅብስት ከክርስቶስ ሥጋ ጋር አንድ አይደለምን?"
+            },
+            {
+              "verse": 17,
+              "text": "ኅብስቱ አንድ እንደ ሆነ እንዲሁ እኛም ብዙዎች ስንሆን አንድ አካል ነን፤ ሁላችን ከአንድ ኅብስት እንቀበላለንና።"
+            },
+            {
+              "verse": 18,
+              "text": "እስራኤል ዘሥጋን ተመልከቱ፤ መሥዋዕቱን ይበላሉ፤ ከመሠዊያውም ጋር አንድ ይሆኑ አልነበረምን?"
+            },
+            {
+              "verse": 19,
+              "text": "እንግዲህ ምን እንላለን? ለጣዖታት የሚሠዋ መሥዋዕት ከንቱ ነው፤ ጣዖቶቻቸውም ከንቱ ናቸው።"
+            },
+            {
+              "verse": 20,
+              "text": "አሕዛብም የሚሠዉ ለአጋንንት ነው እንጂ ለእግዚአብሔር አይደለም፤ ነገር ግን የአጋንንት ተባባሪዎች እንድትሆኑ አልፈቅድላችሁም።"
+            },
+            {
+              "verse": 21,
+              "text": "የእግዚአብሔርን ጽዋና የአጋንንትን ጽዋ አንድ አድርጋችሁ መጠጣት አትችሉም፤ የእግዚአብሔርን ማዕድና የአጋንንትንም ማዕድ በአንድነት ልትበሉ አትችሉም።"
+            },
+            {
+              "verse": 22,
+              "text": "እንግዲህ እግዚአብሔርን እናስቀናውን? በውኑ እኛ ከእርሱ እንበረታለን?"
+            },
+            {
+              "verse": 23,
+              "text": "ሁሉ ተፈቅዶልኛል፤ ነገር ግን ሁሉ የሚጠቅም አይደለም፤ ሁሉ ተፈቅዶልኛል፤ ነገር ግን ሁሉ የሚያንጽ አይደለም።"
+            },
+            {
+              "verse": 24,
+              "text": "Do not be concerned for yourselves, but for your neighbor."
+            },
+            {
+              "verse": 25,
+              "text": "Likewise, do not let your minds be led astray by those who sell in the flesh market."
+            },
+            {
+              "verse": 26,
+              "text": "\"The earth is the Lord's and the fullness thereof.\""
+            },
+            {
+              "verse": 27,
+              "text": "If an unfaithful man calls you, and you desire to go, do not let your minds be led astray by what he offers you."
+            },
+            {
+              "verse": 28,
+              "text": "If you say, \"This is for an idol,\" do not speak of your matter, for it is a cause of contention with your neighbor."
+            },
+            {
+              "verse": 29,
+              "text": "He has delivered you so that your freedom may not be taken away."
+            },
+            {
+              "verse": 30,
+              "text": "Yet, if you eat by grace, why should you be led astray for the sake of our gratitude?"
+            },
+            {
+              "verse": 31,
+              "text": "Whether you eat or drink, do all that you do for the glory of God."
+            },
+            {
+              "verse": 32,
+              "text": "For the Jews, for the Gentiles, and for the house of God, be without hindrance."
+            },
+            {
+              "verse": 33,
+              "text": "I also desire that all things may bring me joy, but I do not seek my own gain, rather the gain of many."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "sections": [
+        {
+          "title": "To seek the counsel of the teachers.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እኔ ክርስቶስን እንደምመስለው እኔን ምሰሉ።"
+            },
+            {
+              "verse": 2,
+              "text": "ወንድሞች ሆይ፥ አመሰግናችኋለሁ፤ ዘወትር ታስቡኛላችሁና፤ ያስተማርኋችሁንም ትምህርት ጠብቃችኋልና።"
+            },
+            {
+              "verse": 3,
+              "text": "ነገር ግን የወንድ ሁሉ ራሱ ክርስቶስ፥ የሴትም ራስዋ ወንድ፤ የክርስቶስም ራሱ እግዚአብሔር እንደ ሆነ ልታውቁ እወድዳለሁ።"
+            }
+          ]
+        },
+        {
+          "title": "The Order of Prayer",
+          "verses": [
+            {
+              "verse": 4,
+              "text": "He who prays or teaches while being self-possessed, every man shall adorn himself."
+            },
+            {
+              "verse": 5,
+              "text": "A woman, while not being self-possessed, who prays or teaches, shall adorn herself; for it is fitting for her to be as one who is adorned."
+            },
+            {
+              "verse": 6,
+              "text": "If a woman is not self-possessed, she may be disheveled or may lose her adornment; for a woman to lose her adornment or to be disheveled is fitting if she is self-possessed."
+            },
+            {
+              "verse": 7,
+              "text": "A man, when he prays, ought not to be self-possessed; for he is the image and glory of God; but the woman is the glory of her husband."
+            },
+            {
+              "verse": 8,
+              "text": "For the woman is from the man; but the man is not from the woman."
+            },
+            {
+              "verse": 9,
+              "text": "For man was not created for the woman, but woman was created for the man."
+            },
+            {
+              "verse": 10,
+              "text": "Therefore, the woman ought to have authority over her own head because of the angels."
+            },
+            {
+              "verse": 11,
+              "text": "Nevertheless, let each woman be subject to her own husband, and let each man be subject to his own wife; for you all are to live in the Lord."
+            },
+            {
+              "verse": 12,
+              "text": "For as the woman was taken from the man, so also the man is born of the woman; but all things are from God."
+            },
+            {
+              "verse": 13,
+              "text": "Until you all are self-possessed, is it not fitting for a woman to be self-possessed when she prays to God?"
+            },
+            {
+              "verse": 14,
+              "text": "ተፈጥሮዋስ አያስረዳችሁምን? ወንድ ግን ጠጕሩን ቢያሳድግ ነውር ነው።"
+            },
+            {
+              "verse": 15,
+              "text": "ለሴት ግን ጠጕርዋን ብታሳድግ ክብርዋ ነው፤ ለሴት ጠጕርዋ እንደ ቀጸላ ሆኖ ተሰጥቶአታልና።"
+            },
+            {
+              "verse": 16,
+              "text": "ነገር ግን የሚጠራጠር ቢኖር እኛ ወይም የእግዚአብሔር ቤተ ክርስቲያን እንዲህ ያለ ልማድ የለንም።"
+            }
+          ]
+        },
+        {
+          "title": "\"Strife and contention are not fitting.\"",
+          "verses": [
+            {
+              "verse": 17,
+              "text": "This I say unto you, that it is not for me to give thanks unto you; for when ye gather together, let it be unto the lowly, and not unto the exalted."
+            },
+            {
+              "verse": 18,
+              "text": "Before all, I have heard you as ye gather in the house of Christ, how ye partake and how ye care for one another; and I have faith in that."
+            },
+            {
+              "verse": 19,
+              "text": "It is indeed a necessity that those chosen from among you, brethren, be distinguished so that they may be known."
+            },
+            {
+              "verse": 20,
+              "text": "Therefore, when ye gather together, the food and drink ye partake should not be unworthy of our Lord's day."
+            },
+            {
+              "verse": 21,
+              "text": "And unto food ye shall not hasten; while ye say, \"We are gathered,\" ye shall eat; ye shall drink; ye shall also serve."
+            },
+            {
+              "verse": 22,
+              "text": "Is there not a house where ye may eat and drink? Or will ye defile the house of the Lord? Will ye not show kindness unto the needy? What shall I say? Shall I give thanks unto you? I do not give thanks unto you."
+            }
+          ]
+        },
+        {
+          "title": "Concerning our Lord, the flesh and the blood.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "As I have been taught by the Lord, I shall instruct you; our Lord Jesus Christ, He Himself, on that night when He was betrayed, took the bread."
+            },
+            {
+              "verse": 24,
+              "text": "I give thanks; I bless; I break; and thus He said, \"Take, eat; this is My body which is given for you; do this in remembrance of Me.\""
+            },
+            {
+              "verse": 25,
+              "text": "Likewise, after they had received the bread, He took the cup, and said, \"This cup is the new covenant in My blood; do this as often as you drink it, in remembrance of Me.\""
+            },
+            {
+              "verse": 26,
+              "text": "Therefore, as often as you eat this bread and drink this cup, you proclaim the Lord's death until He comes."
+            },
+            {
+              "verse": 27,
+              "text": "Now, if anyone eats of this bread and drinks of this cup unworthily, he shall be guilty of the body and blood of the Lord."
+            },
+            {
+              "verse": 28,
+              "text": "But let a man examine himself, and so let him eat of the bread and drink of the cup."
+            },
+            {
+              "verse": 29,
+              "text": "For he who eats and drinks in an unworthy manner eats and drinks judgment to himself, not discerning the Lord's body."
+            },
+            {
+              "verse": 30,
+              "text": "For this reason many are weak and sick among you, and many sleep."
+            },
+            {
+              "verse": 31,
+              "text": "For if we would judge ourselves, we would not be judged."
+            },
+            {
+              "verse": 32,
+              "text": "But when we are judged, we are chastened by the Lord, that we may not be condemned with the world."
+            },
+            {
+              "verse": 33,
+              "text": "Now, O our brethren, in the time when you gather for the feast, take heed to yourselves one to another;"
+            },
+            {
+              "verse": 34,
+              "text": "Let not your gathering be for strife; if one is hungry, let him eat at home; do not come together for judgment; but I will set in order the other matters when I come."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "sections": [
+        {
+          "title": "Concerning the riches that are found in the Holy Spirit.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ወንድሞቻችን ሆይ፥ ስለ መንፈስ ቅዱስ ስጦታም ታውቁ ዘንድ እንጂ አላዋቆች ልትሆኑ አንወድድም።"
+            },
+            {
+              "verse": 2,
+              "text": "ቀድሞም እናንተ አሕዛብ በነበራችሁ ጊዜ ዲዳዎች ጣዖታትን ታመልኩ እንደ ነበር፥ ጣዖትም በማምለክ ረክሳችሁ እንደ ነበር፥ ወደ ወሰዱአችሁም ትሄዱ እንደ ነበር ታውቃላችሁ።"
+            },
+            {
+              "verse": 3,
+              "text": "ስለዚህም ማንም በእግዚአብሔር መንፈስ ሲናገር፥ “ኢየሱስ ውጉዝ ነው” የሚል እንደሌለ፥ በመንፈስ ቅዱስም ካልሆነ በቀር “ኢየሱስ ጌታ ነው” ሊል አንድስ እንኳን እንዳይችል አስታውቃችኋለሁ።"
+            },
+            {
+              "verse": 4,
+              "text": "መንፈስ ቅዱስ አንድ ሲሆን ስጦታው ልዩ ልዩ ነው።"
+            },
+            {
+              "verse": 5,
+              "text": "ጌታም አንድ ሲሆን ልዩ ልዩ አገልግሎቶች አሉ።"
+            },
+            {
+              "verse": 6,
+              "text": "ሁሉን በሁሉ የሚያደርግ እግዚአብሔርም አንድ ሲሆን ልዩ ልዩ አሠራር አለ።"
+            },
+            {
+              "verse": 7,
+              "text": "ለሁሉም ጌታ እየረዳ በየዕድሉ እንደሚገባውና እንደሚጠቅመው ለእያንዳንዱ በግልጥ ይሰጠዋል፤"
+            },
+            {
+              "verse": 8,
+              "text": "በመንፈስ ቅዱስ የጥበብ ቃል የሚሰጠው አለ፤ በመንፈስ ቅዱስም የዕውቀት ቃል የሚሰጠው አለ።"
+            },
+            {
+              "verse": 9,
+              "text": "ለአንዱም በዚያው መንፈስ እምነት፥ ለአንዱም በአንዱ መንፈስ የመፈወስ ስጦታ፥"
+            },
+            {
+              "verse": 10,
+              "text": "ለአንዱም ተአምራትን ማድረግ፥ ለአንዱም ትንቢትን መናገር፥ ለአንዱም መናፍስትን መለየት፥ ለአንዱም በልዩ ዓይነት ልሳን መናገር፥ ለአንዱም በልሳኖች የተነገረውን መተርጐም ይሰጠዋል።"
+            },
+            {
+              "verse": 11,
+              "text": "In all these things, the one Spirit, the Holy Spirit, assists all; to each one as He wills, He bestows His gifts."
+            },
+            {
+              "verse": 12,
+              "text": "For as the body is one and has many members, and all the members of that one body, being many, are one body, so also is Christ."
+            },
+            {
+              "verse": 13,
+              "text": "For we all have been baptized by one Spirit into one body; whether Jews or Greeks, whether slaves or free, and have all been made to drink into one Spirit."
+            },
+            {
+              "verse": 14,
+              "text": "The body indeed has many members, yet it is not one member but many."
+            },
+            {
+              "verse": 15,
+              "text": "And if the foot should say, \"Because I am not a hand, I am not of the body,\" is it therefore not of the body?"
+            },
+            {
+              "verse": 16,
+              "text": "And if the ear should say, \"Because I am not an eye, I am not of the body,\" is it therefore not of the body?"
+            },
+            {
+              "verse": 17,
+              "text": "If the whole body were an eye, where would be the hearing? If the whole were hearing, where would be the smelling?"
+            },
+            {
+              "verse": 18,
+              "text": "But now God has set the members, each one of them, in the body just as He pleased."
+            },
+            {
+              "verse": 19,
+              "text": "If all were one member, where would the body be?"
+            },
+            {
+              "verse": 20,
+              "text": "But now indeed there are many members, yet one body."
+            },
+            {
+              "verse": 21,
+              "text": "Thou art unable to say unto thine eye, \"I have no need of thee,\" nor canst thou say unto thy head, \"I have no need of you.\""
+            },
+            {
+              "verse": 22,
+              "text": "The parts of the body which seem to be weaker are indeed necessary."
+            },
+            {
+              "verse": 23,
+              "text": "And we bestow more abundant honor upon those parts of the body which we deem less honorable; and our uncomely parts have more abundant comeliness."
+            },
+            {
+              "verse": 24,
+              "text": "We do not dishonor the honorable part of our body; but God hath so composed the body, giving more abundant honor to that part which lacked;"
+            },
+            {
+              "verse": 25,
+              "text": "that there may be no schism in the body, but that the members may have the same care one for another."
+            },
+            {
+              "verse": 26,
+              "text": "If one member suffers, all the members suffer with it; or if one member is honored, all the members rejoice with it."
+            },
+            {
+              "verse": 27,
+              "text": "Now ye are the body of Christ, and members in particular."
+            },
+            {
+              "verse": 28,
+              "text": "God hath set some in the church, first apostles, secondarily prophets, thirdly teachers; after that miracles, then gifts of healing, helps, governments, diversities of tongues."
+            },
+            {
+              "verse": 29,
+              "text": "Are all apostles? Are all prophets? Are all teachers? Are all workers of miracles?"
+            },
+            {
+              "verse": 30,
+              "text": "Have all the gifts of healing? Do all speak with tongues? Do all interpret?"
+            },
+            {
+              "verse": 31,
+              "text": "However, for those who seek You, grace is bestowed; and I shall guide you in the way that you should go."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "sections": [
+        {
+          "title": "Concerning Love",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Though I speak with the tongues of men and of angels, if I have not love, I am become as sounding brass, or a tinkling cymbal."
+            },
+            {
+              "verse": 2,
+              "text": "And though I have the gift of prophecy, and understand all mysteries, and all knowledge; and though I have all faith, so that I could remove mountains, and have not love, I am nothing."
+            },
+            {
+              "verse": 3,
+              "text": "And though I bestow all my goods to feed the poor, and though I give my body to be burned, and have not love, it profiteth me nothing."
+            },
+            {
+              "verse": 4,
+              "text": "Love suffereth long, and is kind; love envieth not; love vaunteth not itself, is not puffed up; love doth not behave itself unseemly, seeketh not her own, is not easily provoked, thinketh no evil."
+            },
+            {
+              "verse": 5,
+              "text": "It doth not rejoice in iniquity, but rejoiceth in the truth; it beareth all things, believeth all things, hopeth all things, endureth all things."
+            },
+            {
+              "verse": 6,
+              "text": "Love never faileth; but whether there be prophecies, they shall fail; whether there be tongues, they shall cease; whether there be knowledge, it shall vanish away."
+            },
+            {
+              "verse": 7,
+              "text": "For we know in part, and we prophesy in part."
+            },
+            {
+              "verse": 8,
+              "text": "But when that which is perfect is come, then that which is in part shall be done away."
+            },
+            {
+              "verse": 9,
+              "text": "When I was a child, I spake as a child, I understood as a child, I thought as a child: but when I became a man, I put away childish things."
+            },
+            {
+              "verse": 10,
+              "text": "For now we see through a glass, darkly; but then face to face: now I know in part; but then shall I know even as also I am known."
+            },
+            {
+              "verse": 11,
+              "text": "When I was a child, I spoke as a child, I thought as a child, I reasoned as a child; but when I became a man, I put away childish things."
+            },
+            {
+              "verse": 12,
+              "text": "Now I know in part; but then shall I know even as also I am known."
+            },
+            {
+              "verse": 13,
+              "text": "And now abideth faith, hope, charity, these three; but the greatest of these is charity."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 14,
+      "sections": [
+        {
+          "title": "Concerning the tongue and the wealth of interpretation.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ፍቅርን ተከተሏት፤ ለመንፈሳዊ ስጦታ፥ ይልቁንም ትንቢት ለመናገር ተፎካከሩ።"
+            },
+            {
+              "verse": 2,
+              "text": "በቋንቋ የሚናገር ለእግዚአብሔር እንጂ ለሰው የሚናገር አይደለም። የሚናገረውን የሚሰማው የለምና፥ ነገር ግን በመንፈስ ምሥጢርን ይናገራል።"
+            },
+            {
+              "verse": 3,
+              "text": "ትንቢትን የሚናገር ግን ለማነጽና ለመምከር፥ ለማረጋጋትም ለሰው ይናገራል።"
+            },
+            {
+              "verse": 4,
+              "text": "በቋንቋ የሚናገር ራሱን ያንጻል፤ የሚተረጕም ግን የክርስቲያን ማኅበርን ያንጻል።"
+            },
+            {
+              "verse": 5,
+              "text": "ሁላችሁም በቋንቋ ልትናገሩ እወዳለሁ፤ ይልቁንም ትንቢት ልትናገሩ እወዳለሁ፤ ሳይተረጕም በቋንቋ ከሚናገር ይልቅ ትንቢት የሚናገር እጅግ ይበልጣልና፤ ቢተረጕም ግን ማኅበሩን ያንጻል።"
+            },
+            {
+              "verse": 6,
+              "text": "አሁንም ወንድሞች ሆይ፥ ወደ እናንተ መጥቼ በማታውቁት ቋንቋ ባነጋግራችሁ፥ የጥበብ ነገርንም ቢሆን፥ የትንቢትንም ነገር ቢሆን፥ የማስተማር ሥራንም ቢሆን ገልጬ ካልነገርኋችሁ የምጠቅማችሁ ጥቅም ምንድን ነው?"
+            },
+            {
+              "verse": 7,
+              "text": "ነፍስ የሌለው ድምፅ የሚሰጥ እንደ መሰንቆ፥ ወይም እንደ ክራር ያለ መሣሪያ በስልት ካልተመታ መሰንቆው ወይም ክራሩ የሚለውን ማን ያውቃል?"
+            },
+            {
+              "verse": 8,
+              "text": "መለከት የሚነፋም በታወቀው ስልት ካልነፋ ለጦርነት ማን ይዘጋጃል?"
+            },
+            {
+              "verse": 9,
+              "text": "እንዲሁም እናንተ በማይታወቅ ቋንቋ ብትናገሩ፥ ይህንኑም ገልጣችሁ ባትተረጕሙ የምትሉትንና የምትናገሩትን ማን ያውቃል? ከነፋስ ጋር እንደምትነጋገሩ ትሆናላችሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "በዓለም ልዩ ልዩ ቋንቋዎች አሉ፤ ከእነርሱም ትርጕም የሌለው አንድም የለም።"
+            },
+            {
+              "verse": 11,
+              "text": "የቋንቋውን ትርጓሜ ካላወቅሁ እኔ ለሚያነጋግረኝ እንደ እንግዳ እሆንበታለሁ፤ የሚያነጋግረኝ እርሱም ለእኔ እንደ እንግዳ ይሆናል።"
+            },
+            {
+              "verse": 12,
+              "text": "እንዲሁ እናንተም ለመንፈስ ቅዱስ ስጦታ ተፎካከሩ፤ ትበዙም ዘንድ ማኅበሩ የሚታነጽበትን ፈልጉ።"
+            },
+            {
+              "verse": 13,
+              "text": "በማያውቀው ቋንቋ የሚናገር ሰውም መተርጐም እንዲችል ይጸልይ።"
+            },
+            {
+              "verse": 14,
+              "text": "በማላውቀው ቋንቋ የምጸልይ ከሆንሁ ቃሌ ብቻ ይጸልያል፤ ልቤ ግን ባዶ ነው።"
+            },
+            {
+              "verse": 15,
+              "text": "እንግዲህ ምን አደርጋለሁ በመንፈስ እጸልያለሁ፤ በማስተዋልም እማልዳለሁ፤ በመንፈሴ እዘምራለሁ፤ በማስተዋልም እዘምራለሁ።"
+            },
+            {
+              "verse": 16,
+              "text": "አንተ በመንፈስ ብታመሰግን፥ ያ የቆመው ያልተማረው በአንተ ምስጋና ላይ እንዴት አሜን ይላል? የምትናገረውንና የምትጸልየውን አያውቅምና።"
+            },
+            {
+              "verse": 17,
+              "text": "እነሆ፥ አንተስ መልካም ታመሰግናለህ፤ ነገር ግን ሌላው እንዴት ይታነጻል?"
+            },
+            {
+              "verse": 18,
+              "text": "እግዚአብሔርን አመሰግነዋለሁ፤ ከሁላችሁ ይልቅ እኔ በቋንቋዎች እናገራለሁና።"
+            },
+            {
+              "verse": 19,
+              "text": "ነገር ግን ሌሎችን አስተምር ዘንድ፥ በቋንቋ ከሚነገር ብዙ ቃል ይልቅ በቤተ ክርስቲያን በአእምሮዬ አምስት ቃላትን ልናገር እሻለሁ።"
+            },
+            {
+              "verse": 20,
+              "text": "ወንድሞቻችን ሆይ፥ በአእምሮ እንደ ሕፃናት አትሁኑ፤ ነገር ግን ለክፉ ነገር እንደ ሕፃናት ሁኑ፤ በዕውቀትም ፍጹማን ሁኑ።"
+            },
+            {
+              "verse": 21,
+              "text": "In the book of Orith, it is written, \"I will speak to this people in other tongues and in another language; and yet they will not hear me, says the Lord.\""
+            },
+            {
+              "verse": 22,
+              "text": "Now, speaking in tongues is a sign for those who do not believe; but for those who believe, it is not. Prophecy is for those who believe, but not for those who do not believe."
+            },
+            {
+              "verse": 23,
+              "text": "If the people all gather in unity, yet each speaks in different languages, will there not be those who are unacquainted, or will there not be those who do not believe, saying, \"They are mad\"?"
+            },
+            {
+              "verse": 24,
+              "text": "If all speak in prophecy, yet if there come those who do not believe or are unacquainted, will they not all be made to feel uncomfortable? Will they not all be made to feel sorrow?"
+            },
+            {
+              "verse": 25,
+              "text": "In their hearts, they will be revealed; after this, the one who does not believe will return and be troubled; and in their gathering, they will bow down to the Lord, for truly the Lord speaks as if He is with you."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Order of the Prayer of the Congregation",
+          "verses": [
+            {
+              "verse": 26,
+              "text": "Now, brethren, you have no psalm when you gather together; you have no teaching; you have no revelation; you have no speaking in tongues; you have no interpretation. Let all things be done for edification."
+            },
+            {
+              "verse": 27,
+              "text": "If anyone speaks in a tongue, let there be two or at most three, each in turn, and let one interpret."
+            },
+            {
+              "verse": 28,
+              "text": "But if there is no interpreter, let him keep silent in the church, and let him speak to himself and to God."
+            },
+            {
+              "verse": 29,
+              "text": "And let the prophets speak, two or three, and let the others judge."
+            },
+            {
+              "verse": 30,
+              "text": "If anything is revealed to another who sits by, let the first keep silent."
+            },
+            {
+              "verse": 31,
+              "text": "Let all things be done for edification, that all may learn and all may be encouraged, and that each of you may prophesy."
+            },
+            {
+              "verse": 32,
+              "text": "For the spirit of the prophets is subject to the prophets."
+            },
+            {
+              "verse": 33,
+              "text": "As in all the churches of the saints, God is not the author of confusion but of peace."
+            },
+            {
+              "verse": 34,
+              "text": "Let your women keep silent in the churches, for they are not permitted to speak; but they are to be submissive, as the law also says."
+            },
+            {
+              "verse": 35,
+              "text": "For it is shameful for women to speak in church; but if they want to learn something, let them ask their own husbands at home."
+            },
+            {
+              "verse": 36,
+              "text": "የእግዚአብሔር ቃል ከእናንተ ብቻ ወጥቶአልን? ወይስ የእግዚአብሔር ቃል ወደ እናንተ ብቻ ደርሶአልን?"
+            },
+            {
+              "verse": 37,
+              "text": "ራሱን እንደ ነቢይ አድርጎ ወይም መንፈስ ቅዱስ እንዳደረበት አድርጎ የሚቈጥር ቢኖር፥ የእግዚአብሔር ትእዛዝ ነውና ይህን የጻፍሁላችሁን ይወቅ።"
+            },
+            {
+              "verse": 38,
+              "text": "ነገር ግን ይህን የማያውቅ ቢኖር እግዚአብሔርን አያውቀውም።"
+            },
+            {
+              "verse": 39,
+              "text": "አሁንም ወንድሞቻችን ሆይ፥ ትንቢትን ለመናገር ቅኑ፤ በቋንቋ የሚናገረውንም አትከልክሉት።"
+            },
+            {
+              "verse": 40,
+              "text": "ነገር ግን ሁሉን በአገባብና በሥርዐት አድርጉ፤"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 15,
+      "sections": [
+        {
+          "title": "Concerning the remembrance of those who have learned.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Brethren, I remind you of the gospel which I preached unto you, which also ye have received, and wherein ye stand."
+            },
+            {
+              "verse": 2,
+              "text": "I declare unto you the gospel which I preached unto you, unless ye have believed in vain."
+            }
+          ]
+        },
+        {
+          "title": "Concerning our Lord, the resurrection and the revelation.",
+          "verses": [
+            {
+              "verse": 3,
+              "text": "እኔ የተማርሁትን አስቀድሜ መጽሐፍ እንደሚል እንዲህ ብዬ አስተማርኋችሁ፥ “ክርስቶስ ስለ ኀጢአታችን ሞተ።"
+            },
+            {
+              "verse": 4,
+              "text": "ተቀበረ፤ እንደ ተጻፈም በሦስተኛው ቀን ተነሣ።”"
+            },
+            {
+              "verse": 5,
+              "text": "ለጴጥሮስ ታየው፤ ከዚህም በኋላ ለዐሥራ አንዱ ደቀ መዛሙርቱ ታያቸው።"
+            },
+            {
+              "verse": 6,
+              "text": "ከዚህም በኋላ ከአምስት መቶ ለሚበዙ ወንድሞች በአንድ ጊዜ ታያቸው፤ ከእነርሱ ብዙዎቹ እስከ ዛሬ አሉ፤ አንዳንዶቹ ግን አንቀላፍተዋል።"
+            },
+            {
+              "verse": 7,
+              "text": "ከዚህም በኋላ ለያዕቆብ ታየው፤ ኋላም ለሐዋርያት ሁሉ፤"
+            },
+            {
+              "verse": 8,
+              "text": "ከሁሉም በኋላ ጭንጋፍ ለምመስል ለእኔ ታየኝ።"
+            },
+            {
+              "verse": 9,
+              "text": "ከሐዋርያት ሁሉ እኔ አንሣለሁና፤ የእግዚአብሔርን ቤተ ክርስቲያን ስለ አሳደድሁ ሐዋርያ ተብዬ ልጠራ የማይገባኝ፥"
+            },
+            {
+              "verse": 10,
+              "text": "ነገር ግን በእግዚአብሔር ጸጋ አሁን እኔ ባለሁበት አለሁ፤ ለእኔም የሰጠኝ ጸጋው ለከንቱ የሆነብኝ አይደለም፤ እኔም ከሁሉ ይልቅ ደከምሁ፤ ነገር ግን በእኔ ላይ ያደረው የእግዚአብሔር ጸጋ አጸናኝ እንጂ እኔ አይደለሁም።"
+            },
+            {
+              "verse": 11,
+              "text": "አሁንም እኔም ብሆን፥ እነርሱም ቢሆኑ እንዲህ እናስተምራለን፤ እናንተም እንዲሁ አምናችኋል።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the resurrection of the dead.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "ክርስቶስ ከሙታን ተለይቶ ተነሥቶአል ብለን ለሌላው የምናስተምር ከሆነ፥ እንግዲህ ከመካከላችሁ ሙታን አይነሡም የሚሉ እንዴት ይኖራሉ?"
+            },
+            {
+              "verse": 13,
+              "text": "ሙታን የማይነሡ ከሆነ ክርስቶስም ከሙታን ተለይቶ አልተነሣማ፤"
+            },
+            {
+              "verse": 14,
+              "text": "ክርስቶስም ከሙታን ካልተነሣ እንግዲያስ ትምህርታችን ከንቱ ነው፤ የእናንተም እምነታችሁ ከንቱ ነው።"
+            },
+            {
+              "verse": 15,
+              "text": "እኛም በእግዚአብሔር ላይ የሐሰት ምስክሮች ሆነናል፤ ክርስቶስን አስነሣው ብለናልና፥ እንግዲያ ሳያስነሣው ነውን?።"
+            },
+            {
+              "verse": 16,
+              "text": "ሙታን የማይነሡ ከሆነ ክርስቶስም ከሙታን አልተነሣማ።"
+            },
+            {
+              "verse": 17,
+              "text": "ክርስቶስም ከሙታን ካልተነሣ ማመናችሁ ከንቱ ነው፤ ገናም በኀጢአታችሁ አላችሁ።"
+            },
+            {
+              "verse": 18,
+              "text": "እንግዲያስ በክርስቶስ አምነው የሞቱ ጠፍተዋላ።"
+            },
+            {
+              "verse": 19,
+              "text": "በዚህ ዓለም ሕይወት ብቻ ክርስቶስን ተስፋ ከአደረግነው ከሰው ሁሉ ይልቅ ጉዳተኞች ነን።"
+            },
+            {
+              "verse": 20,
+              "text": "አሁንም ክርስቶስ ከሞቱ ሰዎች ሁሉ አስቀድሞ ተነሥቶአል።"
+            },
+            {
+              "verse": 21,
+              "text": "በመጀመሪያው ሰው ሞት መጥቶአልና፤ በሁለተኛው ሰው ትንሣኤ ሙታን ሆነ።"
+            },
+            {
+              "verse": 22,
+              "text": "ሁሉ በአዳም እንደሚሞት እንዲሁ በክርስቶስ ሁሉ ሕያዋን ይሆናሉ።"
+            },
+            {
+              "verse": 23,
+              "text": "ነገር ግን ሰው ሁሉ በየሥርዐቱ ይነሣል፤ በመጀመሪያ ከሙታን የተነሣ ክርስቶስ ነው፤ ከዚያ በኋላ በክርስቶስ ያመኑ እርሱ በሚመጣበት ጊዜ ይነሣሉ።"
+            },
+            {
+              "verse": 24,
+              "text": "እግዚአብሔር አብ መንግሥቱን እጅ ባደረገ ጊዜ፥ ገዥም ሁሉ፥ ንጉሥም ሁሉ፥ ኀይልም ሁሉ በተሻረ ጊዜ፥ ያንጊዜ ፍጻሜ ይሆናል።"
+            },
+            {
+              "verse": 25,
+              "text": "ጠላቶቹ ሁሉ ከእግሩ በታች እስኪወድቁ ድረስ ይነግሥ ዘንድ አለውና።"
+            },
+            {
+              "verse": 26,
+              "text": "ከዚያ በኋላ የመጨረሻው ጠላት ይሻራል፤ ይኸውም ሞት ነው።"
+            },
+            {
+              "verse": 27,
+              "text": "ሁሉን ከእግሩ በታች አስገዝቶለታልና፥ “ሁሉ ይገዛለት” ባለ ጊዜ ግን ሁሉን ከሚያስገዛለት በቀር እንደ ሆነ የታወቀ ነው።"
+            },
+            {
+              "verse": 28,
+              "text": "ሁሉም በተገዛለት ጊዜ ግን እግዚአብሔር በሁሉ ቦታ በሁሉ ይሆን ዘንድ፥ ያን ዕለት ወልድም ሁሉን ላስገዛለት ይገዛል።"
+            },
+            {
+              "verse": 29,
+              "text": "ያለዚያማ ለምን ያጠምቃሉ? ሙታን እንዲነሡ አይደለምን? ሙታን የማይነሡ ከሆነስ ለምን ያጠምቃሉ?"
+            },
+            {
+              "verse": 30,
+              "text": "እንግዲህ እኛስ ሁልጊዜ መከራን ስለምን እንቀበላለን?"
+            },
+            {
+              "verse": 31,
+              "text": "ወንድሞቻችን ሆይ፥ በጌታችን በኢየሱስ ክርስቶስ በሆነውና በእናንተ ላይ ባለኝ ትምክህት ሁልጊዜ እገደላለሁ።"
+            },
+            {
+              "verse": 32,
+              "text": "Truly, is it for a man that I have served with the Gentiles in Ephesus? What shall it profit me? If the dead rise not, let us eat and drink; for tomorrow we die."
+            },
+            {
+              "verse": 33,
+              "text": "Brethren, do not be deceived; for evil communications corrupt good manners."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the resurrection, in the teaching of parables.",
+          "verses": [
+            {
+              "verse": 34,
+              "text": "Fear not for the righteous; do not be dismayed; for there are those who do not know the Lord God; yet I say this to you, that you may fear."
+            },
+            {
+              "verse": 35,
+              "text": "How shall the dead arise? In what body shall they come forth?"
+            },
+            {
+              "verse": 36,
+              "text": "You fool! Even if you sow, it shall not be quickened unless it dies."
+            },
+            {
+              "verse": 37,
+              "text": "And that which you sow, whether it be of wheat or of another kind, it is but a single grain that you sow; yet that which comes forth afterward is not the body that shall be, but a bare grain."
+            },
+            {
+              "verse": 38,
+              "text": "But God gives it a body as it has pleased Him; and to each seed its own body."
+            },
+            {
+              "verse": 39,
+              "text": "For all flesh is not the same flesh; but there is one kind of flesh of men, another flesh of beasts, another of fishes, and another of birds."
+            },
+            {
+              "verse": 40,
+              "text": "There is a heavenly body, and there is an earthly body; but the glory of the heavenly is one, and the glory of the earthly is another."
+            },
+            {
+              "verse": 41,
+              "text": "The glory of the sun is one, and the glory of the moon is another; and the glory of the stars is different from star to star in glory."
+            },
+            {
+              "verse": 42,
+              "text": "So also is the resurrection of the dead; it is sown in corruption, it is raised in incorruption."
+            },
+            {
+              "verse": 43,
+              "text": "It is sown in dishonor; it is raised in glory; it is sown in weakness; it is raised in power."
+            },
+            {
+              "verse": 44,
+              "text": "The physical body is sown; the spiritual body is raised; for there is a physical body, and there is also a spiritual body."
+            },
+            {
+              "verse": 45,
+              "text": "Thus it is written, the first man Adam was made a living soul; the second Adam, however, is a life-giving spirit."
+            },
+            {
+              "verse": 46,
+              "text": "Nevertheless, the spiritual comes not first, but the natural; afterward, the spiritual is not the first."
+            },
+            {
+              "verse": 47,
+              "text": "The first man is of the earth, earthy; the second man is the Lord from heaven."
+            },
+            {
+              "verse": 48,
+              "text": "As is the earthy, such are they also that are earthy; and as is the heavenly, such are they also that are heavenly."
+            },
+            {
+              "verse": 49,
+              "text": "And as we have borne the image of the earthy, we shall also bear the image of the heavenly."
+            },
+            {
+              "verse": 50,
+              "text": "Brethren, I declare this to you: the flesh and blood cannot inherit the kingdom of God; neither does corruption inherit incorruption."
+            },
+            {
+              "verse": 51,
+              "text": "Behold, I tell you a mystery; we shall not all sleep, but we shall all be changed."
+            },
+            {
+              "verse": 52,
+              "text": "However, when the last trumpet sounds, we shall all be changed in a moment, in the twinkling of an eye; for the trumpet will sound, and the dead will be raised incorruptible, and we shall be changed."
+            },
+            {
+              "verse": 53,
+              "text": "For this corruptible must put on incorruption, and this mortal must put on immortality."
+            },
+            {
+              "verse": 54,
+              "text": "ይህ የሚፈርሰው የማይፈርሰውን በለበሰ ጊዜ፥ የሚሞተውም የማይሞተውን በለበሰ ጊዜ፤ “ሞት በመሸነፍ ተዋጠ” ተብሎ የተጻፈው ያንጊዜ ይፈጸማል።"
+            },
+            {
+              "verse": 55,
+              "text": "“ሞት ሆይ፥ እንግዲህ መውጊያህ ወዴት አለ? መቃብር ሆይ፥ አሸናፊነትህ ወዴት አለ?”"
+            },
+            {
+              "verse": 56,
+              "text": "የሞት መውጊያ ኀጢአት ናት፥ የኀጢአትም ኀይልዋ ኦሪት ናት።"
+            },
+            {
+              "verse": 57,
+              "text": "በጌታችን በኢየሱስ ክርስቶስ ድል መንሣትን ለሰጠን ለእግዚአብሔር ምስጋና ይሁን።"
+            },
+            {
+              "verse": 58,
+              "text": "አሁንም የተወደዳችሁ ወንድሞቻችን ሆይ፥ የጸናችሁና የማትናወጡ ሁኑ፤ ዘወትር በጎ ምግባርን አብዝታችሁ ለእግዚአብሔር አበርክቱ፤ ስለ ጌታችን መድከማችሁ ለከንቱ እንዳይደለ ታውቃላችሁና።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 16,
+      "sections": [
+        {
+          "title": "For Jerusalem, a reflection shall be made for the faithful.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Concerning the sanctification that is to be done, as I have instructed the believers in Galatia, so also do ye."
+            },
+            {
+              "verse": 2,
+              "text": "When I come, let this offering of yours not be in vain; let each of you bring forth what you are able on the first day of the week, and let what you have gathered be kept in your house."
+            },
+            {
+              "verse": 3,
+              "text": "When I arrive, I shall send my letter along with those whom you have chosen to deliver your gifts to Jerusalem."
+            },
+            {
+              "verse": 4,
+              "text": "If it be possible for me to go, I shall go myself; but they shall accompany me."
+            },
+            {
+              "verse": 5,
+              "text": "I shall come to you from Macedonia; for I do not wish to remain in Macedonia."
+            },
+            {
+              "verse": 6,
+              "text": "And as you go, I shall remain with you for a time, until the day that I am able to depart, or else I may stay longer."
+            },
+            {
+              "verse": 7,
+              "text": "Now I do not wish to hinder my journey to you; however, I hope that as the Lord permits, I shall remain with you for a time."
+            },
+            {
+              "verse": 8,
+              "text": "Until the feast of Pentecost, I shall remain in Ephesus."
+            },
+            {
+              "verse": 9,
+              "text": "A great and effective door has been opened to me; however, there are many adversaries."
+            },
+            {
+              "verse": 10,
+              "text": "And when Timothy comes, see that he is without fear among you; for he is doing the work of the Lord, as I also am."
+            },
+            {
+              "verse": 11,
+              "text": "የሚንቀውም አይኑር፤ ከወንድሞቻችን ጋር እጠብቀዋለሁና፥ ወደ እኔ እንዲመጣ በሰላም ሸኙት።"
+            },
+            {
+              "verse": 12,
+              "text": "ስለ ወንድማችን ስለ አጵሎስም ከወንድሞች ጋር ወደ እናንተ እንዲመጣ መላልሼ ማልጄው ነበር፤ አሁን ሊመጣ አልወደደም፤ በተቻለው ጊዜ ግን ይመጣል።"
+            },
+            {
+              "verse": 13,
+              "text": "ትጉ፤ በሃይማኖትም ቁሙ፤ ታገሡ ጽኑ፤"
+            },
+            {
+              "verse": 14,
+              "text": "ሁሉን በፍቅር አድርጉ።"
+            },
+            {
+              "verse": 15,
+              "text": "ወንድሞቻችን ሆይ፥ የእስጢፋኖስና የፈርዶናጥስ፥ የአካይቆስም ቤተሰቦች፥ የአካይያ መጀመሪያዎች እንደ ሆኑ፥ ቅዱሳንንም ለማገልገል ራሳቸውን እንደ ሰጡ ታውቁ ዘንድ እማልዳችኋለሁ።"
+            },
+            {
+              "verse": 16,
+              "text": "እናንተም እንደ እነዚህ ላሉትና ከእኛ ጋር በሥራ ተባብሮ ለሚደክም ሁሉ ትታዘዙላቸው ዘንድ እማልዳችኋለሁ።"
+            },
+            {
+              "verse": 17,
+              "text": "እስጢፋኖስ፥ ፈርዶናጥስና አካይቆስ በመምጣታቸውም ደስ ይለኛል፤ እናንተ ያጐደላችሁትን እነርሱ ፈጽመዋልና።"
+            },
+            {
+              "verse": 18,
+              "text": "እነርሱ መንፈሴንና መንፈሳችሁን ደስ አሰኝተዋል፤ እንዲህ ያሉትንም ዕወቋቸው።"
+            },
+            {
+              "verse": 19,
+              "text": "በእስያ ያሉ ምእመናን ሰላምታ ያቀርቡላችኋል፤ አቂላና ጵርስቅላ በቤታቸው ከእነርሱ ጋር ያሉ ምእመናንም ሁሉ በጌታችን እጅግ ሰላምታ ያቀርቡላችኋል።"
+            },
+            {
+              "verse": 20,
+              "text": "ወንድሞቻችሁ ሁሉ ሰላምታ ያቀርቡላችኋል፤ በተቀደሰች ሰላምታ እርስ በርሳችሁ ሰላም ተባባሉ።"
+            },
+            {
+              "verse": 21,
+              "text": "I, Paul, write this greeting with my own hand."
+            },
+            {
+              "verse": 22,
+              "text": "Let it be known that he who does not love our Lord Jesus Christ is accursed; come, O Lord!"
+            },
+            {
+              "verse": 23,
+              "text": "The grace of our Lord Jesus Christ be with you all."
+            },
+            {
+              "verse": 24,
+              "text": "My love be with you all in Christ Jesus. Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

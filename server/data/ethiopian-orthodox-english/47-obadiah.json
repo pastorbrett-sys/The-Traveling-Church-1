@@ -1,0 +1,114 @@
+{
+  "book_number": 47,
+  "book_name_am": "ትንቢተ አብድዩ",
+  "book_short_name_am": "አብድ",
+  "book_name_en": "Obadiah",
+  "book_short_name_en": "Obad",
+  "testament": "old",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "The judgment that shall come upon Edom.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The vision of Obadiah."
+            },
+            {
+              "verse": 2,
+              "text": "Behold, I have made you small among the nations; you are greatly despised."
+            },
+            {
+              "verse": 3,
+              "text": "In the day when you stood aloof, when strangers carried off his wealth and foreigners entered his gates and cast lots for Jerusalem, you were like one of them."
+            },
+            {
+              "verse": 4,
+              "text": "\"If you ascend as high as the eagle, and if you set your nest among the stars, from there I will bring you down,\" says the Lord."
+            },
+            {
+              "verse": 5,
+              "text": "\"If thieves came to you, if robbers by night—oh, how you will be ruined!—would they not steal only until they had enough? If grape gatherers came to you, would they not leave gleanings?\""
+            },
+            {
+              "verse": 6,
+              "text": "How Esau has been pillaged! His treasures searched out!"
+            },
+            {
+              "verse": 7,
+              "text": "All the men of your confederacy have brought you to the border; the men at peace with you have deceived you and prevailed against you; those who eat your bread have laid a trap for you. There is no understanding in them."
+            },
+            {
+              "verse": 8,
+              "text": "In that day, says the Lord, I will destroy the wise men from Edom, and understanding from Mount Esau shall be vanished."
+            },
+            {
+              "verse": 9,
+              "text": "And all the men of your mountain shall be cut off, and the survivors of the Teman shall be dismayed."
+            },
+            {
+              "verse": 10,
+              "text": "\"For the violence done to your brother Jacob, shame shall cover you, and you shall be cut off forever.\""
+            },
+            {
+              "verse": 11,
+              "text": "In the day when you stood before Him, when the multitude trembled at His presence, and the strangers entered through the gate, on the day when Jerusalem was shaken, you too were as one of them."
+            },
+            {
+              "verse": 12,
+              "text": "On the day of your enemies, you looked down upon your brother, and in the day of their destruction, you rejoiced over the children of Judah; in the day of their distress, you spoke proudly, which was not fitting for you."
+            },
+            {
+              "verse": 13,
+              "text": "In the day of their trouble, you did not enter the gate of my people; in the day of their destruction, you looked upon their assembly; in the day of their calamity, you did not cast your eyes upon their army, which was not fitting for you."
+            },
+            {
+              "verse": 14,
+              "text": "To destroy those who had escaped, you stood at the crossroads; on the day when they rose against him, you sought to deliver them up to their adversaries, which was not fitting for you."
+            }
+          ]
+        },
+        {
+          "title": "The Lord shall judge among the nations.",
+          "verses": [
+            {
+              "verse": 15,
+              "text": "\"The day of the Lord is near upon all nations; as thou hast done, it shall be done unto thee; thy reward shall return upon thine own head.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"Upon my holy mountain, as thou hast drunk, so shall all the nations drink; yea, they shall drink, and they shall swallow down; and they shall be as though they had not been.\""
+            }
+          ]
+        },
+        {
+          "title": "The victory of Israel",
+          "verses": [
+            {
+              "verse": 17,
+              "text": "\"But on the mountain of Zion shall be a deliverer; and He shall be holy; and the house of Jacob shall possess their inheritances.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"And the Lord hath spoken, saying, The house of Jacob shall be as fire, the house of Joseph as a flame, and the house of Esau shall be stubble; and they shall kindle in them and devour them; and there shall not be any remaining of the house of Esau.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"The people of the south shall possess the mountain of Esau, and the people of the plain shall inherit the Philistines; and they shall possess the mountain of Ephraim, and the cities of Samaria, and the land of Benjamin and Gilead.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"This shall be the inheritance of the children of Israel, from the river of Egypt unto the great river, the river Euphrates; the cities of the south shall be inherited by the inhabitants of Jerusalem unto Ephrathah.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"And the inhabitants of the plain shall be as the mountain of Esau, and they shall sing praises from the mountain of Zion; and the kingdom shall be the Lord's.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

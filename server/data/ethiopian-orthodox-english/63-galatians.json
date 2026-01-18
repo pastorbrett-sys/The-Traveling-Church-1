@@ -1,0 +1,711 @@
+{
+  "book_number": 63,
+  "book_name_am": "ወደ ገላትያ ሰዎች",
+  "book_short_name_am": "ገላ",
+  "book_name_en": "Galatians",
+  "book_short_name_en": "Gal",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Concerning Paul, his ministry and teaching.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "በጌታችን በኢየሱስ ክርስቶስና ከሙታን ለይቶ በአስነሣው በእግዚአብሔር አብ ነው እንጂ ከሰዎች ወይም በሰው ሐዋርያ ካልሆነ ከጳውሎስ፥"
+            },
+            {
+              "verse": 2,
+              "text": "አብረውኝ ካሉ ከወንድሞቻችንም፥ በገላትያ ላሉ አብያተ ክርስቲያን፤"
+            },
+            {
+              "verse": 3,
+              "text": "ከአባታችን ከእግዚአብሔር፥ ከጌታችን ከኢየሱስ ክርስቶስም ሰላምና ጸጋ ለእናንተ ይሁን።"
+            },
+            {
+              "verse": 4,
+              "text": "በክፉ ከሚቃወም ከዚህ ዓለም ያድነን ዘንድ በአባታችን በእግዚአብሔር ፈቃድ ስለ ኀጢአታችን ራሱን አሳልፎ ሰጠ።"
+            },
+            {
+              "verse": 5,
+              "text": "ለእርሱ ክብር ይሁን፤ ከዘለዓለም እስከ ዘለዓለም አሜን።"
+            },
+            {
+              "verse": 6,
+              "text": "በጸጋዉ የጠራችሁን ክርስቶስን ከማመን ወደ ልዩ ወንጌል እንዴት ፈጥነው እንዳስወጧችሁ አደንቃለሁ።"
+            },
+            {
+              "verse": 7,
+              "text": "እርሱ ግን ሌላ አይደለም፤ የሚያውኳችሁ ከክርስቶስም ወንጌል ሊያጣምሙ የሚወዱ አሉ እንጂ።"
+            },
+            {
+              "verse": 8,
+              "text": "እናንተ ግን የእኛን ፍለጋ ተከተሉ፤ እናንተስ እኛም ብንሆን ወይም መልአክ ከሰማይ ወርዶ እኛ ካስተማርናችሁ ወንጌል ሌላ ቢሰብክላችሁ ውጉዝ ይሁን።"
+            },
+            {
+              "verse": 9,
+              "text": "አስቀድሜ እንደ አልሁ አሁንም ደግሞ እላለሁ፦ ካስተማርናችሁ ሌላ ትምህርት ያስተማራችሁ ቢኖር ውጉዝ ይሁን።"
+            },
+            {
+              "verse": 10,
+              "text": "አሁንስ ለእግዚአብሔር ያይደለ ለሰው ብዬ አስተምራለሁን? ወይስ ሰውን ደስ አሰኛለሁን? ሰውን ደስ ላሰኝ ብወድስ የክርስቶስ ባሪያ አይደለሁም።"
+            }
+          ]
+        },
+        {
+          "title": "Saint Paul, as called to apostleship.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "ወንድሞቻችን ሆይ፥ ያስተማርኋችሁ ወንጌል ስለ ሰው እንዳይደለ አስታውቃችኋለሁ።"
+            },
+            {
+              "verse": 12,
+              "text": "ጌታ ኢየሱስ ክርስቶስ ገለጠልኝ እንጂ፥ እኔ ከሰው አልተቀበልሁትም፤ አልተማርሁትምም።"
+            },
+            {
+              "verse": 13,
+              "text": "በአይሁድ ሥርዐት ውስጥ በነበርሁ ጊዜ፥ የነበረውን የቀድሞ ሥራዬን ሰምታችኋል፤ የእግዚአብሔርን ቤተ ክርስቲያን እጅግ አሳድድና መከራ አጸናባቸው ነበር።"
+            },
+            {
+              "verse": 14,
+              "text": "ለአባቶች ሥርዐት እጅግ ቀናተኛ ነበርሁና በወገኖች ዘንድ ከጓደኞች ሁሉ በአይሁድ ዘንድ እጅግ ከበርሁ።"
+            },
+            {
+              "verse": 15,
+              "text": "ከእናቴ ማኅፀን ለይቶ ያወጣኝ እግዚአብሔር በወደደ ጊዜ በጸጋው ጠራኝ።"
+            },
+            {
+              "verse": 16,
+              "text": "በስሙም ለአሕዛብ ወንጌልን አስተምር ዘንድ፥ በእጄም የልጁ ክብር ይታወቅ ዘንድ ልጁን ገለጠልኝ፤ ያንጊዜም ከሥጋዊና ከደማዊ ሰው ጋር አልተማከርሁም።"
+            },
+            {
+              "verse": 17,
+              "text": "ከእኔ በፊት ወደ ነበሩት ወደ ሐዋርያትም ወደ ኢየሩሳሌም አልወጣሁም፤ ነገር ግን ወደ ዐረብ ሀገር ሄድሁ፤ ዳግመኛም ወደ ደማስቆ ተመለስሁ።"
+            }
+          ]
+        },
+        {
+          "title": "In the beginning, concerning the departure unto Jerusalem.",
+          "verses": [
+            {
+              "verse": 18,
+              "text": "ከሦስት ዓመት በኋላ ግን ኬፋን ላየው ወደ ኢየሩሳሌም ወጣሁ፤ በእርሱ ዘንድም ዐሥራ አምስት ቀን ሰነበትሁ።"
+            },
+            {
+              "verse": 19,
+              "text": "ነገር ግን የጌታችን ወንድም ያዕቆብን እንጂ ከሐዋርያት ሌላ አላየሁም።"
+            },
+            {
+              "verse": 20,
+              "text": "ስለምጽፍላችሁም ነገር እነሆ፥ በእግዚአብሔር ፊት ሐሰት አልናገርም።"
+            },
+            {
+              "verse": 21,
+              "text": "ከዚህም በኋላ ወደ ሶርያና ወደ ቂልቅያ አውራጃ መጣሁ።"
+            },
+            {
+              "verse": 22,
+              "text": "በክርስቶስም ያሉት የይሁዳ ሀገር ማኅበረ ክርስቲያን ፊቴን አያውቁም ነበር።"
+            },
+            {
+              "verse": 23,
+              "text": "ነገር ግን “ቀድሞ ምእመናንን ያሳድድ የነበረው እርሱ በፊት ያጠፋው የነበረውን የሃይማኖት ትምህርት ዛሬ ይሰብካል” ሲባል ወሬዬን ይሰሙ ነበር።"
+            },
+            {
+              "verse": 24,
+              "text": "ስለ እኔም እግዚአብሔርን ያመሰግኑት ነበር።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": "The Holy Apostle Paul, concerning his departure to Jerusalem.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ከዐሥራ አራት ዓመትም በኋላ ከበርናባስ ጋር እንደ ገና ወደ ኢየሩሳሌም ወጣሁ፤ ቲቶንም ይዠው ሄድሁ።"
+            },
+            {
+              "verse": 2,
+              "text": "እንደ ተገለጠልኝም ወጣሁ፤ በከንቱ እንዳልሮጥ፥ ወይም በከንቱ ሮጬ እንዳልሆነ፥ በአሕዛብ መካከል የምሰብከውን ወንጌል አለቆች መስለው ለሚታዩት አስታወቅኋቸው።"
+            },
+            {
+              "verse": 3,
+              "text": "አብሮኝ የነበረው ቲቶም አረማዊ ሲሆን እንዲገዘር ግድ አላልሁትም።"
+            },
+            {
+              "verse": 4,
+              "text": "ይኸውም ባሪያዎች ያደርጉን ዘንድ በኢየሱስ ክርስቶስ ያገኘናትን ነጻነት ሊሰልሉ በስውር ወደ እኛ የገቡ ሐሰተኞች መምህራንን ደስ አይበላቸው ብዬ ነው።"
+            },
+            {
+              "verse": 5,
+              "text": "ለምንም ይሆናሉ ብለን የማናስባቸው ናቸው፤ እውነተኛው ትምህርት በእናንተ ይጸና ዘንድ አንዲት ሰዓትም እንኳ አልተገዛንላቸውም።"
+            },
+            {
+              "verse": 6,
+              "text": "አለቆች የመሰሉት ግን ቀድሞ እነርሱ እንዴት እንደ ነበሩ ልናገር አያገደኝም፤ እግዚአብሔር ለሰው ፊት አያዳላምና፤ አለቆች የመሰሉትም ከራሳቸው ምንም ነገር የጨመሩልኝ የለምና።"
+            },
+            {
+              "verse": 7,
+              "text": "የጴጥሮስ ትምህርት በተገዘሩ በአይሁድ ዘንድ እንደ ታመነለት፥ የእኔም ትምህርት ባልተገዘሩ በአሕዛብ ዘንድ እንደ ታመነ ዐውቀዋል እንጂ።"
+            },
+            {
+              "verse": 8,
+              "text": "ወደ ተገዘሩ አይሁድ በተላከ ጊዜ ጴጥሮስን የረዳው እርሱ እኔንም ባልተገዘሩ አሕዛብ ዘንድ ረዳኝ።"
+            },
+            {
+              "verse": 9,
+              "text": "የሰጠኝንም ጸጋ ዐውቀው አዕማድ የሚሏቸው ያዕቆብና ኬፋ፥ ዮሐንስም እኛ ወደ አሕዛብ፥ እነርሱም ወደ አይሁድ እንድንሄድ ለእኔና ለበርናባስ ቀኝ እጃቸውን ሰጡን።"
+            },
+            {
+              "verse": 10,
+              "text": "ይልቁንም ነዳያንን እንድናስባቸው ነው፤ ስለዚህም ይህን ነገር ልፈጽመው ተጋሁ።"
+            }
+          ]
+        },
+        {
+          "title": "Paul Concerning the Persecution of Peter",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "ነገር ግን ኬፋ ወደ አንጾኪያ በመጣ ጊዜ ፊት ለፊት ተቃወምሁት፤ ነቅፈውት ነበርና።"
+            },
+            {
+              "verse": 12,
+              "text": "ሰዎች ከያዕቆብ ዘንድ ከመምጣታቸው በፊት፥ ከአረማውያን ጋር ይበላ ነበርና፥ በመጡ ጊዜ ግን ተለያቸው፤ ከአይሁድ ወገን የሆኑትን ፈርቶአልና።"
+            },
+            {
+              "verse": 13,
+              "text": "ከአይሁድ ወገንም ወደዚህ ግብር የተመለሱ ብዙዎች ነበሩ፤ በርናባስም እንኳ በግብዝነታቸው ተባበረ።"
+            },
+            {
+              "verse": 14,
+              "text": "ነገር ግን ወደ እውነተኛው ወንጌል እግራቸውን እንዳላቀኑ ባየሁ ጊዜ፥ በሰው ሁሉ ፊት ኬፋን እንዲህ አልሁት፥ “አንተ አይሁዳዊ ስትሆን በአይሁድ ሥርዐት ያይደለ፥ በአረማውያን ሥርዐት የምትኖር ከሆነ እንግዲህ አይሁድ እንዲሆኑ አረማውያንን ለምን ታስገድዳቸዋለህ?”"
+            },
+            {
+              "verse": 15,
+              "text": "እኛ በትውልዳችን አይሁድ ነን፤ ኀጢአተኞች የሆኑ አሕዛብም አይደለንም።"
+            },
+            {
+              "verse": 16,
+              "text": "ሰው በኢየሱስ ክርስቶስ በማመን እንጂ የኦሪትን ሥራ በመሥራት እንደማይጸድቅ እናውቃለንና፤ እኛም የኦሪትን ሥራ በመሥራት ሳይሆን በእርሱ በማመናችን እንጸድቅ ዘንድ በኢየሱስ ክርስቶስ አምነናል፤ ሰው ሁሉ በኦሪት ሥራ አይጸድቅምና።"
+            },
+            {
+              "verse": 17,
+              "text": "በክርስቶስ ልንጸድቅ የምንሻ እኛ እንደ ኀጢአተኞች ከሆን እንግዲህ ክርስቶስ የኀጢአት አገልጋይ መሆኑ ነውን? አይደለም።"
+            },
+            {
+              "verse": 18,
+              "text": "ያን ያፈረስሁትን መልሼ የማንጽ ከሆነ ራሴን ሕግ አፍራሽ አደረግሁ።"
+            },
+            {
+              "verse": 19,
+              "text": "እኔስ ለእግዚአብሔር ሕያው ሆኜ በሁለተኛው ሕግ እኖር ዘንድ ከቀደመው ሕግ ተለየሁ።"
+            },
+            {
+              "verse": 20,
+              "text": "ከክርስቶስ ጋርም ተሰቀልሁ፤ ሕይወቴም አለቀች፤ ነገር ግን በክርስቶስ ሕይወት አለሁ፤ ዛሬም በሥጋዬ የምኖረውን ኑሮ የወደደኝን ስለ እኔም ራሱን አሳልፎ የሰጠውን የእግዚአብሔርን ልጅ በማመን እኖራለሁ።"
+            },
+            {
+              "verse": 21,
+              "text": "I do not seek the grace of God; for if one is justified by the works of the law, then Christ died in vain."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "Concerning the slaying of the Galatians.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "O you who are of the flesh, do you not know who has spoken to you, saying that you should not believe in the truth that is seen by the eye? He is Jesus Christ, who was written of beforehand to be crucified."
+            },
+            {
+              "verse": 2,
+              "text": "I desire to know this only among you: Is it by the works of the Spirit that you have received the Holy Spirit, or by hearing of faith?"
+            },
+            {
+              "verse": 3,
+              "text": "Are you such as these, that after you began the work of the Holy Spirit, you would return to fulfill the law of the flesh?"
+            },
+            {
+              "verse": 4,
+              "text": "You have received such affliction as this, and you have done it for naught."
+            },
+            {
+              "verse": 5,
+              "text": "Is it not by doing the works of the Spirit that He gives you the power, or is it by hearing of faith?"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the faith and promise of Abraham.",
+          "verses": [
+            {
+              "verse": 6,
+              "text": "Abraham believed in the Lord, and it was counted to him for righteousness, as it was accounted to him."
+            },
+            {
+              "verse": 7,
+              "text": "Therefore, you shall know that those who believe are the children of Abraham."
+            },
+            {
+              "verse": 8,
+              "text": "The Lord has previously revealed in the scriptures that He will justify the nations by faith; and He gave a promise to Abraham that all nations would be blessed in him."
+            },
+            {
+              "verse": 9,
+              "text": "Even now, those who believe shall be blessed with Abraham, who believed."
+            },
+            {
+              "verse": 10,
+              "text": "All who are under the law shall live by faith; for the scripture says, \"Cursed is everyone who does not continue in all things which are written in the book of the law to do them.\""
+            },
+            {
+              "verse": 11,
+              "text": "It is known that one cannot be justified by the works of the law before God; for \"the just shall live by faith,\" it is written."
+            },
+            {
+              "verse": 12,
+              "text": "The law was given, but it is not by faith that one is justified."
+            },
+            {
+              "verse": 13,
+              "text": "We, too, have been delivered from the law through Christ, for the scripture says, \"Cursed is everyone who hangs on a tree.\""
+            },
+            {
+              "verse": 14,
+              "text": "We believe in Christ so that we may receive the promise of the Holy Spirit through faith, that the blessing of Abraham might come upon the Gentiles in Christ Jesus."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the origin and concerning the hope.",
+          "verses": [
+            {
+              "verse": 15,
+              "text": "Brethren, I speak to you as one who is of human persuasion; for a man, though he may be strong, does not break the covenant that he has made, nor does he add to it."
+            },
+            {
+              "verse": 16,
+              "text": "And the Lord said unto Abraham, \"To thee and to thy seed,\" thus giving a promise; for He does not speak to thee and thy seed as to many, but as to one, saying, \"To thy seed,\" and this is Christ."
+            },
+            {
+              "verse": 17,
+              "text": "Therefore, I say this: The covenant given by God is steadfast; after this, four hundred thirty years have passed; yet the promise given by God cannot be annulled."
+            },
+            {
+              "verse": 18,
+              "text": "If the law was given for the sake of the covenant, then the promise given is not void; behold, God had previously given His promise to Abraham."
+            },
+            {
+              "verse": 19,
+              "text": "Then why was the law given? It was added because of transgressions, until the seed should come to whom the promise was made; it was ordained by angels in the hand of a mediator."
+            },
+            {
+              "verse": 20,
+              "text": "However, there is no mediator; for God is one."
+            },
+            {
+              "verse": 21,
+              "text": "Therefore, was the law given to annul the promise made by God? It is not so; for if a law could have been given that could give life, then righteousness would have been by the law."
+            },
+            {
+              "verse": 22,
+              "text": "But the promise is through faith in Jesus Christ; and those who believe shall receive it, for the scripture has confined all under sin."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the coming of faith.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "Faith, without which the Law has kept us; and to that which is to come, faith is our guide."
+            },
+            {
+              "verse": 24,
+              "text": "Therefore, let us be justified by believing in Him, and let us be led to Christ."
+            },
+            {
+              "verse": 25,
+              "text": "Henceforth, faith shall not be lacking in our leader."
+            },
+            {
+              "verse": 26,
+              "text": "By believing in Jesus Christ, we have all become children of God."
+            },
+            {
+              "verse": 27,
+              "text": "You who have been baptized into Christ have clothed yourselves with Christ."
+            },
+            {
+              "verse": 28,
+              "text": "There is neither Jew nor Greek; neither slave nor free; neither male nor female; for you are all one in Christ Jesus."
+            },
+            {
+              "verse": 29,
+              "text": "If you are in Christ Jesus, then you are the descendants of Abraham, and heirs of the promise."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "However, I say unto you; when the child is young, he is Lord over all, yet he is not distinguished from a servant."
+            },
+            {
+              "verse": 2,
+              "text": "Nevertheless, the father shall keep him until he reaches maturity, whether by the hand of a grandfather or by a guardian."
+            },
+            {
+              "verse": 3,
+              "text": "Likewise, we too, when we were children, were ensnared by the errors of this world."
+            },
+            {
+              "verse": 4,
+              "text": "Yet, when the fullness of time had come, God sent forth His Son; born of a woman, born under the law."
+            },
+            {
+              "verse": 5,
+              "text": "That we might receive the honor of sonship, He exchanged that which was in the law."
+            },
+            {
+              "verse": 6,
+              "text": "Children, as you are, when you call upon God saying, \"Father, my Father,\" the spirit of the Son is made manifest in your hearts."
+            },
+            {
+              "verse": 7,
+              "text": "Indeed, you are children, not slaves; and if you are children, then you are heirs of God through Jesus Christ."
+            }
+          ]
+        },
+        {
+          "title": "And concerning the idols, for he did not return.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "Yet, in times past, when ye knew not the Lord your God, ye were led astray by the idols of the sea."
+            },
+            {
+              "verse": 9,
+              "text": "But now ye have known the Lord your God; nay, rather, He hath known you; and as ye turn again unto the weak and beggarly elements of this world, how can ye desire to be in bondage again?"
+            },
+            {
+              "verse": 10,
+              "text": "Ye shall keep the days and the months, the times and the years."
+            },
+            {
+              "verse": 11,
+              "text": "For concerning you, I fear that I have labored in vain."
+            },
+            {
+              "verse": 12,
+              "text": "Brethren, I am also as ye are; I beseech you, be as I am, for I am not a burden unto you."
+            },
+            {
+              "verse": 13,
+              "text": "At the first, when I preached the Gospel unto you, ye knew how I was in weakness of the flesh."
+            },
+            {
+              "verse": 14,
+              "text": "I did not speak to you in the time of my affliction; but as an angel of God, as Christ Jesus, I was received by you, and not in the flesh did I come unto you."
+            },
+            {
+              "verse": 15,
+              "text": "Now, where is your joy? If it were possible, ye would have plucked out your own eyes and given them to me, for I am your witness."
+            },
+            {
+              "verse": 16,
+              "text": "Have ye become an enemy because I tell you the truth?"
+            },
+            {
+              "verse": 17,
+              "text": "They shall desire to be zealous for you; but it is not for good, rather they wish to exclude you, that ye may be zealous for them."
+            },
+            {
+              "verse": 18,
+              "text": "It is fitting for the one who is called to good works to remain steadfast; however, I am not only with you at this time."
+            },
+            {
+              "verse": 19,
+              "text": "Children, as long as Christ dwells in your hearts, He is with you until you are fully formed."
+            },
+            {
+              "verse": 20,
+              "text": "Now I desire to find you in my speech; for I have spoken concerning you."
+            },
+            {
+              "verse": 21,
+              "text": "Do you not say, \"We are under the Law\"? Have you not heard the Law?"
+            },
+            {
+              "verse": 22,
+              "text": "Abraham had two sons, one by his bondwoman and one by his freewoman, as he was born of his mother."
+            },
+            {
+              "verse": 23,
+              "text": "However, the son born of the bondwoman was born according to the flesh; but the son born of the freewoman was born through the promise given by God."
+            },
+            {
+              "verse": 24,
+              "text": "This is a figure of the two covenants; one is from Mount Sinai, bearing children for bondage; she is Hagar."
+            },
+            {
+              "verse": 25,
+              "text": "For Hagar is Mount Sinai in Arabia and corresponds to the present Jerusalem, for she is in bondage with her children."
+            },
+            {
+              "verse": 26,
+              "text": "But the Jerusalem above is free, and she is our mother."
+            },
+            {
+              "verse": 27,
+              "text": "\"The barren one shall rejoice; she who does not bear shall exult, saying, 'More are the children of the desolate than of her who has a husband,'\" as it is written."
+            },
+            {
+              "verse": 28,
+              "text": "Brethren, we are as children of promise, even as Isaac was."
+            },
+            {
+              "verse": 29,
+              "text": "However, that which is born of the flesh is born in the same manner as that which is born of the Spirit; even today it is as it was then."
+            },
+            {
+              "verse": 30,
+              "text": "But what does the Scripture say? “The son of the bondwoman shall not be heir with the son of the freewoman; therefore cast out the bondwoman and her son.”"
+            },
+            {
+              "verse": 31,
+              "text": "Brethren, we are now children of the freewoman, not children of the bondwoman; for Christ has set us free."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "በእምነት ስለ መጽደቅ",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እንግዲህ ጸንታችሁ ቁሙ፤ እንደ ገናም በባርነት ቀንበር አትኑሩ።"
+            },
+            {
+              "verse": 2,
+              "text": "እነሆ፥ እኔ ጳውሎስ እላችኋለሁ፤ “ብትገዘሩም በክርስቶስ ዘንድ ምንም አይጠቅማችሁም።”"
+            },
+            {
+              "verse": 3,
+              "text": "ደግሞም ለተገዘረ ሰው ሁሉ የኦሪትን ሕግ መፈጸም እንደሚገባው እመሰክራለሁ።"
+            },
+            {
+              "verse": 4,
+              "text": "በኦሪት ልትጸድቁ የምትፈልጉ እናንተ ከክርስቶስ ተለይታችሁ ከጸጋዉ ወድቃችኋል።"
+            },
+            {
+              "verse": 5,
+              "text": "እኛ ግን በመንፈስ ቅዱስ፥ በእምነትም ልንጸድቅ ተስፋ እናደርጋለን።"
+            },
+            {
+              "verse": 6,
+              "text": "በጌታችን በኢየሱስ ክርስቶስ ዘንድ በፍቅር የምትሠራ እምነት እንጂ መገዘር አይጠቅምምና፤ አለመገዘርም ግዳጅ አይፈጽምምና።"
+            },
+            {
+              "verse": 7,
+              "text": "ቀድሞስ በመልካም ተፋጥናችሁ ነበር፤ በእውነት እንዳታምኑ ማን አሰናከላችሁ?"
+            },
+            {
+              "verse": 8,
+              "text": "ይህ መፋጠናችሁ ከሚጠራችሁ አይደለምና።"
+            },
+            {
+              "verse": 9,
+              "text": "ጥቂት እርሾ ብዙውን ዱቄት መጻጻ ያደርገው የለምን?"
+            },
+            {
+              "verse": 10,
+              "text": "እኔ ሌላ እንዳታስቡ በጌታችን በኢየሱስ ክርስቶስ አምኛችሁ ነበር፤ የሚያውካችሁ ግን የሆነው ቢሆን ፍዳውን ይሸከማል።"
+            },
+            {
+              "verse": 11,
+              "text": "Brethren, if I am still preaching grace, why am I still being persecuted? Then the offense of the cross has ceased."
+            },
+            {
+              "verse": 12,
+              "text": "It is fitting that you should be known by those who are watching you."
+            }
+          ]
+        },
+        {
+          "title": "For the call unto freedom.",
+          "verses": [
+            {
+              "verse": 13,
+              "text": "ወንድሞች ሆይ፥ እናንተስ ለነጻነት ተጠርታችኋል፤ ነገር ግን በሥጋችሁ ፈቃድ ለነጻነታችሁ ምክንያት አታድርጉላት፤ ለወንድሞቻችሁም በፍቅር ተገዙ።"
+            },
+            {
+              "verse": 14,
+              "text": "“ወንድምህን እንደ ራስህ ውደድ” የሚለው አንድ ቃል ሕግን ሁሉ ይፈጽማልና።"
+            },
+            {
+              "verse": 15,
+              "text": "እርስ በርሳችሁ የምትበላሉና የምትነካከሱ ከሆነ ግን፥ እርስ በርሳችሁ እንዳትተላለቁ ተጠንቀቁ።"
+            },
+            {
+              "verse": 16,
+              "text": "እላችኋለሁ፤ በመንፈስ ኑሩ እንጂ የሥጋችሁን ፈቃድ አታድርጉ።"
+            },
+            {
+              "verse": 17,
+              "text": "ሥጋ መንፈስ የማይሻውን ይሻልና፥ መንፈስም ሥጋ የማይሻውን ይሻልና፥ የምትሹትንም እንዳታደርጉ እርስ በርሳቸው ይጣላሉ።"
+            },
+            {
+              "verse": 18,
+              "text": "የመንፈስን ፈቃድ የምትከተሉ ከሆናችሁ፥ ከኦሪት ወጥታችኋል።"
+            },
+            {
+              "verse": 19,
+              "text": "የሥጋም ሥራው ይታወቃል፤ እርሱም ዝሙት፥ ርኵሰት፥ መዳራት፥"
+            },
+            {
+              "verse": 20,
+              "text": "ጣዖት ማምለክ፥ ሥራይ ማድረግ፥ መጣላት፥ ኵራት፥ የምንዝር ጌጥ፥ ቅናት፥ ቍጣ፥ ጥርጥር፥ ፉክክር፥ ምቀኝነት፥ መጋደል፥ ስካር ይህንም የመሰለ ሁሉ ነው።"
+            },
+            {
+              "verse": 21,
+              "text": "አስቀድሜ እንደ ነገርኋችሁ ይህን የሚያደርግ የእግዚአብሔርን መንግሥት አያይም።"
+            },
+            {
+              "verse": 22,
+              "text": "የመንፈስ ፍሬ ግን ፍቅር፥ ደስታ፥ ሰላም፥ ትዕግሥት፥ ምጽዋት፥ ቸርነት፥ እምነት፥ ገርነት፥ ንጽሕና ነው።"
+            },
+            {
+              "verse": 23,
+              "text": "There is no law greater than this."
+            },
+            {
+              "verse": 24,
+              "text": "But those who believe in Jesus Christ shall be delivered from their fleshly desires and from sin."
+            },
+            {
+              "verse": 25,
+              "text": "Even now, let us walk in the Spirit; and let us also be led by the Spirit."
+            },
+            {
+              "verse": 26,
+              "text": "Let us not be conceited, provoking one another; let us not envy one another."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": "And concerning the purification of the brother.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Brethren, if there be any among you who is led astray, let not your hearts be troubled, for you are kept by the Holy Spirit; therefore, strengthen your hearts with the integrity that dwells within you."
+            },
+            {
+              "verse": 2,
+              "text": "Let each of you bear the burden of your neighbor; in this way, you shall fulfill the law of Christ."
+            },
+            {
+              "verse": 3,
+              "text": "For if one is nothing, he shall not deceive himself."
+            },
+            {
+              "verse": 4,
+              "text": "Let every man examine his own work, that it may be a guide unto himself, and not unto another."
+            },
+            {
+              "verse": 5,
+              "text": "For every man shall bear his own burden."
+            },
+            {
+              "verse": 6,
+              "text": "Let this matter be heard by you, O Christians; and let every good thing that is taught be received."
+            },
+            {
+              "verse": 7,
+              "text": "Do not be deceived; for he who sows to the flesh shall reap corruption; but he who sows to the Spirit shall reap life everlasting."
+            },
+            {
+              "verse": 8,
+              "text": "For he who sows to the flesh shall reap death; but he who sows to the Spirit shall reap eternal life."
+            },
+            {
+              "verse": 9,
+              "text": "Let us not grow weary in doing good, for in due season we shall reap if we do not lose heart."
+            },
+            {
+              "verse": 10,
+              "text": "Therefore, while we have time, let us do good unto all, especially unto those who are of the household of faith."
+            }
+          ]
+        },
+        {
+          "title": "Counsel and Blessing",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "In my hand, as I have written to you, it is."
+            },
+            {
+              "verse": 12,
+              "text": "For those who desire to do unto man, let them be admonished to refrain from such; however, it is that you should not follow the cross of Christ."
+            },
+            {
+              "verse": 13,
+              "text": "And even if they are admonished, they will desire to do so according to your flesh, but they do not keep the law."
+            },
+            {
+              "verse": 14,
+              "text": "But I, in our Lord Jesus Christ's cross, do not boast in anything else; for to me, the world is crucified, and I am crucified to the world."
+            },
+            {
+              "verse": 15,
+              "text": "In Jesus Christ, it is to be a new creation, but it is of no benefit to be circumcised; nor is it of any worth to be uncircumcised."
+            },
+            {
+              "verse": 16,
+              "text": "Peace and grace be upon those who fulfill this law; may it be upon the children of God who are in Israel."
+            },
+            {
+              "verse": 17,
+              "text": "Henceforth, let no one trouble me; for I bear the marks of Jesus Christ in my body."
+            },
+            {
+              "verse": 18,
+              "text": "Brethren, the grace of our Lord Jesus Christ be with you; Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

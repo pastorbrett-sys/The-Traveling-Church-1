@@ -1,0 +1,1239 @@
+{
+  "book_number": 62,
+  "book_name_am": "2ኛ ወደ ቆሮንቶስ ሰዎች",
+  "book_short_name_am": "2 ቆሮ",
+  "book_name_en": "2 Corinthians",
+  "book_short_name_en": "2 Cor",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Greetings and thanksgiving.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "በእግዚአብሔር ፈቃድ የኢየሱስ ክርስቶስ ሐዋርያ ከሆነ ጳውሎስና ከወንድማችን ጢሞቴዎስ በቆሮንቶስ ሀገር ላለችው የእግዚአሔር ቤተ ክርስቲያንና በአካይያ ሀገር ላሉ ቅዱሳን ሁሉ፥"
+            },
+            {
+              "verse": 2,
+              "text": "ከአባታችን ከእግዚአብሔርና ከጌታችን ከኢየሱስ ክርስቶስ ሰላምና ጸጋ ለእናንተ ይሁን።"
+            },
+            {
+              "verse": 3,
+              "text": "የምሕረት አባት፥ የመጽናናትም ሁሉ አምላክ የጌታችን የኢየሱስ ክርስቶስ አባት እግዚአብሔር ይመስገን።"
+            },
+            {
+              "verse": 4,
+              "text": "እግዚአብሔር በአጽናናን በዚያ መጽናናት በመከራ ያሉትን ሁሉ ማጽናናት እንችል ዘንድ ከመከራችን ሁሉ ያጽናናን እርሱ ይመስገን።"
+            },
+            {
+              "verse": 5,
+              "text": "የክርስቶስ መከራ በእኛ ላይ እንደ በዛ መጠን እንዲሁ መጽናናታችንም በክርስቶስ ይበዛልና።"
+            },
+            {
+              "verse": 6,
+              "text": "መከራ ብንቀበልም እናንተ እንድትድኑና እንድትጽናኑ ነው፤ ብንጽናናም እኛ የተቀበልነውን ያን መከራ በመታገሥ ስለሚደረግ መጽናናታችሁ ነው።"
+            },
+            {
+              "verse": 7,
+              "text": "ስለ እናንተ ያለን ተስፋም የጸና ነው፤ መከራችንን እንደ ተካፈላችሁ መጠን፥ እንዲሁ በመጽናናታችንም እንደምትተባበሩ እናውቃለን።"
+            },
+            {
+              "verse": 8,
+              "text": "ወንድሞቻችን ሆይ፥ በእስያ መከራ እንደ ተቀበልን ልታውቁ እወዳለሁ፤ ለሕይወታችን ተስፋ እስክንቈርጥ ድረስ ከዐቅማችን በላይ እጅግ መከራ ጸንቶብን ነበርና።"
+            },
+            {
+              "verse": 9,
+              "text": "ሙታንን በሚያስነሣቸው በእግዚአብሔር እንጂ በራሳችን እንዳንታመን በውስጣችን ለመሞት ቈርጠን ነበር።"
+            },
+            {
+              "verse": 10,
+              "text": "እርሱም እንዲህ ካለ ሞት አዳነን፤ ያድነንማል፤ አሁንም እንደሚያድነን እርሱን እንታመናለን።"
+            },
+            {
+              "verse": 11,
+              "text": "በብዙዎች ጸሎት ጸጋን እናገኝ ዘንድ፥ ብዙዎችም በእኛ ፋንታ ያመሰግኑ ዘንድ እናንተ በጸሎታችሁ ርዱን።"
+            },
+            {
+              "verse": 12,
+              "text": "በእግዚአብሔር ቸርነትና ይቅርታ መመኪያችንና የነፃነታችን ምስክር ይህቺ ናትና፥ በሥጋዊ ጥበብ ሳይሆን፥ በእግዚአብሔር ጸጋ በዚህ ዓለም፥ ይልቁንም በእናንተ ዘንድ ተመላለስን።"
+            },
+            {
+              "verse": 13,
+              "text": "የምታነቡትንና የምታውቁትን ነው እንጂ፥ ሌላ የምንጽፍላችሁ የለምና፥ ይህንም እስከ ፍጻሜ እንደምታስተውሉት ተስፋ አደርጋለሁ።"
+            },
+            {
+              "verse": 14,
+              "text": "እኛ መመኪያችሁ እንደሆን፥ እንዲሁ እናንተም በጌታችን በኢየሱስ ክርስቶስ ቀን መመኪያችን እንድትሆኑ በከፊል እንዳወቃችሁ ተስፋ እናደርጋለን።"
+            },
+            {
+              "verse": 15,
+              "text": "በዚህም ታምኜ ጸጋን በዕጥፍ እንድታገኙ በመጀመሪያ ወደ እናንተ እመጣ ዘንድ መከርሁ።"
+            },
+            {
+              "verse": 16,
+              "text": "በእናንተም በኩል ወደ መቄዶንያ እንዳልፍ፥ ዳግመኛም ከመቄዶንያ እንድመለስና እናንተም ደግሞ ወደ ይሁዳ ሀገር ትሸኙኝ ዘንድ መከርሁ።"
+            },
+            {
+              "verse": 17,
+              "text": "እንግዲህ ይህን የመከርሁ በውኑ የሠራሁት እንደ አላዋቂ ሰው ሆኜ ነውን? ወይስ በእኔ በኩል አዎን አዎን፥ አይደለም አይደለም ማለት እንዲሆን ያን የምመክረው ለሰው ይምሰል ነውን?"
+            },
+            {
+              "verse": 18,
+              "text": "እግዚአብሔር የታመነ ነው፤ ለእናንተም የሚነገረው ቃላችን እውነትና ሐሰት አልተቀላቀለበትም።"
+            },
+            {
+              "verse": 19,
+              "text": "እኛ ማለት እኔ ጳውሎስ፥ ስልዋኖስና ጢሞቴዎስ የሰበክንላችሁ የእግዚአብሔር ልጅ ኢየሱስ ክርስቶስ እውነትና ሐሰት አይደለም፤ ነገር ግን ስለ እርሱ ያስተማርነው እውነት ነው።"
+            },
+            {
+              "verse": 20,
+              "text": "እግዚአብሔር የሰጠው ተስፋ ሁሉ በክርስቶስ እውነት ሆኖአልና፤ ስለዚህም በእርሱ ለእግዚአብሔር ክብር አሜን እንላለን።"
+            },
+            {
+              "verse": 21,
+              "text": "The Lord, who is with you in the name of Christ, is the one who strengthens and sustains us."
+            },
+            {
+              "verse": 22,
+              "text": "Furthermore, He is the one who has given us the Holy Spirit to dwell within our hearts."
+            },
+            {
+              "verse": 23,
+              "text": "I bear witness to God concerning myself, that I did not come to you with bitterness, as though I had not come to Corinth."
+            },
+            {
+              "verse": 24,
+              "text": "We are here to assist you in doing that which brings you joy, but we do not compel you to believe; for you stand firm in faith."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Therefore, as I am grieved, I write this in my heart, that I may not come unto you."
+            },
+            {
+              "verse": 2,
+              "text": "If I am grieved by you, who else can bring me joy but you?"
+            },
+            {
+              "verse": 3,
+              "text": "I believe that my joy is as yours; therefore, I write this to you, that when I come, I may not be saddened by the grief that is fitting for you."
+            },
+            {
+              "verse": 4,
+              "text": "Out of much affliction and anguish of heart, I have written to you with many tears; not that you should be grieved, but that you may know how much I love you."
+            },
+            {
+              "verse": 5,
+              "text": "If anyone has caused me grief, he has not grieved me alone, but all of you; though I do not wish to be harsh upon you."
+            },
+            {
+              "verse": 6,
+              "text": "Such a one, who has received much from you, is deserving of this treatment."
+            },
+            {
+              "verse": 7,
+              "text": "Likewise, such a one, who is overwhelmed with grief, should be comforted and consoled by you."
+            },
+            {
+              "verse": 8,
+              "text": "Therefore, I urge you to show love towards him."
+            },
+            {
+              "verse": 9,
+              "text": "Thus, as you have all obeyed me, I write this to you that you may know my will."
+            },
+            {
+              "verse": 10,
+              "text": "If there be any forgiveness that you may offer, I too will forgive; and what I have forgiven, I have done so in the sight of Christ for your sake."
+            },
+            {
+              "verse": 11,
+              "text": "For we do not consider that Satan may deceive us."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the way of the Lord.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "For the Gospel of Christ was delivered unto me by the grace of God at the time I came to you."
+            },
+            {
+              "verse": 13,
+              "text": "And I found no rest for my body, for I had not found my brother Titus; but I departed unto Macedonia, having been separated from him."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the victory of our Lord Jesus Christ over death.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "In our Lord Jesus Christ, who keeps us through His grace, let us give thanks to God, who reveals the knowledge of His glory among all nations."
+            },
+            {
+              "verse": 15,
+              "text": "For those who are in need and for those who perish, we are the manifestation of Christ to God."
+            },
+            {
+              "verse": 16,
+              "text": "The manifestation of death belongs to death, and the manifestation of life belongs to life; yet, what is it that truly belongs?"
+            },
+            {
+              "verse": 17,
+              "text": "We do not handle the word of God deceitfully, as many do; but with sincerity, as from God, we speak in Christ before God."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "Concerning the Holy Scriptures",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And our brethren, shall we begin to speak to you, giving thanks for ourselves? Or shall we write to you a letter concerning us, as others do, or shall you write to us?"
+            },
+            {
+              "verse": 2,
+              "text": "You are our epistles; you are written in our hearts; you are known and read by all men."
+            },
+            {
+              "verse": 3,
+              "text": "You know that you are the epistle of Christ, ministered by us, written not with ink but by the Spirit of the living God, not on tablets of stone but on tablets of flesh, that is, of the heart."
+            },
+            {
+              "verse": 4,
+              "text": "But we have this faith concerning God in Christ."
+            },
+            {
+              "verse": 5,
+              "text": "Since our strength is from God, it is not fitting for us to think of ourselves as if we were anything."
+            },
+            {
+              "verse": 6,
+              "text": "For we have been made ministers not of the letter but of the Spirit; for the letter kills, but the Spirit gives life."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the eating of the messages.",
+          "verses": [
+            {
+              "verse": 7,
+              "text": "Therefore, concerning the glory that was upon the face of Moses, which shone upon the children of Israel, until it was taken away from them, it is written that it was a message of death inscribed upon stone, with honor bestowed upon it."
+            },
+            {
+              "verse": 8,
+              "text": "How much honor ought to be given to the message of the Holy Spirit?"
+            },
+            {
+              "verse": 9,
+              "text": "If much honor has been bestowed upon the message of the angel who brings tidings, how much more shall we honor and give thanks for the message of righteousness?"
+            },
+            {
+              "verse": 10,
+              "text": "In this perfect honor, when it is unveiled, she shall be as though she has not been honored."
+            },
+            {
+              "verse": 11,
+              "text": "If that honor is to be passed away, how much more shall the one who endures in it receive great honor?"
+            },
+            {
+              "verse": 12,
+              "text": "Henceforth, if we have such hope, we can boldly present ourselves face to face."
+            },
+            {
+              "verse": 13,
+              "text": "That which was to be veiled, so that the children of Israel would not see his face, shall not be as it was with Moses."
+            },
+            {
+              "verse": 14,
+              "text": "Nevertheless, even unto this day, their hearts are veiled; that veil has remained steadfast throughout all the times of the covenant that was established, until Christ should be revealed."
+            },
+            {
+              "verse": 15,
+              "text": "Even unto this day, when the law of Moses is read, that veil covers their hearts."
+            },
+            {
+              "verse": 16,
+              "text": "But when they turn to the Lord, that veil shall be taken away from them."
+            },
+            {
+              "verse": 17,
+              "text": "For the Spirit of the Lord is freedom, and where the Spirit of the Lord is, there is liberty."
+            },
+            {
+              "verse": 18,
+              "text": "We all, with unveiled face, beholding as in a mirror the glory of the Lord, are being transformed into the same image from glory to glory, just as by the Spirit of the Lord."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": "Concerning the Apostolic Ministry",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Therefore, as we have received this message of His grace, we shall not be silent."
+            },
+            {
+              "verse": 2,
+              "text": "However, let us abandon the sorrowful work that is done in deceit; let us not turn back in treachery, nor twist the word of God in falsehood; for all men are deceitful, let us declare the truth and cleanse ourselves before the Lord."
+            },
+            {
+              "verse": 3,
+              "text": "Even if our gospel be veiled, it is veiled to those who are perishing."
+            },
+            {
+              "verse": 4,
+              "text": "The God of this world has blinded their hearts, so that the glorious gospel of Christ, who is the image of God, may not shine upon them."
+            },
+            {
+              "verse": 5,
+              "text": "We proclaim Jesus Christ as Lord, and ourselves as your servants for Jesus' sake; we do not preach ourselves, but we commend ourselves to you for the sake of Jesus Christ."
+            },
+            {
+              "verse": 6,
+              "text": "In the darkness, \"Let there be light,\" says the Lord; before Jesus Christ, He has shone the knowledge of His glory into our hearts."
+            }
+          ]
+        },
+        {
+          "title": "In the vessel of the Ark, concerning the record that is therein.",
+          "verses": [
+            {
+              "verse": 7,
+              "text": "Yet, a great power that is found with God shall be ours, for within the vessel of the shell, this record exists."
+            },
+            {
+              "verse": 8,
+              "text": "In all tribulations we shall receive; yet we shall not be shaken; we shall be troubled, yet we shall not lose hope."
+            },
+            {
+              "verse": 9,
+              "text": "We shall be cast down; yet we shall not be destroyed; we shall fall; yet we shall not perish."
+            },
+            {
+              "verse": 10,
+              "text": "The life of Christ shall be manifested in this mortal body of ours, for we bear the death of Christ in our flesh."
+            },
+            {
+              "verse": 11,
+              "text": "That we may live, the life of Jesus Christ shall be manifested in this mortal body of ours, for concerning Jesus Christ we shall be delivered unto death."
+            },
+            {
+              "verse": 12,
+              "text": "Therefore, death works in us, but life shall work in you."
+            },
+            {
+              "verse": 13,
+              "text": "We have one spirit of faith; as it is written, “I believed; therefore I spoke,” we also believe; therefore we speak."
+            },
+            {
+              "verse": 14,
+              "text": "Our Lord Jesus Christ who raised Him shall also raise us up with Him, and we know that He shall present us with you."
+            },
+            {
+              "verse": 15,
+              "text": "His grace shall abound towards many, that the glory of God may be magnified, for all is for your sake."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the inner and outer man.",
+          "verses": [
+            {
+              "verse": 16,
+              "text": "Therefore, we do not lose heart; for our outward self is wasting away, but our inward self is being renewed day by day."
+            },
+            {
+              "verse": 17,
+              "text": "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all."
+            },
+            {
+              "verse": 18,
+              "text": "So we fix our eyes not on what is seen, but on what is unseen; for what is seen is temporary, but what is unseen is eternal."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "Concerning the earthly and heavenly abode.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Though our dwelling place upon the earth may be destroyed, we know that there is an eternal house in the heavens, not made by human hands, which is prepared by God."
+            },
+            {
+              "verse": 2,
+              "text": "Concerning Him, we shall clothe ourselves with our house which is in heaven, and we place our hope in Him."
+            },
+            {
+              "verse": 3,
+              "text": "After we have clothed ourselves, we shall not find ourselves naked."
+            },
+            {
+              "verse": 4,
+              "text": "Even while we are in this house, we groan greatly, being burdened; yet we do not desire to be unclothed, but to be further clothed, that mortality may be swallowed up by life."
+            },
+            {
+              "verse": 5,
+              "text": "For this purpose, God has prepared us; and He has given us the Spirit as a guarantee."
+            },
+            {
+              "verse": 6,
+              "text": "Therefore, we are always confident, knowing that while we are at home in the body, we are absent from the Lord; for we walk by faith, not by sight."
+            },
+            {
+              "verse": 7,
+              "text": "We are confident, yes, well pleased rather to be absent from the body and to be present with the Lord."
+            },
+            {
+              "verse": 8,
+              "text": "Therefore, we make it our aim, whether present or absent, to be well pleasing to Him."
+            },
+            {
+              "verse": 9,
+              "text": "Now, if we live, we shall call upon Him with joy; and if we die, we shall still call upon Him with joy."
+            },
+            {
+              "verse": 10,
+              "text": "Whether good or evil, we shall accept the reward according to what we have done in the body, for we must all appear before the judgment seat of Christ."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the teachers.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "We know that to fear the Lord is to be wise, and we shall instruct men; but concerning the Lord, we are revealed; and likewise, we shall believe that we are revealed in your hearts."
+            },
+            {
+              "verse": 12,
+              "text": "Thus, it is not for ourselves that we give thanks among you; rather, as we are to be a blessing to you, may you also be a blessing to us, that your response may be as a reflection of the heart, and we shall provide you with a reason."
+            },
+            {
+              "verse": 13,
+              "text": "Even if we are but servants, our service is unto the Lord; and even if we are wise, our wisdom is for you."
+            },
+            {
+              "verse": 14,
+              "text": "The love of Christ compels us to think in this manner; for all have died, and one has died for all."
+            },
+            {
+              "verse": 15,
+              "text": "Those who live do so for their own sake, but He died for all, that they should no longer live for themselves."
+            },
+            {
+              "verse": 16,
+              "text": "Therefore, from now on, we regard no one according to the flesh; even though we once knew Christ according to the flesh, we no longer know Him in that way."
+            },
+            {
+              "verse": 17,
+              "text": "Therefore, if anyone is in Christ, he is a new creation; the old has passed away; behold, all things have become new."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the message of salvation.",
+          "verses": [
+            {
+              "verse": 18,
+              "text": "Yet all things are from God, who has reconciled us to Himself through Christ, and has given us the message of reconciliation."
+            },
+            {
+              "verse": 19,
+              "text": "He does not consider their sins, but forgives them; for God has reconciled the world to Himself in Christ, and has made us the bearers of the word of reconciliation."
+            },
+            {
+              "verse": 20,
+              "text": "We also are called in Christ; and God will grant us His peace; for with God, we are reconciled, and in Christ, we are called to be reconciled."
+            },
+            {
+              "verse": 21,
+              "text": "He who is without sin has made Himself a sacrifice for us, that He might reconcile us to God, for He has made Himself as a sin offering on our behalf."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": "Concerning the preparation of food.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And with Him, we labor together, that the grace of the Lord which you have received may not be in vain, we shall admonish you."
+            },
+            {
+              "verse": 2,
+              "text": "Thus it is written, \"On the chosen day I heard you; in the day of salvation I helped you.\" Behold, the chosen day is today."
+            },
+            {
+              "verse": 3,
+              "text": "Let us take heed that our service may not be in vain, and that we do not neglect to give attention to any matter."
+            },
+            {
+              "verse": 4,
+              "text": "Yet in all things, let us present ourselves as servants of God, in much patience and affliction, in necessities and distresses."
+            },
+            {
+              "verse": 5,
+              "text": "In stripes and imprisonments, in tumults and labors, in watchings and fastings,"
+            },
+            {
+              "verse": 6,
+              "text": "In purity and knowledge, in counsel and kindness, in love unfeigned and in the Holy Spirit,"
+            },
+            {
+              "verse": 7,
+              "text": "By the word of truth, by the power of God, by the armor of righteousness on the right hand and on the left,"
+            },
+            {
+              "verse": 8,
+              "text": "By honor and dishonor, by evil report and good report, as deceivers, and yet true."
+            },
+            {
+              "verse": 9,
+              "text": "As unknown, and yet well known; as dying, and behold we live; as chastened, and not killed."
+            },
+            {
+              "verse": 10,
+              "text": "As sorrowful, yet always rejoicing; as poor, yet making many rich; as having nothing, and yet possessing all things."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Corinthians.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "O Corinthians, our mouth is opened unto you; our heart is enlarged."
+            },
+            {
+              "verse": 12,
+              "text": "For the sorrow that came to you from us is not upon us; nor is there sorrow that has come upon us from you; but I have great sorrow in your hearts."
+            },
+            {
+              "verse": 13,
+              "text": "As children, I speak this to you; concerning what is due to me from you, let your love abound towards me."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the separation of the unbelievers.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "Do not be unequally yoked; do not walk in unity with those who do not believe. Who is it that joins righteousness with iniquity? Who is it that mingles light with darkness?"
+            },
+            {
+              "verse": 15,
+              "text": "Who is it that unites Christ with Belial? Or who is it that brings together the faithful with the unfaithful?"
+            },
+            {
+              "verse": 16,
+              "text": "Who is it that dwells in the house of idols, the tabernacle of the Lord? Are we not the dwelling places of the living God? For the Lord has spoken, saying, \"I will dwell among them and walk among them; I will be their God, and they shall be My people.\""
+            },
+            {
+              "verse": 17,
+              "text": "Therefore, \"Come out from among them and be separate, says the Lord; do not touch what is unclean, and I will receive you.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"I will be a Father to you, and you shall be My sons and daughters, says the Lord Almighty.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": "Concerning the salvation of the body.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Brethren, let us therefore cleanse ourselves, for we have this hope; let us not defile our flesh; let us not neglect our souls; and let us serve the Lord in reverence, in the manner in which we may worship Him."
+            },
+            {
+              "verse": 2,
+              "text": "Now, brethren, take heed; there is no evil that has befallen us; there is no harm that has come upon us; there is no destruction that has overtaken us; there is no calamity that has befallen us."
+            },
+            {
+              "verse": 3,
+              "text": "What I say is not for your condemnation; whether it be for death or for life, I speak boldly, for you are not in our hearts as you may think."
+            },
+            {
+              "verse": 4,
+              "text": "I have much love for you; I have great reverence for you; I have found comfort in your presence; and my joy has increased beyond all my afflictions."
+            },
+            {
+              "verse": 5,
+              "text": "Yet when we arrived in Macedonia, we found no rest for our bodies; we were afflicted in every way, but we were not distressed; we were troubled without, and fear was within."
+            },
+            {
+              "verse": 6,
+              "text": "But He who comforts us in our affliction is God, who through Titus has brought us comfort."
+            },
+            {
+              "verse": 7,
+              "text": "It is not only by His coming that we are comforted; it is also by your comfort in your affliction; for you have spoken to us of your love as you have thought of us and as you have cared for us; and upon hearing this, my joy has been fulfilled in you."
+            }
+          ]
+        },
+        {
+          "title": "Concerning that which is fitting, strength.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "In the beginning, though I have written to you this message, and though it may grieve you, I do not wish to burden you; for behold, this message is but a brief sorrow that I have caused you."
+            },
+            {
+              "verse": 9,
+              "text": "But now I rejoice greatly concerning her; my joy is not because of your grief, but rather because you have been brought to repentance; for I have been saddened on your behalf, that not one of you should perish, but that you should speak of the Lord."
+            },
+            {
+              "verse": 10,
+              "text": "The sorrow that is according to God brings forth repentance leading to salvation, which is without regret; but the sorrow of the world brings forth death."
+            },
+            {
+              "verse": 11,
+              "text": "Behold, that sorrow which you have experienced for the sake of the Lord has not been in vain, until you have reached a point of self-examination through good works and purity, until you have cast away strife and contention, anger and fear, malice and deceit, and all manner of evil."
+            },
+            {
+              "verse": 12,
+              "text": "This which I have written to you is known before God, as you have been troubled, not for the sake of wrongdoing or for the sake of a wronged person."
+            },
+            {
+              "verse": 13,
+              "text": "Therefore, we have been strengthened; in our consolation, we have rejoiced greatly concerning Titus, for he has refreshed your spirit."
+            },
+            {
+              "verse": 14,
+              "text": "Concerning you, I have not been disheartened in all things; however, I have spoken truthfully to you, and likewise, in the presence of Titus, our testimony has been true."
+            },
+            {
+              "verse": 15,
+              "text": "Therefore, I give thanks exceedingly; as you have been commanded, so you have received with fear and trembling."
+            },
+            {
+              "verse": 16,
+              "text": "And I too am confident in all things concerning you, and it brings me joy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": "The Church of Macedonia, a place of reverence and faith.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ወንድሞች ሆይ፥ ለመቄዶንያ አብያተ ክርስቲያናት የተሰጠውን የእግዚአብሔርን ጸጋ እነግራችኋለሁ።"
+            },
+            {
+              "verse": 2,
+              "text": "በብዙ መከራ ከመፈተናቸው የተነሣ ደስታቸው በዝቶአልና፤ በድህነታቸው ጥልቅነትም የለጋስነታቸው ባለጠግነት በዝታለችና።"
+            },
+            {
+              "verse": 3,
+              "text": "እነርሱ ሲቻላቸው፥ ሳይቻላቸውም እንስጥ በማለት ቈራጦች ለመሆናቸው ምስክራቸው እኔ ነኝና።"
+            },
+            {
+              "verse": 4,
+              "text": "ለቅዱሳን ስለሚሆነው አገልግሎት እንዲተባበሩ ይህን ቸርነት መላልሰው ማለዱን።"
+            },
+            {
+              "verse": 5,
+              "text": "እነርሱ አስቀድመው በፈቃዳቸው፥ እንደ እግዚአብሔር ፈቃድ ሰውነታቸውን ለእግዚአብሔርም፥ ለእኛም አሳልፈው ሰጥተዋልና እኛ እንደ አሰብነው አይደለም፤"
+            },
+            {
+              "verse": 6,
+              "text": "ይህንም የቸርነት ሥራ እንደ ጀመረ ይፈጽምላችሁ ዘንድ ቲቶን ማለድነው።"
+            },
+            {
+              "verse": 7,
+              "text": "በሁሉ ነገር በእምነትና በቃል፥ በዕውቀትም፥ በትጋትም በእናንተ ዘንድ በሆነው ሁሉ እኛን በመውደዳችሁ ፍጹማን እንደ ሆናችሁ፥ እንዲሁም ደግሞ ይህቺን ስጦታ አብዙ።"
+            },
+            {
+              "verse": 8,
+              "text": "በግድ የምላችሁ አይደለም፤ ነገር ግን ከእናንተ ለዚህ ሥራ የሚተጉለት አሉና የፍቅራችሁን እውነተኛነት አሁን መርምሬ ተረዳሁ።"
+            },
+            {
+              "verse": 9,
+              "text": "የጌታችን የኢየሱስ ክርስቶስን ቸርነቱን ታውቃላችሁ፤ በእርሱ ድህነት እናንተ ባለጸጎች ትሆኑ ዘንድ እርሱ ባለጸጋ ሲሆን፥ ስለ እናንተ ራሱን ድሃ አደረገ።"
+            },
+            {
+              "verse": 10,
+              "text": "በዚህም የሚጠቅማችሁን እመክራችኋለሁ፤ ይህን ከማድረጋችሁ በፊት ፈቅዳችኋልና፤ ከአምና ጀምሮም ይህን ጀምራችኋል።"
+            },
+            {
+              "verse": 11,
+              "text": "አሁንም አድርጉ፤ ፈጽሙም፤ መፍቀድ ከመሻት ነውና፤ ማድረግም ከማግኘት ነውና።"
+            },
+            {
+              "verse": 12,
+              "text": "ፈቃድ ካለም፥ ሰው በሚቻለው መጠን ቢሰጥ ይመሰገናል፤ በማይቻለውም መጠን አይደለም።"
+            },
+            {
+              "verse": 13,
+              "text": "በዚህ ወራት ተካክላችሁ እንድትኖሩ ነው እንጂ ሌላው እንዲያርፍ እናንተን የምናስጨንቅ አይደለም።"
+            },
+            {
+              "verse": 14,
+              "text": "ኑሮአችሁ በሁሉ የተካከለ ይሆን ዘንድ፥ የእናንተ ትርፍ የእነርሱን ጕድለት ይመላልና፥ የእነርሱም ትርፍ የእናንተን ጕድለት ይመላልና።"
+            },
+            {
+              "verse": 15,
+              "text": "መጽሐፍ እንዳለ፥ “ብዙ ያለው አላተረፈም፤ ጥቂት ያለውም አላጐደለም።”"
+            }
+          ]
+        },
+        {
+          "title": "Concerning Titus and his companions.",
+          "verses": [
+            {
+              "verse": 16,
+              "text": "በቲቶ ልብ ስለ እናንተ ያን መትጋት የሰጠ እግዚአብሔር የተመሰገነ ነው።"
+            },
+            {
+              "verse": 17,
+              "text": "ልመናችንንም ተቀብሎ፥ ጨክኖ ወደ እናንተ ይመጣ ዘንድ ቸኵሏል።"
+            },
+            {
+              "verse": 18,
+              "text": "ስለ ወንጌል ትምህርት አብያተ ክርስቲያናት ሁሉ ያመሰገኑትን ወንድማችንንም ከእርሱ ጋር ልከናል።"
+            },
+            {
+              "verse": 19,
+              "text": "ይህም ብቻ አይደለም፤ ነገር ግን የእግዚአብሔርን ክብርና የእኛን በጎ ፈቃድ ለማሳየት በምናገለግልባት በዚች ጸጋ ከእኛ ጋር አንድ ይሆን ዘንድ በአብያተ ክርስቲያናት ተሾመ።"
+            },
+            {
+              "verse": 20,
+              "text": "ስለምናገለግለው ስለዚህ ለጋስ ስጦታ ማንም እንዳይነቅፈን እንጠነቀቃለን።"
+            },
+            {
+              "verse": 21,
+              "text": "በእግዚአብሔር ፊት ብቻ ያይደለ፥ ነገር ግን በሰው ፊትም መልካሙን ነገር እናስባለንና።"
+            },
+            {
+              "verse": 22,
+              "text": "በብዙ የፈተንነውንና በሁሉም ነገር ትጉህ ሆኖ ያገኘነውን አሁንም በእናንተ እጅግ ስለሚታመን ከፊት ይልቅ እጅግ ትጉ የሚሆነውን ወንድማችንን ከእነርሱ ጋር እንልካለን።"
+            },
+            {
+              "verse": 23,
+              "text": "ቲቶም ቢሆን፥ ስለ እናንተ አብሮኝ የሚሠራ ጓደኛዬ ነው፥ ወንድሞቻችንም ቢሆኑ፥ ለእግዚአብሔር ክብር የአብያተ ክርስቲያናት ሐዋርያት ናቸው።"
+            },
+            {
+              "verse": 24,
+              "text": "አሁንም መዋደዳችሁንና እኛም በእናንተ የምንመካበትን ሥራ በአብያተ ክርስቲያናት ፊት በግልጥ አሳዩአቸው።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "sections": [
+        {
+          "title": "Concerning the service of the saints.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ለቅዱሳን ስለሚደረገው አገልግሎት የምጽፍላችሁ ብዙ አለኝ"
+            },
+            {
+              "verse": 2,
+              "text": "እናንተ እንደምትተጉ አውቃለሁና፤ ስለዚህም “የአካይያ ሰዎች እኮ ከአምና ጀምሮ አዘጋጅተዋል” ብዬ በመቄዶንያ ሰዎች ዘንድ አመሰገንኋችሁ፤ እነሆም የእናንተ መፎካከር ብዙዎችን ሰዎች አትግቶአቸዋል።"
+            },
+            {
+              "verse": 3,
+              "text": "በዚህም ያመሰገንናችሁ ምስጋና በእነርሱ ዘንድ ሐሰት እንዳይሆንብን፥ እንደ ነገርናቸውም ተዘጋጅታችሁ እንዲያገኙአችሁ ወንድሞችን ወደ እናንተ ላክናቸው።"
+            },
+            {
+              "verse": 4,
+              "text": "ምናልባት የመቄዶንያ ሰዎች ከእኔ ጋር ቢመጡና ሳታዘጋጁ ቢያገኙአችሁ እናንተ ታፍራላችሁ ባልልም እኛ ስለ እናንተ ከነገርናቸው የተነሣ እናፍራለን።"
+            },
+            {
+              "verse": 5,
+              "text": "ስለዚህም አስቀድመው ወደ እናንተ መጥተው በቅድሚያ የተናገራችኋትን በረከታችሁን እንዲያዘጋጁ ወንድሞችን ማለድሁ፤ እንደዚህም የተዘጋጀ ይሁን፤ በረከትን እንደምታገኙበት እንጂ በንጥቂያ እንደ ተወሰደባችሁ አይሁን።"
+            },
+            {
+              "verse": 6,
+              "text": "አሳንሶ የሚዘራ ለእርሱ እንዲሁ መከሩ ያንስበታል፤ በብዙ የሚዘራ ግን በብዙ ያመርታል።"
+            },
+            {
+              "verse": 7,
+              "text": "ሁሉ ልቡ እንደ ወደደ ያድርግ፤ በደስታ ይስጡ እንጂ በግድ አይሆንም፤ እግዚአብሔር በደስታ የሚሰጠውን ይወዳልና።"
+            },
+            {
+              "verse": 8,
+              "text": "እግዚአብሔር መልካሙን ነገር ሁሉ ሊያበዛላችሁ ይችላል፤ ፍጹም በረከቱንም ለዘወትር ያበዛላችሁ ዘንድ፥ ለሁሉም ታተርፉታላችሁ፤ በጎ ሥራ መሥራትንም ታበዛላችሁ።"
+            },
+            {
+              "verse": 9,
+              "text": "“በተነ፤ ለድሃም ሰጠ፤ ጽድቁም ለዘለዓለም ይኖራል” ብሎ መጽሐፍ እንደ ተናገረ።"
+            },
+            {
+              "verse": 10,
+              "text": "እርሱ ዘርን ለዘሪ ይሰጣል፤ እህልንም ለምግብ ይሰጣችኋል፤ ዘራችሁንም ያበዛላችኋል፤ የጽድቃችሁንም መከር ያበጃል።"
+            },
+            {
+              "verse": 11,
+              "text": "For many, as you have been given, let the praise of the Lord be upon you, and in all your endeavors, you shall be blessed."
+            },
+            {
+              "verse": 12,
+              "text": "This service you perform is not merely to fulfill the needs of the saints; it also overflows with thanksgiving to God."
+            },
+            {
+              "verse": 13,
+              "text": "Christ has instructed you in the teaching, and all of you rejoice and are united, thus, in your faith, you shall give thanks to God for the trial."
+            },
+            {
+              "verse": 14,
+              "text": "They shall pray for you; they desire that you may see the great grace of God concerning your well-being."
+            },
+            {
+              "verse": 15,
+              "text": "For the grace of the Lord shall be upon you, as you do not falter and in times when you do not think, it shall come upon you."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "sections": [
+        {
+          "title": "Concerning the spiritual armor of warfare.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Brethren, I, Paul, being present with you face to face, have been humble among you; yet, I shall speak to you boldly concerning that which I fear for you, in the grace and mercy of Christ, for I trust in your love."
+            },
+            {
+              "verse": 2,
+              "text": "When I came unto you, I labored; and I thought to speak boldly unto those who are contentious, as we dwell in the flesh; but I beseech you that you do not engage in such boldness."
+            },
+            {
+              "verse": 3,
+              "text": "We walk in the flesh; however, we do not war according to the flesh."
+            },
+            {
+              "verse": 4,
+              "text": "For our weapons of warfare are not carnal, but mighty through God to the pulling down of strongholds."
+            },
+            {
+              "verse": 5,
+              "text": "Let every heart be stirred to seek Christ, and let the soul be devoted to God, that we may glorify Him in all things and exalt Him on high."
+            },
+            {
+              "verse": 6,
+              "text": "You are ready to be judged in all that you do, and we are prepared to be judged in all that we do not possess."
+            },
+            {
+              "verse": 7,
+              "text": "Behold what is before you; if any man be in Christ, let him examine himself anew; for as he is of Christ, so are we also."
+            },
+            {
+              "verse": 8,
+              "text": "I do not seek to condemn you, but to edify you; for the authority that God has given us over you is for your building up, not for your destruction."
+            },
+            {
+              "verse": 9,
+              "text": "Yet, I do not wish for you to be troubled by my letters; this is my counsel to you."
+            },
+            {
+              "verse": 10,
+              "text": "Among men, it is said, \"The letters are empty and distressing; yet the body is weak; the matter is indeed a burden.\""
+            },
+            {
+              "verse": 11,
+              "text": "However, let him who speaks this know this; at the time when we are absent, as it has been revealed in our message, so we are in our works when we are present."
+            },
+            {
+              "verse": 12,
+              "text": "They, in their thoughts and in the measure of their reasoning, would wish to compare ourselves with those who give thanks for themselves, or to regard ourselves as worthy of praise; yet they do not understand the interpretation of what they speak of themselves."
+            },
+            {
+              "verse": 13,
+              "text": "And we, until we come to you, the Lord has commanded us in the law and in the order, but we do not depart from our understanding; indeed, we do not take lightly."
+            },
+            {
+              "verse": 14,
+              "text": "And as we come to you, we do not give thanks for ourselves; however, we have been brought to you by the teaching of the law of Christ."
+            },
+            {
+              "verse": 15,
+              "text": "We do not take lightly in another matter; however, that your faith may abound, we hope that the law which has been given to you may be strengthened."
+            },
+            {
+              "verse": 16,
+              "text": "We will also instruct you; at that time, our measure will be high with our works; indeed, we do not take lightly when it is not fitting."
+            },
+            {
+              "verse": 17,
+              "text": "\"He who is worthy shall be worthy in the Lord.\""
+            },
+            {
+              "verse": 18,
+              "text": "The Lord alone shall be honored; indeed, he is not one who honors himself, for he is not chosen to do so."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "sections": [
+        {
+          "title": "Concerning the righteousness that is rendered unto the Lord.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "በስንፍናዬ እናገር ዘንድ ጥቂት ልትታገሡኝ ይገባ ነበር፤ ቢሆንም በርግጥ ታገሡኝ፤"
+            },
+            {
+              "verse": 2,
+              "text": "ለእግዚአብሔር የሚገባ ቅንዐት እቀናላችኋለሁና፤ ወደ እርሱ አቀርባችሁ ዘንድ ለአንዱ ንጹሕ ድንግል ሙሽራ ለክርስቶስ አጭቻችኋለሁና።"
+            },
+            {
+              "verse": 3,
+              "text": "ነገር ግን እባብ ሔዋንን በተንኰሉ እንዳሳታት፥ አሳባችሁ ከክርስቶስ የዋህነትና ንጽሕና ምናልባት እንዳይለወጥ ብዬ እፈራለሁ።"
+            },
+            {
+              "verse": 4,
+              "text": "ወደ እናንተ የመጣና እኛ ወደ አላስተማርናችሁ ወደ ሌላ ኢየሱስ የጠራችሁ ቢኖር፥ ወይም ያልተቀበላችሁት ሌላ መንፈስ ቢኖር፥ ወይም ያልተማራችሁት ሌላ ወንጌል ቢኖር ልትጠብቁን ይገባል።"
+            },
+            {
+              "verse": 5,
+              "text": "እኔ ግን ሌሎች ሐዋርያት ከአስተማሩት ያጐደልሁባችሁ የለም ይመስለኛል።"
+            }
+          ]
+        },
+        {
+          "title": "And the Gospel, for the sake of teaching, is without price.",
+          "verses": [
+            {
+              "verse": 6,
+              "text": "እኔ በአነጋገሬ አላዋቂ ብሆንም በዕውቀት ግን እንዲሁ አይደለሁም፤ ነገር ግን ሁሉን በሁሉ እገልጥላችኋለሁ።"
+            },
+            {
+              "verse": 7,
+              "text": "ወይስ ራሴን በሁሉ ያዋረድሁ በደልሁ ይሆን? እናንተ ከፍ ከፍ ትሉ ዘንድ፥ የእግዚአብሔርን ወንጌል ያለ ዋጋ አስተምሬአችኋለሁና።"
+            },
+            {
+              "verse": 8,
+              "text": "እናንተን አገለግል ዘንድ፥ ከሌሎች አብያተ ክርስቲያናት ተቀብዬ፥ ለምግቤ ያህል ወሰድሁ፤"
+            },
+            {
+              "verse": 9,
+              "text": "ከእናንተ ዘንድ በነበርሁበት ጊዜም፥ ስቸገር ገንዘባችሁን አልተመኘሁም። ባልበቃኝም ጊዜ ወንድሞቻችን ከመቄዶንያ መጥተው አሙአሉልኝ፤ በእናንተም ላይ እንዳልከብድባችሁ በሁሉ ተጠነቀቅሁ፤ ወደ ፊትም እጠነቀቃለሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "የክርስቶስ ዕውነት አብሮኝ ይኖራልና፥ ይህቺ ደስታዬ በአካይያ አውራጃ አልተከለከለችብኝም።"
+            },
+            {
+              "verse": 11,
+              "text": "ስለምን ነው? አልወዳችሁምና ነውን? እንደምወድዳችሁስ እግዚአብሔር ያውቃል።"
+            },
+            {
+              "verse": 12,
+              "text": "ነገር ግን ያደረግሁትም ቢሆን፥ የማደርገውም ቢሆን፥ እነርሱ እንደ እኛ የሚመኩበትን ያገኙ ዘንድ፥ ምክንያት የሚሹትን ምክንያት አሳጣቸው ዘንድ ነው።"
+            },
+            {
+              "verse": 13,
+              "text": "የሚተነኰሉ፥ ራሳቸውን የክርስቶስን ሐዋርያት የሚያስመስሉ፥ ዐመፅንም የሚያደርጉ ሐሰተኞች ሐዋርያት አሉና።"
+            },
+            {
+              "verse": 14,
+              "text": "ይህም አያስደንቅም፤ ሰይጣን ራሱ ተለውጦ እንደ ብርሃን መልአክ ይመስላልና።"
+            },
+            {
+              "verse": 15,
+              "text": "መልእክተኞቹም የጽድቅ መላእክትን ቢመስሉ፥ ይህ ታላቅ ነገር አይደለም፤ ፍጻሜያቸው ግን እንደ ሥራቸው ነው።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Spiritual Guidance",
+          "verses": [
+            {
+              "verse": 16,
+              "text": "Furthermore, I say this: Let not the eyes that cause me harm be upon me; and even if it be so, I shall be received as a little one, even as a child."
+            },
+            {
+              "verse": 17,
+              "text": "This, however, is not fitting for what we speak concerning the Lord God; yet, for this reason, I shall speak as a child."
+            },
+            {
+              "verse": 18,
+              "text": "For many are those who walk according to the flesh, and I too shall walk."
+            },
+            {
+              "verse": 19,
+              "text": "And you, O hearts, when you are, it brings joy to hear the cries of children."
+            },
+            {
+              "verse": 20,
+              "text": "That which you purchase and that which you keep, the place that you prepare for yourselves and that which you guard, even your faces, you shall be taken away from them."
+            },
+            {
+              "verse": 21,
+              "text": "We are as the poor, as we have been; this I speak in humility; yet, even when one is in danger, I too am afraid."
+            },
+            {
+              "verse": 22,
+              "text": "If they are Hebrews, I am as they are; if they are Israelites, I am as they are; if they are the children of Abraham, I am as they are."
+            },
+            {
+              "verse": 23,
+              "text": "Even if they are servants of Christ, I too shall speak for myself; I shall boast; indeed, I am weak; many times I have been forsaken; many times I have been imprisoned; many times I have been prepared for death."
+            },
+            {
+              "verse": 24,
+              "text": "Let not a Jew remain; five times forty have they forsaken me."
+            },
+            {
+              "verse": 25,
+              "text": "Three times they have beaten me with rods; once they have stoned me; my ship was wrecked three times; in the deep sea I have been cast away, I have been cast away."
+            },
+            {
+              "verse": 26,
+              "text": "In the way of affliction, I have received distress; in the river, I have been afflicted; and the tables have tormented me; the seasons have troubled me; the multitude of affliction has pressed upon me; in the city, I have received distress; in the wilderness, I have been afflicted; in the sea, I have been afflicted; the deceitful have caused me pain, O my teacher."
+            },
+            {
+              "verse": 27,
+              "text": "In weariness and toil, often I have lost sleep; in the heat and in thirst, I have been overwhelmed; and even in fasting, I have been troubled by cold and by the night."
+            },
+            {
+              "verse": 28,
+              "text": "Without neglecting the matter that remains, day by day, the thoughts of all the children of the Christian faith honor me."
+            },
+            {
+              "verse": 29,
+              "text": "Who is it that I should not fear? Who is it that I should not be afraid of?"
+            },
+            {
+              "verse": 30,
+              "text": "If it is fitting to be comforted, I too shall be comforted in my affliction."
+            },
+            {
+              "verse": 31,
+              "text": "Blessed be the Lord God, our Father, Jesus Christ, who knows that we do not speak falsehood."
+            },
+            {
+              "verse": 32,
+              "text": "In the city of Damascus, under King Ardashir, there was a leader of the multitude who would keep the city of Damascus safe."
+            },
+            {
+              "verse": 33,
+              "text": "In the corner, they laid me down by the window towards the dark; from my hand, I was released."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "sections": [
+        {
+          "title": "Paul concerning the vision he beheld.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እነሆ መመካት ይቻለኛል፤ ነገር ግን አይጠቅምም፤ ደግሞም ወደ ጌታ ራእይና መገለጥ እሄዳለሁ።"
+            },
+            {
+              "verse": 2,
+              "text": "በክርስቶስ ያመነ አንድ ሰው አውቃለሁ፤ ዘመኑ ከዐሥራ አራት ዓመት በፊት ነው፤ ነገር ግን በሥጋው ይሁን በነፍሱ እንጃ፥ እግዚአብሔር ያውቃል፤ ያን ሰው እስከ ሦስተኛው ሰማይ ድረስ ነጥቀው ወሰዱት።"
+            },
+            {
+              "verse": 3,
+              "text": "ያን ሰው አውቀዋለሁ፤ በሥጋው ይሁን በነፍሱ እንጃ እግዚአብሔር ያውቃል።"
+            },
+            {
+              "verse": 4,
+              "text": "ወደ ገነትም ነጥቀው ወሰዱት፤ በዚያም ሰው ሊናገረው የማይችለውን የማይተረጐም ነገር ሰማ።"
+            },
+            {
+              "verse": 5,
+              "text": "ስለዚህም እንደዚህ ባለው እመካለሁ፤ በመከራዬ እንጂ በራሴስ አልመካም።"
+            },
+            {
+              "verse": 6,
+              "text": "ልመካ ብሻም አላዋቂ አይደለሁም፤ እውነቱን እናገራለሁና፤ ነገር ግን ስላዩኝና ስለ ሰሙኝ እንደምበልጥ አድርገው እንዳይጠራጠሩኝ ትቸዋለሁ።"
+            },
+            {
+              "verse": 7,
+              "text": "ስለዚህም ቢሆን በብዙ ራእይ እንዳልታበይ ሰውነቴን የሚወጋ እርሱም የሚጐስመኝ የሰይጣን መልእክተኛ ተሰጠኝ።"
+            },
+            {
+              "verse": 8,
+              "text": "ስለዚህም ከእኔ ያርቀው ዘንድ ጌታዬን ሦስት ጊዜ ማለድሁት።"
+            },
+            {
+              "verse": 9,
+              "text": "እርሱም፥ “ጸጋዬ ይበቃሀል፤ ኀይልስ በደዌ ያልቃል” አለኝ፤ የክርስቶስም ኀይል በእኔ ላይ ያድር ዘንድ በመከራዬ ልመካ ወደድሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "ስለዚህም ስለ ክርስቶስ መከራ መቀበልን፥ መሰደብን፥ መጨነቅን፥ መሰደድን፥ መቸገርንም ወደድሁ፤ መከራ በተቀበልሁ ጊዜ ወዲያውኑ እበረታለሁና።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the deeds done among the Corinthians.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "Behold, because you have treated me with contempt, I have become as a serpent; for I had desired to send you to bear witness for me, and you were to be my witnesses. Yet, I have not been able to find any among you who would assist me in the work that the chief apostles have accomplished."
+            },
+            {
+              "verse": 12,
+              "text": "The signs of the apostles have been performed among you with perfect patience and through wonders, for you have been strengthened by their mighty works."
+            },
+            {
+              "verse": 13,
+              "text": "What is it that you have done to me, that I have not come to you? Among all the children of the Christians, what have you done to me? Please forgive me this."
+            },
+            {
+              "verse": 14,
+              "text": "Behold, I prepare to come to you for the third time; yet I do not seek your possessions, but I seek you; for children ought not to lay up for their parents, but parents for their children."
+            },
+            {
+              "verse": 15,
+              "text": "But I will gladly spend and be spent for your souls; though the more I love you, the less I am loved."
+            },
+            {
+              "verse": 16,
+              "text": "I have not been burdensome to you; yet, I have been wise in counsel, guarding and guiding you."
+            },
+            {
+              "verse": 17,
+              "text": "Truly, do I have a message that I have sent to you? Or is there something that you have kept from me?"
+            },
+            {
+              "verse": 18,
+              "text": "Behold, I speak of Titus; and I have sent him along with our brother. Truly, is there any wrong done to you by Titus? Is it not in the spirit of the same grace that we are united, and he does not seek anything from you?"
+            },
+            {
+              "verse": 19,
+              "text": "Do we also seem to you to be caring for ourselves? Before God, we speak in Christ; and brethren, this is all so that you may be blameless."
+            },
+            {
+              "verse": 20,
+              "text": "Yet, when I came to you, I found that you did not receive me as I had hoped; and I fear that I may be as you do not wish me to be. Or perhaps there will be strife, jealousy, outbursts of anger, factions, slander, gossip, arrogance, or disorder among you."
+            },
+            {
+              "verse": 21,
+              "text": "Or as I come to you again, it shall be a cause of sorrow for me before the Lord because of you, for your wickedness and your unclean ways, and for the evil that you do, it shall be a lamentation for many."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "sections": [
+        {
+          "title": "Saint Paul, for the third time, came unto Corinth.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And to you I come, behold, this is my third time; for every matter shall be established by the mouth of two or three witnesses."
+            },
+            {
+              "verse": 2,
+              "text": "I have spoken to you beforehand; and now I speak to you again; as I was with you before, so I speak to you again, that I may not be found guilty, and as I come to you again for the third time, I speak."
+            },
+            {
+              "verse": 3,
+              "text": "Christ, in me, is a better witness than you; for He is able to do all things, but there is nothing that can be done against you."
+            },
+            {
+              "verse": 4,
+              "text": "We are weak, but in the strength of the Lord, we are alive; and we shall dwell with Him; yet concerning you, we shall live in the strength of the Lord."
+            },
+            {
+              "verse": 5,
+              "text": "Test yourselves to see if you are in the faith; examine yourselves. Do you not know that Jesus Christ is in you? Unless indeed you fail the test."
+            },
+            {
+              "verse": 6,
+              "text": "And if we are, as you know, those who have failed, I believe."
+            },
+            {
+              "verse": 7,
+              "text": "Let us pray to God that you do no evil; for it is only that you may do good, and we do not say we are weak; for we are as those who have failed."
+            },
+            {
+              "verse": 8,
+              "text": "We shall live in the truth, but we cannot depart from the truth."
+            },
+            {
+              "verse": 9,
+              "text": "You will be blessed, and when we are weak, it brings us joy. Our prayers are that you may be perfect."
+            }
+          ]
+        },
+        {
+          "title": "Greetings and Blessings",
+          "verses": [
+            {
+              "verse": 10,
+              "text": "Therefore, the Lord God has not given us power to destroy, but to build up; and when I came to you, I wrote this so that I might not do anything harsh to you, as though I were a man of authority, being absent from you."
+            },
+            {
+              "verse": 11,
+              "text": "And beloved ones, may you rejoice henceforth; be strong; be of one heart; dwell in peace; and may the God of peace and love be with you."
+            },
+            {
+              "verse": 12,
+              "text": "Greet one another with a holy greeting; how are you, all the saints? May it be well with you."
+            },
+            {
+              "verse": 13,
+              "text": "The grace of our Lord Jesus Christ, the love of God, and the fellowship of the Holy Spirit be with you all. Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

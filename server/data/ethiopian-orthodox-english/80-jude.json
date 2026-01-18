@@ -1,0 +1,126 @@
+{
+  "book_number": 80,
+  "book_name_am": "የይሁዳ መልእክት",
+  "book_short_name_am": "ይሁዳ",
+  "book_name_en": "Jude",
+  "book_short_name_en": "Jud",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Greeting",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "James, a servant of Jesus Christ, and brother of Jude, to them that are sanctified by God the Father, and preserved in Jesus Christ, and called:"
+            },
+            {
+              "verse": 2,
+              "text": "Mercy unto you, and peace, and love be multiplied."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the false teachers.",
+          "verses": [
+            {
+              "verse": 3,
+              "text": "O brethren! I am greatly compelled to write unto you concerning our salvation, that ye may earnestly contend for the faith which was once delivered unto the saints, lest I be found in need."
+            },
+            {
+              "verse": 4,
+              "text": "For many times before, certain individuals have written concerning this judgment; they have entered in, and sinners have turned the grace of our God into lasciviousness; they deny only our only Master and Lord, Jesus Christ."
+            },
+            {
+              "verse": 5,
+              "text": "Yet I desire to remind you, though ye once knew this, that the Lord, having saved the people out of the land of Egypt, afterward destroyed them that believed not."
+            },
+            {
+              "verse": 6,
+              "text": "And the angels which kept not their first estate, but left their own habitation, He hath reserved in everlasting chains under darkness unto the judgment of the great day."
+            },
+            {
+              "verse": 7,
+              "text": "Even as Sodom and Gomorrah, and the cities about them in like manner, giving themselves over to fornication, and going after strange flesh, are set forth for an example, suffering the vengeance of eternal fire."
+            },
+            {
+              "verse": 8,
+              "text": "Likewise also these filthy dreamers defile the flesh, despise dominion, and speak evil of dignities."
+            },
+            {
+              "verse": 9,
+              "text": "Yet Michael the archangel, when contending with the devil, he disputed about the body of Moses, durst not bring against him a railing accusation, but said, \"The Lord rebuke thee!\""
+            },
+            {
+              "verse": 10,
+              "text": "But these speak evil of those things which they know not: but what they know naturally, as brute beasts, in those things they corrupt themselves."
+            },
+            {
+              "verse": 11,
+              "text": "Woe unto them! For they have gone in the way of Cain, and ran greedily after the error of Balaam for reward, and perished in the gainsaying of Core."
+            },
+            {
+              "verse": 12,
+              "text": "These are spots in your feasts of charity, when they feast with you, feeding themselves without fear: clouds they are without water, carried about of winds; trees whose fruit withereth, without fruit, twice dead, plucked up by the roots."
+            },
+            {
+              "verse": 13,
+              "text": "የገዛ ነውራቸውን አረፋ እየደፈቁ ጨካኝ የባሕር ማዕበል፥ ድቅድቅ ጨለማ ለዘላለም የተጠበቀላቸው የሚንከራተቱ ከዋክብት ናቸው።"
+            },
+            {
+              "verse": 14,
+              "text": "ከአዳም ጀምሮ ሰባተኛ የሆነ ሄኖክ “እነሆ ጌታ በሁሉ ላይ እንዲፈርድ፥ በኀጢአተኝነትም ስላደረጉት ስለ ኀጢአተኛ ሥራቸው ሁሉ ዐመፀኞችም ኀጢአተኞች በእርሱ ላይ ስለ ተናገሩ ስለ ጭከና ነገር ሁሉ ኀጢአተኞችን ሁሉ እንዲወቅስ ከአእላፋት ቅዱሳኑ ጋር መጥቶአል፤” ብሎ ለእነዚህ ደግሞ ትንቢት ተናገረ።"
+            },
+            {
+              "verse": 16,
+              "text": "እነዚህ እንደ ምኞታቸው እየሄዱ የሚያንጎራጉሩና ስለ ዕድላቸው የሚያጕረመርሙ ናቸው፤ እንዲረባቸውም ለሰው ፊት እያደሉ አፋቸው ከመጠን ይልቅ ታላቅ ቃል ይናገራል።"
+            }
+          ]
+        },
+        {
+          "title": "Exhortation and Counsel",
+          "verses": [
+            {
+              "verse": 17,
+              "text": "But you, beloved! Consider the words that were spoken beforehand by our Lord, Jesus Christ, through His apostles;"
+            },
+            {
+              "verse": 18,
+              "text": "They have told you, “In the last days, there will be mockers who walk according to their own ungodly lusts.”"
+            },
+            {
+              "verse": 19,
+              "text": "These are the ones who cause divisions, worldly people, devoid of the Spirit."
+            },
+            {
+              "verse": 20,
+              "text": "But you, beloved! Building yourselves up in your most holy faith, praying in the Holy Spirit, keep yourselves in the love of God;"
+            },
+            {
+              "verse": 21,
+              "text": "while waiting for the mercy of our Lord Jesus Christ that leads to eternal life, keep yourselves in the love of God."
+            },
+            {
+              "verse": 22,
+              "text": "And some have compassion, making a distinction;"
+            },
+            {
+              "verse": 23,
+              "text": "but others save with fear, pulling them out of the fire, hating even the garment defiled by the flesh."
+            },
+            {
+              "verse": 24,
+              "text": "Now to Him who is able to keep you from stumbling, and to present you faultless before the presence of His glory with exceeding joy,"
+            },
+            {
+              "verse": 25,
+              "text": "to God our Savior, who alone is wise, be glory and majesty, dominion and power, both now and forever. Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

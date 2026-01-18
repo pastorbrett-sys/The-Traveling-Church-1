@@ -1,0 +1,1250 @@
+{
+  "book_number": 17,
+  "book_name_am": "መጽሐፈ ዕዝራ",
+  "book_short_name_am": "ዕዝ",
+  "book_name_en": "Ezra",
+  "book_short_name_en": "Ezra",
+  "testament": "old",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "And Cyrus commanded that the Jews should return to their land, as he had decreed concerning them.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The word of the Lord, which was spoken by the mouth of Jeremiah, came to pass in the first year of Cyrus king of Persia; the Lord stirred up the spirit of Cyrus king of Persia, and he made a proclamation throughout all his kingdom, and put it also in writing, saying:"
+            },
+            {
+              "verse": 2,
+              "text": "\"Thus says Cyrus king of Persia: The Lord God of heaven hath given me all the kingdoms of the earth; and he hath charged me to build him a house at Jerusalem, which is in Judah."
+            },
+            {
+              "verse": 3,
+              "text": "Whosoever there is among you of all his people, may his God be with him, and let him go up to Jerusalem, which is in Judah, and build the house of the Lord God of Israel, he is the God, which is in Jerusalem."
+            },
+            {
+              "verse": 4,
+              "text": "And whosoever remaineth in any place where he sojourneth, let the men of his place help him with silver and with gold, and with goods, and with beasts, beside the freewill offering for the house of God that is in Jerusalem.\""
+            },
+            {
+              "verse": 5,
+              "text": "And the chief of the fathers of Judah and Benjamin, and the priests, and the Levites, with all them whose spirit God had raised, to go up to build the house of the Lord which is in Jerusalem."
+            },
+            {
+              "verse": 6,
+              "text": "And all they that were about them strengthened their hands with vessels of silver, with gold, with goods, and with beasts, and with precious things, beside all that was willingly offered."
+            },
+            {
+              "verse": 7,
+              "text": "King Cyrus also brought forth the vessels of the house of the Lord, which Nebuchadnezzar had taken out of Jerusalem, and had put them in the house of his gods."
+            },
+            {
+              "verse": 8,
+              "text": "And Cyrus king of Persia brought them forth by the hand of Mithredath the treasurer, and numbered them unto Sheshbazzar, the prince of Judah."
+            },
+            {
+              "verse": 9,
+              "text": "And this is the number of them: thirty chargers of gold, a thousand chargers of silver, twenty-nine knives,"
+            },
+            {
+              "verse": 10,
+              "text": "Four hundred ten basins of silver, and one thousand other vessels."
+            },
+            {
+              "verse": 11,
+              "text": "All the vessels of gold and silver were five thousand four hundred; and when they were brought back from Babylon to Jerusalem, they were delivered with the captives."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": "And the names of the Jews who returned to their land.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The children of the land who returned from Babylon, where King Nabuchadnezzar had carried them away, to Jerusalem and to Judah, and to their cities, these are they."
+            },
+            {
+              "verse": 2,
+              "text": "They came with Zerubbabel, with Jeshua, with Nehemiah, with Seraiah, with Reheliah, with Mordecai, with Bilshan, with Mispar, with Bigvai, with Rehum, and with Baanah. The number of the people of Israel is this:"
+            },
+            {
+              "verse": 3,
+              "text": "The children of Parosh were two thousand one hundred seventy-two."
+            },
+            {
+              "verse": 4,
+              "text": "The children of Shephatiah were three hundred seventy-two."
+            },
+            {
+              "verse": 5,
+              "text": "The children of Arah were seven hundred seventy-five."
+            },
+            {
+              "verse": 6,
+              "text": "The children of Jashua and Joab, who were of the children of the priests, were two thousand eight hundred twelve."
+            },
+            {
+              "verse": 7,
+              "text": "The children of Elam were one thousand two hundred fifty-four."
+            },
+            {
+              "verse": 8,
+              "text": "The children of Zattu were nine hundred forty-five."
+            },
+            {
+              "verse": 9,
+              "text": "The children of Zaccai were seven hundred sixty."
+            },
+            {
+              "verse": 10,
+              "text": "The children of Bani were six hundred forty-two."
+            },
+            {
+              "verse": 11,
+              "text": "The children of Bibai, six hundred twenty-three."
+            },
+            {
+              "verse": 12,
+              "text": "The children of Azgad, two thousand, twenty-two."
+            },
+            {
+              "verse": 13,
+              "text": "The children of Adonikam, six hundred sixty-six."
+            },
+            {
+              "verse": 14,
+              "text": "The children of Bigvai, two thousand, fifty-six."
+            },
+            {
+              "verse": 15,
+              "text": "The children of Adin, four hundred fifty-four."
+            },
+            {
+              "verse": 16,
+              "text": "From the lineage of Hezekiah, the children of Ater, seven, eight."
+            },
+            {
+              "verse": 17,
+              "text": "The children of Bezai, three hundred twenty-three."
+            },
+            {
+              "verse": 18,
+              "text": "The children of Jorah, one hundred twelve."
+            },
+            {
+              "verse": 19,
+              "text": "The children of Hashem, two hundred twenty-three."
+            },
+            {
+              "verse": 20,
+              "text": "The children of Gabar, seven, five."
+            },
+            {
+              "verse": 21,
+              "text": "የቤተ ልሔም ልጆች መቶ ሃያ ሦስት።"
+            },
+            {
+              "verse": 22,
+              "text": "የነጦፋ ልጆች አምሳ ስድስት።"
+            },
+            {
+              "verse": 23,
+              "text": "የዓናቶት ልጆች መቶ ሃያ ስምንት።"
+            },
+            {
+              "verse": 24,
+              "text": "የዓዝሞት ልጆች አርባ ሁለት።"
+            },
+            {
+              "verse": 25,
+              "text": "የቂርያትይዓሪምና የቃፌር፥ የብኤሮትም ልጆች ሰባት መቶ አርባ ሦስት።"
+            },
+            {
+              "verse": 26,
+              "text": "የራማና የጋባዕ ልጆች ስድስት መቶ ሃያ አንድ።"
+            },
+            {
+              "verse": 27,
+              "text": "የመኪማስ ሰዎች መቶ ሃያ ሁለት።"
+            },
+            {
+              "verse": 28,
+              "text": "የቤቴልና የጋይ ሰዎች ሁለት መቶ ሃያ ሦስት።"
+            },
+            {
+              "verse": 29,
+              "text": "የናባው ልጆች አምሳ ሁለት።"
+            },
+            {
+              "verse": 30,
+              "text": "የመጌባስ ልጆች መቶ አምሳ ስድስት።"
+            },
+            {
+              "verse": 31,
+              "text": "The children of Elamar were one thousand two hundred fifty-four."
+            },
+            {
+              "verse": 32,
+              "text": "The children of Elam were three hundred twenty."
+            },
+            {
+              "verse": 33,
+              "text": "The children of Lod, Hadid, and Ono were seven hundred twenty-five."
+            },
+            {
+              "verse": 34,
+              "text": "The children of Jericho were three hundred forty-five."
+            },
+            {
+              "verse": 35,
+              "text": "The children of Senaah were three thousand six hundred thirty."
+            },
+            {
+              "verse": 36,
+              "text": "The priests, from the lineage of Jeshua and the children of Jodaiah, were nine hundred seventy-three."
+            },
+            {
+              "verse": 37,
+              "text": "The children of Immer were one thousand fifty-two."
+            },
+            {
+              "verse": 38,
+              "text": "The children of Pashhur were one thousand two hundred forty-seven."
+            },
+            {
+              "verse": 39,
+              "text": "The children of Eram were one thousand seventy."
+            },
+            {
+              "verse": 40,
+              "text": "The Levites, from the lineage of Judah, the children of Josiah and the children of Kedemah were seven hundred forty."
+            },
+            {
+              "verse": 41,
+              "text": "A Psalm of Asaph, one hundred and fifty-eight."
+            },
+            {
+              "verse": 42,
+              "text": "The children of the Berinj, the children of Shalom, the children of Ater, the children of Talmone, the children of Aqob, the children of Hatita, the children of Sebawai, all together three hundred and thirty-seven."
+            },
+            {
+              "verse": 43,
+              "text": "The children of Nathan, the children of Sihah, the children of Hasufi;"
+            },
+            {
+              "verse": 44,
+              "text": "The children of Qades, the children of Sihel, the children of Paddon;"
+            },
+            {
+              "verse": 45,
+              "text": "The children of Libana, the children of Agaba, the children of Aqob;"
+            },
+            {
+              "verse": 46,
+              "text": "The children of Agab, the children of Selami, the children of Hanan;"
+            },
+            {
+              "verse": 47,
+              "text": "The children of Gadul, the children of Gahar, the children of Ra'ayah;"
+            },
+            {
+              "verse": 48,
+              "text": "The children of Re'ason, the children of Nikoda, the children of Gaseim;"
+            },
+            {
+              "verse": 49,
+              "text": "The children of Aziah, the children of Pahis, the children of Basi;"
+            },
+            {
+              "verse": 50,
+              "text": "The children of Asina, the children of Me'unayim, the children of Naphethon;"
+            },
+            {
+              "verse": 51,
+              "text": "The children of Beqbuq, the children of Haqfa, the children of Harhur;"
+            },
+            {
+              "verse": 52,
+              "text": "The children of Beslot, the children of Mahud, the children of Aris;"
+            },
+            {
+              "verse": 53,
+              "text": "The children of Berqos, the children of Sisara, the children of Tema;"
+            },
+            {
+              "verse": 54,
+              "text": "The children of Nesia, the children of Atufa."
+            },
+            {
+              "verse": 55,
+              "text": "The children of the servants of Solomon; the children of Sati, the children of Sefertha, the children of Faduharha;"
+            },
+            {
+              "verse": 56,
+              "text": "The children of Iyahhel, the children of Derkon, the children of Gedel;"
+            },
+            {
+              "verse": 57,
+              "text": "The children of Sephatias, the children of Atel, the children of Phokert, the children of Hazibaim, the children of Ami."
+            },
+            {
+              "verse": 58,
+              "text": "These were all the sons of the servants of Solomon, three hundred and twenty-two in number."
+            },
+            {
+              "verse": 59,
+              "text": "From Tilmelah, from Telarsah, from Cherub, from Hadad, from Emer, these were their number; yet they could not declare their fathers' houses nor their seed, whether they were of the children of Israel."
+            },
+            {
+              "verse": 60,
+              "text": "The children of Dalaiah, the children of Tobiah, the children of Nicodah, six hundred fifty-two in number."
+            },
+            {
+              "verse": 61,
+              "text": "And the children of the priests; the children of Abijah, the children of Ahitub, and the wife of the Gileadite, the daughter of Berzelai, were called by their names, the children of Berzelai."
+            },
+            {
+              "verse": 62,
+              "text": "These sought their genealogy in the register of the genealogies, but it was not found; and they were excluded from the priesthood."
+            },
+            {
+              "verse": 63,
+              "text": "And Hattirseth said, \"The priest who shall consult with the Urim and Thummim shall not eat of the holy things until he rises.\""
+            },
+            {
+              "verse": 64,
+              "text": "The assembly was altogether forty-two thousand three hundred sixty."
+            },
+            {
+              "verse": 65,
+              "text": "And there were seven thousand three hundred thirty-seven, besides their male and female servants, who were singers and singers."
+            },
+            {
+              "verse": 66,
+              "text": "Their horses were seven hundred thirty-six, and their mules were two hundred forty-five."
+            },
+            {
+              "verse": 67,
+              "text": "Their camels were four hundred thirty-five, and their donkeys were six thousand seven hundred twenty."
+            },
+            {
+              "verse": 68,
+              "text": "And when they came to Jerusalem and to the house of the Lord, the leaders of the fathers gave freely to the house of the Lord, according to their ability, to the work of the house of God."
+            },
+            {
+              "verse": 69,
+              "text": "Sixty-one thousand gold drachmas, five thousand minas of silver, and one hundred priestly garments were given for the work of the house of the Lord."
+            },
+            {
+              "verse": 70,
+              "text": "And the priests and the Levites, and the gatekeepers, and the singers, and the Nethinim, dwelt in their cities, and all Israel dwelt in their cities."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "The beginning of the order of worship anew.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ሰባተኛውም ወር በደረሰ ጊዜ፥ የእስራኤልም ልጆች በከተሞቻቸው ሳሉ፥ ሕዝቡ እንደ አንድ ሰው ሆነው ወደ ኢየሩሳሌም ተሰበሰቡ።"
+            },
+            {
+              "verse": 2,
+              "text": "የኢዮሴዴቅም ልጅ ኢያሱ፥ ወንድሞቹም ካህናቱ፥ የሰላትያልም ልጅ ዘሩባቤል፥ ወንድሞቹም ተነሥተው በእግዚአብሔር ሰው በሙሴ ሕግ እንደ ተጻፈ የሚቃጠለውን መሥዋዕት ያቀርቡበት ዘንድ የእስራኤልን አምላክ መሠዊያ ሠሩ።"
+            },
+            {
+              "verse": 3,
+              "text": "በሀገሩም ካሉት አሕዛብ ፈርተው ነበርና መሠዊያውን በስፍራው ላይ አስቀመጡት፤ በጥዋትና በማታም የሚቃጠለውን መሥዋዕት ለእግዚአብሔር አቀረቡበት።"
+            },
+            {
+              "verse": 4,
+              "text": "እንደ ተጻፈውም የዳስ በዓል አደረጉ፤ እንደ ሥርዐቱም ለየዕለቱ የተገባውን የየዕለቱን የሚቃጠል መሥዋዕት በቍጥር አቀረቡ።"
+            },
+            {
+              "verse": 5,
+              "text": "ከዚያም በኋላ ዘወትር የሚቃጠለውን መሥዋዕት፥ የመባቻውንም መሥዋዕት፥ የተቀደሱትንም የእግዚአብሔር በዓላት ሁሉ መሥዋዕት፥ ሰውም ሁሉ ለእግዚአብሔር በፈቃድ የሰጠውን ቍርባን አቀረቡ።"
+            },
+            {
+              "verse": 6,
+              "text": "በሰባተኛውም ወር በመጀመሪያው ቀን ለእግዚአብሔር የሚቃጠል መሥዋዕት ማቅረብ ጀመሩ፤ የእግዚአብሔር መቅደስ ግን ገና አልተመሠረተም ነበር።"
+            },
+            {
+              "verse": 7,
+              "text": "ለጠራቢዎችና ለአናጢዎችም ብር ሰጡ፤ የፋርስም ንጉሥ ቂሮስ እንደ ፈቀደላቸው የዝግባ ዛፍ ከሊባኖስ በባሕር ወደ ኢዮጴ ያመጡ ዘንድ ለሲዶናና ለጢሮስ ሰዎች መብልና መጠጥ፥ ዘይትም ሰጡ።"
+            },
+            {
+              "verse": 8,
+              "text": "በኢየሩሳሌምም ወዳለው ወደ እግዚአብሔር ቤት በመጡ በሁለተኛው ዓመት በሁለተኛውም ወር የሰላትያል ልጅ ዘሩባቤል፥ የኢዮሴዴቅም ልጅ ኢያሱ፥ የቀሩትም ወንድሞቻቸው ካህናትና ሌዋውያን፥ ከምርኮ ወደ ኢየሩሳሌምም የተመለሱት ሁሉ ጀመሩ፤ ሌዋውያንንም ከሃያ ዓመት ጀምሮ ከዚያም በላይ የእግዚአብሔርን ቤት ሥራ እንዲያሠሩት ሾሙአቸው።"
+            },
+            {
+              "verse": 9,
+              "text": "ኢያሱም፥ ልጆቹም ተሾሙ፤ ወንድሞቹም፥ የይሁዳም ልጆች ቀደምያልና ልጆቹ፥ የኢንሐዳድም ልጆች፥ ልጆቻቸውና ወንድሞቻቸው ሌዋውያንም የእግዚአብሔርን ቤት የሚሠሩትን ያሠሩ ዘንድ በአንድነት ቆሙ።"
+            },
+            {
+              "verse": 10,
+              "text": "አናጢዎቹም የእግዚአብሔርን መቅደስ ይሠሩ ዘንድ መሠረት በጣሉ ጊዜ ካህናቱ ልብሳቸውን ለብሰው መለከቱን ይዘው፥ የአሳፍም ልጆች ሌዋውያን ጸናጽል ይዘው እንደ እስራኤል ንጉሥ እንደ ዳዊት ሥርዐት እግዚአብሔርን ያመሰግኑ ዘንድ ቆሙ።"
+            },
+            {
+              "verse": 11,
+              "text": "Moreover, they said, “For He is good, and His mercy endures forever towards Israel.” Thus, they praised and honored the Lord, and they were united in their worship. When the house of the Lord was established, all the people honored the Lord with a great voice."
+            },
+            {
+              "verse": 12,
+              "text": "The priests and the Levites, who were many and stood before the house, beheld the house of the firstborn, and when it was established before them, they raised their voices in a great shout; many people also rejoiced and cried out in gladness."
+            },
+            {
+              "verse": 13,
+              "text": "The sound of their rejoicing could not be distinguished from the voice of the people, for the people shouted with a great voice, and their sound was heard from afar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "የይሁዳና የብንያምም ጠላቶች፥ የምርኮኞቹ ልጆች ለእስራኤል አምላክ ለእግዚአብሔር መቅደስ እንደሚሠሩ ሰሙ።"
+            },
+            {
+              "verse": 2,
+              "text": "ወደ ዘሩባቤልና ወደ አባቶች ቤቶች አለቆችም ቀርበው፥ “የአሦር ንጉሥ አስራዶን ወደዚህ ካመጣን ቀን ጀምሮ ለአምላካችሁ እንሠዋለንና፥ እንደ እናንተም እንፈልገዋለንና ከእናንተ ጋር እንሥራ” አሉአቸው።"
+            },
+            {
+              "verse": 3,
+              "text": "ዘሩባቤልና ኢያሱም፥ የቀሩትም የእስራኤል አባቶች ቤቶች አለቆች፥ “የአምላካችንን ቤት መሥራት ለእኛና ለእናንተ አይደለም፤ እኛ ራሳችን ግን የፋርስ ንጉሥ ቂሮስ እንዳዘዘን ለአምላካችን ለእግዚአብሔር ቤት እንሠራለን” አሉአቸው።"
+            },
+            {
+              "verse": 4,
+              "text": "የሀገሩም ሕዝብ የይሁዳን ሕዝብ እጅግ ያዳክሙ ነበር፤ እንዳይሠሩም ከለከሉአቸው፤"
+            },
+            {
+              "verse": 5,
+              "text": "ምክራቸውንም ያፈርሱ ዘንድ በፋርሱ ንጉሥ በቂሮስ ዘመን ሁሉ እስከ ፋርስ ንጉሥ እስከ ዳርዮስ መንግሥት ድረስ መካሪዎችን ገዙባቸው።"
+            },
+            {
+              "verse": 6,
+              "text": "በአሕሳዊሮስም መንግሥት፥ በመንግሥቱም በመጀመሪያ ዘመን፥ በይሁዳና በኢየሩሳሌም በሚኖሩት ላይ ደብዳቤ ጻፉ።"
+            },
+            {
+              "verse": 7,
+              "text": "በአርተሰስታ ዘመን በሴሌም፥ ሜትሪዳጡ፥ ጣብሄል፥ የቀሩት ተባባሪውቻቸውም ለፋርስ ንጉሥ ለአርተሰስታ ጻፉ፤ ደብዳቤውም በሶርያ ፊደልና በሶርያ ቋንቋ ተጽፎ ነበር።"
+            },
+            {
+              "verse": 8,
+              "text": "አዛዡ ሬሁም፥ ጸሓፊውም ሲምሳይ በኢየሩሳሌም ላይ ለንጉሡ ለአርተሰስታ አንድ የክስ ደብዳቤ ጻፉ።"
+            },
+            {
+              "verse": 9,
+              "text": "አዛዡ ሬሁም፥ ጸሓፊውም ሲምሳይ፥ የቀሩትም ተባባሪዎቻቸው፥ ዲናውያን፥ አፈርሳትካዋያን፥ ጠርፈላውያን፥ አፈርሳውያን፥ አርካውያን፥ ባቢሎናውያን፥ ሱስናካውያን፥ ዴሐውያን፥ ኤላማውያን፥"
+            },
+            {
+              "verse": 10,
+              "text": "ታላቁና ኀይለኛው አስናፍር ያፈለሳቸው፥ በሰማርያና በወንዝ ማዶ ያኖራቸው፥ የቀሩትም አሕዛብ ደብዳቤውን ጻፉ።"
+            },
+            {
+              "verse": 11,
+              "text": "To the king, to Artaxerxes, the word of the letter that was sent is this: \"Those who dwell by the river, your servants;"
+            },
+            {
+              "verse": 12,
+              "text": "Now, let it be known to you, that the Jews who have come from you to us, to Jerusalem, their lord the king, may he know; they shall rebuild the desolate places and greatly restore the city; they shall repair its walls and restore its foundations."
+            },
+            {
+              "verse": 13,
+              "text": "Now, this city has been built up, as it has been established; its walls have been restored, as it has been fortified; and since they do not give tribute and tax, let the king know; this will harm the kingdom."
+            },
+            {
+              "verse": 14,
+              "text": "And it is not fitting for us to see the king being dishonored, therefore we have sent to inform the king;"
+            },
+            {
+              "verse": 15,
+              "text": "In the history of your fathers, an investigation shall be made; and there it shall be found in the history book that this city has been a rebellious city, as a city of kings and provinces; and from ancient times, the rebellion of the inhabitants has begun in it; you shall know; therefore, this city was a ruin."
+            },
+            {
+              "verse": 16,
+              "text": "This city has been built up, as it has been established; its walls have been restored, as it has been fortified; and we inform the king that peace does not dwell therein.\""
+            },
+            {
+              "verse": 17,
+              "text": "The king also sent a reply to the governor, to Rehum, to the scribe, to Shimshai, and to their companions who dwell in Samaria and in the rest of the region beyond the river, saying, \"Peace be unto you."
+            },
+            {
+              "verse": 18,
+              "text": "Now, the messenger whom you sent to us has come to me."
+            },
+            {
+              "verse": 19,
+              "text": "And I have considered it; it has been found that this city has been from ancient times a rebellious city against kings, and in it has been rebellion and insurrection."
+            },
+            {
+              "verse": 20,
+              "text": "In Jerusalem, there were indeed mighty kings; and all the land that was by the river was under their dominion; they received tribute and tax from it."
+            },
+            {
+              "verse": 21,
+              "text": "አሁንም እነዚህ ሰዎች ሥራውን እንዲተዉ፥ ይህችም ከተማ እንዳትሠራ ትእዛዝ ስጡ።"
+            },
+            {
+              "verse": 22,
+              "text": "በዚህም ነገር እንዳትሳሳቱ፥ በነገሥታቱም ጕዳትና ጥፋት እንዳይበዛ ተጠንቀቁ።”"
+            },
+            {
+              "verse": 23,
+              "text": "የንጉሡም የአርተሰስታ መልእክተኛ በደረሰ ጊዜ በአዛዡ በሬሁምና በጸሓፊው በሲምሳይ፥ በተባባሪዎቻቸውም ፊት መልእክቱን ባነበበ ጊዜ ፈጥነው ወደ ኢየሩሳሌም ወደ አይሁድ በፈረስ ሄዱ፤ በኀይልም አስተዉአቸው።"
+            },
+            {
+              "verse": 24,
+              "text": "በዚያን ጊዜም በኢየሩሳሌም ያለው የእግዚአብሔር ቤት ሥራ ተቋረጠ፤ እስከ ፋርስም ንጉሥ እስከ ዳርዮስ መንግሥት እስከ ሁለተኛው ዓመት ድረስ ተጓጐለ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "The work of the house of the sanctuary is to be continued as it was before.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The prophets Haggai and Zechariah, the son of Iddo, prophesied unto the Jews who were in Judah and Jerusalem in the name of the God of Israel."
+            },
+            {
+              "verse": 2,
+              "text": "At that time, Zerubbabel, the son of Shealtiel, and Jeshua, the son of Jehozadak, arose and began to build the house of the Lord which was in Jerusalem; and the prophets of the Lord were with them, helping them."
+            },
+            {
+              "verse": 3,
+              "text": "Then at that time, the governor of the region beyond the River, Tattenai, and Shethar-bozenai, and their companions came to them and said, “Who has commanded you to build this house and to finish this wall?”"
+            },
+            {
+              "verse": 4,
+              "text": "And they asked them, saying, “What are the names of the men who are building this temple?”"
+            },
+            {
+              "verse": 5,
+              "text": "But the eye of the Lord was upon the elders of the Jews, that they might not be hindered; and they did not cease until a report could go to Darius, and then an answer was returned by letter concerning this matter."
+            },
+            {
+              "verse": 6,
+              "text": "The governor of the region beyond the River, Tattenai, and Shethar-bozenai, and their companions, sent a letter to Darius the king; the letter was written in the Aramaic script and translated into the Aramaic language."
+            },
+            {
+              "verse": 7,
+              "text": "The letter read as follows: “To Darius the king, all peace."
+            },
+            {
+              "verse": 8,
+              "text": "Let it be known to the king that we went to the province of Judah, to the temple of the great God, which is being built with heavy stones, and timber is being laid in the walls; and this work goes on diligently and prospers in their hands."
+            },
+            {
+              "verse": 9,
+              "text": "And we asked those elders, saying, ‘Who has commanded you to build this temple and to finish this wall?’"
+            },
+            {
+              "verse": 10,
+              "text": "And we also asked them their names, to inform you, that we might write the names of the men who were chief among them."
+            },
+            {
+              "verse": 11,
+              "text": "And thus they answered us, saying: \"We are the servants of the God of heaven and earth; from long ago we have been appointed to build the house that was formerly established, even the great house of the king of Israel.\""
+            },
+            {
+              "verse": 12,
+              "text": "Our forefathers, after they had provoked the God of heaven, were delivered into the hand of Nebuchadnezzar, king of Babylon; and he destroyed this house and carried the people away to Babylon."
+            },
+            {
+              "verse": 13,
+              "text": "But in the first year of Cyrus, king of Babylon, the king Cyrus commanded that this house of the Lord be built."
+            },
+            {
+              "verse": 14,
+              "text": "And Nebuchadnezzar took from Jerusalem the vessels of the house of God and brought them to the temple of Babylon; and the king Cyrus brought them out of the temple of Babylon and gave them to Sheshbazzar, whom he had made governor."
+            },
+            {
+              "verse": 15,
+              "text": "\"Take these vessels and go; put them in the place that is in Jerusalem, in the house of the Lord, and let the house of God be built in its place,\" he said."
+            },
+            {
+              "verse": 16,
+              "text": "At that time, Sheshbazzar came and laid the foundation of the house of the Lord that is in Jerusalem; and since that time, it has been under construction and is not yet completed until this day."
+            },
+            {
+              "verse": 17,
+              "text": "Now, if it seems good to the king, let this house of God be built in Jerusalem, and let it be examined in the king's house, as it has been commanded by King Cyrus; therefore, let the king send his decree to us.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": "The Decree of Cyrus.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "At that time, King Darius commanded that the historical records which were in the house of the archives in Babylon be searched."
+            },
+            {
+              "verse": 2,
+              "text": "In the region of Media, in a city called Ecbatana, a certain decree was found in the palace of the king; and within it, this matter was written for a memorial."
+            },
+            {
+              "verse": 3,
+              "text": "In the first year of King Cyrus, King Cyrus commanded concerning the house of God which is in Jerusalem, saying, “Let this house be built, the place where sacrifices may be offered; its height shall be sixty cubits, and its breadth sixty cubits.”"
+            },
+            {
+              "verse": 4,
+              "text": "Three rows of great stones shall be made, and one row of new timber; and let the expenses be given from the king's house."
+            },
+            {
+              "verse": 5,
+              "text": "And let the gold and silver vessels of the house of God which Nebuchadnezzar took from the temple in Jerusalem and brought to Babylon be restored and brought back to the temple in Jerusalem, to their place; and let them be deposited in the house of God."
+            }
+          ]
+        },
+        {
+          "title": "King Darius commanded that the work of the house of the temple be completed.",
+          "verses": [
+            {
+              "verse": 6,
+              "text": "\"Now you, who are in the river valley, the ruler of your nation, be vigilant; likewise, your companions who dwell in the river valley, let them be cautious.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"This shall be done to build the house of the Lord; let the leaders of the Jews and the Jewish elders construct this house of the Lord in its place.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"Let them build this house of the Lord, and for the Jewish elders, I command that from the tribute coming from the land beyond the river, you shall diligently provide the expenses from the king's treasury for these men, and let not their work be hindered.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"For the God of heaven, let them provide the necessary offerings, such as wine and fine flour, and let them also bring the offerings of sheep and goats, as the priests in Jerusalem do, and daily provide for them wine, oil, and whatever they may require.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"And thus, for the God of heaven, let them offer the good sacrifices, and let prayers be made for the king and his sons continually.\""
+            },
+            {
+              "verse": 11,
+              "text": "\"And whoever alters this decree, let him be pulled from his house, and let him be impaled; and let his house be made a refuse heap for this.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"Let the God who dwells there change this, and let all the nations and peoples who would destroy the house of God in Jerusalem be swept away; I, Darius, have decreed this; let it be done diligently.\""
+            }
+          ]
+        },
+        {
+          "title": "The house of the Lord is holy.",
+          "verses": [
+            {
+              "verse": 13,
+              "text": "ንጉሡም ዳርዮስ እንደ ላከው ቃል፥ በዚያን ጊዜ በወንዝ ማዶ ያለ ገዥ ተንትናይ ደግሞ አስተርቡዝናይ ተባባሪዎቻቸውም እንዲሁ ተግተው አደረጉ።"
+            },
+            {
+              "verse": 14,
+              "text": "የአይሁድ ሽማግሌዎችና ሌዋውያንም በነቢዩ በሐጌና በአዶ ልጅ በዘካርያስ ትንቢት መሠረት ሠሩ፤ ተከናወነላቸውም። እንደ እስራኤልም አምላክ ትእዛዝ፥ እንደ ፋርስም ነገሥታት እንደ ቂሮስና እንደ ዳርዮስ፥ እንደ አርተሰስታም ትእዛዝ ሠርተው ፈጸሙ።"
+            },
+            {
+              "verse": 15,
+              "text": "ይህም ቤት በንጉሡ በዳርዮስ መንግሥት በስድስተኛው ዓመት አዳር በሚባል ወር በሦስተኛው ቀን ተፈጸመ።"
+            },
+            {
+              "verse": 16,
+              "text": "የእስራኤልም ልጆች ካህናቱና ሌዋውያኑ፥ የቀሩትም የምርኮኞች ልጆች የዚህን የእግዚአብሔርን ቤት ቅዳሴ በደስታ አደረጉ።"
+            },
+            {
+              "verse": 17,
+              "text": "በዚህም በእግዚአብሔር ቤት ቅዳሴ መቶ ወይፈኖችና ሁለት መቶ አውራ በጎች፥ አራት መቶም የበግ ጠቦቶች አቀረቡ፤ ስለ ኀጢአትም መሥዋዕት እንደ እስራኤል ነገዶች ቍጥር ለእስራኤል ሁሉ ዐሥራ ሁለት አውራ ፍየሎች አቀረቡ።"
+            },
+            {
+              "verse": 18,
+              "text": "በሙሴም መጽሐፍ እንደ ተጻፈው በኢየሩሳሌም ባለው በእግዚአብሔር አገልግሎት ላይ ካህናቱን በየማዕርጋቸው፥ ሌዋውያኑንም በየክፍላቸው አቆሙ።"
+            },
+            {
+              "verse": 19,
+              "text": "የምርኮኞቹም ልጆች በመጀመሪያው ወር በዐሥራ አራተኛው ቀን ፋሲካውን አደረጉ።"
+            },
+            {
+              "verse": 20,
+              "text": "ካህናቱና ሌዋውያኑም አንድ ሆነው ነጽተው ነበር፤ ሁሉም ንጹሓን ነበሩ፤ ለምርኮኞቹም ልጆች ሁሉ፥ ለወንድሞቻቸው ለካህናቱ፥ ለራሳቸውም የፋሲካውን በግ ዐረዱ።"
+            },
+            {
+              "verse": 21,
+              "text": "ከምርኮም ተመልሰው የመጡት የእስራኤል ልጆች፥ የእስራኤልን አምላክ እግዚአብሔርን ይፈልጉ ዘንድ ራሳቸውን ከምድር አሕዛብ ርኵሰት ለይተው ወደ እነርሱ መጥተው የነበሩት ሁሉ ፋሲካውን በሉ፤"
+            },
+            {
+              "verse": 22,
+              "text": "እግዚአብሔርም ደስ አሰኝቶአቸዋልና፥ የእስራኤልንም አምላክ የእግዚአብሔርን ቤት ለመሥራት እጃቸውን ያጸና ዘንድ የአሦርን ንጉሥ ልብ ወደ እነርሱ መልሶአልና የቂጣውን በዓል ሰባት ቀን በደስታ አደረጉ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": "The departure of Ezra unto Jerusalem.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "After these matters, in the reign of King Artaxerxes of Persia, there came Ezra, the son of Seraiah, the son of Azariah, the son of Hilkiah,"
+            },
+            {
+              "verse": 2,
+              "text": "the son of Shallum, the son of Zadok, the son of Ahitub,"
+            },
+            {
+              "verse": 3,
+              "text": "the son of Amariah, the son of Azariah, the son of Meraioth,"
+            },
+            {
+              "verse": 4,
+              "text": "the son of Zerahiah, the son of Uzzi, the son of Buki,"
+            },
+            {
+              "verse": 5,
+              "text": "the son of Abishua, the son of Phinehas, the son of Eleazar, the son of Aaron, the chief priest."
+            },
+            {
+              "verse": 6,
+              "text": "This Ezra came up from Babylon; he was a skilled scribe in the Law of Moses, which the Lord God of Israel had given; and the hand of his God was upon him, and the king granted him all his request."
+            },
+            {
+              "verse": 7,
+              "text": "And some of the children of Israel, of the priests, the Levites, the singers, the gatekeepers, and the Nethinim, came up to Jerusalem in the seventh year of King Artaxerxes."
+            },
+            {
+              "verse": 8,
+              "text": "In the seventh year of the king, in the fifth month, they arrived at Jerusalem."
+            },
+            {
+              "verse": 9,
+              "text": "For upon the first day of the first month, they began to go up from Babylon; and on the first day of the fifth month, they came to Jerusalem, for the good hand of their God was upon them."
+            },
+            {
+              "verse": 10,
+              "text": "Ezra had prepared his heart to seek the Law of the Lord, and to do it, and to teach statutes and ordinances in Israel."
+            }
+          ]
+        },
+        {
+          "title": "The decree given to Ezra by Artaxerxes the king.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "And the king wrote the decree of the Lord God, and the law that was for Israel, which was given to the scribe, to the priest Ezra; this is the word of the letter:"
+            },
+            {
+              "verse": 12,
+              "text": "\"From the king of kings, from Artaxerxes, to the God of heaven, the law, to the scribe, to the priest Ezra, peace be unto you;"
+            },
+            {
+              "verse": 13,
+              "text": "Within my kingdom, all those of the people of Israel, from the priests and the Levites, who desire to go to Jerusalem, I have decreed that they may go with you."
+            },
+            {
+              "verse": 14,
+              "text": "The king and his seven counselors have decreed that you may go to Judah and to Jerusalem, as your God has commanded you."
+            },
+            {
+              "verse": 15,
+              "text": "The king and his counselors have provided for the dwelling in Jerusalem for Israel, according to their desire, silver and gold;"
+            },
+            {
+              "verse": 16,
+              "text": "In all the provinces of Babylon, all the silver and gold that you may obtain, the people and the priests shall bring to the house of their God in Jerusalem, according to their desire."
+            },
+            {
+              "verse": 17,
+              "text": "Therefore, in this book, I have commanded you this decree. With this money, and with the offerings, and with the choice animals, and the grain offerings, and the drink offerings, you shall offer them upon the altar of your God in Jerusalem."
+            },
+            {
+              "verse": 18,
+              "text": "And whatever remains of the silver and gold, you and your brethren shall do according to the will of your God."
+            },
+            {
+              "verse": 19,
+              "text": "And concerning the service of your God’s house, whatever is commanded you, you shall deliver before the Lord in Jerusalem."
+            },
+            {
+              "verse": 20,
+              "text": "And above all, whatever you may need for the house of your God, which you may be able to give, you shall provide from the king’s treasury.\""
+            },
+            {
+              "verse": 21,
+              "text": "And I, Ezra, gave this commandment to all the houses of the people dwelling by the river of Babylon, saying: Prepare all that the God of heaven requires of you, as commanded by the law of the priest Ezra."
+            },
+            {
+              "verse": 22,
+              "text": "Even if it be a hundred measures of flour, or a hundred measures of barley, or a hundred measures of wine, or a hundred measures of oil, or if it be salt without measure, let it be so."
+            },
+            {
+              "verse": 23,
+              "text": "Let not the anger of the Lord be upon the kingdom and upon its children; let all that the God of heaven has commanded be done; and take heed that you do not neglect what has been commanded for the house of the God of heaven."
+            },
+            {
+              "verse": 24,
+              "text": "Furthermore, let there be no tax or tribute upon the priests and the Levites, upon the singers, upon the gatekeepers, and upon the servants of this house of God; and let it be known that there shall be no oppression upon them."
+            },
+            {
+              "verse": 25,
+              "text": "And you, Ezra, as you possess wisdom from your God, let all the people who dwell by the river of Babylon know the law of your God; and let those who know it teach those who do not know."
+            },
+            {
+              "verse": 26,
+              "text": "Upon all who do not observe the law of your God and the law of the king, let there be death, or exile, or the confiscation of goods, or swift punishment."
+            },
+            {
+              "verse": 27,
+              "text": "May our fathers, the Lord God, be praised; may this matter be upon the heart of the king to honor the house of the Lord which is in Jerusalem."
+            },
+            {
+              "verse": 28,
+              "text": "And before the king, and before his mighty ones, and before all the leaders of the king, I sent forth my supplication. And I was strengthened by the hand of my God upon me; and I gathered together the leaders of Israel to go with me."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "These are the leaders of the houses of the fathers who came with me from Babylon under the reign of King Artaxerxes; their lineage is as follows:"
+            },
+            {
+              "verse": 2,
+              "text": "From the sons of Phinehas, Gershom; from the sons of Ithamar, Daniel; from the sons of David, Hattush;"
+            },
+            {
+              "verse": 3,
+              "text": "From the sons of Shecaniah; from the sons of Parosh, Zechariah; and with him were counted two hundred and fifty men."
+            },
+            {
+              "verse": 4,
+              "text": "From the sons of Pahath-moab, Elihoenai the son of Zerahiah; and with him were two hundred men."
+            },
+            {
+              "verse": 5,
+              "text": "From the sons of Zattu, Shecaniah the son of Jahaziel; and with him were three hundred men."
+            },
+            {
+              "verse": 6,
+              "text": "From the sons of Adin, Ebed the son of Jonathan; and with him were fifty men."
+            },
+            {
+              "verse": 7,
+              "text": "From the sons of Elam, Jeshaiah the son of Athaliah; and with him were seventy men."
+            },
+            {
+              "verse": 8,
+              "text": "From the sons of Shephatiah, Zebadiah the son of Michael; and with him were eighty men."
+            },
+            {
+              "verse": 9,
+              "text": "From the sons of Joab, Obadiah the son of Jehiel; and with him were two hundred eighteen men."
+            },
+            {
+              "verse": 10,
+              "text": "From the sons of Bani, Shelomith the son of Josiphiah; and with him were one hundred sixty men."
+            },
+            {
+              "verse": 11,
+              "text": "ከቤባይ ልጆች የቤባይ ልጅ ዘካርያስ፥ ከእርሱም ጋር ሃያ ስምንት ወንዶች።"
+            },
+            {
+              "verse": 12,
+              "text": "ከዓዝጋድ ልጆች የአቃጦን ልጅ፤ ዮሓናን፥ ከእርሱም ጋር መቶ ዐሥር ወንዶች።"
+            },
+            {
+              "verse": 13,
+              "text": "ከኋለኞቹ ከአዶኒቃም ልጆች ስማቸው ይህ ነው፤ ኤሊፋልጥ፥ ይኢኤል፥ ሰማአያ፥ ከእነርሱም ጋር ስድሳ ወንዶች።"
+            },
+            {
+              "verse": 14,
+              "text": "ከባጎዊ ልጆች ውታይና ዘቡድ፥ ከእነርሱም ጋር ሰባ ወንዶች።"
+            },
+            {
+              "verse": 15,
+              "text": "ወደ አኅዋም ወደሚፈስስ ወንዝ ሰበሰብኋቸው፤ በዚያም ሦስት ቀን ሰፈርን፤ ሕዝቡንና ካህናቱንም ስቈጥራቸው በዚያ ከሌዊ ልጆች ማንንም አላገኘሁም።"
+            },
+            {
+              "verse": 16,
+              "text": "ወደ አለቆቹም ወደ አልዓዛር፥ ወደ አርኤል፥ ወደ ሰማአያ፥ ወደ ሀሎናም፥ ወደ ያሪብ፥ ወደ ሄልናታን፥ ወደ ናታን፥ ወደ ዘካርያስ፥ ወደ ሜሱላም፥ ደግሞም ወደ ዐዋቂዎቹ ወደ ዮያሪብና ወደ ሄልናታን ላክሁ።"
+            },
+            {
+              "verse": 17,
+              "text": "በካሲፍያ ስፍራ ወደ ነበረው ወደ አለቃው ወደ አዶ ላክኋቸው፤ ለአምላካችን ቤትም አገልጋዮችን ያመጡልን ዘንድ በካሲፍያ ስፍራ ለሚኖሩት ለአዶና ለወንድሞቹ ለናታኒም የሚነግሩአቸውን በአፋቸው አደረግሁ።"
+            },
+            {
+              "verse": 18,
+              "text": "በላያችንም መልካም በሆነው በአምላካችን እጅ ከእስራኤል ልጅ ከሌዊ ልጅ ከሞሐሊ ልጆች ወገን የነበረውን አስተዋይ ሰው ሰራብያን፥ ከእርሱም ጋር ዐሥራ ስምንቱን ልጆቹንና ወንድሞቹን አመጡልን።"
+            },
+            {
+              "verse": 19,
+              "text": "ደግሞም አሴብያስን፥ ከእርሱም ጋር ከሜራሪ ልጆች ወገን የነበረውን ኢሳይያስን፥ ሃያውን ወንድሞቹንና ልጆቻቸውን።"
+            },
+            {
+              "verse": 20,
+              "text": "ሌዋውያንንም እንዲያገለግሉ ዳዊትና አለቆቹ ከሰጡአቸው ናታኒም ውስጥ ሁለት መቶ ሃያ ናታኒምን አመጡ፤ እነዚህም ሁሉ በስም በስማቸው ተሰበሰቡ።"
+            },
+            {
+              "verse": 21,
+              "text": "Before our God, let us bring forth ourselves, that He may show us the way of life for us and for our children, and for all our possessions; therefore, I proclaimed a fast beside the river Ahava."
+            },
+            {
+              "verse": 22,
+              "text": "The king said, “The hand of our God is for good upon all who seek Him; but His power and His wrath are against all those who forsake Him.” Thus we spoke, and we prayed to the king for deliverance from the enemy that was on the way, and we were greatly afraid."
+            },
+            {
+              "verse": 23,
+              "text": "Therefore, we fasted and sought our God, and He was entreated of us."
+            },
+            {
+              "verse": 24,
+              "text": "And of the chief priests, there were twelve men, the sons of Seriah and Hashabiah, and with them were ten of their brethren."
+            },
+            {
+              "verse": 25,
+              "text": "The king and his ministers, and the chief men who were present, all offered willingly unto our God’s house the gold and silver and the vessels, and they presented them as a freewill offering."
+            },
+            {
+              "verse": 26,
+              "text": "Six hundred fifty talents of silver, one hundred talents of silver vessels, and one hundred talents of gold."
+            },
+            {
+              "verse": 27,
+              "text": "Twenty gold basins of a thousand darics, and two vessels of fine, polished bronze, precious as gold, which I delivered into their hands."
+            },
+            {
+              "verse": 28,
+              "text": "And I said unto them, “Ye are sanctified unto the Lord; and the vessels are holy; the gold and the silver are a freewill offering unto the Lord God of your fathers.”"
+            },
+            {
+              "verse": 29,
+              "text": "And I commanded the priests and the Levites, and the chief of the fathers of Israel, to keep themselves and their brethren, until they had brought them into the chambers of the house of the Lord in Jerusalem, and to guard them until they had been weighed."
+            },
+            {
+              "verse": 30,
+              "text": "And the priests and the Levites were to carry the gold and the silver unto the house of our God in Jerusalem, and the vessels were to be received by weight."
+            },
+            {
+              "verse": 31,
+              "text": "በመጀመሪያውም ወር በዐሥራ ሁለተኛው ቀን ወደ ኢየሩሳሌም እንሄድ ዘንድ ከአኅዋ ወንዝ ተነሣን፤ የአምላካችንም እጅ በላያችን ነበረ፤ በመንገድም ከጠላትና ከሚሸምቅ ሰው እጅ አዳነን።"
+            },
+            {
+              "verse": 32,
+              "text": "ወደ ኢየሩሳሌምም ደረስን፤ በዚያም ሦስት ቀን ተቀመጥን።"
+            },
+            {
+              "verse": 33,
+              "text": "በአራተኛውም ቀን ብሩና ወርቁ፥ ዕቃዎቹም በአምላካችን ቤት በካህኑ በኦርያ ልጅ በሜሪሞት እጅ ተመዘኑ፤ ከእርሱም ጋር የፊንሐስ ልጅ አልዓዛር ነበረ፤ ከእነርሱም ጋር ሌዋውያን የኢያሱ ልጅ ኢዮዛብድና የቤንዊ ልጅ ናሕድያ ነበሩ።"
+            },
+            {
+              "verse": 34,
+              "text": "ሁሉም በቍጥርና በሚዛን ተመዘነ፤ ሚዛኑም ሁሉ በዚያ ጊዜ ተጻፈ።"
+            },
+            {
+              "verse": 35,
+              "text": "ከምርኮም የወጡት የምርኮኞች ልጆች ለእስራኤል አምላክ ለሚቃጠል መሥዋዕት ስለ እስራኤል ሁሉ ዐሥራ ሁለት ወይፈኖች፥ ዘጠና ስድስትም አውራ በጎች፥ ሰባ ሰባትም ጠቦቶች፥ ለኀጢአት መሥዋዕት ዐሥራ ሁለት አውራ ፍየሎችን አቀረቡ። ይህ ሁሉ ለእግዚአብሔር የሚቃጠል መሥዋዕት ነበረ።"
+            },
+            {
+              "verse": 36,
+              "text": "የንጉሡንም ትእዛዝ በወንዙ ማዶ ላሉት ለንጉሡ ሹሞችና ገዢዎች ሰጡ፤ እነርሱም ሕዝቡንና የእግዚአብሔርን ቤት አከበሩ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ይህም ከተፈጸመ በኋላ የሕዝቡ አለቆች ወደ እኔ ቀርበው፥ “የእስራኤል ሕዝብ ካህናቱም፥ ሌዋውያኑም፥ እንደ ከነዓናውያን፥ እንደ ኬጤዎናውያን፥ እንደ ፌርዜዎናውያን፦ እንደ ኢያቡሴዎናውያን፥ እንደ አሞናውያን፥ እንደ ሞዓባውያን፥ እንደ ግብፃውያንና እንደ አሞራውያን ርኵሰት ያደርጋሉ እንጂ ከምድር አሕዛብ አልተለዩም፤"
+            },
+            {
+              "verse": 2,
+              "text": "ለራሳቸውና ለልጆቻቸውም ሴቶች ልጆቻቸውን ወስደዋል፤ የተቀደሰውንም ዘር ከምድር አሕዛብ ጋር ደባልቀዋል፤ አስቀድሞም አለቆቹና ሹሞቹ በዚህ መተላለፍ መጀመሪያ ሆነዋል” አሉኝ።"
+            },
+            {
+              "verse": 3,
+              "text": "ይህንም ነገር በሰማሁ ጊዜ ልብሴንና መጐናጸፊያዬን ቀደድሁ፤ አዘንሁም፤ የራሴንና የጢሜንም ጠጕር ነጨሁ፤ ደንግጬም ተቀመጥሁ።"
+            },
+            {
+              "verse": 4,
+              "text": "ስለ ምርኮኞቹም መተላለፍ የእስራኤልን አምላክ ቃል የሚፈሩ ሁሉ ወደ እኔ ተሰበሰቡ፤ እኔም እስከ ሠርክ መሥዋዕት ድረስ ዐዝኜ ተቀመጥሁ።"
+            },
+            {
+              "verse": 5,
+              "text": "በሠርክም መሥዋዕት ጊዜ ልብሴና መጐናጸፊያዬ እንደ ተቀደደ ሆኖ ከመዋረዴ ተነሣሁ፤ በጕልበቴም ተንበርክኬ ወደ አምላኬ ወደ እግዚአብሔር እጄን ዘረጋሁ።"
+            },
+            {
+              "verse": 6,
+              "text": "እንዲህም አልሁ፥ “አምላኬ ሆይ፥ ኀጢአታችን በራሳችን ላይ በዝቶአልና፥ በደላችንም ወደ ሰማይ ከፍ ብሎአልና አምላኬ ሆይ፥ ፊቴን ወደ አንተ አነሣ ዘንድ አፍራለሁ፤ እፈራማለሁ።"
+            },
+            {
+              "verse": 7,
+              "text": "ከአባቶቻችን ዘመን ጀምረን እስከ ዛሬ ድረስ እጅግ በድለናል፤ ስለ ኀጢአታችን እኛና ልጆቻችን ንጉሦቻችን፥ ካህናቶቻችንም ለሰይፍና ለምርኮ፥ ለብዝበዛና ለዕፍረት በአሕዛብ ነገሥታት እጅ ተጣልን፤ እስከ ዛሬም ድረስ በፊታችን እፍረት እንኖራለን።"
+            },
+            {
+              "verse": 8,
+              "text": "አሁንም ቅሬታ ይተዉልን ዘንድ፥ በተቀደሰውም ስፍራው ኀይልን ይሰጠን ዘንድ፥ አምላካችንም ዐይናችንን ያበራ ዘንድ፥ በባርነትም ሳለን ጥቂት የሕይወት መታደስን ይሰጠን ዘንድ ለጥቂት ጊዜ ከአምላካችን ከእግዚአብሔር ጥቂት ዕረፍትን አገኘን።"
+            },
+            {
+              "verse": 9,
+              "text": "ባሪያዎቹ ነንና፥ አምላካችን ግን በባርነታችን አልተወንም፤ ቀለባችንን ይሰጡን ዘንድ፥ የአምላካችንንም ቤት ከፍ ከፍ ያደርጉ ዘንድ፥ የተፈታውንም ይጠግኑ ዘንድ፥ በይሁዳና በኢየሩሳሌምም ቅጥር ያደርጉልን ዘንድ በፋርስ ነገሥታት ፊት ሞገስን ሰጠን።"
+            },
+            {
+              "verse": 10,
+              "text": "አሁንስ ከዚህ በኋላ ምን እንላለን? አምላካችን ሆይ፥ ትእዛዝህን ትተናልና።"
+            },
+            {
+              "verse": 11,
+              "text": "\"Thus saith the Lord unto thy prophets, saying: 'You shall be delivered into a land that is filled with the abominations of the nations; and their abominations have reached from door to door.'\""
+            },
+            {
+              "verse": 12,
+              "text": "\"Now, that you may prosper, and that you may eat of the fruits of the land, let your children inherit it forever; do not give your daughters to the sons of the nations, nor take their daughters for your sons; do not diminish their peace and safety forever.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"Concerning our evil deeds and the great wickedness that we have committed, behold, O Lord our God, we have not diminished the multitude of our sins; yet, indeed, You have granted us mercy.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"We have turned back from your commandments, and we have joined ourselves with these nations that do wickedly; therefore, until death shall come upon us, do not be angry with us.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"O Lord God of Israel, You are righteous; even today, as we have come before You, we have become a burden; behold, we stand before You in our iniquities; therefore, there is none who can stand before You.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "sections": [
+        {
+          "title": "And the children of Israel, who were gathered from the land of the strangers, were to be scattered for the sake of doing so.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ዕዝራም እያለቀሰና በእግዚአብሔር ፊት እየወደቀ በጸለየና በተናዘዘ ጊዜ ከእስራኤል ዘንድ የወንድና የሴት፥ የሕፃናትም እጅግ ታላቅ ጉባኤ ወደ እርሱ ተሰበሰበ፤ ሕዝቡም እጅግ አለቀሱ።"
+            },
+            {
+              "verse": 2,
+              "text": "ከኤላም ልጆች ወገን የነበረውም የኢያሔል ልጅ ሴኬንያ ዕዝራን እንዲህ ብሎ ተናገረው፥ “አምላካችንን በድለናል፤ የምድርንም አሕዛብ እንግዶች ሴቶችን አግብተናል፤ አሁን ግን ስለዚህ ነገር ገና ለእስራኤል ተስፋ አለ።"
+            },
+            {
+              "verse": 3,
+              "text": "አሁንም እንደ ጌታዬና የአምላካችንን ትእዛዝ እንደሚፈሩት ምክር፥ ሴቶችን ሁሉ፥ ከእነርሱም የተወለዱትን እንሰድድ ዘንድ ከአምላካችን ጋር ቃል ኪዳን እናድርግ። ተነሥ እንደ አምላካችንም ትእዛዝ ገሥፃቸው፤ እንደ ሕጉም ያድርጉ፤"
+            },
+            {
+              "verse": 4,
+              "text": "ይህም ነገር ለአንተ ይገባልና፥ እኛም ከአንተ ጋር ነንና ተነሣ፤ በርታ፤ አድርገውም።”"
+            },
+            {
+              "verse": 5,
+              "text": "ዕዝራም ተነሣ፤ አለቆቹንና ካህናቱንም፥ ሌዋውያኑንም፥ እስራኤልን ሁሉ እንደዚህ ቃል ያደርጉ ዘንድ አማላቸው፤ እነርሱም ማሉ።"
+            },
+            {
+              "verse": 6,
+              "text": "ዕዝራም ከእግዚአብሔር ቤት ፊት ተነሥቶ ወደ ኤሊያሴብ ልጅ ወደ ዮሐናን ጓዳ ገባ፤ ስለ ምርኮኞቹም ኀጢአት ያለቅስ ነበርና ገብቶ እንጀራ አልበላም፤ ውኃም አልጠጣም።"
+            },
+            {
+              "verse": 7,
+              "text": "የምርኮ ልጆች ሁሉም ወደ ኢየሩሳሌም ይሰበሰቡ ዘንድ ወደ ይሁዳና ወደ ኢየሩሳሌም ዐዋጅ ነገረ"
+            },
+            {
+              "verse": 8,
+              "text": "“እስከ ሦስት ቀን ድረስ የማይመጣ ሁሉ እንደ ሽማግሎችና እንዳለቆች ምክር ከብቱ ሁሉ ይበዝበዝ፤ እርሱም ከምርኮው ጉባኤ ይለይ” ብሎ ዐዋጅ አስነገረ።"
+            },
+            {
+              "verse": 9,
+              "text": "ሦስት ቀንም ሳያልፍ በዘጠነኛው ወር ከወሩም በሃያኛው ቀን የይሁዳና የብንያም ሰዎች ሁሉ በኢየሩሳሌም ተሰበሰቡ። ሕዝቡም ሁሉ ስለዚህ ነገርና ስለ ታላቁ ዝናብ እየተንቀጠቀጡ በእግዚአብሔር ቤት ፊት ባለው አደባባይ ተቀመጡ።"
+            },
+            {
+              "verse": 10,
+              "text": "ካህኑም ዕዝራ ተነሥቶ፥ “ተላልፋችኋል፤ የእስራኤልን በደል ታበዙ ዘንድ እንግዶችን ሴቶች አግብታችኋል።"
+            },
+            {
+              "verse": 11,
+              "text": "Now therefore, give thanks to the God of our fathers, the Lord; and do that which brings joy; for they said, “Separate yourselves from the people of the land and from the women of the strangers.”"
+            },
+            {
+              "verse": 12,
+              "text": "And all the assembly answered with a loud voice, saying, “As you have spoken, so we will do.”"
+            },
+            {
+              "verse": 13,
+              "text": "However, the number of the people is great; and the time is a time of heavy rain; we cannot stand in the field; and in this matter we are greatly hindered, for this work is not the work of one day or two days."
+            },
+            {
+              "verse": 14,
+              "text": "And our leaders shall remain in the assembly; and for this reason, let the strong anger of our God turn away from us, that the women whom the strangers have taken may come to us at the appointed time; and with them, let all the inhabitants of the city, the servants and the ministers, come."
+            },
+            {
+              "verse": 15,
+              "text": "But behold, Jonathan the son of Asahel and the son of Teqwa, of the sons of Haziah, are with me in this matter; Meshullam and the Levite Shebatai were to assist them."
+            },
+            {
+              "verse": 16,
+              "text": "And the children of the exiles did thus; the priests, Ezra, and the leaders of the houses of their fathers, each one separated by their names; and in the tenth month, on the first day of the month, they sat down to examine the matter."
+            },
+            {
+              "verse": 17,
+              "text": "Until the first month and until the first day, let all those whom the women of the strangers have taken be examined and put away."
+            }
+          ]
+        },
+        {
+          "title": "And the children of Israel took wives from among the daughters of the Hizzites.",
+          "verses": [
+            {
+              "verse": 18,
+              "text": "And from the sons of the priests, there were found men who took the women of the strangers; from the sons of Jehoiada, the son of Eliashib, and from the brethren, Maaseiah, Eliezer, Joram, and Gedaliah."
+            },
+            {
+              "verse": 19,
+              "text": "They gave their hands to put away their wives; and because of their guilt, they offered a ram of the flock for their guilt."
+            },
+            {
+              "verse": 20,
+              "text": "And from the sons of Immer, Anani and Zebadiah."
+            },
+            {
+              "verse": 21,
+              "text": "And from the sons of Eram, Meshullam, Eliiah, Shemaiah, Jeheil, and Uzziah."
+            },
+            {
+              "verse": 22,
+              "text": "And from the sons of Pashhur, Elioenai, Maaseiah, Ishmael, Nethanel, Jeozabad, and Elasa."
+            },
+            {
+              "verse": 23,
+              "text": "And from the Levites, Jeozabad, Shimei, and Koliath, who is called Kolaiah, Pedaiah, and Jehudah, and also from the sons of Eleazar."
+            },
+            {
+              "verse": 24,
+              "text": "And from the singers, Eliashib; and from the gatekeepers, Shalom, Telem, and Uri."
+            },
+            {
+              "verse": 25,
+              "text": "And from the children of Israel, from the sons of Parosh, Ramiah, Uzziah, Melchiah, Miamin, Eliezer, Melchiah, and Beniah."
+            },
+            {
+              "verse": 26,
+              "text": "And from the sons of Elam, Matthew, Zechariah, Jeiel, Abdi, and Jerimoth, and Eliah."
+            },
+            {
+              "verse": 27,
+              "text": "And from the sons of Zattu, Elihoenai, Eliashib, Matthew, Ermot, Zabad, and Aziza."
+            },
+            {
+              "verse": 28,
+              "text": "The sons of Bebai: Johanan, Hananiah, Zebai, and Athlai."
+            },
+            {
+              "verse": 29,
+              "text": "The sons of Bani: Mesulam, Meluch, Adaiah, Jasub, Saal, and Ramoth."
+            },
+            {
+              "verse": 30,
+              "text": "The sons of Pahath-moab: Adna, Chelal, Benaiah, Maaseiah, Mattaniah, Bazaleel, Benui, and Manasseh."
+            },
+            {
+              "verse": 31,
+              "text": "The sons of Elam: Eleazar, Ishijah, Milcah, Shemaiah, and Shimeon."
+            },
+            {
+              "verse": 32,
+              "text": "Of Benjamin: Meluch, Shemariah."
+            },
+            {
+              "verse": 33,
+              "text": "The sons of Hashum: Mattaniah, Mattathah, Zabad, Eliphelet, Jerimoth, Manasseh, and Shemei."
+            },
+            {
+              "verse": 34,
+              "text": "The sons of Bani: Maadai, Amram, Uel."
+            },
+            {
+              "verse": 35,
+              "text": "Benaiah, Bedaiah, Chelkijah."
+            },
+            {
+              "verse": 36,
+              "text": "Waniah, Merimuth, Eliashib;"
+            },
+            {
+              "verse": 37,
+              "text": "Mattaniah, Mattinah, and the sons of Eshu."
+            },
+            {
+              "verse": 38,
+              "text": "The sons of Bani and the sons of Shemei;"
+            },
+            {
+              "verse": 39,
+              "text": "Shelemiah, Nathan, Hodaiah;"
+            },
+            {
+              "verse": 40,
+              "text": "Mechenadabai, Sesei, Sarai;"
+            },
+            {
+              "verse": 41,
+              "text": "Ezriel, Shelemiah, Shemariah;"
+            },
+            {
+              "verse": 42,
+              "text": "Shalom, Amariah, Joseph."
+            },
+            {
+              "verse": 43,
+              "text": "And from the sons of Nab, were Joel, Mattaniah, Zabad, Zabdenyah, Jadaiah, and Iehoel, the son of Naias."
+            },
+            {
+              "verse": 44,
+              "text": "All these were the leaders who took their wives; and from these wives, the sons of the leaders were born."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

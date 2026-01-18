@@ -1,0 +1,4115 @@
+{
+  "book_number": 58,
+  "book_name_am": "የዮሐንስ ወንጌል",
+  "book_short_name_am": "ዮሐ",
+  "book_name_en": "John",
+  "book_short_name_en": "John",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Concerning the Word of Preeminence",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "In the beginning was the Word; and the Word was with God; and the Word was God."
+            },
+            {
+              "verse": 2,
+              "text": "This was in the beginning with God."
+            },
+            {
+              "verse": 3,
+              "text": "All things were made through Him, and without Him nothing was made that was made."
+            },
+            {
+              "verse": 4,
+              "text": "In Him was life, and the life was the light of men;"
+            },
+            {
+              "verse": 5,
+              "text": "And the light shines in the darkness, and the darkness did not comprehend it."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the angel John the Baptist.",
+          "verses": [
+            {
+              "verse": 6,
+              "text": "There was a man sent from God, whose name was John."
+            },
+            {
+              "verse": 7,
+              "text": "He came as a witness, to bear witness of the Light, that all through him might believe."
+            },
+            {
+              "verse": 8,
+              "text": "He was not that Light, but was sent to bear witness of that Light."
+            },
+            {
+              "verse": 9,
+              "text": "That was the true Light which gives light to every man coming into the world."
+            },
+            {
+              "verse": 10,
+              "text": "He was in the world, and the world was made through Him, and the world did not know Him."
+            },
+            {
+              "verse": 11,
+              "text": "He came to His own, and His own did not receive Him."
+            },
+            {
+              "verse": 12,
+              "text": "But as many as received Him, to them He gave the right to become children of God, to those who believe in His name."
+            },
+            {
+              "verse": 13,
+              "text": "Who were born, not of blood, nor of the will of the flesh, nor of the will of man, but of God."
+            }
+          ]
+        },
+        {
+          "title": "For the word is flesh.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "And the Word became flesh; and He dwelt among us, and we beheld His glory, the glory as of the only begotten of the Father, full of grace and truth."
+            },
+            {
+              "verse": 15,
+              "text": "The witness of John cried out, saying with a loud voice, “This is He of whom I said, ‘He who comes after me is preferred before me, for He was before me.’”"
+            },
+            {
+              "verse": 16,
+              "text": "And we all received grace upon grace from His fullness."
+            },
+            {
+              "verse": 17,
+              "text": "For the law was given through Moses; but grace and truth came through Jesus Christ."
+            },
+            {
+              "verse": 18,
+              "text": "No one has seen God at any time; the only begotten Son, who is in the bosom of the Father, He has declared Him."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the testimony of John the Baptist.",
+          "verses": [
+            {
+              "verse": 19,
+              "text": "And the Jews asked him, saying, \"Who art thou?\" This is the testimony of John, when the priests and Levites were sent from Jerusalem to inquire of him."
+            },
+            {
+              "verse": 20,
+              "text": "He answered them, saying, \"I am not the Christ,\" and thus he did not deny."
+            },
+            {
+              "verse": 21,
+              "text": "\"What then? Art thou Elias?\" they asked him. He said, \"I am not.\" \"Art thou that prophet?\" they inquired. He answered, \"I am not.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"Who art thou then? That we may give an answer to those who sent us; what sayest thou of thyself?\" they questioned."
+            },
+            {
+              "verse": 23,
+              "text": "He said, \"I am the voice of one crying in the wilderness, 'Make straight the way of the Lord,' as said the prophet Isaiah.\""
+            },
+            {
+              "verse": 24,
+              "text": "And those who were sent were of the Pharisees."
+            },
+            {
+              "verse": 25,
+              "text": "\"If thou be not the Christ, nor Elias, nor that prophet, why dost thou baptize?\" they asked him."
+            },
+            {
+              "verse": 26,
+              "text": "John answered them, saying, \"I baptize with water; but there standeth one among you whom ye know not.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"He it is, who coming after me is preferred before me, whose shoe's latchet I am not worthy to unloose.\""
+            },
+            {
+              "verse": 28,
+              "text": "These things were done in Bethabara beyond Jordan, where John was baptizing."
+            },
+            {
+              "verse": 29,
+              "text": "And when John came to Him, our Lord Jesus, he said, \"Behold, the Lamb of God, who takes away the sin of the world.\""
+            },
+            {
+              "verse": 30,
+              "text": "\"The one who was before me is greater than I, for He was before me; this is what I spoke concerning Him.\""
+            },
+            {
+              "verse": 31,
+              "text": "\"I did not know Him; but I came baptizing with water, that He might be revealed to Israel.\""
+            },
+            {
+              "verse": 32,
+              "text": "And John bore witness, saying, \"I saw the Spirit descending from heaven like a dove and it remained upon Him.\""
+            },
+            {
+              "verse": 33,
+              "text": "\"I did not know Him either; but He who sent me to baptize with water said to me, 'Upon whom you see the Spirit descending and remaining on Him, this is He who baptizes with the Holy Spirit.'\""
+            },
+            {
+              "verse": 34,
+              "text": "\"And I have seen and testified that this is the Son of God.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the first disciples.",
+          "verses": [
+            {
+              "verse": 35,
+              "text": "And in the same manner, John remained with the two disciples."
+            },
+            {
+              "verse": 36,
+              "text": "Our Lord Jesus, as He walked, beheld and said, \"Behold, the Lamb of God, who takes away the sin of the world.\""
+            },
+            {
+              "verse": 37,
+              "text": "And the two disciples, hearing this, followed our Lord Jesus."
+            },
+            {
+              "verse": 38,
+              "text": "And our Lord Jesus, turning and seeing them follow, said unto them, \"What seek ye?\""
+            },
+            {
+              "verse": 39,
+              "text": "They said unto Him, \"Rabbi, which is to say, Master, where dwellest Thou?\""
+            },
+            {
+              "verse": 40,
+              "text": "He said unto them, \"Come and see.\" They came and saw where He dwelt, and abode with Him that day; for it was about the tenth hour."
+            },
+            {
+              "verse": 41,
+              "text": "One of the two who heard John speak and followed Him was Andrew, Simon Peter's brother."
+            },
+            {
+              "verse": 42,
+              "text": "He first findeth his own brother Simon, and saith unto him, \"We have found the Messiah, which is, being interpreted, the Christ.\""
+            },
+            {
+              "verse": 43,
+              "text": "And he brought him to Jesus. And when Jesus beheld him, He said, \"Thou art Simon the son of Jona: thou shalt be called Cephas,\" which is by interpretation, A stone."
+            }
+          ]
+        },
+        {
+          "title": "Concerning Philip and Nathanael.",
+          "verses": [
+            {
+              "verse": 44,
+              "text": "በማግሥቱም ጌታችን ኢየሱስ ወደ ገሊላ ሊሄድ ወደደ፤ ፊልጶስንም አገኘውና “ተከተለኝ” አለው።"
+            },
+            {
+              "verse": 45,
+              "text": "ፊልጶስ ግን ከእንድርያስና ከጴጥሮስ ከተማ ከቤተ ሳይዳ ነበር።"
+            },
+            {
+              "verse": 46,
+              "text": "ፊልጶስም ናትናኤልን አገኘውና፥ “ሙሴ በኦሪት፥ ነቢያትም ስለ እርሱ የጻፉለትን የዮሴፍን ልጅ የናዝሬቱን ኢየሱስን አገኘነው” አለው።"
+            },
+            {
+              "verse": 47,
+              "text": "ናትናኤልም፥ “በውኑ ከናዝሬት ደግ ሰው ሊወጣ ይቻላልን?” አለው፤ ፊልጶስም፥ “መጥተህ እይ” አለው።"
+            },
+            {
+              "verse": 48,
+              "text": "ጌታችን ኢየሱስም ናትናኤልን ወደ እርሱ ሲመጣ ባየው ጊዜ ስለ እርሱ “እነሆ፥ በልቡ ተንኰል የሌለበት እውነተኛ እስራኤላዊ ይህ ነው” አለ።"
+            },
+            {
+              "verse": 49,
+              "text": "ናትናኤልም፥ “በየት ታውቀኛለህ?” አለው፤ ጌታችን ኢየሱስም መልሶ፥ “ገና ፊልጶስ ሳይጠራህ በበለስ ዛፍ ሥር ሳለህ አይችሃለሁ” አለው።"
+            },
+            {
+              "verse": 50,
+              "text": "ናትናኤልም መልሶ፥ “መምህር ሆይ፥ በእውነት አንተ የእግዚአብሔር ልጅ ነህ፤ የእስራኤልም ንጉሥ አንተ ነህ” አለው።"
+            },
+            {
+              "verse": 51,
+              "text": "ጌታችን ኢየሱስም መልሶ፥ “በበለስ ዛፍ ሥር አየሁህ ስለ አልሁህ አመንህን? ከዚህ የሚበልጥ ታያለህ” አለው።"
+            },
+            {
+              "verse": 52,
+              "text": "“እውነት እውነት እላችኋለሁ፤ ከእንግዲህ ወዲህ ሰማያት ሲከፈቱ፥ የእግዚአብሔርም መላእክት ወደ ሰው ልጅ ሲወርዱና ሲወጡ ታያላችሁ” አላቸው።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": "Concerning the marriage that was accomplished in accordance with the covenant.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And on the third day, there was a wedding in the region of Galilee; and the mother of our Lord Jesus was there."
+            },
+            {
+              "verse": 2,
+              "text": "Our Lord Jesus and His disciples were also invited to the wedding."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the sign of the mother.",
+          "verses": [
+            {
+              "verse": 3,
+              "text": "And when the wine had run out, the mother of our Lord Jesus said to Him, \"They have no wine.\""
+            },
+            {
+              "verse": 4,
+              "text": "Our Lord Jesus said to her, \"Woman, what does this have to do with me? My hour has not yet come.\""
+            },
+            {
+              "verse": 5,
+              "text": "His mother said to the servants, \"Do whatever he tells you.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the first miracle.",
+          "verses": [
+            {
+              "verse": 6,
+              "text": "በዚያም እንደ አይሁድ ልማድ የሚያነጹባቸው ስድስት የድንጋይ ጋኖች ነበሩ፤ ከእነርሱም እያንዳንዱ ሁለት ወይም ሦስት እንስራ ይይዙ ነበር።"
+            },
+            {
+              "verse": 7,
+              "text": "ጌታችን ኢየሱስም፥ “ጋኖቹን ውኃ ሙሉአቸው” አላቸው፤ እስከ አፋቸውም እስከ ላይ ሞሉአቸው።"
+            },
+            {
+              "verse": 8,
+              "text": "“አሁንም ቅዱና ወስዳችሁ ለአሳዳሪው ስጡት” አላቸው፤ ወስደውም ሰጡት።"
+            },
+            {
+              "verse": 9,
+              "text": "አሳዳሪውም ያን የወይን ጠጅ የሆነውን ውኃ ቀምሶ አደነቀ፤ ከወዴት እንደ መጣም አላወቀም፤ የቀዱት አሳላፊዎች ግን የወይን ጠጅ የሆነውን ያን ውኃ ያውቁ ነበር። ውኃዉን የሞሉ እነርሱ ነበሩና።"
+            },
+            {
+              "verse": 10,
+              "text": "አሳዳሪውም ሙሽራውን ጠርቶ፥ “ሰው ሁሉ መልካሙን የወይን ጠጅ አስቀድሞ ያጠጣል፤ ከጠገቡ በኋላም ተርታውን ያመጣል፤ አንተ ግን መልካሙን የወይን ጠጅ እስካሁን አቈየህ” አለው።"
+            },
+            {
+              "verse": 11,
+              "text": "ጌታችን ኢየሱስም በቃና ዘገሊላ ያደረገው የተአምራት መጀመሪያ ይህ ነው፤ ክብሩንም ገለጠ፤ ደቀ መዛሙርቱም አመኑበት።"
+            }
+          ]
+        },
+        {
+          "title": "And concerning His coming forth unto Jerusalem.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "ከዚህም በኋላ እርሱና እናቱ፥ ወንድሞቹና ደቀ መዛሙርቱም ወደ ቅፍርናሆም ወረዱ፤ በዚያም ብዙ ያይደለ ጥቂት ቀን ተቀመጡ።"
+            },
+            {
+              "verse": 13,
+              "text": "የአይሁድም የፋሲካቸው በዓል ቀርቦ ነበር፤ ጌታችን ኢየሱስም ወደ ኢየሩሳሌም ወጣ።"
+            },
+            {
+              "verse": 14,
+              "text": "በቤተ መቅደስም በሬዎችንና በጎችን፥ ርግቦችንም የሚሸጡትን፥ ገንዘብ ለዋጮችንም ተቀምጠው አገኘ።"
+            },
+            {
+              "verse": 15,
+              "text": "የገመድም ጅራፍ አበጀ፤ በጎችንና በሬዎችን፥ ሁሉንም ከቤተ መቅደስ አስወጣ፤ የለዋጮችንም ገንዘብ በተነ፤ ገበታዎቻቸውንም ገለበጠ።"
+            },
+            {
+              "verse": 16,
+              "text": "ርግብ ሻጮችንም፥ “ይህን ከዚህ አውጡ፤ የአባቴን ቤት የንግድ ቤት አታድርጉ” አላቸው።"
+            },
+            {
+              "verse": 17,
+              "text": "ደቀ መዛሙርቱም፥ “የቤትህ ቅናት በላኝ” የሚል ቃል ተጽፎ እንዳለ ዐሰቡ።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning His death and concerning His resurrection.",
+          "verses": [
+            {
+              "verse": 18,
+              "text": "The Jews answered Him, \"What sign do You show us for doing these things?\""
+            },
+            {
+              "verse": 19,
+              "text": "Jesus answered them, \"Destroy this temple, and in three days I will raise it up.\""
+            },
+            {
+              "verse": 20,
+              "text": "The Jews then said, \"It has taken forty-six years to build this temple, and will You raise it up in three days?\""
+            },
+            {
+              "verse": 21,
+              "text": "But He was speaking about the temple of His body."
+            },
+            {
+              "verse": 22,
+              "text": "When therefore He was raised from the dead, His disciples remembered that He had said this; and they believed the Scripture and the word that Jesus had spoken."
+            }
+          ]
+        },
+        {
+          "title": "In the feast, many of them concerning their faith.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "Our Lord Jesus, during the feast of Passover while in Jerusalem, many who beheld the miracles He performed believed in His name."
+            },
+            {
+              "verse": 24,
+              "text": "Yet He, our Lord Jesus, did not entrust Himself to them, for He knew all men."
+            },
+            {
+              "verse": 25,
+              "text": "And He did not need anyone to bear witness concerning man, for He Himself knew what was in man."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "The Pharisee Nicodemus came unto Jesus concerning His coming.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ከፈሪሳውያን ወገን የአይሁድ አለቃ የሆነ ኒቆዲሞስ የተባለ አንድ ሰው ነበረ።"
+            },
+            {
+              "verse": 2,
+              "text": "እርሱም በሌሊት ወደ ጌታችን ኢየሱስ መጥቶ እንዲህ አለው፥ “መምህር ሆይ፥ ልታስተምር ከእግዚአብሔር ዘንድ እንደ መጣህ እናውቃለን፤ እግዚአብሔር ከእርሱ ጋር ከሆነ በቀር አንተ የምታደርገውን ይህን ተአምር ሊያደርግ የሚችል የለምና።”"
+            },
+            {
+              "verse": 3,
+              "text": "ጌታችን ኢየሱስም መልሶ፥ “እውነት እውነት እልሀለሁ፤ ዳግመኛ ያልተወለደ ሰው የእግዚአብሔርን መንግሥት ለማየት አይችልም” አለው።"
+            },
+            {
+              "verse": 4,
+              "text": "ኒቆዲሞስም፥ “ሰው ከሸመገለ በኋላ ዳግመኛ መወለድ እንደምን ይችላል? ዳግመኛ ይወለድ ዘንድ ወደ እናቱ ማኅፀን ተመልሶ መግባት ይችላልን?” አለው።"
+            },
+            {
+              "verse": 5,
+              "text": "ጌታችን ኢየሱስም መልሶ እንዲህ አለው፥ “እውነት እውነት እልሀለሁ፤ ዳግመኛ ከውኃና ከመንፈስ ቅዱስ ያልተወለደ ሰው ወደ እግዚአብሔር መንግሥት ሊገባ አይችልም።"
+            },
+            {
+              "verse": 6,
+              "text": "ከሥጋ የተወለደ ሥጋ ነውና፤ ከመንፈስም የተወለደ መንፈስ ነውና።"
+            },
+            {
+              "verse": 7,
+              "text": "ስለዚህም ዳግመኛ ልትወለዱ ይገባችኋል ስለ አልሁህ አታድንቅ።"
+            },
+            {
+              "verse": 8,
+              "text": "ነፋስ ወደ ወደደው ይነፍሳልና፤ ድምፁንም ትሰማለህ፤ ነገር ግን ከየት እንደሚመጣ ወዴትም እንደሚሄድ አታውቅም፤ ከመንፈስ የሚወለድ ሁሉ እንዲሁ ነው።”"
+            },
+            {
+              "verse": 9,
+              "text": "ኒቆዲሞስም መልሶ፥ “ይህ ሊሆን እንዴት ይቻላል?” አለው።"
+            },
+            {
+              "verse": 10,
+              "text": "ጌታችን ኢየሱስም መልሶ፥ “አንተ የእስራኤል መምህራቸው ነህ፤ ነገር ግን እንዴት ይህን አታውቅም?” አለው።"
+            },
+            {
+              "verse": 11,
+              "text": "እውነት እውነት እልሃለሁ፤ የምናውቀውን እንናገራለን፤ ያየነውንም እንመሰክራለን፤ ነገር ግን ምስክርነታችንን አትቀበሉንም።"
+            },
+            {
+              "verse": 12,
+              "text": "በምድር ያለውን ስነግራችሁ ካላመናችሁኝ በሰማይ ያለውን ብነግራችሁ እንዴት ታምኑኛላችሁ?"
+            },
+            {
+              "verse": 13,
+              "text": "ከሰማይ ከወረደው የሰው ልጅ በቀር ወደ ሰማይ የወጣ የለም፤ እርሱም በሰማይ የሚኖረው ነው።"
+            },
+            {
+              "verse": 14,
+              "text": "ሙሴ በምድረ በዳ እባቡን እንደ ሰቀለው የሰው ልጅ እንዲሁ ይሰቀል ዘንድ አለው።"
+            },
+            {
+              "verse": 15,
+              "text": "ያመነበት ሁሉ ለዘለዓለም ሕያው ሆኖ እንዲኖር እንጂ እንዳይጠፋ።"
+            },
+            {
+              "verse": 16,
+              "text": "በእርሱ የሚያምን ሁሉ የዘለዓለም ሕይወትን እንዲያገኝ እንጂ እንዳይጠፋ እግዚአብሔር አንድያ ልጁን ቤዛ አድርጎ እስኪሰጥ ድረስ ዓለሙን እንዲህ ወዶታልና።"
+            },
+            {
+              "verse": 17,
+              "text": "ዓለም በእርሱ ይድን ዘንድ ነው እንጂ በዓለም እንዲፈርድ እግዚአብሔር ልጁን ወደዚህ ዓለም አልላከውምና።"
+            },
+            {
+              "verse": 18,
+              "text": "በእርሱ ያመነ አይፈረድበትም፤ በእርሱ ያላመነ ግን ፈጽሞ ተፈርዶበታል፤ በአንዱ በእግዚአብሔር ልጅ ስም አላመነምና።"
+            },
+            {
+              "verse": 19,
+              "text": "ፍርዱም ይህ ነው፤ ብርሃን ወደ ዓለም መጥቶአልና፤ ሰውም ሥራው ክፉ ስለሆነ ከብርሃን ይልቅ ጨለማን መርጦአልና።"
+            },
+            {
+              "verse": 20,
+              "text": "ሥራው ክፉ የሆነ ሁሉ ብርሃንን ይጠላልና፤ ክፉም ስለሆነ ሥራው እንዳይገለጥበት ወደ ብርሃን አይመጣም።"
+            },
+            {
+              "verse": 21,
+              "text": "He who works truth shall have his work made manifest, and he shall come unto the light; for he worketh for God."
+            }
+          ]
+        },
+        {
+          "title": "Our Lord went unto the land of Judah.",
+          "verses": [
+            {
+              "verse": 22,
+              "text": "ከዚህም በኋላ ጌታችን ኢየሱስ ከደቀ መዛሙርቱ ጋር ወደ ይሁዳ ምድር ሄደ፤ በዚያም እያጠመቀ አብሮአቸው ተቀመጠ።"
+            },
+            {
+              "verse": 23,
+              "text": "ዮሐንስም በዮርዳኖስ ማዶ በሳሌም አቅራቢያ በሄኖን ያጠምቅ ነበር፤ በዚያ ብዙ ውኃ ነበርና፤ ብዙ ሰዎችም ወደ እርሱ እየመጡ ያጠምቃቸው ነበር።"
+            },
+            {
+              "verse": 24,
+              "text": "ዮሐንስ ገና ወደ ወኅኒ ቤት አልገባም ነበርና።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the dispute regarding the cleansing.",
+          "verses": [
+            {
+              "verse": 25,
+              "text": "ከዚህም በኋላ በዮሐንስ ደቀ መዛሙርትና በአይሁድ መካከል ስለ ማንጻት ክርክር ሆነ፤"
+            },
+            {
+              "verse": 26,
+              "text": "ወደ ዮሐንስም ሄደው፥ “መምህር ሆይ፥ በዮርዳኖስ ማዶ ካንተ ጋር የነበረው፥ አንተም የመሰከርህለት እርሱ እነሆ፥ ያጠምቃል፤ ሁሉም ወደ እርሱ ይሄዳል” አሉት።"
+            },
+            {
+              "verse": 27,
+              "text": "ዮሐንስም መልሶ እንዲህ አለ፥ “ሰው ከሰማይ ካልተሰጠው በስተቀር እርሱ ራሱ ጸጋን ገንዘብ ሊያደርግ ምንም አይችልም።"
+            },
+            {
+              "verse": 28,
+              "text": "እኔ ክርስቶስ አይደለሁም፤ ነገር ግን እንድሰብክለት ከእርሱ በፊት ተልኬአለሁ እንዳልኋችሁ እናንተ ራሳችሁ ምስክሮች ናችሁ።"
+            },
+            {
+              "verse": 29,
+              "text": "ሙሽራ ያለችው ሙሽራ ነው፤ ቆሞ የሚሰማው የሙሽራው ሚዜ ግን በሙሽራው ቃል እጅግ ደስ ይለዋል፤ የእኔ ደስታ አሁን ተፈጸመች።"
+            },
+            {
+              "verse": 30,
+              "text": "የእርሱ ትበዛለች፤ የእኔ ግን ታንስ ዘንድ ይገባል።”"
+            },
+            {
+              "verse": 31,
+              "text": "ከላይ የመጣው ከሁሉ በላይ ነው፤ ከምድር የተገኘውም ምድራዊ ነው፤ የምድሩንም ይናገራል፤ ከሰማይ የመጣው ግን ከሁሉ በላይ ነው።"
+            },
+            {
+              "verse": 32,
+              "text": "ባየውና በሰማው ይመሰክራል፤ ነገር ግን ምስክርነቱን የሚቀበለው የለም።"
+            },
+            {
+              "verse": 33,
+              "text": "ምስክርነቱን የተቀበለ ግን እግዚአብሔር እውነተኛ እንደ ሆነ አተመ።"
+            },
+            {
+              "verse": 34,
+              "text": "እግዚአብሔር የላከው የእግዚአብሔርን ቃል ይናገራል፤ እግዚአብሔር መንፈሱን ሰፍሮ አይሰጥምና።"
+            },
+            {
+              "verse": 35,
+              "text": "For the Father loves His Son, and has given all things into His hand."
+            },
+            {
+              "verse": 36,
+              "text": "He who believes in the Son has everlasting life; but he who does not believe in the Son shall not see life, but the wrath of God abides on him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": "And they went unto Galilee.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Our Lord Jesus, more than John, knew the Pharisees who were listening to the disciples as they were gathering like a flock."
+            },
+            {
+              "verse": 2,
+              "text": "However, His disciples did not gather themselves, but He, our Lord Jesus, did not gather them."
+            },
+            {
+              "verse": 3,
+              "text": "And the land of Judah was left behind, and He went to Galilee."
+            },
+            {
+              "verse": 4,
+              "text": "As He was passing through Samaria,"
+            },
+            {
+              "verse": 5,
+              "text": "Jacob, having given to his son Joseph, in the place of the well, arrived at the city which is called Samaria."
+            },
+            {
+              "verse": 6,
+              "text": "And there was the well of Jacob. Our Lord Jesus, being weary from His journey, sat thus by the well; and it was about the sixth hour."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Samaritan woman.",
+          "verses": [
+            {
+              "verse": 7,
+              "text": "Behold, a woman of Samaria came to draw water; and our Lord Jesus said unto her, \"Give me to drink.\""
+            },
+            {
+              "verse": 8,
+              "text": "For His disciples had gone away unto the city to buy food."
+            },
+            {
+              "verse": 9,
+              "text": "Then said the woman of Samaria unto Him, \"How is it that thou, being a Jew, askest drink of me, which am a woman of Samaria? For the Jews have no dealings with the Samaritans.\""
+            },
+            {
+              "verse": 10,
+              "text": "Jesus answered and said unto her, \"If thou knewest the gift of God, and who it is that saith to thee, 'Give me to drink,' thou wouldest have asked of Him, and He would have given thee living water.\""
+            },
+            {
+              "verse": 11,
+              "text": "The woman saith unto Him, \"Sir, thou hast nothing to draw with, and the well is deep; from whence then hast thou that living water?\""
+            },
+            {
+              "verse": 12,
+              "text": "Art thou greater than our father Jacob, which gave us the well, and drank thereof himself, and his children, and his cattle?\""
+            },
+            {
+              "verse": 13,
+              "text": "Jesus answered and said unto her, \"Whosoever drinketh of this water shall thirst again.\""
+            },
+            {
+              "verse": 14,
+              "text": "But whosoever drinketh of the water that I shall give him shall never thirst; but the water that I shall give him shall be in him a well of water springing up into everlasting life.\""
+            },
+            {
+              "verse": 15,
+              "text": "The woman saith unto Him, \"Sir, give me this water, that I thirst not, neither come hither to draw.\""
+            },
+            {
+              "verse": 16,
+              "text": "Jesus saith unto her, \"Go, call thy husband, and come hither.\""
+            },
+            {
+              "verse": 17,
+              "text": "The woman replied, saying, \"I have no husband.\" Our Lord Jesus said unto her, \"Thou hast spoken well in saying, 'I have no husband.'\""
+            },
+            {
+              "verse": 18,
+              "text": "\"For thou hast had five husbands; and he whom thou now hast is not thy husband. This thou hast spoken truly.\""
+            },
+            {
+              "verse": 19,
+              "text": "The woman said unto Him, \"My Lord, I perceive that Thou art a prophet.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"Our fathers worshipped in this mountain; and ye say that in Jerusalem is the place where men ought to worship.\""
+            },
+            {
+              "verse": 21,
+              "text": "Our Lord Jesus said unto her, \"Woman, believe Me, the hour cometh when ye shall neither in this mountain, nor yet at Jerusalem, worship the Father.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"Ye worship ye know not what; we know what we worship: for salvation is of the Jews.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"But the hour cometh, and now is, when the true worshippers shall worship the Father in spirit and in truth: for the Father seeketh such to worship Him.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"God is a Spirit: and they that worship Him must worship Him in spirit and in truth.\""
+            },
+            {
+              "verse": 25,
+              "text": "The woman said unto Him, \"I know that Messiah cometh, which is called Christ: when He is come, He will tell us all things.\""
+            },
+            {
+              "verse": 26,
+              "text": "Our Lord Jesus said unto her, \"I that speak unto thee am He.\""
+            },
+            {
+              "verse": 27,
+              "text": "And at that time, the disciples came; for they were afraid to speak with a woman. Yet there was none who said, \"What do you seek? Or why do you speak with her?\""
+            },
+            {
+              "verse": 28,
+              "text": "And the woman left her water jar and went into the city; and she spoke to the people."
+            },
+            {
+              "verse": 29,
+              "text": "\"Come, see a man who told me all that I ever did. Can this be the Christ?\""
+            },
+            {
+              "verse": 30,
+              "text": "They went out of the city and came to Him."
+            },
+            {
+              "verse": 31,
+              "text": "Then the disciples said to Him, \"Rabbi, eat.\""
+            },
+            {
+              "verse": 32,
+              "text": "But our Lord Jesus said to them, \"I have food to eat of which you do not know.\""
+            },
+            {
+              "verse": 33,
+              "text": "And the disciples said to one another, \"Has anyone brought Him anything to eat?\""
+            },
+            {
+              "verse": 34,
+              "text": "Jesus said to them, \"My food is to do the will of Him who sent Me, and to finish His work.\""
+            },
+            {
+              "verse": 35,
+              "text": "Do you not say, 'There are still four months and then comes the harvest'? Behold, I say to you, lift up your eyes and look at the fields, for they are already white for harvest."
+            },
+            {
+              "verse": 36,
+              "text": "The harvest is plentiful, but the laborers are few; therefore pray the Lord of the harvest to send out laborers into His harvest."
+            },
+            {
+              "verse": 37,
+              "text": "One sows, and another reaps; this saying is indeed true."
+            },
+            {
+              "verse": 38,
+              "text": "I have sent you to reap that for which you have not labored; others have labored, and you have entered into their labor."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Samaritans",
+          "verses": [
+            {
+              "verse": 39,
+              "text": "“የሠራሁትን ሁሉ ነገረኝ” ብላ የመሰከረችው ሴት ስለ ነገረቻቸውም ከዚያች ከሰማርያ ከተማ ብዙዎች አመኑበት።"
+            },
+            {
+              "verse": 40,
+              "text": "ሳምራውያንም ሁሉ ወደ እርሱ መጥተው በእነርሱ ዘንድ እንዲኖር ማለዱት፤ ሁለት ቀንም ያህል በዚያ ተቀመጠ።"
+            },
+            {
+              "verse": 41,
+              "text": "ስለ ቃሉም እጅግ ብዙዎች አመኑበት።"
+            },
+            {
+              "verse": 42,
+              "text": "ሴቲቱንም፥ “እኛ ራሳችን ይህ በእውነት የዓለም መድኀኒት ክርስቶስ እንደ ሆነ ሰምተንና ተረድተን ነው እንጂ በአንቺ ቃል ያመንበት አይደለም” አሏት።"
+            }
+          ]
+        },
+        {
+          "title": "As they received it, O Galileans.",
+          "verses": [
+            {
+              "verse": 43,
+              "text": "After two days, our Lord Jesus departed and went to Galilee."
+            },
+            {
+              "verse": 44,
+              "text": "A prophet is not honored in his own country; thus, he himself, our Lord Jesus, was despised."
+            },
+            {
+              "verse": 45,
+              "text": "And when he entered Galilee, the Galileans received him; for they had gone to the feast and had witnessed the miracle he performed in Jerusalem on the day of the feast."
+            },
+            {
+              "verse": 46,
+              "text": "Our Lord Jesus also went again to the region of Galilee, to the place where he had performed the miracle of turning water into wine at Cana. And there was a certain man, one of the royal family, whose son was sick at Capernaum."
+            },
+            {
+              "verse": 47,
+              "text": "And he, our Lord Jesus, as he came from Judea to Galilee, at that time, went to him; for he was near to death, and he sought him that he might heal his son."
+            },
+            {
+              "verse": 48,
+              "text": "Our Lord Jesus said, \"Unless you see signs and wonders, you will not believe.\""
+            },
+            {
+              "verse": 49,
+              "text": "That man, who was of the royal family, said, \"Sir, come down before my child dies.\""
+            },
+            {
+              "verse": 50,
+              "text": "Our Lord Jesus said, \"Go; your son lives.\" And that man believed the word that our Lord Jesus spoke to him and went on his way."
+            },
+            {
+              "verse": 51,
+              "text": "As he was going down, his servants met him and said, \"Your son lives.\""
+            },
+            {
+              "verse": 52,
+              "text": "And he asked them the hour when he began to recover; and they said to him, \"Yesterday at the seventh hour the fever left him.\""
+            },
+            {
+              "verse": 53,
+              "text": "አባቱም፥ ጌታችን ኢየሱስ፥ “ልጅህ ድኖአል” ባለበት ሰዓት እንደ ሆነች ዐወቀ፤ እርሱም፥ ቤተ ሰቦቹም ሁሉ አመኑ።"
+            },
+            {
+              "verse": 54,
+              "text": "ዳግመኛም ጌታችን ኢየሱስ ከይሁዳ ወደ ገሊላ መጥቶ ያደረገው ሁለተኛው ተአምር ይህ ነው።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "Our Lord has delivered us as He has promised.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ከዚህም በኋላ በአይሁድ በዓል እንዲህ ሆነ፤ ጌታችን ኢየሱስ ወደ ኢየሩሳሌም ወጣ።"
+            },
+            {
+              "verse": 2,
+              "text": "በኢየሩሳሌምም በበጎች በር አጠገብ መጠመቂያ ነበረች፤ ስምዋንም በዕብራይስጥ ቤተ ሳይዳ ይሉአታል፤ አምስት እርከኖችም ነበሩአት።"
+            },
+            {
+              "verse": 3,
+              "text": "በዚያም ዕውሮችና አንካሶች፥ ሰውነታቸውም የሰለለ ብዙ ድውያን ተኝተው የውኃዉን መናወጥ ይጠባበቁ ነበር።"
+            },
+            {
+              "verse": 4,
+              "text": "የእግዚአብሔር መልአክ ወደ መጠመቂያዉ ወርዶ ውኃዉን በሚያናውጠው ጊዜ፥ ከውኃዉ መናወጥ በኋላ በመጀመሪያ ወርዶ የሚጠመቅ ካለበት ደዌ ሁሉ ይፈወስ ነበርና።"
+            },
+            {
+              "verse": 5,
+              "text": "በዚያም ከታመመ ሠላሳ ስምንት ዓመት የሆነው አንድ ሰው ነበር።"
+            },
+            {
+              "verse": 6,
+              "text": "ጌታችን ኢየሱስም ያን ሰው በአልጋዉ ተኝቶ ባየ ጊዜ በደዌ ብዙ ዘመን እንደ ቈየ ዐውቆ፥ “ልትድን ትወዳለህን?” አለው።"
+            },
+            {
+              "verse": 7,
+              "text": "ድውዩም መልሶ፥ “አዎን ጌታዬ ሆይ፥ ነገር ግን ውኃዉ በተናወጠ ጊዜ ወደ መጠመቂያዉ የሚያወርደኝ ሰው የለኝም፤ እኔ በምመጣበት ጊዜ ሌላው ቀድሞኝ ይወርዳል” አለው።"
+            },
+            {
+              "verse": 8,
+              "text": "ጌታችን ኢየሱስም፥ “ተነሥና አልጋህን ተሸክመህ ሂድ” አለው።"
+            },
+            {
+              "verse": 9,
+              "text": "ወዲያውኑም ያ ሰው ድኖ አልጋውን ተሸክሞ ሄደ፤ ያች ቀንም ሰንበት ነበረች።"
+            },
+            {
+              "verse": 10,
+              "text": "አይሁድም የዳነውን ሰው፥ “ዛሬ ሰንበት ነው፤ አልጋህን ልትሸከም አይገባህም” አሉት።"
+            },
+            {
+              "verse": 11,
+              "text": "And He answered, “He who healed me said to me, ‘Take up your bed and walk.’”"
+            },
+            {
+              "verse": 12,
+              "text": "They asked Him, “Who is the man who said to you, ‘Take up your bed and walk’?”"
+            },
+            {
+              "verse": 13,
+              "text": "But concerning the one who had been healed, I did not know who He was; for Jesus had withdrawn, a multitude being in that place."
+            },
+            {
+              "verse": 14,
+              "text": "Afterward, Jesus found him in the temple and said to him, “Behold, you are made well. Sin no more, lest a worse thing come upon you.”"
+            },
+            {
+              "verse": 15,
+              "text": "That man went away and told the Jews that it was Jesus who had made him well."
+            },
+            {
+              "verse": 16,
+              "text": "Therefore, the Jews persecuted Jesus and sought to kill Him, because He had done these things on the Sabbath."
+            },
+            {
+              "verse": 17,
+              "text": "But Jesus answered them, “My Father has been working until now, and I have been working.”"
+            },
+            {
+              "verse": 18,
+              "text": "For this reason, the Jews sought all the more to kill Him, not only because He broke the Sabbath, but also said that God was His Father, making Himself equal with God."
+            },
+            {
+              "verse": 19,
+              "text": "Then Jesus answered and said to them, “Most assuredly, I say to you, the Son can do nothing of Himself, but what He sees the Father do; for whatever He does, the Son also does in like manner."
+            },
+            {
+              "verse": 20,
+              "text": "For the Father loves the Son, and shows Him all things that He Himself does; and He will show Him greater works than these, that you may marvel.”"
+            },
+            {
+              "verse": 21,
+              "text": "As the Father raises the dead, and gives life, so also the Son gives life to whom He wills."
+            },
+            {
+              "verse": 22,
+              "text": "The Father judges no one; but has committed all judgment to the Son."
+            },
+            {
+              "verse": 23,
+              "text": "Just as all men honor the Father, so they should honor the Son; he who does not honor the Son does not honor the Father who sent Him."
+            },
+            {
+              "verse": 24,
+              "text": "Truly, truly, I say to you; he who hears My word and believes in Him who sent Me has eternal life; he does not come into judgment, but has passed from death to life."
+            },
+            {
+              "verse": 25,
+              "text": "\"Truly, truly, I say to you; the hour is coming when the dead will hear the voice of the Son of God, and those who hear will live."
+            },
+            {
+              "verse": 26,
+              "text": "Just as the Father has life in Himself, so He has granted the Son also to have life in Himself."
+            },
+            {
+              "verse": 27,
+              "text": "For the Son of God is the Son of Man, and He has been given authority to execute judgment."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the resurrection of the dead.",
+          "verses": [
+            {
+              "verse": 28,
+              "text": "\"All who are in the graves shall hear His voice, and they shall come forth; therefore, do not marvel.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"Those who have done good shall rise to life, and those who have done evil shall rise to judgment.\""
+            },
+            {
+              "verse": 30,
+              "text": "\"I am unable to do anything of myself; as I hear, I judge; and my judgment is true; for I seek not my own will, but the will of the Father who sent me.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the testimony.",
+          "verses": [
+            {
+              "verse": 31,
+              "text": "\"I do not bear witness concerning myself; my testimony is not true."
+            },
+            {
+              "verse": 32,
+              "text": "But there is another who bears witness concerning me, and I know that the testimony which he bears of me is true."
+            },
+            {
+              "verse": 33,
+              "text": "Did you not send to John, and he has borne witness to the truth?"
+            },
+            {
+              "verse": 34,
+              "text": "I, however, do not receive testimony from man, but I say these things that you may be saved."
+            },
+            {
+              "verse": 35,
+              "text": "He was a burning and shining lamp, and you were willing for a time to rejoice in his light."
+            },
+            {
+              "verse": 36,
+              "text": "But I have a greater witness than that of John; for the works which the Father has given me to finish, the very works that I do, bear witness of me, that the Father has sent me."
+            },
+            {
+              "verse": 37,
+              "text": "And the Father himself, who sent me, has testified of me. You have neither heard his voice at any time, nor seen his form."
+            },
+            {
+              "verse": 38,
+              "text": "But you do not have his word abiding in you, because whom he sent, him you do not believe."
+            },
+            {
+              "verse": 39,
+              "text": "You search the Scriptures, for in them you think you have eternal life; and these are they which testify of me."
+            },
+            {
+              "verse": 40,
+              "text": "But you are not willing to come to me that you may have life.\""
+            },
+            {
+              "verse": 41,
+              "text": "I do not seek the honor of man."
+            },
+            {
+              "verse": 42,
+              "text": "However, I know that the love of God is not as it is among you."
+            },
+            {
+              "verse": 43,
+              "text": "I have come in my Father's name, and you have not received me; but if another comes in his own name, him you will receive."
+            },
+            {
+              "verse": 44,
+              "text": "If you choose the honor of your fellow man, how can you believe, you who do not seek the honor that comes from the only God?"
+            },
+            {
+              "verse": 45,
+              "text": "I do not accuse you before the Father; there is one who accuses you—Moses, in whom you have placed your hope."
+            },
+            {
+              "verse": 46,
+              "text": "If you believed Moses, you would believe me, for he wrote of me."
+            },
+            {
+              "verse": 47,
+              "text": "But if you do not believe his writings, how will you believe my words?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": "And concerning their journey to Tiberias.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "After this, our Lord Jesus went to the Sea of Galilee and to the regions of the Decapolis."
+            },
+            {
+              "verse": 2,
+              "text": "And many followed Him because of the miracles He performed upon the sick."
+            },
+            {
+              "verse": 3,
+              "text": "Our Lord Jesus went up the mountain, and there He sat with His disciples."
+            },
+            {
+              "verse": 4,
+              "text": "The feast of the Passover of the Jews was near."
+            }
+          ]
+        },
+        {
+          "title": "The five loaves and the two fish, for the sake of His blessing.",
+          "verses": [
+            {
+              "verse": 5,
+              "text": "ጌታችን ኢየሱስም ዐይኖቹን አንሥቶ ብዙ ሰዎች ወደ እርሱ ሲመጡ አየና ፊልጶስን፥ “ለእነዚህ ሰዎች የምናበላቸው እንጀራ ከወዴት እንግዛ?” አለው።"
+            },
+            {
+              "verse": 6,
+              "text": "ሲፈትነው ይህን አለ እንጂ፥ እርሱስ የሚያደርገውን ያውቅ ነበር።"
+            },
+            {
+              "verse": 7,
+              "text": "ፊልጶስም መልሶ እንዲህ አለው፥ “ከእነርሱ ለእያንዳንዱ ጥቂት ጥቂት ይወስዱ ዘንድ የሁለት መቶ ዲናር እንጀራ አይበቃቸውም።”"
+            },
+            {
+              "verse": 8,
+              "text": "ከደቀ መዛሙርቱም አንዱ የስምዖን ጴጥሮስ ወንድም እንድርያስ እንዲህ አለው፥"
+            },
+            {
+              "verse": 9,
+              "text": "“አምስት የገብስ እንጀራና ሁለት ዓሣ የያዘ ብላቴና በዚህ አለ፤ ነገር ግን እነዚህ ይህን ለሚያህል ሰው ምን ይበቃሉ?”"
+            },
+            {
+              "verse": 10,
+              "text": "ጌታችን ኢየሱስም፥ “ሰዎቹን እንዲቀመጡ አድርጉ” አለ፤ የዚያ ቦታም ሣሩ ብዙ ነበር፤ ወንዶቹም በመስኩ ላይ ተቀመጡ፤ ቍጥራቸውም አምስት ሺህ ያህል ነበር።"
+            },
+            {
+              "verse": 11,
+              "text": "ጌታችን ኢየሱስም ያን እንጀራ ይዞ አመሰገነ፤ ቈርሶም ለደቀ መዛሙርቱ ሰጣቸው፤ ደቀ መዛሙርቱም ለተቀመጡት ሰዎች ሰጡአቸው፤ ከዓሣውም እንዲሁ የፈለጉትን ያህል ሰጡአቸው።"
+            },
+            {
+              "verse": 12,
+              "text": "ከጠገቡም በኋላ ደቀ መዛሙርቱን፥ “ከቍርስራሹ ምንም የሚወድቅ እንዳይኖር የተረፈውን ቍርስራሽ አንሡ፤” አላቸው።"
+            },
+            {
+              "verse": 13,
+              "text": "እነርሱም ሰበሰቡ፥ በልተው ከጠገቡ በኋላም ከአምስቱ የገብስ እንጀራ የተረፈው ቍርስራሽ ዐሥራ ሁለት መሶብ ሞላ።"
+            },
+            {
+              "verse": 14,
+              "text": "ሕዝቡም ጌታችን ኢየሱስ ያደረገውን ተአምራት አይተው፥ “ይህ በእውነት ወደ ዓለም የሚመጣው ነቢይ ነው” አሉ።"
+            },
+            {
+              "verse": 15,
+              "text": "Our Lord Jesus, having come, withdrew to the mountain to pray as was His custom."
+            }
+          ]
+        },
+        {
+          "title": "Concerning their journey upon the sea.",
+          "verses": [
+            {
+              "verse": 16,
+              "text": "በመሸም ጊዜ ደቀ መዛሙርቱ ወደ ባሕር ወረዱ።"
+            },
+            {
+              "verse": 17,
+              "text": "ወደ ታንኳም ወጡ፤ ወደ ባሕር ማዶ ወደ ቅፍርናሆምም ሄዱ፤ እነሆም፥ ፈጽሞ ጨለማ ሆነ፤ ጌታችን ኢየሱስም ወደ እነርሱ ገና አልመጣም ነበር።"
+            },
+            {
+              "verse": 18,
+              "text": "ባሕሩ ግን ይታወክ ነበር፤ ጽኑ ነፋስ ይነፍስ ነበርና።"
+            },
+            {
+              "verse": 19,
+              "text": "ሃያ አምስት ወይም ሠላሳ ምዕራፍ ያህል ከሄዱ በኋላ ጌታችን ኢየሱስን በባሕር ላይ ሲሄድ አዩት፤ ወደ ታንኳዉ በቀረበ ጊዜም ፈሩ።"
+            },
+            {
+              "verse": 20,
+              "text": "እርሱም፥ “እኔ ነኝ፤ አትፍሩ” አላቸው።"
+            },
+            {
+              "verse": 21,
+              "text": "ወደ ታንኳውዪቱ ሊያወጡት ሲሹም ታንኳዪቱ ወዲያውኑ ሊሄዱ ወደ ወደዱበት ወደብ ደረሰች።"
+            },
+            {
+              "verse": 22,
+              "text": "በማግሥቱም ከባሕሩ ዳር ቆመው የነበሩ ሰዎች ከአንዲት ታንኳ በቀር ከዚያ ሌላ ታንኳ እንዳልነበረ፥ ደቀ መዛሙርቱም ለብቻቸው ሄዱ እንጂ ጌታችን ኢየሱስ ከደቀ መዛሙርቱ ጋር ወደ ታንኳ እንዳልወጣ አዩ።"
+            },
+            {
+              "verse": 23,
+              "text": "ደግሞም ጌታችን የባረከውን እንጀራ ከበሉበት ቦታ አቅራቢያ ከጥብርያዶስ ሌሎች ታንኳዎች መጥተው ነበር።"
+            },
+            {
+              "verse": 24,
+              "text": "እነዚያ ሰዎችም ጌታችን ኢየሱስ፥ ደቀ መዛሙርቱም በዚያ እንዳልነበሩ ባዩ ጊዜ ጌታችን ኢየሱስን ይፈልጉት ዘንድ በእነዚያ ታንኳዎች ገብተው ወደ ቅፍርናሆም መጡ።"
+            },
+            {
+              "verse": 25,
+              "text": "በባሕሩ ዳርም ባገኙት ጊዜ፥ “መምህር ሆይ፥ ወደዚህ መቼ መጣህ?” አሉት።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the food of life.",
+          "verses": [
+            {
+              "verse": 26,
+              "text": "Our Lord Jesus answered them, saying, \"Truly, truly I say unto you; it is not for the bread that you seek me, because you have eaten of the loaves and were filled, but it is not for the miracles that you seek me.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"The Son of Man gives you the bread of life that endures unto everlasting life; it is not the bread that perishes; for this, God the Father has sealed.\""
+            },
+            {
+              "verse": 28,
+              "text": "They said, \"What shall we do, that we may work the works of God?\""
+            },
+            {
+              "verse": 29,
+              "text": "Our Lord Jesus answered them, \"This is the work of God, that you believe in Him whom He has sent.\""
+            }
+          ]
+        },
+        {
+          "title": "A sign concerning their inquiry.",
+          "verses": [
+            {
+              "verse": 30,
+              "text": "And they said unto Him, “What sign do You perform that we may see and believe You? What work will You do?”"
+            },
+            {
+              "verse": 31,
+              "text": "Our fathers did eat manna in the wilderness; as it is written, ‘He gave them bread from heaven to eat.’"
+            },
+            {
+              "verse": 32,
+              "text": "Our Lord Jesus said unto them, “Verily, verily, I say unto you, Moses gave you not that bread from heaven; but My Father gives you the true bread from heaven.”"
+            },
+            {
+              "verse": 33,
+              "text": "For the bread of God is He which comes down from heaven, and gives life unto the world.”"
+            },
+            {
+              "verse": 34,
+              "text": "Then said they unto Him, “Lord, evermore give us this bread.”"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the life of the righteous.",
+          "verses": [
+            {
+              "verse": 35,
+              "text": "Our Lord Jesus said unto them, \"I am the bread of life; he that cometh to me shall never hunger; and he that believeth on me shall never thirst for eternity.\""
+            },
+            {
+              "verse": 36,
+              "text": "But I say unto you, Ye have seen me, and yet ye believe not."
+            },
+            {
+              "verse": 37,
+              "text": "All that the Father giveth me shall come to me; and him that cometh to me I will in no wise cast out."
+            },
+            {
+              "verse": 38,
+              "text": "For I came down from heaven, not to do mine own will, but the will of him that sent me."
+            },
+            {
+              "verse": 39,
+              "text": "And this is the Father's will which hath sent me, that of all which he hath given me I should lose nothing, but should raise it up again at the last day."
+            },
+            {
+              "verse": 40,
+              "text": "And this is the will of him that sent me, that every one which seeth the Son, and believeth on him, may have everlasting life: and I will raise him up at the last day.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the murmuring of the Jews.",
+          "verses": [
+            {
+              "verse": 41,
+              "text": "አይሁድም ስለ እርሱ አንጐራጐሩ፤ “ከሰማይ የወረደ የሕይወት እንጀራ እኔ ነኝ” ብሎአቸዋልና።"
+            },
+            {
+              "verse": 42,
+              "text": "“እኛ አባቱንና እናቱን የምናውቃቸው ይህ የዮሴፍ ልጅ ኢየሱስ አይደለምን? እንግዲህ እንዴት ከሰማይ ወረድሁ ይለናል?” አሉ።"
+            },
+            {
+              "verse": 43,
+              "text": "ጌታችን ኢየሱስም መልሶ እንዲህ አላቸው፥ “እርስ በርሳችሁ አታንጐራጕሩ።"
+            },
+            {
+              "verse": 44,
+              "text": "የላከኝ አብ ካልሳበው በቀር ወደ እኔ መምጣትን የሚችል የለም፤ እኔም በመጨረሻዪቱ ቀን አስነሣዋለሁ።"
+            },
+            {
+              "verse": 45,
+              "text": "‘ሁሉም ከእግዚአብሔር ዘንድ የተማሩ ይሆናሉ’ ተብሎ በነቢያት መጽሐፍ ተጽፎአል፤ እንግዲህ ከአባቴ የሰማ ሁሉ ተምሮ ወደ እኔ ይመጣል።"
+            },
+            {
+              "verse": 46,
+              "text": "ከእግዚአብሔር ከሆነው በቀር አብን ያየው ማንም የለም፤ እርሱም አብን አየው።"
+            },
+            {
+              "verse": 47,
+              "text": "እውነት እውነት እላችኋለሁ፤ በእኔ የሚያምን የዘለዓለም ሕይወት አለው።"
+            },
+            {
+              "verse": 48,
+              "text": "የሕይወት እንጀራ እኔ ነኝ።"
+            },
+            {
+              "verse": 49,
+              "text": "አባቶቻችሁስ በምድረ በዳ መና በሉ፥ ሞቱም።"
+            },
+            {
+              "verse": 50,
+              "text": "ከእርሱ የበላ ሁሉ እንዳይሞት ከሰማይ የወረደ እንጀራ ይህ ነው።”"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the flesh and concerning the blood.",
+          "verses": [
+            {
+              "verse": 51,
+              "text": "\"I am the bread of life that came down from heaven; whoever eats of this bread will live forever; and the bread that I will give for the life of the world is my flesh.\""
+            },
+            {
+              "verse": 52,
+              "text": "The Jews then said, \"How can this man give us his flesh to eat?\" and they argued among themselves."
+            },
+            {
+              "verse": 53,
+              "text": "Our Lord Jesus said to them, \"Truly, truly, I say to you, unless you eat the flesh of the Son of Man and drink his blood, you have no life in you.\""
+            },
+            {
+              "verse": 54,
+              "text": "Whoever eats my flesh and drinks my blood has eternal life; and I will raise him up on the last day."
+            },
+            {
+              "verse": 55,
+              "text": "For my flesh is true food, and my blood is true drink."
+            },
+            {
+              "verse": 56,
+              "text": "Whoever eats my flesh and drinks my blood abides in me, and I in him."
+            },
+            {
+              "verse": 57,
+              "text": "As the living Father sent me, and I live because of the Father, so whoever feeds on me, he also will live because of me."
+            },
+            {
+              "verse": 58,
+              "text": "This is the bread that came down from heaven; not like the bread the fathers ate and died. Whoever feeds on this bread will live forever.\""
+            },
+            {
+              "verse": 59,
+              "text": "And he said these things while teaching in the synagogue at Capernaum."
+            }
+          ]
+        },
+        {
+          "title": "Concerning those who have been gathered together.",
+          "verses": [
+            {
+              "verse": 60,
+              "text": "And many of the disciples, having heard this, said, \"This is a hard saying; who can hear it?\""
+            },
+            {
+              "verse": 61,
+              "text": "Our Lord Jesus, knowing in Himself that His disciples murmured about this, said to them, \"Does this offend you?\""
+            },
+            {
+              "verse": 62,
+              "text": "What then if you should see the Son of Man ascend where He was before?"
+            },
+            {
+              "verse": 63,
+              "text": "It is the Spirit who gives life; the flesh profits nothing. The words that I speak to you are spirit, and they are life."
+            },
+            {
+              "verse": 64,
+              "text": "But there are some of you who do not believe.\" For Jesus knew from the beginning who they were who did not believe, and who would betray Him."
+            },
+            {
+              "verse": 65,
+              "text": "And He said, \"Therefore I have said to you that no one can come to Me unless it has been granted to him by My Father.\""
+            },
+            {
+              "verse": 66,
+              "text": "From that time many of His disciples went back and walked with Him no more."
+            },
+            {
+              "verse": 67,
+              "text": "Then Jesus said to the twelve, \"Do you also want to go away?\""
+            },
+            {
+              "verse": 68,
+              "text": "But Simon Peter answered Him, \"Lord, to whom shall we go? You have the words of eternal life."
+            },
+            {
+              "verse": 69,
+              "text": "Also we have come to believe and know that You are the Christ, the Son of the living God.\""
+            },
+            {
+              "verse": 70,
+              "text": "Our Lord Jesus spoke unto them, saying, \"Do ye not choose for yourselves the twelve? Yet one of you is a devil.\""
+            },
+            {
+              "verse": 71,
+              "text": "This he spake concerning Simon, the son of Iscariot, for he it was that should betray him; and he was one of the twelve."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": "And they went unto Galilee.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "After this, our Lord Jesus was to return to Galilee; but He did not wish to go to the land of Judea, for the Jews sought to kill Him."
+            },
+            {
+              "verse": 2,
+              "text": "The feast of the Jews was near, even the feast of the Passover."
+            },
+            {
+              "verse": 3,
+              "text": "And His brethren said unto Him, “Depart hence and go into Judea, that Thy disciples also may see the works that Thou doest.”"
+            },
+            {
+              "verse": 4,
+              "text": "For no man doeth anything in secret, and himself seeketh to be known openly. If Thou do these things, show Thyself to the world."
+            },
+            {
+              "verse": 5,
+              "text": "For neither did His brethren believe in Him."
+            },
+            {
+              "verse": 6,
+              "text": "Then Jesus said unto them, “My time is not yet come; but your time is always ready."
+            },
+            {
+              "verse": 7,
+              "text": "The world cannot hate you; but me it hateth, because I testify of it, that the works thereof are evil."
+            },
+            {
+              "verse": 8,
+              "text": "Go ye up unto this feast: I go not up yet unto this feast; for my time is not yet full come.”"
+            },
+            {
+              "verse": 9,
+              "text": "These words spake He unto them, and He abode still in Galilee."
+            }
+          ]
+        },
+        {
+          "title": "And concerning the feast of its coming forth.",
+          "verses": [
+            {
+              "verse": 10,
+              "text": "And after the brethren had come out for the feast, He Himself went forth, not openly, but as it were in secret."
+            },
+            {
+              "verse": 11,
+              "text": "And the Jews sought Him, saying, \"Where is He?\" and they began to inquire for Him at the feast."
+            },
+            {
+              "verse": 12,
+              "text": "And the people spoke much concerning Him, saying, \"He is a man,\" but others said, \"Nay; but He deceiveth the people.\""
+            },
+            {
+              "verse": 13,
+              "text": "Nevertheless, He did not openly declare His matter, for He was not one to speak openly for fear of the Jews."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the observance of the feast.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "In the days of the feast, our Lord Jesus began to teach as He went up to the temple."
+            },
+            {
+              "verse": 15,
+              "text": "And the Jews said, \"How can this man know the Scriptures, having never studied?\" Thus they were astonished at His teaching."
+            },
+            {
+              "verse": 16,
+              "text": "Therefore, our Lord Jesus answered them, saying, \"My teaching is not mine, but His who sent me.\""
+            },
+            {
+              "verse": 17,
+              "text": "He who seeks to do His will knows whether my teaching is from God or whether I speak on my own authority."
+            },
+            {
+              "verse": 18,
+              "text": "He who speaks on his own authority seeks his own glory; but he who seeks the glory of Him who sent him is true, and in him there is no falsehood."
+            },
+            {
+              "verse": 19,
+              "text": "Did not Moses give you the law? Yet none of you keeps the law. Why do you seek to kill me?"
+            },
+            {
+              "verse": 20,
+              "text": "The people answered, \"You have a demon! Who is seeking to kill you?\""
+            },
+            {
+              "verse": 21,
+              "text": "Jesus answered them, \"I did one work, and you all marvel at it.\""
+            },
+            {
+              "verse": 22,
+              "text": "Therefore, Moses gave you circumcision (not that it is from Moses, but from the fathers), and you circumcise a man on the Sabbath."
+            },
+            {
+              "verse": 23,
+              "text": "If a man receives circumcision on the Sabbath so that the law of Moses may not be broken, are you angry with me because on the Sabbath I made a man's whole body well?"
+            },
+            {
+              "verse": 24,
+              "text": "\"The judgment of truth shall not be rendered in the presence of man.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the people, woe.",
+          "verses": [
+            {
+              "verse": 25,
+              "text": "ከኢየሩሳሌም ሰዎችም እንዲህ የሚሉ ነበሩ፥ “ይህ አይሁድ ሊገድሉት የሚሹት አይደለምን?"
+            },
+            {
+              "verse": 26,
+              "text": "እነሆ፥ እርሱ በገሀድ ይናገራል፤ እነርሱ ግን ምንም የሚሉት የለም፤ ይህ በእውነት ክርስቶስ እንደ ሆነ ምናልባት አለቆች ዐውቀው ይሆን?"
+            },
+            {
+              "verse": 27,
+              "text": "ነገር ግን ይህን ከየት እንደ ሆነ እናውቃለን፤ ክርስቶስ በሚመጣበት ጊዜስ ከወዴት እንደ ሆነ ማንም አያውቅም”።"
+            },
+            {
+              "verse": 28,
+              "text": "ጌታችን ኢየሱስም በመቅደስ ሲያስተምር ቃሉን ከፍ አድርጎ እንዲህ አለ፥ “እኔን ታውቁኛላችሁ፤ ከወዴትም እንደ ሆንሁ ታውቃላችሁ፤ እኔ ራሴ የመጣሁ አይደለሁም፤ ነገር ግን እናንተ የማታውቁት የላከኝ እውነተኛ አለ።"
+            },
+            {
+              "verse": 29,
+              "text": "እኔ ግን አውቀዋለሁ፤ እኔ ከእርሱ ነኝና፥ እርሱም ልኮኛልና።"
+            },
+            {
+              "verse": 30,
+              "text": "ስለዚህም ሊይዙት ወደው ነበር፤ ነገር ግን እጁን በእርሱ ላይ ያነሣ የለም፤ ጊዜዉ ገና አልደረሰም ነበርና።"
+            },
+            {
+              "verse": 31,
+              "text": "ከሕዝቡም ብዙዎች አመኑበትና፥ “በውኑ ክርስቶስ በሚመጣበት ጊዜ ይህ ሰው ካደረገው ተአምራት የሚበልጥ ያደርጋልን?” አሉ።"
+            }
+          ]
+        },
+        {
+          "title": "The Pharisees sought to ensnare Him with their words.",
+          "verses": [
+            {
+              "verse": 32,
+              "text": "And the Pharisees and the people heard Him, as if they were in a tumult; and the chief priests and the Pharisees sent officers to seize Him."
+            },
+            {
+              "verse": 33,
+              "text": "Our Lord Jesus said unto them, “A little while longer I am with you; and then I go unto Him that sent me."
+            },
+            {
+              "verse": 34,
+              "text": "Ye shall seek me, and shall not find me; and where I am, thither ye cannot come.”"
+            },
+            {
+              "verse": 35,
+              "text": "The Jews then said among themselves, “Whither will He go that we shall not find Him? Will He go unto the dispersed among the Gentiles, and teach the Gentiles?”"
+            },
+            {
+              "verse": 36,
+              "text": "“What is this that He saith, ‘Ye shall seek me, and shall not find me; and where I go, ye cannot come’?”"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Holy Spirit",
+          "verses": [
+            {
+              "verse": 37,
+              "text": "On the last day, the great day of the feast, our Lord Jesus stood and cried out, saying, “If anyone thirsts, let him come to Me and drink."
+            },
+            {
+              "verse": 38,
+              "text": "He who believes in Me, as the Scripture has said, out of his heart will flow rivers of living water.”"
+            },
+            {
+              "verse": 39,
+              "text": "But this He spoke concerning the Spirit, whom those believing in Him would receive; for the Holy Spirit was not yet given, because Jesus was not yet glorified."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the distinction that has come to be among the Jews.",
+          "verses": [
+            {
+              "verse": 40,
+              "text": "And many of the people, having heard this, said, “Truly, this is the Prophet.”"
+            },
+            {
+              "verse": 41,
+              "text": "And some said, “It is the Christ”; and others said, “Will the Christ come out of Galilee?"
+            },
+            {
+              "verse": 42,
+              "text": "“Does not the Scripture say that the Christ comes from the seed of David and from the town of Bethlehem, where David was?”"
+            },
+            {
+              "verse": 43,
+              "text": "And concerning Him, the people were divided among themselves."
+            },
+            {
+              "verse": 44,
+              "text": "And some of them wished to seize Him; but no one laid hands on Him."
+            },
+            {
+              "verse": 45,
+              "text": "The officers returned to the chief priests and Pharisees, and they said to them, “Why have you not brought Him?”"
+            },
+            {
+              "verse": 46,
+              "text": "The officers answered, “No man ever spoke like this Man.”"
+            },
+            {
+              "verse": 47,
+              "text": "Then the Pharisees answered them, “Are you also deceived?"
+            },
+            {
+              "verse": 48,
+              "text": "Have any of the rulers or of the Pharisees believed in Him?"
+            },
+            {
+              "verse": 49,
+              "text": "But this crowd that does not know the law is accursed.”"
+            },
+            {
+              "verse": 50,
+              "text": "And one of them, Nicodemus, who came to Jesus by night, said unto them,"
+            },
+            {
+              "verse": 51,
+              "text": "\"Our law doth not judge a man, except it first hear him and know what he doeth?\""
+            },
+            {
+              "verse": 52,
+              "text": "They answered and said unto him, \"Art thou also of Galilee? Search and look, for out of Galilee ariseth no prophet.\""
+            },
+            {
+              "verse": 53,
+              "text": "And every man went unto his own house."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": "Concerning the woman of the judge of the widow.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Our Lord Jesus went to the Mount of Olives."
+            },
+            {
+              "verse": 2,
+              "text": "And early in the morning, He came again into the temple, and all the people came unto Him; and He sat down and taught them."
+            },
+            {
+              "verse": 3,
+              "text": "And the scribes and Pharisees brought unto Him a woman taken in adultery; and when they had set her in the midst, they said unto Him."
+            },
+            {
+              "verse": 4,
+              "text": "They said unto Him, “Master, this woman was taken in adultery, in the very act.”"
+            },
+            {
+              "verse": 5,
+              "text": "Now Moses in the law commanded us that such should be stoned; but what sayest thou?”"
+            },
+            {
+              "verse": 6,
+              "text": "This they said, tempting Him, that they might have to accuse Him; but Jesus stooped down, and with His finger wrote on the ground."
+            },
+            {
+              "verse": 7,
+              "text": "So when they continued asking Him, He lifted up Himself, and said unto them, “He that is without sin among you, let him first cast a stone at her.”"
+            },
+            {
+              "verse": 8,
+              "text": "And again He stooped down, and wrote on the ground."
+            },
+            {
+              "verse": 9,
+              "text": "And they which heard it, being convicted by their own conscience, went out one by one, beginning at the eldest, even unto the last; and Jesus was left alone, and the woman standing in the midst."
+            },
+            {
+              "verse": 10,
+              "text": "When Jesus had lifted up Himself, and saw none but the woman, He said unto her, “Woman, where are those thine accusers? hath no man condemned thee?”"
+            },
+            {
+              "verse": 11,
+              "text": "And she said, \"Lord, there is none who has seen it.\" Our Lord Jesus replied, \"Neither do I condemn you; go and sin no more.\""
+            }
+          ]
+        },
+        {
+          "title": "Jesus, the Light of the World.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "ዳግመኛም ጌታችን ኢየሱስ፥ “የዓለም ብርሃን እኔ ነኝ፤ የሚከተለኝ የሕይወት ብርሃንን ያገኛል እንጂ በጨለማ ውስጥ አይመላለስም” ብሎ ተናገራቸው።"
+            },
+            {
+              "verse": 13,
+              "text": "ፈሪሳውያንም፥ “አንተ ስለ ራስህ ትመሰክራለህ፤ እንግዲያስ ምስክርነትህ እውነት አይደለም” አሉት።"
+            },
+            {
+              "verse": 14,
+              "text": "ጌታችን ኢየሱስም መልሶ እንዲህ አላቸው፥ “እኔ ስለራሴ ብመሰክርም ምስክርነቴ እውነት ነው፤ ከየት እንደመጣሁ፥ ወዴት እንደምሄድም አውቃለሁና፤ እናንተ ግን ከየት እንደ መጣሁ ወዴት እንደምሄድም አታውቁም።"
+            },
+            {
+              "verse": 15,
+              "text": "እናንተ ሥጋዊ ፍርድን ትፈርዳላችሁ፤ እኔ ግን በማንም አልፈርድም።"
+            },
+            {
+              "verse": 16,
+              "text": "እኔ ብፈርድም እውነትን እፈርዳለሁ፤ እኔና የላከኝ አብ ነን እንጂ አንድ ብቻዬን አይደለሁምና።"
+            },
+            {
+              "verse": 17,
+              "text": "የሁለት ሰዎች ምስክርነት የታመነ እንደ ሆነ በሕጋችሁ ተጽፎአል።"
+            },
+            {
+              "verse": 18,
+              "text": "እኔ ስለ ራሴ ምስክር ነኝ፤ የላከኝ አብም ይመሰክርልኛል።”"
+            },
+            {
+              "verse": 19,
+              "text": "እነርሱም፥ “አባትህ የት ነው?” አሉት፤ ጌታችን ኢየሱስም፥ “እኔን አታውቁም፤ አባቴንም አታውቁም፤ እኔንስ ብታውቁ አባቴንም ባወቃችሁት ነበር” ብሎ መለሰላቸው።"
+            },
+            {
+              "verse": 20,
+              "text": "ጌታችን ኢየሱስም በቤተ መቅደስ ሲያስተምራቸው በሙዳየ ምጽዋት አጠገብ ይህን ተናገራቸው፤ ነገር ግን አልያዙትም፤ ጊዜው ገና አልደረሰም ነበርና።"
+            }
+          ]
+        },
+        {
+          "title": "Our Lord, for they are unable to go where He goes.",
+          "verses": [
+            {
+              "verse": 21,
+              "text": "Our Lord Jesus said, \"I am going away, and you will seek me; but you will not find me, and where I am going, you cannot come.\""
+            },
+            {
+              "verse": 22,
+              "text": "The Jews then said, \"Will he kill himself, that he says, 'Where I am going, you cannot come'?\""
+            },
+            {
+              "verse": 23,
+              "text": "He said to them, \"You are from below; I am from above. You are of this world; I am not of this world.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"Therefore I said to you that you will die in your sins; for if you do not believe that I am He, you will die in your sins.\""
+            },
+            {
+              "verse": 25,
+              "text": "They said to him, \"Who are you?\" And Jesus said to them, \"Just what I have been saying to you from the beginning.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"I have much to say about you and to judge, but He who sent me is true, and I speak to the world those things which I heard from Him.\""
+            },
+            {
+              "verse": 27,
+              "text": "However, they did not understand that He spoke to them of the Father."
+            },
+            {
+              "verse": 28,
+              "text": "Then Jesus said to them, \"When you lift up the Son of Man, then you will know that I am He, and that I do nothing of myself; but as my Father taught me, I speak these things.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"And He who sent me is with me. The Father has not left me alone, for I always do those things that please Him.\""
+            },
+            {
+              "verse": 30,
+              "text": "As He spoke these words, many believed in Him."
+            }
+          ]
+        },
+        {
+          "title": "And it was spoken concerning the children of Judah.",
+          "verses": [
+            {
+              "verse": 31,
+              "text": "Our Lord Jesus said to the Jews who believed in Him, “If you abide in My word, you are truly My disciples."
+            },
+            {
+              "verse": 32,
+              "text": "And you will know the truth, and the truth will set you free.”"
+            },
+            {
+              "verse": 33,
+              "text": "They answered Him, “We are offspring of Abraham and have never been enslaved to anyone. How is it that you say, ‘You will become free’?”"
+            },
+            {
+              "verse": 34,
+              "text": "Jesus answered them, “Truly, truly, I say to you, everyone who practices sin is a slave to sin."
+            },
+            {
+              "verse": 35,
+              "text": "The slave does not remain in the house forever; the son remains forever."
+            },
+            {
+              "verse": 36,
+              "text": "So if the Son sets you free, you will be free indeed."
+            },
+            {
+              "verse": 37,
+              "text": "I know that you are offspring of Abraham; yet you seek to kill Me because My word finds no place in you."
+            },
+            {
+              "verse": 38,
+              "text": "I speak of what I have seen with My Father, and you do what you have heard from your father.”"
+            },
+            {
+              "verse": 39,
+              "text": "They answered Him, “Abraham is our father.” Jesus said to them, “If you were Abraham's children, you would be doing the works Abraham did."
+            },
+            {
+              "verse": 40,
+              "text": "But now you seek to kill Me, a man who has told you the truth that I heard from God. This is not what Abraham did.”"
+            },
+            {
+              "verse": 41,
+              "text": "እናንተ ግን የአባታችሁን ሥራ ትሠራላችሁ።” እነርሱም፥ “እኛ ከዝሙት አልተወለድንም፤ ነገር ግን አንድ አባት አለን፤ እርሱም እግዚአብሔር ነው” አሉት።"
+            },
+            {
+              "verse": 42,
+              "text": "ጌታችን ኢየሱስም እንዲህ አላቸው፥ “እግዚአብሔር አባታችሁ ቢሆንስ እኔን በወደዳችሁኝ ነበር፤ እኔ ከእግዚአብሔር ዘንድ ወጥቼ መጥቻለሁና፤ እኔ በገዛ እጄ የመጣሁ አይደለሁም፤ እርሱ ላከኝ እንጂ።"
+            },
+            {
+              "verse": 43,
+              "text": "እንግዲህ ቃሌን ለምን አታስተውሉም? ቃሌን መስማት ስለማትችሉ ነው።"
+            },
+            {
+              "verse": 44,
+              "text": "እናንተስ ከአባታችሁ ከሰይጣን ናችሁ፤ የአባታችሁንም ፈቃድ ልታደርጉ ትወዳላችሁ፤ እርሱ ከጥንት ጀምሮ ነፍሰ ገዳይ ነው፤ በእውነትም አይቆምም፤ በእርሱ ዘንድ እውነት የለምና፤ ሐሰትንም በሚናገርበት ጊዜ ከራሱ አንቅቶ ይናገራል፤ ሐሰተኛ ነውና፤ የሐሰትም አባት ነውና።"
+            },
+            {
+              "verse": 45,
+              "text": "እኔ ግን እውነትን እናገራለሁና አታምኑኝም።"
+            },
+            {
+              "verse": 46,
+              "text": "ስለ ኀጢኣት ከእናንተ የሚወቅሰኝ ማን ነው? እኔ እውነት የምናገር ከሆንሁ ለምን አታምኑኝም?"
+            },
+            {
+              "verse": 47,
+              "text": "ከእግዚአብሔር የሆነ የእግዚአብሔርን ቃል ይሰማል፤ ስለዚህ እናንተ አትሰሙኝም፤ ከእግዚአብሔር አይደላችሁምና።”"
+            },
+            {
+              "verse": 48,
+              "text": "አይሁድም፥ “አንተ ሳምራዊ እንደ ሆንህ፥ ጋኔንም እንደ አለብህ መናገራችን በሚገባ አይደለምን?” ብለው ጠየቁት።"
+            },
+            {
+              "verse": 49,
+              "text": "ጌታችን ኢየሱስም መልሶ እንዲህ አላቸው፥ “እኔ አባቴን አከብራለሁ እንጂ ጋኔን የለብኝም፤ እናንተ ግን ትንቁኛላችሁ።"
+            },
+            {
+              "verse": 50,
+              "text": "እኔ ለራሴ ክብርን አልሻም፤ የሚሻ፥ የሚፈርድም አለ።"
+            },
+            {
+              "verse": 51,
+              "text": "\"Truly, truly, I say unto you, he who keeps my word shall never see death.\""
+            },
+            {
+              "verse": 52,
+              "text": "The Jews said unto him, \"Now we know that thou hast a devil; Abraham is dead, and the prophets are dead; and thou sayest, If a man keep my saying, he shall never taste of death.\""
+            },
+            {
+              "verse": 53,
+              "text": "\"Art thou greater than our father Abraham, which is dead? and the prophets are dead: whom makest thou thyself?\""
+            },
+            {
+              "verse": 54,
+              "text": "Our Lord Jesus answered them, \"If I honor myself, my honor is nothing: it is my Father that honoreth me; of whom ye say, that he is your God.\""
+            },
+            {
+              "verse": 55,
+              "text": "\"And ye have not known him; but I know him: and if I should say, I know him not, I shall be a liar like unto you: but I know him, and keep his saying.\""
+            },
+            {
+              "verse": 56,
+              "text": "\"Your father Abraham rejoiced to see my day: and he saw it, and was glad.\""
+            },
+            {
+              "verse": 57,
+              "text": "The Jews said unto him, \"Thou art not yet fifty years old, and hast thou seen Abraham?\""
+            },
+            {
+              "verse": 58,
+              "text": "Jesus said unto them, \"Verily, verily, I say unto you, Before Abraham was, I am.\""
+            },
+            {
+              "verse": 59,
+              "text": "They took up stones to cast at him: but Jesus hid himself, and went out of the temple, going through the midst of them, and so passed by."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "sections": [
+        {
+          "title": "And it came to pass that he was born as a light unto the world.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ከዚያም ሲያልፍ ዕዉር ሆኖ የተወለደውን ሰው አየ።"
+            },
+            {
+              "verse": 2,
+              "text": "ደቀ መዛሙርቱም፥ “መምህር ሆይ፥ ይህ ሰው ዕዉር ሆኖ የተወለደው በማን ኀጢኣት ነው? በራሱ ነውን? ወይስ በወላጆቹ?” ብለው ጠየቁት።"
+            },
+            {
+              "verse": 3,
+              "text": "ጌታችን ኢየሱስም እንዲህ አላቸው፥ “የእግዚአብሔር ሥራ ሊገለጥበት ነው እንጂ እርሱ አልበደለም፤ ወላጆቹም አልበደሉም።"
+            },
+            {
+              "verse": 4,
+              "text": "ነገር ግን ቀን ሳለ የላከኝን ሥራ ልሠራ ይገባኛል፤ ማንም ሥራ ሊሠራ የማይችልባት ሌሊት ትመጣለችና።"
+            },
+            {
+              "verse": 5,
+              "text": "በዓለም ሳለሁ፤ የዓለም ብርሃን እኔ ነኝ።”"
+            },
+            {
+              "verse": 6,
+              "text": "ይህንም ብሎ በምድር ላይ ምራቁን እንትፍ አለ፤ በምራቁም ጭቃ አድርጎ የዕዉሩን ዐይኖች ቀባው።"
+            },
+            {
+              "verse": 7,
+              "text": "እንዲህም አለው፥ “ሂድና በሰሊሆም መጠመቂያ ታጠብ” ትርጓሜውም የተላከ ማለት ነው፤ ሄዶም ታጠበና እያየ ተመለሰ።"
+            },
+            {
+              "verse": 8,
+              "text": "ጎረቤቶቹና ቀድሞ የሚያውቁት፥ ሲለምንም ያዩት የነበሩት ግን፥ “ይህ በመንገድ ተቀምጦ ይለምን የነበረው አይደለም?” አሉ።"
+            },
+            {
+              "verse": 9,
+              "text": "“ይህ እርሱ ነው” ያሉ አሉ፤ ሌሎችም፥ “አይደለም፤ ይመስለዋል እንጂ” አሉ፤ እርሱ ራሱ ግን፥ “እኔ ነኝ” አለ።"
+            },
+            {
+              "verse": 10,
+              "text": "እነርሱም፥ “ዐይኖችህ እንዴት ተገለጡ?” አሉት።"
+            },
+            {
+              "verse": 11,
+              "text": "And he answered, “The man called Jesus made clay and anointed my eyes, and said to me, ‘Go to the pool of Siloam and wash.’ So I went and washed, and I received sight.”"
+            },
+            {
+              "verse": 12,
+              "text": "They said to him, “Where is he?” He said, “I do not know.”"
+            },
+            {
+              "verse": 13,
+              "text": "They brought him who was formerly blind to the Pharisees."
+            },
+            {
+              "verse": 14,
+              "text": "Our Lord Jesus, on the day of the Sabbath, made clay and opened the eyes of the blind."
+            },
+            {
+              "verse": 15,
+              "text": "The Pharisees asked him again how he had received his sight. He said to them, “He put clay on my eyes, and I washed, and now I see.”"
+            },
+            {
+              "verse": 16,
+              "text": "Some of the Pharisees said, “This man is not from God, because he does not keep the Sabbath.” Others said, “How can a man who is a sinner do such signs?” And there was a division among them."
+            },
+            {
+              "verse": 17,
+              "text": "They said to the blind man again, “What do you say about him, because he opened your eyes?” He said, “He is a prophet.”"
+            },
+            {
+              "verse": 18,
+              "text": "The Jews did not believe concerning him that he had been blind and received his sight until they called the parents of him who had received his sight."
+            },
+            {
+              "verse": 19,
+              "text": "They asked them, saying, “Is this your son, who you say was born blind? How then does he now see?”"
+            },
+            {
+              "verse": 20,
+              "text": "His parents answered them and said, “We know that this is our son, and that he was born blind;”"
+            },
+            {
+              "verse": 21,
+              "text": "አሁን ግን እንዴት እንደሚያይ ዐይኖቹንም ማን እንደ አበራለት አናውቅም፤ እርሱን ጠይቁት፤ ዐዋቂ ነውና፤ ስለ ራሱም መናገር ይችላልና።”"
+            },
+            {
+              "verse": 22,
+              "text": "ወላጆቹ አይሁድን ስለ ፈሩ ይህን አሉ፥ “እርሱ ክርስቶስ ነው ብሎ በእርሱ የሚያምን ቢኖር ከምኵራብ ይውጣ” ብለው አይሁድ ተስማምተው ነበርና።"
+            },
+            {
+              "verse": 23,
+              "text": "ስለዚህም ወላጆቹ፥ “ዐዋቂ ነውና እርሱን ጠይቁት” አሉ።"
+            },
+            {
+              "verse": 24,
+              "text": "ዕውር የነበረውንም ሰው ዳግመኛ ጠርተው፥ “ሂድ ለእግዚአብሔር ምስጋና አቅርብ፤ ይህ ሰው ኀጢኣተኛ እንደ ሆነ እኛ እናውቃለን” አሉት።"
+            },
+            {
+              "verse": 25,
+              "text": "ያም ሰው መልሶ እንዲህ አላቸው፥ “እርሱ ኀጢኣተኛ እንደ ሆነ እኔ አላውቅም፤ እኔ ዕዉር እንደ ነበርሁ፤ አሁን ግን እንደማይ ይህን አንድ ነገር ብቻ አውቃለሁ።”"
+            },
+            {
+              "verse": 26,
+              "text": "ዳግመኛም፥ “ምን አደረገልህ? ዐይኖችህንስ እንደምን አበራልህ?” አሉት።"
+            },
+            {
+              "verse": 27,
+              "text": "እርሱም መልሶ፥ “አትሰሙኝም እንጂ ነገርኋችሁ፤ እንግዲህ ደግሞ ምን ልትሰሙ ትሻላችሁ? እናንተም ደቀ መዛሙርቱ ልትሆኑ ትሻላችሁን?” አላቸው።"
+            },
+            {
+              "verse": 28,
+              "text": "እነርሱም ሰደቡት፤ እንዲህም አሉት፥ “አንተ የእርሱ ደቀ መዝሙር ሁን፤ እኛስ የሙሴ ደቀ መዛሙርት ነን።"
+            },
+            {
+              "verse": 29,
+              "text": "እግዚአብሔር ሙሴን እንደ ተነጋገረው እናውቃለን፤ ይህን ግን ከወዴት እንደ ሆነ አናውቅም።”"
+            },
+            {
+              "verse": 30,
+              "text": "ያም ሰው መልሶ እንዲህ አላቸው፥ “ከወዴት እንደ ሆነ፥ አታውቁትምና ይህ እጅግ ድንቅ ነው፤ ነገር ግን ዐይኖችን አበራልኝ።"
+            },
+            {
+              "verse": 31,
+              "text": "እኛም እግዚአብሔርን የሚፈራውንና ፈቃዱን የሚያደርገውን እርሱን ይሰማዋል እንጂ ኃጥኣንን እንደማይሰማቸው እናውቃለን።"
+            },
+            {
+              "verse": 32,
+              "text": "ዓለም ከተፈጠረ ጀምሮ ዕዉር ሆኖ የተወለደውን ዐይኖች ያበራ አልተሰማም።"
+            },
+            {
+              "verse": 33,
+              "text": "ይህ ሰው ከእግዚአብሔር ባይሆን ኖሮ ምንም ማድረግ ባልቻለም ነበር።”"
+            },
+            {
+              "verse": 34,
+              "text": "እነርሱም መልሰው፥ “ራስህ በኀጢኣት የተወለድህ አንተ እኛን ታስተምረናለህን?” አሉት፤ ወደ ውጭም አወጡት።"
+            },
+            {
+              "verse": 35,
+              "text": "ጌታችን ኢየሱስም ወደ ውጭ እንዳወጡት ሰማ፤ አገኘውምና፥ “አንተ በእግዚአብሔር ልጅ ታምናለህን?” አለው።"
+            },
+            {
+              "verse": 36,
+              "text": "ያ ሰውም፥ “አቤቱ፥ አምንበት ዘንድ እርሱ ማነው?” ብሎ መለሰለት።"
+            },
+            {
+              "verse": 37,
+              "text": "ጌታችን ኢየሱስም፥ “የምታየው፥ ከአንተ ጋርም የሚነጋገረው እርሱ ነው” አለው።"
+            },
+            {
+              "verse": 38,
+              "text": "እርሱም፥ “አቤቱ፥ አምናለሁ” ብሎ ሰገደለት።"
+            },
+            {
+              "verse": 39,
+              "text": "ጌታችን ኢየሱስም፥ “እኔ የማያዩት እንዲያዩ፥ የሚያዩትም እንዲታወሩ ወደዚህ ዓለም ለፍርድ መጥቻለሁ” አለው።"
+            },
+            {
+              "verse": 40,
+              "text": "ከፈሪሳውያንም ከእርሱ ጋር የነበሩት ይህን ሲናገር ሰምተው፥ “እኛ ደግሞ ዕዉሮች ነን?” አሉት።"
+            },
+            {
+              "verse": 41,
+              "text": "Our Lord Jesus said, \"If you were blind, you would have no sin; but now you say, 'We see,' therefore your sin remains.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "sections": [
+        {
+          "title": "The Parable of the Good Shepherd",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"Verily, verily, I say unto you; he that entereth not by the door into the sheepfold, but climbeth up some other way, the same is a thief and a robber.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"But he that entereth in by the door is the shepherd of the sheep.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"To him the porter openeth; and the sheep hear his voice: and he calleth his own sheep by name, and leadeth them out.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And when he putteth forth his own sheep, he goeth before them, and the sheep follow him: for they know his voice.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"And a stranger will they not follow, but will flee from him: for they know not the voice of strangers.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"Our Lord Jesus spake this parable unto them: but they understood not what things they were which he spake unto them.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"Then said Jesus unto them again, Verily, verily, I say unto you, I am the door of the sheep.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"All that ever came before me are thieves and robbers: but the sheep did not hear them.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"I am the door: by me if any man enter in, he shall be saved, and shall go in and out, and find pasture.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"The thief cometh not, but for to steal, and to kill, and to destroy: I am come that they might have life, and that they might have it more abundantly.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the good shepherd.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "\"I am the good shepherd; the good shepherd lays down his life for the sheep.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"The hireling does not care for the sheep; but when the wolf comes, he flees, and the wolf snatches the sheep and scatters them.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"He flees because he is a hireling and does not care for the sheep.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"I am the good shepherd; I know my own, and my own know me.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"Just as the Father knows me, I know the Father; and I lay down my life for the sheep.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"And I have other sheep that are not of this fold; I must bring them also, and they will listen to my voice; so there will be one flock, one shepherd.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"For this reason the Father loves me, because I lay down my life that I may take it up again.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"No one takes it from me, but I lay it down of my own accord. I have authority to lay it down, and I have authority to take it up again. This charge I have received from my Father.\""
+            }
+          ]
+        },
+        {
+          "title": "And the Jews, for the second time, concerning their distinction.",
+          "verses": [
+            {
+              "verse": 19,
+              "text": "ስለዚህም ነገር አይሁድ እንደገና እርስ በርሳቸው ተለያዩ።"
+            },
+            {
+              "verse": 20,
+              "text": "ከእነርሱም ብዙዎች፥ “ጋኔን ይዞት ያብዳል፤ ለምንስ ታዳምጡታላችሁ?” አሉ።"
+            },
+            {
+              "verse": 21,
+              "text": "ሌሎችም ይህ ነገር ጋኔን ከያዘው ሰው የሚገኝ አይደለም፤ ጋኔን የዕዉሮችን ዐይን ማብራት ይችላልን?” አሉ።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the sanctification of the house of the Lord.",
+          "verses": [
+            {
+              "verse": 22,
+              "text": "And in those days, there was a feast of the dedication of the temple in Jerusalem; it was winter."
+            },
+            {
+              "verse": 23,
+              "text": "Our Lord Jesus was walking in the temple in Solomon's porch."
+            },
+            {
+              "verse": 24,
+              "text": "The Jews then surrounded Him and said, \"How long do You keep us in doubt? If You are the Christ, tell us plainly.\""
+            },
+            {
+              "verse": 25,
+              "text": "Jesus answered them, \"I told you, and you do not believe. The works that I do in My Father's name, they bear witness of Me.\""
+            },
+            {
+              "verse": 26,
+              "text": "But you do not believe, because you are not of My sheep, as I said to you."
+            },
+            {
+              "verse": 27,
+              "text": "My sheep hear My voice, and I know them, and they follow Me."
+            },
+            {
+              "verse": 28,
+              "text": "And I give them eternal life, and they shall never perish; neither shall anyone snatch them out of My hand."
+            },
+            {
+              "verse": 29,
+              "text": "My Father, who has given them to Me, is greater than all; and no one is able to snatch them out of My Father's hand."
+            },
+            {
+              "verse": 30,
+              "text": "I and My Father are one.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning the persecution of the Jews.",
+          "verses": [
+            {
+              "verse": 31,
+              "text": "The Jews sought to stone Him."
+            },
+            {
+              "verse": 32,
+              "text": "Our Lord Jesus answered them, saying, \"I have shown you many good works from My Father; for which of those works do you stone Me?\""
+            },
+            {
+              "verse": 33,
+              "text": "The Jews answered Him, \"For a good work we do not stone You, but for blasphemy, and because You, being a Man, make Yourself God.\""
+            },
+            {
+              "verse": 34,
+              "text": "Jesus answered them, \"Is it not written in your law, 'I said, you are gods'?"
+            },
+            {
+              "verse": 35,
+              "text": "If He called them gods, to whom the word of God came (and the Scripture cannot be broken),"
+            },
+            {
+              "verse": 36,
+              "text": "do you say of Him whom the Father sanctified and sent into the world, 'You are blaspheming,' because I said, 'I am the Son of God'?"
+            },
+            {
+              "verse": 37,
+              "text": "If I do not do the works of My Father, do not believe Me;"
+            },
+            {
+              "verse": 38,
+              "text": "but if I do, though you do not believe Me, believe the works, that you may know and believe that the Father is in Me, and I in Him.\""
+            },
+            {
+              "verse": 39,
+              "text": "Therefore they sought again to seize Him, but He escaped out of their hand."
+            }
+          ]
+        },
+        {
+          "title": "And they went to the Jordan, for they were journeying.",
+          "verses": [
+            {
+              "verse": 40,
+              "text": "And the disciple John went forth to the place where he had been, and he journeyed to the Jordan, and there he abode."
+            },
+            {
+              "verse": 41,
+              "text": "And many went unto him, saying, \"John hath wrought no miracle; yet all things that John spake of this man are true.\""
+            },
+            {
+              "verse": 42,
+              "text": "And there many believed in him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "sections": [
+        {
+          "title": "Concerning Lazarus",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "In Bethany, there was a certain man named Lazarus, who was sick, the brother of Mary and her sister Martha."
+            },
+            {
+              "verse": 2,
+              "text": "But Mary was the one who anointed our Lord with ointment and wiped His feet with her hair; her brother Lazarus was sick."
+            },
+            {
+              "verse": 3,
+              "text": "The sisters therefore sent to Him, saying, \"Lord, behold, he whom You love is sick.\""
+            },
+            {
+              "verse": 4,
+              "text": "When Jesus heard it, He said, \"This sickness is not unto death, but for the glory of God, that the Son of God may be glorified through it.\""
+            },
+            {
+              "verse": 5,
+              "text": "Now Jesus loved Martha and her sister and Lazarus."
+            },
+            {
+              "verse": 6,
+              "text": "So when He heard that he was sick, He stayed two more days in the place where He was."
+            },
+            {
+              "verse": 7,
+              "text": "After this, He said to His disciples, \"Let us go to Judea again.\""
+            },
+            {
+              "verse": 8,
+              "text": "The disciples said to Him, \"Rabbi, lately the Jews sought to stone You, and are You going there again?\""
+            },
+            {
+              "verse": 9,
+              "text": "Jesus answered, \"Are there not twelve hours in the day? If anyone walks in the day, he does not stumble, because he sees the light of this world."
+            },
+            {
+              "verse": 10,
+              "text": "But if one walks in the night, he stumbles, because the light is not in him.\""
+            },
+            {
+              "verse": 11,
+              "text": "This he spoke to his disciples; and after this, he said, \"Our friend Lazarus sleeps; but I go, that I may awake him.\""
+            },
+            {
+              "verse": 12,
+              "text": "The disciples said unto him, \"Lord, if he sleeps, he shall do well.\""
+            },
+            {
+              "verse": 13,
+              "text": "Our Lord Jesus spoke concerning his death; but they thought that he had spoken of taking rest in sleep."
+            },
+            {
+              "verse": 14,
+              "text": "Then said Jesus unto them plainly, \"Lazarus is dead.\""
+            },
+            {
+              "verse": 15,
+              "text": "And I am glad for your sakes that I was not there, to the intent ye may believe; nevertheless, let us go unto him.\""
+            },
+            {
+              "verse": 16,
+              "text": "Thomas, who is called Didymus, said unto his fellow disciples, \"Let us also go, that we may die with him.\""
+            }
+          ]
+        },
+        {
+          "title": "Our Lord, concerning the raising of Lazarus.",
+          "verses": [
+            {
+              "verse": 17,
+              "text": "Our Lord Jesus went to Bethany; and when He arrived, He found that it had been four days since Lazarus had been laid in the tomb."
+            },
+            {
+              "verse": 18,
+              "text": "Bethany was near Jerusalem, about fifteen furlongs away."
+            },
+            {
+              "verse": 19,
+              "text": "Many of the Jews had come to Martha and Mary to console them concerning their brother."
+            },
+            {
+              "verse": 20,
+              "text": "Martha received our Lord Jesus as He was coming; but Mary sat at home."
+            },
+            {
+              "verse": 21,
+              "text": "Martha said to our Lord Jesus, \"Lord, if You had been here, my brother would not have died.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"But even now I know that whatever You ask of God, God will give You,\" she said."
+            },
+            {
+              "verse": 23,
+              "text": "Our Lord Jesus said to her, \"Your brother will rise again.\""
+            },
+            {
+              "verse": 24,
+              "text": "Martha replied, \"I know that he will rise again in the resurrection at the last day.\""
+            }
+          ]
+        },
+        {
+          "title": "Christ is the resurrection and the life.",
+          "verses": [
+            {
+              "verse": 25,
+              "text": "Our Lord Jesus said, “I am the resurrection and the life; he who believes in me, though he may die, shall live again."
+            },
+            {
+              "verse": 26,
+              "text": "And whoever lives and believes in me shall never die. Do you believe this?”"
+            },
+            {
+              "verse": 27,
+              "text": "She said to him, “Yes, Lord, I believe that you are the Christ, the Son of God, who is to come into the world.”"
+            }
+          ]
+        },
+        {
+          "title": "Our Lord concerning the death of Lazarus.",
+          "verses": [
+            {
+              "verse": 28,
+              "text": "ይህንም ብላ ሄደች፤ እኅቷን ማርያምንም ቀስ ብላ ጠራችና፥ “እነሆ፥ መምህራችን መጥቶ ይጠራሻል” አለቻት።"
+            },
+            {
+              "verse": 29,
+              "text": "እርስዋም ይህን በሰማች ጊዜ ፈጥና ተነሣች፤ ወደ እርሱም ሄደች።"
+            },
+            {
+              "verse": 30,
+              "text": "ጌታችን ኢየሱስም ማርታ በተቀበለችበት ስፍራ ነበረ እንጂ ገና ወደ መንደር አልገባም ነበር።"
+            },
+            {
+              "verse": 31,
+              "text": "ሊያጽናኑአት መጥተው በቤት ከእርስዋ ጋር የነበሩ አይሁድም ፈጥና ተነሥታ እንደ ወጣች ባዩ ጊዜ በዚያ ለወንድምዋ ልታለቅስ ወደ መቃብሩ የምትሄድ መስሎአቸው ተከተሉአት።"
+            },
+            {
+              "verse": 32,
+              "text": "ማርያምም ጌታችን ኢየሱስ ወደ አለበት ስፍራ ደረሰችና በአየችው ጊዜ ከእግሩ በታች ሰግዳ፥ “ጌታዬ ሆይ፥ በዚህ ኑረህ ቢሆን ወንድሜ ባልሞተም ነበር” አለችው።"
+            },
+            {
+              "verse": 33,
+              "text": "ጌታችን ኢየሱስም እርስዋ ስታለቅስ፥ ከእርስዋ ጋር የመጡ አይሁድም ሲያለቅሱ ባየ ጊዜ በልቡ አዘነ፤ በራሱም ታወከ።"
+            },
+            {
+              "verse": 34,
+              "text": "እርሱም፥ “የት ቀበራችሁት?” አለ፤ እነርሱም፥ “አቤቱ፥ መጥተህ እይ” አሉት።"
+            },
+            {
+              "verse": 35,
+              "text": "ጌታችን ኢየሱስም እንባውን አፈሰሰ።"
+            },
+            {
+              "verse": 36,
+              "text": "አይሁድም፥ “ምን ያህል ይወደው እንደ ነበር እዩ” አሉ።"
+            },
+            {
+              "verse": 37,
+              "text": "ከእነርሱም መካከል፥ “ዕዉር ሆኖ የተወለደውን ዐይን ያበራው ይህ ሰው ይህስ እንዳይሞት ሊያደርግ ባልቻለም ነበርን?” ያሉ ነበሩ።"
+            },
+            {
+              "verse": 38,
+              "text": "ዳግመኛም ጌታችን ኢየሱስ በልቡ አዘነ፤ ወደ መቃብሩም ሄደ፤ መቃብሩም ዋሻ ነበር፤ በላዩም ታላቅ ድንጋይ ተገጥሞበት ነበር።"
+            },
+            {
+              "verse": 39,
+              "text": "ጌታችን ኢየሱስም፥ “ድንጋዩን አንሡ” አላቸው፤ የሟቹ እኅት ማርታም፥ “ጌታዬ ሆይ፥ አራት ቀን ሆኖታልና ፈጽሞ ሸትቶ ይሆናል” አለችው።"
+            },
+            {
+              "verse": 40,
+              "text": "ጌታችን ኢየሱስም፥ “ብታምናስ የእግዚአብሔርን ክብር ታያለሽ አላልሁሽም ነበርን?” አላት።"
+            },
+            {
+              "verse": 41,
+              "text": "ድንጋዩንም አነሡ፤ ጌታችን ኢየሱስም ዐይኖቹን አቅንቶ እንዲህ አለ፥ “አባት ሆይ፥ ሰምተኸኛልና አመሰግንሃለሁ።"
+            },
+            {
+              "verse": 42,
+              "text": "እኔም ዘወትር እንደምትሰማኝ አውቃለሁ፤ ነገር ግን አንተ እንደ ላክኸኝ ያምኑ ዘንድ በዚህ ቆመው ስላሉት ሰዎች ይህን እናገራለሁ።”"
+            },
+            {
+              "verse": 43,
+              "text": "ይህንም ብሎ በታላቅ ቃል ጮኸና፥ “አልዓዛር፥ ና፤ ወደ ውጭ ውጣ” አለ።"
+            },
+            {
+              "verse": 44,
+              "text": "ሞቶ የነበረውም እንደ ተገነዘ፥ እጁንና እግሩንም እንደ ታሰረ፥ ፊቱም በሰበን እንደ ተጠቀለለ ወጣ፤ ጌታችን ኢየሱስም፥ “እንግዲህስ ፍቱትና ተዉት ይሂድ” አላቸው።"
+            },
+            {
+              "verse": 45,
+              "text": "ስለዚህ ከአይሁድም ወደ ማርታና ወደ ማርያም መጥተው የነበሩ ብዙ ሰዎች ጌታችን ኢየሱስ ያደረገውን አይተው በእርሱ አመኑ።"
+            },
+            {
+              "verse": 46,
+              "text": "ከእነርሱም መካከል ወደ ፈሪሳውያን ሄደው የከሰሱት ነበሩ፤ ጌታችን ኢየሱስ ያደረገውንም ሁሉ ነገሩአቸው።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the counsel of the Jews.",
+          "verses": [
+            {
+              "verse": 47,
+              "text": "The chief priests and the Pharisees gathered together and said unto them, \"Behold, this man doeth many miracles; what shall we do?"
+            },
+            {
+              "verse": 48,
+              "text": "Likewise, if we let him alone, all will believe on him; and the Romans shall come and take away both our place and nation.\""
+            },
+            {
+              "verse": 49,
+              "text": "And in that year, the chief priest whose name was Caiaphas, one of them, said unto them, \"Ye know nothing at all."
+            },
+            {
+              "verse": 50,
+              "text": "Nor consider that it is expedient for us, that one man should die for the people, and that the whole nation perish not.\""
+            },
+            {
+              "verse": 51,
+              "text": "And this spake he not of himself, but being high priest that year, he prophesied that Jesus should die for that nation;"
+            },
+            {
+              "verse": 52,
+              "text": "And not for that nation only, but that also he should gather together in one the children of God that were scattered abroad."
+            },
+            {
+              "verse": 53,
+              "text": "From that day forth they took counsel together for to put him to death."
+            }
+          ]
+        },
+        {
+          "title": "Our Lord, having departed from Jerusalem, went forth.",
+          "verses": [
+            {
+              "verse": 54,
+              "text": "And from there, our Lord Jesus did not openly manifest Himself among the Jews; however, He went to a region near the wilderness, to a city called Ephraim, and there He remained with His disciples."
+            },
+            {
+              "verse": 55,
+              "text": "The Passover of the Jews was near; and many went up to Jerusalem before the feast to purify themselves."
+            },
+            {
+              "verse": 56,
+              "text": "The Jews began to seek our Lord Jesus; and standing in the temple, they spoke to one another, saying, \"What do you think? Will He come to the feast?\""
+            },
+            {
+              "verse": 57,
+              "text": "And the chief priests and the Pharisees had given orders that if anyone knew where He was, he should report it, so that they might seize Him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "sections": [
+        {
+          "title": "Our Lord, concerning the woman who received the message.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And it came to pass that, six days before the Passover, our Lord Jesus went to Bethany, where Lazarus was, whom He had raised from the dead."
+            },
+            {
+              "verse": 2,
+              "text": "There they made Him a supper; and Martha served, but Lazarus was one of those who sat at the table with Him."
+            },
+            {
+              "verse": 3,
+              "text": "Then Mary took a pound of very costly oil of spikenard, anointed the feet of Jesus, and wiped His feet with her hair; and the house was filled with the fragrance of the oil."
+            },
+            {
+              "verse": 4,
+              "text": "One of His disciples, Judas Iscariot, Simon's son, who would betray Him, said,"
+            },
+            {
+              "verse": 5,
+              "text": "“Why was this fragrant oil not sold for three hundred denarii and given to the poor?”"
+            },
+            {
+              "verse": 6,
+              "text": "This he said, not that he cared for the poor, but because he was a thief and had the money box; he used to take what was put in it."
+            },
+            {
+              "verse": 7,
+              "text": "But Jesus said, “Let her alone; she has kept this for the day of My burial.”"
+            },
+            {
+              "verse": 8,
+              "text": "“For the poor you have with you always, but Me you do not have always.”"
+            },
+            {
+              "verse": 9,
+              "text": "Now a great many of the Jews knew that He was there; and they came, not for Jesus' sake only, but that they might also see Lazarus, whom He had raised from the dead."
+            },
+            {
+              "verse": 10,
+              "text": "But the chief priests plotted to put Lazarus to death also."
+            },
+            {
+              "verse": 11,
+              "text": "For many of the Jews were going about concerning Him, believing in our Lord Jesus."
+            }
+          ]
+        },
+        {
+          "title": "And concerning His entry into Jerusalem.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "በማግሥቱም ለበዓል መጥተው የነበሩ ብዙ ሰዎች ጌታችን ኢየሱስ ወደ ኢየሩሳሌም እንደሚመጣ በሰሙ ጊዜ፥"
+            },
+            {
+              "verse": 13,
+              "text": "የዘንባባ ዛፍ ዝንጣፊ ይዘው “ሆሣዕና በእግዚአብሔር ስም የሚመጣ፥ የእስራኤልም ንጉሥ ቡሩክ ነው” እያሉ ወጥተው ተቀበሉት።"
+            },
+            {
+              "verse": 14,
+              "text": "ጌታችን ኢየሱስም የአህያ ውርንጫ አግኝቶ በእርስዋ ላይ ተቀመጠ።"
+            },
+            {
+              "verse": 15,
+              "text": "“የጽዮን ልጅ ሆይ፥ አትፍሪ፤ እነሆ፥ ንጉሥሽ በአህያ ውርንጫ ተቀምጦ ይመጣል” ተብሎ እንደ ተጻፈ፤"
+            },
+            {
+              "verse": 16,
+              "text": "ደቀ መዛሙርቱም አስቀድመው ይህን ነገር አላወቁም፤ ነገር ግን ጌታችን ኢየሱስ ከከበረ በኋላ በዚያ ጊዜ ይህ ነገር ስለ እርሱ እንደ ተጻፈ፥ ይህንም እንደ አደረጉለት ትዝ አላቸው።"
+            },
+            {
+              "verse": 17,
+              "text": "ከዚያም አብረውት የነበሩት ሕዝብ አልዓዛርን ከመቃብር እንደ ጠራው፥ ከሙታንም እንደ አስነሣው መሰከሩለት።"
+            },
+            {
+              "verse": 18,
+              "text": "ስለዚህም ነገር ሕዝቡ ሁሉ ሊቀበሉት ወጡ፤ ይህን ተአምራት እንደ አደረገ ሰምተዋልና።"
+            },
+            {
+              "verse": 19,
+              "text": "ፈሪሳውያንም እርስ በርሳቸው፥ “የምታገኙት ምንም ጥቅም እንደሌለ ታያላችሁን? እነሆ፥ ዓለም ሁሉ ተከትሎታል” ተባባሉ።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the people who came for the feast.",
+          "verses": [
+            {
+              "verse": 20,
+              "text": "And they were gathered from the regions of the people to celebrate the feast."
+            },
+            {
+              "verse": 21,
+              "text": "And they came from Galilee, a man from Bethsaida, to Philip, saying, \"Sir, we wish to see Jesus.\""
+            },
+            {
+              "verse": 22,
+              "text": "Philip went and told Andrew; and together Andrew and Philip went and told our Lord Jesus."
+            },
+            {
+              "verse": 23,
+              "text": "Our Lord Jesus answered them, saying, \"The hour has come for the Son of Man to be glorified.\""
+            },
+            {
+              "verse": 24,
+              "text": "Truly, truly, I say to you, unless a grain of wheat falls to the ground and dies, it remains alone; but if it dies, it bears much fruit."
+            },
+            {
+              "verse": 25,
+              "text": "He who loves his life will lose it, and he who hates his life in this world will keep it for eternal life."
+            },
+            {
+              "verse": 26,
+              "text": "If anyone serves me, let him follow me; and where I am, there my servant will be also. If anyone serves me, him my Father will honor."
+            },
+            {
+              "verse": 27,
+              "text": "\"Now my soul is troubled, and what shall I say? 'Father, save me from this hour'? But for this purpose, I came to this hour.\""
+            },
+            {
+              "verse": 28,
+              "text": "\"Father, glorify Your name.\" Then a voice came from heaven, saying, \"I have both glorified it and will glorify it again.\""
+            },
+            {
+              "verse": 29,
+              "text": "Therefore, the people who stood by and heard it said that it had thundered; others said, \"An angel has spoken to Him.\""
+            },
+            {
+              "verse": 30,
+              "text": "Our Lord Jesus spoke to them, saying, “This word has come for your sake, not for mine.”"
+            },
+            {
+              "verse": 31,
+              "text": "Now the judgment of this world has come; from now on, the ruler of this world will be cast out."
+            },
+            {
+              "verse": 32,
+              "text": "And I, when I am lifted up from the earth, will draw all people to myself.”"
+            },
+            {
+              "verse": 33,
+              "text": "This is said to indicate what kind of death he was to die."
+            },
+            {
+              "verse": 34,
+              "text": "The people answered, “We have heard from the Law that the Christ remains forever; how can you say, ‘The Son of Man must be lifted up’? Who is this Son of Man?”"
+            },
+            {
+              "verse": 35,
+              "text": "Our Lord Jesus said to them, “For a little while longer, the light is with you; walk while you have the light, lest the darkness overtake you. He who walks in darkness does not know where he is going."
+            },
+            {
+              "verse": 36,
+              "text": "While you have the light, believe in the light, that you may become sons of light.” Our Lord Jesus spoke these things and departed, and was hidden from them."
+            },
+            {
+              "verse": 37,
+              "text": "But although he had done so many signs before them, they did not believe in him."
+            },
+            {
+              "verse": 38,
+              "text": "“Lord, who has believed our report? And to whom has the arm of the Lord been revealed?” This is the word of the prophet Isaiah, that it may be fulfilled."
+            },
+            {
+              "verse": 39,
+              "text": "Therefore, they could not believe, for Isaiah said again, “He has blinded their eyes and hardened their hearts, lest they should see with their eyes and understand with their hearts, and turn, so that I should heal them.”"
+            },
+            {
+              "verse": 40,
+              "text": "\"Their eyes are blinded, and their hearts are hardened, lest they should turn and be healed; their eyes have become dull, and their hearts are made heavy.\""
+            },
+            {
+              "verse": 41,
+              "text": "\"Isaiah has seen His glory, and he spoke of Him; concerning Him, he has prophesied.\""
+            },
+            {
+              "verse": 42,
+              "text": "\"Among the leaders of the people, many believed in Him; however, for fear of the Pharisees, they did not confess Him, lest they should be put out of the synagogue.\""
+            },
+            {
+              "verse": 43,
+              "text": "\"Rather than the glory of God, they have sought the glory of man.\""
+            },
+            {
+              "verse": 44,
+              "text": "\"Our Lord Jesus raised His voice and said, 'He who believes in Me believes not in Me but in Him who sent Me.'\""
+            },
+            {
+              "verse": 45,
+              "text": "\"He who sees Me sees Him who sent Me.\""
+            },
+            {
+              "verse": 46,
+              "text": "\"I have come into the world as a light, that whoever believes in Me should not abide in darkness.\""
+            },
+            {
+              "verse": 47,
+              "text": "\"I do not judge the one who hears My word and does not keep it; for I did not come to judge the world, but to save the world.\""
+            },
+            {
+              "verse": 48,
+              "text": "\"He who rejects Me and does not receive My words has that which judges him; the word that I have spoken will judge him in the last day.\""
+            },
+            {
+              "verse": 49,
+              "text": "\"The word that I have spoken is not My own, but the Father who sent Me has given Me a command, what I should say and what I should speak.\""
+            },
+            {
+              "verse": 50,
+              "text": "\"I know that the commandment is life everlasting; therefore, I speak as the Father has spoken unto me.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "sections": [
+        {
+          "title": "The Lord shall keep the feet of His saints.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ከፋሲካ በዓል አስቀድሞ ጌታችን ኢየሱስ ከዚህ ዓለም ወደ ላከው ወደ አብ ይሄድ ዘንድ ጊዜው እንደ ደረሰ ባወቀ ጊዜ በዓለም ያሉትን የወደዳቸውን ወገኖቹን ፈጽሞ ወደዳቸው።"
+            },
+            {
+              "verse": 2,
+              "text": "ራት ሲበሉም አሳልፎ ይሰጠው ዘንድ በስምዖን ልጅ በአስቆሮቱ ሰው በይሁዳ ልብ ሰይጣን አደረ።"
+            },
+            {
+              "verse": 3,
+              "text": "ጌታችን ኢየሱስም፥ አብ ሁሉን በእጁ እንደ ሰጠው፥ ከእግዚአብሔር እንደ ወጣ፥ ወደ እግዚአብሔርም እንደሚሄድ ባወቀ ጊዜ፥"
+            },
+            {
+              "verse": 4,
+              "text": "ራት ከሚበሉበት ተነሥቶ ልብሱን አኖረና ማበሻ ጨርቅ አንሥቶ ወገቡን ታጠቀ።"
+            },
+            {
+              "verse": 5,
+              "text": "በኵስኵስቱም ውኃ ቀድቶ የደቀ መዛሙርቱን እግር ያጥብ ጀመር፤ በዚያ በታጠቀው ማበሻ ጨርቅም አበሰ።"
+            },
+            {
+              "verse": 6,
+              "text": "ወደ ስምዖን ጴጥሮስም ደረሰ፤ እርሱም፥ “አቤቱ፥ አንተ እግሬን ታጥበኛለህን?” አለው።"
+            },
+            {
+              "verse": 7,
+              "text": "ጌታችን ኢየሱስም፥ “እኔ የምሠራውን አንተ ዛሬ አታውቅም፤ ኋላ ግን ታስተውለዋለህ” ብሎ መለሰለት።"
+            },
+            {
+              "verse": 8,
+              "text": "ጴጥሮስም፥ “መቼም ቢሆን አንተ እግሬን አታጥበኝም” አለው፤ ጌታችን ኢየሱስም፥ “እውነት እውነት እልሃለሁ፤ እኔ እግርህን ካላጠብሁህ ከእኔ ጋር ዕድል ፋንታ የለህም” ብሎ መለሰለት።"
+            },
+            {
+              "verse": 9,
+              "text": "ስምዖን ጴጥሮስም፥ “አቤቱ፥ እንኪያስ የምታጥበኝ እጆችንና ራሴንም እንጂ እግሮችን ብቻ አይደለም፤” አለው።"
+            },
+            {
+              "verse": 10,
+              "text": "ጌታችን ኢየሱስም፥ “ፈጽሞ የታጠበ ከእግሩ በቀር ሊታጠብ አያስፈልገውም፤ ሁለንተናው ንጹሕ ነውና፤ እናንተማ ንጹሓን ናችሁ፤ ነገር ግን ሁላችሁ አይደላችሁም” አለው።"
+            },
+            {
+              "verse": 11,
+              "text": "Our Lord Jesus knew that which He would give, and thus He said, \"None of you is pure.\""
+            }
+          ]
+        },
+        {
+          "title": "The word spoken to the disciples.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "And when He had washed their feet, and taken His garments, He reclined again, and said unto them, “Know ye what I have done unto you?”"
+            },
+            {
+              "verse": 13,
+              "text": "Ye say unto me, “Our teachers, and our Lord”; ye call me good; for I am even as you say."
+            },
+            {
+              "verse": 14,
+              "text": "If I then, your teacher and Lord, have washed your feet, ye ought also to wash one another’s feet."
+            },
+            {
+              "verse": 15,
+              "text": "For I have given you an example, that ye should do as I have done to you."
+            },
+            {
+              "verse": 16,
+              "text": "Verily, verily, I say unto you, there is no servant greater than his lord; neither is he that is sent greater than he that sent him."
+            },
+            {
+              "verse": 17,
+              "text": "If ye know these things, blessed are ye if ye do them."
+            },
+            {
+              "verse": 18,
+              "text": "But this speak I not of you all; I know whom I have chosen: but that the scripture may be fulfilled, He that eateth bread with me hath lifted up his heel against me."
+            },
+            {
+              "verse": 19,
+              "text": "Now I tell you before it come, that when it is come to pass, ye may believe that I am He."
+            },
+            {
+              "verse": 20,
+              "text": "Verily, verily, I say unto you, He that receiveth whomsoever I send receiveth me; and he that receiveth me receiveth him that sent me.”"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the gift that is given, let it be known for its consideration.",
+          "verses": [
+            {
+              "verse": 21,
+              "text": "ይህንም ተናግሮ ጌታችን ኢየሱስ በልቡ አዘነ፤ መሰከረ፤ እንዲህም አለ፥ “እውነት እውነት እላችኋለሁ፤ ከእናንተ አንዱ አሳልፎ ይሰጠኛል።”"
+            },
+            {
+              "verse": 22,
+              "text": "ደቀ መዛሙርቱም ይህን ስለ ማን እንደ ተናገረ ተጠራጥረው እርስ በርሳቸው ተያዩ፤"
+            },
+            {
+              "verse": 23,
+              "text": "ጌታችን ኢየሱስም ይወደው የነበረ ከደቀ መዛሙርቱ አንዱ በጌታችን ኢየሱስ አጠገብ ተቀምጦ ነበር።"
+            },
+            {
+              "verse": 24,
+              "text": "ስምዖን ጴጥሮስም እርሱን ጠቀሰና፥ “ይህን ስለ ማን እንደ ተናገረ ጠይቀህ ንገረን” አለው።"
+            },
+            {
+              "verse": 25,
+              "text": "ያም ደቀ መዝሙር በጌታችን ኢየሱስ አጠገብ ቀረብ ብሎ፥ “ጌታ ሆይ፥ እርሱ ማነው?” አለው።"
+            },
+            {
+              "verse": 26,
+              "text": "ጌታችን ኢየሱስም መልሶ፥ “ይህ እኔ እንጀራ በወጥ አጥቅሼ የምሰጠው ነው” አለው፤ ያን ጊዜም እንጀራ በወጥ አጥቅሶ ለስምዖን ልጅ ለአስቆሮታዊው ይሁዳ ሰጠው።"
+            },
+            {
+              "verse": 27,
+              "text": "እንጀራውንም ከተቀበለ በኋላ ወዲያውኑ በይሁዳ ልብ ሰይጣን አደረበት፤ ጌታችን ኢየሱስም፥ “እንግዲህ የምታደርገውን ፈጥነህ አድርግ” አለው።"
+            },
+            {
+              "verse": 28,
+              "text": "አብረውትም በማዕድ የተቀመጡት ስለ ምን ይህን እንዳለው አላወቁም።"
+            },
+            {
+              "verse": 29,
+              "text": "ሙዳየ ምጽዋቱ በይሁዳ ዘንድ ነበረና፥ ለበዓል የምንሻውን ወይም ለነዳያን የምንሰጠውን ግዛ ያለው የመሰላቸው ነበሩ።"
+            },
+            {
+              "verse": 30,
+              "text": "ይሁዳም ያን እንጀራ ተቀብሎ ወዲያውኑ ወጣ፥ ሌሊትም ነበር።።"
+            }
+          ]
+        },
+        {
+          "title": "And it came to pass after the night had passed.",
+          "verses": [
+            {
+              "verse": 31,
+              "text": "ይሁዳም ከወጣ በኋላ ያንጊዜ ጌታችን ኢየሱስ እንዲህ አላቸው፥ “አሁን የሰው ልጅ ከበረ፤ እግዚአብሔርም በእርሱ ከበረ።"
+            },
+            {
+              "verse": 32,
+              "text": "እግዚአብሔር በእርሱ ከከበረ እግዚአብሔርም እርሱን ያከብረዋል፥ ያንጊዜም ያከብረዋል።"
+            },
+            {
+              "verse": 33,
+              "text": "ልጆች ሆይ፥ ገና ጥቂት ጊዜ ከእናንተ ጋር አለሁ፤ ትሹኛላችሁ፤ ለአይሁድም እኔ ወደምሄድበት እናንተ መምጣት አይቻላችሁም እንዳልኋቸው፥ አሁንም ለእናንተ እነግራችኋለሁ።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the New Commandment",
+          "verses": [
+            {
+              "verse": 34,
+              "text": "\"A new commandment I give unto you, that ye love one another; as I have loved you, that ye also love one another.\""
+            },
+            {
+              "verse": 35,
+              "text": "\"By this shall all men know that ye are my disciples, if ye have love one to another.\""
+            }
+          ]
+        },
+        {
+          "title": "The Lord Peter, as he spoke, for his words were profound.",
+          "verses": [
+            {
+              "verse": 36,
+              "text": "Simon Peter said, \"Lord, where are You going?\" Our Lord Jesus answered, \"Where I am going, you cannot follow Me now; but afterward you will follow Me.\""
+            },
+            {
+              "verse": 37,
+              "text": "Peter said, \"Lord, why can I not follow You now? I will lay down my life for You.\""
+            },
+            {
+              "verse": 38,
+              "text": "Our Lord Jesus answered him, \"Will you lay down your life for My sake? Truly, truly, I say to you, the rooster will not crow until you have denied Me three times.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 14,
+      "sections": [
+        {
+          "title": "Concerning Faith",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"Let not your hearts be troubled; believe in God; believe also in me.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"In my Father's house are many mansions; if it were not so, I would have told you. I go to prepare a place for you.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"And if I go and prepare a place for you, I will come again and receive you unto myself; that where I am, there ye may be also.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"And whither I go ye know, and the way ye know.\""
+            },
+            {
+              "verse": 5,
+              "text": "Thomas saith unto him, \"Lord, we know not whither thou goest; and how can we know the way?\""
+            },
+            {
+              "verse": 6,
+              "text": "Jesus saith unto him, \"I am the way, the truth, and the life: no man cometh unto the Father, but by me.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"If ye had known me, ye should have known my Father also: and from henceforth ye know him, and have seen him.\""
+            },
+            {
+              "verse": 8,
+              "text": "Philip saith unto him, \"Lord, show us the Father, and it sufficeth us.\""
+            },
+            {
+              "verse": 9,
+              "text": "Jesus saith unto him, \"Have I been so long time with you, and yet hast thou not known me, Philip? he that hath seen me hath seen the Father; and how sayest thou then, Show us the Father?\""
+            },
+            {
+              "verse": 10,
+              "text": "\"Believest thou not that I am in the Father, and the Father in me? the words that I speak unto you I speak not of myself: but the Father that dwelleth in me, he doeth the works.\""
+            },
+            {
+              "verse": 11,
+              "text": "I am in the Father, and the Father is in me; believe in me for the sake of my works."
+            },
+            {
+              "verse": 12,
+              "text": "\"Truly, truly, I say to you, he who believes in me will also do the works that I do; and greater works than these will he do, because I am going to the Father.\""
+            },
+            {
+              "verse": 13,
+              "text": "The Father will be glorified in the Son; whatever you ask in my name, I will do it for you."
+            },
+            {
+              "verse": 14,
+              "text": "If there is anything you ask in my name, I will do it for you."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Paraclete.",
+          "verses": [
+            {
+              "verse": 15,
+              "text": "\"Keep my commandments, for you have loved me.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"And I will love them, and He will dwell with you forever; He will send you another Comforter.\""
+            },
+            {
+              "verse": 17,
+              "text": "\"He is the Spirit of truth, whom the world cannot receive, because it neither sees Him nor knows Him; but you know Him, for He dwells with you and will be in you.\""
+            },
+            {
+              "verse": 18,
+              "text": "\"You shall not be as the children of the world; for I will come to you.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"Yet a little while, and the world will see me no more; but you will see me, because I live, you will live also.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"I am in the Father, and the Father is in me; and you are in me, and I am in you; this you will know.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"He who has my commandments and keeps them, it is he who loves me; and he who loves me will be loved by my Father, and I will love him and manifest myself to him.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"Judas, not Iscariot, said to Him, 'Lord, how is it that You will manifest Yourself to us, and not to the world?'\""
+            },
+            {
+              "verse": 23,
+              "text": "\"Jesus answered and said to him, 'If anyone loves me, he will keep my word; and my Father will love him, and we will come to him and make our home with him.'\""
+            },
+            {
+              "verse": 24,
+              "text": "\"He who does not love me does not keep my words; and the word which you hear is not mine but the Father's who sent me.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"While I am with you, I say this to you.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"But the Spirit of Truth, whom the Father will send in My name, He will teach you all things; and He will bring to your remembrance all that I have said to you.\""
+            }
+          ]
+        },
+        {
+          "title": "Concerning Peace",
+          "verses": [
+            {
+              "verse": 27,
+              "text": "\"Peace I leave with you, my peace I give unto you; not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid.\""
+            },
+            {
+              "verse": 28,
+              "text": "\"I have spoken these things unto you, that as I go away and come again unto you, you might have joy; for the Father is greater than I.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"Now, at this time, believe in me, that it may not be as I have told you beforehand.\""
+            },
+            {
+              "verse": 30,
+              "text": "\"Henceforth I shall not speak much with you; for the prince of this world cometh, and hath nothing in me.\""
+            },
+            {
+              "verse": 31,
+              "text": "\"But I do as the Father hath commanded me, that the world may know that I love the Father; arise, let us go hence.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 15,
+      "sections": [
+        {
+          "title": "Our Lord Jesus, for He is the true vine.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"I am the true vine; my Father is the vinedresser.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"Every branch in me that does not bear fruit he takes away; and every branch that bears fruit he prunes, that it may bear more fruit.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"But you are clean because of the word which I have spoken to you.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"Abide in me, and I in you. As the branch cannot bear fruit of itself, unless it abides in the vine, neither can you, unless you abide in me.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"I am the vine, you are the branches. He who abides in me, and I in him, bears much fruit; for without me you can do nothing.\""
+            },
+            {
+              "verse": 6,
+              "text": "\"If anyone does not abide in me, he is cast out as a branch and is withered; and they gather them and throw them into the fire, and they are burned.\""
+            },
+            {
+              "verse": 7,
+              "text": "\"If you abide in me, and my words abide in you, you will ask what you desire, and it shall be done for you.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"By this my Father is glorified, that you bear much fruit; so you will be my disciples.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"As the Father loved me, I also have loved you; abide in my love.\""
+            },
+            {
+              "verse": 10,
+              "text": "\"If you keep my commandments, you will abide in my love, just as I have kept my Father's commandments and abide in his love.\""
+            },
+            {
+              "verse": 11,
+              "text": "My joy shall be in you, and your joy shall be full; therefore, I say these things to you."
+            },
+            {
+              "verse": 12,
+              "text": "\"As I have loved you, so you also ought to love one another; this is My commandment.\""
+            },
+            {
+              "verse": 13,
+              "text": "Greater love has no one than this, that one lay down his life for his friends."
+            },
+            {
+              "verse": 14,
+              "text": "You are My friends if you do whatever I command you."
+            },
+            {
+              "verse": 15,
+              "text": "Henceforth I call you not servants; for the servant does not know what his master does; but I have called you friends; for all things that I have heard from My Father I have made known to you."
+            },
+            {
+              "verse": 16,
+              "text": "You did not choose Me, but I chose you and appointed you that you should go and bear fruit, and that your fruit should remain; that whatever you ask the Father in My name, He may give you."
+            },
+            {
+              "verse": 17,
+              "text": "I command you to love one another."
+            }
+          ]
+        },
+        {
+          "title": "The world shall pursue the followers of the Lord as they flee.",
+          "verses": [
+            {
+              "verse": 18,
+              "text": "\"If the world hates you, know that it hated Me before it hated you.\""
+            },
+            {
+              "verse": 19,
+              "text": "\"If you were of the world, the world would love its own; yet because you are not of the world, but I chose you out of the world, therefore the world hates you.\""
+            },
+            {
+              "verse": 20,
+              "text": "\"I say to you: A servant is not greater than his master. If they persecuted Me, they will also persecute you; if they kept My word, they will keep yours also.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"But all these things they will do to you for My name's sake, because they do not know Him who sent Me.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"If I had not come and spoken to them, they would have no sin; but now they have no excuse for their sin.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"He who hates Me hates My Father also.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"If I had not done among them the works which no one else did, they would have no sin; but now they have seen and also hated both Me and My Father.\""
+            },
+            {
+              "verse": 25,
+              "text": "\"But this happened that the word might be fulfilled which is written in their law, 'They hated Me without a cause.'\""
+            }
+          ]
+        },
+        {
+          "title": "The Holy Spirit from the Father concerning the foundation.",
+          "verses": [
+            {
+              "verse": 26,
+              "text": "\"But the Comforter, which is the Holy Spirit, whom the Father will send in my name, he shall teach you all things, and bring all things to your remembrance, whatsoever I have said unto you.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"And ye also shall bear witness, because ye have been with me from the beginning.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 16,
+      "sections": [
+        {
+          "title": "Concerning Faith and the Scriptures",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "\"Do not let your hearts be troubled; I say this to you.\""
+            },
+            {
+              "verse": 2,
+              "text": "\"He has delivered you from their grasp; moreover, a time shall come when all that would harm you shall be offered as service unto the Lord.\""
+            },
+            {
+              "verse": 3,
+              "text": "\"This you do, and yet you do not know me.\""
+            },
+            {
+              "verse": 4,
+              "text": "\"But when the time comes, you will think of me as I have spoken to you. Yet, I had not spoken this to you before, for I was with you.\""
+            },
+            {
+              "verse": 5,
+              "text": "\"But now I go to Him who sent me; and not one of you asks me, 'Where are you going?'\""
+            },
+            {
+              "verse": 6,
+              "text": "\"Nevertheless, concerning this matter, your hearts are filled with sorrow.\""
+            }
+          ]
+        },
+        {
+          "title": "As the Holy Spirit bestows upon them the hope of His giving.",
+          "verses": [
+            {
+              "verse": 7,
+              "text": "\"Truly, I say unto you, it is expedient for you that I go away; for if I go not away, the Comforter will not come unto you; but if I depart, I will send Him unto you.\""
+            },
+            {
+              "verse": 8,
+              "text": "\"And when He is come, He will reprove the world of sin, and of righteousness, and of judgment.\""
+            },
+            {
+              "verse": 9,
+              "text": "\"Of sin, because they believe not on Me;\""
+            },
+            {
+              "verse": 10,
+              "text": "\"Of righteousness, because I go to My Father, and ye see Me no more;\""
+            },
+            {
+              "verse": 11,
+              "text": "\"Of judgment, because the prince of this world is judged.\""
+            },
+            {
+              "verse": 12,
+              "text": "\"I have yet many things to say unto you, but ye cannot bear them now.\""
+            },
+            {
+              "verse": 13,
+              "text": "\"Howbeit when He, the Spirit of truth, is come, He will guide you into all truth; for He shall not speak of Himself; but whatsoever He shall hear, that shall He speak: and He will show you things to come.\""
+            },
+            {
+              "verse": 14,
+              "text": "\"He shall glorify Me: for He shall receive of Mine, and shall show it unto you.\""
+            },
+            {
+              "verse": 15,
+              "text": "\"All things that the Father hath are Mine: therefore said I, that He shall take of Mine, and shall show it unto you.\""
+            },
+            {
+              "verse": 16,
+              "text": "\"A little while, and ye shall not see Me: and again, a little while, and ye shall see Me: because I go to the Father.\""
+            },
+            {
+              "verse": 17,
+              "text": "ደቀ መዛሙርቱም እርስ በርሳቸው፥ “ጥቂት ጊዜ አለ፤ አታዩኝምም፤ ደግሞም ጥቂት ጊዜ አለ፤ እንደገናም ታዩኛላችሁ፥ ወደ አብ እሄዳለሁና የሚለን ይህ ነገር ምንድነው?” ተባባሉ።"
+            },
+            {
+              "verse": 18,
+              "text": "“ይህ ጥቂት የሚለን ምንድነው? የሚናገረውን አናውቅም” አሉ።"
+            },
+            {
+              "verse": 19,
+              "text": "ጌታችን ኢየሱስም ሊጠይቁት እንደሚሹ ዐውቆ እንዲህ አላቸው፥ “ጥቂት ጊዜ አለ፤ አታዩኝምም፤ ደግሞም ጥቂት ጊዜ አለ፤ እንደገናም ታዩኛላችሁ” ስለ አልኋችሁ፥ ስለዚህ ነገር እርስ በርሳችሁ ትመራመራላችሁን?"
+            }
+          ]
+        },
+        {
+          "title": "Concerning strength and concerning joy.",
+          "verses": [
+            {
+              "verse": 20,
+              "text": "\"Verily, verily, I say unto you; ye shall weep and lament, but the world shall rejoice; and ye shall be sorrowful, but your sorrow shall be turned into joy.\""
+            },
+            {
+              "verse": 21,
+              "text": "\"A woman, when she is in travail, hath sorrow because her hour is come; but as soon as she is delivered of the child, she remembereth no more the anguish, for joy that a man is born into the world.\""
+            },
+            {
+              "verse": 22,
+              "text": "\"And ye now therefore have sorrow; but I will see you again, and your heart shall rejoice, and your joy no man taketh from you.\""
+            },
+            {
+              "verse": 23,
+              "text": "\"And in that day ye shall ask me nothing. Verily, verily, I say unto you, whatsoever ye shall ask the Father in my name, he will give it you.\""
+            },
+            {
+              "verse": 24,
+              "text": "\"Hitherto have ye asked nothing in my name; ask, and ye shall receive, that your joy may be full.\""
+            }
+          ]
+        },
+        {
+          "title": "The world is victorious through the resurrection.",
+          "verses": [
+            {
+              "verse": 25,
+              "text": "\"Today I speak to you in parables; however, I shall declare to you the matter of my Father, for there will come a time when I shall not speak to you in parables.\""
+            },
+            {
+              "verse": 26,
+              "text": "\"At that time you shall say in my name; and I shall not say to you that I will pray to the Father for you.\""
+            },
+            {
+              "verse": 27,
+              "text": "\"You have come to me; and as I have come forth from God, He Himself has loved you as His own.\""
+            },
+            {
+              "verse": 28,
+              "text": "\"I came forth from the Father; and I have come into the world; again, I leave the world and go to the Father.\""
+            },
+            {
+              "verse": 29,
+              "text": "\"And the disciples said, 'Behold, now you are speaking plainly; you are not speaking in parables at all.'\""
+            },
+            {
+              "verse": 30,
+              "text": "\"Now that you know all things, no one shall speak to you as you do not understand; and in this, as you have come forth from God, we believe.\""
+            },
+            {
+              "verse": 31,
+              "text": "\"Our Lord Jesus also said to them, 'Do you now believe?'\""
+            },
+            {
+              "verse": 32,
+              "text": "\"Each of you, wherever you may be, there will come a time when you will leave me alone; yet I am not alone, for the Father is with me.\""
+            },
+            {
+              "verse": 33,
+              "text": "\"I have spoken these things to you, that in me you may have peace; in the world, however, you shall have tribulation; but be of good cheer, I have overcome the world.'\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 17,
+      "sections": [
+        {
+          "title": "Our Lord prayed unto the Father.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ጌታችን ኢየሱስም ይህን ነገር ተናግሮ ዐይኖቹን ወደ ሰማይ አነሣና እንዲህ አለ፥ “አባት ሆይ፥ ሰዓቱ ደርሶአልና ልጅህ ያከብርህ ዘንድ ልጅህን አክብረው፤"
+            },
+            {
+              "verse": 2,
+              "text": "ሥጋ በለበሰው ሁሉ ላይ ሥልጣንን እንደ ሰጠኸው መጠን ለሰጠኸው ሁሉ የዘለዓለም ሕይወትን ይሰጣቸው ዘንድ።"
+            },
+            {
+              "verse": 3,
+              "text": "ብቻህን እውነተኛ አምላክ የሆንህ አንተን፥ የላክኸውንም ኢየሱስ ክርስቶስን ያውቁ ዘንድ ይህች የዘለዓለም ሕይወት ናት።"
+            },
+            {
+              "verse": 4,
+              "text": "እኔ ልሠራው የሰጠኸኝን ሥራ ፈጽሜ በምድር ላይ አከበርሁህ።"
+            },
+            {
+              "verse": 5,
+              "text": "አሁንም አባት ሆይ፥ ዓለም ሳይፈጠር ከአንተ ጋር በነበረኝ ክብር በአንተ ዘንድ አክብረኝ።"
+            },
+            {
+              "verse": 6,
+              "text": "“ከዓለም ለይተህ ለሰጠኸኝ ሰዎች ስምህን ገለጥሁ፤ ያንተ ነበሩ፤ እነርሱንም ለእኔ ሰጥተኸኛል፤ ቃልህንም ጠበቁ።"
+            },
+            {
+              "verse": 7,
+              "text": "የሰጠኸኝም ሁሉ ከአንተ እንደ ሆነ ዛሬ ዐወቁ።"
+            },
+            {
+              "verse": 8,
+              "text": "የሰጠኽኝን ቃል ሰጥቻቸዋለሁና፤ እነርሱም ተቀብለው ከአንተ እንደ ወጣሁ በእውነት ዐወቁ፤ አንተም እንደ ላክኸኝ አመኑ።"
+            },
+            {
+              "verse": 9,
+              "text": "እኔ ስለ እነርሱ እለምናለሁ፤ የምለምንህ ስለ ዓለም አይደለም፤ ስለ ሰጠኸኝ ነው እንጂ፤ ያንተ ናቸውና።"
+            },
+            {
+              "verse": 10,
+              "text": "የእኔም የሆነ ሁሉ የአንተ ነው፤ የአንተም የሆነ የእኔ ነው፤ እኔም በእነርሱ ከብሬአለሁ።"
+            },
+            {
+              "verse": 11,
+              "text": "እንግዲህ በዓለም አልኖርም፤ እነርሱ ግን በዓለም ይኖራሉ፤ እኔም ወደ አንተ እመጣለሁ፤ ቅዱስ አባት ሆይ፥ እነዚህን የሰጠኸኝን እንደ እኛ አንድ ይሆኑ ዘንድ በስምህ ጠብቃቸው፤"
+            },
+            {
+              "verse": 12,
+              "text": "እኔ በዓለም ከእነርሱ ጋር ሳለሁ ግን የሰጠኸኝን በስምህ እጠብቃቸው ነበር፤ ጠበቅኋቸውም፤ የመጽሐፉም ቃል ይፈጸም ዘንድ ከጥፋት ልጅ በቀር ከእነርሱ አንድ ስንኳን አልጠፋም።"
+            },
+            {
+              "verse": 13,
+              "text": "አሁን ግን ወደ አንተ እመጣለሁ፤ በእነርሱም ደስታዬ ፍጹም ይሆን ዘንድ ይህን በዓለም እናገራለሁ።"
+            },
+            {
+              "verse": 14,
+              "text": "እኔ ቃልህን ሰጠኋቸው፤ ዓለም ግን ጠላቸው፤ እኔ ከዓለም እንዳይደለሁ እነርሱ ከዓለም አይደሉምና።"
+            },
+            {
+              "verse": 15,
+              "text": "ከክፉ ነገር እንድትጠብቃቸው ነው እንጂ ከዓለም እንድትለያቸው አልለምንም።"
+            },
+            {
+              "verse": 16,
+              "text": "እኔ ከዓለም እንዳይደለሁ ከዓለም አይደሉምና።"
+            },
+            {
+              "verse": 17,
+              "text": "በእውነትህ ቀድሳቸው፤ ቃልህ እውነት ነውና።"
+            },
+            {
+              "verse": 18,
+              "text": "አንተ እኔን ወደ ዓለም እንደ ላክኸኝ እኔም እነርሱን ወደ ዓለም ላክኋቸው።"
+            },
+            {
+              "verse": 19,
+              "text": "እነርሱም በእውነት ቅዱሳን ይሆኑ ዘንድ ስለ እነርሱ እኔ ራሴን እቀድሳለሁ።"
+            },
+            {
+              "verse": 20,
+              "text": "“የምለምንህም ስለ እነዚህ ብቻ አይደለም፤ በቃላቸው ስለሚያምኑብኝም ነው እንጂ፤"
+            },
+            {
+              "verse": 21,
+              "text": "ሁሉም አንድ ይሆኑ ዘንድ፥ አንተ አብ በእኔ እንዳለህ፥ እኔም በአንተ እንዳለሁ፥ እነርሱም እንደ እኛ በእኛ አንድ ይሆኑ ዘንድ፥ አንተም እንደ ላክኸኝ ዓለም ያምን ዘንድ።"
+            },
+            {
+              "verse": 22,
+              "text": "እኔም የሰጠኸኝን ክብር ሰጠኋቸው፤ እኛ አንድ እንደሆን እነርሱም እንደ እኛ አንድ ይሆኑ ዘንድ።"
+            },
+            {
+              "verse": 23,
+              "text": "እኔ በእነርሱ እኖራለሁ፤ አንተም በእኔ፤ በአንድ ፍጹማን ይሆኑ ዘንድ፤ አንተም እንደ ላክኸኝና እንደ ወደድኸኝ እኔም እነርሱን እንደ ወደድኋቸው።"
+            },
+            {
+              "verse": 24,
+              "text": "አባት ሆይ፥ የሰጠኸኝ እነዚህ እኔ ባለሁበት አብረውኝ ይኖሩ ዘንድና የሰጠኸኝን ክብሬን ያዩ ዘንድ እወድዳለሁ፤ ዓለም ሳይፈጠር ወድደኸኛልና።"
+            },
+            {
+              "verse": 25,
+              "text": "ጻድቅ አባት ሆይ፥ ዓለም አላወቀህም፤ እኔ ግን ዐወቅሁህ፤ እነዚህም አንተ እንደ ላክኸኝ ዐወቁ።"
+            },
+            {
+              "verse": 26,
+              "text": "እኔን የወደድህበት ፍቅር በእነርሱ ይኖር ዘንድ፥ እኔም በእነርሱ እኖር ዘንድ ስምህን ነገርኋቸው፤ ደግሞም እነግራቸዋለሁ፤”"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 18,
+      "sections": [
+        {
+          "title": "Judah, having betrayed our Lord, for the sake of His giving.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Our Lord Jesus spoke these words and went to the place called Gethsemane, and He went out with His disciples."
+            },
+            {
+              "verse": 2,
+              "text": "Judas also knew that place; for our Lord Jesus often went there with His disciples."
+            },
+            {
+              "verse": 3,
+              "text": "Judas received the chief priests and the officers of the Pharisees; and he brought with him a multitude armed with swords and clubs, and they went there."
+            },
+            {
+              "verse": 4,
+              "text": "Our Lord Jesus, knowing all that would come upon Him, went forth and said unto them, “Whom seek ye?”"
+            },
+            {
+              "verse": 5,
+              "text": "They answered, “Jesus of Nazareth.” Jesus said unto them, “I am He.” And Judas, who betrayed Him, stood with them."
+            },
+            {
+              "verse": 6,
+              "text": "When our Lord Jesus said, “I am He,” they went backward and fell to the ground."
+            },
+            {
+              "verse": 7,
+              "text": "After this, He asked them again, “Whom seek ye?” They said, “Jesus of Nazareth.”"
+            },
+            {
+              "verse": 8,
+              "text": "Our Lord Jesus said unto them, “I have told you that I am He; if therefore ye seek Me, let these go their way.”"
+            },
+            {
+              "verse": 9,
+              "text": "This was to fulfill the word which He had spoken, “Of those whom Thou gavest Me, I have lost none.”"
+            },
+            {
+              "verse": 10,
+              "text": "Simon Peter drew a sword and struck the high priest's servant, cutting off his right ear; the servant's name was Malchus."
+            },
+            {
+              "verse": 11,
+              "text": "Our Lord Jesus said to Peter, \"Answer her concerning your drink; shall I not drink the cup which my Father has given me?\""
+            }
+          ]
+        },
+        {
+          "title": "And concerning their going unto the high priests.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "ጭፍሮችና የሺ አለቃው፥ የአይሁድም ሎሌዎች ጌታችን ኢየሱስን ይዘው አሰሩት።"
+            },
+            {
+              "verse": 13,
+              "text": "አስቀድሞም ወደ ሐና ወሰዱት፤ በዚያች ዓመት የካህናት አለቃ ለነበረው ለቀያፋ አማቱ ነበርና።"
+            },
+            {
+              "verse": 14,
+              "text": "ቀያፋም “ስለ ሕዝቡ ሁሉ አንድ ሰው ቢሞት ይሻላል” ብሎ አይሁድን የመከራቸው ነበር።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the denial of Peter.",
+          "verses": [
+            {
+              "verse": 15,
+              "text": "Simon Peter and another disciple followed our Lord Jesus from afar; that disciple, however, was known to the high priest, and he entered with our Lord Jesus into the courtyard of the high priest."
+            },
+            {
+              "verse": 16,
+              "text": "But Peter stood outside by the door; and the other disciple, who was known to the high priest, went out and spoke to the servant girl who kept the door, and brought Peter in."
+            },
+            {
+              "verse": 17,
+              "text": "The servant girl who kept the door said to Peter, \"You are not also one of this man's disciples, are you?\" He said, \"I am not.\""
+            },
+            {
+              "verse": 18,
+              "text": "Now the servants and officers stood there, having made a fire of coals, for it was cold; and Peter stood with them and warmed himself."
+            }
+          ]
+        },
+        {
+          "title": "As the priest inquired.",
+          "verses": [
+            {
+              "verse": 19,
+              "text": "ሊቀ ካህናቱም ጌታችን ኢየሱስን፦ ስለ ደቀ መዛሙርቱና ስለ ትምህርቱ ጠየቀው።"
+            },
+            {
+              "verse": 20,
+              "text": "ጌታችን ኢየሱስም መልሶ እንዲህ አለው፥ “እኔ ለዓለም በግልጥ ተናገርሁ፤ አይሁድ ሁሉ በሚሰበሰቡበት በምኵራብም፥ በቤተ መቅደስም ሁልጊዜ አስተማርሁ፤ በስውርም የተናገርሁት አንዳች ነገር የለም።"
+            },
+            {
+              "verse": 21,
+              "text": "እንግዲህ እኔን ለምን ትጠይቀኛለህ? የተናገርሁትን የሰሙኝን ጠይቃቸው፤ እኔም የተናገርሁትን እነሆ፥ እነርሱ ያውቃሉ።”"
+            },
+            {
+              "verse": 22,
+              "text": "ይህንም ባለጊዜ ከቆሙት ሎሌዎች አንዱ፥ “ለሊቀ ካህናቱ እንዲህ ትመልስለታለህን?” ብሎ ጌታችን ኢየሱስን በጥፊ መታው።"
+            },
+            {
+              "verse": 23,
+              "text": "ጌታችን ኢየሱስም መልሶ፥ “ክፉ ተናግሬ እንደ ሆንሁ ስለ ክፉ መስክርብኝ፤ መልካም ተናግሬ እንደ ሆንሁ ግን ለምን ትመታኛለህ?” አለው።"
+            },
+            {
+              "verse": 24,
+              "text": "ሐናም ጌታችን ኢየሱስን እንደ ታሰረ ወደ ሊቀ ካህናቱ ወደ ቀያፋ ላከው።"
+            },
+            {
+              "verse": 25,
+              "text": "ስምዖን ጴጥሮስም ቆሞ እሳት ይሞቅ ነበር፤ “አንተስ ከእርሱ ደቀ መዛሙርት ወገን አይደለህምን?” አሉት፤ እርሱም፥ “አይደለሁም” ብሎ ካደ።"
+            },
+            {
+              "verse": 26,
+              "text": "ጴጥሮስ ጆሮውን ከቈረጠው ሰው ዘመዶች ወገን የሆነ ከሊቀ ካህናቱ አገልጋዮችም አንድ ሰው፥ “እኔ በአትክልት ቦታ ውስጥ ከእርሱ ጋር አይችህ አልነበረምን?” አለው።"
+            },
+            {
+              "verse": 27,
+              "text": "ጴጥሮስም ደግሞ ካደ፤ ያንጊዜም ዶሮ ጮኸ።"
+            }
+          ]
+        },
+        {
+          "title": "The Lord before Pilate concerning His standing.",
+          "verses": [
+            {
+              "verse": 28,
+              "text": "ጌታችን ኢየሱስንም ከቀያፋ ወደ ፍርድ አደባባይ ወሰዱት፤ አይሁድ ግን ፈጽሞ ስለ ነጋ የፋሲካውን በግ ሳይበሉ እንዳይረክሱ ወደ ፍርድ አደባባይ አልገቡም።"
+            },
+            {
+              "verse": 29,
+              "text": "ጲላጦስም ወደ እነርሱ ወደ ውጭ ወጥቶ፥ “ይህን ሰው ወደ እኔ ያመጣችሁበት በደሉ ምንድነው?” አላቸው።"
+            },
+            {
+              "verse": 30,
+              "text": "እነርሱም፥ “ክፉ የሠራ ባይሆንስ ወደ አንተ አሳልፈን ባልሰጠነው ነበር” ብለው መለሱለት።"
+            },
+            {
+              "verse": 31,
+              "text": "ጲላጦስም፥ “እናንተ ወስዳችሁ እንደ ሕጋችሁ ፍረዱበት” አላቸው፤ አይሁድም፥ “እኛስ ማንንም ልንገድል አልተፈቀደልንም” አሉት።"
+            },
+            {
+              "verse": 32,
+              "text": "ይህም በምን ዐይነት ሞት ይሞት ዘንድ እንዳለው ሲያመለክት የተናገረው የጌታችን የኢየሱስ ቃል ይፈጸም ዘንድ ነው።"
+            },
+            {
+              "verse": 33,
+              "text": "ጲላጦስም እንደገና ወደ ፍርድ አደባባይ ገብቶ ጌታችን ኢየሱስን ጠራና፥ “የአይሁድ ንጉሥ አንተ ነህን?” አለው።"
+            },
+            {
+              "verse": 34,
+              "text": "ጌታችን ኢየሱስም፥ “ይህን የምትናገር ከራስህ ነውን? ወይስ ስለ እኔ የነገረህ ሌላ አለን?” ብሎ መለሰለት።"
+            },
+            {
+              "verse": 35,
+              "text": "ጲላጦስም መልሶ፥ “እኔ አይሁዳዊ ነኝን? ለእኔ አሳልፈው የሰጡህ ወገኖችህና ሊቃነ ካህናት አይደሉምን? Aረ ምን አድርገሃል?” አለው።"
+            },
+            {
+              "verse": 36,
+              "text": "ጌታችን ኢየሱስም፥ “የእኔ መንግሥት ከዚህ ዓለም አይደለችም፤ መንግሥቴስ በዚህ ዓለም ብትሆን ኖሮ ለአይሁድ እንዳልሰጥ አሽከሮች በተዋጉልኝ ነበር፤ አሁንም መንግሥቴ ከዚህ አይደለችም” ብሎ መለሰለት።"
+            },
+            {
+              "verse": 37,
+              "text": "ጲላጦስም፥ “እንግዲያ አንተ ንጉሥ ነህን?” አለው፤ ጌታችን ኢየሱስም መልሶ፥ “እኔ ንጉሥ እንደ ሆንሁ አንተ ራስህ ትላለህ፤ እኔ ስለዚህ ተወለድሁ፤ ስለዚህም ለእውነት ልመሰክር ወደ ዓለም መጣሁ፤ ከእውነት የሆነ ሁሉ ቃሌን ይሰማኛል” አለው።"
+            },
+            {
+              "verse": 38,
+              "text": "Pilate said, \"What is truth?\" And having spoken this, he went out again to the Jews and said to them, \"I find no fault in him at all.\""
+            },
+            {
+              "verse": 39,
+              "text": "But you have a custom that at the feast of Passover you should release one prisoner to you; therefore, do you want me to release to you the King of the Jews?\""
+            },
+            {
+              "verse": 40,
+              "text": "The chief priests cried out, saying, \"Not this man, but Barabbas!\" Now Barabbas was a robber."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 19,
+      "sections": [
+        {
+          "title": "As the Jews have mocked the Lord and as they have conspired against Him.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And after this, Pilate delivered our Lord Jesus to be crucified."
+            },
+            {
+              "verse": 2,
+              "text": "And the soldiers wove a crown of thorns and placed it upon His head; and they put on Him a purple robe."
+            },
+            {
+              "verse": 3,
+              "text": "And as they approached Him, they would say, “Hail, King of the Jews,” and they struck Him with their hands."
+            },
+            {
+              "verse": 4,
+              "text": "Pilate went out again and said to them, “Behold, I find no fault in Him at all; therefore, I will bring Him out to you.”"
+            },
+            {
+              "verse": 5,
+              "text": "Our Lord Jesus, bearing the crown of thorns and clothed with the purple robe, went out; and Pilate said to them, “Behold the Man!”"
+            },
+            {
+              "verse": 6,
+              "text": "When the chief priests and their officers saw Him, they cried out, “Crucify Him! Crucify Him!” And Pilate said to them, “You take Him and crucify Him; for I find no fault in Him.”"
+            },
+            {
+              "verse": 7,
+              "text": "The Jews answered him, “We have a law, and according to our law He ought to die, because He made Himself the Son of God.”"
+            },
+            {
+              "verse": 8,
+              "text": "Pilate, upon hearing this word, was greatly afraid."
+            }
+          ]
+        },
+        {
+          "title": "Pilate, the governor, as it is written.",
+          "verses": [
+            {
+              "verse": 9,
+              "text": "And he entered into the judgment hall, and our Lord Jesus was asked, “Where art thou from?” But our Lord Jesus answered him nothing."
+            },
+            {
+              "verse": 10,
+              "text": "And Pilate said, “Speakest thou not unto me? Knowest thou not that I have power to crucify thee, and have power to release thee?”"
+            },
+            {
+              "verse": 11,
+              "text": "Jesus answered, “Thou couldest have no power at all against me, except it were given thee from above; therefore he that delivered me unto thee hath the greater sin.”"
+            },
+            {
+              "verse": 12,
+              "text": "And from thenceforth Pilate sought to release him; but the Jews cried out, saying, “If thou let this man go, thou art not Caesar's friend; whosoever maketh himself a king speaketh against Caesar.”"
+            }
+          ]
+        },
+        {
+          "title": "Pilate sent him to Lystra as he had delivered him.",
+          "verses": [
+            {
+              "verse": 13,
+              "text": "And Pilate, having heard this, brought our Lord Jesus forth; and he sat down upon the judgment seat in a place that is called \"the Pavement,\" which is in the Hebrew tongue Gabbatha."
+            },
+            {
+              "verse": 14,
+              "text": "Now it was the preparation day of the Passover, and about the sixth hour; and Pilate said to the Jews, \"Behold, your King!\""
+            },
+            {
+              "verse": 15,
+              "text": "But they cried out, saying, \"Away with Him! Crucify Him!\" Pilate said to them, \"Shall I crucify your King?\" The chief priests answered, \"We have no king but Caesar.\""
+            }
+          ]
+        },
+        {
+          "title": "Our Lord concerning His crucifixion.",
+          "verses": [
+            {
+              "verse": 16,
+              "text": "ከዚህ በኋላ ሊሰቅሉት አሳልፎ ሰጣቸው፤ ጌታችን ኢየሱስንም ተቀብለው ወሰዱት።"
+            },
+            {
+              "verse": 17,
+              "text": "መስቀሉንም ተሸክሞ በዕብራይስጥ ጎልጎታ ወደ ተባለው ቀራንዮ ወደሚባል ቦታ ወጣ።"
+            },
+            {
+              "verse": 18,
+              "text": "በዚያም ሰቀሉት፤ ከእርሱም ጋር አንዱን በቀኝ፥ አንዱንም በግራ አድርገው ሌሎች ሁለት ወንበዴዎችን ሰቀሉ፤ ኢየሱስንም በመካከላቸው ሰቀሉ።"
+            },
+            {
+              "verse": 19,
+              "text": "ጲላጦስም ጽሕፈት ጽፎ በመስቀሉ ላይ አኖረ፤ ጽሕፈቱም፥ “የአይሁድ ንጉሥ የናዝሬቱ ኢየሱስ” የሚል ነበር።"
+            },
+            {
+              "verse": 20,
+              "text": "ከአይሁድም ይህቺን ጽሕፈት ያነበብዋት ብዙዎች ነበሩ፤ ጌታችን ኢየሱስን የሰቀሉበት ቦታ ለከተማ ቅርብ ነበርና፤ ጽሕፈቱም የተጻፈው በዕብራይስጥ፥ በሮማይስጥና በግሪክ ነበር።"
+            },
+            {
+              "verse": 21,
+              "text": "ሊቃነ ካህናትም ጲላጦስን አሉት፥ “እርሱ ራሱ ‘እኔ የአይሁድ ንጉሥ ነኝ’ እንዳለ እንጂ የአይሁድ ንጉሥ ብለህ አትጻፍ።”"
+            },
+            {
+              "verse": 22,
+              "text": "ጲላጦስም፥ “የጻፍሁትን ጻፍሁ” ብሎ መለሰላቸው።"
+            }
+          ]
+        },
+        {
+          "title": "As they have put on their garments.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "And the soldiers, when they had crucified our Lord Jesus, took His garments and divided them into four parts, to every soldier a part; and also His coat. Now the coat was without seam, woven from the top throughout."
+            },
+            {
+              "verse": 24,
+              "text": "They said to one another, “Let us not tear it, but cast lots for it, whose it shall be;” this was to fulfill the scripture, “They divided My garments among them, and for My clothing they cast lots.” Thus the soldiers did likewise."
+            }
+          ]
+        },
+        {
+          "title": "The Lord gave unto His servant the psalm as a gift for the offering.",
+          "verses": [
+            {
+              "verse": 25,
+              "text": "At the foot of our Lord Jesus' cross stood His mother, and His mother's sister, and Mary the wife of Clopas, and Mary Magdalene stood by."
+            },
+            {
+              "verse": 26,
+              "text": "Our Lord Jesus, while standing by His mother and the beloved disciple, said unto her, “Woman, behold, your son.”"
+            },
+            {
+              "verse": 27,
+              "text": "After this, He said to the disciple, “Behold, your mother”; and from that hour, the disciple took her unto his own home."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the death of our Lord.",
+          "verses": [
+            {
+              "verse": 28,
+              "text": "And after this, our Lord Jesus, at the time when all was fulfilled, spoke the word of the scripture saying, \"I thirst.\""
+            },
+            {
+              "verse": 29,
+              "text": "And there was a vessel full of vinegar; and they filled a sponge with the vinegar, and put it upon hyssop, and brought it to His mouth."
+            },
+            {
+              "verse": 30,
+              "text": "Our Lord Jesus then said, \"It is finished,\" and bowing His head, He gave up His spirit."
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Crucifixion.",
+          "verses": [
+            {
+              "verse": 31,
+              "text": "አይሁድ ግን የመዘጋጀት ቀን ነበርና፥ የዚያች ሰንበትም ቀን ታላቅ ናትና “ሥጋቸው በሰንበት በመስቀል ላይ አይደር” አሉ፤ ጭን ጭናቸውንም ሰብረው ያወርዷቸው ዘንድ ጲላጦስን ለመኑት።"
+            },
+            {
+              "verse": 32,
+              "text": "ጭፍሮችም መጥተው ከእርሱ ጋር የተሰቀሉትን የአንደኛውንና የሁለተኛውን ጭኖች ሰበሩ።"
+            },
+            {
+              "verse": 33,
+              "text": "ወደ ጌታችን ኢየሱስም ሄደው ፈጽሞ እንደ ሞተ ባዩ ጊዜ ጭኑን አልሰበሩም።"
+            },
+            {
+              "verse": 34,
+              "text": "ነገር ግን ከጭፍሮቹ አንዱ የቀኝ ጎኑን በጦር ወጋው፤ ያንጊዜም ከእርሱ ደምና ውኃ ወጣ።"
+            },
+            {
+              "verse": 35,
+              "text": "ያየውም መሰከረ፤ ምስክርነቱም እውነት ነው፤ እርሱም እናንተ ልታምኑ እውነት እንደሚናገር ያውቃል።"
+            },
+            {
+              "verse": 36,
+              "text": "ይህ ሁሉ የሆነው “ከእርሱ ዐፅሙን አትስበሩ” ያለው የመጽሐፍ ቃል ይፈጸም ዘንድ ነው።"
+            },
+            {
+              "verse": 37,
+              "text": "ሌላዉም መጽሐፍ ደግሞ“ የወጉትን ያዩታል” ይላል።"
+            }
+          ]
+        },
+        {
+          "title": "And concerning their burial,",
+          "verses": [
+            {
+              "verse": 38,
+              "text": "And after this, Joseph of Arimathea, being afraid of the Jews, requested from Pilate the body of our Lord Jesus; and Pilate permitted him. He then went and took the body of our Lord Jesus."
+            },
+            {
+              "verse": 39,
+              "text": "Now Nicodemus, who had come to our Lord Jesus by night, also came; and he brought a mixture of myrrh and aloes, about a hundred pounds."
+            },
+            {
+              "verse": 40,
+              "text": "According to the custom of the Jews, they took the body of our Lord Jesus and bound it with spices in linen cloths, as is the manner of burial among the Jews."
+            },
+            {
+              "verse": 41,
+              "text": "In the place where He was crucified, there was a garden; and in the garden, a new tomb, wherein was never man yet laid."
+            },
+            {
+              "verse": 42,
+              "text": "They laid our Lord Jesus there; for it was the preparation day for the Jews, and the tomb was nigh at hand."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 20,
+      "sections": [
+        {
+          "title": "Our Lord concerning His ascension",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "On the first day of the week, Mary Magdalene came to the tomb early, while it was still dark, and saw that the stone had been taken away from the tomb."
+            },
+            {
+              "verse": 2,
+              "text": "And she ran and came to Simon Peter and to our Lord Jesus, and to the other disciple whom Jesus loved, and said to them, “They have taken away my Lord from the tomb, and I do not know where they have laid Him.”"
+            },
+            {
+              "verse": 3,
+              "text": "Peter and the other disciple went out and came to the tomb."
+            },
+            {
+              "verse": 4,
+              "text": "They both ran together, and the other disciple outran Peter and came to the tomb first."
+            },
+            {
+              "verse": 5,
+              "text": "And he stooping down and looking in saw the linen cloths lying there; yet he did not go in."
+            },
+            {
+              "verse": 6,
+              "text": "Then Simon Peter came, following him, and went into the tomb;"
+            },
+            {
+              "verse": 7,
+              "text": "and he saw the linen cloths lying there, and the handkerchief that had been around His head, not lying with the linen cloths, but folded together in a place by itself."
+            },
+            {
+              "verse": 8,
+              "text": "Then the other disciple, who came to the tomb first, went in also; and he saw and believed."
+            },
+            {
+              "verse": 9,
+              "text": "For as yet they did not know the Scripture, that He must rise again from the dead."
+            },
+            {
+              "verse": 10,
+              "text": "Then the disciples went away again to their own homes."
+            }
+          ]
+        },
+        {
+          "title": "For Mary, the mother of Jesus, as it has been revealed.",
+          "verses": [
+            {
+              "verse": 11,
+              "text": "But Mary stood outside the tomb, weeping; and as she wept, she stooped down and looked into the tomb."
+            },
+            {
+              "verse": 12,
+              "text": "And there were two angels in white sitting, one at the head and the other at the feet, where the body of our Lord Jesus had lain."
+            },
+            {
+              "verse": 13,
+              "text": "And those angels said unto her, \"Woman, why weepest thou?\" She said unto them, \"Because they have taken away my Lord, and I know not where they have laid him.\""
+            },
+            {
+              "verse": 14,
+              "text": "When she had thus said, she turned herself back and saw Jesus standing, and knew not that it was Jesus."
+            },
+            {
+              "verse": 15,
+              "text": "Jesus said unto her, \"Woman, why weepest thou? Whom seekest thou?\" She, supposing him to be the gardener, said unto him, \"Sir, if thou have borne him hence, tell me where thou hast laid him, and I will take him away.\""
+            },
+            {
+              "verse": 16,
+              "text": "Jesus said unto her, \"Mary!\" She turned herself, and said unto him, \"Rabboni!\" which is to say, Master."
+            },
+            {
+              "verse": 17,
+              "text": "Jesus said unto her, \"Touch me not; for I am not yet ascended to my Father: but go to my brethren, and say unto them, I ascend unto my Father, and your Father; and to my God, and your God.\""
+            },
+            {
+              "verse": 18,
+              "text": "Mary Magdalene came and told the disciples that she had seen the Lord, and that he had spoken these things unto her."
+            }
+          ]
+        },
+        {
+          "title": "Our Lord, as it has been revealed to His holy apostles.",
+          "verses": [
+            {
+              "verse": 19,
+              "text": "On the first day of the week, while it was still dark, the disciples were gathered together in fear of the Jews, and behold, our Lord Jesus came and stood in their midst, and said to them, “Peace be unto you.”"
+            },
+            {
+              "verse": 20,
+              "text": "And saying this, He showed them His hands and His side; then were the disciples glad when they saw the Lord."
+            },
+            {
+              "verse": 21,
+              "text": "Our Lord Jesus then said to them again, “Peace be unto you; as the Father hath sent Me, even so send I you.”"
+            },
+            {
+              "verse": 22,
+              "text": "And saying this, He breathed on them, and said unto them, “Receive ye the Holy Ghost.”"
+            },
+            {
+              "verse": 23,
+              "text": "Whosoever sins ye remit, they are remitted unto them; and whosoever sins ye retain, they are retained.”"
+            }
+          ]
+        },
+        {
+          "title": "Concerning Thomas",
+          "verses": [
+            {
+              "verse": 24,
+              "text": "Our Lord Jesus, when He came, was not with the disciples called Didymus, one of whom was Thomas, for he was not with the disciples."
+            },
+            {
+              "verse": 25,
+              "text": "Other disciples said, \"We have seen the Lord\"; but He said to them, \"Unless I see in His hands the mark of the nails, and put my finger into the mark of the nails, and put my hand into His side, I will not believe.\""
+            },
+            {
+              "verse": 26,
+              "text": "After eight days, His disciples were again inside, and Thomas was with them. Jesus came, the doors being shut, and stood in the midst, and said, \"Peace be to you.\""
+            },
+            {
+              "verse": 27,
+              "text": "Then He said to Thomas, \"Reach your finger here, and look at My hands; and reach your hand here, and put it into My side. Do not be unbelieving, but believing.\""
+            },
+            {
+              "verse": 28,
+              "text": "And Thomas answered and said to Him, \"My Lord and my God!\""
+            },
+            {
+              "verse": 29,
+              "text": "Jesus said to him, \"Thomas, because you have seen Me, you have believed. Blessed are those who have not seen and yet have believed.\""
+            },
+            {
+              "verse": 30,
+              "text": "And our Lord Jesus did many other signs in the presence of His disciples, which are not written in this book."
+            },
+            {
+              "verse": 31,
+              "text": "But these are written that you may believe that Jesus is the Christ, the Son of God, and that believing you may have life in His name."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 21,
+      "sections": [
+        {
+          "title": "Concerning the revelation of the apostles in the sea of Tiberias.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ከዚህም በኋላ ጌታችን ኢየሱስ በጥብርያዶስ ባሕር አጠገብ ለደቀ መዛሙርቱ እንደገና ተገለጠላቸው፤ እንዲህም ተገለጠላቸው።"
+            },
+            {
+              "verse": 2,
+              "text": "ስምዖን ጴጥሮስ፥ ዲዲሞስ የሚሉት ቶማስ፥ ከገሊላ ቃና የሆነው ናትናኤል፥ የዘብዴዎስ ልጆችና ሌሎችም ከደቀ መዛሙርቱ ሁለት አብረው ነበሩ።"
+            },
+            {
+              "verse": 3,
+              "text": "ስምዖን ጴጥሮስ፥ “እኔ ዓሣ ላጠምድ እሄዳለሁ” አላቸው፤ እነርሱም፥ “እኛም አብረንህ እንመጣለን” አሉት፤ ሄደውም ወደ ታንኳ ገቡ፤ ግን በዚያች ሌሊት የያዙት ምንም የለም።"
+            },
+            {
+              "verse": 4,
+              "text": "በነጋ ጊዜም ጌታችን ኢየሱስ በባሕሩ ዳር ቆሞ ነበር፤ ደቀ መዛሙርቱም አዩት፤ ግን ጌታችን ኢየሱስ እንደ ሆነ አላወቁም።"
+            },
+            {
+              "verse": 5,
+              "text": "ጌታችን ኢየሱስም፥ “ልጆች ሆይ አንዳች የሚበላ ነገር አላችሁን?” አላቸው፤ እነርሱም፥ “የለም” አሉት።"
+            },
+            {
+              "verse": 6,
+              "text": "ጌታችን ኢየሱስም፥ “መረባችሁን በታንኳዪቱ በስተቀኝ በኩል ጣሉ፤ ታገኛላችሁም” አላቸው፤ መረባቸውንም በጣሉ ጊዜ ከተያዘው ዓሣ ብዛት የተነሣ ስቦ ማውጣት ተሳናቸው።"
+            },
+            {
+              "verse": 7,
+              "text": "ጌታችን ኢየሱስ ይወደው የነበረ ያ ደቀ መዝሙርም ለጴጥሮስ፥ “ጌታችን ነው እኮ” አለው፤ ስምዖን ጴጥሮስም ጌታችን እንደ ሆነ በሰማ ጊዜ የሚለብሰውን ልብስ አንሥቶ በወገቡ ታጠቀ፤ ራቁቱን ነበርና ወደ ባሕር ተወረወረ።"
+            },
+            {
+              "verse": 8,
+              "text": "ሌሎች ደቀ መዛሙርት ግን በታንኳ መጡ፤ ከሁለት መቶ ክንድ ያህል በቀር ከምድር አልራቁም ነበርና፤ ዓሣ የመላባቸውን መረቦቻቸውንም እየሳቡ ሄዱ።"
+            },
+            {
+              "verse": 9,
+              "text": "ወደ ምድርም በወረዱ ጊዜ ፍሙ መርቶ፥ ዓሣም በላዩ ሆኖ፥ እንጀራም ተሠርቶ አገኙ።"
+            },
+            {
+              "verse": 10,
+              "text": "ጌታችን ኢየሱስም፥ “አሁን ከያዛችኋቸው ዓሣዎች አምጡ” አላቸው።"
+            },
+            {
+              "verse": 11,
+              "text": "ስምዖን ጴጥሮስም ወደ ታንኳ ገብቶ መቶ አምሳ ሦስት ታላላቅ ዓሣዎችን መልቶ የነበረውን መረብ ወደ ምድር ሳበ፤ ብዛቱም ይህን ያህል ሲሆን መረቡ አልተቀደደም።"
+            },
+            {
+              "verse": 12,
+              "text": "ጌታችን ኢየሱስም፥ “ኑ፥ ምሳ ብሉ” አላቸው፤ ከደቀ መዛሙርቱም አንተ ማነህ? ብሎ ሊጠይቀው የደፈረ የለም፤ ጌታችን እንደ ሆነ ዐውቀዋልና።"
+            },
+            {
+              "verse": 13,
+              "text": "ጌታችን ኢየሱስም መጣና ኅብስቱን አንሥቶ ሰጣቸው፤ ከዓሣውም እንዲሁ።"
+            },
+            {
+              "verse": 14,
+              "text": "ጌታችን ኢየሱስም ከሙታን ተለይቶ ከተነሣ በኋላ ለደቀ መዛሙርቱ ሲገለጥላቸው ይህ ሦስተኛ ጊዜዉ ነበር።"
+            }
+          ]
+        },
+        {
+          "title": "Our Lord, dost Thou love Peter, or as he hath asked?",
+          "verses": [
+            {
+              "verse": 15,
+              "text": "ምሳም ከበሉ በኋላ ጌታችን ኢየሱስ፦ ስምዖን ጴጥሮስን፥ “የዮና ልጅ ስምዖን ሆይ፥ ከእነዚህ ይልቅ ትወደኛለህን?” አለው፤ እርሱም፥ “አዎን፥ ጌታዬ ሆይ፥ እኔ እንደምወድህ አንተ ታውቃለህ” አለው፤ ጌታችን ኢየሱስም፥ “በጎችን ጠብቅ” አለው።"
+            },
+            {
+              "verse": 16,
+              "text": "ዳግመኛም፥ “የዮና ልጅ ስምዖን ሆይ፥ ትወደኛለህን?” አለው፤ እርሱም፥ “አዎን፥ ጌታዬ ሆይ፥ እኔ እንደምወድህ አንተ ታውቃለህ” አለው፤ “ጠቦቶችን አሰማራ” አለው።"
+            },
+            {
+              "verse": 17,
+              "text": "ሦስተኛ ጊዜም፥ “የዮና ልጅ ስምዖን ሆይ፥ ትወደኛለህን?” አለው፤ ጴጥሮስም ሦስት ጊዜ ትወደኛለህን? ስላለው ተከዘ፤ “ጌታዬ ሆይ፥ አንተ ሁሉን ታውቃለህ፤ እኔም እንደምወድህ አንተ ታውቃለህ” አለው፤ “እንኪያስ ግልገሎችን ጠብቅ” አለው።"
+            },
+            {
+              "verse": 18,
+              "text": "“እውነት እውነት እልሃለሁ፤ አንተ ጐልማሳ ሳለህ በገዛ እጅህ ወገብህን ታጥቀህ ወደ ወደድኸው ትሄድ ነበር፤ በሸመገልህ ጊዜ ግን እጆችህን ትዘረጋለህ፤ ወገብህንም ሌላ ያስታጥቅሃል፤ ወደማትወደውም ይወስድሃል።”"
+            },
+            {
+              "verse": 19,
+              "text": "በምን ሞት እግዚአብሔርን ያከብር ዘንድ እንዳለው ሲያመለክት ይህን ተናገረ፤ ይህንም ብሎ ተከተለኝ አለው።"
+            }
+          ]
+        },
+        {
+          "title": "Concerning the Evangelist John",
+          "verses": [
+            {
+              "verse": 20,
+              "text": "ጴጥሮስም መለስ ብሎ ጌታችን ኢየሱስ ይወደው የነበረውን ያን ደቀ መዝሙር ሲከተለው አየ፤ እርሱም ራት ሲበሉ በጌታችን በኢየሱስ አጠገብ የነበረውና “ጌታ ሆይ፥ አሳልፎ የሚሰጥህ ማነው?” ያለው ነው።"
+            },
+            {
+              "verse": 21,
+              "text": "ጴጥሮስም እርሱን አይቶ፥ “ጌታ ሆይ፥ ይህስ እንዴት ይሆናል?” አለው።"
+            },
+            {
+              "verse": 22,
+              "text": "ጌታችን ኢየሱስም፥ “እስክመጣ ይኖር ዘንድ ብወድድስ አንተን ምን አግዶህ፤ አንተ ግን ተከተለኝ” አለው።"
+            },
+            {
+              "verse": 23,
+              "text": "ያም ደቀ መዝሙር እንደማይሞት ይህ ነገር በወንድሞች ዘንድ ተነገረ፤ ጌታችን ኢየሱስ ግን፥ “እስክመጣ ድረስ ይኖር ዘንድ ብወድድስ አንተን ምን አግዶህ” አለ እንጂ አይሞትም አላለውም።"
+            },
+            {
+              "verse": 24,
+              "text": "ስለዚህ ነገር ምስክር የሆነ፥ ስለ እርሱም ይህን የጻፈ ይህ ደቀ መዝሙር ነው፤ ምስክርነቱም እውነት እንደ ሆነ እኛ እናውቃለን።"
+            },
+            {
+              "verse": 25,
+              "text": "ጌታችን ኢየሱስ የሠራቸው ሌሎች ብዙ ሥራዎች አሉ፤ ሁሉ እያንዳንዱ ቢጻፍ ግን የተጻፉትን መጻሕፍት ዓለም ስንኳን ባልቻላቸውም ነበር።"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

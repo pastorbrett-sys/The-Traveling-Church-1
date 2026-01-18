@@ -284,8 +284,7 @@ router.get("/translations", async (req, res) => {
       ...translations,
       amharicBibleService.AMHARIC_ORTHODOX_TRANSLATION,
       amharicBibleService.AMHARIC_PROTESTANT_TRANSLATION,
-      // ETHE (English Orthodox) disabled until full translation is complete
-      // amharicBibleService.ENGLISH_ORTHODOX_TRANSLATION,
+      amharicBibleService.ENGLISH_ORTHODOX_TRANSLATION,
     ];
     res.json(allTranslations);
   } catch (error) {

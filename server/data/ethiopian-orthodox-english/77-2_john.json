@@ -1,0 +1,78 @@
+{
+  "book_number": 77,
+  "book_name_am": "2ኛ የዮሐንስ መልእክት",
+  "book_short_name_am": "2 ዮሐ",
+  "book_name_en": "2 John",
+  "book_short_name_en": "2 John",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Greetings.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "For the truth that dwells in us and abides with us forever, I, the beloved, in truth for those whom I love, and not only I, but also all who know the truth, for those who love them, for the chosen mother and for her children;"
+            },
+            {
+              "verse": 3,
+              "text": "Grace and mercy and peace from God our Father and from the Lord Jesus Christ be with us in truth and love."
+            }
+          ]
+        },
+        {
+          "title": "Truth and Love",
+          "verses": [
+            {
+              "verse": 4,
+              "text": "We have received the commandment from the Father, and I rejoice greatly for those of your children who walk in truth, for they have found it."
+            },
+            {
+              "verse": 5,
+              "text": "Now, O Mother! I beseech you that we may walk together; for this is the commandment that was from the beginning, and it is not as if I write unto you a new commandment."
+            },
+            {
+              "verse": 6,
+              "text": "As we walk according to His commandments, this is love; for from the beginning, as you have heard, this is the commandment that you should walk in."
+            },
+            {
+              "verse": 7,
+              "text": "Many deceivers have entered into the world; they do not confess that Jesus Christ has come in the flesh. This is the deceiver and the antichrist."
+            },
+            {
+              "verse": 8,
+              "text": "Take heed to yourselves, that you do not lose those things which you have worked for, but that you may receive a full reward."
+            },
+            {
+              "verse": 9,
+              "text": "For everyone who goes out and does not abide in the doctrine of Christ does not have God; he who abides in the doctrine of Christ has both the Father and the Son."
+            },
+            {
+              "verse": 10,
+              "text": "If anyone comes to you and does not bring this doctrine, do not receive him into your house, nor greet him;"
+            },
+            {
+              "verse": 11,
+              "text": "For he who greets him shares in his evil deeds."
+            }
+          ]
+        },
+        {
+          "title": "The final greeting.",
+          "verses": [
+            {
+              "verse": 12,
+              "text": "I desire to write to you many things; however, I do not wish to write them on paper and with ink. But I hope to come to you and speak face to face, that our joy may be full."
+            },
+            {
+              "verse": 13,
+              "text": "The chosen ones, the children of your sister, greet you."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

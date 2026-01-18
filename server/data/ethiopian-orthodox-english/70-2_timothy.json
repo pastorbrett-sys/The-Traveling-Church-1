@@ -1,0 +1,396 @@
+{
+  "book_number": 70,
+  "book_name_am": "2ኛ ወደ ጢሞቴዎስ",
+  "book_short_name_am": "2 ጢሞ",
+  "book_name_en": "2 Timothy",
+  "book_short_name_en": "2 Tim",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Greetings.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "በክርስቶስ ኢየሱስ እንደሚሆን የሕይወት ተስፋ፥ በእግዚአብሔር ፈቃድ የኢየሱስ ክርስቶስ ሐዋርያ የሆነ ጳውሎስ፤"
+            },
+            {
+              "verse": 2,
+              "text": "ለተወደደው ልጄ ለጢሞቴዎስ፤ ከእግዚአብሔር አብ ከጌታችንም ከክርስቶስ ኢየሱስ ጸጋና ምሕረት ሰላምም ይሁን።"
+            }
+          ]
+        },
+        {
+          "title": "To be faithful to the Gospel as it is fitting.",
+          "verses": [
+            {
+              "verse": 3,
+              "text": "ሌትና ቀን በልመናዬ ሳላቋርጥ ስለማስብህ እንደ አባቶቼ አድርጌ በንጹሕ ሕሊና የማመልከውን እግዚአብሔርን አመሰግናለሁ፤"
+            },
+            {
+              "verse": 4,
+              "text": "እንባህን እያሰብሁ በደስታ እሞላ ዘንድ ላይህ እናፍቃለሁ።"
+            },
+            {
+              "verse": 5,
+              "text": "በአንተ ያለውን ግብዝነት የሌለበትን እምነትህን አስባለሁ፤ ይህም እምነት ቀድሞ በአያትህ በሎይድ በእናትህም በኤውንቄ ነበረባቸው፤ በአንተም ደግሞ እንዳለ ተረድቼአለሁ።"
+            },
+            {
+              "verse": 6,
+              "text": "ስለዚህ ምክንያት እሳት እንደሚያቀጣጥል ሰው እጆቼን በመጫኔ በአንተ ያለውን የእግዚአብሔርን ስጦታ እንድታነሣሣ አሳስብሃለሁ።"
+            },
+            {
+              "verse": 7,
+              "text": "እግዚአብሔር የኀይልና የፍቅር ራስንም የመግዛት መንፈስ እንጂ የፍርሃት መንፈስ አልሰጠንምና።"
+            },
+            {
+              "verse": 8,
+              "text": "እንግዲህ በጌታችን ምስክርነት ወይም በእስረኛው በእኔ አትፈር፤ ነገር ግን እንደ እግዚአብሔር ኀይል መጠን ስለ ወንጌል አብረኸኝ መከራን ተቀበል፤"
+            },
+            {
+              "verse": 9,
+              "text": "ያዳነን በቅዱስም አጠራር የጠራን እግዚአብሔር ነውና፤ ይህም እንደ ራሱ አሳብና ጸጋ መጠን ነው እንጂ፥ እንደ ሥራችን መጠን አይደለም፤ ይህም ጸጋ ከዘላለም ዘመናት በፊት በክርስቶስ ኢየሱስ ተሰጠን፤"
+            },
+            {
+              "verse": 10,
+              "text": "አሁን ግን በመድኃኒታችን በኢየሱስ ክርስቶስ መገለጥ ታይቶአል። እርሱ ሞትን ሽሮአልና፤ እኔ ሰባኪና ሐዋርያ አሕዛብንም አስተማሪ እንድሆን በተሾምሁበት በወንጌል ሕይወትንና አለመጥፋትን ወደ ብርሃን አውጥቶአል።"
+            },
+            {
+              "verse": 12,
+              "text": "ስለዚህም ምክንያት ይህን መከራ ደግሞ ተቀብዬአለሁ፤ ነገር ግን አላፍርበትም፤ ያመንሁትን አውቃለሁና፤ የሰጠሁትንም አደራ እስከዚያ ቀን ድረስ ሊጠብቅ እንዲችል ተረድቼአለሁ።"
+            },
+            {
+              "verse": 13,
+              "text": "በክርስቶስ ኢየሱስ ባለ እምነትና ፍቅር አድርገህ፥ ከእኔ የሰማኸውንም ጤናማ ቃል ምሳሌ ያዝ፤"
+            },
+            {
+              "verse": 14,
+              "text": "መልካሙን አደራ በእኛ በሚኖረው በመንፈስ ቅዱስ ጠብቅ።"
+            },
+            {
+              "verse": 15,
+              "text": "በእስያ ያሉቱ ሁሉ ከእኔ ፈቀቅ እንዳሉ ታውቃለህ፤ ከእነርሱም ፊሎጎስና ሄርዋጌኔስ ናቸው።"
+            },
+            {
+              "verse": 16,
+              "text": "ጌታ ልሄኔሲፎሩ ቤተ ሰዎች ምሕረትን ይስጥ፤ ብዙ ጊዜ አሳርፎኛልና፤"
+            },
+            {
+              "verse": 17,
+              "text": "በሰንሰለቴም አላፈረበትም፤ ነገር ግን በሮሜ ባደረ ጊዜ ፈልጎ ፈልጎ አገኘኝ፤"
+            },
+            {
+              "verse": 18,
+              "text": "በዚያን ቀን ከጌታ ምሕረትን እንዲያገኝ ጌታ ይስጠው፤ በኤፌሶንም እንዴት እንዳገለገለኝ አንተ በደኅና ታውቃለህ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": "Concerning the faithfulness and service of Jesus Christ.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እንግዲህ ልጄ ሆይ! አንተ በክርስቶስ ኢየሱስ ባለው ጸጋ በርታ።"
+            },
+            {
+              "verse": 2,
+              "text": "ብዙ ሰዎች የመሰከሩለትን ከእኔም የሰማኸውን ሌሎችን ደግሞ ሊያስተምሩ ለሚችሉ ለታመኑ ሰዎች አደራ ስጥ።"
+            },
+            {
+              "verse": 3,
+              "text": "እንደ ኢየሱስ ክርስቶስ በጎ ወታደር ሆነህ፥ አብረኸኝ መከራ ተቀበል።"
+            },
+            {
+              "verse": 4,
+              "text": "የሚዘምተው ሁሉ ለጦር ያስከተተውን ደስ ያሰኝ ዘንድ ትዳር በሚገኝበት ንግድ ራሱን አያጠላልፍም።"
+            },
+            {
+              "verse": 5,
+              "text": "ደግሞም በጨዋታ የሚታገል ማንም ቢሆን፥ እንደሚገባ አድርጎ ባይታገል፥ የድሉን አክሊል አያገኝም።"
+            },
+            {
+              "verse": 6,
+              "text": "የሚደክመው ገበሬ ፍሬውን ከሚበሉት መጀመሪያ እንዲሆን ይገባዋል።"
+            },
+            {
+              "verse": 7,
+              "text": "የምለውን ተመልከት፤ ጌታም በነገር ሁሉ ማስተዋልን ይስጥህ።"
+            },
+            {
+              "verse": 8,
+              "text": "በወንጌል እንደምሰብከው፥ ከሙታን የተነሣውን፥ ከዳዊት ዘርም የሆነውን ኢየሱስ ክርስቶስን አስብ።"
+            },
+            {
+              "verse": 9,
+              "text": "ይህንም በመስበክ እንደ ክፉ አድራጊ እስክታሰር ድረስ መከራ እቀበላለሁ፤ የእግዚአብሔር ቃል ግን አይታሰርም።"
+            },
+            {
+              "verse": 10,
+              "text": "ስለዚህ እነርሱ ደግሞ በክርስቶስ ኢየሱስ ያለውን መዳን ከዘላለም ክብር ጋር እንዲያገኙ ስለ ተመረጡት በነገር ሁሉ እጸናለሁ።"
+            },
+            {
+              "verse": 11,
+              "text": "Thus saith the word, it is faithful."
+            },
+            {
+              "verse": 12,
+              "text": "When we pray, we shall also speak with Him;"
+            },
+            {
+              "verse": 13,
+              "text": "For in our faith, He shall remain faithful; for He cannot deny Himself."
+            }
+          ]
+        },
+        {
+          "title": "A servant who is dedicated to the Lord.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "Consider this; let them not be found speaking falsely before God; for this is a matter that shall not be disregarded, nor shall it be overlooked."
+            },
+            {
+              "verse": 15,
+              "text": "Be thou a servant who speaks the word of truth with sincerity, and let not thy speech be deceptive; offer thyself unto God as a living sacrifice."
+            },
+            {
+              "verse": 16,
+              "text": "Yet, for the world, far removed from the vanity of deceit; their iniquities shall increase rather than diminish before Him."
+            },
+            {
+              "verse": 17,
+              "text": "Their words shall be as thorns; among them are Hymenaeus and Philetus."
+            },
+            {
+              "verse": 18,
+              "text": "These also say, \"The resurrection has already taken place,\" and thus they mislead the faith of some concerning the truth."
+            },
+            {
+              "verse": 19,
+              "text": "Nevertheless, \"The Lord knows those who are His,\" and also, \"Let everyone who names the name of the Lord depart from iniquity,\" this foundation of God stands firm."
+            },
+            {
+              "verse": 20,
+              "text": "In a great house, there are not only vessels of gold and silver, but also of wood and clay; some for honor, and some for dishonor."
+            },
+            {
+              "verse": 21,
+              "text": "Therefore, if anyone cleanses himself from these, he will be a vessel for honor, sanctified and useful for the Master, prepared for every good work."
+            },
+            {
+              "verse": 22,
+              "text": "But flee from the desire of wickedness; and with a pure heart, follow after righteousness, faith, love, and peace, along with those who call on the Lord out of a pure heart."
+            },
+            {
+              "verse": 23,
+              "text": "Yet, know that to keep watch is to bring forth understanding, far removed from those who are unlearned and untested."
+            },
+            {
+              "verse": 24,
+              "text": "The servant of the Lord is sufficient for every man, to teach and to be steadfast in faith; yet he is not to be a burden."
+            },
+            {
+              "verse": 25,
+              "text": "Furthermore, it is said, \"Perhaps the Lord will grant us the knowledge of truth, for they who are possessed by the living devil will turn back from their desires and return to their understanding;\" thus, let them be rebuked according to their nature."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "In the last days, the wickedness of men shall abound.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Yet, in the last days, I know that a troubling time shall come."
+            },
+            {
+              "verse": 2,
+              "text": "For men shall be lovers of their own selves; covetous, boasters, proud, blasphemers, disobedient to parents, unthankful, unholy,"
+            },
+            {
+              "verse": 3,
+              "text": "Without natural affection, trucebreakers, false accusers, incontinent, fierce, despisers of those that are good,"
+            },
+            {
+              "verse": 4,
+              "text": "Traitors, heady, high-minded, lovers of pleasures more than lovers of God;"
+            },
+            {
+              "verse": 5,
+              "text": "Having a form of godliness, but denying the power thereof; from such turn away."
+            },
+            {
+              "verse": 6,
+              "text": "For of this sort are they which creep into houses, and lead captive silly women laden with sins, led away with divers lusts, ever learning, and never able to come to the knowledge of the truth."
+            },
+            {
+              "verse": 8,
+              "text": "Now as Jannes and Jambres withstood Moses, so do these also resist the truth: men of corrupt minds, reprobate concerning the faith."
+            },
+            {
+              "verse": 9,
+              "text": "But they shall proceed no further: for their folly shall be manifest unto all men, as theirs also was."
+            }
+          ]
+        },
+        {
+          "title": "The final counsel that Paul gave to Timothy.",
+          "verses": [
+            {
+              "verse": 10,
+              "text": "አንተ ግን ትምህርቴንና አካሄዴን አሳቤንም እምነቴንም ትዕግሥቴንም ፍቅሬንም መጽናቴንም"
+            },
+            {
+              "verse": 11,
+              "text": "ስደቴንም መከራዬንም ተከተልህ፤ በአንጾኪያና በኢቆንዮን በልስጥራንም የሆነብኝን የታገሥሁትንም ስደት ታውቃለህ፤ ጌታም ከሁሉ አዳነኝ።"
+            },
+            {
+              "verse": 12,
+              "text": "በእውነትም በክርስቶስ ኢየሱስ እግዚአብሔርን እየመሰሉ ሊኖሩ የሚወዱ ሁሉ ይሰደዳሉ።"
+            },
+            {
+              "verse": 13,
+              "text": "ነገር ግን ክፉዎች ሰዎችና አታላዮች እያሳቱና እየሳቱ በክፋት እየባሱ ይሄዳሉ።"
+            },
+            {
+              "verse": 14,
+              "text": "አንተ ግን በተማርህበትና በተረዳህበት ነገር ጸንተህ ኑር፤ ከማን እንደ ተማርኸው ታውቃለህና፤"
+            },
+            {
+              "verse": 15,
+              "text": "ከሕፃንነትህም ጀምረህ ክርስቶስ ኢየሱስን በማመን መዳን የሚገኝበትን ጥበብ ሊሰጡህ የሚችሉትን ቅዱሳት መጻሕፍትን አውቀሃል።"
+            },
+            {
+              "verse": 16,
+              "text": "የእግዚአብሔር ሰው ፍጹምና ለበጎ ሥራ ሁሉ የተዘጋጀ ይሆን ዘንድ፥ የእግዚአብሔር መንፈስ ያለበት መጽሐፍ ሁሉ ለትምህርትና ለተግሣጽ ልብንም ለማቅናት በጽድቅም ላለው ምክር ደግሞ ይጠቅማል።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "በእግዚአብሔር ፊት፥ በሕያዋንና በሙታንም ሊፈርድ ባለው በጌታ በኢየሱስ ክርስቶስ ፊት፥ በመገለጡና በመንግሥቱም እመክርሃለሁ፤"
+            },
+            {
+              "verse": 2,
+              "text": "ቃሉን ስበክ፤ በጊዜውም አለጊዜውም ጽና፤ ፈጽመህ እየታገሥህና እያስተማርህ ዝለፍና ገሥጽ፤ ምከርም።"
+            },
+            {
+              "verse": 3,
+              "text": "ሕይወት የሚገኝበትን ትምህርት የማይታገሡበት ዘመን ይመጣልና፤ ነገር ግን ጆሮቻቸውን የሚያሳክክ ስለ ሆነ፥ እንደ ገዛ ምኞታቸው ለራሳቸው አስተማሪዎችን ያከማቻሉ።"
+            }
+          ]
+        },
+        {
+          "title": "Paul made a promise to adorn the crown of righteousness.",
+          "verses": [
+            {
+              "verse": 4,
+              "text": "They will turn their ears away from hearing the truth; and they will turn aside to fables."
+            },
+            {
+              "verse": 5,
+              "text": "But you, do all things rightly; accept suffering; perform the work of an evangelist; fulfill your ministry."
+            },
+            {
+              "verse": 6,
+              "text": "As my life is offered as a sacrifice, the time for my departure is at hand."
+            },
+            {
+              "verse": 7,
+              "text": "I have fought the good fight; I have finished the race; I have kept the faith;"
+            },
+            {
+              "verse": 8,
+              "text": "Henceforth there is laid up for me a crown of righteousness, which the Lord, the righteous judge, will award to me on that day; and not only to me, but also to all who have loved His appearing."
+            }
+          ]
+        },
+        {
+          "title": "Concerning personal matters.",
+          "verses": [
+            {
+              "verse": 9,
+              "text": "Come to me quickly."
+            },
+            {
+              "verse": 10,
+              "text": "For Demas has forsaken me, having loved this present world, and is departed unto Thessalonica; Crescens to Galatia, Titus unto Dalmatia."
+            },
+            {
+              "verse": 11,
+              "text": "Only Luke is with me. Take Mark, and bring him with thee: for he is profitable to me for the ministry."
+            },
+            {
+              "verse": 12,
+              "text": "And Tychicus have I sent to Ephesus."
+            },
+            {
+              "verse": 13,
+              "text": "When thou comest, bring with thee the cloak that I left at Troas with Carpus, and the books, but especially the parchments."
+            },
+            {
+              "verse": 14,
+              "text": "Alexander the coppersmith did me much evil: the Lord reward him according to his works."
+            },
+            {
+              "verse": 15,
+              "text": "Of whom be thou ware also; for he hath greatly withstood our words."
+            },
+            {
+              "verse": 16,
+              "text": "At my first answer no man stood with me, but all men forsook me. I pray God that it may not be laid to their charge."
+            },
+            {
+              "verse": 17,
+              "text": "Notwithstanding the Lord stood with me, and strengthened me; that by me the preaching might be fully known, and that all the Gentiles might hear: and I was delivered out of the mouth of the lion."
+            },
+            {
+              "verse": 18,
+              "text": "And the Lord shall deliver me from every evil work, and will preserve me unto his heavenly kingdom: to whom be glory for ever and ever. Amen."
+            }
+          ]
+        },
+        {
+          "title": "The final greeting.",
+          "verses": [
+            {
+              "verse": 19,
+              "text": "Give my greetings to Priscilla and Aquila, and to the household of Onesiphorus."
+            },
+            {
+              "verse": 20,
+              "text": "Erastus remained at Corinth; but Trophimus I have left at Miletum sick."
+            },
+            {
+              "verse": 21,
+              "text": "Do your utmost to come before winter. Eubulus greets you, and Pudens, and Linus, and Claudia, and all the brethren."
+            },
+            {
+              "verse": 22,
+              "text": "The Lord Jesus Christ be with your spirit. Grace be with you. Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

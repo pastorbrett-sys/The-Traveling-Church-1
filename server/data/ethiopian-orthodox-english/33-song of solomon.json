@@ -1,0 +1,562 @@
+{
+  "book_number": 33,
+  "book_name_am": "መኃልየ መኃልይ ዘሰሎሞን",
+  "book_short_name_am": "መኃ",
+  "book_name_en": "Song of Solomon",
+  "book_short_name_en": "Song",
+  "testament": "old",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The Song of Songs, which is Solomon's, surpassing all songs."
+            },
+            {
+              "verse": 2,
+              "text": "With my mouth, I will make supplication;"
+            },
+            {
+              "verse": 3,
+              "text": "The fragrance of your ointments is better than all spices;"
+            },
+            {
+              "verse": 4,
+              "text": "When I turn to you, your fragrance shall draw me near;"
+            },
+            {
+              "verse": 5,
+              "text": "O you daughters of Jerusalem, I am dark, yet lovely;"
+            },
+            {
+              "verse": 6,
+              "text": "For the sun has scorched me;"
+            },
+            {
+              "verse": 7,
+              "text": "Tell me, you whom my soul loves;"
+            },
+            {
+              "verse": 8,
+              "text": "O you who are fairest among women;"
+            },
+            {
+              "verse": 9,
+              "text": "My beloved is like a gazelle or a young stag;"
+            },
+            {
+              "verse": 10,
+              "text": "Your cheeks are beautiful like the pomegranates, very delightful."
+            },
+            {
+              "verse": 11,
+              "text": "ባለ ብር ጕብጕብ የሆነ የወርቅ ጠልሰም ያድርጉልሽ።"
+            },
+            {
+              "verse": 12,
+              "text": "ንጉሡ በማዕድ እስከሚቀርብ ድረስ፥"
+            },
+            {
+              "verse": 13,
+              "text": "ውዴ ለእኔ በጡቶች መካከል እንደሚያርፍ"
+            },
+            {
+              "verse": 14,
+              "text": "ልጅ ወንድሜ ለእኔ በዐይንጋዲ ወይን ቦታ እንዳለ"
+            },
+            {
+              "verse": 15,
+              "text": "ወዳጄ ሆይ፥ እነሆ፥ ውብ ነሽ፤"
+            },
+            {
+              "verse": 16,
+              "text": "ልጅ ወንድሜ ሆይ፥ እነሆ፥ አንተ ውብ ነህ፥"
+            },
+            {
+              "verse": 17,
+              "text": "የቤታችን ሰረገላ የዝግባ ዛፍ ነው፥"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እኔ የዱር ጽጌረዳ፥ የቈላም የሱፍ አበባ ነኝ።"
+            },
+            {
+              "verse": 2,
+              "text": "በእሾህ መካከል እንዳለ የሱፍ አበባ፥"
+            },
+            {
+              "verse": 3,
+              "text": "በዱር እንዳለ እንኮይ፥"
+            },
+            {
+              "verse": 4,
+              "text": "ወደ ወይን ቤት አገቡኝ፥"
+            },
+            {
+              "verse": 5,
+              "text": "በሽቱ አጸኑኝ፥"
+            },
+            {
+              "verse": 6,
+              "text": "ቀኙ ታቅፈኛለች።"
+            },
+            {
+              "verse": 7,
+              "text": "እናንተ የኢየሩሳሌም ቈነጃጅት ሆይ፥"
+            },
+            {
+              "verse": 8,
+              "text": "እነሆ፥ የልጅ ወንድሜ ቃል በተራሮች ላይ ሲዘልል፥"
+            },
+            {
+              "verse": 9,
+              "text": "ልጅ ወንድሜ በቤቴል ተራሮች ላይ ሚዳቋን ወይም የዋሊያን እንምቦሳ ይመስላል፤"
+            },
+            {
+              "verse": 10,
+              "text": "ልጅ ወንድሜ እንዲህ ብሎ መለሰልኝ፦"
+            },
+            {
+              "verse": 11,
+              "text": "እነሆ፥ ክረምቱ ዐለፈ፥"
+            },
+            {
+              "verse": 12,
+              "text": "አበባ በምድር ላይ ታየ፥"
+            },
+            {
+              "verse": 13,
+              "text": "በለሱ ጐመራ፥ ወይኖችም አበቡ፥"
+            },
+            {
+              "verse": 14,
+              "text": "ፊትህን አሳየኝ፥"
+            },
+            {
+              "verse": 15,
+              "text": "የወይን ቦታችን ያብብ ዘንድ፥"
+            },
+            {
+              "verse": 16,
+              "text": "ልጅ ወንድሜ የእኔ ነው፥ እኔም የእርሱ ነኝ፤"
+            },
+            {
+              "verse": 17,
+              "text": "ልጅ ወንድሜ ሆይ፥ ቀኑ እስኪነፍስ፥"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Night upon my dwelling place"
+            },
+            {
+              "verse": 2,
+              "text": "I shall declare, and I shall arise in the city;"
+            },
+            {
+              "verse": 3,
+              "text": "Let me find the watchmen who keep the city;"
+            },
+            {
+              "verse": 4,
+              "text": "And among them, I shall rest a little;"
+            },
+            {
+              "verse": 5,
+              "text": "O ye daughters of Jerusalem,"
+            },
+            {
+              "verse": 6,
+              "text": "Her stature is like that of a palm tree, and her breasts are like clusters of grapes;"
+            },
+            {
+              "verse": 7,
+              "text": "Behold, she is the bed of Solomon;"
+            },
+            {
+              "verse": 8,
+              "text": "All are armed with swords and are trained for battle;"
+            },
+            {
+              "verse": 9,
+              "text": "The king Solomon's chariot"
+            },
+            {
+              "verse": 10,
+              "text": "He made its pillars of silver, its bottom of gold;"
+            },
+            {
+              "verse": 11,
+              "text": "እናንት የጽዮን ቈነጃጅት፥"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "O my beloved, behold, thou art fair;"
+            },
+            {
+              "verse": 2,
+              "text": "Thy cheeks are as a bed of spices, as sweet flowers;"
+            },
+            {
+              "verse": 3,
+              "text": "Thy lips are like a thread of scarlet, and thy speech is comely;"
+            },
+            {
+              "verse": 4,
+              "text": "Thy neck is as a tower of ivory, fashioned for a trophy, like the tower of David;"
+            },
+            {
+              "verse": 5,
+              "text": "Thy two breasts are like two young roes that are twins;"
+            },
+            {
+              "verse": 6,
+              "text": "Until the day break, and the shadows flee away,"
+            },
+            {
+              "verse": 7,
+              "text": "O my beloved, thou art all fair,"
+            },
+            {
+              "verse": 8,
+              "text": "O thou fairest among women, thou art as a lily among thorns;"
+            },
+            {
+              "verse": 9,
+              "text": "My sister, O thou fairest, thou hast stolen my heart;"
+            },
+            {
+              "verse": 10,
+              "text": "My sister, O thou fairest, how delightful are thy breasts!"
+            },
+            {
+              "verse": 11,
+              "text": "O my beloved, let the fragrance of your myrrh be wafted forth;"
+            },
+            {
+              "verse": 12,
+              "text": "My sister, my beloved, is a garden enclosed,"
+            },
+            {
+              "verse": 13,
+              "text": "Your pathway is a fragrant aroma and a choice fruit,"
+            },
+            {
+              "verse": 14,
+              "text": "With the spice of nard and the fragrance of saffron,"
+            },
+            {
+              "verse": 15,
+              "text": "Thou art a fountain of gardens, a well of living waters,"
+            },
+            {
+              "verse": 16,
+              "text": "O north wind, arise,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "My sister, O my dove, I have entered into my garden,"
+            },
+            {
+              "verse": 2,
+              "text": "I was asleep, but my heart was awake;"
+            },
+            {
+              "verse": 3,
+              "text": "I have taken off my robe; how shall I put it on again?"
+            },
+            {
+              "verse": 4,
+              "text": "My beloved has put his hand by the hole of the door;"
+            },
+            {
+              "verse": 5,
+              "text": "I arose to open to my beloved;"
+            },
+            {
+              "verse": 6,
+              "text": "I opened to my beloved,"
+            },
+            {
+              "verse": 7,
+              "text": "The watchmen that go about the city found me;"
+            },
+            {
+              "verse": 8,
+              "text": "O ye daughters of Jerusalem,"
+            },
+            {
+              "verse": 9,
+              "text": "Thou art beautiful among women;"
+            },
+            {
+              "verse": 10,
+              "text": "My beloved is white and ruddy,"
+            },
+            {
+              "verse": 11,
+              "text": "ራሱ ምዝምዝ ወርቅ ነው፤"
+            },
+            {
+              "verse": 12,
+              "text": "ዐይኖቹ በሙሉ የውኃ ኵሬ አጠገብ እንዳሉ"
+            },
+            {
+              "verse": 13,
+              "text": "ጕንጮቹ ሽቱን የሚያፈስሱ የሽቱ መደብ ናቸው።"
+            },
+            {
+              "verse": 14,
+              "text": "እጆቹ የተርሴስ ፈርጥ እንዳለባቸው እንደ ለዘቡ የወርቅ ቀለበቶች ናቸው፤"
+            },
+            {
+              "verse": 15,
+              "text": "እግሮቹ በምዝምዝ ወርቅ እንደ ተመሠረቱ"
+            },
+            {
+              "verse": 16,
+              "text": "ጕሮሮው እጅግ ጣፋጭ ነው፥ ሁለንተናውም የተወደደ ነው፤"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "O thou who art most beautiful among women,"
+            },
+            {
+              "verse": 2,
+              "text": "My beloved, may the angel of the garden keep watch over thee,"
+            },
+            {
+              "verse": 3,
+              "text": "I am my beloved's, and my beloved is mine;"
+            },
+            {
+              "verse": 4,
+              "text": "O my love, thou art fair as the morning star,"
+            },
+            {
+              "verse": 5,
+              "text": "Turn thine eyes away from me, for they have overcome me;"
+            },
+            {
+              "verse": 6,
+              "text": "Thy lips are like a thread of scarlet,"
+            },
+            {
+              "verse": 7,
+              "text": "Besides thy silence, thy voice is sweet;"
+            },
+            {
+              "verse": 8,
+              "text": "Sixty queens there are, and eighty concubines,"
+            },
+            {
+              "verse": 9,
+              "text": "Yet my dove, my perfect one, is but one;"
+            },
+            {
+              "verse": 10,
+              "text": "This one is as the dawn, fair and bright, that cometh to me."
+            },
+            {
+              "verse": 11,
+              "text": "My child, do not despise your brother or your sister."
+            },
+            {
+              "verse": 12,
+              "text": "There, I shall give you milk."
+            },
+            {
+              "verse": 13,
+              "text": "There, I shall give you milk."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "አንቺ ሱላማጢስ ሆይ፥ ተመለሽ፥ ተመለሽ፤"
+            },
+            {
+              "verse": 2,
+              "text": "አንቺ የአሚናዳብ ልጅ ሆይ፥"
+            },
+            {
+              "verse": 3,
+              "text": "እንብርትሽ የወይን ጠጅ እንደማይጐድልበት እንደ ተነጠጠ ጽዋ ነው፤"
+            },
+            {
+              "verse": 4,
+              "text": "ሁለቱ ጡቶችሽ እንደ ሁለት መንታ"
+            },
+            {
+              "verse": 5,
+              "text": "አንገትሽ እንደ ዝሆን ጥርስ ግንብ ነው፤"
+            },
+            {
+              "verse": 6,
+              "text": "በራስሽ ላይ ያለው ጠጕርሽ እንደ ቀርሜሎስ ተራራ ነው፤"
+            },
+            {
+              "verse": 7,
+              "text": "ወዳጄ ሆይ፥ እንዴት የተዋብሽ ነሽ!"
+            },
+            {
+              "verse": 8,
+              "text": "ይህ ቁመትሽ የዘንባባ ዛፍ ይመስላል፥"
+            },
+            {
+              "verse": 9,
+              "text": "ወደ ዘንባባው ዛፍ እወጣለሁ"
+            },
+            {
+              "verse": 10,
+              "text": "ጕሮሮሽም ለልጅ ወንድሜ እየጣፈጠ እንደሚገባ፥"
+            },
+            {
+              "verse": 11,
+              "text": "I am the son of my brother, and his return is unto me."
+            },
+            {
+              "verse": 12,
+              "text": "O my son, arise, and let us go forth to the field."
+            },
+            {
+              "verse": 13,
+              "text": "Let us go to the place of the vine;"
+            },
+            {
+              "verse": 14,
+              "text": "Give the harvests to the reapers."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "O my son, who is it that has given you to suck the breast of my mother?"
+            },
+            {
+              "verse": 2,
+              "text": "Behold, I go unto my mother's house, and unto my father, and I will lay down where you have brought me."
+            },
+            {
+              "verse": 3,
+              "text": "The day she passed away, her left side was beneath me."
+            },
+            {
+              "verse": 4,
+              "text": "O ye daughters of Jerusalem,"
+            },
+            {
+              "verse": 5,
+              "text": "Who is she that cometh up as a rose, leaning upon her beloved, as a morning dawn that breaks forth?"
+            },
+            {
+              "verse": 6,
+              "text": "As a girdle upon thy heart,"
+            },
+            {
+              "verse": 7,
+              "text": "Many waters cannot quench love, neither can the floods drown it;"
+            },
+            {
+              "verse": 8,
+              "text": "Our sister is little, and she hath no breasts;"
+            },
+            {
+              "verse": 9,
+              "text": "If she be a wall, we will build upon her a palace of silver;"
+            },
+            {
+              "verse": 10,
+              "text": "I am a wall, and my breasts are as towers;"
+            },
+            {
+              "verse": 11,
+              "text": "ለሰሎሞን በብኤላሞን የወይን ቦታ ነበረው፤"
+            },
+            {
+              "verse": 12,
+              "text": "ለእኔ ያለኝ የወይን ቦታ በፊቴ ነው፤"
+            },
+            {
+              "verse": 13,
+              "text": "በአትክልቱ ቦታ ሲኖር ሌሎች አዩት፥"
+            },
+            {
+              "verse": 14,
+              "text": "ልጅ ወንድሜ ሆይ፥ ፍጠን፤"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

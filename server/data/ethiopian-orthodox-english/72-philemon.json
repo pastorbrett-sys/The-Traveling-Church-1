@@ -1,0 +1,127 @@
+{
+  "book_number": 72,
+  "book_name_am": "ወደ ፊልሞና",
+  "book_short_name_am": "ፊል",
+  "book_name_en": "Philemon",
+  "book_short_name_en": "Philem",
+  "testament": "new",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": "Greeting",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Paul, a servant of Christ Jesus, and Timothy, our brother, to Philemon, our beloved and fellow worker,"
+            },
+            {
+              "verse": 2,
+              "text": "and to our sister Apphia, and to Archippus, our fellow soldier, and to the church in your house:"
+            },
+            {
+              "verse": 3,
+              "text": "Grace to you and peace from God our Father and the Lord Jesus Christ."
+            }
+          ]
+        },
+        {
+          "title": "The love and faith of Philemon",
+          "verses": [
+            {
+              "verse": 4,
+              "text": "In the Lord Jesus, and in all the saints, I give thanks to my God always, as I reflect upon Your love and Your faith, in my prayers."
+            },
+            {
+              "verse": 6,
+              "text": "I pray that the fellowship of Your faith may be made known to us, that it may bear fruit for Christ Jesus in all good things."
+            },
+            {
+              "verse": 7,
+              "text": "O my brother! Because the heart of the saints is in Your work, I have found much joy and consolation in Your love."
+            }
+          ]
+        },
+        {
+          "title": "The testimony that Paul presented concerning Ananias.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "ስለዚህ የሚገባውን አዝህ ዘንድ በክርስቶስ ምንም እንኳ ብዙ ድፍረት ቢኖረኝ፥"
+            },
+            {
+              "verse": 9,
+              "text": "ይልቁንም እንደዚህ የሆንሁ እኔ ጳውሎስ ሽማግሌው፥ አሁንም ደግሞ የኢየሱስ ክርስቶስ እስረኛ የሆንሁ፥ ስለ ፍቅር እለምናለሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "አስቀድሞ ስላልጠቀመህ፥ አሁን ግን ለእኔም ለአንተም ስለሚጠቅም በእስራቴ ስለ ወለድሁት ስለ ልጄ ስለ አናሲሞስ እለምንሃለሁ።"
+            },
+            {
+              "verse": 12,
+              "text": "እርሱን እልከዋለሁ፤ አንተም ልቤ እንደሚሆን ተቀበለው።"
+            },
+            {
+              "verse": 13,
+              "text": "እኔስ በወንጌል እስራት ስለ አንተ እንዲያገለግለኝ ለራሴ ላስቀረው እፈቅድ ነበር፤"
+            },
+            {
+              "verse": 14,
+              "text": "ነገር ግን በጎነትህ በፈቃድህ እንጂ በግድ እንዳይሆን፥ ሳልማከርህ ምንም እንኳ ላደርግ አልወደድሁም።"
+            },
+            {
+              "verse": 15,
+              "text": "ተቀብለህ ለዘላለም እንድትይዘው ስለዚህ ምናልባት ለጊዜው ተለይቶሃልና፤"
+            },
+            {
+              "verse": 16,
+              "text": "ከእንግዲህ ወዲህ እንደ ባሪያ አይሆንም፤ ነገር ግን ለእኔ በተለየ የተወደደ ወንድም ከሆነ፥ ለአንተማ ይልቅ በሥጋውም በጌታም ዘንድ ከባሪያ የሚሻል የተወደደ ወንድም እንዴት አይሆንም?"
+            },
+            {
+              "verse": 17,
+              "text": "እንግዲህ እንደ ባልንጀራ ብትቈጥረኝ፥ እንደ እኔ አድርገህ ተቀበለው።"
+            },
+            {
+              "verse": 18,
+              "text": "በአንዳች ነገር የበደለህ ቢኖር ግን ወይም ብድር ያለበት እንደሆነ፥ ይህን በእኔ ላይ ቍጠር፤"
+            },
+            {
+              "verse": 19,
+              "text": "I, Paul, say, \"I shall return;” thus I write with my hand; and above this, I do not say that you have a debt of your own."
+            },
+            {
+              "verse": 20,
+              "text": "Indeed, my brother! May it be that I may serve you in the Lord; in Christ, let my heart be devoted to you."
+            },
+            {
+              "verse": 21,
+              "text": "Rather than being idle, I trust that you will act and I write to you in faith that you will command."
+            },
+            {
+              "verse": 22,
+              "text": "Furthermore, I have prepared a place of hospitality for you; I hope to grant you in your prayers."
+            }
+          ]
+        },
+        {
+          "title": "The final greeting.",
+          "verses": [
+            {
+              "verse": 23,
+              "text": "Epaphras, who is with me in Christ Jesus, sends greetings."
+            },
+            {
+              "verse": 24,
+              "text": "Mark, Aristarchus, Demas, and Luke, my fellow workers, send you greetings."
+            },
+            {
+              "verse": 25,
+              "text": "The grace of our Lord Jesus Christ be with your spirit. Amen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,963 @@
+{
+  "book_number": 43,
+  "book_name_am": "ትንቢተ ሆሴዕ",
+  "book_short_name_am": "ሆሴ",
+  "book_name_en": "Hosea",
+  "book_short_name_en": "Hos",
+  "testament": "old",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The word of the Lord came to Hosea, son of Beeri, during the reigns of the kings of Judah, in the days of Uzziah, Jotham, Ahaz, and Hezekiah, and in the days of Jeroboam, son of Joash, king of Israel."
+            }
+          ]
+        },
+        {
+          "title": "The wife of Hosea and her children.",
+          "verses": [
+            {
+              "verse": 2,
+              "text": "And the word of the Lord came unto Hosea, saying, “Go, take unto thee a wife of whoredoms and children of whoredoms: for the land hath committed great whoredom, departing from the Lord.”"
+            },
+            {
+              "verse": 3,
+              "text": "So he went and took Gomer the daughter of Diblaim; and she conceived, and bare him a son."
+            },
+            {
+              "verse": 4,
+              "text": "And the Lord said, “For yet a little while, and I will avenge the blood of Israel upon the house of Judah, and will cut off the kingdom of the house of Israel. Call his name Israel.”"
+            },
+            {
+              "verse": 5,
+              "text": "And it shall come to pass at that day, that I will break the bow of Israel in the valley of Jezreel.”"
+            },
+            {
+              "verse": 6,
+              "text": "And she conceived again, and bare a daughter. And God said unto him, “Call her name Lo-Ruhamah: for I will no more have mercy upon the house of Israel; but I will utterly take them away.”"
+            },
+            {
+              "verse": 7,
+              "text": "Yet I will have mercy upon the house of Judah, and will save them by the Lord their God; and will not save them by bow, nor by sword, nor by battle, by horses, nor by horsemen.”"
+            },
+            {
+              "verse": 8,
+              "text": "And she weaned Lo-Ruhamah, and conceived, and bare a son."
+            },
+            {
+              "verse": 9,
+              "text": "And the Lord said, “Call his name Lo-Ammi: for ye are not my people, and I will not be your God.”"
+            }
+          ]
+        },
+        {
+          "title": "The Return of Israel",
+          "verses": [
+            {
+              "verse": 10,
+              "text": "The number of the children of Israel shall be as the sand of the sea, which cannot be measured nor numbered; and it shall come to pass that in the place where it was said unto them, “Ye are not my people,” there it shall be said unto them, “Ye are the children of the living God.”"
+            },
+            {
+              "verse": 11,
+              "text": "The children of Judah and the children of Israel shall be gathered together, and they shall appoint for themselves one leader; and they shall go up out of the land, for the day of Israel shall be great."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And your brethren, O my people, and your sisters: let them be of good cheer in their hearts."
+            }
+          ]
+        },
+        {
+          "title": "The people of Israel shall be as the grain of the field.",
+          "verses": [
+            {
+              "verse": 2,
+              "text": "እናታችሁ ሚስቴ አይደለችምና፥ እኔም ባልዋ አይደለሁምና እናታችሁን ተዋቀሱአት። ዝሙቷን ከፊቷ፥ ምንዝርናዋንም ከጡቶችዋ መካከል አስወግዳለሁ።"
+            },
+            {
+              "verse": 3,
+              "text": "ዕራቁትዋንም እንድትቆም አደርጋታለሁ፤ እንደ ሕፃንነትዋ ወራት፥ እንደ ተወለደችባት እንደ መጀመሪያዪቱም ቀን አደርጋታለሁ። እንደ ምድረ በዳም አደርጋታለሁ፤ ውኃም እንደሌላት ምድር አደርጋታለሁ፤ በውኃም ጥም እገድላታለሁ።"
+            },
+            {
+              "verse": 4,
+              "text": "የዝሙት ልጆች ናቸውና ልጆችዋን ይቅር አልላቸውም።"
+            },
+            {
+              "verse": 5,
+              "text": "እናታቸው አመንዝራለችና፤ የወለደቻቸውም፥ “እንጀራዬንና ውኃዬን፥ ቀሚሴንና መደረቢያዬን፥ ዘይቴንና የሚገባኝን ሁሉ የሚሰጡኝ ወዳጆችን እከተላቸው ዘንድ እሄዳለሁ” ብላለችና አሳፈረቻቸው።"
+            },
+            {
+              "verse": 6,
+              "text": "ስለዚህ እነሆ ጎዳናዋን በእሾህ አጥረዋለሁ፤ መንገድዋንም እዘጋዋለሁ፤ ማለፊያም ታጣለች።"
+            },
+            {
+              "verse": 7,
+              "text": "ወዳጆችዋንም ትከተላለች፤ ነገር ግን አትደርስባቸውም፤ ትፈልጋቸውማለች፤ ነገር ግን አታገኛቸውም፤ እርስዋም፥ “ከዛሬ ይልቅ የዚያን ጊዜ ይሻለኝ ነበርና ተመልሼ ወደ ቀደመው ባሌ እሄዳለሁ” ትላለች።"
+            },
+            {
+              "verse": 8,
+              "text": "እርስዋም እህልንና ወይንን ዘይትንም የሰጠኋት፥ ብርንና ወርቅን ያበዛሁላት እኔ እንደ ሆንሁ አላወቀችም። እርስዋ ግን ወርቁንና ብሩን ለጣዖት አደረገች።"
+            },
+            {
+              "verse": 9,
+              "text": "ስለዚህ እህሌን በጊዜው፥ ወይኔንም በወራቱ እወስዳለሁ፤ ኀፍረቷንም እንዳትሸፍን ልብሴንና መጎናጸፊያዬን እገፍፋታለሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "አሁንም በወዳጆችዋ ፊት ነውርዋን እገልጣለሁ፤ ከእጄም ማንም አያድናትም።"
+            },
+            {
+              "verse": 11,
+              "text": "ደስታዋንም ሁሉ፥ በዓላቶችዋንም፥ መባቻዎችዋንም፥ ሰንበቶችዋንም፥ ሥርዐቶችዋንም ሁሉ አስቀራለሁ።"
+            },
+            {
+              "verse": 12,
+              "text": "And she said, “This is the value that my companions have given me; I shall destroy all that is hers, and her wine and her oil; and I shall make them witnesses against her; for the beasts of the wilderness and the birds of the heavens, and the creeping things of the earth shall eat them."
+            },
+            {
+              "verse": 13,
+              "text": "“I will expose her, as she has pursued her lovers, and adorned herself with her ornaments; I will strip her of the garments in which she has been clothed,” saith the Lord God."
+            }
+          ]
+        },
+        {
+          "title": "The love of the Lord for His people.",
+          "verses": [
+            {
+              "verse": 14,
+              "text": "Therefore, behold, I will gather you; I will bring you to the wilderness, and I will speak to your heart."
+            },
+            {
+              "verse": 15,
+              "text": "Then I will give her the money that she has earned; and I will reveal her counsel in the valley of Achor; and as in the days of her youth, as in the day when she came up from the land of Egypt, she shall sing."
+            },
+            {
+              "verse": 16,
+              "text": "In that day, you shall call me 'My Husband,' and no longer shall you call me 'My Baal,' says the Lord."
+            },
+            {
+              "verse": 17,
+              "text": "For I will remove the names of the Baals from her mouth, and they shall be remembered by name no more."
+            },
+            {
+              "verse": 18,
+              "text": "In that day, I will make a covenant for them with the beasts of the field, and with the birds of the heavens, and with the creeping things of the ground; and I will abolish the bow, the sword, and war from the land, and will make them lie down in safety."
+            },
+            {
+              "verse": 19,
+              "text": "I will betroth you to me forever; I will betroth you to me in righteousness and in justice, in steadfast love and in mercy."
+            },
+            {
+              "verse": 20,
+              "text": "I will betroth you to me in faithfulness, and you shall know the Lord."
+            },
+            {
+              "verse": 21,
+              "text": "And in that day, it shall be, declares the Lord, that I will answer the heavens, and they shall answer the earth."
+            },
+            {
+              "verse": 22,
+              "text": "And the earth shall answer the grain, the wine, and the oil, and they shall answer Jezreel."
+            },
+            {
+              "verse": 23,
+              "text": "And I will sow her for myself in the land; and I will have mercy on No Mercy; and I will say to Not My People, 'You are my people'; and he shall say, 'You are my God.'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "sections": [
+        {
+          "title": "Hosea and the woman of the harlot.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "And the Lord said, “Even if the children of Israel turn back to other gods and desire the filth of the pig, as the Lord loves them, so shall you also love a woman who is unclean and has a stench.”"
+            },
+            {
+              "verse": 2,
+              "text": "And I, with five shekels and in one measure of barley, was in need of sustenance, and in one measure of wine, I was also in need."
+            },
+            {
+              "verse": 3,
+              "text": "“You have dwelt with me for many years; do not be unfaithful; do not cling to another man; for I shall dwell with you,” he said to her."
+            },
+            {
+              "verse": 4,
+              "text": "The children of Israel shall be without a king and without a leader, without sacrifice and without offering; without priest and without seer; without ephod and without teraphim, for many years shall they dwell."
+            },
+            {
+              "verse": 5,
+              "text": "And thereafter, the children of Israel shall return and seek their God, the Lord, and their king, David; and in the latter days, they shall remember the Lord and His mercy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "sections": [
+        {
+          "title": "The Lord has chosen Israel as His own.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እናንተ የእስራኤል ልጆች ሆይ! እውነትና ምሕረት፥ እግዚአብሔርንም ማወቅ በምድር ስለሌለ እግዚአብሔር በምድር ላይ የሚኖሩትን ይወቅሳልና የእግዚአብሔርን ቃል ስሙ።"
+            },
+            {
+              "verse": 2,
+              "text": "ነገር ግን ሐሰት፥ ግዳይና ስርቆት፥ ምንዝርናም ምድርን ሞልተዋል፤ ደምንም ከደም ጋር ይቀላቅላሉ።"
+            },
+            {
+              "verse": 3,
+              "text": "ስለዚህ ምድሪቱ ታለቅሳለች፤ በእርስዋም ከሚቀመጡ ሁሉ ከምድር አራዊትና ከሰማይ ወፎች፤ ከምድርም ተንቀሳቃሾች ጋር ትጠፋለች፤ የባሕሩም ዓሦች ያልቃሉ።"
+            },
+            {
+              "verse": 4,
+              "text": "ነገር ግን ሕዝቤ እንደሚከራከር ካህን ነውና እንግዲህ የሚከራከር፥ ማንም አይኑር፥ የሚዘልፍም ማንም አይኑር።"
+            },
+            {
+              "verse": 5,
+              "text": "በቀንም ትደክማለህ፤ ነቢዩም ከአንተ ጋር ይደክማል፤ እናታችሁም ሌሊትን ትመስላለች።"
+            },
+            {
+              "verse": 6,
+              "text": "ሕዝቤ አእምሮ እንደሌላቸው ይመስላሉ፤ አንተም አእምሮህ ተለይቶሃልና እኔ ካህን እንዳትሆነኝ እተውሃለሁ፤ የአምላክህንም ሕግ ረስተሃልና እኔ ደግሞ ልጆችህን እረሳለሁ።"
+            },
+            {
+              "verse": 7,
+              "text": "እንደ ብዛታቸው መጠን ኀጢአት ሠሩብኝ፤ እኔም ክብራቸውን ወደ ውርደት እለውጣለሁ።"
+            },
+            {
+              "verse": 8,
+              "text": "ሕዝቤንም ኀጢአታቸው ትበላቸዋለች፤ ሰውነታቸውንም በበደላቸው ይወስዷታል።"
+            },
+            {
+              "verse": 9,
+              "text": "እንደ ሕዝቡም እንዲሁ ካህኑ ይሆናል፤ በመንገዳቸውም እበቀላቸዋለሁ፤ እንደ ሥራቸውም እከፍላቸዋለሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "እግዚአብሔርንም መጠበቅ ትተዋልና ሲበሉ አይጠግቡም፤ ሲያመነዝሩም አይበዙም።"
+            },
+            {
+              "verse": 11,
+              "text": "The heart of my people is in mourning, they have turned to drink and to strong drink."
+            },
+            {
+              "verse": 12,
+              "text": "My people have become estranged in their drunkenness and have wandered far from their God; they seek Him with their staff, and He shall answer them."
+            },
+            {
+              "verse": 13,
+              "text": "Upon the mountains they shall wander, and upon the cliffs they shall roam; for the wilderness is good, and from the thicket and from the heart, they shall be brought low; therefore, your daughters shall be desolate, and your maidens shall mourn."
+            },
+            {
+              "verse": 14,
+              "text": "And the men shall play with the drunkards, and they shall wander with the revelers; your daughters shall be in sorrow at the time of their drunkenness, and your maidens shall not be forsaken in their revelry; a people that does not understand shall be entangled with drunkenness."
+            },
+            {
+              "verse": 15,
+              "text": "O Israel! Do not be ignorant; and you, Judah! Do not go to Gilgal, nor go up to Beth-aven; and by the living God, do not swear."
+            },
+            {
+              "verse": 16,
+              "text": "Israel, as you stumble, you have been ensnared; for the Lord has made you a prey in a wide place, like a lion."
+            },
+            {
+              "verse": 17,
+              "text": "Likewise, Ephraim is entangled with idols; he has become a source of his own destruction."
+            },
+            {
+              "verse": 18,
+              "text": "They have chosen the Canaanites; they have completed their drunkenness; in their iniquity, they have chosen destruction."
+            },
+            {
+              "verse": 19,
+              "text": "You are as a breath within their nostrils; they shall fear from their iniquities."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "sections": [
+        {
+          "title": "A warning concerning the worship of idols.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "O priests! Hear this; O house of Israel! Give heed; O house of the king! Prepare your hearts; for the judgment is upon you, as a wreath is placed upon the altar, and the judgment is upon you."
+            },
+            {
+              "verse": 2,
+              "text": "Those who oppress you shall be brought low; but I am your deliverer."
+            },
+            {
+              "verse": 3,
+              "text": "I know Ephraim; Israel is not hidden from me; for now Ephraim has committed harlotry; Israel is defiled."
+            },
+            {
+              "verse": 4,
+              "text": "They shall return to their God, but their hearts are not right; for the spirit of whoredom is within them, and they do not know the Lord."
+            },
+            {
+              "verse": 5,
+              "text": "The pride of Israel testifies against him; therefore, Israel and Ephraim shall stumble in their iniquity; Judah also shall stumble with them."
+            },
+            {
+              "verse": 6,
+              "text": "They shall go to seek the Lord, but they shall not find Him; He has withdrawn Himself from them."
+            },
+            {
+              "verse": 7,
+              "text": "They have borne children and have forsaken the Lord; now they shall be devoured along with their possessions."
+            }
+          ]
+        },
+        {
+          "title": "War between Judah and Israel.",
+          "verses": [
+            {
+              "verse": 8,
+              "text": "Lift up your voice upon the mountain; cry out upon the hills; declare it in the house of Jacob, for Benjamin has fallen."
+            },
+            {
+              "verse": 9,
+              "text": "Ephraim shall be as a moth; I have shown the truth that is trusted in Israel."
+            },
+            {
+              "verse": 10,
+              "text": "The leaders of Judah have become as those who remove the yoke; I too shall scatter my wrath upon them like water."
+            },
+            {
+              "verse": 11,
+              "text": "Ephraim is ensnared; he is entangled in judgment; he has begun to pursue vanity."
+            },
+            {
+              "verse": 12,
+              "text": "I shall be to Ephraim as a moth, and to the house of Judah as rottenness."
+            },
+            {
+              "verse": 13,
+              "text": "Ephraim shall not weep; Judah shall not mourn; Ephraim went to Assyria and sent a messenger to his king; yet he could not deliver you, nor could he remove your sickness."
+            },
+            {
+              "verse": 14,
+              "text": "I shall be to Ephraim as a lion, and to the house of Judah as a young lion; I shall go and return; I shall take hold; there is none to deliver."
+            },
+            {
+              "verse": 15,
+              "text": "Until they perish, I shall go; until my face is hidden, I shall walk; and I shall return to my place."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "sections": [
+        {
+          "title": "The call of the watchman.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "In the time of their affliction, they shall seek me early; and they shall say, “Come, let us return unto our God, and unto the Lord; for He hath torn, and He will heal us; He hath smitten, and He will bind us up.”"
+            },
+            {
+              "verse": 2,
+              "text": "After two days He will revive us; on the third day He will raise us up, and we shall live in His sight."
+            },
+            {
+              "verse": 3,
+              "text": "Let us know; let us pursue the knowledge of the Lord; His going forth is prepared as the morning; and He shall come unto us as the rain, as the latter and former rain unto the earth."
+            },
+            {
+              "verse": 4,
+              "text": "“Your mercy is like the morning cloud, and as the early dew it goeth away; Ephraim, what shall I do unto thee? Judah, what shall I do unto thee?”"
+            },
+            {
+              "verse": 5,
+              "text": "Therefore I have hewn them by the prophets; I have slain them by the words of My mouth; and thy judgments are as the light that goeth forth."
+            },
+            {
+              "verse": 6,
+              "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+            },
+            {
+              "verse": 7,
+              "text": "They, however, like men who break a covenant, have dealt treacherously; thereupon they shall be judged."
+            },
+            {
+              "verse": 8,
+              "text": "Gilead is a city of them that work iniquity; it is stained with blood."
+            },
+            {
+              "verse": 9,
+              "text": "As troops of robbers wait for a man, so the priests are banded together; they murder in the way toward Shechem; they commit lewdness."
+            },
+            {
+              "verse": 10,
+              "text": "I have seen a horrible thing in the house of Israel; there is the whoredom of Ephraim; Israel is defiled."
+            },
+            {
+              "verse": 11,
+              "text": "O Judah! When I respond to the cry of my people, I too have taken up the burden for thee."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "For they have acted deceitfully, and the thief has entered; and outside, the watchmen have become silent, and I sought to deliver Israel, but at the time I desired, the iniquity of Ephraim and the wickedness of Samaria were revealed."
+            },
+            {
+              "verse": 2,
+              "text": "They commit their iniquities as one; in their hearts, they think of all their wickedness; now their wickedness has become heavy upon them; it is before my face."
+            },
+            {
+              "verse": 3,
+              "text": "Their princes are in their wickedness, and their rulers rejoice in their deceit."
+            },
+            {
+              "verse": 4,
+              "text": "They are all like a mist; like a morning cloud that vanishes; all are consumed until they are taken away, and they are like fire that is quenched and like chaff that is blown away."
+            },
+            {
+              "verse": 5,
+              "text": "In the days of our kings, the princes became intoxicated with the heat of wine; they also joined their hands with the revelers."
+            },
+            {
+              "verse": 6,
+              "text": "They prepare their hearts like a mist; their watchmen all night are like a thief; in the morning time, they are like a blazing fire."
+            },
+            {
+              "verse": 7,
+              "text": "All are like a mist; their leaders are like the wind; their kings have all fallen; among them, there is none to call upon me."
+            },
+            {
+              "verse": 8,
+              "text": "Ephraim has become mixed with the people; Ephraim is like a cake not turned."
+            },
+            {
+              "verse": 9,
+              "text": "The enemy has devoured his strength; yet he does not know it; gray hairs have come upon him; yet he is not aware of it."
+            },
+            {
+              "verse": 10,
+              "text": "The downfall of Israel is before him; yet they have not returned to their God, to the Lord; and in all this, they have not sought the Lord."
+            },
+            {
+              "verse": 11,
+              "text": "Ephraim is like a dove, simple and without sense; they call to Egypt, they go to Assyria."
+            },
+            {
+              "verse": 12,
+              "text": "When they go, I will spread my net upon them; I will bring them down like the birds of the heavens; I will chastise them according to the report of their congregation."
+            },
+            {
+              "verse": 13,
+              "text": "They have cried out to me, \"Depart from us!\" Woe to them! For they have rebelled against me; though I would redeem them, they have spoken lies against me."
+            },
+            {
+              "verse": 14,
+              "text": "They did not cry out to me from their hearts when they wailed upon their beds; they assembled for grain and new wine, but they rebelled against me."
+            },
+            {
+              "verse": 15,
+              "text": "Though I trained and strengthened their arms, yet they devised evil against me."
+            },
+            {
+              "verse": 16,
+              "text": "They return, but not to the Most High; they are like a treacherous bow; their princes shall fall by the sword for the rage of their tongue; this shall be their derision in the land of Egypt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "sections": [
+        {
+          "title": "The people of Israel, in their worship of idols, have brought upon themselves their own destruction.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "In their pride, they shall be like the earth; and in the house of the Lord, they shall come forth like a serpent. For they have cast aside My covenant, and they have transgressed My law."
+            },
+            {
+              "verse": 2,
+              "text": "O God! We, Israel, call upon You, saying, \"They cry unto me.\""
+            },
+            {
+              "verse": 3,
+              "text": "Israel has called upon its strength; for the enemy has brought them low."
+            },
+            {
+              "verse": 4,
+              "text": "They have spoken of themselves; and there is none like unto Me; they have made their leaders; and I have not known them; for their destruction, they have made for themselves idols of silver and gold."
+            },
+            {
+              "verse": 5,
+              "text": "O Samaria! Your mother is ashamed; My wrath is poured out upon them; until when shall they remain unclean?"
+            },
+            {
+              "verse": 6,
+              "text": "This is also concerning Israel; the worker has worked; yet he is not God; O Samaria! Your mother has been greatly dishonored."
+            },
+            {
+              "verse": 7,
+              "text": "The breath has departed from them, and the fierce wind has ceased; they have no strength; and from their fruit, they shall not find flour; even if they find it, the enemy shall consume it."
+            },
+            {
+              "verse": 8,
+              "text": "Israel has been cast away; among the nations today, it has become as a vessel of dishonor."
+            },
+            {
+              "verse": 9,
+              "text": "Alone, as one who dwells in the wilderness, the wild ass has gone to Assyria; and Ephraim has become like a dove, calling for help, yet without understanding."
+            },
+            {
+              "verse": 10,
+              "text": "Therefore, they shall not be given to the nations; and now I shall receive them; for kings and leaders shall be taken captive, and they shall be brought low."
+            },
+            {
+              "verse": 11,
+              "text": "Ephraim hath made many altars, and the altar which he loved hath become for sin."
+            },
+            {
+              "verse": 12,
+              "text": "I will write many laws; however, the statute and the altar which is beloved have been counted as a stranger."
+            },
+            {
+              "verse": 13,
+              "text": "Though they offer sacrifices, and eat flesh; the Lord will not accept them; now will He remember their iniquity; He will visit upon them their sins; and they shall return to Egypt; and in Assyria they shall eat that which is unclean."
+            },
+            {
+              "verse": 14,
+              "text": "Israel hath forsaken his Maker; they have built temples; and Judah hath multiplied the fortified cities; but I will send a fire upon their cities, and it shall devour their foundations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "sections": [
+        {
+          "title": "Hosea, concerning the judgment that shall come upon Israel, as it has been proclaimed.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "O Israel! You have strayed far from your God; do not rejoice as the nations do; do not commit falsehood; rather, let your love for the Lord be greater than all the feasts and the wine offerings."
+            },
+            {
+              "verse": 2,
+              "text": "I do not know the feast of your wine offerings; nor do they delight in them."
+            },
+            {
+              "verse": 3,
+              "text": "They shall not dwell in the land of the Lord; for Ephraim shall dwell in Egypt, and they shall eat unclean things in Assyria."
+            },
+            {
+              "verse": 4,
+              "text": "They shall not offer wine offerings to the Lord; neither shall their sacrifices be pleasing unto Him; they shall be as bread of mourners to them; all that eat thereof shall be defiled; for their bread shall be for their own souls, and it shall not come into the house of the Lord."
+            },
+            {
+              "verse": 5,
+              "text": "What will you do on the day of the feast, and on the day of the solemn assembly of the Lord?"
+            },
+            {
+              "verse": 6,
+              "text": "Therefore, behold, they shall go away from Egypt, and they shall flee; and Memphos shall receive them; and they shall be buried in the tombs; and destruction shall inherit their silver, and the thorn shall be in their houses."
+            },
+            {
+              "verse": 7,
+              "text": "The days of punishment have come; the days of recompense have come; Israel shall know it; the prophet is a fool, and the spiritual man is mad; for the multitude of your iniquity and the great hatred."
+            },
+            {
+              "verse": 8,
+              "text": "Ephraim was a friend of God; now, however, the prophet has become a snare in all his ways; they have committed abominations in the house of the Lord."
+            },
+            {
+              "verse": 9,
+              "text": "In the days of Gibeah, they were greatly corrupted; he shall remember their iniquity; he shall visit their sins."
+            },
+            {
+              "verse": 10,
+              "text": "I found Israel as grapes in the wilderness; I saw your fathers as the first ripe in the fig tree at her first time; but they went to Baal-peor, and separated themselves unto that shame; and their abominations were according as they loved."
+            },
+            {
+              "verse": 11,
+              "text": "ኤፍሬምም እንደ ወፍ በረረ፤ ክብራቸው ከመፅነስና ከመውለድ፥ ከማማጥም ነበር።"
+            },
+            {
+              "verse": 12,
+              "text": "ልጆቻቸውንም ቢያሳድጉ ከሰው ለይች ልጅ አልባ አደርጋቸዋለሁ፤ ሥጋዬ ከእነርሱ ነውና ወዮላቸው!"
+            },
+            {
+              "verse": 13,
+              "text": "እኔ እንደ አየሁ የኤፍሬም ልጆች ለወጥመድ ተሰጥተዋል፤ ኤፍሬምም ልጆቹን ወደ ገዳዮች አወጣ።"
+            },
+            {
+              "verse": 14,
+              "text": "አቤቱ! ስጣቸው፤ ምን ትሰጣቸዋለህ? መካን ማኅፀንን፥ የደረቁትንም ጡቶች ስጣቸው።"
+            },
+            {
+              "verse": 15,
+              "text": "ክፋታቸውም ሁሉ በጌልገላ አለ፤ በዚያ ጠልቻቸዋለሁ፤ ስለ ሠሩት ክፋት ከቤቴ አሳድዳቸዋለሁ፤ ከእንግዲህ ወዲያ አልወድዳቸውም፤ አለቆቻቸው ሁሉ ዐመፀኞች ናቸውና።"
+            },
+            {
+              "verse": 16,
+              "text": "ኤፍሬም ታመመ፤ ሥሩም ደረቀ፤ ከእንግዲህም ወዲህ ፍሬ አያፈራም፤ ደግሞም ቢወልዱ የተወደደውን የማኅፀናቸውን ፍሬ እገድላለሁ።"
+            },
+            {
+              "verse": 17,
+              "text": "አልሰሙትምና እግዚአብሔር ይጥላቸዋል፤ በአሕዛብም መካከል ተቅበዝባዦች ይሆናሉ።"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "sections": [
+        {
+          "title": "The judgment of the Lord upon the idols of Israel.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Israel is like a vine that has blossomed; it has filled its borders with fruit, and like the land, it has multiplied its harvests."
+            },
+            {
+              "verse": 2,
+              "text": "Their hearts are opened; now they shall be consumed; He will destroy their altars; and their sacred pillars shall be swept away."
+            },
+            {
+              "verse": 3,
+              "text": "Even now, they say, \"We have no king; for we do not fear the Lord; and what can a king do for us?\""
+            },
+            {
+              "verse": 4,
+              "text": "They speak words of deceit; they make covenants; therefore, their judgment shall spring forth like hemlock in the furrows of the field."
+            },
+            {
+              "verse": 5,
+              "text": "The people of Samaria dwell beside their idols; the nation has become like a thing of shame; and their glory has departed from them, so they rejoice in their disgrace."
+            },
+            {
+              "verse": 6,
+              "text": "To the king, for the sake of the glory of the house of Jeroboam, they shall be taken away to Assyria; Ephraim shall be a prey, and Israel shall be afraid because of their counsel."
+            },
+            {
+              "verse": 7,
+              "text": "Samaria has cast off her king like a vessel upon the waters."
+            },
+            {
+              "verse": 8,
+              "text": "The sins of Israel, which are like the iniquities of the high places, shall be destroyed; they shall be consumed upon their altars; and they shall cry to the mountains, \"Cover us!\" and to the hills, \"Fall on us!\""
+            },
+            {
+              "verse": 9,
+              "text": "Israel has sinned since the days of Gibeah; there they have stood firm; shall there not be a battle against them in Gibeah? They came to destroy the children of Ammon."
+            },
+            {
+              "verse": 10,
+              "text": "For their two iniquities, at the time of their destruction, the peoples shall gather upon them."
+            },
+            {
+              "verse": 11,
+              "text": "Ephraim is as a bird that has fled; yet I will take delight in his beauty; I will be as a vine unto Ephraim; and I will be as a lion unto Judah; Jacob shall also establish his own kingdom."
+            },
+            {
+              "verse": 12,
+              "text": "Sow righteousness for yourselves; reap the fruits of life; and cultivate the light of wisdom for yourselves; seek the Lord until your righteousness comes forth."
+            },
+            {
+              "verse": 13,
+              "text": "Why have you been led astray? Why have you forsaken sin? You have eaten the fruit of falsehood; in your multitude of armies and in your strength, you have trusted."
+            },
+            {
+              "verse": 14,
+              "text": "A calamity shall rise among your people; and when a mother is distressed over her children, the commander of peace shall be as a house of war; on the day of battle, all your strongholds shall be laid waste."
+            },
+            {
+              "verse": 15,
+              "text": "O house of Israel! Just as your iniquities have arisen from your sins, so will I deal with you; in the evening, the king of Israel shall be called upon."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "sections": [
+        {
+          "title": "The Lord loves His people.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "እስራኤል ሕፃን በነበረ ጊዜ ወደድሁት፤ ልጄንም ከግብፅ ጠራሁት፤"
+            },
+            {
+              "verse": 2,
+              "text": "አብዝች ብጠራቸው አጥብቀው ከፊቴ ራቁ፤ ለበዓሊምም ይሠዉ ነበር፤ ለተቀረጹ ምስሎችም ያጥኑ ነበር።"
+            },
+            {
+              "verse": 3,
+              "text": "እኔም ኤፍሬምን ወደድሁት፤ በክንዴም ተቀበልሁት፤ እኔም እፈውሳቸው እንደ ነበርሁ አላወቁም።"
+            },
+            {
+              "verse": 4,
+              "text": "በሰው ገመድ በፍቅርም እስራት ሳብኋቸው፤ ለእነርሱም ፊቱን በጥፊ እንደሚመቱት ሰው ሆንሁላቸው፤ ወደ እርሱም እመለከታለሁ፤ እችለውማለሁ።"
+            },
+            {
+              "verse": 5,
+              "text": "ኤፍሬም በግብፅ ተቀመጠ፤ አሦርም ንጉሡ ነው፤ መመለስን እንቢ ብሎአልና።"
+            },
+            {
+              "verse": 6,
+              "text": "ጦር በከተማው ደከመች፤ ከእጁም ይለያታል፤ ከሥራቸውም ፍሬ ይበላሉ።"
+            },
+            {
+              "verse": 7,
+              "text": "ሕዝቤም ከመኖሪያው ተነሥቶአል፤ እግዚአብሔርም በክብሩ ላይ ተቈጣ፤ ከፍ ከፍም አያደርገውም።"
+            },
+            {
+              "verse": 8,
+              "text": "እኔም “አምልኮቴን ትተሃል አልሁ፤ ኤፍሬም ሆይ! እንዴት አደርግሃለሁ? እስራኤል ሆይ! እንዴትስ እደግፍሃለሁ? እንዴትስ አደርግሃለሁ? እንደ አዳማ ነውን? ወይስ እንደ ሲባዮ? ልቤ በውስጤ ተናውጣለች፤ ምሕረቴም ተገልጣለች።"
+            },
+            {
+              "verse": 9,
+              "text": "እኔ አምላክ ነኝ እንጂ ሰው አይደለሁምና፥ በመካካልህም ቅዱሱ ነኝና እንግዲህ የቍጣዬን መቅሠፍት አላደርግም፤ ኤፍሬምንም ያጠፉት ዘንድ አልተውም፤ ወደ ከተማም አልገባም አልሁ።"
+            },
+            {
+              "verse": 10,
+              "text": "ጌታ እግዚአብሔርን እከተለው ዘንድ እሄዳለሁ፤ እርሱ ያድነናልና፤ እርሱም እንደ አንበሳ ያገሣል፤ የውኃ ልጆችም ይደነግጣሉ።"
+            },
+            {
+              "verse": 11,
+              "text": "\"As a bird escapes from Egypt, and as a dove from the land of Assyria, so shall they return; and I will bring them to their homes,\" saith the Lord."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "sections": [
+        {
+          "title": null,
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ኤፍሬም በሐሰት፥ የእስራኤል ቤትና ይሁዳም በተንኰል ከበቡኝ፤ አሁንም እግዚአብሔር ዐወቃቸው፤ ለእግዚአብሔርም ቅዱስ ሕዝብ ተባሉ።"
+            },
+            {
+              "verse": 2,
+              "text": "ኤፍሬም ግን ክብርንና ከንቱ ነገርን የሚያሳድድ ክፉ ጋኔን ነው። ሁልጊዜም ሐሰትንና ተንኰልን ያበዛል፤ ከአሦርም ጋር ቃል ኪዳን ያደርጋል፤ ምሕረትም ያደርጉለት ዘንድ ወደ ግብፅ ዘይትን ይልካል።"
+            },
+            {
+              "verse": 3,
+              "text": "እግዚአብሔርም ደግሞ ከይሁዳ ጋር ይዋቀሳል፤ ያዕቆብንም እንደ መንገዱ ይበቀለዋል፤ እንደ ሥራውም ይከፍለዋል።"
+            },
+            {
+              "verse": 4,
+              "text": "በማኅፀን ውስጥ ወንድሙን በተረከዙ ያዘው፤ በደካማነቱም ጊዜ ከአምላክ ጋር ታገለ።"
+            },
+            {
+              "verse": 5,
+              "text": "ከመልአኩም ጋር ታግሎ አሸነፈ፤ አልቅሶም ለመነኝ። በቤትአዎንም አገኘኝ፤ በዚያም ከእኔ ጋር ተነጋገረ።"
+            },
+            {
+              "verse": 6,
+              "text": "ሁሉን የሚገዛ እግዚአብሔር መታሰቢያው ነው።"
+            },
+            {
+              "verse": 7,
+              "text": "ስለዚህ ወደ አምላክህ ተመለስ፤ ምሕረትንና ፍርድን ጠብቅ፤ ዘወትርም ወደ አምላክህ ቅረብ።"
+            },
+            {
+              "verse": 8,
+              "text": "በከነዓን እጅ የዐመፅ ሚዛን አለ፤ ቅሚያንም ይወድዳል።"
+            },
+            {
+              "verse": 9,
+              "text": "ኤፍሬምም፥ “ባለጸጋ ሆኜአለሁ፤ ሀብትንም አግኝቻለሁ፤ በድካሜም ሁሉ ኀጢአት የሚሆን በደል አይገኝብኝም” አለ።"
+            },
+            {
+              "verse": 10,
+              "text": "እኔም ከግብፅ ምድር ያወጣሁህ አምላክህ እግዚአብሔር ነኝ፤ እንደ ዓመት በዓል ቀንም እንደ ገና በድንኳን አስቀምጥሃለሁ።"
+            },
+            {
+              "verse": 11,
+              "text": "And I have spoken to the prophets; I have multiplied visions; and by the prophets I have been likened."
+            },
+            {
+              "verse": 12,
+              "text": "Even if it be not in Gilead, behold, there are leaders who perform their sacrifices in Gilgal; their altars are like heaps of stones upon a furrow in the field."
+            },
+            {
+              "verse": 13,
+              "text": "Jacob fled to the land of Syria, and Israel served for a wife, and for a wife he kept sheep."
+            },
+            {
+              "verse": 14,
+              "text": "And the Lord brought Israel out of the land of Egypt by a prophet; and by a prophet was he preserved."
+            },
+            {
+              "verse": 15,
+              "text": "Ephraim is oppressed and crushed in judgment, for he willingly walked after vanity; therefore shall the Lord bring his blood upon him, and his reproach shall be returned unto him."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "sections": [
+        {
+          "title": "The anger of the Lord was upon Israel.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "ኤፍሬም እንደ ተናገረ በእስራኤል ሥርዐቱን ወሰደ፤ ለበዓልም አደረገው፤ ሞተም።"
+            },
+            {
+              "verse": 2,
+              "text": "ዳግመኛም በደሉ፤ ጠራቢ በሚሠራው አምሳል ከወርቃቸውና ከብራቸው ጣዖትን ሠሩ፤ እንዲህም አሉ “ሰውን ሠዉ፤ ላሙ ግን አልቋል።”"
+            },
+            {
+              "verse": 3,
+              "text": "ስለዚህም እንደ ማለዳ ደመና፥ በጥዋት እንደሚያልፍ ጠል፥ በዐውሎ ነፋስም ከዐውድማ እንደሚበተን እብቅ፥ ከምድጃም እንደሚወጣ ጢስ ይሆናሉ።"
+            },
+            {
+              "verse": 4,
+              "text": "ሰማይን ያጸናሁ፥ ምድርንም የፈጠርሁ፥ እጆችም የሰማይ ሠራዊትን ያቆሙ አምላክህ እግዚአብሔር እኔ ነኝ። እንዳትከተላቸውም እነርሱን አላሳየሁህም። ከግብፅ ምድርም ያወጣሁህ እኔ ነኝ። ከእኔ በቀር ሌላ አምላክ አትወቅ፤ ከእኔ በቀር የሚያድንህ የለምና።"
+            },
+            {
+              "verse": 5,
+              "text": "በምድረ በዳና በዞርህበት ምድር ሁሉ ጠበቅሁህ።"
+            },
+            {
+              "verse": 6,
+              "text": "ከተሰማራችሁ በኋላ ጠገባችሁ፤ በጠገባችሁም ጊዜ ልባችሁ ታበየ፤ ስለዚህም ረሳችሁኝ።"
+            },
+            {
+              "verse": 7,
+              "text": "ስለዚህም ለይሁዳ ቤት እንደ አንበሳ፥ ለኤፍሬምም እንደ ነብር ሆንሁባቸው።"
+            },
+            {
+              "verse": 8,
+              "text": "በአሦራውያንም መንገድ አጠገብ እንደ ተራበ ድብ እገጥማቸዋለሁ፤ የልባቸውንም ሥር እቈርጣለሁ፤ በዚያም የዱር አንበሶች ይበሏቸዋል፤ የምድረ በዳም አራዊት ይነጣጠቋቸዋል።"
+            },
+            {
+              "verse": 9,
+              "text": "እስራኤል ሆይ! በመከራህ ጊዜ ማን ይረዳሃል?"
+            },
+            {
+              "verse": 10,
+              "text": "ንጉሥህ ወዴት አለ? በየከተማህ ሁሉ እስኪ ያድንህ! ንጉሥና አለቃ ስጠኝ የምትለኝ እስኪ እነርሱ ይበቀሉልህ?"
+            },
+            {
+              "verse": 11,
+              "text": "In my wrath, I have given you over to the king; and in my time, I have made you desolate."
+            },
+            {
+              "verse": 12,
+              "text": "You shall be punished for your iniquity; and the sin of Ephraim has overtaken her."
+            },
+            {
+              "verse": 13,
+              "text": "Like a woman in labor, she shall writhe; this child is a stillborn; it is not wise; and among children, it shall not find rest."
+            },
+            {
+              "verse": 14,
+              "text": "From the hand of Sheol, I will deliver them; and from death, I will redeem them; O death! Where is your sting? O Sheol! Where is your victory? Your joy has been taken from your eyes."
+            },
+            {
+              "verse": 15,
+              "text": "He shall separate from among his brethren; and the Lord shall bring forth a wind that scatters from the wilderness; He shall break the bones; and He shall dry up the fountain; He shall make the earth desolate; and He shall destroy all the beloved possessions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 14,
+      "sections": [
+        {
+          "title": "And Israel called upon the Lord that they might return unto Him.",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Samaria has rebelled against her God; she shall fall by the sword; their infants shall be dashed in pieces, and their pregnant women shall be ripped open."
+            },
+            {
+              "verse": 2,
+              "text": "O Israel! You have stumbled in your iniquity; return unto your God, and unto the Lord."
+            },
+            {
+              "verse": 3,
+              "text": "Take with you words, and return unto the Lord; say unto Him, “Take away all iniquity; and receive us graciously; and we will render the fruit of our lips unto Thee.”"
+            },
+            {
+              "verse": 4,
+              "text": "Assyria shall not save us; we will not ride upon horses; neither will we say any more to the work of our hands, ‘Ye are our gods’; for in Thee the fatherless find mercy."
+            },
+            {
+              "verse": 5,
+              "text": "My anger is turned away from him, and I will heal them; I will love them freely; for mine anger is turned away from him."
+            },
+            {
+              "verse": 6,
+              "text": "I will be as the dew unto Israel; he shall grow as the lily, and cast forth his roots as Lebanon."
+            },
+            {
+              "verse": 7,
+              "text": "His branches shall spread, and his beauty shall be as the olive tree, and his smell as Lebanon."
+            },
+            {
+              "verse": 8,
+              "text": "They shall return and dwell under his shadow; they shall revive as the corn, and grow as the vine; the scent thereof shall be as the wine of Lebanon."
+            },
+            {
+              "verse": 9,
+              "text": "What shall I do unto thee, O Ephraim? What shall I do unto thee, O Judah? For your goodness is as a morning cloud, and as the early dew it goeth away."
+            },
+            {
+              "verse": 10,
+              "text": "Who is wise, and he shall understand these things? Prudent, and he shall know them? For the ways of the Lord are right, and the just shall walk in them; but the transgressors shall fall therein."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
