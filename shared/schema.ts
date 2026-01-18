@@ -142,5 +142,101 @@ export const FEATURE_LIMITS = {
   chat_message: 10,
 } as const;
 
+// ============================================
+// AMBASSADOR PROGRAM TABLES
+// ============================================
+
+export const ambassadorStatusEnum = ['pending', 'active', 'paused'] as const;
+export type AmbassadorStatus = typeof ambassadorStatusEnum[number];
+
+export const ambassadors = pgTable("ambassadors", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull(), // Links to auth user
+  email: text("email").notNull(),
+  name: text("name").notNull(),
+  referralCode: text("referral_code").notNull().unique(), // Their code for user signups
+  inviteCode: text("invite_code").notNull().unique(), // Their code for recruiting ambassadors
+  referredBy: varchar("referred_by").references((): any => ambassadors.id), // Who recruited them
+  status: text("status").notNull().default('pending'), // pending, active, paused
+  tier: integer("tier").notNull().default(1), // For future commission tiers
+  isSuperAdmin: boolean("is_super_admin").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const referralClicks = pgTable("referral_clicks", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  referralCode: text("referral_code").notNull(),
+  clickedAt: timestamp("clicked_at").notNull().defaultNow(),
+  userAgent: text("user_agent"),
+  ipHash: text("ip_hash"), // Hashed for privacy
+});
+
+export const referralSignups = pgTable("referral_signups", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  referralCode: text("referral_code").notNull(),
+  userId: text("user_id").notNull(), // The user who signed up
+  convertedToPro: boolean("converted_to_pro").notNull().default(false),
+  conversionDate: timestamp("conversion_date"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// Scaffold for future: Bible study sessions
+export const bibleStudies = pgTable("bible_studies", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  ambassadorId: varchar("ambassador_id").references(() => ambassadors.id),
+  title: text("title"),
+  scheduledAt: timestamp("scheduled_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// Scaffold for future: Email queue
+export const emailQueue = pgTable("email_queue", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  subject: text("subject"),
+  body: text("body"),
+  recipientType: text("recipient_type"), // 'all', 'ambassadors', 'users', 'specific'
+  status: text("status").default('draft'), // draft, queued, sent
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// Scaffold for future: Notifications
+export const notifications = pgTable("notifications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title"),
+  message: text("message"),
+  targetType: text("target_type"), // 'all', 'ambassadors', 'users'
+  sentAt: timestamp("sent_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// Ambassador schemas
+export const insertAmbassadorSchema = createInsertSchema(ambassadors).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertReferralClickSchema = createInsertSchema(referralClicks).omit({
+  id: true,
+  clickedAt: true,
+});
+
+export const insertReferralSignupSchema = createInsertSchema(referralSignups).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertAmbassador = z.infer<typeof insertAmbassadorSchema>;
+export type Ambassador = typeof ambassadors.$inferSelect;
+
+export type InsertReferralClick = z.infer<typeof insertReferralClickSchema>;
+export type ReferralClick = typeof referralClicks.$inferSelect;
+
+export type InsertReferralSignup = z.infer<typeof insertReferralSignupSchema>;
+export type ReferralSignup = typeof referralSignups.$inferSelect;
+
+export type BibleStudy = typeof bibleStudies.$inferSelect;
+export type EmailQueueItem = typeof emailQueue.$inferSelect;
+export type Notification = typeof notifications.$inferSelect;
+
 export * from "./models/chat";
 export * from "./models/bible";
