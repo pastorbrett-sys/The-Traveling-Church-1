@@ -368,7 +368,7 @@ export default function AmbassadorPage() {
               variant="ghost"
               size="icon"
               onClick={() => setLocation("/pastor-chat")}
-              className="text-gray-400 hover:text-white"
+              className="text-gray-400 hover:text-white bg-[#3b3115]"
               data-testid="button-back-home"
             >
               <ArrowLeft className="w-5 h-5" />
