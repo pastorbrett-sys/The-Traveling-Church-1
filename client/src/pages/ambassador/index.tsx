@@ -376,7 +376,7 @@ export default function AmbassadorPage() {
             <img 
               src={ambassadorLogo} 
               alt="Vagabond Bible Ambassador" 
-              className="h-16 md:h-20 object-contain"
+              className="h-20 md:h-28 object-contain"
             />
           </div>
           {ambassador?.isSuperAdmin && (
