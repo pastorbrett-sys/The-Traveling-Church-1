@@ -85,6 +85,7 @@ interface BibleChapter {
 interface Translation {
   short_name: string;
   full_name: string;
+  display_name?: string;
 }
 
 interface InsightMessage {

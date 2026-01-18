@@ -8,7 +8,8 @@ const AMHARIC_PROTESTANT_FILE = path.join(process.cwd(), "server/data/amharic-pr
 
 export const AMHARIC_ORTHODOX_TRANSLATION: BibleTranslation = {
   short_name: "ETH",
-  full_name: "አማርኛ ኦርቶዶክስ (81 መጻሕፍት)"
+  full_name: "አማርኛ ኦርቶዶክስ (81 መጻሕፍት)",
+  display_name: "ኦርቶ"
 };
 
 export const ENGLISH_ORTHODOX_TRANSLATION: BibleTranslation = {
@@ -18,7 +19,8 @@ export const ENGLISH_ORTHODOX_TRANSLATION: BibleTranslation = {
 
 export const AMHARIC_PROTESTANT_TRANSLATION: BibleTranslation = {
   short_name: "AMPROT",
-  full_name: "አማርኛ ፕሮቴስታንት (66 መጻሕፍት)"
+  full_name: "አማርኛ ፕሮቴስታንት (66 መጻሕፍት)",
+  display_name: "ፕሮት"
 };
 
 interface EthiopianOrthodoxBook {

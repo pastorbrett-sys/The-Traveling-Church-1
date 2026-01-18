@@ -134,6 +134,7 @@ interface SubscriptionStatus {
 interface Translation {
   short_name: string;
   full_name: string;
+  display_name?: string;
 }
 
 // Preload Pastor Brett avatar immediately so it's cached before WelcomeMessage renders
@@ -614,7 +615,7 @@ export default function PastorChat() {
             <SelectContent>
               {bibleTranslations?.map((t) => (
                 <SelectItem key={t.short_name} value={t.short_name}>
-                  {t.short_name}
+                  {t.display_name || t.short_name}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -681,7 +682,7 @@ export default function PastorChat() {
                     <SelectContent>
                       {bibleTranslations?.map((t) => (
                         <SelectItem key={t.short_name} value={t.short_name}>
-                          {t.short_name}
+                          {t.display_name || t.short_name}
                         </SelectItem>
                       ))}
                     </SelectContent>

@@ -45,6 +45,7 @@ export type ReadingProgress = typeof readingProgress.$inferSelect;
 export interface BibleTranslation {
   short_name: string;
   full_name: string;
+  display_name?: string;
 }
 
 export interface BibleBook {
