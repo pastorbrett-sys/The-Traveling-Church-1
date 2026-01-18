@@ -223,8 +223,8 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
         { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
       ],
-      temperature: 0.5,
-      max_tokens: isAmharic ? 1000 : 1500,
+      temperature: 0.7,
+      max_tokens: 1500,
     });
 
     const responseText = completion.choices[0]?.message?.content?.trim() || "{}";

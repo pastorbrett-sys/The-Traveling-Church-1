@@ -303,12 +303,11 @@ export function registerChatRoutes(app: Express): void {
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
 
-      const isAmharic = translation === "ETH" || translation === "AMPROT";
       const stream = await openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: chatMessages,
         stream: true,
-        max_completion_tokens: isAmharic ? 1024 : 2048,
+        max_completion_tokens: 2048,
       });
 
       let fullResponse = "";
