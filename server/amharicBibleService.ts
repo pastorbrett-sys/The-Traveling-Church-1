@@ -237,10 +237,12 @@ export async function getOrthodoxEnglishChapter(
   const verses: BibleVerse[] = [];
   
   for (const section of chapterData.sections) {
+    let isFirstVerseInSection = true;
     for (const verse of section.verses) {
-      const verseText = section.title 
+      const verseText = (section.title && isFirstVerseInSection)
         ? `§${section.title}§ ${verse.text}`
         : verse.text;
+      isFirstVerseInSection = false;
       
       verses.push({
         pk: verse.verse,
@@ -315,10 +317,12 @@ export async function getOrthodoxChapter(
   const verses: BibleVerse[] = [];
   
   for (const section of chapterData.sections) {
+    let isFirstVerseInSection = true;
     for (const verse of section.verses) {
-      const verseText = section.title 
+      const verseText = (section.title && isFirstVerseInSection)
         ? `§${section.title}§ ${verse.text}`
         : verse.text;
+      isFirstVerseInSection = false;
       
       verses.push({
         pk: verse.verse,
