@@ -53,6 +53,7 @@
     @apply font-sans antialiased;
     background-color: hsl(30, 20%, 97%);
     color: hsl(20, 10%, 25%);
+    overflow-x: hidden;
   }
   
   /* Light background - iOS keyboard area will show light color */
