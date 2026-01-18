@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, LogIn, LogOut, User } from "lucide-react";
+import { Menu, X, LogIn, LogOut, User, Award } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
@@ -72,7 +72,6 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
-    { id: "ambassador", label: "Ambassadors", type: "link", href: "/ambassador" },
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 
@@ -124,7 +123,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   key={item.id}
                   href={item.href!}
                   className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
-                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") || (location.startsWith("/ambassador") && item.id === "ambassador") || (location === "/admin" && item.id === "ambassador") ? "text-primary" : ""
+                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy") || location === "/vagabond-bible") && item.id === "pastor-chat") ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -153,6 +152,14 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   </div>
                 ) : isAuthenticated ? (
                   <div className="flex items-center gap-3 ml-2 pl-4 border-l border-border">
+                    <Link
+                      href="/ambassador"
+                      className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors ${location.startsWith("/ambassador") || location === "/admin" ? "text-primary" : ""}`}
+                      data-testid="link-ambassador"
+                    >
+                      <Award className="w-4 h-4" />
+                      Ambassadors
+                    </Link>
                     <Link
                       href="/profile"
                       className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
@@ -224,7 +231,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     href={item.href!}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-fade-in-up ${
-                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy")) && item.id === "pastor-chat") || (location.startsWith("/ambassador") && item.id === "ambassador") || (location === "/admin" && item.id === "ambassador") ? "bg-muted text-primary" : ""
+                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy") || location === "/vagabond-bible") && item.id === "pastor-chat") ? "bg-muted text-primary" : ""
                     }`}
                     style={{ animationDelay: `${index * 50}ms` }}
                     data-testid={`link-${item.id}`}
@@ -253,6 +260,15 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     <div className="h-10 w-full bg-muted animate-pulse rounded" />
                   ) : isAuthenticated ? (
                     <div className="flex flex-col gap-2">
+                      <Link
+                        href="/ambassador"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${location.startsWith("/ambassador") || location === "/admin" ? "bg-muted text-primary" : ""}`}
+                        data-testid="link-mobile-ambassador"
+                      >
+                        <Award className="w-4 h-4" />
+                        Ambassadors
+                      </Link>
                       <Link
                         href="/profile"
                         onClick={() => setMobileMenuOpen(false)}
