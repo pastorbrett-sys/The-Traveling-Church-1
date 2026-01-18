@@ -379,19 +379,16 @@ export default function AmbassadorPage() {
               className="h-14 object-contain"
             />
           </div>
-          <div className="flex items-center gap-4">
-            {ambassador?.isSuperAdmin && (
-              <Button
-                onClick={() => setLocation("/admin")}
-                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
-                data-testid="button-admin-panel"
-              >
-                <Shield className="w-4 h-4 mr-2" />
-                Admin Panel
-              </Button>
-            )}
-            <p className="text-white font-medium">{ambassador?.name}</p>
-          </div>
+          {ambassador?.isSuperAdmin && (
+            <Button
+              onClick={() => setLocation("/admin")}
+              className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
+              data-testid="button-admin-panel"
+            >
+              <Shield className="w-4 h-4 mr-2" />
+              Admin Panel
+            </Button>
+          )}
         </div>
 
         <Card className="bg-gradient-to-r from-[#c08e00]/20 to-[#1a1a1a] border-[#c08e00]/30">
