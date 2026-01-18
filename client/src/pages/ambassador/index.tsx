@@ -376,7 +376,7 @@ export default function AmbassadorPage() {
             <img 
               src={ambassadorLogo} 
               alt="Vagabond Bible Ambassador" 
-              className="h-20 md:h-28 object-contain"
+              className="h-16 md:h-24 object-contain"
             />
           </div>
           {ambassador?.isSuperAdmin && (
@@ -401,7 +401,7 @@ export default function AmbassadorPage() {
           )}
         </div>
 
-        <Card className="bg-gradient-to-r from-[#c08e00]/20 to-[#1a1a1a] border-[#c08e00]/30">
+        <Card className="bg-[#1a1a1a] border-[#333]">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-white flex items-center gap-2">
               <LinkIcon className="w-5 h-5 text-[#c08e00]" />
