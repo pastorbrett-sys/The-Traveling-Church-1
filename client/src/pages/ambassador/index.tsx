@@ -367,7 +367,7 @@ export default function AmbassadorPage() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setLocation("/")}
+              onClick={() => window.history.back()}
               className="text-gray-400 hover:text-white"
               data-testid="button-back-home"
             >
