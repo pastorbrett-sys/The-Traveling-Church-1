@@ -435,7 +435,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       const res = await apiFetch("/api/bible/smart-search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query, translation }),
       });
       if (res.status === 429) {
         const data = await res.json();
@@ -1092,7 +1092,7 @@ Reference: ${verseRef} (${translation})`;
       const res = await apiFetch("/api/bible/book-synopsis", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookName: selectedBook.name }),
+        body: JSON.stringify({ bookName: selectedBook.name, translation }),
       });
       
       if (res.status === 429) {

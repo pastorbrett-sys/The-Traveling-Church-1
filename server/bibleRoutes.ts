@@ -189,7 +189,7 @@ Return ONLY the JSON object, no additional text or formatting.`;
 
 router.post("/smart-search", isAuthenticated, async (req: any, res) => {
   try {
-    const { query } = req.body;
+    const { query, translation } = req.body;
     
     if (!query || typeof query !== "string" || query.trim().length < 2) {
       return res.status(400).json({ message: "Search query required (minimum 2 characters)" });
@@ -212,10 +212,15 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       });
     }
 
+    const isAmharic = translation === "ETH" || translation === "AMPROT";
+    const languageInstruction = isAmharic 
+      ? "\n\nIMPORTANT: Respond entirely in Amharic (አማርኛ). All text fields including interpretation, summaries, meanings, and context should be in Amharic. Keep only book names, references, and verse numbers in their standard format."
+      : "";
+
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
-        { role: "system", content: SMART_SEARCH_PROMPT },
+        { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
       ],
       temperature: 0.7,
@@ -449,7 +454,7 @@ router.post("/compare", async (req, res) => {
 
 router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
   try {
-    const { bookName } = req.body;
+    const { bookName, translation } = req.body;
     if (!bookName) {
       return res.status(400).json({ message: "Book name is required" });
     }
@@ -470,7 +475,30 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
       });
     }
 
-    const question = `Give me a short synopsis of the book of ${bookName} in the Bible.`;
+    const isAmharic = translation === "ETH" || translation === "AMPROT";
+    const question = isAmharic 
+      ? `ስለ መጽሐፍ ቅዱስ ${bookName} አጭር ማጠቃለያ ስጠኝ።`
+      : `Give me a short synopsis of the book of ${bookName} in the Bible.`;
+    
+    const synopsisSystemPrompt = isAmharic
+      ? `አንተ ጥበበኛና ወዳጃዊ የመጽሐፍ ቅዱስ ጥናት ረዳት ነህ። ስለ መጽሐፍ ቅዱስ መጽሐፍ ሲጠየቅ በአጭር አንቀጽ (3-5 ዓረፍተ ነገሮች) አጭር ግን ሁሉን አቀፍ ማጠቃለያ ስጥ። ይህንን ያካትት፦
+1. ጸሐፊውና ግምታዊ የጊዜ ዘመን
+2. ዋናው ጭብጥ ወይም ዓላማ
+3. ዋና ዋና ክስተቶች ወይም ትምህርቶች
+4. ለጠቅላላው የመጽሐፍ ቅዱስ ትረካ ያለው ጠቀሜታ
+
+በአማርኛ ብቻ መልስ ስጥ። ተቀባይነት ያለውና ለሁሉም ተደራሽ ያድርገው። የማጠቃለያ አንቀጹን ብቻ ስጥ፣ ሌላ ነገር አይደለም።`
+      : `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
+1. The author and approximate time period
+2. The main theme or purpose
+3. Key events or teachings
+4. Its significance to the overall biblical narrative
+
+Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers. Only provide the synopsis paragraph, nothing else.`;
+
+    const followUpSystemPrompt = isAmharic
+      ? `አንተ ወዳጃዊ የመጽሐፍ ቅዱስ ጥናት ረዳት ነህ። ውይይትን ለማበረታታት ስለ ${bookName} መጽሐፍ አንድ አሳታፊ ተከታይ ጥያቄ ፍጠር። ጥያቄው ተጠቃሚው ከዚህ መጽሐፍ ውስጥ የተወሰነ ጭብጥ፣ ገጸ ባህሪ፣ ምዕራፍ ወይም ትምህርት እንዲያስስ መጋበዝ አለበት። በአማርኛ ብቻ፣ ጥያቄውን ብቻ አውጣ፣ ሌላ ነገር አይደለም።`
+      : `You are a warm Bible study assistant. Generate a single engaging follow-up question about the book of ${bookName} to encourage continued conversation. The question should invite the user to explore a specific theme, character, chapter, or teaching from this book. Only output the question, nothing else.`;
     
     const [synopsisCompletion, followUpCompletion] = await Promise.all([
       openai.chat.completions.create({
@@ -478,13 +506,7 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
         messages: [
           {
             role: "system",
-            content: `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
-1. The author and approximate time period
-2. The main theme or purpose
-3. Key events or teachings
-4. Its significance to the overall biblical narrative
-
-Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers. Only provide the synopsis paragraph, nothing else.`
+            content: synopsisSystemPrompt
           },
           {
             role: "user",
@@ -499,11 +521,13 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
         messages: [
           {
             role: "system",
-            content: `You are a warm Bible study assistant. Generate a single engaging follow-up question about the book of ${bookName} to encourage continued conversation. The question should invite the user to explore a specific theme, character, chapter, or teaching from this book. Only output the question, nothing else.`
+            content: followUpSystemPrompt
           },
           {
             role: "user",
-            content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.`
+            content: isAmharic 
+              ? `ስለ ${bookName} ማጠቃለያ ላነበበ ሰው ተከታይ ጥያቄ ፍጠር።`
+              : `Generate a follow-up question for someone who just read a synopsis of ${bookName}.`
           }
         ],
         max_tokens: 100,
