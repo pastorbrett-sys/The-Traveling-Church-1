@@ -360,7 +360,7 @@ export default function AmbassadorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-4 md:p-8">
+    <div className="min-h-screen bg-[#0a0a0a] p-4 pb-24 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
