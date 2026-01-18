@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, Trash2 } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, Trash2, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -113,6 +113,13 @@ const profileUiText = {
     savedNotes: "Saved Notes",
     personalStudyNotes: "Personal study notes",
     wantUnlimitedAccess: "Want unlimited access to all features?",
+    ambassadorProgram: "Ambassador Program",
+    ambassadorDescription: "Earn rewards by sharing Vagabond Bible",
+    becomeAmbassador: "Become an Ambassador",
+    applicationPending: "Application Pending",
+    pendingApproval: "Your application is being reviewed",
+    viewDashboard: "View Dashboard",
+    yourReferrals: "Your Referrals",
   },
   am: {
     myProfile: "የእኔ መገለጫ",
@@ -192,6 +199,13 @@ const profileUiText = {
     savedNotes: "የተቀመጡ ማስታወሻዎች",
     personalStudyNotes: "የግል ጥናት ማስታወሻዎች",
     wantUnlimitedAccess: "ወደ ሁሉም ባህሪያት ያልተገደበ መዳረሻ ይፈልጋሉ?",
+    ambassadorProgram: "የአምባሳደር ፕሮግራም",
+    ambassadorDescription: "ቫጋቦንድ መጽሐፍ ቅዱስን በማጋራት ሽልማቶችን ያግኙ",
+    becomeAmbassador: "አምባሳደር ይሁኑ",
+    applicationPending: "ማመልከቻ በመጠባበቅ ላይ",
+    pendingApproval: "ማመልከቻዎ በመገምገም ላይ ነው",
+    viewDashboard: "ዳሽቦርድ ይመልከቱ",
+    yourReferrals: "ሪፈራሎችዎ",
   }
 };
 
@@ -247,6 +261,12 @@ interface ProfileData {
   usage: UsageSummary;
 }
 
+interface AmbassadorInfo {
+  id: string;
+  status: string;
+  referralCode: string;
+  isSuperAdmin: boolean;
+}
 
 export default function Profile() {
   const { user, isLoading: isAuthLoading, isAuthenticated, logout, isLoggingOut } = useAuth();
@@ -295,6 +315,21 @@ export default function Profile() {
   const isSubLoading = isProfileLoading;
   const isUsageLoading = isProfileLoading;
 
+  // Fetch ambassador status
+  const { data: ambassadorData, isLoading: isAmbassadorLoading } = useQuery<{ ambassador: AmbassadorInfo } | null>({
+    queryKey: ["/api/ambassador/me", user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const res = await fetch(`/api/ambassador/me?userId=${user.id}`);
+      if (!res.ok) return null;
+      return res.json();
+    },
+    enabled: isAuthenticated && !!user?.id,
+    retry: false,
+    staleTime: 60000,
+  });
+
+  const ambassador = ambassadorData?.ambassador;
 
   useEffect(() => {
     document.title = `${t.myProfile} | Vagabond Bible`;
@@ -873,6 +908,66 @@ export default function Profile() {
                       </>
                     )}
                   </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Ambassador Program */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2" data-testid="heading-ambassador">
+                  <Award className="w-5 h-5 text-[#c08e00]" />
+                  {t.ambassadorProgram}
+                </CardTitle>
+                <CardDescription>
+                  {t.ambassadorDescription}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {isAmbassadorLoading ? (
+                  <div className="flex items-center justify-center py-4">
+                    <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+                  </div>
+                ) : ambassador ? (
+                  <div className="space-y-3">
+                    {ambassador.status === "pending" ? (
+                      <div className="flex items-center justify-between p-3 bg-yellow-500/10 rounded-lg">
+                        <div>
+                          <p className="font-medium text-yellow-600">{t.applicationPending}</p>
+                          <p className="text-sm text-muted-foreground">{t.pendingApproval}</p>
+                        </div>
+                      </div>
+                    ) : ambassador.status === "active" ? (
+                      <Button
+                        onClick={() => setLocation("/ambassador")}
+                        className="w-full bg-[#c08e00] hover:bg-[#a07800] text-black"
+                        data-testid="button-ambassador-dashboard"
+                      >
+                        {t.viewDashboard}
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => setLocation("/ambassador")}
+                        variant="outline"
+                        className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
+                        data-testid="button-become-ambassador"
+                      >
+                        {t.becomeAmbassador}
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    )}
+                  </div>
+                ) : (
+                  <Button
+                    onClick={() => setLocation("/ambassador")}
+                    variant="outline"
+                    className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
+                    data-testid="button-become-ambassador"
+                  >
+                    {t.becomeAmbassador}
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
                 )}
               </CardContent>
             </Card>
