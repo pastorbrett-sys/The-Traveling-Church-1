@@ -218,7 +218,7 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       : "";
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-4o",
       messages: [
         { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
