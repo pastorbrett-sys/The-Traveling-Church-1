@@ -425,9 +425,7 @@ export default function AmbassadorPage() {
                 )}
               </Button>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
-              Share this link to track signups and earn credit for Pro conversions
-            </p>
+            <p className="text-xs text-gray-500 mt-2">Share this link to Earn money for users you share The Bible with that Subscribe</p>
           </CardContent>
         </Card>
 
