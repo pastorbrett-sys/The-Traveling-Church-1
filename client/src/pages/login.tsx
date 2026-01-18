@@ -19,6 +19,7 @@ import {
   logoutFirebase
 } from "@/lib/firebase";
 import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
+import { trackReferralSignup } from "@/hooks/use-referral";
 
 export default function Login() {
   const { user, isAuthenticated, isLoading, refetch } = useAuth();
@@ -272,7 +273,12 @@ export default function Login() {
     }
     
     try {
-      await signUpWithEmail(signUpEmail, signUpPassword);
+      const newUser = await signUpWithEmail(signUpEmail, signUpPassword);
+      
+      if (newUser?.uid) {
+        trackReferralSignup(newUser.uid).catch(console.error);
+      }
+      
       setSuccessMessage("Account created! We've sent a verification email to " + signUpEmail + ". Please check your inbox and verify your email, then sign in.");
       setActiveTab("signin");
       setSignInEmail(signUpEmail);
