@@ -602,7 +602,7 @@ export default function AmbassadorPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
+              <div className="space-y-3 mt-1">
                 {team.map((member: TeamMember & { userId?: string }) => (
                   <div 
                     key={member.id}
