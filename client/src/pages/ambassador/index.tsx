@@ -606,32 +606,22 @@ export default function AmbassadorPage() {
                 {team.map((member: TeamMember & { userId?: string }) => (
                   <div 
                     key={member.id}
-                    className="flex items-center justify-between p-3 bg-[#0a0a0a] rounded-lg cursor-pointer hover:bg-[#1a1a1a] transition-colors"
+                    className="p-3 bg-[#0a0a0a] rounded-lg cursor-pointer hover:bg-[#1a1a1a] transition-colors"
                     onClick={() => {
                       const memberId = (member as any).userId || member.id;
                       handleViewSignups(memberId, member.name);
                     }}
                     data-testid={`team-member-${member.id}`}
                   >
-                    <div>
-                      <p className="text-white font-medium">{member.name}</p>
-                      <p className="text-gray-500 text-sm">{member.email}</p>
-                      <p className="text-xs text-gray-600 mt-1">Tap to view their signups</p>
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="text-center">
-                        <p className="text-gray-500">Clicks</p>
-                        <p className="text-white font-medium">{member.clicks}</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-gray-500">Signups</p>
-                        <p className="text-white font-medium">{member.signups}</p>
-                      </div>
+                    <p className="text-white font-medium">{member.name}</p>
+                    <p className="text-gray-500 text-sm">{member.email}</p>
+                    <div className="mt-2 flex items-center gap-2">
                       {member.status === "pending" && ambassador?.isSuperAdmin ? (
                         <Button
                           size="sm"
                           className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1"
-                          onClick={async () => {
+                          onClick={async (e) => {
+                            e.stopPropagation();
                             try {
                               const res = await fetch(`/api/ambassador/admin/approve/${member.id}`, {
                                 method: "POST",
