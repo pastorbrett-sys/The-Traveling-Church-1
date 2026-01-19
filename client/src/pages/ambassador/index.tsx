@@ -130,6 +130,7 @@ export default function AmbassadorPage() {
   const [showSignups, setShowSignups] = useState(false);
   const [signupsList, setSignupsList] = useState<SignupDetail[]>([]);
   const [loadingSignups, setLoadingSignups] = useState(false);
+  const [signupsTitle, setSignupsTitle] = useState("My Signups");
 
   useEffect(() => {
     document.title = "Ambassador Program | Vagabond Bible";
@@ -224,12 +225,15 @@ export default function AmbassadorPage() {
     }
   };
 
-  const handleViewSignups = async () => {
-    if (!user) return;
+  const handleViewSignups = async (userId?: string, memberName?: string) => {
+    const targetUserId = userId || user?.id;
+    if (!targetUserId) return;
+    
+    setSignupsTitle(memberName ? `${memberName}'s Signups` : "My Signups");
     setShowSignups(true);
     setLoadingSignups(true);
     try {
-      const res = await fetch(`/api/ambassador/signups/${user.id}`);
+      const res = await fetch(`/api/ambassador/signups/${targetUserId}`);
       if (res.ok) {
         const data = await res.json();
         setSignupsList(data.signups || []);
@@ -526,7 +530,7 @@ export default function AmbassadorPage() {
 
           <Card 
             className="bg-[#1a1a1a] border-[#333] cursor-pointer hover:border-green-500/50 transition-colors"
-            onClick={handleViewSignups}
+            onClick={() => handleViewSignups()}
             data-testid="card-signups"
           >
             <CardContent className="pt-6">
@@ -599,14 +603,20 @@ export default function AmbassadorPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {team.map((member) => (
+                {team.map((member: TeamMember & { userId?: string }) => (
                   <div 
                     key={member.id}
-                    className="flex items-center justify-between p-3 bg-[#0a0a0a] rounded-lg"
+                    className="flex items-center justify-between p-3 bg-[#0a0a0a] rounded-lg cursor-pointer hover:bg-[#1a1a1a] transition-colors"
+                    onClick={() => {
+                      const memberId = (member as any).userId || member.id;
+                      handleViewSignups(memberId, member.name);
+                    }}
+                    data-testid={`team-member-${member.id}`}
                   >
                     <div>
                       <p className="text-white font-medium">{member.name}</p>
                       <p className="text-gray-500 text-sm">{member.email}</p>
+                      <p className="text-xs text-gray-600 mt-1">Tap to view their signups</p>
                     </div>
                     <div className="flex items-center gap-4 text-sm">
                       <div className="text-center">
@@ -660,7 +670,7 @@ export default function AmbassadorPage() {
           <SheetHeader>
             <SheetTitle className="text-white flex items-center gap-2">
               <UserPlus className="w-5 h-5 text-green-400" />
-              Signups ({signupsList.length})
+              {signupsTitle} ({signupsList.length})
             </SheetTitle>
           </SheetHeader>
           
