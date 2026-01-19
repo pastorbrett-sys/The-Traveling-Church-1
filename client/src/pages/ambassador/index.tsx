@@ -575,13 +575,35 @@ export default function AmbassadorPage() {
                         <p className="text-gray-500">Signups</p>
                         <p className="text-white font-medium">{member.signups}</p>
                       </div>
-                      <div className={`px-2 py-1 rounded text-xs ${
-                        member.status === "active" 
-                          ? "bg-green-500/20 text-green-400" 
-                          : "bg-yellow-500/20 text-yellow-400"
-                      }`}>
-                        {member.status}
-                      </div>
+                      {member.status === "pending" && ambassador?.isSuperAdmin ? (
+                        <Button
+                          size="sm"
+                          className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1"
+                          onClick={async () => {
+                            try {
+                              const res = await fetch(`/api/ambassador/admin/approve/${member.id}`, {
+                                method: "POST",
+                              });
+                              if (res.ok) {
+                                await fetchDashboardData();
+                              }
+                            } catch (err) {
+                              console.error("Failed to approve:", err);
+                            }
+                          }}
+                          data-testid={`button-approve-${member.id}`}
+                        >
+                          Approve
+                        </Button>
+                      ) : (
+                        <div className={`px-2 py-1 rounded text-xs ${
+                          member.status === "active" 
+                            ? "bg-green-500/20 text-green-400" 
+                            : "bg-yellow-500/20 text-yellow-400"
+                        }`}>
+                          {member.status}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
