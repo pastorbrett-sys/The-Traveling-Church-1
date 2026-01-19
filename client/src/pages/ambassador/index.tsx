@@ -21,6 +21,37 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/use-auth";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
+const INVITE_CODE_KEY = "vagabond_ambassador_invite";
+const INVITE_EXPIRY_KEY = "vagabond_ambassador_invite_expiry";
+const INVITE_EXPIRY_DAYS = 30;
+
+function getStoredInviteCode(): string {
+  const code = localStorage.getItem(INVITE_CODE_KEY);
+  const expiryStr = localStorage.getItem(INVITE_EXPIRY_KEY);
+  
+  if (!code || !expiryStr) return "";
+  
+  const expiry = parseInt(expiryStr, 10);
+  if (Date.now() > expiry) {
+    localStorage.removeItem(INVITE_CODE_KEY);
+    localStorage.removeItem(INVITE_EXPIRY_KEY);
+    return "";
+  }
+  
+  return code;
+}
+
+function storeInviteCode(code: string) {
+  localStorage.setItem(INVITE_CODE_KEY, code);
+  const expiry = Date.now() + INVITE_EXPIRY_DAYS * 24 * 60 * 60 * 1000;
+  localStorage.setItem(INVITE_EXPIRY_KEY, expiry.toString());
+}
+
+function clearStoredInviteCode() {
+  localStorage.removeItem(INVITE_CODE_KEY);
+  localStorage.removeItem(INVITE_EXPIRY_KEY);
+}
+
 interface AmbassadorData {
   id: string;
   userId: string;
@@ -55,7 +86,21 @@ export default function AmbassadorPage() {
   const [, setLocation] = useLocation();
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
-  const inviteCode = params.get("invite") || "";
+  
+  // Get invite code from URL or localStorage (persists through login flow)
+  const urlInviteCode = params.get("invite") || "";
+  const [inviteCode, setInviteCode] = useState(() => {
+    // Prefer URL param, fall back to stored code
+    return urlInviteCode || getStoredInviteCode();
+  });
+  
+  // Store invite code when it comes from URL
+  useEffect(() => {
+    if (urlInviteCode) {
+      storeInviteCode(urlInviteCode);
+      setInviteCode(urlInviteCode);
+    }
+  }, [urlInviteCode]);
   
   const [viewState, setViewState] = useState<ViewState>("loading");
   const [ambassador, setAmbassador] = useState<AmbassadorData | null>(null);
@@ -153,6 +198,7 @@ export default function AmbassadorPage() {
       
       const data = await res.json();
       setAmbassador(data.ambassador);
+      clearStoredInviteCode(); // Clear stored invite code after successful application
       setViewState("pending");
     } catch (err: any) {
       setError(err.message);
