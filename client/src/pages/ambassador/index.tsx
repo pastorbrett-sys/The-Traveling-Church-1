@@ -92,6 +92,20 @@ interface SignupDetail {
   signupDate: string;
 }
 
+interface ClickDetail {
+  id: string;
+  userAgent: string | null;
+  clickedAt: string;
+}
+
+interface ConversionDetail {
+  id: string;
+  userId: string;
+  email: string;
+  name: string;
+  conversionDate: string | null;
+}
+
 type ViewState = "loading" | "login-required" | "apply" | "pending" | "dashboard";
 
 export default function AmbassadorPage() {
@@ -131,6 +145,14 @@ export default function AmbassadorPage() {
   const [signupsList, setSignupsList] = useState<SignupDetail[]>([]);
   const [loadingSignups, setLoadingSignups] = useState(false);
   const [signupsTitle, setSignupsTitle] = useState("My Signups");
+  
+  const [showClicks, setShowClicks] = useState(false);
+  const [clicksList, setClicksList] = useState<ClickDetail[]>([]);
+  const [loadingClicks, setLoadingClicks] = useState(false);
+  
+  const [showConversions, setShowConversions] = useState(false);
+  const [conversionsList, setConversionsList] = useState<ConversionDetail[]>([]);
+  const [loadingConversions, setLoadingConversions] = useState(false);
 
   useEffect(() => {
     document.title = "Ambassador Program | Vagabond Bible";
@@ -242,6 +264,40 @@ export default function AmbassadorPage() {
       console.error("Failed to fetch signups:", err);
     } finally {
       setLoadingSignups(false);
+    }
+  };
+
+  const handleViewClicks = async () => {
+    if (!user) return;
+    setShowClicks(true);
+    setLoadingClicks(true);
+    try {
+      const res = await fetch(`/api/ambassador/clicks/${user.id}`);
+      if (res.ok) {
+        const data = await res.json();
+        setClicksList(data.clicks || []);
+      }
+    } catch (err) {
+      console.error("Failed to fetch clicks:", err);
+    } finally {
+      setLoadingClicks(false);
+    }
+  };
+
+  const handleViewConversions = async () => {
+    if (!user) return;
+    setShowConversions(true);
+    setLoadingConversions(true);
+    try {
+      const res = await fetch(`/api/ambassador/conversions/${user.id}`);
+      if (res.ok) {
+        const data = await res.json();
+        setConversionsList(data.conversions || []);
+      }
+    } catch (err) {
+      console.error("Failed to fetch conversions:", err);
+    } finally {
+      setLoadingConversions(false);
     }
   };
 
@@ -514,15 +570,22 @@ export default function AmbassadorPage() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="bg-[#1a1a1a] border-[#333]">
+          <Card 
+            className="bg-[#1a1a1a] border-[#333] cursor-pointer hover:border-blue-500/50 transition-colors"
+            onClick={handleViewClicks}
+            data-testid="card-clicks"
+          >
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm">Link Clicks</p>
                   <p className="text-3xl font-bold text-white">{stats.clicks}</p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
-                  <MousePointer className="w-6 h-6 text-blue-400" />
+                <div className="flex items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+                    <MousePointer className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-gray-500" />
                 </div>
               </div>
             </CardContent>
@@ -546,19 +609,25 @@ export default function AmbassadorPage() {
                   <ChevronRight className="w-5 h-5 text-gray-500" />
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-2">Tap to view who signed up</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a1a1a] border-[#333]">
+          <Card 
+            className="bg-[#1a1a1a] border-[#333] cursor-pointer hover:border-[#c08e00]/50 transition-colors"
+            onClick={handleViewConversions}
+            data-testid="card-conversions"
+          >
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm">Pro Conversions</p>
                   <p className="text-3xl font-bold text-[#c08e00]">{stats.conversions}</p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-[#c08e00]/20 flex items-center justify-center">
-                  <Crown className="w-6 h-6 text-[#c08e00]" />
+                <div className="flex items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-[#c08e00]/20 flex items-center justify-center">
+                    <Crown className="w-6 h-6 text-[#c08e00]" />
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-gray-500" />
                 </div>
               </div>
             </CardContent>
@@ -695,6 +764,95 @@ export default function AmbassadorPage() {
                         Pro
                       </div>
                     )}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <Sheet open={showClicks} onOpenChange={setShowClicks}>
+        <SheetContent side="right" className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle className="text-white flex items-center gap-2">
+              <MousePointer className="w-5 h-5 text-blue-400" />
+              Link Clicks ({clicksList.length})
+            </SheetTitle>
+          </SheetHeader>
+          
+          <div className="mt-6 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)]">
+            {loadingClicks ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
+              </div>
+            ) : clicksList.length === 0 ? (
+              <div className="text-center py-8">
+                <MousePointer className="w-12 h-12 text-gray-600 mx-auto mb-3" />
+                <p className="text-gray-400">No clicks yet</p>
+                <p className="text-gray-500 text-sm mt-1">Share your referral link to get started</p>
+              </div>
+            ) : (
+              clicksList.map((click) => (
+                <div 
+                  key={click.id}
+                  className="p-4 bg-[#0a0a0a] rounded-lg border border-[#333]"
+                >
+                  <p className="text-gray-600 text-xs">
+                    {new Date(click.clickedAt).toLocaleString()}
+                  </p>
+                  {click.userAgent && (
+                    <p className="text-gray-500 text-xs mt-1 truncate">
+                      {click.userAgent.includes("Mobile") ? "Mobile Device" : "Desktop"}
+                    </p>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <Sheet open={showConversions} onOpenChange={setShowConversions}>
+        <SheetContent side="right" className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle className="text-white flex items-center gap-2">
+              <Crown className="w-5 h-5 text-[#c08e00]" />
+              Pro Conversions ({conversionsList.length})
+            </SheetTitle>
+          </SheetHeader>
+          
+          <div className="mt-6 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)]">
+            {loadingConversions ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
+              </div>
+            ) : conversionsList.length === 0 ? (
+              <div className="text-center py-8">
+                <Crown className="w-12 h-12 text-gray-600 mx-auto mb-3" />
+                <p className="text-gray-400">No Pro conversions yet</p>
+                <p className="text-gray-500 text-sm mt-1">Users who subscribe to Pro will appear here</p>
+              </div>
+            ) : (
+              conversionsList.map((conversion) => (
+                <div 
+                  key={conversion.id}
+                  className="p-4 bg-[#0a0a0a] rounded-lg border border-[#333]"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white font-medium truncate">{conversion.name}</p>
+                      <p className="text-gray-500 text-sm truncate">{conversion.email}</p>
+                      {conversion.conversionDate && (
+                        <p className="text-gray-600 text-xs mt-1">
+                          Converted {new Date(conversion.conversionDate).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1 px-2 py-1 bg-[#c08e00]/20 rounded text-xs text-[#c08e00]">
+                      <Crown className="w-3 h-3" />
+                      Pro
+                    </div>
                   </div>
                 </div>
               ))

@@ -198,6 +198,72 @@ async function checkSuperAdmin(userId: string): Promise<boolean> {
   return ambassador?.isSuperAdmin === true;
 }
 
+router.get("/clicks/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.userId, userId)).limit(1);
+    if (!ambassador) {
+      return res.status(404).json({ error: "Ambassador not found" });
+    }
+
+    const clicks = await db.select()
+      .from(referralClicks)
+      .where(eq(referralClicks.referralCode, ambassador.referralCode))
+      .orderBy(desc(referralClicks.clickedAt));
+
+    const clicksWithDetails = clicks.map((click) => ({
+      id: click.id,
+      userAgent: click.userAgent,
+      clickedAt: click.clickedAt,
+    }));
+
+    res.json({ clicks: clicksWithDetails });
+  } catch (error) {
+    console.error("Get clicks error:", error);
+    res.status(500).json({ error: "Failed to get clicks" });
+  }
+});
+
+router.get("/conversions/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.userId, userId)).limit(1);
+    if (!ambassador) {
+      return res.status(404).json({ error: "Ambassador not found" });
+    }
+
+    const conversions = await db.select()
+      .from(referralSignups)
+      .where(sql`${referralSignups.referralCode} = ${ambassador.referralCode} AND ${referralSignups.convertedToPro} = true`)
+      .orderBy(desc(referralSignups.conversionDate));
+
+    const { users } = await import("@shared/schema");
+    const conversionsWithDetails = await Promise.all(conversions.map(async (conv) => {
+      const [user] = await db.select({
+        id: users.id,
+        email: users.email,
+        firstName: users.firstName,
+        lastName: users.lastName,
+      }).from(users).where(eq(users.id, conv.userId)).limit(1);
+
+      return {
+        id: conv.id,
+        userId: conv.userId,
+        email: user?.email || "Unknown",
+        name: user ? `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Unknown User" : "Unknown User",
+        conversionDate: conv.conversionDate,
+      };
+    }));
+
+    res.json({ conversions: conversionsWithDetails });
+  } catch (error) {
+    console.error("Get conversions error:", error);
+    res.status(500).json({ error: "Failed to get conversions" });
+  }
+});
+
 router.get("/signups/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
