@@ -1,6 +1,24 @@
 import { getStripeSync, getUncachableStripeClient, getStripeSecretKey } from './stripeClient';
-import { storage } from './storage';
+import { storage, db } from './storage';
+import { referralSignups } from '@shared/schema';
+import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
+
+async function trackAmbassadorConversion(userId: string): Promise<void> {
+  try {
+    // Only update if not already converted (idempotency)
+    const result = await db.update(referralSignups)
+      .set({ convertedToPro: true, conversionDate: new Date() })
+      .where(eq(referralSignups.userId, userId))
+      .returning();
+    
+    if (result.length > 0) {
+      console.log(`Tracked ambassador conversion for user ${userId}`);
+    }
+  } catch (error) {
+    console.error('Error tracking ambassador conversion:', error);
+  }
+}
 
 export class WebhookHandlers {
   static async processWebhook(payload: Buffer, signature: string): Promise<void> {
@@ -95,6 +113,17 @@ export class WebhookHandlers {
       stripeSubscriptionId: subscriptionId || undefined,
     });
     console.log(`Successfully linked Stripe info for user ${userId}`);
+    
+    // Track ambassador conversion - only if subscription exists and is active
+    // The subscription.updated webhook will also fire, so conversion is tracked there
+    // for the definitive status. We track here for immediate checkout completions.
+    if (subscriptionId) {
+      const stripe = await getUncachableStripeClient();
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      if (subscription.status === 'active' || subscription.status === 'trialing') {
+        await trackAmbassadorConversion(userId);
+      }
+    }
   }
 
   static async handleSubscriptionChange(subscription: Stripe.Subscription): Promise<void> {
@@ -130,6 +159,9 @@ export class WebhookHandlers {
           stripeSubscriptionId: subscriptionId,
         });
       }
+      
+      // Track ambassador conversion whenever subscription is active/trialing
+      await trackAmbassadorConversion(userId);
     } else if (subscription.status === 'canceled' || subscription.status === 'unpaid' || subscription.status === 'past_due') {
       // Subscription is no longer active - clear the subscription ID
       const user = await storage.getUser(userId);

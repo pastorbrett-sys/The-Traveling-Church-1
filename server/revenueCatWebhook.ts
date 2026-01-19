@@ -1,7 +1,23 @@
 import type { Express, Request, Response } from "express";
 import { db } from "./storage";
-import { users } from "@shared/schema";
+import { users, referralSignups } from "@shared/schema";
 import { eq } from "drizzle-orm";
+
+async function trackAmbassadorConversion(userId: string): Promise<void> {
+  try {
+    // Only update if not already converted (idempotency)
+    const result = await db.update(referralSignups)
+      .set({ convertedToPro: true, conversionDate: new Date() })
+      .where(eq(referralSignups.userId, userId))
+      .returning();
+    
+    if (result.length > 0) {
+      console.log(`Tracked ambassador conversion for user ${userId} (RevenueCat)`);
+    }
+  } catch (error) {
+    console.error('Error tracking ambassador conversion:', error);
+  }
+}
 
 const REVENUECAT_WEBHOOK_SECRET = process.env.REVENUECAT_WEBHOOK_SECRET;
 
@@ -42,6 +58,12 @@ async function handleRevenueCatEvent(event: RevenueCatEvent["event"]): Promise<v
       if (hasProEntitlement) {
         await updateUserRevenueCatStatus(app_user_id, "Vagabond Bible Pro", expiresAt);
         console.log(`Granted Pro entitlement to user ${app_user_id} (expires: ${expiresAt})`);
+        
+        // Track ambassador conversion for App Store/Google Play subscriptions
+        const existingUser = await db.select().from(users).where(eq(users.revenueCatUserId, app_user_id)).limit(1);
+        if (existingUser.length > 0 && existingUser[0].id) {
+          await trackAmbassadorConversion(existingUser[0].id);
+        }
       }
       break;
       
