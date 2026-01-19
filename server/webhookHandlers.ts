@@ -4,8 +4,23 @@ import { referralSignups } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
 
-async function trackAmbassadorConversion(userId: string): Promise<void> {
+async function trackAmbassadorConversion(userId: string, source: string): Promise<void> {
   try {
+    console.log(`[Ambassador] 🔄 Attempting to track conversion for user ${userId} (source: ${source})`);
+    
+    // First check if this user has a referral signup entry
+    const existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId));
+    
+    if (existing.length === 0) {
+      console.log(`[Ambassador] ⚠️ No referral signup found for user ${userId} - they may not have used a referral link`);
+      return;
+    }
+    
+    if (existing[0].convertedToPro) {
+      console.log(`[Ambassador] ✅ User ${userId} already marked as Pro conversion (date: ${existing[0].conversionDate})`);
+      return;
+    }
+    
     // Only update if not already converted (idempotency)
     const result = await db.update(referralSignups)
       .set({ convertedToPro: true, conversionDate: new Date() })
@@ -13,10 +28,10 @@ async function trackAmbassadorConversion(userId: string): Promise<void> {
       .returning();
     
     if (result.length > 0) {
-      console.log(`Tracked ambassador conversion for user ${userId}`);
+      console.log(`[Ambassador] 🎉 SUCCESS! Tracked Pro conversion for user ${userId} (referral code: ${result[0].referralCode})`);
     }
   } catch (error) {
-    console.error('Error tracking ambassador conversion:', error);
+    console.error('[Ambassador] ❌ Error tracking conversion:', error);
   }
 }
 
@@ -121,7 +136,7 @@ export class WebhookHandlers {
       const stripe = await getUncachableStripeClient();
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
       if (subscription.status === 'active' || subscription.status === 'trialing') {
-        await trackAmbassadorConversion(userId);
+        await trackAmbassadorConversion(userId, 'Stripe checkout.session.completed');
       }
     }
   }
@@ -161,7 +176,7 @@ export class WebhookHandlers {
       }
       
       // Track ambassador conversion whenever subscription is active/trialing
-      await trackAmbassadorConversion(userId);
+      await trackAmbassadorConversion(userId, `Stripe subscription.${subscription.status}`);
     } else if (subscription.status === 'canceled' || subscription.status === 'unpaid' || subscription.status === 'past_due') {
       // Subscription is no longer active - clear the subscription ID
       const user = await storage.getUser(userId);

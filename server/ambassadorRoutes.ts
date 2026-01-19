@@ -155,13 +155,23 @@ router.post("/track-click", async (req, res) => {
 router.post("/track-signup", async (req, res) => {
   try {
     const { referralCode, userId } = req.body;
+    console.log(`[Ambassador] 📝 Track-signup request: userId=${userId}, referralCode=${referralCode}`);
 
     if (!referralCode || !userId) {
+      console.log(`[Ambassador] ❌ Missing required fields for signup tracking`);
       return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // Check if ambassador with this referral code exists
+    const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.referralCode, referralCode)).limit(1);
+    if (!ambassador) {
+      console.log(`[Ambassador] ⚠️ Invalid referral code: ${referralCode}`);
+      return res.status(400).json({ error: "Invalid referral code" });
     }
 
     const existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId)).limit(1);
     if (existing.length > 0) {
+      console.log(`[Ambassador] ℹ️ User ${userId} already has a referral signup record (code: ${existing[0].referralCode})`);
       return res.json({ success: true, existing: true });
     }
 
@@ -171,9 +181,10 @@ router.post("/track-signup", async (req, res) => {
       convertedToPro: false,
     });
 
+    console.log(`[Ambassador] ✅ Successfully recorded signup for user ${userId} with referral code ${referralCode} (ambassador: ${ambassador.name})`);
     res.json({ success: true, existing: false });
   } catch (error) {
-    console.error("Track signup error:", error);
+    console.error("[Ambassador] ❌ Track signup error:", error);
     res.status(500).json({ error: "Failed to track signup" });
   }
 });
