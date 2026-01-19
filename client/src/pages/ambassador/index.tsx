@@ -12,12 +12,15 @@ import {
   TrendingUp,
   Clock,
   Shield,
-  ArrowLeft
+  ArrowLeft,
+  ChevronRight,
+  X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useAuth } from "@/hooks/use-auth";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
@@ -79,6 +82,16 @@ interface TeamMember {
   createdAt: string;
 }
 
+interface SignupDetail {
+  id: string;
+  userId: string;
+  email: string;
+  name: string;
+  convertedToPro: boolean;
+  conversionDate: string | null;
+  signupDate: string;
+}
+
 type ViewState = "loading" | "login-required" | "apply" | "pending" | "dashboard";
 
 export default function AmbassadorPage() {
@@ -113,6 +126,10 @@ export default function AmbassadorPage() {
   
   const [copiedRef, setCopiedRef] = useState(false);
   const [copiedInvite, setCopiedInvite] = useState(false);
+  
+  const [showSignups, setShowSignups] = useState(false);
+  const [signupsList, setSignupsList] = useState<SignupDetail[]>([]);
+  const [loadingSignups, setLoadingSignups] = useState(false);
 
   useEffect(() => {
     document.title = "Ambassador Program | Vagabond Bible";
@@ -204,6 +221,23 @@ export default function AmbassadorPage() {
       setError(err.message);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleViewSignups = async () => {
+    if (!user) return;
+    setShowSignups(true);
+    setLoadingSignups(true);
+    try {
+      const res = await fetch(`/api/ambassador/signups/${user.id}`);
+      if (res.ok) {
+        const data = await res.json();
+        setSignupsList(data.signups || []);
+      }
+    } catch (err) {
+      console.error("Failed to fetch signups:", err);
+    } finally {
+      setLoadingSignups(false);
     }
   };
 
@@ -490,17 +524,25 @@ export default function AmbassadorPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a1a1a] border-[#333]">
+          <Card 
+            className="bg-[#1a1a1a] border-[#333] cursor-pointer hover:border-green-500/50 transition-colors"
+            onClick={handleViewSignups}
+            data-testid="card-signups"
+          >
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm">Signups</p>
                   <p className="text-3xl font-bold text-white">{stats.signups}</p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-                  <UserPlus className="w-6 h-6 text-green-400" />
+                <div className="flex items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <UserPlus className="w-6 h-6 text-green-400" />
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-gray-500" />
                 </div>
               </div>
+              <p className="text-xs text-gray-500 mt-2">Tap to view who signed up</p>
             </CardContent>
           </Card>
 
@@ -612,6 +654,54 @@ export default function AmbassadorPage() {
           </Card>
         )}
       </div>
+
+      <Sheet open={showSignups} onOpenChange={setShowSignups}>
+        <SheetContent side="right" className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle className="text-white flex items-center gap-2">
+              <UserPlus className="w-5 h-5 text-green-400" />
+              Signups ({signupsList.length})
+            </SheetTitle>
+          </SheetHeader>
+          
+          <div className="mt-6 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)]">
+            {loadingSignups ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
+              </div>
+            ) : signupsList.length === 0 ? (
+              <div className="text-center py-8">
+                <UserPlus className="w-12 h-12 text-gray-600 mx-auto mb-3" />
+                <p className="text-gray-400">No signups yet</p>
+                <p className="text-gray-500 text-sm mt-1">Share your referral link to get started</p>
+              </div>
+            ) : (
+              signupsList.map((signup) => (
+                <div 
+                  key={signup.id}
+                  className="p-4 bg-[#0a0a0a] rounded-lg border border-[#333]"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white font-medium truncate">{signup.name}</p>
+                      <p className="text-gray-500 text-sm truncate">{signup.email}</p>
+                      <p className="text-gray-600 text-xs mt-1">
+                        Signed up {new Date(signup.signupDate).toLocaleDateString()}
+                      </p>
+                    </div>
+                    {signup.convertedToPro && (
+                      <div className="flex items-center gap-1 px-2 py-1 bg-[#c08e00]/20 rounded text-xs text-[#c08e00]">
+                        <Crown className="w-3 h-3" />
+                        Pro
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

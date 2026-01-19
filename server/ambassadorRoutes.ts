@@ -198,6 +198,49 @@ async function checkSuperAdmin(userId: string): Promise<boolean> {
   return ambassador?.isSuperAdmin === true;
 }
 
+router.get("/signups/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.userId, userId)).limit(1);
+    if (!ambassador) {
+      return res.status(404).json({ error: "Ambassador not found" });
+    }
+
+    // Get all signups for this ambassador's referral code
+    const signups = await db.select()
+      .from(referralSignups)
+      .where(eq(referralSignups.referralCode, ambassador.referralCode))
+      .orderBy(desc(referralSignups.createdAt));
+
+    // Get user details for each signup
+    const { users } = await import("@shared/schema");
+    const signupsWithDetails = await Promise.all(signups.map(async (signup) => {
+      const [user] = await db.select({
+        id: users.id,
+        email: users.email,
+        firstName: users.firstName,
+        lastName: users.lastName,
+      }).from(users).where(eq(users.id, signup.userId)).limit(1);
+
+      return {
+        id: signup.id,
+        userId: signup.userId,
+        email: user?.email || "Unknown",
+        name: user ? `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Unknown User" : "Unknown User",
+        convertedToPro: signup.convertedToPro,
+        conversionDate: signup.conversionDate,
+        signupDate: signup.createdAt,
+      };
+    }));
+
+    res.json({ signups: signupsWithDetails });
+  } catch (error) {
+    console.error("Get signups error:", error);
+    res.status(500).json({ error: "Failed to get signups" });
+  }
+});
+
 router.get("/admin/all", isAuthenticated, async (req: any, res) => {
   try {
     const userId = req.user?.uid;
