@@ -1,219 +1,160 @@
 # Native Regional Pricing Setup Guide (iOS & Android)
 
-This guide walks through setting up two-tier regional pricing ($7.99 Premium / $1.99 Emerging) for iOS and Android via RevenueCat.
+This guide documents the two-tier regional pricing ($7.99 Premium / $1.99 Emerging) setup for iOS and Android via RevenueCat.
 
 ---
 
 ## Overview
 
-| Platform | Where Pricing is Configured | How RevenueCat Gets It |
-|----------|----------------------------|------------------------|
-| iOS | App Store Connect | Reads from Apple's pricing |
-| Android | Google Play Console | Reads from Google's pricing |
-
-RevenueCat automatically displays the localized price to users based on their App Store/Play Store region.
-
----
-
-## Step 1: iOS Setup (App Store Connect)
-
-### 1.1 Create the Subscription Product
-
-1. Go to [App Store Connect](https://appstoreconnect.apple.com)
-2. Select your app → **Monetization** → **Subscriptions**
-3. Create a **Subscription Group** (e.g., "Vagabond Bible Pro")
-4. Add a subscription:
-   - **Reference Name**: Pro Monthly
-   - **Product ID**: `pro_monthly` (save this - you'll need it for RevenueCat)
-   - **Duration**: 1 Month
-
-### 1.2 Set Base Pricing
-
-1. In the subscription, go to **Subscription Prices**
-2. Click **Add Subscription Price**
-3. Set base price: **$7.99 USD** (this becomes Premium tier)
-4. Apple auto-generates equivalent prices for all countries
-
-### 1.3 Set Emerging Market Pricing
-
-1. After setting base price, click **Add Subscription Price** again
-2. Select **Choose specific territories**
-3. Select emerging markets:
-   - Ethiopia
-   - India
-   - Kenya
-   - Nigeria
-   - Ghana
-   - Uganda
-   - Tanzania
-   - Bangladesh
-   - Pakistan
-   - Philippines
-   - Indonesia
-   - Egypt
-   - South Africa
-   - Brazil
-   - Mexico
-   - Colombia
-   - Peru
-   - Vietnam
-   - Thailand
-   - Ukraine
-   
-4. Set price: **$1.99 USD equivalent** (Apple will show you local currency options)
-5. Save
-
-### 1.4 Verify Your Prices
-
-Check that you have:
-- [ ] $7.99 for USA, UK, Canada, Australia, Germany, France, etc.
-- [ ] $1.99 equivalent for Ethiopia, India, Kenya, etc.
+| Platform | Pricing Strategy | How It Works |
+|----------|-----------------|--------------|
+| iOS | Two separate products | RevenueCat Targeting shows correct offering by App Store country |
+| Android | Single product with regional pricing | Google Play handles regional pricing directly |
+| Web | Stripe with device locale detection | Server selects correct Stripe price ID |
 
 ---
 
-## Step 2: Android Setup (Google Play Console)
+## Current iOS Configuration (COMPLETED)
 
-### 2.1 Create the Subscription Product
+### App Store Connect Products
 
-1. Go to [Google Play Console](https://play.google.com/console)
-2. Select your app → **Monetize** → **Products** → **Subscriptions**
-3. Click **Create subscription**
-4. Fill in:
-   - **Product ID**: `pro_monthly` (use same ID as iOS for simplicity)
-   - **Name**: Pro Monthly
-   - **Description**: Unlimited access to all Pro features
+We use **two separate iOS subscription products** because Apple doesn't easily support per-country pricing tiers on a single product:
 
-### 2.2 Create a Base Plan
+| Product ID | Price | Target Markets |
+|------------|-------|----------------|
+| `vagabond_bible_pro_monthly` | $7.99 | Premium markets (US, UK, EU, Australia, etc.) |
+| `pro_monthly_emerging` | $1.99 | Emerging markets (Ethiopia, India, Kenya, etc.) |
 
-1. In your subscription, click **Add base plan**
-2. Configure:
-   - **Base plan ID**: `monthly`
-   - **Renewal type**: Auto-renewing
-   - **Billing period**: 1 Month
+Both products are in the same subscription group "Vagabond Bible Pro".
 
-### 2.3 Set Pricing
+### RevenueCat Configuration (COMPLETED)
 
-1. In the base plan, go to **Prices**
-2. Set default price: **$7.99 USD**
-3. Click **Edit prices by country**
-4. Find and update emerging markets to **$1.99 USD equivalent**:
-   - Ethiopia, India, Kenya, Nigeria, Ghana, Uganda, Tanzania
-   - Bangladesh, Pakistan, Philippines, Indonesia, Egypt
-   - South Africa, Brazil, Mexico, Colombia, Peru
-   - Vietnam, Thailand, Ukraine
+#### Products
+Both iOS products are registered in RevenueCat:
+- `vagabond_bible_pro_monthly` → Vagabond Bible (App Store)
+- `pro_monthly_emerging` → Vagabond Bible (App Store)
 
-5. Save all changes
-6. **Activate** the base plan
+#### Entitlement
+Both products are attached to the same entitlement:
+- **Entitlement ID**: `Vagabond Bible Pro`
+- Purchasing either product unlocks Pro features
 
----
+#### Offerings
+Two offerings are configured:
+- **default**: Contains `vagabond_bible_pro_monthly` ($7.99)
+- **emerging**: Contains `pro_monthly_emerging` ($1.99)
 
-## Step 3: RevenueCat Configuration
+#### Targeting Rule: "Emerging Markets Pricing"
+A targeting rule automatically shows the correct offering based on the user's App Store country:
 
-### 3.1 Add Your Products
+**Rule Configuration:**
+- **Name**: Emerging Markets Pricing
+- **Condition**: Country is any of [46 emerging market countries]
+- **Then show**: `emerging` offering
+- **Default**: Users not matching any rule see `default` offering
 
-1. Go to [RevenueCat Dashboard](https://app.revenuecat.com)
-2. Select your project → **Products**
-3. Click **+ New** for each platform:
+**Countries in Emerging Markets Targeting (46 total):**
 
-**For iOS:**
-- App: [Your iOS App]
-- Product Identifier: `pro_monthly`
-
-**For Android:**
-- App: [Your Android App]  
-- Product Identifier: `pro_monthly:monthly` (format: `subscription_id:base_plan_id`)
-
-### 3.2 Create an Entitlement
-
-1. Go to **Entitlements** → **+ New**
-2. Create:
-   - **Identifier**: `pro`
-   - **Description**: Pro subscription access
-3. Attach both products (iOS and Android) to this entitlement
-
-### 3.3 Create an Offering
-
-1. Go to **Offerings** → **+ New**
-2. Create:
-   - **Identifier**: `default`
-   - **Description**: Default offering
-3. Add a **Package**:
-   - **Identifier**: `monthly` or `$rc_monthly`
-   - Attach your iOS and Android products
-4. Make this the **Current Offering**
-
-### 3.4 Verify in RevenueCat
-
-Check that:
-- [ ] Both products show as "Available" 
-- [ ] Entitlement is linked to both products
-- [ ] Offering is set as current
+| Region | Countries |
+|--------|-----------|
+| Africa | Ethiopia, Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, South Africa, Morocco, Egypt, Tunisia |
+| South Asia | India, Bangladesh, Pakistan, Sri Lanka, Nepal |
+| Southeast Asia | Philippines, Indonesia, Myanmar, Cambodia, Thailand, Malaysia, Vietnam, Laos |
+| Latin America | Brazil, Mexico, Argentina, Chile, Colombia, Peru, Ecuador, Bolivia, Paraguay, Guatemala, Honduras, El Salvador, Nicaragua |
+| Eastern Europe | Poland, Czech Republic, Hungary, Romania, Greece, Portugal, Ukraine, Moldova, Georgia, Armenia |
+| Central Asia | Uzbekistan, Kazakhstan |
 
 ---
 
-## Step 4: Test the Integration
+## How It Works
 
-### 4.1 Sandbox Testing (iOS)
+### User in Emerging Market (e.g., Ethiopia)
+1. User opens the app on their iPhone
+2. RevenueCat detects their App Store country is Ethiopia
+3. Targeting rule matches → RevenueCat returns `emerging` offering
+4. App shows $1.99 price via `offerings.current`
+5. User purchases → `pro_monthly_emerging` product
+6. RevenueCat grants "Vagabond Bible Pro" entitlement
 
-1. In App Store Connect, create a **Sandbox Tester** account
-2. On your test device, sign out of App Store
-3. Open your app and attempt purchase
-4. Sign in with sandbox account when prompted
-5. Verify correct price displays
+### User in Premium Market (e.g., USA)
+1. User opens the app on their iPhone
+2. RevenueCat detects their App Store country is USA
+3. No targeting rules match → RevenueCat returns `default` offering
+4. App shows $7.99 price via `offerings.current`
+5. User purchases → `vagabond_bible_pro_monthly` product
+6. RevenueCat grants "Vagabond Bible Pro" entitlement
 
-### 4.2 Test Purchases (Android)
-
-1. In Play Console, add your email to **License testers**
-2. Set up a **closed testing track** with your app
-3. Install from Play Store (not direct APK)
-4. Attempt purchase - should show test mode
-
-### 4.3 Verify in RevenueCat
-
-1. After test purchase, check RevenueCat dashboard
-2. Go to **Customers** → find your test user
-3. Verify the entitlement was granted
+### Tourist Scenario (US Tourist in Ethiopia)
+1. US tourist has iPhone set up with US App Store account
+2. RevenueCat detects App Store country is USA (not their physical location)
+3. They see $7.99 pricing → correct premium pricing
+4. Ethiopian ambassador can confidently refer tourists knowing they'll see the right price
 
 ---
 
-## Step 5: Your App Code (Already Done!)
+## App Code (No Changes Needed)
 
-Your app already has RevenueCat integrated:
+The app code already handles this correctly:
 
 ```typescript
-// In upgrade-dialog.tsx - fetches offerings
-const { Purchases } = await import('@revenuecat/purchases-capacitor');
+// client/src/contexts/revenuecat-context.tsx
 const offerings = await Purchases.getOfferings();
-const price = offerings.current?.monthly?.product?.priceString;
+
+// offerings.current is automatically set by RevenueCat based on targeting
+const packageToPurchase = offerings.current.availablePackages[0];
+
+// Price string shows correct localized price
+const price = packageToPurchase.product.priceString;
 ```
 
-The `priceString` automatically shows the correct localized price based on the user's store region.
+The key is `offerings.current` - RevenueCat sets this automatically based on the targeting rules configured in the dashboard.
 
 ---
 
-## Checklist
+## Android Setup (TODO)
 
-### App Store Connect (iOS)
-- [ ] Subscription group created
-- [ ] Product ID: `pro_monthly`
-- [ ] Base price: $7.99 USD
-- [ ] Emerging market prices: $1.99 equivalent
-- [ ] Subscription submitted for review (if new app)
+Android uses a simpler approach - single product with Google Play's built-in regional pricing:
+
+### Step 1: Create Subscription in Play Console
+1. Product ID: `pro_monthly`
+2. Base price: $7.99 USD
+
+### Step 2: Set Regional Price Overrides
+1. In the subscription pricing, click "Edit prices"
+2. Override emerging market countries to ~$1.99 equivalent
+
+### Step 3: Add to RevenueCat
+1. Add Android product: `pro_monthly:monthly`
+2. Attach to "Vagabond Bible Pro" entitlement
+3. Add to `default` offering
+
+Google Play automatically shows the correct regional price - no targeting needed.
+
+---
+
+## Verification Checklist
+
+### App Store Connect (iOS) ✅
+- [x] Subscription group "Vagabond Bible Pro" created
+- [x] Product `vagabond_bible_pro_monthly` at $7.99
+- [x] Product `pro_monthly_emerging` at $1.99
+- [x] Both products have localization and review screenshots
+- [ ] Subscriptions submitted with app version for review
+
+### RevenueCat ✅
+- [x] Both iOS products added
+- [x] Both products attached to "Vagabond Bible Pro" entitlement
+- [x] `default` offering with $7.99 product
+- [x] `emerging` offering with $1.99 product
+- [x] "Emerging Markets Pricing" targeting rule with 46 countries
+- [x] Default offering set to `default`
 
 ### Google Play Console (Android)
-- [ ] Subscription created
-- [ ] Product ID: `pro_monthly`
-- [ ] Base plan: `monthly`
-- [ ] Default price: $7.99 USD
-- [ ] Emerging market prices: $1.99 equivalent
-- [ ] Base plan activated
-
-### RevenueCat
-- [ ] iOS product added
-- [ ] Android product added
-- [ ] Entitlement `pro` created and linked
-- [ ] Offering `default` created and set as current
-- [ ] Both products show "Available"
+- [ ] Subscription created with product ID `pro_monthly`
+- [ ] Base price set to $7.99 USD
+- [ ] Regional price overrides for emerging markets (~$1.99)
+- [ ] Subscription activated
+- [ ] Added to RevenueCat
 
 ---
 
@@ -221,16 +162,33 @@ The `priceString` automatically shows the correct localized price based on the u
 
 | Issue | Solution |
 |-------|----------|
-| Product shows "Not Available" | Wait 15-30 min for store sync, or check product ID matches exactly |
-| Wrong price displaying | Verify store region matches test account, clear app cache |
-| Purchase fails silently | Check RevenueCat API key is correct for environment |
-| Entitlement not granted | Verify product is linked to entitlement in RevenueCat |
+| "Could not check" status in RevenueCat | Normal before app/subscription is approved - will resolve after App Review |
+| Wrong offering shown | Check RevenueCat Targeting rules, verify country is in the list |
+| User sees wrong price | App Store country may differ from physical location (this is correct behavior) |
+| Both products not unlocking Pro | Verify both products are attached to the same entitlement |
+| Targeting not working | Ensure targeting rule is set to "Live" status |
 
 ---
 
-## Support Links
+## Managing Targeting Rules
 
-- [RevenueCat iOS Setup Guide](https://www.revenuecat.com/docs/getting-started/installation/ios)
-- [RevenueCat Android Setup Guide](https://www.revenuecat.com/docs/getting-started/installation/android)
-- [App Store Connect Subscriptions](https://developer.apple.com/help/app-store-connect/manage-subscriptions/create-a-subscription)
-- [Google Play Subscriptions](https://support.google.com/googleplay/android-developer/answer/140504)
+To add or remove countries from emerging markets pricing:
+
+1. Go to RevenueCat Dashboard → Targeting
+2. Click on "Emerging Markets Pricing" rule
+3. Edit the country list
+4. Save changes
+
+Changes take effect immediately - no app update required.
+
+---
+
+## Related Documentation
+
+- `docs/REGIONAL_PRICING_SETUP.md` — Complete setup guide including Stripe (web)
+- `docs/Regional_Pricing_Ambassador_Strategy_v2.md` — Business strategy for ambassadors
+- `shared/regionalPricing.ts` — Source of truth for country-to-tier mappings
+
+---
+
+*Last Updated: January 2026*
