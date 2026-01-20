@@ -496,15 +496,34 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 ## ✅ Implementation Checklist
 
-### Phase 1: Stripe (Web) — Priority 🔴
+### Phase 1: Stripe (Web) — Priority 🔴 ✅ COMPLETED
 
-- [ ] Create 2 Price IDs in Stripe Dashboard
+- [x] Create 2 Price IDs in Stripe Dashboard
   - `price_pro_premium_monthly` → $7.99
   - `price_pro_emerging_monthly` → $1.99
-- [ ] Implement card country detection at checkout
-- [ ] Map countries to pricing tiers
+- [x] Implement card country detection at checkout
+- [x] Map countries to pricing tiers (`shared/regionalPricing.ts`)
 - [ ] Test with Stripe international test cards
-- [ ] Update checkout flow to select correct price
+- [x] Update checkout flow to select correct price (`/api/stripe/regional-checkout`)
+
+#### 🔧 Stripe Dashboard Setup (Required)
+
+1. **Go to Stripe Dashboard** → Products
+2. **Find "Pro Plan"** product (or create if not exists)
+3. **Create Two Price IDs:**
+   - Click "Add Price" → Amount: $7.99 → Billing: Monthly → Save
+   - Copy the Price ID (e.g., `price_1ABC...`) 
+   - Click "Add Price" → Amount: $1.99 → Billing: Monthly → Save
+   - Copy the Price ID (e.g., `price_2DEF...`)
+4. **Set Environment Variables:**
+   ```
+   STRIPE_PRICE_PRO_PREMIUM=price_1ABC...  (the $7.99 price ID)
+   STRIPE_PRICE_PRO_EMERGING=price_2DEF... (the $1.99 price ID)
+   ```
+5. **Test with International Cards:**
+   - Use `4000000360000006` for Australian cards (Premium)
+   - Use `4000002310000002` for Brazilian cards (Emerging)
+   - Full list: https://stripe.com/docs/testing#international-cards
 
 ---
 
@@ -515,6 +534,26 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 - [ ] Override prices for emerging markets → Tier 2 (~$1.99)
 - [ ] Test with sandbox accounts in different regions
 
+#### 🍎 App Store Connect Setup (Required for iOS)
+
+1. **Go to App Store Connect** → Your App → Subscriptions
+2. **Create Subscription Group:** "Vagabond Bible Pro"
+3. **Create Subscription Product:**
+   - Reference Name: "Pro Monthly"
+   - Product ID: `pro_monthly` (must match RevenueCat)
+   - Duration: 1 Month
+4. **Set Base Price:** Select Tier 8 ($7.99 USD)
+5. **Configure Regional Pricing:**
+   - Go to "Pricing and Availability" → "Set prices for other countries"
+   - For Emerging markets (Ethiopia, India, Kenya, etc.), select Tier 2 (~$1.99)
+   - Premium markets inherit base price ($7.99)
+6. **RevenueCat Integration:**
+   - Ensure product ID matches in RevenueCat Dashboard
+   - Create offering with this product
+
+**Emerging Market Countries (set to Tier 2):**
+> Ethiopia, India, Kenya, Uganda, Tanzania, Rwanda, Nigeria, Ghana, Pakistan, Bangladesh, Indonesia, Philippines, Vietnam, Nepal, Sri Lanka, Myanmar, Cambodia, Laos, Bolivia, Ecuador, Peru, Colombia, Guatemala, Honduras, El Salvador, Nicaragua, Paraguay, Egypt, Morocco, Tunisia, Ukraine, Moldova, Georgia, Armenia, Uzbekistan, Kazakhstan
+
 ---
 
 ### Phase 3: Google Play Store — Priority 🔴
@@ -523,6 +562,24 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 - [ ] Set base price $7.99 USD
 - [ ] Configure regional pricing overrides for emerging markets
 - [ ] Test with license testers
+
+#### 🤖 Google Play Console Setup (Required for Android)
+
+1. **Go to Play Console** → Your App → Monetize → Products → Subscriptions
+2. **Create Subscription:**
+   - Product ID: `pro_monthly` (must match RevenueCat)
+   - Name: "Vagabond Bible Pro"
+   - Billing Period: 1 Month
+3. **Set Base Price:** $7.99 USD
+4. **Configure Country Pricing:**
+   - Click "Manage prices" → "Override prices"
+   - For each Emerging market country, set ~$1.99 equivalent in local currency
+   - Use Google's recommended local pricing for best conversion
+5. **RevenueCat Integration:**
+   - Ensure product ID matches in RevenueCat Dashboard
+   - Product should appear automatically after sync
+
+**Note:** Google Play handles currency conversion automatically based on country pricing.
 
 ---
 

@@ -22,11 +22,13 @@ export const PREMIUM_COUNTRIES = new Set([
 ]);
 
 export const EMERGING_COUNTRIES = new Set([
-  'ET', 'KE', 'NG', 'GH', 'TZ', 'UG', 'RW', 'ZA', 'MA', 'EG',
+  'ET', 'KE', 'NG', 'GH', 'TZ', 'UG', 'RW', 'ZA', 'MA', 'EG', 'TN',
   'IN', 'BD', 'PK', 'LK', 'NP',
-  'PH', 'ID', 'MM', 'KH', 'TH', 'MY', 'VN',
-  'BR', 'MX', 'AR', 'CL', 'CO',
-  'PL', 'CZ', 'HU', 'RO', 'GR', 'PT', 'UA',
+  'PH', 'ID', 'MM', 'KH', 'TH', 'MY', 'VN', 'LA',
+  'BR', 'MX', 'AR', 'CL', 'CO', 'PE', 'EC', 'BO', 'PY',
+  'GT', 'HN', 'SV', 'NI',
+  'PL', 'CZ', 'HU', 'RO', 'GR', 'PT', 'UA', 'MD', 'GE', 'AM',
+  'UZ', 'KZ',
 ]);
 
 export function getTierForCountry(countryCode: string | null | undefined): PricingTier {

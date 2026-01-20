@@ -600,12 +600,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/stripe/regional-checkout", async (req: any, res) => {
     try {
-      const { tier, referralCode } = req.body as { tier?: PricingTier; referralCode?: string };
-      
-      const pricingTier: PricingTier = tier === 'emerging' ? 'emerging' : 'premium';
+      const { referralCode } = req.body as { referralCode?: string };
       
       let customerId: string;
       let userId: string | undefined;
+      let pricingTier: PricingTier = 'premium';
       
       if ((req.session as any)?.userId) {
         userId = (req.session as any).userId;
@@ -624,9 +623,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
           await storage.updateUserStripeInfo(userId!, { stripeCustomerId: customer.id });
         }
         
-        console.log(`[Regional Checkout] User ${userId}, tier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
+        const cardCountry = await stripeService.getCustomerCountry(customerId);
+        pricingTier = getTierForCountry(cardCountry);
+        
+        console.log(`[Regional Checkout] User ${userId}, cardCountry: ${cardCountry || 'unknown'}, tier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
       } else {
-        console.log(`[Regional Checkout] ⚠️ Guest checkout - tier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
+        console.log(`[Regional Checkout] ⚠️ Guest checkout (no card yet, defaulting to premium) - referralCode: ${referralCode || 'none'}`);
         const customer = await stripeService.createCustomer('', 'guest', referralCode || undefined);
         customerId = customer.id;
       }

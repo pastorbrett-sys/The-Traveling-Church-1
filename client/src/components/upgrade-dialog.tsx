@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +13,13 @@ import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useToast } from "@/hooks/use-toast";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
+
+interface PricingTierResponse {
+  tier: 'premium' | 'emerging';
+  price: number;
+  priceDisplay: string;
+  detectedCountry: string;
+}
 
 interface UpgradeDialogProps {
   open: boolean;
@@ -97,45 +104,37 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
+  const [pricing, setPricing] = useState<PricingTierResponse | null>(null);
+  const [isPricingLoading, setIsPricingLoading] = useState(true);
   const { isNative, platform } = usePlatform();
   const { toast } = useToast();
   
   const isAmharic = translation === "ETH" || translation === "AMPROT";
   const t = isAmharic ? uiText.am : uiText.en;
 
+  useEffect(() => {
+    if (open && !isNative) {
+      setIsPricingLoading(true);
+      apiFetch("/api/pricing/tier")
+        .then(res => res.json())
+        .then((data: PricingTierResponse) => {
+          setPricing(data);
+        })
+        .catch(err => {
+          console.error("Failed to fetch pricing tier:", err);
+          setPricing({ tier: 'premium', price: 7.99, priceDisplay: '$7.99/month', detectedCountry: 'unknown' });
+        })
+        .finally(() => setIsPricingLoading(false));
+    }
+  }, [open, isNative]);
+
   const handleUpgrade = async () => {
     setIsCheckingOut(true);
     try {
-      const productsRes = await apiFetch("/api/stripe/products-with-prices");
-      
-      if (!productsRes.ok) {
-        throw new Error("Failed to load products");
-      }
-      
-      const productsData = await productsRes.json();
-      
-      if (!productsData.data || productsData.data.length === 0) {
-        throw new Error("No products found");
-      }
-      
-      const proPlan = productsData.data?.find((p: any) => p.metadata?.tier === "pro");
-      
-      if (!proPlan) {
-        throw new Error("Pro plan not found");
-      }
-      
-      const proPrice = proPlan?.prices?.find((p: any) => p.recurring?.interval === "month");
-      
-      if (!proPrice) {
-        throw new Error("Monthly price not found");
-      }
-      
-      // Get referral code from localStorage for ambassador tracking
       const { getReferralCode } = await import("@/hooks/use-referral");
       const referralCode = getReferralCode();
       
-      const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", {
-        priceId: proPrice.id,
+      const checkoutRes = await apiRequest("POST", "/api/stripe/regional-checkout", {
         referralCode: referralCode || undefined,
       });
       const checkoutData = await checkoutRes.json();
@@ -331,7 +330,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
               <>
                 <Button 
                   onClick={handleUpgrade}
-                  disabled={isCheckingOut}
+                  disabled={isCheckingOut || isPricingLoading}
                   className="w-full btn-upgrade py-6 sm:py-4 text-[16px] font-medium"
                   data-testid="button-upgrade-pro"
                 >
@@ -340,8 +339,13 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                       <Loader2 className="w-5 h-5 sm:w-4 sm:h-4 mr-2 animate-spin" />
                       {t.loading}
                     </>
+                  ) : isPricingLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 sm:w-4 sm:h-4 mr-2 animate-spin" />
+                      {t.loading}
+                    </>
                   ) : (
-                    t.subscribeNow
+                    `${t.subscribeNow} - ${pricing?.priceDisplay || '$7.99/month'}`
                   )}
                 </Button>
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
