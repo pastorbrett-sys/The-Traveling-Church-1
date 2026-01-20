@@ -11,6 +11,7 @@ import {
   insertNoteSchema,
   FEATURE_LIMITS,
   referralSignups,
+  ambassadors,
 } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { getUsageSummary, checkNotesLimit } from "./usageService";
@@ -730,6 +731,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error syncing Stripe customers:", error);
       res.status(500).json({ message: "Failed to sync Stripe customers" });
+    }
+  });
+
+  // Admin endpoint to check webhook configuration (requires super admin)
+  app.get("/api/admin/webhook-status", isAuthenticated, async (req: any, res) => {
+    try {
+      // Check if user is super admin
+      const userId = req.user?.uid || (req.session as any)?.userId;
+      if (!userId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+      
+      const ambassador = await db.select().from(ambassadors).where(eq(ambassadors.userId, userId));
+      if (!ambassador.length || !ambassador[0].isSuperAdmin) {
+        return res.status(403).json({ message: "Super admin access required" });
+      }
+      
+      const { getStripeSync, getUncachableStripeClient } = await import("./stripeClient");
+      const sync = await getStripeSync();
+      const stripe = await getUncachableStripeClient();
+      
+      // Get managed webhook info
+      const webhookInfo = await sync.getManagedWebhook();
+      
+      // List all webhooks in Stripe
+      const webhooks = await stripe.webhookEndpoints.list({ limit: 10 });
+      
+      // Get recent events count from database
+      const eventsResult = await db.execute(sql`SELECT COUNT(*) as count FROM stripe.events`);
+      const eventsCount = eventsResult.rows[0]?.count || 0;
+      
+      res.json({
+        managedWebhook: webhookInfo ? {
+          id: webhookInfo.id,
+          url: webhookInfo.url,
+          status: webhookInfo.status,
+          enabledEvents: webhookInfo.enabled_events,
+        } : null,
+        allWebhooks: webhooks.data.map(w => ({
+          id: w.id,
+          url: w.url,
+          status: w.status,
+          enabledEvents: w.enabled_events,
+        })),
+        eventsInDatabase: eventsCount,
+        expectedWebhookUrl: `https://${process.env.REPLIT_DOMAINS?.split(',')[0]}/api/stripe/webhook`,
+      });
+    } catch (error: any) {
+      console.error("Error checking webhook status:", error);
+      res.status(500).json({ message: error.message });
     }
   });
 

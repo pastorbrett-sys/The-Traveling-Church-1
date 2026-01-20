@@ -57,15 +57,24 @@ export class WebhookHandlers {
   static async handleUserStripeLink(payload: Buffer, signature: string): Promise<void> {
     try {
       const stripe = await getUncachableStripeClient();
-      const webhookSecret = await WebhookHandlers.getWebhookSecret();
       
-      if (!webhookSecret) {
-        console.log('[Webhook Handler] ⚠️ No webhook secret configured, skipping user link handling');
-        return;
+      // Parse the payload to get event info
+      const payloadJson = JSON.parse(payload.toString());
+      const eventId = payloadJson.id;
+      const eventType = payloadJson.type;
+      
+      console.log(`[Webhook Handler] 📋 Processing event: ${eventType} (${eventId})`);
+      
+      // SECURITY: Verify this event exists in Stripe by fetching it directly
+      // This prevents spoofed webhook payloads from being processed
+      let event: Stripe.Event;
+      try {
+        event = await stripe.events.retrieve(eventId);
+        console.log(`[Webhook Handler] ✅ Event verified with Stripe API`);
+      } catch (verifyError: any) {
+        console.error(`[Webhook Handler] ❌ Event ${eventId} could not be verified with Stripe API:`, verifyError.message);
+        return; // Don't process unverified events
       }
-
-      const event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
-      console.log(`[Webhook Handler] 📋 Processing event: ${event.type}`);
       
       switch (event.type) {
         case 'checkout.session.completed':
