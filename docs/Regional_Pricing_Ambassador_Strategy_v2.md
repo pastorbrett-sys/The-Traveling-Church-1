@@ -1,6 +1,6 @@
 # 📊 Regional Pricing & Ambassador Strategy
 
-**Vagabond Bible — Sustainable Global Growth Model**
+**Vagabond Bible — Two-Tier Sustainable Global Growth Model**
 
 ---
 
@@ -8,7 +8,7 @@
 
 1. [Executive Summary](#-executive-summary)
 2. [Cost Breakdown](#-cost-breakdown)
-3. [Three-Tier Regional Pricing](#-three-tier-regional-pricing)
+3. [Two-Tier Regional Pricing](#-two-tier-regional-pricing)
 4. [Usage Limits by Tier](#-usage-limits-by-tier)
 5. [Profit Analysis](#-profit-analysis)
 6. [Ambassador Commission Structure](#-ambassador-commission-structure)
@@ -21,13 +21,13 @@
 
 ## 🎯 Executive Summary
 
-A **three-tier regional pricing strategy** with **2-level recurring ambassador commissions** designed to:
+A **two-tier regional pricing strategy** with **2-level recurring ambassador commissions** designed to:
 
 - ✅ Make the app accessible in emerging markets ($1.99)
-- ✅ Capture full value from premium markets ($9.99)
+- ✅ Capture value from developed markets ($4.99)
+- ✅ Simplify pricing complexity (2 tiers vs 3)
 - ✅ Incentivize ambassadors to target high-value tourists
 - ✅ Maintain **positive profit margins** across all scenarios
-- ✅ Protect against AI cost overruns with usage caps
 
 ---
 
@@ -35,11 +35,10 @@ A **three-tier regional pricing strategy** with **2-level recurring ambassador c
 
 | Tier | Monthly Price | Target Markets | Daily Chat Cap | Min Profit* |
 |------|---------------|----------------|----------------|-------------|
-| 🥇 **Premium** | $9.99 | USA, UK, EU, Japan, Australia | 75/day | $4.61 |
-| 🥈 **Mid-Range** | $4.99 | Brazil, Mexico, Eastern Europe | 50/day | $2.11 |
-| 🥉 **Emerging** | $1.99 | Ethiopia, India, Kenya, Nigeria | 30/day | $0.61 |
+| 🥇 **Premium** | $4.99 | USA, UK, EU, Japan, Australia | 50/day | $2.16 |
+| 🥈 **Emerging** | $1.99 | Ethiopia, India, Kenya, Brazil | 25/day | $0.66 |
 
-*\*Min Profit = Mobile platform + both ambassador tiers + Heavy user ($0.38 AI cost)*
+*\*Min Profit = Mobile platform (30%) + both ambassador tiers (20%) + Heavy user AI ($0.33)*
 
 ---
 
@@ -47,9 +46,9 @@ A **three-tier regional pricing strategy** with **2-level recurring ambassador c
 
 | Scenario | Monthly Recurring |
 |----------|-------------------|
-| Refer 10 tourists directly (15%) | **$15.00/month** |
-| Recruit 1 ambassador who refers 10 tourists (5%) | **$5.00/month** |
-| **Total passive income** | **$20.00/month** |
+| Refer 10 tourists directly (15%) | **$7.50/month** |
+| Recruit 1 ambassador who refers 10 tourists (5%) | **$2.50/month** |
+| **Total passive income** | **$10.00/month** |
 
 ---
 
@@ -82,84 +81,86 @@ A **three-tier regional pricing strategy** with **2-level recurring ambassador c
 | User Type | Chat | Search | Synopsis | Insights | **Total Cost** |
 |-----------|------|--------|----------|----------|----------------|
 | 🟢 Light | 100 | 15 | 3 | 20 | **$0.08** |
-| 🟡 Medium | 300 | 40 | 10 | 60 | **$0.23** |
-| 🔴 Heavy | 500 | 75 | 20 | 100 | **$0.38** |
-| ⚫ Extreme | 1,000 | 150 | 50 | 250 | **$0.82** |
+| 🟡 Medium | 300 | 40 | 10 | 60 | **$0.22** |
+| 🔴 Heavy | 450 | 60 | 15 | 80 | **$0.33** |
+| ⚫ Extreme | 900 | 120 | 30 | 200 | **$0.68** |
 
-> **Note:** Profit calculations use "Heavy" user assumptions. Daily caps prevent "Extreme" usage from causing losses.
+**Calculation verification (Heavy user):**
+- 450 × $0.00054 = $0.243
+- 60 × $0.00059 = $0.035
+- 15 × $0.00105 = $0.016
+- 80 × $0.00048 = $0.038
+- **Total = $0.332 ≈ $0.33**
+
+> **Note:** Profit calculations use "Heavy" user assumptions ($0.33). Daily caps prevent Extreme usage losses.
 
 ---
 
 ### 2.4 Platform Fees
 
-| Platform | Fee Structure | Notes |
-|----------|---------------|-------|
-| 💳 Stripe (Web) | 2.9% + $0.30 | Best margins |
-| 🍎 Apple App Store | 30% | 15% after $1M or Year 2 |
-| 🤖 Google Play Store | 30% | 15% after $1M or Year 2 |
+| Platform | Fee Structure | $4.99 Fee | $1.99 Fee |
+|----------|---------------|-----------|-----------|
+| 💳 Stripe (Web) | 2.9% + $0.30 | $0.44 | $0.36 |
+| 🍎 Apple App Store | 30% | $1.50 | $0.60 |
+| 🤖 Google Play Store | 30% | $1.50 | $0.60 |
+
+**Calculation verification:**
+- Stripe $4.99: ($4.99 × 0.029) + $0.30 = $0.14 + $0.30 = **$0.44**
+- Stripe $1.99: ($1.99 × 0.029) + $0.30 = $0.06 + $0.30 = **$0.36**
+- Mobile $4.99: $4.99 × 0.30 = **$1.50**
+- Mobile $1.99: $1.99 × 0.30 = **$0.60**
 
 ---
 
 ---
 
-## 🌍 Three-Tier Regional Pricing
+## 🌍 Two-Tier Regional Pricing
 
 ### 3.1 Tier Definitions
 
 | Tier | Price | Detection Method |
 |------|-------|------------------|
-| 🥇 **Premium** | $9.99/month | Card issuing country / App Store region |
-| 🥈 **Mid-Range** | $4.99/month | Card issuing country / App Store region |
-| 🥉 **Emerging** | $1.99/month | Card issuing country / App Store region |
+| 🥇 **Premium** | $4.99/month | Card issuing country / App Store region |
+| 🥈 **Emerging** | $1.99/month | Card issuing country / App Store region |
 
 ---
 
 ### 3.2 Country Lists
 
-#### 🥇 Premium Markets ($9.99)
+#### 🥇 Premium Markets ($4.99)
 
 | Region | Countries |
 |--------|-----------|
 | North America | 🇺🇸 USA, 🇨🇦 Canada |
-| Europe | 🇬🇧 UK, 🇩🇪 Germany, 🇫🇷 France, 🇳🇱 Netherlands, 🇧🇪 Belgium, 🇦🇹 Austria, 🇨🇭 Switzerland, 🇮🇪 Ireland, 🇩🇰 Denmark, 🇸🇪 Sweden, 🇳🇴 Norway, 🇫🇮 Finland |
+| Western Europe | 🇬🇧 UK, 🇩🇪 Germany, 🇫🇷 France, 🇳🇱 Netherlands, 🇧🇪 Belgium, 🇦🇹 Austria, 🇨🇭 Switzerland, 🇮🇪 Ireland |
+| Scandinavia | 🇩🇰 Denmark, 🇸🇪 Sweden, 🇳🇴 Norway, 🇫🇮 Finland |
 | Asia-Pacific | 🇯🇵 Japan, 🇰🇷 South Korea, 🇸🇬 Singapore, 🇦🇺 Australia, 🇳🇿 New Zealand |
 | Middle East | 🇦🇪 UAE, 🇶🇦 Qatar, 🇰🇼 Kuwait, 🇸🇦 Saudi Arabia, 🇮🇱 Israel |
 
 ---
 
-#### 🥈 Mid-Range Markets ($4.99)
+#### 🥈 Emerging Markets ($1.99)
 
 | Region | Countries |
 |--------|-----------|
-| Latin America | 🇧🇷 Brazil, 🇲🇽 Mexico, 🇦🇷 Argentina, 🇨🇱 Chile, 🇨🇴 Colombia |
-| Eastern Europe | 🇵🇱 Poland, 🇨🇿 Czech Republic, 🇭🇺 Hungary, 🇷🇴 Romania, 🇬🇷 Greece, 🇵🇹 Portugal |
-| Asia | 🇹🇭 Thailand, 🇲🇾 Malaysia, 🇻🇳 Vietnam, 🇹🇼 Taiwan |
-| Africa | 🇿🇦 South Africa, 🇲🇦 Morocco, 🇪🇬 Egypt |
-
----
-
-#### 🥉 Emerging Markets ($1.99)
-
-| Region | Countries |
-|--------|-----------|
-| Africa | 🇪🇹 Ethiopia, 🇰🇪 Kenya, 🇳🇬 Nigeria, 🇬🇭 Ghana, 🇹🇿 Tanzania, 🇺🇬 Uganda, 🇷🇼 Rwanda |
+| Africa | 🇪🇹 Ethiopia, 🇰🇪 Kenya, 🇳🇬 Nigeria, 🇬🇭 Ghana, 🇹🇿 Tanzania, 🇺🇬 Uganda, 🇷🇼 Rwanda, 🇿🇦 South Africa, 🇲🇦 Morocco, 🇪🇬 Egypt |
 | South Asia | 🇮🇳 India, 🇧🇩 Bangladesh, 🇵🇰 Pakistan, 🇱🇰 Sri Lanka, 🇳🇵 Nepal |
-| Southeast Asia | 🇵🇭 Philippines, 🇮🇩 Indonesia, 🇲🇲 Myanmar, 🇰🇭 Cambodia |
-| Other | 🇺🇦 Ukraine, 🇬🇪 Georgia |
+| Southeast Asia | 🇵🇭 Philippines, 🇮🇩 Indonesia, 🇲🇲 Myanmar, 🇰🇭 Cambodia, 🇹🇭 Thailand, 🇲🇾 Malaysia, 🇻🇳 Vietnam |
+| Latin America | 🇧🇷 Brazil, 🇲🇽 Mexico, 🇦🇷 Argentina, 🇨🇱 Chile, 🇨🇴 Colombia |
+| Eastern Europe | 🇵🇱 Poland, 🇨🇿 Czech Republic, 🇭🇺 Hungary, 🇷🇴 Romania, 🇬🇷 Greece, 🇵🇹 Portugal, 🇺🇦 Ukraine |
 
 ---
 
 ### 3.3 Why Card/Account Country (Not IP)
 
 **The Tourist Problem:**
-A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $9.99.
+A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $4.99.
 
 | Detection Method | US Tourist in Ethiopia | Result |
 |------------------|------------------------|--------|
 | ❌ IP Geolocation | Ethiopia | $1.99 (wrong) |
-| ✅ Card Country (Stripe) | USA | $9.99 (correct) |
-| ✅ App Store Account | USA | $9.99 (correct) |
-| ✅ Play Store Account | USA | $9.99 (correct) |
+| ✅ Card Country (Stripe) | USA | $4.99 (correct) |
+| ✅ App Store Account | USA | $4.99 (correct) |
 
 **This is why ambassadors in Ethiopia can confidently refer tourists — they'll pay premium pricing.**
 
@@ -171,35 +172,48 @@ A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $9.99.
 
 ### 4.1 Daily Caps by Feature
 
-| Feature | 🥇 Premium | 🥈 Mid-Range | 🥉 Emerging |
-|---------|------------|--------------|-------------|
-| 💬 Chat Messages | 75/day | 50/day | 30/day |
-| 🔍 Smart Search | 20/day | 15/day | 10/day |
-| 📖 Book Synopsis | 10/day | 7/day | 5/day |
-| ✨ Verse Insights | 30/day | 20/day | 15/day |
+| Feature | 🥇 Premium | 🥈 Emerging |
+|---------|------------|-------------|
+| 💬 Chat Messages | 50/day | 25/day |
+| 🔍 Smart Search | 15/day | 8/day |
+| 📖 Book Synopsis | 8/day | 4/day |
+| ✨ Verse Insights | 25/day | 12/day |
 
 ---
 
 ### 4.2 Monthly Maximums (at daily cap)
 
-| Feature | 🥇 Premium | 🥈 Mid-Range | 🥉 Emerging |
-|---------|------------|--------------|-------------|
-| 💬 Chat Messages | 2,250 | 1,500 | 900 |
-| 🔍 Smart Search | 600 | 450 | 300 |
-| 📖 Book Synopsis | 300 | 210 | 150 |
-| ✨ Verse Insights | 900 | 600 | 450 |
+| Feature | 🥇 Premium | 🥈 Emerging |
+|---------|------------|-------------|
+| 💬 Chat Messages | 1,500 | 750 |
+| 🔍 Smart Search | 450 | 240 |
+| 📖 Book Synopsis | 240 | 120 |
+| ✨ Verse Insights | 750 | 360 |
 
 ---
 
 ### 4.3 Max AI Cost at Cap (Abuse Prevention)
 
-| Tier | Max Chat Cost | Max Other Features | **Max Total AI** |
-|------|---------------|-------------------|------------------|
-| 🥇 Premium | $1.22 | $0.72 | **$1.94** |
-| 🥈 Mid-Range | $0.81 | $0.55 | **$1.36** |
-| 🥉 Emerging | $0.49 | $0.38 | **$0.87** |
+| Tier | Chat | Search | Synopsis | Insights | **Max Total** |
+|------|------|--------|----------|----------|---------------|
+| 🥇 Premium | $0.81 | $0.27 | $0.25 | $0.36 | **$1.69** |
+| 🥈 Emerging | $0.41 | $0.14 | $0.13 | $0.17 | **$0.85** |
 
-> **Reality:** 95% of users fall into Light/Medium category ($0.08-$0.23 AI cost). Caps exist to prevent the 1% of extreme users from causing losses.
+**Calculation verification (Premium max):**
+- 1,500 × $0.00054 = $0.81
+- 450 × $0.00059 = $0.2655 ≈ $0.27
+- 240 × $0.00105 = $0.252 ≈ $0.25
+- 750 × $0.00048 = $0.36
+- **Total = $1.69**
+
+**Calculation verification (Emerging max):**
+- 750 × $0.00054 = $0.405 ≈ $0.41
+- 240 × $0.00059 = $0.1416 ≈ $0.14
+- 120 × $0.00105 = $0.126 ≈ $0.13
+- 360 × $0.00048 = $0.1728 ≈ $0.17
+- **Total = $0.85**
+
+> **Reality:** 95% of users fall into Light/Medium category ($0.08-$0.22 AI cost). Caps exist to prevent the 1% of extreme users from causing losses.
 
 ---
 
@@ -207,9 +221,8 @@ A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $9.99.
 
 | Tier | Daily Experience |
 |------|------------------|
-| 🥇 Premium | 8+ full Bible study sessions, research-grade access |
-| 🥈 Mid-Range | 5+ full study sessions, plenty for daily devotionals |
-| 🥉 Emerging | 3+ full study sessions, generous for the price |
+| 🥇 Premium | 5-6 full Bible study sessions, research-grade access |
+| 🥈 Emerging | 2-3 full study sessions, generous for the price |
 
 > **All tiers reset daily at midnight UTC.**
 
@@ -219,69 +232,67 @@ A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $9.99.
 
 ## 📈 Profit Analysis
 
-> **Assumptions:** AI costs use "Heavy" user behavior ($0.38/month). Commissions rounded to nearest cent. Caps prevent extreme usage losses.
+> **Assumptions:** AI costs use "Heavy" user behavior ($0.33/month). Commissions rounded to nearest cent. Caps prevent extreme usage losses.
 
 ---
 
-### 5.1 Premium Tier ($9.99) — Bottom Line Profit
+### 5.1 Premium Tier ($4.99) — Bottom Line Profit
 
 | Platform | Price | Fees | AI Cost | Tier 1 (15%) | Tier 2 (5%) | **YOUR PROFIT** |
 |----------|-------|------|---------|--------------|-------------|-----------------|
-| 💳 Web (Stripe) | $9.99 | $0.59 | $0.38 | $1.50 | $0.50 | **$7.02** |
-| 💳 Web (no T2) | $9.99 | $0.59 | $0.38 | $1.50 | — | **$7.52** |
-| 🍎 Mobile (30%) | $9.99 | $3.00 | $0.38 | $1.50 | $0.50 | **$4.61** |
-| 🍎 Mobile (no T2) | $9.99 | $3.00 | $0.38 | $1.50 | — | **$5.11** |
-| Direct (no ref) | $9.99 | $0.59 | $0.38 | — | — | **$9.02** |
+| 💳 Web (Stripe) | $4.99 | $0.44 | $0.33 | $0.75 | $0.25 | **$3.22** |
+| 💳 Web (no T2) | $4.99 | $0.44 | $0.33 | $0.75 | — | **$3.47** |
+| 🍎 Mobile (30%) | $4.99 | $1.50 | $0.33 | $0.75 | $0.25 | **$2.16** |
+| 🍎 Mobile (no T2) | $4.99 | $1.50 | $0.33 | $0.75 | — | **$2.41** |
+| Direct (no ref) | $4.99 | $0.44 | $0.33 | — | — | **$4.22** |
+
+**Calculation verification (Mobile + Both Tiers):**
+$4.99 - $1.50 - $0.33 - $0.75 - $0.25 = **$2.16** ✓
 
 ---
 
-### 5.2 Mid-Range Tier ($4.99) — Bottom Line Profit
+### 5.2 Emerging Tier ($1.99) — Bottom Line Profit
 
 | Platform | Price | Fees | AI Cost | Tier 1 (15%) | Tier 2 (5%) | **YOUR PROFIT** |
 |----------|-------|------|---------|--------------|-------------|-----------------|
-| 💳 Web (Stripe) | $4.99 | $0.44 | $0.38 | $0.75 | $0.25 | **$3.17** |
-| 💳 Web (no T2) | $4.99 | $0.44 | $0.38 | $0.75 | — | **$3.42** |
-| 🍎 Mobile (30%) | $4.99 | $1.50 | $0.38 | $0.75 | $0.25 | **$2.11** |
-| 🍎 Mobile (no T2) | $4.99 | $1.50 | $0.38 | $0.75 | — | **$2.36** |
-| Direct (no ref) | $4.99 | $0.44 | $0.38 | — | — | **$4.17** |
+| 💳 Web (Stripe) | $1.99 | $0.36 | $0.33 | $0.30 | $0.10 | **$0.90** |
+| 💳 Web (no T2) | $1.99 | $0.36 | $0.33 | $0.30 | — | **$1.00** |
+| 🍎 Mobile (30%) | $1.99 | $0.60 | $0.33 | $0.30 | $0.10 | **$0.66** |
+| 🍎 Mobile (no T2) | $1.99 | $0.60 | $0.33 | $0.30 | — | **$0.76** |
+| Direct (no ref) | $1.99 | $0.36 | $0.33 | — | — | **$1.30** |
+
+**Calculation verification (Mobile + Both Tiers):**
+$1.99 - $0.60 - $0.33 - $0.30 - $0.10 = **$0.66** ✓
 
 ---
 
-### 5.3 Emerging Tier ($1.99) — Bottom Line Profit
-
-| Platform | Price | Fees | AI Cost | Tier 1 (15%) | Tier 2 (5%) | **YOUR PROFIT** |
-|----------|-------|------|---------|--------------|-------------|-----------------|
-| 💳 Web (Stripe) | $1.99 | $0.36 | $0.38 | $0.30 | $0.10 | **$0.85** |
-| 💳 Web (no T2) | $1.99 | $0.36 | $0.38 | $0.30 | — | **$0.95** |
-| 🍎 Mobile (30%) | $1.99 | $0.60 | $0.38 | $0.30 | $0.10 | **$0.61** |
-| 🍎 Mobile (no T2) | $1.99 | $0.60 | $0.38 | $0.30 | — | **$0.71** |
-| Direct (no ref) | $1.99 | $0.36 | $0.38 | — | — | **$1.25** |
-
----
-
-### 5.4 Profit Summary (Heavy User)
+### 5.3 Profit Summary (Heavy User)
 
 | Tier | Heavy User Worst Case | Best Case (Web Direct) |
 |------|----------------------------------|------------------------|
-| 🥇 Premium | **$4.61** (Mobile + Both Tiers) | $9.02 |
-| 🥈 Mid-Range | **$2.11** (Mobile + Both Tiers) | $4.17 |
-| 🥉 Emerging | **$0.61** (Mobile + Both Tiers) | $1.25 |
+| 🥇 Premium | **$2.16** (Mobile + Both Tiers) | $4.22 |
+| 🥈 Emerging | **$0.66** (Mobile + Both Tiers) | $1.30 |
 
 **✅ All Heavy-user scenarios profitable.** Extreme users (maxing caps daily) remain positive but thinner — see stress test below.
 
 ---
 
-### 5.5 Extreme User Stress Test
+### 5.4 Extreme User Stress Test
 
 What if a user maxes out daily caps every single day?
 
-| Tier | Max AI Cost | Platform Fee | Tier 1 (15%) | Tier 2 (5%) | **Profit** |
-|------|-------------|--------------|--------------|-------------|------------|
-| 🥇 Premium | $1.94 | $3.00 | $1.50 | $0.50 | $9.99 - $6.94 = **$3.05** ✅ |
-| 🥈 Mid-Range | $1.36 | $1.50 | $0.75 | $0.25 | $4.99 - $3.86 = **$1.13** ✅ |
-| 🥉 Emerging | $0.87 | $0.60 | $0.30 | $0.10 | $1.99 - $1.87 = **$0.12** ⚠️ |
+| Tier | Price | Platform (30%) | Max AI | Tier 1 (15%) | Tier 2 (5%) | **Profit** |
+|------|-------|----------------|--------|--------------|-------------|------------|
+| 🥇 Premium | $4.99 | $1.50 | $1.69 | $0.75 | $0.25 | **$0.80** ✅ |
+| 🥈 Emerging | $1.99 | $0.60 | $0.85 | $0.30 | $0.10 | **$0.14** ⚠️ |
 
-> **Key insight:** The $0.12 "Extreme User" scenario is rare (<1% of users). The $0.61 "Heavy User" scenario is the realistic floor for most engaged users.
+**Calculation verification (Premium extreme):**
+$4.99 - $1.50 - $1.69 - $0.75 - $0.25 = **$0.80** ✓
+
+**Calculation verification (Emerging extreme):**
+$1.99 - $0.60 - $0.85 - $0.30 - $0.10 = **$0.14** ✓
+
+> **Key insight:** The $0.14 "Extreme User" scenario is rare (<1% of users). The $0.63 "Heavy User" scenario is the realistic floor for most engaged users.
 > 
 > *Math: Profit = Price − (Platform Fee + Max AI + Tier 1 + Tier 2). Commissions: Tier 1 = 15%, Tier 2 = 5%, rounded to nearest cent.*
 
@@ -306,9 +317,14 @@ What if a user maxes out daily caps every single day?
 
 | Referral From | Subscription | Tier 1 Earns | Tier 2 Earns |
 |---------------|--------------|--------------|--------------|
-| 🥇 Premium Market | $9.99/mo | **$1.50/mo** | $0.50/mo |
-| 🥈 Mid-Range Market | $4.99/mo | **$0.75/mo** | $0.25/mo |
-| 🥉 Emerging Market | $1.99/mo | **$0.30/mo** | $0.10/mo |
+| 🥇 Premium Market | $4.99/mo | **$0.75/mo** | $0.25/mo |
+| 🥈 Emerging Market | $1.99/mo | **$0.30/mo** | $0.10/mo |
+
+**Calculation verification:**
+- Premium Tier 1: $4.99 × 0.15 = $0.7485 ≈ **$0.75**
+- Premium Tier 2: $4.99 × 0.05 = $0.2495 ≈ **$0.25**
+- Emerging Tier 1: $1.99 × 0.15 = $0.2985 ≈ **$0.30**
+- Emerging Tier 2: $1.99 × 0.05 = $0.0995 ≈ **$0.10**
 
 ---
 
@@ -318,11 +334,14 @@ What if a user maxes out daily caps every single day?
 
 | Activity | Monthly | Annually |
 |----------|---------|----------|
-| Refer 5 tourists (Premium) | $7.50 | $90.00 |
-| Refer 10 tourists (Premium) | $15.00 | $180.00 |
-| Refer 20 tourists (Premium) | $30.00 | $360.00 |
-| + Recruit 3 guides who each refer 5 tourists | +$7.50 | +$90.00 |
-| **Best Case Total** | **$37.50** | **$450.00** |
+| Refer 5 tourists (Premium) | $3.75 | $45.00 |
+| Refer 10 tourists (Premium) | $7.50 | $90.00 |
+| Refer 20 tourists (Premium) | $15.00 | $180.00 |
+| + Recruit 3 guides who each refer 5 tourists | +$3.75 | +$45.00 |
+| **Best Case Total** | **$18.75** | **$225.00** |
+
+**Calculation verification (10 tourists):**
+10 × $0.75 = **$7.50/month** ✓
 
 ---
 
@@ -330,11 +349,16 @@ What if a user maxes out daily caps every single day?
 
 | Year | Direct Referrals | Recruited Ambassadors | Their Referrals | **Total Monthly** |
 |------|------------------|----------------------|-----------------|-------------------|
-| Year 1 | 20 tourists | 5 guides | 25 tourists | $30 + $12.50 = **$42.50** |
-| Year 2 | 40 tourists | 15 guides | 75 tourists | $60 + $37.50 = **$97.50** |
-| Year 3 | 60 tourists | 30 guides | 150 tourists | $90 + $75 = **$165.00** |
+| Year 1 | 20 tourists | 5 guides | 25 tourists | $15 + $6.25 = **$21.25** |
+| Year 2 | 40 tourists | 15 guides | 75 tourists | $30 + $18.75 = **$48.75** |
+| Year 3 | 60 tourists | 30 guides | 150 tourists | $45 + $37.50 = **$82.50** |
 
-**Annual Year 3: $1,980 in passive income**
+**Calculation verification (Year 1):**
+- Direct: 20 × $0.75 = **$15.00**
+- Tier 2: 25 × $0.25 = **$6.25**
+- Total: **$21.25** ✓
+
+**Annual Year 3: $990 in passive income**
 
 ---
 
@@ -358,7 +382,7 @@ What if a user maxes out daily caps every single day?
 
 | Risk | Mitigation | Implementation |
 |------|------------|----------------|
-| Extreme AI usage | Daily caps per tier | 30-75 chat messages/day limit |
+| Extreme AI usage | Daily caps per tier | 25-50 chat messages/day limit |
 | Bot/automated abuse | Rate limiting | Max 10 messages/minute |
 | Account sharing | Session monitoring | Flag unusual patterns |
 
@@ -389,15 +413,16 @@ What if a user maxes out daily caps every single day?
 
 **Worst case: Emerging market user maxes daily limits every day**
 
-| Metric | Value |
-|--------|-------|
-| Daily cap | 30 chat + 10 search + 5 synopsis + 15 insights |
-| Monthly max | 900 chat + 300 search + 150 synopsis + 450 insights |
-| Max AI cost | $0.87 |
-| Platform fee (30%) | $0.60 |
-| Tier 1 commission | $0.30 |
-| Tier 2 commission | $0.10 |
-| **Profit** | **$0.12** ⚠️ |
+| Metric | Calculation | Value |
+|--------|-------------|-------|
+| Daily cap | 25 chat + 8 search + 4 synopsis + 12 insights | — |
+| Monthly max | 750 chat + 240 search + 120 synopsis + 360 insights | — |
+| Max AI cost | 750×$0.00054 + 240×$0.00059 + 120×$0.00105 + 360×$0.00048 | **$0.85** |
+| Platform fee (30%) | $1.99 × 0.30 | **$0.60** |
+| Tier 1 commission (15%) | $1.99 × 0.15 | **$0.30** |
+| Tier 2 commission (5%) | $1.99 × 0.05 | **$0.10** |
+| **Total costs** | $0.85 + $0.60 + $0.30 + $0.10 | **$1.85** |
+| **Profit** | $1.99 - $1.85 | **$0.14** ⚠️ |
 
 > Thin but positive. These users are rare (<1%) and provide valuable engagement metrics.
 
@@ -409,9 +434,8 @@ What if a user maxes out daily caps every single day?
 
 ### Phase 1: Stripe (Web) — Priority 🔴
 
-- [ ] Create 3 Price IDs in Stripe Dashboard
-  - `price_pro_premium_monthly` → $9.99
-  - `price_pro_midrange_monthly` → $4.99
+- [ ] Create 2 Price IDs in Stripe Dashboard
+  - `price_pro_premium_monthly` → $4.99
   - `price_pro_emerging_monthly` → $1.99
 - [ ] Implement card country detection at checkout
 - [ ] Map countries to pricing tiers
@@ -423,10 +447,8 @@ What if a user maxes out daily caps every single day?
 ### Phase 2: Apple App Store — Priority 🔴
 
 - [ ] Create subscription product in App Store Connect
-- [ ] Set base price (Tier 10 = $9.99) for US
-- [ ] Override prices for 50+ countries:
-  - Emerging markets → Tier 2 (~$1.99)
-  - Mid-range → Tier 5 (~$4.99)
+- [ ] Set base price (Tier 5 = $4.99) for Premium markets
+- [ ] Override prices for emerging markets → Tier 2 (~$1.99)
 - [ ] Test with sandbox accounts in different regions
 
 ---
@@ -434,8 +456,8 @@ What if a user maxes out daily caps every single day?
 ### Phase 3: Google Play Store — Priority 🔴
 
 - [ ] Create subscription in Play Console
-- [ ] Set base price $9.99 USD
-- [ ] Configure regional pricing overrides
+- [ ] Set base price $4.99 USD
+- [ ] Configure regional pricing overrides for emerging markets
 - [ ] Test with license testers
 
 ---
@@ -476,18 +498,36 @@ What if a user maxes out daily caps every single day?
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
+| Number of tiers | **2** | Simpler pricing, easier to explain |
+| Premium price | **$4.99** | Accessible yet valuable |
+| Emerging price | **$1.99** | Maximum accessibility, still profitable |
 | Pricing detection | Card/Account country | Prevents tourists exploiting local pricing |
-| Emerging price | $1.99 | Accessible + still profitable |
-| Usage caps | Tiered by price | Protects margins, feels fair |
-| Ambassador Tier 1 | 15% | Strong direct incentive |
-| Ambassador Tier 2 | 5% | Rewards network building |
-| Commission basis | Recurring monthly | Incentivizes quality referrals |
+| Premium chat cap | **50/day** | Allows heavy usage, prevents abuse |
+| Emerging chat cap | **25/day** | Generous for price, protects margins |
+| Ambassador Tier 1 | **15%** | Strong direct incentive |
+| Ambassador Tier 2 | **5%** | Rewards network building |
+| Commission basis | **Recurring monthly** | Incentivizes quality referrals |
 
 ---
 
-**Bottom Line:** This model generates profit at every tier while making the app globally accessible and rewarding ambassadors for growing the user base.
+### Key Numbers Summary
+
+| Metric | Premium ($4.99) | Emerging ($1.99) |
+|--------|-----------------|------------------|
+| Stripe fee | $0.44 | $0.36 |
+| Mobile fee (30%) | $1.50 | $0.60 |
+| Heavy user AI cost | $0.33 | $0.33 |
+| Max AI cost (at cap) | $1.69 | $0.85 |
+| Tier 1 commission (15%) | $0.75 | $0.30 |
+| Tier 2 commission (5%) | $0.25 | $0.10 |
+| **Min profit (Heavy, Mobile, Both Tiers)** | **$2.16** | **$0.66** |
+| **Extreme profit (Max caps)** | **$0.80** | **$0.14** |
 
 ---
 
-*Document Version: 2.0*  
+**Bottom Line:** This two-tier model generates profit at every scenario while making the app globally accessible and rewarding ambassadors for growing the user base.
+
+---
+
+*Document Version: 2.1*  
 *Last Updated: January 2026*
