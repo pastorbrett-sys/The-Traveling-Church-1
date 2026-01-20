@@ -24,10 +24,10 @@
 A **two-tier regional pricing strategy** with **2-level recurring ambassador commissions** designed to:
 
 - ✅ Make the app accessible in emerging markets ($1.99)
-- ✅ Capture value from developed markets ($4.99)
+- ✅ Capture premium value from developed markets ($7.99)
 - ✅ Simplify pricing complexity (2 tiers vs 3)
 - ✅ Incentivize ambassadors to target high-value tourists
-- ✅ Maintain **positive profit margins** across all scenarios
+- ✅ Maintain **strong profit margins** across all scenarios
 
 ---
 
@@ -35,7 +35,7 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 | Tier | Monthly Price | Target Markets | Daily Chat Cap | Min Profit* |
 |------|---------------|----------------|----------------|-------------|
-| 🥇 **Premium** | $4.99 | USA, UK, EU, Japan, Australia | 50/day | $2.16 |
+| 🥇 **Premium** | $7.99 | USA, UK, EU, Japan, Australia | 50/day | $3.66 |
 | 🥈 **Emerging** | $1.99 | Ethiopia, India, Kenya, Brazil | 25/day | $0.66 |
 
 *\*Min Profit = Mobile platform (30%) + both ambassador tiers (20%) + Heavy user AI ($0.33)*
@@ -46,9 +46,9 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 | Scenario | Monthly Recurring |
 |----------|-------------------|
-| Refer 10 tourists directly (15%) | **$7.50/month** |
-| Recruit 1 ambassador who refers 10 tourists (5%) | **$2.50/month** |
-| **Total passive income** | **$10.00/month** |
+| Refer 10 tourists directly (15%) | **$12.00/month** |
+| Recruit 1 ambassador who refers 10 tourists (5%) | **$4.00/month** |
+| **Total passive income** | **$16.00/month** |
 
 ---
 
@@ -98,16 +98,16 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 ### 2.4 Platform Fees
 
-| Platform | Fee Structure | $4.99 Fee | $1.99 Fee |
+| Platform | Fee Structure | $7.99 Fee | $1.99 Fee |
 |----------|---------------|-----------|-----------|
-| 💳 Stripe (Web) | 2.9% + $0.30 | $0.44 | $0.36 |
-| 🍎 Apple App Store | 30% | $1.50 | $0.60 |
-| 🤖 Google Play Store | 30% | $1.50 | $0.60 |
+| 💳 Stripe (Web) | 2.9% + $0.30 | $0.53 | $0.36 |
+| 🍎 Apple App Store | 30% | $2.40 | $0.60 |
+| 🤖 Google Play Store | 30% | $2.40 | $0.60 |
 
 **Calculation verification:**
-- Stripe $4.99: ($4.99 × 0.029) + $0.30 = $0.14 + $0.30 = **$0.44**
+- Stripe $7.99: ($7.99 × 0.029) + $0.30 = $0.23 + $0.30 = **$0.53**
 - Stripe $1.99: ($1.99 × 0.029) + $0.30 = $0.06 + $0.30 = **$0.36**
-- Mobile $4.99: $4.99 × 0.30 = **$1.50**
+- Mobile $7.99: $7.99 × 0.30 = **$2.40**
 - Mobile $1.99: $1.99 × 0.30 = **$0.60**
 
 ---
@@ -120,14 +120,14 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 | Tier | Price | Detection Method |
 |------|-------|------------------|
-| 🥇 **Premium** | $4.99/month | Card issuing country / App Store region |
+| 🥇 **Premium** | $7.99/month | Card issuing country / App Store region |
 | 🥈 **Emerging** | $1.99/month | Card issuing country / App Store region |
 
 ---
 
 ### 3.2 Country Lists
 
-#### 🥇 Premium Markets ($4.99)
+#### 🥇 Premium Markets ($7.99)
 
 | Region | Countries |
 |--------|-----------|
@@ -154,13 +154,13 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 ### 3.3 Why Card/Account Country (Not IP)
 
 **The Tourist Problem:**
-A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $4.99.
+A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $7.99.
 
 | Detection Method | US Tourist in Ethiopia | Result |
 |------------------|------------------------|--------|
 | ❌ IP Geolocation | Ethiopia | $1.99 (wrong) |
-| ✅ Card Country (Stripe) | USA | $4.99 (correct) |
-| ✅ App Store Account | USA | $4.99 (correct) |
+| ✅ Card Country (Stripe) | USA | $7.99 (correct) |
+| ✅ App Store Account | USA | $7.99 (correct) |
 
 **This is why ambassadors in Ethiopia can confidently refer tourists — they'll pay premium pricing.**
 
@@ -236,18 +236,18 @@ A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $4.99.
 
 ---
 
-### 5.1 Premium Tier ($4.99) — Bottom Line Profit
+### 5.1 Premium Tier ($7.99) — Bottom Line Profit
 
 | Platform | Price | Fees | AI Cost | Tier 1 (15%) | Tier 2 (5%) | **YOUR PROFIT** |
 |----------|-------|------|---------|--------------|-------------|-----------------|
-| 💳 Web (Stripe) | $4.99 | $0.44 | $0.33 | $0.75 | $0.25 | **$3.22** |
-| 💳 Web (no T2) | $4.99 | $0.44 | $0.33 | $0.75 | — | **$3.47** |
-| 🍎 Mobile (30%) | $4.99 | $1.50 | $0.33 | $0.75 | $0.25 | **$2.16** |
-| 🍎 Mobile (no T2) | $4.99 | $1.50 | $0.33 | $0.75 | — | **$2.41** |
-| Direct (no ref) | $4.99 | $0.44 | $0.33 | — | — | **$4.22** |
+| 💳 Web (Stripe) | $7.99 | $0.53 | $0.33 | $1.20 | $0.40 | **$5.53** |
+| 💳 Web (no T2) | $7.99 | $0.53 | $0.33 | $1.20 | — | **$5.93** |
+| 🍎 Mobile (30%) | $7.99 | $2.40 | $0.33 | $1.20 | $0.40 | **$3.66** |
+| 🍎 Mobile (no T2) | $7.99 | $2.40 | $0.33 | $1.20 | — | **$4.06** |
+| Direct (no ref) | $7.99 | $0.53 | $0.33 | — | — | **$7.13** |
 
 **Calculation verification (Mobile + Both Tiers):**
-$4.99 - $1.50 - $0.33 - $0.75 - $0.25 = **$2.16** ✓
+$7.99 - $2.40 - $0.33 - $1.20 - $0.40 = **$3.66** ✓
 
 ---
 
@@ -270,10 +270,10 @@ $1.99 - $0.60 - $0.33 - $0.30 - $0.10 = **$0.66** ✓
 
 | Tier | Heavy User Worst Case | Best Case (Web Direct) |
 |------|----------------------------------|------------------------|
-| 🥇 Premium | **$2.16** (Mobile + Both Tiers) | $4.22 |
+| 🥇 Premium | **$3.66** (Mobile + Both Tiers) | $7.13 |
 | 🥈 Emerging | **$0.66** (Mobile + Both Tiers) | $1.30 |
 
-**✅ All Heavy-user scenarios profitable.** Extreme users (maxing caps daily) remain positive but thinner — see stress test below.
+**✅ All Heavy-user scenarios profitable.** Extreme users (maxing caps daily) remain positive — see stress test below.
 
 ---
 
@@ -283,16 +283,16 @@ What if a user maxes out daily caps every single day?
 
 | Tier | Price | Platform (30%) | Max AI | Tier 1 (15%) | Tier 2 (5%) | **Profit** |
 |------|-------|----------------|--------|--------------|-------------|------------|
-| 🥇 Premium | $4.99 | $1.50 | $1.69 | $0.75 | $0.25 | **$0.80** ✅ |
+| 🥇 Premium | $7.99 | $2.40 | $1.69 | $1.20 | $0.40 | **$2.30** ✅ |
 | 🥈 Emerging | $1.99 | $0.60 | $0.85 | $0.30 | $0.10 | **$0.14** ⚠️ |
 
 **Calculation verification (Premium extreme):**
-$4.99 - $1.50 - $1.69 - $0.75 - $0.25 = **$0.80** ✓
+$7.99 - $2.40 - $1.69 - $1.20 - $0.40 = **$2.30** ✓
 
 **Calculation verification (Emerging extreme):**
 $1.99 - $0.60 - $0.85 - $0.30 - $0.10 = **$0.14** ✓
 
-> **Key insight:** The $0.14 "Extreme User" scenario is rare (<1% of users). The $0.66 "Heavy User" scenario is the realistic floor for most engaged users.
+> **Key insight:** Even the worst-case Premium user ($2.30 profit) is highly profitable. The $0.66 "Heavy User" scenario is the realistic floor for Emerging.
 > 
 > *Math: Profit = Price − (Platform Fee + Max AI + Tier 1 + Tier 2). Commissions: Tier 1 = 15%, Tier 2 = 5%, rounded to nearest cent.*
 
@@ -328,8 +328,8 @@ You earn money every time someone you refer subscribes to Vagabond Bible Pro. Bu
 #### How It Works
 
 1. **You share your personal referral link** with tourists, friends, or your community
-2. **They sign up and subscribe** to Pro ($4.99/month for most tourists)
-3. **You earn 15%** of their subscription — that's **$0.75 every month**
+2. **They sign up and subscribe** to Pro ($7.99/month for most tourists)
+3. **You earn 15%** of their subscription — that's **$1.20 every month**
 4. **This continues forever** as long as they remain a subscriber
 
 ---
@@ -338,10 +338,10 @@ You earn money every time someone you refer subscribes to Vagabond Bible Pro. Bu
 
 | What Happens | Your Monthly Earnings |
 |--------------|----------------------|
-| You refer 1 tourist who subscribes | **$0.75/month** |
-| You refer 10 tourists who subscribe | **$7.50/month** |
-| You refer 20 tourists who subscribe | **$15.00/month** |
-| Those 20 stay subscribed for a year | **$180.00/year** (passive!) |
+| You refer 1 tourist who subscribes | **$1.20/month** |
+| You refer 10 tourists who subscribe | **$12.00/month** |
+| You refer 20 tourists who subscribe | **$24.00/month** |
+| Those 20 stay subscribed for a year | **$288.00/year** (passive!) |
 
 ---
 
@@ -354,8 +354,8 @@ You can also invite other guides or friends to become ambassadors. When **they**
 
 | Your Team Activity | Your Bonus Earnings |
 |--------------------|---------------------|
-| 1 guide you recruited refers 10 tourists | **$2.50/month** |
-| 5 guides you recruited each refer 10 tourists | **$12.50/month** |
+| 1 guide you recruited refers 10 tourists | **$4.00/month** |
+| 5 guides you recruited each refer 10 tourists | **$20.00/month** |
 
 ---
 
@@ -381,12 +381,12 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 | Referral From | Subscription | Tier 1 Earns | Tier 2 Earns |
 |---------------|--------------|--------------|--------------|
-| 🥇 Premium Market | $4.99/mo | **$0.75/mo** | $0.25/mo |
+| 🥇 Premium Market | $7.99/mo | **$1.20/mo** | $0.40/mo |
 | 🥈 Emerging Market | $1.99/mo | **$0.30/mo** | $0.10/mo |
 
 **Calculation verification:**
-- Premium Tier 1: $4.99 × 0.15 = $0.7485 ≈ **$0.75**
-- Premium Tier 2: $4.99 × 0.05 = $0.2495 ≈ **$0.25**
+- Premium Tier 1: $7.99 × 0.15 = $1.1985 ≈ **$1.20**
+- Premium Tier 2: $7.99 × 0.05 = $0.3995 ≈ **$0.40**
 - Emerging Tier 1: $1.99 × 0.15 = $0.2985 ≈ **$0.30**
 - Emerging Tier 2: $1.99 × 0.05 = $0.0995 ≈ **$0.10**
 
@@ -398,14 +398,14 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 | Activity | Monthly | Annually |
 |----------|---------|----------|
-| Refer 5 tourists (Premium) | $3.75 | $45.00 |
-| Refer 10 tourists (Premium) | $7.50 | $90.00 |
-| Refer 20 tourists (Premium) | $15.00 | $180.00 |
-| + Recruit 3 guides who each refer 5 tourists | +$3.75 | +$45.00 |
-| **Best Case Total** | **$18.75** | **$225.00** |
+| Refer 5 tourists (Premium) | $6.00 | $72.00 |
+| Refer 10 tourists (Premium) | $12.00 | $144.00 |
+| Refer 20 tourists (Premium) | $24.00 | $288.00 |
+| + Recruit 3 guides who each refer 5 tourists | +$6.00 | +$72.00 |
+| **Best Case Total** | **$30.00** | **$360.00** |
 
 **Calculation verification (10 tourists):**
-10 × $0.75 = **$7.50/month** ✓
+10 × $1.20 = **$12.00/month** ✓
 
 ---
 
@@ -413,16 +413,16 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 | Year | Direct Referrals | Recruited Ambassadors | Their Referrals | **Total Monthly** |
 |------|------------------|----------------------|-----------------|-------------------|
-| Year 1 | 20 tourists | 5 guides | 25 tourists | $15 + $6.25 = **$21.25** |
-| Year 2 | 40 tourists | 15 guides | 75 tourists | $30 + $18.75 = **$48.75** |
-| Year 3 | 60 tourists | 30 guides | 150 tourists | $45 + $37.50 = **$82.50** |
+| Year 1 | 20 tourists | 5 guides | 25 tourists | $24 + $10 = **$34.00** |
+| Year 2 | 40 tourists | 15 guides | 75 tourists | $48 + $30 = **$78.00** |
+| Year 3 | 60 tourists | 30 guides | 150 tourists | $72 + $60 = **$132.00** |
 
 **Calculation verification (Year 1):**
-- Direct: 20 × $0.75 = **$15.00**
-- Tier 2: 25 × $0.25 = **$6.25**
-- Total: **$21.25** ✓
+- Direct: 20 × $1.20 = **$24.00**
+- Tier 2: 25 × $0.40 = **$10.00**
+- Total: **$34.00** ✓
 
-**Annual Year 3: $990 in passive income**
+**Annual Year 3: $1,584 in passive income**
 
 ---
 
@@ -499,7 +499,7 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 ### Phase 1: Stripe (Web) — Priority 🔴
 
 - [ ] Create 2 Price IDs in Stripe Dashboard
-  - `price_pro_premium_monthly` → $4.99
+  - `price_pro_premium_monthly` → $7.99
   - `price_pro_emerging_monthly` → $1.99
 - [ ] Implement card country detection at checkout
 - [ ] Map countries to pricing tiers
@@ -511,7 +511,7 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 ### Phase 2: Apple App Store — Priority 🔴
 
 - [ ] Create subscription product in App Store Connect
-- [ ] Set base price (Tier 5 = $4.99) for Premium markets
+- [ ] Set base price (Tier 8 = $7.99) for Premium markets
 - [ ] Override prices for emerging markets → Tier 2 (~$1.99)
 - [ ] Test with sandbox accounts in different regions
 
@@ -520,7 +520,7 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 ### Phase 3: Google Play Store — Priority 🔴
 
 - [ ] Create subscription in Play Console
-- [ ] Set base price $4.99 USD
+- [ ] Set base price $7.99 USD
 - [ ] Configure regional pricing overrides for emerging markets
 - [ ] Test with license testers
 
@@ -563,7 +563,7 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
 | Number of tiers | **2** | Simpler pricing, easier to explain |
-| Premium price | **$4.99** | Accessible yet valuable |
+| Premium price | **$7.99** | Strong value capture from developed markets |
 | Emerging price | **$1.99** | Maximum accessibility, still profitable |
 | Pricing detection | Card/Account country | Prevents tourists exploiting local pricing |
 | Premium chat cap | **50/day** | Allows heavy usage, prevents abuse |
@@ -576,22 +576,22 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 ### Key Numbers Summary
 
-| Metric | Premium ($4.99) | Emerging ($1.99) |
+| Metric | Premium ($7.99) | Emerging ($1.99) |
 |--------|-----------------|------------------|
-| Stripe fee | $0.44 | $0.36 |
-| Mobile fee (30%) | $1.50 | $0.60 |
+| Stripe fee | $0.53 | $0.36 |
+| Mobile fee (30%) | $2.40 | $0.60 |
 | Heavy user AI cost | $0.33 | $0.33 |
 | Max AI cost (at cap) | $1.69 | $0.85 |
-| Tier 1 commission (15%) | $0.75 | $0.30 |
-| Tier 2 commission (5%) | $0.25 | $0.10 |
-| **Min profit (Heavy, Mobile, Both Tiers)** | **$2.16** | **$0.66** |
-| **Extreme profit (Max caps)** | **$0.80** | **$0.14** |
+| Tier 1 commission (15%) | $1.20 | $0.30 |
+| Tier 2 commission (5%) | $0.40 | $0.10 |
+| **Min profit (Heavy, Mobile, Both Tiers)** | **$3.66** | **$0.66** |
+| **Extreme profit (Max caps)** | **$2.30** | **$0.14** |
 
 ---
 
-**Bottom Line:** This two-tier model generates profit at every scenario while making the app globally accessible and rewarding ambassadors for growing the user base.
+**Bottom Line:** This two-tier model generates strong profit at every scenario while making the app globally accessible and rewarding ambassadors generously for growing the user base.
 
 ---
 
-*Document Version: 2.1*  
+*Document Version: 2.2*  
 *Last Updated: January 2026*
