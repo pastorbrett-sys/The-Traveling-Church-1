@@ -144,7 +144,7 @@ function App() {
             <OfflineBanner />
             <Router />
             <NativeTabBar />
-            {/* <PlatformToggle /> */}
+            <PlatformToggle />
           </TooltipProvider>
         </RevenueCatProvider>
       </PlatformProvider>
