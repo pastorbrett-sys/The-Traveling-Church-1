@@ -348,6 +348,11 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                     `${t.subscribeNow} - ${pricing?.priceDisplay || '$7.99/month'}`
                   )}
                 </Button>
+                {pricing?.tier === 'emerging' && (
+                  <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-1">
+                    {isAmharic ? 'የመጨረሻ ዋጋ በክፍያ ዘዴ ይወሰናል' : 'Final price determined at checkout based on payment method'}
+                  </p>
+                )}
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
                   {t.subscriptionTerms}<br />
                   {t.bySubscribing}{" "}
