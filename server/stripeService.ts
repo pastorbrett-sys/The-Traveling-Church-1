@@ -1,5 +1,6 @@
 import { getUncachableStripeClient } from './stripeClient';
 import { stripeStorage } from './stripeStorage';
+import { getTierForCountry, getPricingForCountry, type PricingTier, PRICING_TIERS } from '@shared/regionalPricing';
 
 export class StripeService {
   async createCustomer(email: string, userId: string, referralCode?: string) {
@@ -103,6 +104,62 @@ export class StripeService {
 
   async getSubscription(subscriptionId: string) {
     return await stripeStorage.getSubscription(subscriptionId);
+  }
+
+  getPriceIdForTier(tier: PricingTier): string | null {
+    const envKey = PRICING_TIERS[tier].stripePriceEnvKey;
+    return process.env[envKey] || null;
+  }
+
+  async createRegionalCheckoutSession(
+    customerId: string,
+    tier: PricingTier,
+    successUrl: string,
+    cancelUrl: string,
+    metadata?: { userId?: string; referralCode?: string; email?: string; pricingTier?: string }
+  ) {
+    const priceId = this.getPriceIdForTier(tier);
+    
+    if (!priceId) {
+      throw new Error(`No price ID configured for tier: ${tier}. Set ${PRICING_TIERS[tier].stripePriceEnvKey} in environment.`);
+    }
+    
+    const stripe = await getUncachableStripeClient();
+    const sessionMetadata: Record<string, string> = {
+      pricingTier: tier,
+    };
+    if (metadata?.userId) sessionMetadata.userId = metadata.userId;
+    if (metadata?.referralCode) sessionMetadata.referralCode = metadata.referralCode;
+    if (metadata?.email) sessionMetadata.email = metadata.email;
+    
+    return await stripe.checkout.sessions.create({
+      customer: customerId,
+      payment_method_types: ['card'],
+      line_items: [{ price: priceId, quantity: 1 }],
+      mode: 'subscription',
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      metadata: sessionMetadata,
+      subscription_data: { metadata: sessionMetadata },
+    });
+  }
+
+  async getCustomerCountry(customerId: string): Promise<string | null> {
+    const stripe = await getUncachableStripeClient();
+    try {
+      const paymentMethods = await stripe.paymentMethods.list({
+        customer: customerId,
+        type: 'card',
+      });
+      
+      if (paymentMethods.data.length > 0 && paymentMethods.data[0].card?.country) {
+        return paymentMethods.data[0].card.country;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error fetching customer country:', error);
+      return null;
+    }
   }
 }
 

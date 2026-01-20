@@ -21,6 +21,7 @@ import { registerChatRoutes } from "./replit_integrations/chat";
 import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integrations/auth";
 import { stripeStorage } from "./stripeStorage";
 import { stripeService } from "./stripeService";
+import { getTierForCountry, getPricingForCountry, PRICING_TIERS, type PricingTier } from "@shared/regionalPricing";
 import { getStripePublishableKey } from "./stripeClient";
 import bibleRoutes from "./bibleRoutes";
 import ambassadorRoutes from "./ambassadorRoutes";
@@ -569,6 +570,93 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ data: prices });
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch prices" });
+    }
+  });
+
+  app.get("/api/pricing/tier", async (req, res) => {
+    try {
+      const countryHeader = req.headers['cf-ipcountry'] as string || 
+                           req.headers['x-vercel-ip-country'] as string ||
+                           null;
+      
+      const pricing = getPricingForCountry(countryHeader);
+      
+      res.json({
+        tier: pricing.tier,
+        price: pricing.price,
+        priceDisplay: pricing.priceDisplay,
+        detectedCountry: countryHeader || 'unknown',
+      });
+    } catch (error) {
+      console.error("Pricing tier error:", error);
+      res.json({
+        tier: 'premium' as PricingTier,
+        price: PRICING_TIERS.premium.price,
+        priceDisplay: PRICING_TIERS.premium.priceDisplay,
+        detectedCountry: 'unknown',
+      });
+    }
+  });
+
+  app.post("/api/stripe/regional-checkout", async (req: any, res) => {
+    try {
+      const { tier, referralCode } = req.body as { tier?: PricingTier; referralCode?: string };
+      
+      const pricingTier: PricingTier = tier === 'emerging' ? 'emerging' : 'premium';
+      
+      let customerId: string;
+      let userId: string | undefined;
+      
+      if ((req.session as any)?.userId) {
+        userId = (req.session as any).userId;
+        const user = await storage.getUser(userId!);
+        const email = user?.email || '';
+        
+        const customer = await stripeService.getOrCreateCustomer(
+          user?.stripeCustomerId || null,
+          email,
+          userId!,
+          referralCode || undefined
+        );
+        customerId = customer.id;
+        
+        if (user && user.stripeCustomerId !== customer.id) {
+          await storage.updateUserStripeInfo(userId!, { stripeCustomerId: customer.id });
+        }
+        
+        console.log(`[Regional Checkout] User ${userId}, tier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
+      } else {
+        console.log(`[Regional Checkout] ⚠️ Guest checkout - tier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
+        const customer = await stripeService.createCustomer('', 'guest', referralCode || undefined);
+        customerId = customer.id;
+      }
+
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      
+      let userEmail: string | undefined;
+      if (userId) {
+        const user = await storage.getUser(userId);
+        userEmail = user?.email || undefined;
+      }
+      
+      const session = await stripeService.createRegionalCheckoutSession(
+        customerId,
+        pricingTier,
+        `${baseUrl}/checkout/success`,
+        `${baseUrl}/checkout/cancel`,
+        {
+          userId: userId || undefined,
+          referralCode: referralCode || undefined,
+          email: userEmail,
+          pricingTier,
+        }
+      );
+
+      res.json({ url: session.url, tier: pricingTier });
+    } catch (error: any) {
+      console.error("Regional checkout error:", error);
+      const errorMessage = error?.message || error?.raw?.message || String(error);
+      res.status(500).json({ message: "Failed to create checkout session", error: errorMessage });
     }
   });
 

@@ -13,6 +13,7 @@ async function seedProducts() {
   if (existingProducts.data.length > 0) {
     console.log('Products already exist:');
     existingProducts.data.forEach(p => console.log(`- ${p.name}: ${p.id}`));
+    console.log('\nTo create regional prices, run: npx ts-node scripts/seed-regional-prices.ts');
     return;
   }
 
@@ -59,34 +60,52 @@ async function seedProducts() {
   });
   console.log(`Created Pro Plan: ${proPlan.id}`);
 
-  // Create Pro Plan monthly price ($9.99/month)
-  const proMonthlyPrice = await stripe.prices.create({
+  // Create Pro Plan Premium price ($7.99/month) - for developed markets
+  const proPremiumPrice = await stripe.prices.create({
     product: proPlan.id,
-    unit_amount: 999,
+    unit_amount: 799,
     currency: 'usd',
     recurring: { interval: 'month' },
-    metadata: { tier: 'pro', billing: 'monthly' }
+    metadata: { tier: 'pro', billing: 'monthly', region: 'premium' }
   });
-  console.log(`Created Pro Plan monthly price: ${proMonthlyPrice.id}`);
+  console.log(`Created Pro Plan Premium price: ${proPremiumPrice.id}`);
 
-  // Create Pro Plan yearly price ($99/year - save $20)
+  // Create Pro Plan Emerging price ($1.99/month) - for emerging markets
+  const proEmergingPrice = await stripe.prices.create({
+    product: proPlan.id,
+    unit_amount: 199,
+    currency: 'usd',
+    recurring: { interval: 'month' },
+    metadata: { tier: 'pro', billing: 'monthly', region: 'emerging' }
+  });
+  console.log(`Created Pro Plan Emerging price: ${proEmergingPrice.id}`);
+
+  // Create Pro Plan yearly price ($79.99/year - Premium markets)
   const proYearlyPrice = await stripe.prices.create({
     product: proPlan.id,
-    unit_amount: 9900,
+    unit_amount: 7999,
     currency: 'usd',
     recurring: { interval: 'year' },
-    metadata: { tier: 'pro', billing: 'yearly' }
+    metadata: { tier: 'pro', billing: 'yearly', region: 'premium' }
   });
   console.log(`Created Pro Plan yearly price: ${proYearlyPrice.id}`);
 
-  console.log('\nProducts created successfully!');
-  console.log('\nProduct IDs:');
+  console.log('\n==========================================');
+  console.log('Products created successfully!');
+  console.log('==========================================\n');
+  console.log('Product IDs:');
   console.log(`Free Plan: ${freePlan.id}`);
   console.log(`Pro Plan: ${proPlan.id}`);
-  console.log('\nPrice IDs:');
+  console.log('\nPrice IDs (save these to environment variables):');
   console.log(`Free Monthly: ${freePrice.id}`);
-  console.log(`Pro Monthly: ${proMonthlyPrice.id}`);
-  console.log(`Pro Yearly: ${proYearlyPrice.id}`);
+  console.log(`Pro Premium Monthly ($7.99): ${proPremiumPrice.id} → STRIPE_PRICE_PRO_PREMIUM`);
+  console.log(`Pro Emerging Monthly ($1.99): ${proEmergingPrice.id} → STRIPE_PRICE_PRO_EMERGING`);
+  console.log(`Pro Yearly ($79.99): ${proYearlyPrice.id}`);
+  console.log('\n==========================================');
+  console.log('IMPORTANT: Add these to your environment:');
+  console.log(`STRIPE_PRICE_PRO_PREMIUM=${proPremiumPrice.id}`);
+  console.log(`STRIPE_PRICE_PRO_EMERGING=${proEmergingPrice.id}`);
+  console.log('==========================================\n');
 }
 
 seedProducts().catch(console.error);
