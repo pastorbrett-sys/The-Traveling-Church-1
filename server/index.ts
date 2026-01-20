@@ -63,14 +63,21 @@ async function initStripe() {
 
     const stripeSync = await getStripeSync();
 
-    console.log('Setting up managed webhook...');
-    const webhookBaseUrl = `https://${process.env.REPLIT_DOMAINS?.split(',')[0]}`;
-    const result = await stripeSync.findOrCreateManagedWebhook(
-      `${webhookBaseUrl}/api/stripe/webhook`);
-    if (result?.webhook?.url) {
-      console.log(`Webhook configured: ${result.webhook.url}`);
+    // IMPORTANT: Only manage webhook in production to prevent dev from overwriting production URL
+    // Production webhook should point to vagabondbible.com - manually configured in Stripe Dashboard
+    if (process.env.NODE_ENV === 'production') {
+      console.log('Setting up managed webhook for production...');
+      const webhookBaseUrl = 'https://vagabondbible.com';
+      console.log(`[Webhook] Using production URL: ${webhookBaseUrl}`);
+      const result = await stripeSync.findOrCreateManagedWebhook(
+        `${webhookBaseUrl}/api/stripe/webhook`);
+      if (result?.webhook?.url) {
+        console.log(`Webhook configured: ${result.webhook.url}`);
+      } else {
+        console.log('Webhook setup completed');
+      }
     } else {
-      console.log('Webhook setup completed')
+      console.log('[Webhook] Skipping webhook setup in development - production webhook is manually configured to vagabondbible.com');
     }
 
     console.log('Syncing Stripe data...');

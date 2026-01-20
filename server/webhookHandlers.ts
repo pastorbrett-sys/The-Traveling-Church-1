@@ -4,12 +4,68 @@ import { referralSignups } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
 
-async function trackAmbassadorConversion(userId: string, source: string): Promise<void> {
+async function trackAmbassadorConversion(userId: string, source: string, referralCode?: string, email?: string): Promise<void> {
   try {
-    console.log(`[Ambassador] 🔄 Attempting to track conversion for user ${userId} (source: ${source})`);
+    console.log(`[Ambassador] 🔄 Attempting to track conversion for user ${userId} (source: ${source}, referralCode: ${referralCode || 'none'}, email: ${email || 'none'})`);
     
-    // First check if this user has a referral signup entry
-    const existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId));
+    let existing: typeof referralSignups.$inferSelect[] = [];
+    
+    // PRIORITY 1: Match by userId (most reliable when available)
+    if (userId && userId !== 'guest') {
+      existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId));
+      if (existing.length > 0) {
+        console.log(`[Ambassador] ✅ Found signup by userId: ${userId}`);
+      }
+    }
+    
+    // PRIORITY 2: If we have both userId and referralCode but no match, 
+    // the user might have signed up with a different account - check referralCode
+    // Note: This scenario is rare but handles account switching edge cases
+    
+    // PRIORITY 3: If no userId match, try to find by email (more deterministic than code-only)
+    // This helps identify the specific user even for guest checkouts
+    if (existing.length === 0 && email) {
+      console.log(`[Ambassador] 🔍 No signup by userId, trying by email: ${email}`);
+      // Import users table for email matching
+      const { users } = await import('@shared/schema');
+      
+      // Find user by email
+      const usersByEmail = await db.select({ id: users.id }).from(users).where(eq(users.email, email)).limit(1);
+      if (usersByEmail.length > 0) {
+        const emailUserId = usersByEmail[0].id;
+        existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, emailUserId));
+        if (existing.length > 0) {
+          // If referralCode is provided, validate it matches the signup's referralCode
+          if (referralCode && existing[0].referralCode !== referralCode) {
+            console.log(`[Ambassador] ⚠️ Referral code mismatch: expected ${existing[0].referralCode}, got ${referralCode}`);
+            // Still use this match since email is deterministic - the user signed up with this referral
+          }
+          console.log(`[Ambassador] ✅ Found signup by email-matched userId: ${emailUserId}`);
+        }
+      }
+    }
+    
+    // PRIORITY 4: Last resort - find by referralCode alone (most recent unconverted)
+    // This handles edge cases but is less deterministic for high-volume ambassadors
+    if (existing.length === 0 && referralCode) {
+      console.log(`[Ambassador] 🔍 No signup by userId or email, trying fallback by referralCode: ${referralCode}`);
+      const byCode = await db.select().from(referralSignups)
+        .where(eq(referralSignups.referralCode, referralCode));
+      if (byCode.length > 0) {
+        // Find most recent unconverted entry (sort by createdAt descending)
+        const unconverted = byCode
+          .filter(s => !s.convertedToPro)
+          .sort((a, b) => {
+            const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return dateB - dateA; // Most recent first
+          })[0];
+        if (unconverted) {
+          existing = [unconverted];
+          console.log(`[Ambassador] ⚠️ Using referralCode-only fallback (less deterministic): ${referralCode} (signup ID: ${unconverted.id})`);
+        }
+      }
+    }
     
     if (existing.length === 0) {
       console.log(`[Ambassador] ⚠️ No referral signup found for user ${userId} - they may not have used a referral link`);
@@ -24,7 +80,7 @@ async function trackAmbassadorConversion(userId: string, source: string): Promis
     // Only update if not already converted (idempotency)
     const result = await db.update(referralSignups)
       .set({ convertedToPro: true, conversionDate: new Date() })
-      .where(eq(referralSignups.userId, userId))
+      .where(eq(referralSignups.id, existing[0].id))
       .returning();
     
     if (result.length > 0) {
@@ -120,19 +176,58 @@ export class WebhookHandlers {
       return;
     }
 
-    // Get customer to find userId from metadata
     const stripe = await getUncachableStripeClient();
-    const customer = await stripe.customers.retrieve(customerId);
     
-    if ('deleted' in customer && customer.deleted) {
-      console.log('Customer was deleted');
-      return;
+    // PRIORITY 1: Read metadata from checkout session (most reliable)
+    let userId = session.metadata?.userId;
+    let referralCode = session.metadata?.referralCode;
+    let email = session.metadata?.email;
+    
+    console.log(`[Checkout] Session metadata - userId: ${userId || 'none'}, referralCode: ${referralCode || 'none'}, email: ${email || 'none'}`);
+    
+    // PRIORITY 2: If session metadata is missing, try subscription metadata
+    if ((!userId || !referralCode) && subscriptionId) {
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      if (!userId && subscription.metadata?.userId) {
+        userId = subscription.metadata.userId;
+        console.log(`[Checkout] Got userId from subscription metadata: ${userId}`);
+      }
+      if (!referralCode && subscription.metadata?.referralCode) {
+        referralCode = subscription.metadata.referralCode;
+        console.log(`[Checkout] Got referralCode from subscription metadata: ${referralCode}`);
+      }
+      if (!email && subscription.metadata?.email) {
+        email = subscription.metadata.email;
+      }
     }
-
-    const userId = customer.metadata?.userId;
+    
+    // PRIORITY 3: Fall back to customer metadata
+    if (!userId || !referralCode) {
+      const customer = await stripe.customers.retrieve(customerId);
+      if (!('deleted' in customer && customer.deleted)) {
+        if (!userId && customer.metadata?.userId) {
+          userId = customer.metadata.userId;
+          console.log(`[Checkout] Got userId from customer metadata: ${userId}`);
+        }
+        if (!referralCode && customer.metadata?.referralCode) {
+          referralCode = customer.metadata.referralCode;
+          console.log(`[Checkout] Got referralCode from customer metadata: ${referralCode}`);
+        }
+        if (!email && customer.email) {
+          email = customer.email;
+        }
+      }
+    }
     
     if (!userId || userId === 'guest') {
-      console.log('No valid userId in customer metadata:', userId);
+      console.log(`[Checkout] No valid userId found. ReferralCode: ${referralCode || 'none'}, Email: ${email || 'none'}`);
+      // Still try to track by referralCode if available
+      if (referralCode && subscriptionId) {
+        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+        if (subscription.status === 'active' || subscription.status === 'trialing') {
+          await trackAmbassadorConversion('guest', 'Stripe checkout (guest)', referralCode, email);
+        }
+      }
       return;
     }
 
@@ -145,13 +240,10 @@ export class WebhookHandlers {
     console.log(`Successfully linked Stripe info for user ${userId}`);
     
     // Track ambassador conversion - only if subscription exists and is active
-    // The subscription.updated webhook will also fire, so conversion is tracked there
-    // for the definitive status. We track here for immediate checkout completions.
     if (subscriptionId) {
-      const stripe = await getUncachableStripeClient();
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
       if (subscription.status === 'active' || subscription.status === 'trialing') {
-        await trackAmbassadorConversion(userId, 'Stripe checkout.session.completed');
+        await trackAmbassadorConversion(userId, 'Stripe checkout.session.completed', referralCode, email);
       }
     }
   }
@@ -164,17 +256,39 @@ export class WebhookHandlers {
       return;
     }
 
-    // Get customer to find userId from metadata
     const stripe = await getUncachableStripeClient();
-    const customer = await stripe.customers.retrieve(customerId);
     
-    if ('deleted' in customer && customer.deleted) {
-      return;
+    // PRIORITY 1: Read metadata from subscription (most reliable for subscription events)
+    let userId = subscription.metadata?.userId;
+    let referralCode = subscription.metadata?.referralCode;
+    let email = subscription.metadata?.email;
+    
+    console.log(`[Subscription] Subscription metadata - userId: ${userId || 'none'}, referralCode: ${referralCode || 'none'}, email: ${email || 'none'}`);
+    
+    // PRIORITY 2: Fall back to customer metadata
+    if (!userId || !referralCode) {
+      const customer = await stripe.customers.retrieve(customerId);
+      if (!('deleted' in customer && customer.deleted)) {
+        if (!userId && customer.metadata?.userId) {
+          userId = customer.metadata.userId;
+          console.log(`[Subscription] Got userId from customer metadata: ${userId}`);
+        }
+        if (!referralCode && customer.metadata?.referralCode) {
+          referralCode = customer.metadata.referralCode;
+          console.log(`[Subscription] Got referralCode from customer metadata: ${referralCode}`);
+        }
+        if (!email && customer.email) {
+          email = customer.email;
+        }
+      }
     }
-
-    const userId = customer.metadata?.userId;
     
     if (!userId || userId === 'guest') {
+      // Still try to track by referralCode if available
+      if (referralCode && (subscription.status === 'active' || subscription.status === 'trialing')) {
+        console.log(`[Subscription] Guest subscription active - tracking by referralCode: ${referralCode}, email: ${email || 'none'}`);
+        await trackAmbassadorConversion('guest', `Stripe subscription.${subscription.status} (guest)`, referralCode, email);
+      }
       return;
     }
 
@@ -191,7 +305,7 @@ export class WebhookHandlers {
       }
       
       // Track ambassador conversion whenever subscription is active/trialing
-      await trackAmbassadorConversion(userId, `Stripe subscription.${subscription.status}`);
+      await trackAmbassadorConversion(userId, `Stripe subscription.${subscription.status}`, referralCode, email);
     } else if (subscription.status === 'canceled' || subscription.status === 'unpaid' || subscription.status === 'past_due') {
       // Subscription is no longer active - clear the subscription ID
       const user = await storage.getUser(userId);
@@ -213,17 +327,25 @@ export class WebhookHandlers {
       return;
     }
 
-    // Get customer to find userId from metadata
     const stripe = await getUncachableStripeClient();
-    const customer = await stripe.customers.retrieve(customerId);
     
-    if ('deleted' in customer && customer.deleted) {
-      return;
+    // PRIORITY 1: Read userId from subscription metadata (most reliable for subscription events)
+    let userId = subscription.metadata?.userId;
+    console.log(`[SubscriptionDeleted] Subscription metadata userId: ${userId || 'none'}`);
+    
+    // PRIORITY 2: Fall back to customer metadata
+    if (!userId) {
+      const customer = await stripe.customers.retrieve(customerId);
+      if (!('deleted' in customer && customer.deleted)) {
+        if (customer.metadata?.userId) {
+          userId = customer.metadata.userId;
+          console.log(`[SubscriptionDeleted] Got userId from customer metadata: ${userId}`);
+        }
+      }
     }
-
-    const userId = customer.metadata?.userId;
     
     if (!userId || userId === 'guest') {
+      console.log(`[SubscriptionDeleted] No valid userId found for subscription ${subscriptionId}`);
       return;
     }
 

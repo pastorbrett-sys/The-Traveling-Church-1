@@ -574,7 +574,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/stripe/checkout", async (req: any, res) => {
     try {
-      const { priceId } = req.body;
+      const { priceId, referralCode } = req.body;
       
       if (!priceId) {
         return res.status(400).json({ message: "Price ID is required" });
@@ -590,10 +590,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const email = user?.email || '';
         
         // Use getOrCreateCustomer to handle test/live mode customer mismatch
+        // Pass referral code so it can be tracked in customer metadata
         const customer = await stripeService.getOrCreateCustomer(
           user?.stripeCustomerId || null,
           email,
-          userId!
+          userId!,
+          referralCode || undefined
         );
         customerId = customer.id;
         
@@ -601,18 +603,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (user && user.stripeCustomerId !== customer.id) {
           await storage.updateUserStripeInfo(userId!, { stripeCustomerId: customer.id });
         }
+        
+        console.log(`[Checkout] Creating session for user ${userId} with referralCode: ${referralCode || 'none'}`);
       } else {
-        // Guest checkout (fallback)
-        const customer = await stripeService.createCustomer('', 'guest');
+        // Guest checkout (fallback) - still track referral code for potential manual matching
+        console.log(`[Checkout] ⚠️ Guest checkout - no session.userId. Referral code: ${referralCode || 'none'}`);
+        const customer = await stripeService.createCustomer('', 'guest', referralCode || undefined);
         customerId = customer.id;
       }
 
       const baseUrl = `${req.protocol}://${req.get('host')}`;
+      
+      // Get user email for metadata
+      let userEmail: string | undefined;
+      if (userId) {
+        const user = await storage.getUser(userId);
+        userEmail = user?.email || undefined;
+      }
+      
       const session = await stripeService.createCheckoutSession(
         customerId,
         priceId,
         `${baseUrl}/checkout/success`,
-        `${baseUrl}/checkout/cancel`
+        `${baseUrl}/checkout/cancel`,
+        {
+          userId: userId || undefined,
+          referralCode: referralCode || undefined,
+          email: userEmail,
+        }
       );
 
       res.json({ url: session.url });

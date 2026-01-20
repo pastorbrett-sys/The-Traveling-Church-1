@@ -130,8 +130,13 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
         throw new Error("Monthly price not found");
       }
       
+      // Get referral code from localStorage for ambassador tracking
+      const { getReferralCode } = await import("@/hooks/use-referral");
+      const referralCode = getReferralCode();
+      
       const checkoutRes = await apiRequest("POST", "/api/stripe/checkout", {
         priceId: proPrice.id,
+        referralCode: referralCode || undefined,
       });
       const checkoutData = await checkoutRes.json();
       
