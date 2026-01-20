@@ -120,8 +120,8 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 | Tier | Price | Detection Method |
 |------|-------|------------------|
-| 🥇 **Premium** | $7.99/month | Card issuing country / App Store region |
-| 🥈 **Emerging** | $1.99/month | Card issuing country / App Store region |
+| 🥇 **Premium** | $7.99/month | Device locale / App Store region |
+| 🥈 **Emerging** | $1.99/month | Device locale / App Store region |
 
 ---
 
@@ -156,7 +156,7 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 ---
 
-### 3.3 Why Card/Account Country (Not IP)
+### 3.3 Why Device Locale (Not IP)
 
 **The Tourist Problem:**
 A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $7.99.
@@ -164,8 +164,11 @@ A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $7.99.
 | Detection Method | US Tourist in Ethiopia | Result |
 |------------------|------------------------|--------|
 | ❌ IP Geolocation | Ethiopia | $1.99 (wrong) |
-| ✅ Card Country (Stripe) | USA | $7.99 (correct) |
+| ✅ Device Locale | USA (en-US) | $7.99 (correct) |
 | ✅ App Store Account | USA | $7.99 (correct) |
+
+**How Device Locale Works:**
+The user's phone/browser reports its locale setting (e.g., `en-US`, `am-ET`, `de-DE`). This reflects where the device was set up, not their current physical location. A US tourist traveling with a US-configured phone will always show their US locale.
 
 **This is why ambassadors in Ethiopia can confidently refer tourists — they'll pay premium pricing.**
 
@@ -461,9 +464,9 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 | Risk | Mitigation |
 |------|------------|
-| Tourists getting local pricing | Card issuing country detection (Stripe) |
+| Tourists getting local pricing | Device locale detection (reflects phone setup region) |
 | App Store region hopping | Apple/Google enforce 12-month lockout |
-| VPN abuse | Not possible — tied to payment method |
+| VPN abuse | Not possible — tied to device locale, not IP |
 
 ---
 
@@ -627,7 +630,7 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 | Number of tiers | **2** | Simpler pricing, easier to explain |
 | Premium price | **$7.99** | Strong value capture from developed markets |
 | Emerging price | **$1.99** | Maximum accessibility, still profitable |
-| Pricing detection | Card/Account country | Prevents tourists exploiting local pricing |
+| Pricing detection | Device locale | Reflects where phone was set up, prevents tourists exploiting local pricing |
 | Premium chat cap | **50/day** | Allows heavy usage, prevents abuse |
 | Emerging chat cap | **25/day** | Generous for price, protects margins |
 | Ambassador Tier 1 | **15%** | Strong direct incentive |

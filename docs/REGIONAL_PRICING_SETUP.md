@@ -11,7 +11,7 @@ This document provides step-by-step instructions for configuring regional pricin
 - **Apple App Store** (iOS)
 - **Google Play Store** (Android)
 
-The pricing model uses **card-issuing country detection** (not IP location) to ensure tourists pay premium pricing regardless of their physical location.
+The pricing model uses **device locale detection** (not IP location) to ensure tourists pay premium pricing regardless of their physical location. The device locale reflects where the phone/browser was set up, which typically matches the user's home country and card.
 
 ---
 
@@ -74,13 +74,16 @@ STRIPE_PRICE_PRO_EMERGING=price_2DEF456... # The $1.99 price ID
 
 ### Step 4: Verify Configuration
 
-Test the pricing endpoint:
+Test the pricing endpoint with device country parameter:
 ```bash
 curl http://localhost:5000/api/pricing/tier
-# Should return: {"tier":"premium","price":7.99,...}
+# Should return: {"tier":"premium","price":7.99,...,"source":"default"}
 
-curl -H "cf-ipcountry: ET" http://localhost:5000/api/pricing/tier
-# Should return: {"tier":"emerging","price":1.99,...}
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=ET"
+# Should return: {"tier":"emerging","price":1.99,...,"source":"device"}
+
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=US"
+# Should return: {"tier":"premium","price":7.99,...,"source":"device"}
 ```
 
 ### Step 5: Test with International Cards
@@ -255,12 +258,14 @@ RevenueCat is already configured with API key: `appl_IHuuguwDzrFpaSziwpBDtyAdmqg
 ### Testing Commands
 
 ```bash
-# Test pricing tier endpoint
+# Test pricing tier endpoint (defaults to premium)
 curl http://localhost:5000/api/pricing/tier
 
-# Test with specific country
-curl -H "cf-ipcountry: ET" http://localhost:5000/api/pricing/tier
-curl -H "cf-ipcountry: US" http://localhost:5000/api/pricing/tier
+# Test with specific device country
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=ET"  # Emerging - $1.99
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=US"  # Premium - $7.99
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=IN"  # Emerging - $1.99
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=GB"  # Premium - $7.99
 
 # Test regional checkout (requires authentication)
 curl -X POST http://localhost:5000/api/stripe/regional-checkout \
@@ -304,19 +309,34 @@ Full list: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 
 ## 8. Security Notes
 
-### Card Country Detection
+### Device Locale Detection
 
-The system uses **card-issuing country** (from Stripe), not IP geolocation. This ensures:
-- Tourists visiting emerging markets pay premium pricing
-- Users can't spoof location to get lower prices
-- Pricing is determined by their bank/card, not VPN
+The system uses **device locale** (from the browser/phone settings) for pricing display. This ensures:
+- Tourists visiting emerging markets see (and pay) premium pricing
+- Users can't spoof location with VPN to see lower prices
+- Pricing matches the region where the device was set up
 
-### Server-Side Enforcement
+**How It Works:**
+1. The browser reports its locale setting (e.g., `en-US`, `am-ET`, `de-DE`)
+2. The country code is extracted from the locale (e.g., `US`, `ET`, `DE`)
+3. The pricing tier is determined based on this country code
 
-The `/api/stripe/regional-checkout` endpoint:
-- **Ignores** any client-provided tier
-- **Derives** tier from card country on server
-- **Defaults** to premium if no card is on file (guest checkout)
+### Why Device Locale is Better Than IP
+
+| Detection Method | US Tourist in Ethiopia | Ethiopian Local |
+|------------------|------------------------|-----------------|
+| ❌ IP Geolocation | $1.99 (wrong) | $1.99 ✓ |
+| ✅ Device Locale | $7.99 (correct) | $1.99 ✓ |
+
+A US tourist has a US-configured phone → sees US pricing → pays US pricing.
+An Ethiopian local has an Ethiopian-configured phone → sees Ethiopian pricing.
+
+### Server-Side Fallback
+
+The `/api/pricing/tier` endpoint:
+- **Prioritizes** device locale from `deviceCountry` query param
+- **Falls back** to IP-based headers if no device locale provided
+- **Defaults** to premium tier if neither is available
 
 ---
 
