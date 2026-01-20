@@ -143,11 +143,16 @@ A **two-tier regional pricing strategy** with **2-level recurring ambassador com
 
 | Region | Countries |
 |--------|-----------|
-| Africa | 🇪🇹 Ethiopia, 🇰🇪 Kenya, 🇳🇬 Nigeria, 🇬🇭 Ghana, 🇹🇿 Tanzania, 🇺🇬 Uganda, 🇷🇼 Rwanda, 🇿🇦 South Africa, 🇲🇦 Morocco, 🇪🇬 Egypt |
+| Africa | 🇪🇹 Ethiopia, 🇰🇪 Kenya, 🇳🇬 Nigeria, 🇬🇭 Ghana, 🇹🇿 Tanzania, 🇺🇬 Uganda, 🇷🇼 Rwanda, 🇿🇦 South Africa, 🇲🇦 Morocco, 🇪🇬 Egypt, 🇹🇳 Tunisia |
 | South Asia | 🇮🇳 India, 🇧🇩 Bangladesh, 🇵🇰 Pakistan, 🇱🇰 Sri Lanka, 🇳🇵 Nepal |
-| Southeast Asia | 🇵🇭 Philippines, 🇮🇩 Indonesia, 🇲🇲 Myanmar, 🇰🇭 Cambodia, 🇹🇭 Thailand, 🇲🇾 Malaysia, 🇻🇳 Vietnam |
-| Latin America | 🇧🇷 Brazil, 🇲🇽 Mexico, 🇦🇷 Argentina, 🇨🇱 Chile, 🇨🇴 Colombia |
-| Eastern Europe | 🇵🇱 Poland, 🇨🇿 Czech Republic, 🇭🇺 Hungary, 🇷🇴 Romania, 🇬🇷 Greece, 🇵🇹 Portugal, 🇺🇦 Ukraine |
+| Southeast Asia | 🇵🇭 Philippines, 🇮🇩 Indonesia, 🇲🇲 Myanmar, 🇰🇭 Cambodia, 🇹🇭 Thailand, 🇲🇾 Malaysia, 🇻🇳 Vietnam, 🇱🇦 Laos |
+| Latin America | 🇧🇷 Brazil, 🇲🇽 Mexico, 🇦🇷 Argentina, 🇨🇱 Chile, 🇨🇴 Colombia, 🇵🇪 Peru, 🇪🇨 Ecuador, 🇧🇴 Bolivia, 🇵🇾 Paraguay |
+| Central America | 🇬🇹 Guatemala, 🇭🇳 Honduras, 🇸🇻 El Salvador, 🇳🇮 Nicaragua |
+| Eastern Europe | 🇵🇱 Poland, 🇨🇿 Czech Republic, 🇭🇺 Hungary, 🇷🇴 Romania, 🇬🇷 Greece, 🇵🇹 Portugal, 🇺🇦 Ukraine, 🇲🇩 Moldova, 🇬🇪 Georgia, 🇦🇲 Armenia |
+| Central Asia | 🇺🇿 Uzbekistan, 🇰🇿 Kazakhstan |
+
+**ISO Country Codes (for implementation reference):**
+> ET, KE, NG, GH, TZ, UG, RW, ZA, MA, EG, TN, IN, BD, PK, LK, NP, PH, ID, MM, KH, TH, MY, VN, LA, BR, MX, AR, CL, CO, PE, EC, BO, PY, GT, HN, SV, NI, PL, CZ, HU, RO, GR, PT, UA, MD, GE, AM, UZ, KZ
 
 ---
 
@@ -650,5 +655,38 @@ Every tourist you help discover the app becomes a source of ongoing passive inco
 
 ---
 
-*Document Version: 2.2*  
+## 🔗 Implementation Reference
+
+### Code Files
+
+| File | Purpose |
+|------|---------|
+| `shared/regionalPricing.ts` | Country-to-tier mapping, pricing constants, tier detection |
+| `server/stripeService.ts` | Regional checkout session creation, card country detection |
+| `server/routes.ts` | `/api/pricing/tier` and `/api/stripe/regional-checkout` endpoints |
+| `client/src/components/upgrade-dialog.tsx` | Frontend pricing display with dynamic tier fetching |
+| `scripts/seed-stripe-products.ts` | Script to seed Stripe products with regional prices |
+
+### API Endpoints
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/pricing/tier` | GET | Returns pricing tier based on detected country |
+| `/api/stripe/regional-checkout` | POST | Creates checkout session with server-side tier enforcement |
+
+### Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `STRIPE_PRICE_PRO_PREMIUM` | Stripe Price ID for $7.99/month Premium tier |
+| `STRIPE_PRICE_PRO_EMERGING` | Stripe Price ID for $1.99/month Emerging tier |
+
+### Related Documentation
+
+- **Setup Guide**: `docs/REGIONAL_PRICING_SETUP.md` — Step-by-step configuration for Stripe, App Store, and Play Store
+- **Project Overview**: `replit.md` — High-level feature summary
+
+---
+
+*Document Version: 2.3*  
 *Last Updated: January 2026*
