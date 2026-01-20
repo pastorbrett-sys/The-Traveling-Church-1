@@ -115,7 +115,31 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   useEffect(() => {
     if (open && !isNative) {
       setIsPricingLoading(true);
-      apiFetch("/api/pricing/tier")
+      
+      // Get country from device locale (e.g., "en-US" -> "US", "am-ET" -> "ET")
+      const getDeviceCountry = (): string | null => {
+        try {
+          const locale = navigator.language || (navigator as any).userLanguage;
+          if (locale && locale.includes('-')) {
+            return locale.split('-')[1].toUpperCase();
+          }
+          // Try Intl API as fallback
+          const resolved = Intl.DateTimeFormat().resolvedOptions();
+          if (resolved.locale && resolved.locale.includes('-')) {
+            return resolved.locale.split('-')[1].toUpperCase();
+          }
+        } catch (e) {
+          console.error("Failed to detect device locale:", e);
+        }
+        return null;
+      };
+      
+      const deviceCountry = getDeviceCountry();
+      const url = deviceCountry 
+        ? `/api/pricing/tier?deviceCountry=${deviceCountry}`
+        : "/api/pricing/tier";
+      
+      apiFetch(url)
         .then(res => res.json())
         .then((data: PricingTierResponse) => {
           setPricing(data);
@@ -348,11 +372,6 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                     `${t.subscribeNow} - ${pricing?.priceDisplay || '$7.99/month'}`
                   )}
                 </Button>
-                {pricing?.tier === 'emerging' && (
-                  <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-1">
-                    {isAmharic ? 'የመጨረሻ ዋጋ በክፍያ ዘዴ ይወሰናል' : 'Final price determined at checkout based on payment method'}
-                  </p>
-                )}
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
                   {t.subscriptionTerms}<br />
                   {t.bySubscribing}{" "}

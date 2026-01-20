@@ -575,17 +575,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/pricing/tier", async (req, res) => {
     try {
-      const countryHeader = req.headers['cf-ipcountry'] as string || 
-                           req.headers['x-vercel-ip-country'] as string ||
-                           null;
+      // Prefer device locale country (from query param) over IP-based detection
+      // Device locale better matches where user's card is likely from
+      const deviceCountry = req.query.deviceCountry as string | undefined;
+      const ipCountry = req.headers['cf-ipcountry'] as string || 
+                        req.headers['x-vercel-ip-country'] as string ||
+                        null;
       
-      const pricing = getPricingForCountry(countryHeader);
+      // Use device country if provided, otherwise fall back to IP
+      const countryToUse = deviceCountry || ipCountry;
+      const pricing = getPricingForCountry(countryToUse);
       
       res.json({
         tier: pricing.tier,
         price: pricing.price,
         priceDisplay: pricing.priceDisplay,
-        detectedCountry: countryHeader || 'unknown',
+        detectedCountry: countryToUse || 'unknown',
+        source: deviceCountry ? 'device' : (ipCountry ? 'ip' : 'default'),
       });
     } catch (error) {
       console.error("Pricing tier error:", error);
@@ -594,6 +600,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         price: PRICING_TIERS.premium.price,
         priceDisplay: PRICING_TIERS.premium.priceDisplay,
         detectedCountry: 'unknown',
+        source: 'error',
       });
     }
   });
