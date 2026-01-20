@@ -292,7 +292,7 @@ $4.99 - $1.50 - $1.69 - $0.75 - $0.25 = **$0.80** ✓
 **Calculation verification (Emerging extreme):**
 $1.99 - $0.60 - $0.85 - $0.30 - $0.10 = **$0.14** ✓
 
-> **Key insight:** The $0.14 "Extreme User" scenario is rare (<1% of users). The $0.63 "Heavy User" scenario is the realistic floor for most engaged users.
+> **Key insight:** The $0.14 "Extreme User" scenario is rare (<1% of users). The $0.66 "Heavy User" scenario is the realistic floor for most engaged users.
 > 
 > *Math: Profit = Price − (Platform Fee + Max AI + Tier 1 + Tier 2). Commissions: Tier 1 = 15%, Tier 2 = 5%, rounded to nearest cent.*
 
