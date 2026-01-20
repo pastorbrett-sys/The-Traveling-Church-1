@@ -25,9 +25,10 @@ npm install
 npm run build
 npx cap sync android
 node scripts/prepare-native-build.js
+npx cap open android
 ```
 
-When complete, open Android Studio and build your signed app bundle.
+Android Studio will open. Now build your signed app bundle.
 
 ---
 
