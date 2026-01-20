@@ -1,0 +1,280 @@
+# **Regional Pricing & Ambassador Strategy**
+
+*Complete business model for sustainable global growth*
+
+---
+
+**Executive Summary**
+
+A three-tier regional pricing strategy using payment card issuing country (web) and App Store/Play Store account region (mobile) to ensure tourists pay full price while locals in emerging markets pay affordable rates. Ambassador tour guides earn 20% commission, incentivizing them to convert high-value tourists.
+
+---
+
+**1. Cost Analysis**
+
+**1.1 AI Bible Buddy Costs (GPT-4o-mini)**
+
+| **Metric** | **Cost per 1M Tokens** |
+| --- | --- |
+| Input tokens | $0.15 |
+| Output tokens | $0.60 |
+
+**Per-message calculation:**
+
+```
+System prompt + user message: ~2,000 input tokens
+AI response: ~400 output tokens
+Cost = (2,000 × $0.00000015) + (400 × $0.0000006)
+     = $0.00054 per message
+
+```
+
+**1.2 Monthly Cost Per User**
+
+| **User Type** | **Chats/Month** | **AI Cost** |
+| --- | --- | --- |
+| Dormant | 0 | $0.00 |
+| Light | 50 | $0.03 |
+| Medium | 200 | $0.11 |
+| Heavy | 500 | $0.27 |
+| Extreme | 2,000 | $1.08 |
+
+**1.3 Payment Processing Fees**
+
+| **Platform** | **Fee Structure** |
+| --- | --- |
+| Stripe (Web) | 2.9% + $0.30 |
+| Apple App Store | 30% (or 15% for Small Business) |
+| Google Play Store | 30% (or 15% for Small Business) |
+
+---
+
+**2. Three-Tier Regional Pricing**
+
+**2.1 Pricing Tiers**
+
+| **Tier** | **Monthly Price** | **Target Markets** |
+| --- | --- | --- |
+| **Premium** | $9.99 | USA, Canada, UK, Australia, Western Europe, Japan, South Korea, UAE, Singapore |
+| **Mid-Range** | $4.99 | Eastern Europe, Brazil, Mexico, South Africa, Thailand, Malaysia |
+| **Emerging** | $1.99 | Ethiopia, Kenya, Nigeria, India, Philippines, Bangladesh, Pakistan, Indonesia |
+
+**2.2 Profit Analysis by Tier (Web - Stripe)**
+
+| **Tier** | **Price** | **Stripe Fee** | **Heavy User AI Cost** | **Net Profit** |
+| --- | --- | --- | --- | --- |
+| Premium | $9.99 | $0.59 | $0.27 | **$9.13** |
+| Mid-Range | $4.99 | $0.44 | $0.27 | **$4.28** |
+| Emerging | $1.99 | $0.36 | $0.27 | **$1.36** |
+
+**2.3 Profit Analysis by Tier (Mobile - 15% Apple/Google Fee)**
+
+| **Tier** | **Price** | **Store Fee (15%)** | **Heavy User AI Cost** | **Net Profit** |
+| --- | --- | --- | --- | --- |
+| Premium | $9.99 | $1.50 | $0.27 | **$8.22** |
+| Mid-Range | $4.99 | $0.75 | $0.27 | **$3.97** |
+| Emerging | $1.99 | $0.30 | $0.27 | **$1.42** |
+
+---
+
+**3. The Tourist Problem & Solution**
+
+**3.1 The Problem**
+
+Ethiopian tour guides at holy sites will refer foreign tourists. If we use IP geolocation:
+
+- Tourist is physically in Ethiopia 🇪🇹
+- IP address = Ethiopia
+- System shows $1.99 price ❌
+- Should pay $9.99 ✅
+
+**We lose $8.00 per tourist conversion.**
+
+**3.2 The Solution**
+
+| **Platform** | **Detection Method** | **How It Works** |
+| --- | --- | --- |
+| **Web (Stripe)** | Card issuing country | Stripe's `card.country` field returns the country where the bank issued the card |
+| **iOS (App Store)** | App Store account region | User's Apple ID is tied to their home country |
+| **Android (Play Store)** | Play Store account region | User's Google account is tied to their home country |
+
+**3.3 Why This Works**
+
+**A US tourist in Ethiopia:**
+
+| **Method** | **Result** | **Price Shown** |
+| --- | --- | --- |
+| IP Geolocation | Ethiopia 🇪🇹 | $1.99 ❌ |
+| Card Country (Stripe) | USA 🇺🇸 | $9.99 ✅ |
+| App Store Account | USA 🇺🇸 | $9.99 ✅ |
+| Play Store Account | USA 🇺🇸 | $9.99 ✅ |
+
+**Why tourists can't game this:**
+
+- Changing App Store/Play Store country requires:
+    - Payment method from the new country
+    - 12-month waiting period between changes
+    - Losing access to previous purchases
+- Card issuing country cannot be faked
+
+---
+
+**4. Platform-Specific Implementation**
+
+**4.1 Web (Stripe)**
+
+**Technical approach:**
+
+1. Create separate Stripe Price IDs for each tier
+2. During checkout, detect `card.country` from Payment Method
+3. Dynamically apply correct price based on country tier
+
+**Price IDs to create:**
+
+- `price_pro_premium_monthly` → $9.99
+- `price_pro_midrange_monthly` → $4.99
+- `price_pro_emerging_monthly` → $1.99
+
+**4.2 iOS (App Store)**
+
+**How it works:**
+
+- Apple uses the user's **App Store account country** (not location)
+- Set different price tiers per storefront in App Store Connect
+- Apple auto-converts and displays in local currency
+
+**App Store Connect setup:**
+
+1. Create subscription product
+2. Set base price for US storefront (Tier 10 = $9.99)
+3. Manually override Ethiopia storefront to Tier 2 ($1.99)
+4. Override mid-range countries to appropriate tier
+
+**Apple's regional tiers:**
+
+| **Country** | **Price Tier** | **Local Price** |
+| --- | --- | --- |
+| USA | Tier 10 | $9.99 |
+| UK | Tier 10 | £9.99 |
+| Ethiopia | Tier 2 | ~$1.99 |
+| India | Tier 2 | ₹129 (~$1.55) |
+
+**4.3 Android (Google Play)**
+
+**How it works:**
+
+- Google uses the user's **Play Store account country** (not location)
+- Set custom prices per country in Play Console
+- Google handles currency conversion
+
+**Play Console setup:**
+
+1. Go to Monetize → Products → Subscriptions
+2. Set base price $9.99 USD
+3. Click "Edit prices" for regional overrides
+4. Set Ethiopia, India, etc. to $1.99 equivalent
+5. Set mid-range countries to $4.99 equivalent
+
+**Google's regional pricing:**
+
+| **Country** | **Set Price** | **Local Currency** |
+| --- | --- | --- |
+| USA | $9.99 | $9.99 USD |
+| Ethiopia | $1.99 | ~100 ETB |
+| India | $1.99 | ₹169 |
+| Brazil | $4.99 | R$24.99 |
+
+---
+
+**5. Ambassador Program**
+
+**5.1 Commission Structure**
+
+| **Tourist Home Country** | **Subscription** | **Ambassador Gets (20%)** |
+| --- | --- | --- |
+| USA/UK/EU | $9.99/month | **$2.00/month** |
+| Mid-range | $4.99/month | **$1.00/month** |
+| Ethiopia | $1.99/month | **$0.40/month** |
+
+**5.2 Incentive Alignment**
+
+Ethiopian tour guides are incentivized to target foreign tourists:
+
+| **Convert 10 Users** | **If All Tourists** | **If All Locals** |
+| --- | --- | --- |
+| Monthly revenue | $99.90 | $19.90 |
+| Ambassador share | **$20.00** | **$4.00** |
+
+**5.3 Tracking**
+
+| **Event** | **How Tracked** | **Attribution** |
+| --- | --- | --- |
+| Click | `?ref=CODE` URL parameter | Immediate |
+| Signup | Cookie + database | 30-day window |
+| Conversion | Stripe/RevenueCat webhook | Lifetime |
+
+---
+
+**6. Edge Cases & Risk Mitigation**
+
+**6.1 Extreme User Profitability**
+
+**Ethiopia tier @ $1.99 - worst case scenarios:**
+
+| **Chats/Month** | **AI Cost** | **Fees** | **Total Cost** | **Profit** |
+| --- | --- | --- | --- | --- |
+| 500 | $0.27 | $0.36 | $0.63 | **$1.36** ✅ |
+| 1,000 | $0.54 | $0.36 | $0.90 | **$1.09** ✅ |
+| 2,000 | $1.08 | $0.36 | $1.44 | **$0.55** ✅ |
+| 5,000 | $2.70 | $0.36 | $3.06 | **-$1.07** ❌ |
+
+**6.2 Abuse Prevention**
+
+| **Risk** | **Mitigation** |
+| --- | --- |
+| Extreme AI usage | Daily message cap (100/day) |
+| Region hopping | Card/account country detection |
+| Ambassador fraud | Manual review of suspicious patterns |
+
+---
+
+**7. Implementation Checklist**
+
+**Phase 1: Stripe (Web)**
+
+- [ ]  Create 3 price IDs (premium, mid-range, emerging)
+- [ ]  Implement card country detection in checkout flow
+- [ ]  Map countries to tiers
+- [ ]  Test with international test cards
+
+**Phase 2: Apple App Store**
+
+- [ ]  Set up subscription in App Store Connect
+- [ ]  Configure price tiers per storefront
+- [ ]  Override emerging market prices
+- [ ]  Test with sandbox accounts
+
+**Phase 3: Google Play Store**
+
+- [ ]  Set up subscription in Play Console
+- [ ]  Configure regional pricing overrides
+- [ ]  Test with license testers in different regions
+
+**Phase 4: Ambassador Dashboard**
+
+- [ ]  Display user's tier in conversion data
+- [ ]  Calculate commission based on actual price paid
+- [ ]  Build payout reporting
+
+---
+
+**8. Summary**
+
+| **Decision** | **Choice** | **Rationale** |
+| --- | --- | --- |
+| Pricing detection | Card/Account country | Prevents tourists getting local pricing |
+| Emerging market price | $1.99 | Maintains $0.55+ profit even with heavy usage |
+| Ambassador commission | 20% | Incentivizes targeting high-value tourists |
+| Abuse prevention | 100 msgs/day cap | Prevents $1.07 loss on extreme users |
+
+**Bottom line:** This model is sustainable across all tiers while making the app accessible in emerging markets and properly monetizing tourists through ambassadors.
