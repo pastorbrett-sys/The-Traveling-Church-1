@@ -313,6 +313,70 @@ $1.99 - $0.60 - $0.85 - $0.30 - $0.10 = **$0.14** ✓
 
 ---
 
+### 💵 How You Make Money (Copy/Paste Explainer)
+
+> **This section is designed to share directly with potential ambassadors.**
+
+---
+
+#### The Simple Version
+
+You earn money every time someone you refer subscribes to Vagabond Bible Pro. But here's what makes it special: **you get paid every single month they stay subscribed** — not just once.
+
+---
+
+#### How It Works
+
+1. **You share your personal referral link** with tourists, friends, or your community
+2. **They sign up and subscribe** to Pro ($4.99/month for most tourists)
+3. **You earn 15%** of their subscription — that's **$0.75 every month**
+4. **This continues forever** as long as they remain a subscriber
+
+---
+
+#### Real Example
+
+| What Happens | Your Monthly Earnings |
+|--------------|----------------------|
+| You refer 1 tourist who subscribes | **$0.75/month** |
+| You refer 10 tourists who subscribe | **$7.50/month** |
+| You refer 20 tourists who subscribe | **$15.00/month** |
+| Those 20 stay subscribed for a year | **$180.00/year** (passive!) |
+
+---
+
+#### The Bonus: Build a Team
+
+You can also invite other guides or friends to become ambassadors. When **they** refer someone:
+
+- They earn 15% (their direct referral)
+- **You earn 5%** just for recruiting them
+
+| Your Team Activity | Your Bonus Earnings |
+|--------------------|---------------------|
+| 1 guide you recruited refers 10 tourists | **$2.50/month** |
+| 5 guides you recruited each refer 10 tourists | **$12.50/month** |
+
+---
+
+#### Why This Is Different
+
+| Traditional Referral | Vagabond Bible Ambassador |
+|---------------------|---------------------------|
+| One-time bonus | **Monthly recurring income** |
+| Ends after signup | **Lasts as long as they subscribe** |
+| Just your referrals | **Earn from your team's referrals too** |
+
+---
+
+#### The Bottom Line
+
+**Refer once. Get paid forever.**
+
+Every tourist you help discover the app becomes a source of ongoing passive income. The more people you refer, and the longer they stay, the more you earn — month after month, year after year.
+
+---
+
 ### 6.2 Monthly Earnings by Tier
 
 | Referral From | Subscription | Tier 1 Earns | Tier 2 Earns |
