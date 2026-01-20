@@ -1,17 +1,18 @@
 # Regional Pricing Setup Guide
 
-**Vagabond Bible — Two-Tier Regional Pricing Configuration**
+**Vagabond Bible — Complete Two-Tier Pricing Configuration (Web + iOS + Android)**
 
 ---
 
 ## Overview
 
-This document provides step-by-step instructions for configuring regional pricing across all platforms:
-- **Stripe** (Web)
-- **Apple App Store** (iOS)
-- **Google Play Store** (Android)
+This document provides the complete setup for two-tier regional pricing across all platforms.
 
-The pricing model uses **device locale detection** (not IP location) to ensure tourists pay premium pricing regardless of their physical location. The device locale reflects where the phone/browser was set up, which typically matches the user's home country and card.
+| Platform | Pricing Method | Status |
+|----------|---------------|--------|
+| **Web (Stripe)** | Device locale detection → correct Stripe price ID | ✅ Complete |
+| **iOS (App Store)** | Two separate products + RevenueCat Targeting | ✅ Complete |
+| **Android (Play Store)** | Single product with regional pricing | ⏳ TODO |
 
 ---
 
@@ -22,342 +23,378 @@ The pricing model uses **device locale detection** (not IP location) to ensure t
 | **Premium** | $7.99 | USA, UK, EU, Japan, Australia, etc. |
 | **Emerging** | $1.99 | Ethiopia, India, Kenya, Brazil, etc. |
 
-### Key Implementation Files
-
-| File | Purpose |
-|------|---------|
-| `shared/regionalPricing.ts` | Country-to-tier mapping, pricing constants |
-| `server/stripeService.ts` | Regional checkout session creation, card country detection |
-| `server/routes.ts` | `/api/pricing/tier` and `/api/stripe/regional-checkout` endpoints |
-| `client/src/components/upgrade-dialog.tsx` | Frontend pricing display |
-
 ---
 
-## 1. Stripe Dashboard Setup (Web) — REQUIRED
+## Why Device Locale (Not IP Geolocation)
 
-### Step 1: Access Stripe Products
-
-1. Log in to [Stripe Dashboard](https://dashboard.stripe.com/)
-2. Navigate to **Products** → **Product Catalog**
-3. Find or create **"Pro Plan"** product
-
-### Step 2: Create Regional Price IDs
-
-For the Pro Plan product, create two monthly subscription prices:
-
-#### Premium Price ($7.99/month)
-1. Click **"Add another price"**
-2. Set:
-   - **Price**: $7.99 USD
-   - **Billing period**: Monthly
-   - **Metadata** (optional): `region: premium`
-3. Click **Save**
-4. **Copy the Price ID** (e.g., `price_1ABC123...`)
-
-#### Emerging Price ($1.99/month)
-1. Click **"Add another price"**
-2. Set:
-   - **Price**: $1.99 USD
-   - **Billing period**: Monthly
-   - **Metadata** (optional): `region: emerging`
-3. Click **Save**
-4. **Copy the Price ID** (e.g., `price_2DEF456...`)
-
-### Step 3: Set Environment Variables
-
-Add these to your Replit Secrets (or `.env` file):
-
-```bash
-STRIPE_PRICE_PRO_PREMIUM=price_1ABC123...  # The $7.99 price ID
-STRIPE_PRICE_PRO_EMERGING=price_2DEF456... # The $1.99 price ID
-```
-
-### Step 4: Verify Configuration
-
-Test the pricing endpoint with device country parameter:
-```bash
-curl http://localhost:5000/api/pricing/tier
-# Should return: {"tier":"premium","price":7.99,...,"source":"default"}
-
-curl "http://localhost:5000/api/pricing/tier?deviceCountry=ET"
-# Should return: {"tier":"emerging","price":1.99,...,"source":"device"}
-
-curl "http://localhost:5000/api/pricing/tier?deviceCountry=US"
-# Should return: {"tier":"premium","price":7.99,...,"source":"device"}
-```
-
-### Step 5: Test with International Cards
-
-Use Stripe's test card numbers to verify regional pricing:
-
-| Country | Card Number | Expected Tier |
-|---------|-------------|---------------|
-| USA | `4242424242424242` | premium |
-| Australia | `4000000360000006` | premium |
-| Brazil | `4000000760000002` | emerging |
-| India | `4000003560000008` | emerging |
-
-Full list: [Stripe Testing International Cards](https://stripe.com/docs/testing#international-cards)
-
----
-
-## 2. Apple App Store Setup (iOS) — REQUIRED
-
-### Step 1: Access App Store Connect
-
-1. Log in to [App Store Connect](https://appstoreconnect.apple.com/)
-2. Navigate to your app → **Subscriptions**
-
-### Step 2: Create Subscription Group
-
-1. Click **"+"** to create a new subscription group
-2. Name: **"Vagabond Bible Pro"**
-3. Click **Create**
-
-### Step 3: Create Subscription Product
-
-1. Within the group, click **"Create Subscription"**
-2. Configure:
-   - **Reference Name**: "Pro Monthly"
-   - **Product ID**: `pro_monthly` (must match RevenueCat)
-   - **Subscription Duration**: 1 Month
-
-### Step 4: Set Base Price (Premium Markets)
-
-1. In the subscription details, go to **"Subscription Prices"**
-2. Click **"Add Subscription Price"**
-3. Select **Tier 8** ($7.99 USD)
-4. This becomes the default for Premium markets
-
-### Step 5: Configure Emerging Market Pricing
-
-1. In the subscription prices section, click **"Set prices for other countries"**
-2. For each Emerging market country, select **Tier 2** (~$1.99 equivalent):
-
-**Emerging Market Countries to Override:**
-- **Africa**: Ethiopia, Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, South Africa, Morocco, Egypt, Tunisia
-- **South Asia**: India, Bangladesh, Pakistan, Sri Lanka, Nepal
-- **Southeast Asia**: Philippines, Indonesia, Myanmar, Cambodia, Thailand, Malaysia, Vietnam, Laos
-- **Latin America**: Brazil, Mexico, Argentina, Chile, Colombia, Peru, Ecuador, Bolivia, Paraguay, Guatemala, Honduras, El Salvador, Nicaragua
-- **Eastern Europe**: Poland, Czech Republic, Hungary, Romania, Greece, Portugal, Ukraine, Moldova, Georgia, Armenia
-- **Central Asia**: Uzbekistan, Kazakhstan
-
-### Step 6: Submit for Review
-
-1. Complete all required metadata
-2. Submit the subscription for App Review
-3. Once approved, the pricing will be live
-
----
-
-## 3. Google Play Store Setup (Android) — REQUIRED
-
-### Step 1: Access Play Console
-
-1. Log in to [Google Play Console](https://play.google.com/console)
-2. Navigate to your app → **Monetize** → **Products** → **Subscriptions**
-
-### Step 2: Create Subscription
-
-1. Click **"Create subscription"**
-2. Configure:
-   - **Product ID**: `pro_monthly` (must match RevenueCat)
-   - **Name**: "Vagabond Bible Pro"
-   - **Description**: "Full access to all Vagabond Bible features"
-   - **Billing period**: 1 Month
-
-### Step 3: Set Base Price
-
-1. Click **"Set price"**
-2. Enter **$7.99 USD** as the base price
-3. Google will auto-calculate local currency equivalents
-
-### Step 4: Configure Regional Price Overrides
-
-1. Click **"Manage prices"**
-2. Click **"Override prices"**
-3. For each Emerging market, set the price to approximately **$1.99 USD equivalent**:
-
-**Countries to Override:**
-- Use Google's recommended local pricing where possible
-- Target ~$1.99 USD equivalent in local currency
-- Apply to all countries listed in the Emerging Market section above
-
-### Step 5: Activate Subscription
-
-1. Review all settings
-2. Click **"Activate"**
-3. The subscription will be available for purchase
-
----
-
-## 4. RevenueCat Integration
-
-### Existing Configuration
-
-RevenueCat is already configured with API key: `appl_IHuuguwDzrFpaSziwpBDtyAdmqg`
-
-### Verify Product Sync
-
-1. Log in to [RevenueCat Dashboard](https://app.revenuecat.com/)
-2. Navigate to your project → **Products**
-3. Verify that:
-   - **iOS product**: `pro_monthly` is synced from App Store Connect
-   - **Android product**: `pro_monthly` is synced from Play Console
-
-### Create Offering
-
-1. Go to **Offerings** → **Create New Offering**
-2. Name: **"default"** (or update existing)
-3. Add the `pro_monthly` packages for both iOS and Android
-4. Make this the current offering
-
----
-
-## 5. Verification Checklist
-
-### Stripe (Web)
-- [ ] Premium price ID created ($7.99)
-- [ ] Emerging price ID created ($1.99)
-- [ ] `STRIPE_PRICE_PRO_PREMIUM` environment variable set
-- [ ] `STRIPE_PRICE_PRO_EMERGING` environment variable set
-- [ ] `/api/pricing/tier` returns correct tiers
-- [ ] `/api/stripe/regional-checkout` creates sessions successfully
-- [ ] Tested with international test cards
-
-### Apple App Store (iOS)
-- [ ] Subscription group created
-- [ ] `pro_monthly` product created
-- [ ] Base price set to Tier 8 ($7.99)
-- [ ] Emerging markets set to Tier 2 (~$1.99)
-- [ ] Subscription submitted for review
-- [ ] RevenueCat synced with product
-
-### Google Play Store (Android)
-- [ ] Subscription created
-- [ ] Product ID: `pro_monthly`
-- [ ] Base price: $7.99 USD
-- [ ] Regional overrides for emerging markets
-- [ ] Subscription activated
-- [ ] RevenueCat synced with product
-
----
-
-## 6. Troubleshooting
-
-### Common Issues
-
-| Issue | Solution |
-|-------|----------|
-| "No price ID configured" error | Set `STRIPE_PRICE_PRO_PREMIUM` and `STRIPE_PRICE_PRO_EMERGING` environment variables |
-| Wrong tier detected | Verify country code is in `shared/regionalPricing.ts` |
-| Checkout fails | Check Stripe Dashboard for error logs |
-| RevenueCat not syncing | Refresh products in RevenueCat Dashboard |
-| App Store pricing not updating | Allow 24-48 hours for propagation |
-
-### Testing Commands
-
-```bash
-# Test pricing tier endpoint (defaults to premium)
-curl http://localhost:5000/api/pricing/tier
-
-# Test with specific device country
-curl "http://localhost:5000/api/pricing/tier?deviceCountry=ET"  # Emerging - $1.99
-curl "http://localhost:5000/api/pricing/tier?deviceCountry=US"  # Premium - $7.99
-curl "http://localhost:5000/api/pricing/tier?deviceCountry=IN"  # Emerging - $1.99
-curl "http://localhost:5000/api/pricing/tier?deviceCountry=GB"  # Premium - $7.99
-
-# Test regional checkout (requires authentication)
-curl -X POST http://localhost:5000/api/stripe/regional-checkout \
-  -H "Content-Type: application/json" \
-  -d '{"referralCode": "TEST123"}'
-```
-
----
-
-## 7. Code Reference
-
-### Adding New Countries
-
-To add a country to either tier, edit `shared/regionalPricing.ts`:
-
-```typescript
-// Premium countries (developed markets)
-export const PREMIUM_COUNTRIES = new Set([
-  'US', 'CA', 'GB', 'DE', 'FR', ...
-  'NEW_COUNTRY_CODE',  // Add here for premium
-]);
-
-// Emerging countries (developing markets)
-export const EMERGING_COUNTRIES = new Set([
-  'ET', 'KE', 'NG', 'GH', ...
-  'NEW_COUNTRY_CODE',  // Add here for emerging
-]);
-```
-
-### Country Code Reference
-
-Use ISO 3166-1 alpha-2 codes. Examples:
-- Ethiopia: `ET`
-- Kenya: `KE`
-- United States: `US`
-- United Kingdom: `GB`
-
-Full list: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-
----
-
-## 8. Security Notes
-
-### Device Locale Detection
-
-The system uses **device locale** (from the browser/phone settings) for pricing display. This ensures:
-- Tourists visiting emerging markets see (and pay) premium pricing
-- Users can't spoof location with VPN to see lower prices
-- Pricing matches the region where the device was set up
-
-**How It Works:**
-1. The browser reports its locale setting (e.g., `en-US`, `am-ET`, `de-DE`)
-2. The country code is extracted from the locale (e.g., `US`, `ET`, `DE`)
-3. The pricing tier is determined based on this country code
-
-### Why Device Locale is Better Than IP
+**The Tourist Problem:**
+A US tourist in Ethiopia using IP geolocation would incorrectly see $1.99 instead of $7.99.
 
 | Detection Method | US Tourist in Ethiopia | Ethiopian Local |
 |------------------|------------------------|-----------------|
 | ❌ IP Geolocation | $1.99 (wrong) | $1.99 ✓ |
 | ✅ Device Locale | $7.99 (correct) | $1.99 ✓ |
+| ✅ App Store Account | $7.99 (correct) | $1.99 ✓ |
 
-A US tourist has a US-configured phone → sees US pricing → pays US pricing.
-An Ethiopian local has an Ethiopian-configured phone → sees Ethiopian pricing.
-
-### Server-Side Fallback
-
-The `/api/pricing/tier` endpoint:
-- **Prioritizes** device locale from `deviceCountry` query param
-- **Falls back** to IP-based headers if no device locale provided
-- **Defaults** to premium tier if neither is available
+Device locale reflects where the phone/browser was set up, not physical location. This ensures ambassadors in Ethiopia can confidently refer tourists knowing they'll pay premium pricing.
 
 ---
 
-## 9. Maintenance
+## Country Lists
 
-### When to Update This Document
+### Premium Markets ($7.99)
 
-Update this document when:
-- Pricing tiers change
-- Countries are added/removed from tiers
-- New platforms are added
-- API endpoints change
-- Environment variables change
+| Region | Countries (ISO Codes) |
+|--------|----------------------|
+| North America | US, CA |
+| Western Europe | GB, DE, FR, NL, BE, AT, CH, IE |
+| Scandinavia | DK, SE, NO, FI |
+| Asia-Pacific | JP, KR, SG, AU, NZ |
+| Middle East | AE, QA, KW, SA, IL |
 
-### Related Documents
+### Emerging Markets ($1.99)
 
-- `docs/Regional_Pricing_Ambassador_Strategy_v2.md` — Business strategy and commission calculations
+| Region | Countries (ISO Codes) |
+|--------|----------------------|
+| Africa | ET, KE, NG, GH, TZ, UG, RW, ZA, MA, EG, TN |
+| South Asia | IN, BD, PK, LK, NP |
+| Southeast Asia | PH, ID, MM, KH, TH, MY, VN, LA |
+| Latin America | BR, MX, AR, CL, CO, PE, EC, BO, PY, GT, HN, SV, NI |
+| Eastern Europe | PL, CZ, HU, RO, GR, PT, UA, MD, GE, AM |
+| Central Asia | UZ, KZ |
+
+**Source of truth:** `shared/regionalPricing.ts`
+
+---
+
+# Part 1: Web (Stripe) ✅ COMPLETE
+
+## How It Works
+
+1. Frontend detects device locale via `navigator.language` (e.g., "en-US" → "US")
+2. Frontend calls `/api/pricing/tier?deviceCountry=US`
+3. Server determines tier based on country code
+4. At checkout, server uses correct Stripe price ID
+
+## Stripe Dashboard Setup
+
+### Step 1: Create Price IDs
+
+1. Go to [Stripe Dashboard](https://dashboard.stripe.com/) → Products
+2. Find or create "Pro Plan" product
+3. Create two prices:
+   - **Premium**: $7.99/month → Copy price ID
+   - **Emerging**: $1.99/month → Copy price ID
+
+### Step 2: Set Environment Variables
+
+```bash
+STRIPE_PRICE_PRO_PREMIUM=price_xxx  # The $7.99 price ID
+STRIPE_PRICE_PRO_EMERGING=price_xxx # The $1.99 price ID
+```
+
+### Step 3: Test Endpoints
+
+```bash
+# Default (no country) → Premium
+curl http://localhost:5000/api/pricing/tier
+
+# Ethiopian device → Emerging
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=ET"
+
+# US device → Premium
+curl "http://localhost:5000/api/pricing/tier?deviceCountry=US"
+```
+
+### Step 4: Test with International Cards
+
+| Country | Test Card Number | Expected Tier |
+|---------|------------------|---------------|
+| USA | 4242424242424242 | Premium |
+| Australia | 4000000360000006 | Premium |
+| Brazil | 4000000760000002 | Emerging |
+| India | 4000003560000008 | Emerging |
+
+Full list: [Stripe Testing International Cards](https://stripe.com/docs/testing#international-cards)
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `shared/regionalPricing.ts` | Country-to-tier mapping |
+| `server/routes.ts` | `/api/pricing/tier` and `/api/stripe/regional-checkout` endpoints |
+| `client/src/components/upgrade-dialog.tsx` | Frontend pricing display |
+
+---
+
+# Part 2: iOS (App Store + RevenueCat) ✅ COMPLETE
+
+## Strategy: Two Separate Products
+
+Apple doesn't support easy per-country pricing on a single subscription, so we use two products:
+
+| Product ID | Price | Target |
+|------------|-------|--------|
+| `vagabond_bible_pro_monthly` | $7.99 | Premium markets |
+| `pro_monthly_emerging` | $1.99 | Emerging markets |
+
+RevenueCat Targeting automatically shows the correct product based on the user's App Store country.
+
+## App Store Connect Setup
+
+### Step 1: Create Subscription Group
+
+1. Go to [App Store Connect](https://appstoreconnect.apple.com/) → Your App → Subscriptions
+2. Create subscription group: **"Vagabond Bible Pro"**
+
+### Step 2: Create Premium Product ($7.99)
+
+1. Create subscription in the group:
+   - **Reference Name**: Pro Monthly
+   - **Product ID**: `vagabond_bible_pro_monthly`
+   - **Duration**: 1 Month
+2. Set price: **$7.99 USD**
+3. Add localization (English US):
+   - **Display Name**: Vagabond Bible Pro
+   - **Description**: Unlimited access to AI Bible study features and Pastor
+4. Upload review screenshot
+5. Save
+
+### Step 3: Create Emerging Product ($1.99)
+
+1. Create another subscription in the same group:
+   - **Reference Name**: Pro Monthly Emerging
+   - **Product ID**: `pro_monthly_emerging`
+   - **Duration**: 1 Month
+2. Set price: **$1.99 USD**
+3. Add localization (English US):
+   - **Display Name**: Vagabond Bible Pro
+   - **Description**: Unlimited access to AI Bible study features and Pastor
+4. Upload review screenshot
+5. Save
+
+## RevenueCat Setup
+
+### Step 1: Add Products
+
+1. Go to [RevenueCat Dashboard](https://app.revenuecat.com/) → Product Catalog → Products
+2. Add both iOS products:
+   - `vagabond_bible_pro_monthly`
+   - `pro_monthly_emerging`
+
+### Step 2: Create Entitlement
+
+1. Go to Entitlements → Create **"Vagabond Bible Pro"**
+2. Attach BOTH products to this entitlement
+3. This ensures either purchase unlocks Pro features
+
+### Step 3: Create Offerings
+
+**Default Offering (Premium):**
+1. Go to Offerings → Create offering
+   - Identifier: `default`
+   - Display Name: `Pro Monthly`
+2. Add package with `vagabond_bible_pro_monthly` product
+
+**Emerging Offering:**
+1. Create another offering
+   - Identifier: `emerging`
+   - Display Name: `Pro Monthly Emerging`
+2. Add package with `pro_monthly_emerging` product
+
+### Step 4: Configure Targeting
+
+1. Go to Targeting → New Rule
+2. Configure:
+   - **Display Name**: `Emerging Markets Pricing`
+   - **Condition**: Country is any of [46 emerging market countries]
+   - **Then show**: `emerging` offering
+   - **State**: Live
+3. Save
+
+**Countries to select (46 total):**
+- Africa: Ethiopia, Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, South Africa, Morocco, Egypt, Tunisia
+- South Asia: India, Bangladesh, Pakistan, Sri Lanka, Nepal
+- Southeast Asia: Philippines, Indonesia, Myanmar, Cambodia, Thailand, Malaysia, Vietnam, Laos
+- Latin America: Brazil, Mexico, Argentina, Chile, Colombia, Peru, Ecuador, Bolivia, Paraguay, Guatemala, Honduras, El Salvador, Nicaragua
+- Eastern Europe: Poland, Czech Republic, Hungary, Romania, Greece, Portugal, Ukraine, Moldova, Georgia, Armenia
+- Central Asia: Uzbekistan, Kazakhstan
+
+### Step 5: Set Default Offering
+
+At the bottom of Targeting page, ensure **"Select default offering"** is set to `default`.
+
+## How It Works
+
+1. User opens app on iPhone
+2. RevenueCat SDK initializes and detects App Store country
+3. Targeting rule matches (or falls through to default)
+4. `offerings.current` returns correct offering
+5. App displays price from `offerings.current.availablePackages[0].product.priceString`
+6. User purchases → entitlement granted
+
+## App Code (No Changes Needed)
+
+```typescript
+// client/src/contexts/revenuecat-context.tsx
+const offerings = await Purchases.getOfferings();
+const packageToPurchase = offerings.current.availablePackages[0];
+const price = packageToPurchase.product.priceString;
+```
+
+---
+
+# Part 3: Android (Google Play) ⏳ TODO
+
+## Strategy: Single Product with Regional Pricing
+
+Unlike iOS, Google Play supports per-country pricing on a single product, making setup simpler.
+
+| Product ID | Base Price | Regional Override |
+|------------|------------|-------------------|
+| `pro_monthly` | $7.99 | $1.99 for emerging markets |
+
+## Google Play Console Setup
+
+### Step 1: Create Subscription
+
+1. Go to [Google Play Console](https://play.google.com/console) → Your App → Monetize → Products → Subscriptions
+2. Click **Create subscription**
+3. Configure:
+   - **Product ID**: `pro_monthly`
+   - **Name**: Vagabond Bible Pro
+   - **Description**: Unlimited access to AI Bible study features
+
+### Step 2: Create Base Plan
+
+1. In your subscription, click **Add base plan**
+2. Configure:
+   - **Base plan ID**: `monthly`
+   - **Renewal type**: Auto-renewing
+   - **Billing period**: 1 Month
+   - **Grace period**: 3 days
+
+### Step 3: Set Pricing
+
+1. Set **default price**: **$7.99 USD**
+2. Click **Set prices by country** or **Edit prices**
+3. For each emerging market country, override to **~$1.99 USD equivalent** in local currency
+
+### Step 4: Activate
+
+1. Click **Activate** on the base plan
+2. The subscription becomes available for purchase
+
+## RevenueCat Setup (Android)
+
+### Step 1: Add Product
+
+1. Go to RevenueCat Dashboard → Product Catalog → Products
+2. Click **+ New** next to "Vagabond Bible (Play Store)"
+3. Configure:
+   - **Identifier**: `pro_monthly:monthly` (format: `product_id:base_plan_id`)
+   - **Display Name**: Pro Monthly
+
+### Step 2: Attach to Entitlement
+
+1. Go to the product page
+2. Click **+ Attach** in Associated Entitlements
+3. Select **"Vagabond Bible Pro"**
+
+### Step 3: Add to Offering
+
+1. Go to Offerings → `default` offering
+2. Edit the existing package or add new
+3. Select the Android product for "Vagabond Bible (Play Store)"
+
+**Note:** Android doesn't need separate targeting - Google Play automatically shows regional prices.
+
+---
+
+# Verification Checklist
+
+## Web (Stripe) ✅
+- [x] Premium price ID created ($7.99)
+- [x] Emerging price ID created ($1.99)
+- [x] `STRIPE_PRICE_PRO_PREMIUM` env var set
+- [x] `STRIPE_PRICE_PRO_EMERGING` env var set
+- [x] `/api/pricing/tier` endpoint working
+- [x] `/api/stripe/regional-checkout` endpoint working
+- [ ] Tested with international test cards
+
+## iOS (App Store + RevenueCat) ✅
+- [x] Subscription group "Vagabond Bible Pro" created
+- [x] Product `vagabond_bible_pro_monthly` at $7.99
+- [x] Product `pro_monthly_emerging` at $1.99
+- [x] Both products have localization
+- [x] Both products have review screenshots
+- [x] Both products added to RevenueCat
+- [x] Both products attached to "Vagabond Bible Pro" entitlement
+- [x] `default` offering with $7.99 product
+- [x] `emerging` offering with $1.99 product
+- [x] "Emerging Markets Pricing" targeting rule (46 countries)
+- [x] Default offering set to `default`
+- [ ] Subscriptions submitted with app version
+- [ ] Tested with sandbox accounts
+
+## Android (Google Play + RevenueCat) ⏳
+- [ ] Subscription `pro_monthly` created
+- [ ] Base plan `monthly` created
+- [ ] Default price $7.99 USD
+- [ ] Regional price overrides for emerging markets (~$1.99)
+- [ ] Base plan activated
+- [ ] Product added to RevenueCat: `pro_monthly:monthly`
+- [ ] Product attached to "Vagabond Bible Pro" entitlement
+- [ ] Product added to `default` offering
+- [ ] Tested with license testers
+
+---
+
+# Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| "No price ID configured" (Web) | Set `STRIPE_PRICE_PRO_PREMIUM` and `STRIPE_PRICE_PRO_EMERGING` |
+| "Could not check" in RevenueCat | Normal before app approval - will resolve after App Review |
+| Wrong offering shown (iOS) | Check RevenueCat Targeting rules, verify country is in list |
+| User sees wrong price | App Store country may differ from physical location (correct behavior) |
+| Both products not unlocking Pro | Verify both attached to same entitlement |
+| Targeting not working | Ensure rule is set to "Live" status |
+| Android product not syncing | Wait 15-30 min, or verify product ID format is `subscription:baseplan` |
+
+---
+
+# Managing Regional Pricing
+
+## Adding/Removing Countries
+
+### In Code (Web)
+Edit `shared/regionalPricing.ts`:
+```typescript
+export const EMERGING_COUNTRIES = new Set([
+  'ET', 'KE', ...
+  'NEW_COUNTRY_CODE',  // Add new country here
+]);
+```
+
+### In RevenueCat (iOS)
+1. Go to Targeting → "Emerging Markets Pricing"
+2. Edit the country list
+3. Save (takes effect immediately)
+
+### In Google Play (Android)
+1. Go to subscription → base plan → Prices
+2. Edit country pricing
+3. Save
+
+---
+
+# Related Documentation
+
+- `docs/Regional_Pricing_Ambassador_Strategy_v2.md` — Business strategy, costs, and ambassador commissions
 - `shared/regionalPricing.ts` — Source of truth for country mappings
-- `replit.md` — Project overview with regional pricing feature summary
+- `replit.md` — Project overview
 
 ---
 
-*Document Version: 1.0*  
 *Last Updated: January 2026*
