@@ -41,7 +41,6 @@ const uiText = {
     unlimitedInsights: "Unlimited Verse Insights",
     unlimitedNotes: "Unlimited Notes",
     subscribeNow: "Subscribe Now",
-    subscribePrice: "Subscribe Now - $9.99/month",
     processing: "Processing...",
     loading: "Loading...",
     restorePurchases: "Restore Purchases",
@@ -75,7 +74,6 @@ const uiText = {
     unlimitedInsights: "ያልተገደበ የጥቅስ ግንዛቤዎች",
     unlimitedNotes: "ያልተገደበ ማስታወሻዎች",
     subscribeNow: "አሁን ይመዝገቡ",
-    subscribePrice: "አሁን ይመዝገቡ - $9.99/ወር",
     processing: "በማስኬድ ላይ...",
     loading: "በመጫን ላይ...",
     restorePurchases: "ግዢዎችን መልስ",
@@ -106,6 +104,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const [isRestoring, setIsRestoring] = useState(false);
   const [pricing, setPricing] = useState<PricingTierResponse | null>(null);
   const [isPricingLoading, setIsPricingLoading] = useState(true);
+  const [nativePrice, setNativePrice] = useState<string | null>(null);
   const { isNative, platform } = usePlatform();
   const { toast } = useToast();
   
@@ -149,6 +148,33 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
           setPricing({ tier: 'premium', price: 7.99, priceDisplay: '$7.99/month', detectedCountry: 'unknown' });
         })
         .finally(() => setIsPricingLoading(false));
+    }
+  }, [open, isNative]);
+
+  // Fetch native pricing from RevenueCat
+  useEffect(() => {
+    if (open && isNative) {
+      const fetchNativePrice = async () => {
+        try {
+          const { Purchases } = await import("@revenuecat/purchases-capacitor");
+          const offerings = await Purchases.getOfferings();
+          
+          if (offerings.current?.availablePackages?.length) {
+            const monthlyPackage = offerings.current.availablePackages.find(
+              (pkg: any) => pkg.packageType === "MONTHLY"
+            ) || offerings.current.availablePackages[0];
+            
+            // Get localized price string from RevenueCat
+            const priceString = monthlyPackage.product?.priceString || monthlyPackage.product?.price?.toString();
+            if (priceString) {
+              setNativePrice(priceString);
+            }
+          }
+        } catch (error) {
+          console.error("Failed to fetch native pricing:", error);
+        }
+      };
+      fetchNativePrice();
     }
   }, [open, isNative]);
 
@@ -312,7 +338,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                       {t.processing}
                     </>
                   ) : (
-                    t.subscribePrice
+                    `${t.subscribeNow} - ${nativePrice || '$7.99'}/${isAmharic ? 'ወር' : 'month'}`
                   )}
                 </Button>
                 <Button

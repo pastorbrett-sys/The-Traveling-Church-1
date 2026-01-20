@@ -64,7 +64,7 @@ export default function TermsOfService() {
             </p>
             <h3 className="text-lg font-medium text-[hsl(20,10%,25%)] mb-2">Pro Subscription</h3>
             <p className="mb-4">
-              The Pro subscription costs $9.99 per month and provides unlimited access to all features.
+              The Pro subscription costs $1.99 - $7.99 per month (pricing varies by region) and provides unlimited access to all features.
             </p>
             <h3 className="text-lg font-medium text-[hsl(20,10%,25%)] mb-2">Auto-Renewal</h3>
             <p className="mb-4">

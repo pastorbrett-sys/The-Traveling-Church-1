@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/hooks/use-auth";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, apiFetch } from "@/lib/queryClient";
 import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
@@ -27,6 +27,13 @@ import {
 } from "@/components/ui/alert-dialog";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
+
+interface PricingTierResponse {
+  tier: 'premium' | 'emerging';
+  price: number;
+  priceDisplay: string;
+  detectedCountry: string;
+}
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -275,6 +282,7 @@ export default function Profile() {
   const [showPaywall, setShowPaywall] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [pricing, setPricing] = useState<PricingTierResponse | null>(null);
   const { isNative, platform } = usePlatform();
   const { restorePurchases, isProUser: isRevenueCatPro, refreshEntitlements } = useRevenueCat();
   const { toast } = useToast();
@@ -297,6 +305,42 @@ export default function Profile() {
       window.removeEventListener("focus", handleStorageChange);
     };
   }, []);
+
+  // Fetch regional pricing
+  useEffect(() => {
+    if (!isNative) {
+      const getDeviceCountry = (): string | null => {
+        try {
+          const locale = navigator.language || (navigator as any).userLanguage;
+          if (locale && locale.includes('-')) {
+            return locale.split('-')[1].toUpperCase();
+          }
+          const resolved = Intl.DateTimeFormat().resolvedOptions();
+          if (resolved.locale && resolved.locale.includes('-')) {
+            return resolved.locale.split('-')[1].toUpperCase();
+          }
+        } catch (e) {
+          console.error("Failed to detect device locale:", e);
+        }
+        return null;
+      };
+
+      const deviceCountry = getDeviceCountry();
+      const url = deviceCountry 
+        ? `/api/pricing/tier?deviceCountry=${deviceCountry}`
+        : "/api/pricing/tier";
+
+      apiFetch(url)
+        .then(res => res.json())
+        .then((data: PricingTierResponse) => {
+          setPricing(data);
+        })
+        .catch(err => {
+          console.error("Failed to fetch pricing tier:", err);
+          setPricing({ tier: 'premium', price: 7.99, priceDisplay: '$7.99', detectedCountry: 'unknown' });
+        });
+    }
+  }, [isNative]);
   
   // Get localized text
   const t = getProfileLocalizedText(translation);
@@ -696,7 +740,7 @@ export default function Profile() {
                           </Badge>
                         )}
                       </div>
-                      <span className="text-lg font-semibold" data-testid="text-price">$9.99/{t.month}</span>
+                      <span className="text-lg font-semibold" data-testid="text-price">{pricing?.priceDisplay || '$7.99'}/{t.month}</span>
                     </div>
 
                     <Separator />
@@ -801,7 +845,7 @@ export default function Profile() {
                         {t.upgradeToPro}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-3">
-                        $9.99/{t.perMonth}
+                        {pricing?.priceDisplay || '$7.99'}/{t.perMonth}
                       </p>
                       <Button size="sm" className="btn-upgrade" data-testid="button-upgrade" onClick={() => setShowPaywall(true)}>
                         {t.upgradeToPro}
