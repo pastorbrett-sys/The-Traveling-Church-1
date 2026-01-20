@@ -7,80 +7,64 @@ Step-by-step instructions to build and deploy the Vagabond Bible Android app.
 ## Prerequisites
 
 - Android Studio installed
+- Node.js installed
 - Project cloned to your local machine
 - Google Play Console access
 
 ---
 
-## Step 1: Pull Latest Code
+## Build Steps
 
-Open PowerShell and navigate to the project:
+### Step 1: Open Terminal in Project Folder
 
-```powershell
+Open PowerShell or Terminal, then navigate to the project:
+
+```
 cd "C:\Users\brett\OneDrive\Desktop\The-Traveling-Church-1"
 ```
 
-Pull the latest changes:
+---
 
-```powershell
+### Step 2: Pull Latest Code
+
+```
 git pull origin main
 ```
 
 ---
 
-## Step 2: Install Dependencies
+### Step 3: Install Dependencies
 
-```powershell
+```
 npm install
 ```
 
 ---
 
-## Step 3: Build the Web App
+### Step 4: Build and Sync
 
-```powershell
-npm run build
 ```
-
----
-
-## Step 4: Sync to Android
-
-```powershell
+npm run build
 npx cap sync android
 ```
 
 ---
 
-## Step 5: Remove Extra Videos (Reduce App Size)
+### Step 5: Remove Extra Videos
 
-Run the cleanup script to remove videos not needed for the native app:
+This removes TC website videos (keeps only the Moses video for the app):
 
-```powershell
-.\scripts\prepare-android-build.ps1
+```
+node scripts/prepare-native-build.js
 ```
 
-This keeps only the Moses video (~24MB) and removes the mission videos (~116MB) that are only used on the website.
+You should see output showing which videos were removed and how much space was saved.
 
 ---
 
-## Step 6: Open Android Studio
+### Step 6: Update Version Number
 
-```powershell
-npx cap open android
-```
-
-Wait for Android Studio to fully load and sync Gradle.
-
----
-
-## Step 7: Update Version Number
-
-Before each release, update the version in `android/app/build.gradle`:
-
-1. Open `android/app/build.gradle`
-2. Find `versionCode` and `versionName`
-3. Increment both:
+Open `android/app/build.gradle` and update:
 
 ```gradle
 versionCode 2        // Increment by 1 each release
@@ -89,75 +73,53 @@ versionName "1.1"    // Update version string
 
 ---
 
-## Step 8: Build Signed App Bundle
+### Step 7: Build in Android Studio
 
-1. In Android Studio menu: **Build** → **Generate Signed App Bundle / APK...**
-2. Select **Android App Bundle** → Click **Next**
-3. Choose your keystore:
-   - Path: `C:\Users\brett\OneDrive\Desktop\vagabond-bible-keystore.jks`
-   - Enter your keystore password
-   - Key alias: `vagabond-bible`
-   - Enter your key password
-4. Click **Next**
-5. Select **release** → Click **Create**
-6. Wait for build to complete (2-3 minutes)
+1. Open Android Studio
+2. Menu: **Build** → **Generate Signed App Bundle / APK...**
+3. Select **Android App Bundle** → **Next**
+4. Select keystore: `C:\Users\brett\OneDrive\Desktop\vagabond-bible-keystore.jks`
+5. Enter passwords, select **release** → **Create**
 
-The AAB file will be at:
-```
-android\app\release\app-release.aab
-```
+The AAB file will be at: `android/app/release/app-release.aab`
 
 ---
 
-## Step 9: Upload to Google Play Console
+### Step 8: Upload to Play Console
 
 1. Go to [Google Play Console](https://play.google.com/console)
 2. Select **Vagabond Bible**
-3. Go to **Testing** → **Internal testing** (or Production when ready)
+3. Go to **Testing** → **Internal testing**
 4. Click **Create new release**
 5. Upload `app-release.aab`
-6. Add release notes
-7. Click **Review release** → **Start rollout**
+6. Add release notes → **Review** → **Start rollout**
 
 ---
 
-## Quick Reference Commands
+## Quick Copy-Paste Commands
 
-All commands in order for copy-paste:
+Run these in order:
 
-```powershell
+```
 cd "C:\Users\brett\OneDrive\Desktop\The-Traveling-Church-1"
 git pull origin main
 npm install
 npm run build
 npx cap sync android
-.\scripts\prepare-android-build.ps1
-npx cap open android
+node scripts/prepare-native-build.js
 ```
+
+Then open Android Studio and build.
 
 ---
 
 ## Troubleshooting
 
-### App bundle too large (over 200MB)
-Run the cleanup script again:
-```powershell
-.\scripts\prepare-android-build.ps1
-```
+**App bundle too large?**  
+Run `node scripts/prepare-native-build.js` again.
 
-### Gradle sync failed
+**Script not found?**  
+Run `git pull origin main` to get the latest files.
+
+**Gradle sync failed?**  
 In Android Studio: **File** → **Sync Project with Gradle Files**
-
-### Keystore password forgotten
-The keystore cannot be recovered. You would need to create a new app listing.
-
----
-
-## Important Files
-
-| File | Purpose |
-|------|---------|
-| `android/app/build.gradle` | Version numbers, build config |
-| `vagabond-bible-keystore.jks` | Signing key (keep safe!) |
-| `scripts/prepare-android-build.ps1` | Removes extra videos |
-| `capacitor.config.ts` | Capacitor configuration |
