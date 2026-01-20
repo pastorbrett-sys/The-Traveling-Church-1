@@ -60,26 +60,32 @@ export class WebhookHandlers {
       const webhookSecret = await WebhookHandlers.getWebhookSecret();
       
       if (!webhookSecret) {
-        console.log('No webhook secret configured, skipping user link handling');
+        console.log('[Webhook Handler] ⚠️ No webhook secret configured, skipping user link handling');
         return;
       }
 
       const event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
+      console.log(`[Webhook Handler] 📋 Processing event: ${event.type}`);
       
       switch (event.type) {
         case 'checkout.session.completed':
+          console.log('[Webhook Handler] 🛒 Handling checkout.session.completed');
           await WebhookHandlers.handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
           break;
         case 'customer.subscription.created':
         case 'customer.subscription.updated':
+          console.log(`[Webhook Handler] 📝 Handling ${event.type}`);
           await WebhookHandlers.handleSubscriptionChange(event.data.object as Stripe.Subscription);
           break;
         case 'customer.subscription.deleted':
+          console.log('[Webhook Handler] 🗑️ Handling subscription.deleted');
           await WebhookHandlers.handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
           break;
+        default:
+          console.log(`[Webhook Handler] ⏭️ Ignoring event type: ${event.type}`);
       }
     } catch (error) {
-      console.error('Error handling user stripe link:', error);
+      console.error('[Webhook Handler] ❌ Error handling user stripe link:', error);
       // Don't throw - we don't want to fail the webhook if user linking fails
     }
   }

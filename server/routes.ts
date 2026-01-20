@@ -10,7 +10,9 @@ import {
   insertContactSubmissionSchema,
   insertNoteSchema,
   FEATURE_LIMITS,
+  referralSignups,
 } from "@shared/schema";
+import { eq } from "drizzle-orm";
 import { getUsageSummary, checkNotesLimit } from "./usageService";
 import { ObjectStorageService } from "./objectStorage";
 import { sendContactEmail } from "./email";
@@ -745,9 +747,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
   return httpServer;
 }
 
+// Helper function to track ambassador conversion (backup for when webhooks fail)
+async function trackAmbassadorConversionBackup(userId: string, source: string): Promise<boolean> {
+  try {
+    // Check if this user has a referral signup entry that hasn't been converted yet
+    const existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId));
+    
+    if (existing.length === 0) {
+      // No referral signup - they didn't use a referral link
+      return false;
+    }
+    
+    if (existing[0].convertedToPro) {
+      // Already marked as converted
+      return false;
+    }
+    
+    // Mark as converted
+    const result = await db.update(referralSignups)
+      .set({ convertedToPro: true, conversionDate: new Date() })
+      .where(eq(referralSignups.userId, userId))
+      .returning();
+    
+    if (result.length > 0) {
+      console.log(`[Ambassador Sync] 🎉 Tracked Pro conversion for user ${userId} via ${source} (referral code: ${result[0].referralCode})`);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('[Ambassador Sync] ❌ Error tracking conversion:', error);
+    return false;
+  }
+}
+
 // Helper function to sync Stripe customers to user accounts
 async function syncStripeCustomersToUsers() {
-  const results = { synced: 0, skipped: 0, cleared: 0, errors: [] as string[] };
+  const results = { synced: 0, skipped: 0, cleared: 0, conversions: 0, errors: [] as string[] };
   
   try {
     // Query stripe.customers table to find customers with userId metadata
@@ -757,6 +792,8 @@ async function syncStripeCustomersToUsers() {
       WHERE metadata->>'userId' IS NOT NULL 
         AND metadata->>'userId' != 'guest'
     `);
+    
+    console.log(`[Stripe Sync] 📊 Found ${customersResult.rows.length} customers to check`);
     
     for (const customer of customersResult.rows) {
       const customerId = customer.id as string;
@@ -801,23 +838,29 @@ async function syncStripeCustomersToUsers() {
         });
         
         if (subscriptionId) {
-          console.log(`Synced Stripe customer ${customerId} to user ${userId} with subscription ${subscriptionId}`);
+          console.log(`[Stripe Sync] ✅ Synced customer ${customerId} to user ${userId} with subscription ${subscriptionId}`);
           results.synced++;
+          
+          // BACKUP: Track ambassador conversion if webhook missed it
+          const tracked = await trackAmbassadorConversionBackup(userId, 'hourly sync backup');
+          if (tracked) {
+            results.conversions++;
+          }
         } else {
-          console.log(`Cleared inactive subscription for user ${userId} (customer ${customerId})`);
+          console.log(`[Stripe Sync] 🔄 Cleared inactive subscription for user ${userId} (customer ${customerId})`);
           results.cleared++;
         }
       } catch (err) {
         const errorMsg = `Failed to sync customer ${customerId}: ${err}`;
-        console.error(errorMsg);
+        console.error(`[Stripe Sync] ❌ ${errorMsg}`);
         results.errors.push(errorMsg);
       }
     }
   } catch (error) {
-    console.error("Error querying Stripe customers:", error);
+    console.error("[Stripe Sync] ❌ Error querying Stripe customers:", error);
     throw error;
   }
   
-  console.log(`Stripe customer sync complete: ${results.synced} synced, ${results.cleared} cleared, ${results.skipped} skipped`);
+  console.log(`[Stripe Sync] 📈 Complete: ${results.synced} synced, ${results.cleared} cleared, ${results.skipped} skipped, ${results.conversions} ambassador conversions tracked`);
   return results;
 }
