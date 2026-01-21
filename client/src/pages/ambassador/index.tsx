@@ -324,7 +324,7 @@ export default function AmbassadorPage() {
 
   if (viewState === "loading") {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
         <Loader2 className="w-8 h-8 animate-spin text-[#c08e00]" />
       </div>
     );
@@ -332,7 +332,7 @@ export default function AmbassadorPage() {
 
   if (viewState === "login-required") {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
         <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
           <CardHeader className="text-center">
             <img 
@@ -369,7 +369,7 @@ export default function AmbassadorPage() {
 
   if (viewState === "apply") {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
         <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
           <CardHeader className="text-center">
             <img 
@@ -440,7 +440,7 @@ export default function AmbassadorPage() {
 
   if (viewState === "pending") {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
         <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
           <CardHeader className="text-center">
             <img 
@@ -500,7 +500,7 @@ export default function AmbassadorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black p-4 pb-24 md:p-8">
+    <div className="min-h-screen p-4 pb-24 md:p-8" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
