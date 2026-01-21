@@ -58,8 +58,12 @@ router.post("/register", async (req, res) => {
     // Send emails (don't await to not block response)
     const { sendAmbassadorApplicationEmail, sendAmbassadorAdminNotificationEmail } = await import('./email');
     
+    console.log(`[Ambassador] Sending emails for ${email} at ${new Date().toISOString()}`);
+    
     // Send confirmation to applicant
-    sendAmbassadorApplicationEmail(email, name.split(' ')[0]).catch(err => {
+    sendAmbassadorApplicationEmail(email, name.split(' ')[0]).then(result => {
+      console.log(`[Ambassador] Application email SENT to ${email} at ${new Date().toISOString()}:`, JSON.stringify(result));
+    }).catch(err => {
       console.error('[Ambassador] Failed to send application email:', err);
     });
     
@@ -68,6 +72,8 @@ router.post("/register", async (req, res) => {
       country: country || undefined,
       reason: reason || undefined,
       referralSource: referralSource || undefined,
+    }).then(result => {
+      console.log(`[Ambassador] Admin notification SENT at ${new Date().toISOString()}:`, JSON.stringify(result));
     }).catch(err => {
       console.error('[Ambassador] Failed to send admin notification:', err);
     });
@@ -399,7 +405,11 @@ router.post("/admin/approve/:id", isAuthenticated, async (req: any, res) => {
       const { sendAmbassadorApprovedEmail } = await import('./email');
       const firstName = updated.name?.split(' ')[0] || null;
       
-      sendAmbassadorApprovedEmail(updated.email, firstName, updated.referralCode).catch(err => {
+      console.log(`[Ambassador] Sending approval email to ${updated.email} at ${new Date().toISOString()}`);
+      
+      sendAmbassadorApprovedEmail(updated.email, firstName, updated.referralCode).then(result => {
+        console.log(`[Ambassador] Approval email SENT to ${updated.email} at ${new Date().toISOString()}:`, JSON.stringify(result));
+      }).catch(err => {
         console.error('[Ambassador] Failed to send approval email:', err);
       });
     }
