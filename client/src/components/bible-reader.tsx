@@ -620,6 +620,11 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     if (scrollToVerse && chapter && !isLoadingChapter) {
       // Small delay to ensure DOM is rendered
       const timer = setTimeout(() => {
+        // Clear any existing persistent highlights before adding new one
+        document.querySelectorAll('.verse-persistent-highlight').forEach(el => {
+          el.classList.remove('verse-persistent-highlight');
+        });
+        
         const verseElement = verseRefs.current.get(scrollToVerse);
         if (verseElement) {
           // Check if verse is already visible in viewport
@@ -631,6 +636,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
             verseElement.classList.add("verse-burst-highlight");
             setTimeout(() => {
               verseElement.classList.remove("verse-burst-highlight");
+              verseElement.classList.add("verse-persistent-highlight");
             }, 4000);
           } else {
             // Need to scroll - trigger burst after scroll completes
@@ -644,6 +650,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
                 verseElement.classList.add("verse-burst-highlight");
                 setTimeout(() => {
                   verseElement.classList.remove("verse-burst-highlight");
+                  verseElement.classList.add("verse-persistent-highlight");
                 }, 4000);
                 window.removeEventListener("scroll", checkScrollEnd, true);
               }, 150);
@@ -657,6 +664,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
                 verseElement.classList.add("verse-burst-highlight");
                 setTimeout(() => {
                   verseElement.classList.remove("verse-burst-highlight");
+                  verseElement.classList.add("verse-persistent-highlight");
                 }, 4000);
               }
             }, 1000);

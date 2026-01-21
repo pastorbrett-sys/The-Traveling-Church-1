@@ -442,6 +442,11 @@
   display: inline-block;
 }
 
+.verse-persistent-highlight {
+  background-color: rgba(192, 142, 0, 0.15);
+  border-radius: 6px;
+}
+
 /* Campfire burning animation - flickering warm glow */
 @keyframes campfireGlow {
   0%, 100% {
