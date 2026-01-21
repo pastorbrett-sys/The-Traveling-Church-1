@@ -32,11 +32,13 @@ export default function VagabondBible() {
       <div className="min-h-screen bg-black">
         <section className="relative min-h-[100svh] flex items-center justify-center">
           <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0a]" />
             <video
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             >
               <source src={heroVideo} type="video/mp4" />
