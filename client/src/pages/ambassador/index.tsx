@@ -135,6 +135,9 @@ export default function AmbassadorPage() {
   const [team, setTeam] = useState<TeamMember[]>([]);
   
   const [applyName, setApplyName] = useState("");
+  const [applyCountry, setApplyCountry] = useState("");
+  const [applyReason, setApplyReason] = useState("");
+  const [applySource, setApplySource] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
@@ -228,6 +231,9 @@ export default function AmbassadorPage() {
           email: user.email,
           name: applyName.trim(),
           inviteCode: inviteCode,
+          country: applyCountry.trim() || undefined,
+          reason: applyReason.trim() || undefined,
+          referralSource: applySource.trim() || undefined,
         }),
       });
       
@@ -430,6 +436,44 @@ export default function AmbassadorPage() {
                   className="bg-[#0a0a0a] border-gray-700 text-white"
                   data-testid="input-apply-name"
                   required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="country" className="text-gray-300">Country</Label>
+                <Input
+                  id="country"
+                  type="text"
+                  value={applyCountry}
+                  onChange={(e) => setApplyCountry(e.target.value)}
+                  placeholder="Where are you based?"
+                  className="bg-[#0a0a0a] border-gray-700 text-white"
+                  data-testid="input-apply-country"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="source" className="text-gray-300">How did you hear about us?</Label>
+                <Input
+                  id="source"
+                  type="text"
+                  value={applySource}
+                  onChange={(e) => setApplySource(e.target.value)}
+                  placeholder="e.g., Tour guide, friend, social media"
+                  className="bg-[#0a0a0a] border-gray-700 text-white"
+                  data-testid="input-apply-source"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="reason" className="text-gray-300">Why do you want to be an ambassador?</Label>
+                <textarea
+                  id="reason"
+                  value={applyReason}
+                  onChange={(e) => setApplyReason(e.target.value)}
+                  placeholder="Tell us about yourself and why you'd like to share Vagabond Bible..."
+                  className="w-full bg-[#0a0a0a] border border-gray-700 text-white rounded-md px-3 py-2 text-sm min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#c08e00] focus:border-transparent"
+                  data-testid="input-apply-reason"
                 />
               </div>
               

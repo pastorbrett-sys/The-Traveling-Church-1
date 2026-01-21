@@ -221,7 +221,6 @@ function getAmbassadorAppliedEmailHtml(): string {
 
 function getAmbassadorApprovedEmailHtml(): string {
   const referralLink = `${BASE_URL}/?ref=SARAH2025`;
-  const teamInviteLink = `${BASE_URL}/ambassador/apply?invite=SARAH2025`;
   
   return `
     <!DOCTYPE html>
@@ -254,66 +253,73 @@ function getAmbassadorApprovedEmailHtml(): string {
             You're now a Vagabond Bible Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
           </p>
           
-          <!-- Your Links Box -->
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">🔗 Your Referral Link</h2>
-            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 14px; color: #333; word-break: break-all; margin-bottom: 16px;">
-              ${referralLink}
-            </div>
-            
-            <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">👥 Team Invite Link</h2>
-            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 14px; color: #333; word-break: break-all;">
-              ${teamInviteLink}
-            </div>
-          </div>
-          
-          <!-- Pro Tip -->
-          <div style="background-color: #FFF8E7; border-radius: 12px; padding: 16px 20px; margin: 0 0 30px 0; text-align: left; border-left: 4px solid #C99A2E;">
+          <!-- Pro Tip - Above referral link -->
+          <div style="background-color: #FFF8E7; border-radius: 12px; padding: 16px 20px; margin: 0 0 24px 0; text-align: left; border-left: 4px solid #C99A2E;">
             <p style="font-size: 14px; line-height: 1.5; color: #333; margin: 0;">
-              <strong>💡 Pro Tip:</strong> Share via web for a bigger commission! Web subscriptions earn you more than app subscriptions.
+              <strong>💡 Pro Tip:</strong> You earn more commission if people sign up through web instead of app. So encourage them to sign up on the vagabondbible.com site!
             </p>
           </div>
           
-          <!-- How It Works -->
-          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
-          
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 30px;">
-            <tr>
-              <td width="33%" align="center" style="padding: 10px;">
-                <div style="background-color: #ffffff; border-radius: 12px; padding: 20px 10px; border: 1px solid #e5e5e5;">
-                  <div style="font-size: 32px; margin-bottom: 8px;">🔗</div>
-                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Share</div>
-                  <div style="font-size: 12px; color: #666;">Send your link</div>
-                </div>
-              </td>
-              <td width="33%" align="center" style="padding: 10px;">
-                <div style="background-color: #ffffff; border-radius: 12px; padding: 20px 10px; border: 1px solid #e5e5e5;">
-                  <div style="font-size: 32px; margin-bottom: 8px;">👥</div>
-                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">They Sign Up</div>
-                  <div style="font-size: 12px; color: #666;">Free or Pro</div>
-                </div>
-              </td>
-              <td width="33%" align="center" style="padding: 10px;">
-                <div style="background-color: #ffffff; border-radius: 12px; padding: 20px 10px; border: 1px solid #e5e5e5;">
-                  <div style="font-size: 32px; margin-bottom: 8px;">💰</div>
-                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Earn</div>
-                  <div style="font-size: 12px; color: #666;">Get rewarded</div>
-                </div>
-              </td>
-            </tr>
-          </table>
-          
-          <!-- Dashboard Instructions with Mockups -->
-          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">Access Your Dashboard</h2>
-          
-          <div style="margin-bottom: 24px;">
-            <p style="font-size: 14px; color: #666; margin: 0 0 12px 0;"><strong>Step 1:</strong> Open Vagabond Bible and tap the Ambassador tab</p>
-            <img src="${BASE_URL}/email-assets/ambassador-nav-mockup.png" alt="Step 1: Tap Ambassador tab" style="max-width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <!-- Your Referral Link -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">🔗 Your Referral Link</h2>
+            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 14px; color: #333; word-break: break-all;">
+              ${referralLink}
+            </div>
           </div>
           
-          <div style="margin-bottom: 30px;">
-            <p style="font-size: 14px; color: #666; margin: 0 0 12px 0;"><strong>Step 2:</strong> Copy your referral link and share it!</p>
-            <img src="${BASE_URL}/email-assets/ambassador-copy-mockup.png" alt="Step 2: Copy your link" style="max-width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <!-- How It Works - Vertical Stack -->
+          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
+          
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <div style="margin-bottom: 16px;">
+              <span style="font-size: 24px; margin-right: 16px; vertical-align: middle;">🔗</span>
+              <span style="vertical-align: middle;">
+                <span style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Share Your Link</span><br>
+                <span style="font-size: 13px; color: #666;">Send to friends, family, and community</span>
+              </span>
+            </div>
+            
+            <div style="margin-bottom: 16px;">
+              <span style="font-size: 24px; margin-right: 16px; vertical-align: middle;">👥</span>
+              <span style="vertical-align: middle;">
+                <span style="font-size: 15px; font-weight: 600; color: #1a1a1a;">They Sign Up</span><br>
+                <span style="font-size: 13px; color: #666;">Free or Pro, you get credit</span>
+              </span>
+            </div>
+            
+            <div>
+              <span style="font-size: 24px; margin-right: 16px; vertical-align: middle;">💰</span>
+              <span style="vertical-align: middle;">
+                <span style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Earn Rewards</span><br>
+                <span style="font-size: 13px; color: #666;">Get paid for Pro conversions</span>
+              </span>
+            </div>
+          </div>
+          
+          <!-- Access Your Dashboard - Simple Steps -->
+          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">Access Your Dashboard</h2>
+          
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <div style="margin-bottom: 12px;">
+              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">1</span>
+              <span style="font-size: 15px; color: #333;">Open the App or Site</span>
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">2</span>
+              <span style="font-size: 15px; color: #333;">Go to the Menu</span>
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">3</span>
+              <span style="font-size: 15px; color: #333;">Tap "Ambassadors"</span>
+            </div>
+            
+            <div>
+              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">4</span>
+              <span style="font-size: 15px; color: #333;">Copy your referral link and share it!</span>
+            </div>
           </div>
           
           <a href="${BASE_URL}/vagabond-bible" 

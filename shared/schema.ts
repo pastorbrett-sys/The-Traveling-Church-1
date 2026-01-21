@@ -154,6 +154,9 @@ export const ambassadors = pgTable("ambassadors", {
   userId: text("user_id").notNull(), // Links to auth user
   email: text("email").notNull(),
   name: text("name").notNull(),
+  country: text("country"), // Where they're based
+  reason: text("reason"), // Why they want to be an ambassador
+  referralSource: text("referral_source"), // How they heard about the program
   referralCode: text("referral_code").notNull().unique(), // Their code for user signups
   inviteCode: text("invite_code").notNull().unique(), // Their code for recruiting ambassadors
   referredBy: varchar("referred_by").references((): any => ambassadors.id), // Who recruited them

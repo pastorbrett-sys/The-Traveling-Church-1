@@ -18,7 +18,7 @@ function hashIP(ip: string): string {
 
 router.post("/register", async (req, res) => {
   try {
-    const { userId, email, name, inviteCode } = req.body;
+    const { userId, email, name, inviteCode, country, reason, referralSource } = req.body;
     
     if (!userId || !email || !name) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -44,6 +44,9 @@ router.post("/register", async (req, res) => {
       userId,
       email,
       name,
+      country: country || null,
+      reason: reason || null,
+      referralSource: referralSource || null,
       referralCode,
       inviteCode: newInviteCode,
       referredBy: referredById,
@@ -51,6 +54,23 @@ router.post("/register", async (req, res) => {
       tier: 1,
       isSuperAdmin: false,
     }).returning();
+
+    // Send emails (don't await to not block response)
+    const { sendAmbassadorApplicationEmail, sendAmbassadorAdminNotificationEmail } = await import('./email');
+    
+    // Send confirmation to applicant
+    sendAmbassadorApplicationEmail(email, name.split(' ')[0]).catch(err => {
+      console.error('[Ambassador] Failed to send application email:', err);
+    });
+    
+    // Send notification to admin
+    sendAmbassadorAdminNotificationEmail(name, email, ambassador.id, {
+      country: country || undefined,
+      reason: reason || undefined,
+      referralSource: referralSource || undefined,
+    }).catch(err => {
+      console.error('[Ambassador] Failed to send admin notification:', err);
+    });
 
     res.json({ ambassador, existing: false });
   } catch (error) {
