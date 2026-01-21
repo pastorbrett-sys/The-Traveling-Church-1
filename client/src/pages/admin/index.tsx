@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "wouter";
+import { useLocation, useSearch } from "wouter";
 import { 
   ArrowLeft,
   CheckCircle,
@@ -37,9 +37,13 @@ interface AmbassadorWithStats {
 export default function AdminPanel() {
   const { user, isAuthenticated, isLoading } = useAuth();
   const [, setLocation] = useLocation();
+  const searchString = useSearch();
+  const params = new URLSearchParams(searchString);
+  const highlightId = params.get("highlight");
+  
   const [ambassadors, setAmbassadors] = useState<AmbassadorWithStats[]>([]);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [statusFilter, setStatusFilter] = useState<string>(highlightId ? "pending" : "all");
 
   useEffect(() => {
     document.title = "Admin Panel | Vagabond Bible";
@@ -47,7 +51,10 @@ export default function AdminPanel() {
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      setLocation("/ambassador");
+      // Preserve the current URL so we can redirect back after login
+      const currentUrl = window.location.pathname + window.location.search;
+      sessionStorage.setItem("adminRedirect", currentUrl);
+      setLocation("/ambassador/login");
       return;
     }
 
@@ -55,6 +62,18 @@ export default function AdminPanel() {
       checkAdminAccess();
     }
   }, [isLoading, isAuthenticated, user]);
+  
+  // Scroll to highlighted ambassador when data loads
+  useEffect(() => {
+    if (highlightId && !loading && ambassadors.length > 0) {
+      const element = document.getElementById(`ambassador-${highlightId}`);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+      }
+    }
+  }, [highlightId, loading, ambassadors]);
 
   const checkAdminAccess = async () => {
     if (!user) return;
@@ -267,7 +286,15 @@ export default function AdminPanel() {
             </Card>
           ) : (
             filteredAmbassadors.map((amb) => (
-              <Card key={amb.id} className="bg-[#1a1a1a] border-[#333]">
+              <Card 
+                key={amb.id} 
+                className={`bg-[#1a1a1a] ${
+                  highlightId === amb.id 
+                    ? "border-[#c08e00] border-2 ring-2 ring-[#c08e00]/30" 
+                    : "border-[#333]"
+                }`}
+                id={`ambassador-${amb.id}`}
+              >
                 <CardContent className="p-4">
                   <div className="flex flex-col md:flex-row md:items-center gap-4">
                     <div className="flex-1 min-w-0">

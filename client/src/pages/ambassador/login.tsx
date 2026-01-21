@@ -66,7 +66,12 @@ export default function AmbassadorLogin() {
       if (res.ok) {
         const { ambassador } = await res.json();
         if (ambassador.status === "active") {
-          if (ambassador.isSuperAdmin) {
+          // Check for stored redirect URL (e.g., from admin panel)
+          const adminRedirect = sessionStorage.getItem("adminRedirect");
+          if (adminRedirect && ambassador.isSuperAdmin) {
+            sessionStorage.removeItem("adminRedirect");
+            setLocation(adminRedirect);
+          } else if (ambassador.isSuperAdmin) {
             setLocation("/admin");
           } else {
             setLocation("/ambassador/dashboard");

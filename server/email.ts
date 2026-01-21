@@ -613,8 +613,8 @@ export function getAmbassadorAdminNotificationEmailHtml(
   applicantId: string,
   applicationDetails: { country?: string; reason?: string; referralSource?: string }
 ): string {
-  const approveUrl = `${BASE_URL}/admin/ambassadors?action=approve&id=${applicantId}`;
-  const viewUrl = `${BASE_URL}/admin/ambassadors?id=${applicantId}`;
+  const approveUrl = `${BASE_URL}/admin?highlight=${applicantId}`;
+  const viewUrl = `${BASE_URL}/admin?highlight=${applicantId}`;
   
   return `
     <!DOCTYPE html>

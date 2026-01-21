@@ -424,7 +424,7 @@ function getAmbassadorAdminEmailHtml(): string {
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td align="center" style="padding-bottom: 12px;">
-                <a href="${BASE_URL}/admin/ambassadors?action=approve&id=123" 
+                <a href="${BASE_URL}/admin?highlight=123" 
                    style="background-color: #22c55e; color: #ffffff; padding: 14px 0; text-decoration: none; border-radius: 8px; font-weight: 600; display: block; font-size: 16px; width: 100%; max-width: 280px; text-align: center; box-sizing: border-box;">
                   ✓ Approve
                 </a>
@@ -441,7 +441,7 @@ function getAmbassadorAdminEmailHtml(): string {
           </table>
           
           <div style="text-align: center; margin-top: 20px;">
-            <a href="${BASE_URL}/admin/ambassadors?id=123" style="color: #666; font-size: 14px; text-decoration: underline;">
+            <a href="${BASE_URL}/admin?highlight=123" style="color: #666; font-size: 14px; text-decoration: underline;">
               View in Admin Dashboard
             </a>
           </div>
