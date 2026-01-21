@@ -91,13 +91,20 @@ export function getWelcomeEmailHtml(displayName: string): string {
       <meta name="supported-color-schemes" content="light">
       <style>
         :root { color-scheme: light; }
+        /* Gmail iOS blend mode fix */
+        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
+        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
+        /* Apple Mail & supported clients */
         @media (prefers-color-scheme: dark) {
           .dark-footer { background-color: #000000 !important; }
           .dark-footer td { background-color: #000000 !important; }
         }
+        /* Gmail/Outlook mobile */
+        [data-ogsc] .footer-text { color: #888888 !important; }
+        [data-ogsb] .dark-footer { background-color: #000000 !important; }
       </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
@@ -124,17 +131,19 @@ export function getWelcomeEmailHtml(displayName: string): string {
           </a>
         </div>
         
-        <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000 !important;" bgcolor="#000000">
+        <!-- Footer - uses linear-gradient which Gmail doesn't invert -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
           <tr>
-            <td align="center" style="background-color: #000000 !important; padding: 24px;" bgcolor="#000000">
+            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
               <a href="https://thetravelingchurch.com" style="display: inline-block;">
-                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
               </a>
-              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
-                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
-                <span style="color: #555555; margin: 0 8px;">•</span>
-                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <span class="gm-screen"><span class="gm-diff">
+                  <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                  <span style="color: #555555; margin: 0 8px;">•</span>
+                  <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+                </span></span>
               </p>
             </td>
           </tr>
@@ -180,13 +189,20 @@ export function getSubscriptionEmailHtml(displayName: string): string {
       <meta name="supported-color-schemes" content="light">
       <style>
         :root { color-scheme: light; }
+        /* Gmail iOS blend mode fix */
+        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
+        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
+        /* Apple Mail & supported clients */
         @media (prefers-color-scheme: dark) {
           .dark-footer { background-color: #000000 !important; }
           .dark-footer td { background-color: #000000 !important; }
         }
+        /* Gmail/Outlook mobile */
+        [data-ogsc] .footer-text { color: #888888 !important; }
+        [data-ogsb] .dark-footer { background-color: #000000 !important; }
       </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
@@ -226,17 +242,19 @@ export function getSubscriptionEmailHtml(displayName: string): string {
           </a>
         </div>
         
-        <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000 !important;" bgcolor="#000000">
+        <!-- Footer - uses linear-gradient which Gmail doesn't invert -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
           <tr>
-            <td align="center" style="background-color: #000000 !important; padding: 24px;" bgcolor="#000000">
+            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
               <a href="https://thetravelingchurch.com" style="display: inline-block;">
-                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
               </a>
-              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
-                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
-                <span style="color: #555555; margin: 0 8px;">•</span>
-                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <span class="gm-screen"><span class="gm-diff">
+                  <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                  <span style="color: #555555; margin: 0 8px;">•</span>
+                  <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+                </span></span>
               </p>
             </td>
           </tr>
