@@ -25,7 +25,7 @@ function getWelcomeEmailHtml(): string {
         
         <!-- Content -->
         <div style="padding: 50px 30px 55px; text-align: center;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif;">Welcome to Vagabond Bible</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Vagabond Bible</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
             Vagabond Bible brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word—wherever you are.
@@ -39,9 +39,13 @@ function getWelcomeEmailHtml(): string {
         
         <!-- Footer -->
         <div style="background-color: #1a1a1a; padding: 24px; text-align: center;">
-          <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+          <a href="https://thetravelingchurch.com" style="display: inline-block;">
+            <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+          </a>
           <p style="color: #888; font-size: 12px; margin: 16px 0 0 0;">
             <a href="${BASE_URL}" style="color: #888; text-decoration: none;">vagabondbible.com</a>
+            <span style="color: #555; margin: 0 8px;">•</span>
+            <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
           </p>
         </div>
         
@@ -74,7 +78,7 @@ function getSubscriptionEmailHtml(): string {
         
         <!-- Content -->
         <div style="padding: 50px 30px 55px; text-align: center;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif;">You're Pro Now</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">You're Pro Now</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 24px 0;">
             Thank you for supporting the mission. You now have unlimited access to:
@@ -101,10 +105,15 @@ function getSubscriptionEmailHtml(): string {
         
         <!-- Footer -->
         <div style="background-color: #1a1a1a; padding: 24px; text-align: center;">
-          <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+          <a href="https://thetravelingchurch.com" style="display: inline-block;">
+            <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+          </a>
           <p style="color: #888; font-size: 12px; margin: 16px 0 0 0;">
-            <a href="${BASE_URL}/profile" style="color: #888; text-decoration: none;">Manage Subscription</a> · 
+            <a href="${BASE_URL}/profile" style="color: #888; text-decoration: none;">Manage Subscription</a>
+            <span style="color: #555; margin: 0 8px;">•</span>
             <a href="${BASE_URL}" style="color: #888; text-decoration: none;">vagabondbible.com</a>
+            <span style="color: #555; margin: 0 8px;">•</span>
+            <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
           </p>
         </div>
         
