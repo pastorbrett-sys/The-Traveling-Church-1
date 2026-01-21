@@ -834,28 +834,35 @@
 /* Golden shimmer animation for ambassador page */
 @keyframes goldenShimmer {
   0% {
+    background: linear-gradient(90deg, #c08e00 0%, #c08e00 40%, #ffd700 50%, #fff8dc 55%, #ffd700 60%, #c08e00 100%);
+    background-size: 200% 100%;
     background-position: -200% center;
   }
-  100% {
+  25% {
+    background: linear-gradient(90deg, #c08e00 0%, #c08e00 40%, #ffd700 50%, #fff8dc 55%, #ffd700 60%, #c08e00 100%);
+    background-size: 200% 100%;
     background-position: 200% center;
+  }
+  50% {
+    background: linear-gradient(90deg, #c08e00 0%, #c08e00 40%, #ffd700 50%, #fff8dc 55%, #ffd700 60%, #c08e00 100%);
+    background-size: 200% 100%;
+    background-position: -200% center;
+  }
+  75% {
+    background: linear-gradient(90deg, #c08e00 0%, #c08e00 40%, #ffd700 50%, #fff8dc 55%, #ffd700 60%, #c08e00 100%);
+    background-size: 200% 100%;
+    background-position: 200% center;
+  }
+  100% {
+    background: #c08e00;
   }
 }
 
 .golden-shimmer {
-  position: relative;
-  background: linear-gradient(
-    90deg,
-    #c08e00 0%,
-    #c08e00 40%,
-    #ffd700 50%,
-    #fff8dc 55%,
-    #ffd700 60%,
-    #c08e00 100%
-  );
-  background-size: 200% 100%;
-  animation: goldenShimmer 2s ease-in-out 0.5s 1;
+  background: #c08e00;
+  animation: goldenShimmer 2.5s ease-in-out 0.5s 1 forwards;
 }
 
 .golden-shimmer:hover {
-  background: #a07800;
+  background: #a07800 !important;
 }
