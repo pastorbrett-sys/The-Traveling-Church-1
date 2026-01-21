@@ -347,6 +347,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [isLoadingBookSynopsis, setIsLoadingBookSynopsis] = useState(false);
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
+  const [persistentHighlightVerse, setPersistentHighlightVerse] = useState<number | null>(null);
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
   const [upgradeFeature, setUpgradeFeature] = useState<string>("smart_search");
   const [upgradeResetAt, setUpgradeResetAt] = useState<string | null>(null);
@@ -631,13 +632,20 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
           const rect = verseElement.getBoundingClientRect();
           const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
           
-          if (isVisible) {
-            // Already visible - trigger burst immediately
+          // Clear any previous persistent highlight
+          setPersistentHighlightVerse(null);
+          
+          const applyBurstAndPersist = (verseNum: number) => {
             verseElement.classList.add("verse-burst-highlight");
             setTimeout(() => {
               verseElement.classList.remove("verse-burst-highlight");
-              verseElement.classList.add("verse-persistent-highlight");
+              setPersistentHighlightVerse(verseNum);
             }, 4000);
+          };
+          
+          if (isVisible) {
+            // Already visible - trigger burst immediately
+            applyBurstAndPersist(scrollToVerse);
           } else {
             // Need to scroll - trigger burst after scroll completes
             verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -647,11 +655,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
             const checkScrollEnd = () => {
               clearTimeout(scrollTimeout);
               scrollTimeout = setTimeout(() => {
-                verseElement.classList.add("verse-burst-highlight");
-                setTimeout(() => {
-                  verseElement.classList.remove("verse-burst-highlight");
-                  verseElement.classList.add("verse-persistent-highlight");
-                }, 4000);
+                applyBurstAndPersist(scrollToVerse);
                 window.removeEventListener("scroll", checkScrollEnd, true);
               }, 150);
             };
@@ -661,11 +665,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
             setTimeout(() => {
               window.removeEventListener("scroll", checkScrollEnd, true);
               if (!verseElement.classList.contains("verse-burst-highlight")) {
-                verseElement.classList.add("verse-burst-highlight");
-                setTimeout(() => {
-                  verseElement.classList.remove("verse-burst-highlight");
-                  verseElement.classList.add("verse-persistent-highlight");
-                }, 4000);
+                applyBurstAndPersist(scrollToVerse);
               }
             }, 1000);
           }
@@ -1701,7 +1701,7 @@ Reference: ${verseRef} (${translation})`;
                       }}
                       onClick={() => handleVerseClick(verse)}
                       animate={{
-                        backgroundColor: selectedVerse?.verse === verse.verse 
+                        backgroundColor: selectedVerse?.verse === verse.verse || persistentHighlightVerse === verse.verse
                           ? "rgba(192, 142, 0, 0.15)" 
                           : "rgba(0, 0, 0, 0)"
                       }}
