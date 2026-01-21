@@ -23,13 +23,8 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   const [isSimulating, setIsSimulating] = useState(false);
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   
-  // Set Android CSS variables IMMEDIATELY (synchronously) to prevent flashing/gaps
-  // This runs before any useEffect, ensuring the values are available on first render
-  const currentPlatformSync = Capacitor.getPlatform();
-  if (currentPlatformSync === 'android') {
-    document.documentElement.style.setProperty('--android-status-bar-height', '44px');
-    document.documentElement.style.setProperty('--android-bottom-inset', '34px');
-  }
+  // Note: Android CSS variables are set in main.tsx BEFORE React renders
+  // to ensure they're available from the absolute first frame
   
   useEffect(() => {
     setIsSimulating(isSimulatingNativeApp());
@@ -42,7 +37,7 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
       console.log('[Platform] isNative:', isNativePlatformCheck, 'platform:', currentPlatform);
       
       if (isNativePlatformCheck && currentPlatform === 'android') {
-        // Get actual height from StatusBar plugin (may update the default)
+        // Get actual height from StatusBar plugin (may update the default set in main.tsx)
         try {
           const info = await StatusBar.getInfo();
           const actualHeight = (info as any).height || 44;
@@ -50,13 +45,10 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
           setStatusBarHeight(actualHeight);
           console.log('[Android] Updated status bar height from device:', actualHeight);
         } catch (e) {
-          // Default was already set synchronously above
+          // Default was already set in main.tsx
           setStatusBarHeight(44);
           console.log('[Android] Keeping default status bar height: 44px');
         }
-        
-        // Bottom inset was already set synchronously above
-        console.log('[Android] Bottom inset already set: 34px');
         
         try {
           // Make status bar transparent and overlay content
