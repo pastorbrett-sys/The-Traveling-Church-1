@@ -378,6 +378,69 @@ export default function Profile() {
   });
 
   const ambassador = ambassadorData?.ambassador;
+  const isActiveAmbassador = ambassador?.status === "active";
+
+  // Ambassador card - rendered in different positions based on status
+  const ambassadorCard = (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2" data-testid="heading-ambassador">
+          <Award className="w-5 h-5 text-[#c08e00]" />
+          {t.ambassadorProgram}
+        </CardTitle>
+        <CardDescription>
+          {t.ambassadorDescription}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {isAmbassadorLoading ? (
+          <div className="flex items-center justify-center py-4">
+            <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+          </div>
+        ) : ambassador ? (
+          <div className="space-y-3">
+            {ambassador.status === "pending" ? (
+              <div className="flex items-center justify-between p-3 bg-yellow-500/10 rounded-lg">
+                <div>
+                  <p className="font-medium text-yellow-600">{t.applicationPending}</p>
+                  <p className="text-sm text-muted-foreground">{t.pendingApproval}</p>
+                </div>
+              </div>
+            ) : ambassador.status === "active" ? (
+              <Button
+                onClick={() => setLocation("/ambassador")}
+                className="w-full bg-[#c08e00] hover:bg-[#a07800] text-white"
+                data-testid="button-ambassador-dashboard"
+              >
+                {t.viewDashboard}
+                <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            ) : (
+              <Button
+                onClick={() => setLocation("/ambassador")}
+                variant="outline"
+                className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
+                data-testid="button-become-ambassador"
+              >
+                {t.becomeAmbassador}
+                <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            )}
+          </div>
+        ) : (
+          <Button
+            onClick={() => setLocation("/ambassador")}
+            variant="outline"
+            className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
+            data-testid="button-become-ambassador"
+          >
+            {t.becomeAmbassador}
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
 
   useEffect(() => {
     document.title = `${t.myProfile} | Vagabond Bible`;
@@ -715,6 +778,9 @@ export default function Profile() {
               </CardContent>
             </Card>
 
+            {/* Ambassador card - shown here for active ambassadors */}
+            {isActiveAmbassador && ambassadorCard}
+
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2" data-testid="heading-subscription">
@@ -960,65 +1026,8 @@ export default function Profile() {
               </CardContent>
             </Card>
 
-            {/* Ambassador Program */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2" data-testid="heading-ambassador">
-                  <Award className="w-5 h-5 text-[#c08e00]" />
-                  {t.ambassadorProgram}
-                </CardTitle>
-                <CardDescription>
-                  {t.ambassadorDescription}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {isAmbassadorLoading ? (
-                  <div className="flex items-center justify-center py-4">
-                    <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
-                  </div>
-                ) : ambassador ? (
-                  <div className="space-y-3">
-                    {ambassador.status === "pending" ? (
-                      <div className="flex items-center justify-between p-3 bg-yellow-500/10 rounded-lg">
-                        <div>
-                          <p className="font-medium text-yellow-600">{t.applicationPending}</p>
-                          <p className="text-sm text-muted-foreground">{t.pendingApproval}</p>
-                        </div>
-                      </div>
-                    ) : ambassador.status === "active" ? (
-                      <Button
-                        onClick={() => setLocation("/ambassador")}
-                        className="w-full bg-[#c08e00] hover:bg-[#a07800] text-black"
-                        data-testid="button-ambassador-dashboard"
-                      >
-                        {t.viewDashboard}
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={() => setLocation("/ambassador")}
-                        variant="outline"
-                        className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
-                        data-testid="button-become-ambassador"
-                      >
-                        {t.becomeAmbassador}
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    )}
-                  </div>
-                ) : (
-                  <Button
-                    onClick={() => setLocation("/ambassador")}
-                    variant="outline"
-                    className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
-                    data-testid="button-become-ambassador"
-                  >
-                    {t.becomeAmbassador}
-                    <ChevronRight className="w-4 h-4 ml-2" />
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
+            {/* Ambassador card - shown here for non-active ambassadors */}
+            {!isActiveAmbassador && ambassadorCard}
           </div>
 
           {/* Delete Account */}
