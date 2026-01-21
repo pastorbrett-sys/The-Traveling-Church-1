@@ -843,7 +843,7 @@ export default function AmbassadorPage() {
           <Collapsible open={teamOpen} onOpenChange={setTeamOpen}>
             <Card className="bg-[#1a1a1a] border-[#333]">
               <CollapsibleTrigger asChild>
-                <CardHeader className={`cursor-pointer hover:bg-[#222] transition-colors rounded-lg ${teamOpen ? 'pb-2' : 'py-4'}`}>
+                <CardHeader className={`cursor-pointer transition-colors rounded-lg ${teamOpen ? 'pb-2' : 'py-4 hover:bg-[#222]'}`}>
                   <CardTitle className="text-lg text-white flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-[#c08e00]" />
@@ -914,7 +914,7 @@ export default function AmbassadorPage() {
           <Collapsible open={signupsOpen} onOpenChange={setSignupsOpen}>
             <Card className="bg-[#1a1a1a] border-[#333]">
               <CollapsibleTrigger asChild>
-                <CardHeader className={`cursor-pointer hover:bg-[#222] transition-colors rounded-lg ${signupsOpen ? 'pb-2' : 'py-4'}`}>
+                <CardHeader className={`cursor-pointer transition-colors rounded-lg ${signupsOpen ? 'pb-2' : 'py-4 hover:bg-[#222]'}`}>
                   <CardTitle className="text-lg text-white flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <UserPlus className="w-5 h-5 text-green-400" />
