@@ -102,7 +102,7 @@ export function getWelcomeEmailHtml(displayName: string): string {
         </div>
         
         <!-- Content -->
-        <div style="padding: 40px 30px; text-align: center;">
+        <div style="padding: 50px 30px 55px; text-align: center;">
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif;">Welcome to Vagabond Bible</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
@@ -174,7 +174,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         </div>
         
         <!-- Content -->
-        <div style="padding: 40px 30px; text-align: center;">
+        <div style="padding: 50px 30px 55px; text-align: center;">
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif;">You're Pro Now</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 24px 0;">
