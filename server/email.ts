@@ -93,7 +93,7 @@ export function getWelcomeEmailHtml(displayName: string): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-logo.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -165,7 +165,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-logo.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
