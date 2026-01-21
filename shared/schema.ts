@@ -154,6 +154,7 @@ export const ambassadors = pgTable("ambassadors", {
   userId: text("user_id").notNull(), // Links to auth user
   email: text("email").notNull(),
   name: text("name").notNull(),
+  whatsapp: text("whatsapp"), // WhatsApp number for outreach
   country: text("country"), // Where they're based
   reason: text("reason"), // Why they want to be an ambassador
   referralSource: text("referral_source"), // How they heard about the program

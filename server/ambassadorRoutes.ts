@@ -18,7 +18,7 @@ function hashIP(ip: string): string {
 
 router.post("/register", async (req, res) => {
   try {
-    const { userId, email, name, inviteCode, country, reason, referralSource } = req.body;
+    const { userId, email, name, inviteCode, whatsapp, country, reason, referralSource } = req.body;
     
     if (!userId || !email || !name) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -44,6 +44,7 @@ router.post("/register", async (req, res) => {
       userId,
       email,
       name,
+      whatsapp: whatsapp || null,
       country: country || null,
       reason: reason || null,
       referralSource: referralSource || null,

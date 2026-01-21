@@ -160,6 +160,7 @@ export default function AmbassadorPage() {
   
   const [applyName, setApplyName] = useState("");
   const [applyEmail, setApplyEmail] = useState("");
+  const [applyWhatsapp, setApplyWhatsapp] = useState("");
   const [applyCountry, setApplyCountry] = useState("");
   const [countryOpen, setCountryOpen] = useState(false);
   const [applyReason, setApplyReason] = useState("");
@@ -278,6 +279,7 @@ export default function AmbassadorPage() {
           email: applyEmail.trim(),
           name: applyName.trim(),
           inviteCode: inviteCode,
+          whatsapp: applyWhatsapp.trim() || undefined,
           country: applyCountry.trim() || undefined,
           reason: applyReason.trim() || undefined,
           referralSource: applySource.trim() || undefined,
@@ -497,6 +499,19 @@ export default function AmbassadorPage() {
                   className="bg-[#0a0a0a] border-gray-700 text-white"
                   data-testid="input-apply-email"
                   required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="whatsapp" className="text-gray-300">WhatsApp Number (optional)</Label>
+                <Input
+                  id="whatsapp"
+                  type="tel"
+                  value={applyWhatsapp}
+                  onChange={(e) => setApplyWhatsapp(e.target.value)}
+                  placeholder="e.g., +1 555 123 4567"
+                  className="bg-[#0a0a0a] border-gray-700 text-white"
+                  data-testid="input-apply-whatsapp"
                 />
               </div>
               
