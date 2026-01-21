@@ -28,7 +28,7 @@ function getWelcomeEmailHtml(): string {
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Vagabond Bible</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Vagabond Bible brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word—wherever you are.
+            Vagabond Bible brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word, wherever you are.
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
