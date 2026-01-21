@@ -32,7 +32,7 @@ function getWelcomeEmailHtml(): string {
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
-             style="background-color: #D4A84B; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
             Start Exploring
           </a>
         </div>
@@ -94,7 +94,7 @@ function getSubscriptionEmailHtml(): string {
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
-             style="background-color: #D4A84B; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
             Open Vagabond Bible
           </a>
         </div>
