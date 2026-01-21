@@ -364,9 +364,13 @@ export default function Profile() {
     queryKey: ["/api/ambassador/me", user?.id],
     queryFn: async () => {
       if (!user?.id) return null;
-      const res = await fetch(`/api/ambassador/me?userId=${user.id}`);
-      if (!res.ok) return null;
-      return res.json();
+      try {
+        const res = await apiFetch(`/api/ambassador/me?userId=${user.id}`);
+        if (!res.ok) return null;
+        return res.json();
+      } catch {
+        return null;
+      }
     },
     enabled: isAuthenticated && !!user?.id,
     retry: false,
