@@ -2,13 +2,58 @@ import type { Express, Request, Response } from "express";
 import { db } from "./storage";
 import { users, referralSignups } from "@shared/schema";
 import { eq } from "drizzle-orm";
+import { sendSubscriptionConfirmationEmail } from "./email";
 
-async function trackAmbassadorConversion(userId: string, source: string): Promise<void> {
+// Enhanced ambassador tracking with multi-priority matching (matches Stripe handler)
+async function trackAmbassadorConversion(userId: string, source: string, email?: string, referralCode?: string): Promise<void> {
   try {
-    console.log(`[Ambassador] 🔄 Attempting to track conversion for user ${userId} (source: ${source})`);
+    console.log(`[Ambassador] 🔄 Attempting to track conversion for user ${userId} (source: ${source}, email: ${email || 'none'}, referralCode: ${referralCode || 'none'})`);
     
-    // First check if this user has a referral signup entry
-    const existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId));
+    let existing: typeof referralSignups.$inferSelect[] = [];
+    
+    // PRIORITY 1: Match by userId (most reliable when available)
+    if (userId && userId !== 'guest') {
+      existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId));
+      if (existing.length > 0) {
+        console.log(`[Ambassador] ✅ Found signup by userId: ${userId}`);
+      }
+    }
+    
+    // PRIORITY 2: If no userId match, try to find by email
+    if (existing.length === 0 && email) {
+      console.log(`[Ambassador] 🔍 No signup by userId, trying by email: ${email}`);
+      
+      // Find user by email
+      const usersByEmail = await db.select({ id: users.id }).from(users).where(eq(users.email, email)).limit(1);
+      if (usersByEmail.length > 0) {
+        const emailUserId = usersByEmail[0].id;
+        existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, emailUserId));
+        if (existing.length > 0) {
+          console.log(`[Ambassador] ✅ Found signup by email-matched userId: ${emailUserId}`);
+        }
+      }
+    }
+    
+    // PRIORITY 3: Last resort - find by referralCode alone (most recent unconverted)
+    if (existing.length === 0 && referralCode) {
+      console.log(`[Ambassador] 🔍 No signup by userId or email, trying fallback by referralCode: ${referralCode}`);
+      const byCode = await db.select().from(referralSignups)
+        .where(eq(referralSignups.referralCode, referralCode));
+      if (byCode.length > 0) {
+        // Find most recent unconverted entry
+        const unconverted = byCode
+          .filter(s => !s.convertedToPro)
+          .sort((a, b) => {
+            const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return dateB - dateA;
+          })[0];
+        if (unconverted) {
+          existing = [unconverted];
+          console.log(`[Ambassador] ⚠️ Using referralCode-only fallback: ${referralCode} (signup ID: ${unconverted.id})`);
+        }
+      }
+    }
     
     if (existing.length === 0) {
       console.log(`[Ambassador] ⚠️ No referral signup found for user ${userId} - they may not have used a referral link`);
@@ -23,7 +68,7 @@ async function trackAmbassadorConversion(userId: string, source: string): Promis
     // Only update if not already converted (idempotency)
     const result = await db.update(referralSignups)
       .set({ convertedToPro: true, conversionDate: new Date() })
-      .where(eq(referralSignups.userId, userId))
+      .where(eq(referralSignups.id, existing[0].id))
       .returning();
     
     if (result.length > 0) {
@@ -74,11 +119,46 @@ async function handleRevenueCatEvent(event: RevenueCatEvent["event"]): Promise<v
         await updateUserRevenueCatStatus(app_user_id, "Vagabond Bible Pro", expiresAt);
         console.log(`Granted Pro entitlement to user ${app_user_id} (expires: ${expiresAt})`);
         
-        // Track ambassador conversion for App Store/Google Play subscriptions
+        // Look up user to get their email and referral info
         const existingUser = await db.select().from(users).where(eq(users.revenueCatUserId, app_user_id)).limit(1);
+        
         if (existingUser.length > 0 && existingUser[0].id) {
+          const user = existingUser[0];
           const store = (event as any).store || 'unknown';
-          await trackAmbassadorConversion(existingUser[0].id, `RevenueCat ${type} (${store})`);
+          const productId = (event as any).product_id || '';
+          
+          // Get user's referral signup info if exists
+          const referralInfo = await db.select().from(referralSignups)
+            .where(eq(referralSignups.userId, user.id)).limit(1);
+          const referralCode = referralInfo.length > 0 ? referralInfo[0].referralCode : undefined;
+          
+          // Track ambassador conversion with full matching capabilities
+          await trackAmbassadorConversion(
+            user.id, 
+            `RevenueCat ${type} (${store})`,
+            user.email || undefined,
+            referralCode
+          );
+          
+          // Send subscription confirmation email for INITIAL_PURCHASE only
+          // (Don't spam on renewals)
+          if (type === "INITIAL_PURCHASE" && user.email) {
+            // Determine pricing tier from product ID
+            // iOS: vagabond_bible_pro_monthly = premium, pro_monthly_emerging = emerging
+            // Android: Uses regional pricing from Google Play
+            let planType: 'premium' | 'emerging' = 'premium';
+            if (productId.includes('emerging')) {
+              planType = 'emerging';
+            }
+            
+            console.log(`[RevenueCat] 📧 Sending subscription confirmation email to ${user.email} (plan: ${planType}, store: ${store})`);
+            const timestamp = new Date().toISOString();
+            console.log(`[RevenueCat] Email send initiated at: ${timestamp}`);
+            
+            sendSubscriptionConfirmationEmail(user.email, user.firstName || undefined, planType).catch(error => {
+              console.error('[RevenueCat] ❌ Failed to send subscription confirmation email:', error);
+            });
+          }
         } else {
           console.log(`[Ambassador] ⚠️ Cannot track conversion - no user found with RevenueCat ID: ${app_user_id}`);
         }
