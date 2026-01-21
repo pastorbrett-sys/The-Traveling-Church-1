@@ -577,7 +577,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
             </div>
           </div>
           
-          <a href="${BASE_URL}/vagabond-bible" 
+          <a href="${BASE_URL}/ambassador" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
             Open Your Dashboard
           </a>
