@@ -43,6 +43,7 @@ import { apiRequest, queryClient, apiFetch } from "@/lib/queryClient";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
+import { getBottomNavOffset } from "@/lib/native-spacing";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
@@ -436,7 +437,7 @@ export default function Notes() {
         className="flex-1"
         style={isNative ? { 
           overflowY: 'auto', 
-          paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px) + 16px)' 
+          paddingBottom: `calc(${getBottomNavOffset()} + 16px)` 
         } : undefined}
       >
         <div className="max-w-4xl mx-auto px-4 pt-[14px] pb-6">

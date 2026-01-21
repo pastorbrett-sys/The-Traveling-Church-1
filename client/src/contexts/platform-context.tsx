@@ -48,6 +48,11 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
           console.log('[Android] Using fallback status bar height: 44px');
         }
         
+        // Set fixed bottom inset for Android gesture navigation (34px is standard)
+        // This avoids the inconsistent env(safe-area-inset-bottom) behavior
+        document.documentElement.style.setProperty('--android-bottom-inset', '34px');
+        console.log('[Android] Set fixed bottom inset: 34px');
+        
         try {
           // Make status bar transparent and overlay content
           await StatusBar.setOverlaysWebView({ overlay: true });

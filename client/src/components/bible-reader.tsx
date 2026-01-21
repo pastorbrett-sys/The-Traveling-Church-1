@@ -4,6 +4,7 @@ import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Capacitor } from "@capacitor/core";
+import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";
 import { 
   Book, 
   Bookmark,
@@ -1741,8 +1742,8 @@ Reference: ${verseRef} (${translation})`;
             transition={{ type: "spring", stiffness: 500, damping: 35 }}
             className="fixed left-0 right-0 border-t p-3 bg-background shadow-lg z-50"
             style={{ 
-              bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
-              paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
+              bottom: isNative ? getBottomNavOffset() : "0",
+              paddingBottom: isNative ? "12px" : `calc(${getBottomInset()} + 12px)` 
             }}
           >
             <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
@@ -1888,8 +1889,8 @@ Reference: ${verseRef} (${translation})`;
             <div 
               className="fixed left-0 right-0 border-t p-3 bg-background"
               style={{ 
-                bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
-                paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
+                bottom: isNative ? getBottomNavOffset() : "0",
+                paddingBottom: isNative ? "12px" : `calc(${getBottomInset()} + 12px)` 
               }}
             >
               <div className="max-w-2xl mx-auto flex gap-2 items-stretch">
@@ -2017,8 +2018,8 @@ Reference: ${verseRef} (${translation})`;
             <div 
               className="fixed left-0 right-0 border-t p-3 bg-background"
               style={{ 
-                bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
-                paddingBottom: isNative ? "12px" : "calc(env(safe-area-inset-bottom, 0px) + 12px)" 
+                bottom: isNative ? getBottomNavOffset() : "0",
+                paddingBottom: isNative ? "12px" : `calc(${getBottomInset()} + 12px)` 
               }}
             >
               <div className="max-w-2xl mx-auto flex gap-2 items-stretch">

@@ -28,6 +28,7 @@ import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
+import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -771,8 +772,8 @@ export default function PastorChat() {
         ref={footerRef}
         className="fixed left-0 right-0 p-4 bg-card border-t border-border"
         style={{ 
-          bottom: isNative ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0",
-          paddingBottom: isNative ? "16px" : "calc(env(safe-area-inset-bottom, 0px) + 16px)" 
+          bottom: isNative ? getBottomNavOffset() : "0",
+          paddingBottom: isNative ? "16px" : `calc(${getBottomInset()} + 16px)` 
         }}
       >
         <div className="w-full max-w-3xl mx-auto">
