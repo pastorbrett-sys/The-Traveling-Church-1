@@ -109,8 +109,6 @@ function getSubscriptionEmailHtml(): string {
             <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
           </a>
           <p style="color: #888; font-size: 12px; margin: 16px 0 0 0;">
-            <a href="${BASE_URL}/profile" style="color: #888; text-decoration: none;">Manage Subscription</a>
-            <span style="color: #555; margin: 0 8px;">•</span>
             <a href="${BASE_URL}" style="color: #888; text-decoration: none;">vagabondbible.com</a>
             <span style="color: #555; margin: 0 8px;">•</span>
             <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
