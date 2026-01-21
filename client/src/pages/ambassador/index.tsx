@@ -14,6 +14,7 @@ import {
   Shield,
   ArrowLeft,
   ChevronRight,
+  ChevronDown,
   X,
   ChevronsUpDown
 } from "lucide-react";
@@ -24,6 +25,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useAuth } from "@/hooks/use-auth";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
@@ -183,6 +185,9 @@ export default function AmbassadorPage() {
   const [showConversions, setShowConversions] = useState(false);
   const [conversionsList, setConversionsList] = useState<ConversionDetail[]>([]);
   const [loadingConversions, setLoadingConversions] = useState(false);
+  
+  const [teamOpen, setTeamOpen] = useState(true);
+  const [signupsOpen, setSignupsOpen] = useState(true);
 
   useEffect(() => {
     document.title = "Ambassador Program | Vagabond Bible";
@@ -836,112 +841,130 @@ export default function AmbassadorPage() {
         </Card>
 
         {team.length > 0 && (
-          <Card className="bg-[#1a1a1a] border-[#333]">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg text-white flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-[#c08e00]" />
-                My Team ({team.length})
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3 mt-1">
-                {team.map((member: TeamMember & { userId?: string }) => (
-                  <div 
-                    key={member.id}
-                    className="p-3 bg-[#0a0a0a] rounded-lg cursor-pointer hover:bg-[#1a1a1a] transition-colors"
-                    onClick={() => {
-                      const memberId = (member as any).userId || member.id;
-                      handleViewSignups(memberId, member.name);
-                    }}
-                    data-testid={`team-member-${member.id}`}
-                  >
-                    <p className="text-white font-medium">{member.name}</p>
-                    <p className="text-gray-500 text-sm">{member.email}</p>
-                    <div className="mt-2 flex items-center gap-2">
-                      {member.status === "pending" && ambassador?.isSuperAdmin ? (
-                        <Button
-                          size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1"
-                          onClick={async (e) => {
-                            e.stopPropagation();
-                            try {
-                              const res = await fetch(`/api/ambassador/admin/approve/${member.id}`, {
-                                method: "POST",
-                              });
-                              if (res.ok) {
-                                await fetchDashboardData();
-                              }
-                            } catch (err) {
-                              console.error("Failed to approve:", err);
-                            }
-                          }}
-                          data-testid={`button-approve-${member.id}`}
-                        >
-                          Approve
-                        </Button>
-                      ) : (
-                        <div className={`px-2 py-1 rounded text-xs ${
-                          member.status === "active" 
-                            ? "bg-green-500/20 text-green-400" 
-                            : "bg-yellow-500/20 text-yellow-400"
-                        }`}>
-                          {member.status}
-                        </div>
-                      )}
+          <Collapsible open={teamOpen} onOpenChange={setTeamOpen}>
+            <Card className="bg-[#1a1a1a] border-[#333]">
+              <CollapsibleTrigger asChild>
+                <CardHeader className="pb-2 cursor-pointer hover:bg-[#222] transition-colors rounded-t-lg">
+                  <CardTitle className="text-lg text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-[#c08e00]" />
+                      My Team ({team.length})
                     </div>
+                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${teamOpen ? '' : '-rotate-90'}`} />
+                  </CardTitle>
+                </CardHeader>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <CardContent>
+                  <div className="space-y-3 mt-1">
+                    {team.map((member: TeamMember & { userId?: string }) => (
+                      <div 
+                        key={member.id}
+                        className="p-3 bg-[#0a0a0a] rounded-lg cursor-pointer hover:bg-[#1a1a1a] transition-colors"
+                        onClick={() => {
+                          const memberId = (member as any).userId || member.id;
+                          handleViewSignups(memberId, member.name);
+                        }}
+                        data-testid={`team-member-${member.id}`}
+                      >
+                        <p className="text-white font-medium">{member.name}</p>
+                        <p className="text-gray-500 text-sm">{member.email}</p>
+                        <div className="mt-2 flex items-center gap-2">
+                          {member.status === "pending" && ambassador?.isSuperAdmin ? (
+                            <Button
+                              size="sm"
+                              className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1"
+                              onClick={async (e) => {
+                                e.stopPropagation();
+                                try {
+                                  const res = await fetch(`/api/ambassador/admin/approve/${member.id}`, {
+                                    method: "POST",
+                                  });
+                                  if (res.ok) {
+                                    await fetchDashboardData();
+                                  }
+                                } catch (err) {
+                                  console.error("Failed to approve:", err);
+                                }
+                              }}
+                              data-testid={`button-approve-${member.id}`}
+                            >
+                              Approve
+                            </Button>
+                          ) : (
+                            <div className={`px-2 py-1 rounded text-xs ${
+                              member.status === "active" 
+                                ? "bg-green-500/20 text-green-400" 
+                                : "bg-yellow-500/20 text-yellow-400"
+                            }`}>
+                              {member.status}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
         )}
 
         {/* My Signups Section - visible to all ambassadors */}
         {signupsList.length > 0 && (
-          <Card className="bg-[#1a1a1a] border-[#333]">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg text-white flex items-center gap-2">
-                <UserPlus className="w-5 h-5 text-green-400" />
-                My Signups ({signupsList.length})
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3 mt-1">
-                {signupsList.slice(0, 10).map((signup) => (
-                  <div 
-                    key={signup.id}
-                    className="p-3 bg-[#0a0a0a] rounded-lg"
-                    data-testid={`signup-${signup.id}`}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-white font-medium truncate">{signup.email || 'No email'}</p>
-                        {signup.name && <p className="text-gray-500 text-sm truncate">{signup.name}</p>}
-                        <p className="text-gray-600 text-xs mt-1">
-                          Signed up {new Date(signup.signupDate).toLocaleDateString()}
-                        </p>
-                      </div>
-                      {signup.convertedToPro && (
-                        <div className="px-2 py-1 rounded text-xs bg-[#c08e00]/20 text-[#c08e00]">
-                          <Crown className="w-3 h-3 inline mr-1" />
-                          Pro
-                        </div>
-                      )}
+          <Collapsible open={signupsOpen} onOpenChange={setSignupsOpen}>
+            <Card className="bg-[#1a1a1a] border-[#333]">
+              <CollapsibleTrigger asChild>
+                <CardHeader className="pb-2 cursor-pointer hover:bg-[#222] transition-colors rounded-t-lg">
+                  <CardTitle className="text-lg text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <UserPlus className="w-5 h-5 text-green-400" />
+                      My Signups ({signupsList.length})
                     </div>
+                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${signupsOpen ? '' : '-rotate-90'}`} />
+                  </CardTitle>
+                </CardHeader>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <CardContent>
+                  <div className="space-y-3 mt-1">
+                    {signupsList.slice(0, 10).map((signup) => (
+                      <div 
+                        key={signup.id}
+                        className="p-3 bg-[#0a0a0a] rounded-lg"
+                        data-testid={`signup-${signup.id}`}
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-white font-medium truncate">{signup.email || 'No email'}</p>
+                            {signup.name && <p className="text-gray-500 text-sm truncate">{signup.name}</p>}
+                            <p className="text-gray-600 text-xs mt-1">
+                              Signed up {new Date(signup.signupDate).toLocaleDateString()}
+                            </p>
+                          </div>
+                          {signup.convertedToPro && (
+                            <div className="px-2 py-1 rounded text-xs bg-[#c08e00]/20 text-[#c08e00]">
+                              <Crown className="w-3 h-3 inline mr-1" />
+                              Pro
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                    {signupsList.length > 10 && (
+                      <Button
+                        variant="ghost"
+                        className="w-full text-gray-400 hover:text-white"
+                        onClick={() => setShowSignups(true)}
+                      >
+                        View all {signupsList.length} signups
+                      </Button>
+                    )}
                   </div>
-                ))}
-                {signupsList.length > 10 && (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-gray-400 hover:text-white"
-                    onClick={() => setShowSignups(true)}
-                  >
-                    View all {signupsList.length} signups
-                  </Button>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
         )}
       </div>
 
