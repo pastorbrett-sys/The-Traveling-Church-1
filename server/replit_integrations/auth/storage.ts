@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/neon-serverless";
 import { Pool, neonConfig } from "@neondatabase/serverless";
 import ws from "ws";
 import { eq } from "drizzle-orm";
+import { sendWelcomeEmail } from "../../email";
 
 neonConfig.webSocketConstructor = ws;
 
@@ -23,6 +24,10 @@ class AuthStorage implements IAuthStorage {
   }
 
   async upsertUser(userData: UpsertUser): Promise<User> {
+    // Check if user already exists (to detect new vs returning user)
+    const existingUser = userData.id ? await this.getUser(userData.id) : undefined;
+    const isNewUser = !existingUser;
+    
     const [user] = await db
       .insert(users)
       .values(userData)
@@ -34,6 +39,15 @@ class AuthStorage implements IAuthStorage {
         },
       })
       .returning();
+    
+    // Send welcome email to new users (fire and forget - don't block auth)
+    if (isNewUser && user.email) {
+      console.log(`[Auth] New user detected: ${user.email} - sending welcome email`);
+      sendWelcomeEmail(user.email, user.firstName).catch(error => {
+        console.error('[Auth] Failed to send welcome email:', error);
+      });
+    }
+    
     return user;
   }
 }

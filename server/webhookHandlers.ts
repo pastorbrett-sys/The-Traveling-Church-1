@@ -3,6 +3,7 @@ import { storage, db } from './storage';
 import { referralSignups } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
+import { sendSubscriptionConfirmationEmail } from './email';
 
 async function trackAmbassadorConversion(userId: string, source: string, referralCode?: string, email?: string): Promise<void> {
   try {
@@ -239,11 +240,24 @@ export class WebhookHandlers {
     });
     console.log(`Successfully linked Stripe info for user ${userId}`);
     
-    // Track ambassador conversion - only if subscription exists and is active
+    // Track ambassador conversion and send confirmation email - only if subscription exists and is active
     if (subscriptionId) {
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
       if (subscription.status === 'active' || subscription.status === 'trialing') {
         await trackAmbassadorConversion(userId, 'Stripe checkout.session.completed', referralCode, email);
+        
+        // Send subscription confirmation email (fire and forget)
+        if (email) {
+          const user = await storage.getUser(userId);
+          // Determine pricing tier from session metadata or subscription
+          const pricingTier = session.metadata?.pricingTier as 'premium' | 'emerging' | undefined;
+          const planType = pricingTier || 'premium';
+          
+          console.log(`[Webhook] Sending subscription confirmation email to ${email} (plan: ${planType})`);
+          sendSubscriptionConfirmationEmail(email, user?.firstName, planType).catch(error => {
+            console.error('[Webhook] Failed to send subscription confirmation email:', error);
+          });
+        }
       }
     }
   }
