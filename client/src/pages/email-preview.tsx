@@ -268,33 +268,52 @@ function getAmbassadorApprovedEmailHtml(): string {
             </div>
           </div>
           
-          <!-- How It Works - Vertical Stack -->
+          <!-- How It Works - Individual Stacked Cards -->
           <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
           
+          <!-- Card 1: Share Your Link -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">🔗</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Share Your Link</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">Send to friends, family, and community</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Card 2: They Sign Up -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">👥</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">They Sign Up</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">Free or Pro, you get credit</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Card 3: Earn Rewards -->
           <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <div style="margin-bottom: 16px;">
-              <span style="font-size: 24px; margin-right: 16px; vertical-align: middle;">🔗</span>
-              <span style="vertical-align: middle;">
-                <span style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Share Your Link</span><br>
-                <span style="font-size: 13px; color: #666;">Send to friends, family, and community</span>
-              </span>
-            </div>
-            
-            <div style="margin-bottom: 16px;">
-              <span style="font-size: 24px; margin-right: 16px; vertical-align: middle;">👥</span>
-              <span style="vertical-align: middle;">
-                <span style="font-size: 15px; font-weight: 600; color: #1a1a1a;">They Sign Up</span><br>
-                <span style="font-size: 13px; color: #666;">Free or Pro, you get credit</span>
-              </span>
-            </div>
-            
-            <div>
-              <span style="font-size: 24px; margin-right: 16px; vertical-align: middle;">💰</span>
-              <span style="vertical-align: middle;">
-                <span style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Earn Rewards</span><br>
-                <span style="font-size: 13px; color: #666;">Get paid for Pro conversions</span>
-              </span>
-            </div>
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">💰</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Earn Rewards</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">Get paid for Pro conversions</div>
+                </td>
+              </tr>
+            </table>
           </div>
           
           <!-- Access Your Dashboard - Simple Steps -->
@@ -401,17 +420,25 @@ function getAmbassadorAdminEmailHtml(): string {
             </div>
           </div>
           
-          <!-- Action Buttons -->
-          <div style="text-align: center;">
-            <a href="${BASE_URL}/admin/ambassadors?action=approve&id=123" 
-               style="background-color: #22c55e; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block; font-size: 16px; margin-right: 12px;">
-              ✓ Approve
-            </a>
-            <a href="mailto:tadesse@example.com?subject=Your%20Vagabond%20Bible%20Ambassador%20Application" 
-               style="background-color: #3b82f6; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block; font-size: 16px;">
-              ✉️ Message
-            </a>
-          </div>
+          <!-- Action Buttons - Stacked for Mobile -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td align="center" style="padding-bottom: 12px;">
+                <a href="${BASE_URL}/admin/ambassadors?action=approve&id=123" 
+                   style="background-color: #22c55e; color: #ffffff; padding: 14px 0; text-decoration: none; border-radius: 8px; font-weight: 600; display: block; font-size: 16px; width: 100%; max-width: 280px; text-align: center; box-sizing: border-box;">
+                  ✓ Approve
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <a href="mailto:tadesse@example.com?subject=Your%20Vagabond%20Bible%20Ambassador%20Application" 
+                   style="background-color: #3b82f6; color: #ffffff; padding: 14px 0; text-decoration: none; border-radius: 8px; font-weight: 600; display: block; font-size: 16px; width: 100%; max-width: 280px; text-align: center; box-sizing: border-box;">
+                  ✉️ Message
+                </a>
+              </td>
+            </tr>
+          </table>
           
           <div style="text-align: center; margin-top: 20px;">
             <a href="${BASE_URL}/admin/ambassadors?id=123" style="color: #666; font-size: 14px; text-decoration: underline;">
