@@ -25,9 +25,10 @@ const config: CapacitorConfig = {
       splashImmersive: true,
       iosSpinnerStyle: 'small',
     },
-    StatusBar: {
-      style: 'dark',
-      backgroundColor: '#1a1a2e',
+    // Using @capacitor-community/safe-area for system bar styling
+    // Disable Capacitor's built-in insets handling to prevent conflicts
+    SystemBars: {
+      insetsHandling: 'disable',
     },
     FirebaseAuthentication: {
       skipNativeAuth: false,

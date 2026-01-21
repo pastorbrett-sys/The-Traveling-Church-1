@@ -3,7 +3,6 @@ import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
 import { motion } from "framer-motion";
-import { Capacitor } from "@capacitor/core";
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -45,9 +44,8 @@ const tabs: TabItem[] = [
 ];
 
 export function NativeTabBar() {
-  const { isNative, platform } = usePlatform();
+  const { isNative } = usePlatform();
   const [location, setLocation] = useLocation();
-  const isAndroid = Capacitor.getPlatform() === 'android';
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
   const [tappedTab, setTappedTab] = useState<string | null>(null);
   const [translation, setTranslation] = useState(() => {
@@ -129,17 +127,13 @@ export function NativeTabBar() {
     setTimeout(() => setTappedTab(null), 300);
   };
   
-  // Use fixed bottom padding for Android to avoid inconsistent safe area behavior
-  const bottomPadding = isAndroid 
-    ? 'var(--android-bottom-inset, 34px)' 
-    : 'env(safe-area-inset-bottom, 0px)';
-  
+  // @capacitor-community/safe-area plugin handles Android insets automatically
   return (
     <nav 
       className="fixed bottom-0 left-0 right-0 z-[150]"
       style={{ 
         background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)',
-        paddingBottom: bottomPadding
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)'
       }}
       data-testid="native-tab-bar"
     >
@@ -182,15 +176,9 @@ export function NativeTabBar() {
 
 export function NativeTabBarSpacer() {
   const { isNative } = usePlatform();
-  const isAndroid = Capacitor.getPlatform() === 'android';
   
   if (!isNative) return null;
   
-  // Total height = 64px tab bar + bottom inset
-  // Use fixed value for Android to avoid inconsistent safe area behavior
-  const spacerHeight = isAndroid
-    ? 'calc(64px + var(--android-bottom-inset, 34px))'
-    : 'calc(64px + env(safe-area-inset-bottom, 0px))';
-  
-  return <div style={{ height: spacerHeight }} />;
+  // @capacitor-community/safe-area plugin handles Android insets automatically
+  return <div style={{ height: 'calc(64px + env(safe-area-inset-bottom, 0px))' }} />;
 }

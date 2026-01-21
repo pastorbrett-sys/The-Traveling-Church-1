@@ -38,6 +38,7 @@ The application uses a component-based frontend architecture and an Express.js b
   - **Android**: Single product with Google Play regional pricing (TODO).
 - **User Authentication**: Integrates Replit's OpenID Connect for user sign-in (Google, GitHub, email/password), linking subscriptions to user accounts. Authenticated Pro users can manage subscriptions via Stripe Customer Portal.
 - **Native App (Capacitor)**: Supports iOS and Android via Capacitor, with platform-specific UI/UX adaptations like native tab bars, full-screen modals, and safe area handling. API calls from native platforms prepend the production URL and handle session cookies securely. App Transport Security (ATS) is configured for broader compatibility.
+  - **Android Safe Area Fix**: Uses `@capacitor-community/safe-area` plugin to fix Android WebView's broken `env(safe-area-inset-*)` CSS variables (Chromium <140 bug). MainActivity.java enables edge-to-edge mode via `EdgeToEdge.enable(this)`. The plugin auto-detects Chromium version and applies correct padding.
 
 ## External Dependencies
 
