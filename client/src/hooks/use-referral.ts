@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { apiFetch } from "@/lib/queryClient";
 
 const REFERRAL_CODE_KEY = "vagabond_referral_code";
 const REFERRAL_EXPIRY_KEY = "vagabond_referral_expiry";
@@ -18,7 +19,7 @@ export function useReferralCapture() {
       const expiry = Date.now() + REFERRAL_EXPIRY_DAYS * 24 * 60 * 60 * 1000;
       localStorage.setItem(REFERRAL_EXPIRY_KEY, expiry.toString());
       
-      fetch("/api/ambassador/track-click", {
+      apiFetch("/api/ambassador/track-click", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ referralCode: refCode }),
@@ -68,7 +69,7 @@ export async function trackReferralSignup(userId: string, userEmail?: string | n
   
   try {
     console.log("[Referral] Sending track-signup request...");
-    const response = await fetch("/api/ambassador/track-signup", {
+    const response = await apiFetch("/api/ambassador/track-signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ referralCode, userId, userEmail: userEmail || null }),
