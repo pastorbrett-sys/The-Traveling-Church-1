@@ -20,7 +20,7 @@ function getWelcomeEmailHtml(): string {
         
         <!-- Hero Image -->
         <div style="width: 100%;">
-          <img src="${BASE_URL}/email-assets/woman-in-van.png" alt="Woman reading Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/woman-in-van-animated.gif" alt="Woman reading Bible" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Content -->
@@ -69,7 +69,7 @@ function getSubscriptionEmailHtml(): string {
         
         <!-- Hero Image -->
         <div style="width: 100%;">
-          <img src="${BASE_URL}/email-assets/woman-in-van.png" alt="Woman reading Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/woman-in-van-animated.gif" alt="Woman reading Bible" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Content -->
