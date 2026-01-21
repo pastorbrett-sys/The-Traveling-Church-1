@@ -145,6 +145,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/attached_assets', express.static('attached_assets'));
+app.use('/email-assets', express.static('public/email-assets'));
 
 app.use((req, res, next) => {
   const start = Date.now();

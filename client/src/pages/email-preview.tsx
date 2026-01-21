@@ -1,86 +1,8 @@
-// Resend email service - using Replit Resend integration
-import { Resend } from 'resend';
+import { useState } from "react";
 
-let connectionSettings: any;
+const BASE_URL = window.location.origin;
 
-async function getCredentials() {
-  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
-  const xReplitToken = process.env.REPL_IDENTITY 
-    ? 'repl ' + process.env.REPL_IDENTITY 
-    : process.env.WEB_REPL_RENEWAL 
-    ? 'depl ' + process.env.WEB_REPL_RENEWAL 
-    : null;
-
-  if (!xReplitToken) {
-    throw new Error('X_REPLIT_TOKEN not found for repl/depl');
-  }
-
-  connectionSettings = await fetch(
-    'https://' + hostname + '/api/v2/connection?include_secrets=true&connector_names=resend',
-    {
-      headers: {
-        'Accept': 'application/json',
-        'X_REPLIT_TOKEN': xReplitToken
-      }
-    }
-  ).then(res => res.json()).then(data => data.items?.[0]);
-
-  if (!connectionSettings || (!connectionSettings.settings.api_key)) {
-    throw new Error('Resend not connected');
-  }
-  return {
-    apiKey: connectionSettings.settings.api_key, 
-    fromEmail: connectionSettings.settings.from_email
-  };
-}
-
-async function getResendClient() {
-  const { apiKey } = await getCredentials();
-  return new Resend(apiKey);
-}
-
-async function getFromEmail(): Promise<string> {
-  const { fromEmail } = await getCredentials();
-  return fromEmail || 'The Traveling Church <onboarding@resend.dev>';
-}
-
-export async function sendContactEmail(name: string, email: string, message: string) {
-  console.log('[Email] Starting to send contact email...');
-  
-  try {
-    const client = await getResendClient();
-    const fromEmail = await getFromEmail();
-    console.log('[Email] Got Resend client');
-    
-    const result = await client.emails.send({
-      from: fromEmail,
-      to: 'pastorbrett@thetravelingchurch.com',
-      subject: `New Contact Form Message from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <hr>
-        <p style="color: #666; font-size: 12px;">This message was sent from The Traveling Church website contact form.</p>
-      `,
-      replyTo: email
-    });
-    
-    console.log('[Email] Send result:', JSON.stringify(result));
-    return result;
-  } catch (error) {
-    console.error('[Email] Error sending email:', error);
-    throw error;
-  }
-}
-
-const BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://vagabondbible.com' 
-  : 'https://vagabondbible.com';
-
-export function getWelcomeEmailHtml(displayName: string): string {
+function getWelcomeEmailHtml(): string {
   return `
     <!DOCTYPE html>
     <html>
@@ -129,30 +51,7 @@ export function getWelcomeEmailHtml(displayName: string): string {
   `;
 }
 
-export async function sendWelcomeEmail(userEmail: string, firstName?: string | null) {
-  console.log(`[Email] Sending welcome email to ${userEmail}...`);
-  
-  try {
-    const client = await getResendClient();
-    const fromEmail = await getFromEmail();
-    const displayName = firstName || 'Friend';
-    
-    const result = await client.emails.send({
-      from: fromEmail,
-      to: userEmail,
-      subject: `Welcome to Vagabond Bible, ${displayName}!`,
-      html: getWelcomeEmailHtml(displayName)
-    });
-    
-    console.log('[Email] Welcome email sent:', JSON.stringify(result));
-    return result;
-  } catch (error) {
-    console.error('[Email] Error sending welcome email:', error);
-    throw error;
-  }
-}
-
-export function getSubscriptionEmailHtml(displayName: string): string {
+function getSubscriptionEmailHtml(): string {
   return `
     <!DOCTYPE html>
     <html>
@@ -215,29 +114,56 @@ export function getSubscriptionEmailHtml(displayName: string): string {
   `;
 }
 
-export async function sendSubscriptionConfirmationEmail(
-  userEmail: string, 
-  firstName?: string | null,
-  planType: 'premium' | 'emerging' = 'premium'
-) {
-  console.log(`[Email] Sending subscription confirmation to ${userEmail}...`);
+export default function EmailPreview() {
+  const [activeEmail, setActiveEmail] = useState<'welcome' | 'subscription'>('welcome');
   
-  try {
-    const client = await getResendClient();
-    const fromEmail = await getFromEmail();
-    const displayName = firstName || 'Friend';
-    
-    const result = await client.emails.send({
-      from: fromEmail,
-      to: userEmail,
-      subject: `You're Pro Now, ${displayName}!`,
-      html: getSubscriptionEmailHtml(displayName)
-    });
-    
-    console.log('[Email] Subscription confirmation email sent:', JSON.stringify(result));
-    return result;
-  } catch (error) {
-    console.error('[Email] Error sending subscription confirmation email:', error);
-    throw error;
-  }
+  const emailHtml = activeEmail === 'welcome' ? getWelcomeEmailHtml() : getSubscriptionEmailHtml();
+  
+  return (
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Email Preview</h1>
+          <div className="flex gap-4">
+            <button
+              onClick={() => setActiveEmail('welcome')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                activeEmail === 'welcome'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-50'
+              }`}
+              data-testid="button-preview-welcome"
+            >
+              Welcome Email
+            </button>
+            <button
+              onClick={() => setActiveEmail('subscription')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                activeEmail === 'subscription'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-50'
+              }`}
+              data-testid="button-preview-subscription"
+            >
+              Pro Subscription Email
+            </button>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="bg-gray-800 text-white px-4 py-2 text-sm">
+            Subject: {activeEmail === 'welcome' 
+              ? 'Welcome to Vagabond Bible, Friend!' 
+              : "You're Pro Now, Friend!"}
+          </div>
+          <iframe
+            srcDoc={emailHtml}
+            className="w-full h-[800px] border-0"
+            title="Email Preview"
+            data-testid="iframe-email-preview"
+          />
+        </div>
+      </div>
+    </div>
+  );
 }

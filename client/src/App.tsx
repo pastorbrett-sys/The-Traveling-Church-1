@@ -38,6 +38,7 @@ import NativeAuthCallback from "@/pages/native-auth-callback";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import Support from "@/pages/support";
+import EmailPreview from "@/pages/email-preview";
 import AdminEthiopianBible from "@/pages/admin-ethiopian-bible";
 import AmbassadorPage from "@/pages/ambassador/index";
 import AdminPanel from "@/pages/admin/index";
@@ -72,6 +73,7 @@ function VagabondBibleRouter() {
       <Route path="/ambassador/pending">{() => <Redirect to="/ambassador" />}</Route>
       <Route path="/ambassador/dashboard">{() => <Redirect to="/ambassador" />}</Route>
       <Route path="/admin" component={AdminPanel} />
+      <Route path="/email-preview" component={EmailPreview} />
       <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
@@ -109,6 +111,7 @@ function ChurchRouter() {
       <Route path="/ambassador/pending">{() => <Redirect to="/ambassador" />}</Route>
       <Route path="/ambassador/dashboard">{() => <Redirect to="/ambassador" />}</Route>
       <Route path="/admin" component={AdminPanel} />
+      <Route path="/email-preview" component={EmailPreview} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>
