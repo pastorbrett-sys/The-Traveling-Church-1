@@ -23,6 +23,14 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   const [isSimulating, setIsSimulating] = useState(false);
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   
+  // Set Android CSS variables IMMEDIATELY (synchronously) to prevent flashing/gaps
+  // This runs before any useEffect, ensuring the values are available on first render
+  const currentPlatformSync = Capacitor.getPlatform();
+  if (currentPlatformSync === 'android') {
+    document.documentElement.style.setProperty('--android-status-bar-height', '44px');
+    document.documentElement.style.setProperty('--android-bottom-inset', '34px');
+  }
+  
   useEffect(() => {
     setIsSimulating(isSimulatingNativeApp());
   }, []);
@@ -34,24 +42,21 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
       console.log('[Platform] isNative:', isNativePlatformCheck, 'platform:', currentPlatform);
       
       if (isNativePlatformCheck && currentPlatform === 'android') {
-        // Get actual height from StatusBar plugin first
+        // Get actual height from StatusBar plugin (may update the default)
         try {
           const info = await StatusBar.getInfo();
           const actualHeight = (info as any).height || 44;
           document.documentElement.style.setProperty('--android-status-bar-height', `${actualHeight}px`);
           setStatusBarHeight(actualHeight);
-          console.log('[Android] Set status bar height from device:', actualHeight);
+          console.log('[Android] Updated status bar height from device:', actualHeight);
         } catch (e) {
-          // Fallback to 44px (actual Solana Saga 2 value)
-          document.documentElement.style.setProperty('--android-status-bar-height', '44px');
+          // Default was already set synchronously above
           setStatusBarHeight(44);
-          console.log('[Android] Using fallback status bar height: 44px');
+          console.log('[Android] Keeping default status bar height: 44px');
         }
         
-        // Set fixed bottom inset for Android gesture navigation (34px is standard)
-        // This avoids the inconsistent env(safe-area-inset-bottom) behavior
-        document.documentElement.style.setProperty('--android-bottom-inset', '34px');
-        console.log('[Android] Set fixed bottom inset: 34px');
+        // Bottom inset was already set synchronously above
+        console.log('[Android] Bottom inset already set: 34px');
         
         try {
           // Make status bar transparent and overlay content
