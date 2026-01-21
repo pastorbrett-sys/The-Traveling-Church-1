@@ -14,8 +14,11 @@ import {
   Shield,
   ArrowLeft,
   ChevronRight,
-  X
+  X,
+  ChevronsUpDown
 } from "lucide-react";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -54,6 +57,27 @@ function clearStoredInviteCode() {
   localStorage.removeItem(INVITE_CODE_KEY);
   localStorage.removeItem(INVITE_EXPIRY_KEY);
 }
+
+const COUNTRIES = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+  "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
+  "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada",
+  "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba",
+  "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea",
+  "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany",
+  "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary",
+  "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica",
+  "Japan", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+  "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali",
+  "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique",
+  "Myanmar", "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia",
+  "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
+  "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saudi Arabia", "Senegal", "Serbia", "Sierra Leone", "Singapore",
+  "Slovakia", "Slovenia", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname",
+  "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Trinidad and Tobago",
+  "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+  "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
 
 interface AmbassadorData {
   id: string;
@@ -136,6 +160,7 @@ export default function AmbassadorPage() {
   
   const [applyName, setApplyName] = useState("");
   const [applyCountry, setApplyCountry] = useState("");
+  const [countryOpen, setCountryOpen] = useState(false);
   const [applyReason, setApplyReason] = useState("");
   const [applySource, setApplySource] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -441,15 +466,44 @@ export default function AmbassadorPage() {
               
               <div className="space-y-2">
                 <Label htmlFor="country" className="text-gray-300">Country</Label>
-                <Input
-                  id="country"
-                  type="text"
-                  value={applyCountry}
-                  onChange={(e) => setApplyCountry(e.target.value)}
-                  placeholder="Where are you based?"
-                  className="bg-[#0a0a0a] border-gray-700 text-white"
-                  data-testid="input-apply-country"
-                />
+                <Popover open={countryOpen} onOpenChange={setCountryOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={countryOpen}
+                      className="w-full justify-between bg-[#0a0a0a] border-gray-700 text-white hover:bg-[#1a1a1a] hover:text-white"
+                      data-testid="input-apply-country"
+                    >
+                      {applyCountry || "Select your country..."}
+                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-full p-0 bg-[#0a0a0a] border-gray-700" align="start">
+                    <Command className="bg-[#0a0a0a]">
+                      <CommandInput placeholder="Search countries..." className="text-white" />
+                      <CommandList>
+                        <CommandEmpty className="text-gray-400 py-4 text-center text-sm">No country found.</CommandEmpty>
+                        <CommandGroup>
+                          {COUNTRIES.map((country) => (
+                            <CommandItem
+                              key={country}
+                              value={country}
+                              onSelect={(value) => {
+                                setApplyCountry(value === applyCountry ? "" : value);
+                                setCountryOpen(false);
+                              }}
+                              className="text-white hover:bg-[#1a1a1a] cursor-pointer"
+                            >
+                              <Check className={`mr-2 h-4 w-4 ${applyCountry === country ? "opacity-100" : "opacity-0"}`} />
+                              {country}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
               <div className="space-y-2">
