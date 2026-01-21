@@ -830,3 +830,32 @@
 .menu-icon-exit {
   animation: menuIconSpinOut 0.25s ease-out forwards;
 }
+
+/* Golden shimmer animation for ambassador page */
+@keyframes goldenShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.golden-shimmer {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #c08e00 0%,
+    #c08e00 40%,
+    #ffd700 50%,
+    #fff8dc 55%,
+    #ffd700 60%,
+    #c08e00 100%
+  );
+  background-size: 200% 100%;
+  animation: goldenShimmer 2s ease-in-out 0.5s 1;
+}
+
+.golden-shimmer:hover {
+  background: #a07800;
+}

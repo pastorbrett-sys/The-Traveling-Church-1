@@ -732,7 +732,7 @@ export default function AmbassadorPage() {
               </div>
               <Button
                 onClick={handleCopyRef}
-                className="bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
+                className="golden-shimmer text-black font-medium"
                 data-testid="button-copy-referral"
               >
                 {copiedRef ? (
