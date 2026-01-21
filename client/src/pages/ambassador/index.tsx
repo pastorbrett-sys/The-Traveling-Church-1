@@ -240,7 +240,7 @@ export default function AmbassadorPage() {
             id: s.id,
             userId: s.userId,
             email: s.userEmail || '',
-            name: s.userName || 'Unknown User',
+            name: s.userName || null,
             convertedToPro: s.convertedToPro || false,
             conversionDate: s.conversionDate,
             signupDate: s.createdAt,
@@ -877,8 +877,8 @@ export default function AmbassadorPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
-                        <p className="text-white font-medium truncate">{signup.name}</p>
-                        <p className="text-gray-500 text-sm truncate">{signup.email}</p>
+                        <p className="text-white font-medium truncate">{signup.email || 'No email'}</p>
+                        {signup.name && <p className="text-gray-500 text-sm truncate">{signup.name}</p>}
                         <p className="text-gray-600 text-xs mt-1">
                           Signed up {new Date(signup.signupDate).toLocaleDateString()}
                         </p>
@@ -935,8 +935,8 @@ export default function AmbassadorPage() {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1 min-w-0">
-                      <p className="text-white font-medium truncate">{signup.name}</p>
-                      <p className="text-gray-500 text-sm truncate">{signup.email}</p>
+                      <p className="text-white font-medium truncate">{signup.email || 'No email'}</p>
+                      {signup.name && <p className="text-gray-500 text-sm truncate">{signup.name}</p>}
                       <p className="text-gray-600 text-xs mt-1">
                         Signed up {new Date(signup.signupDate).toLocaleDateString()}
                       </p>

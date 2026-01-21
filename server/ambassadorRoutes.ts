@@ -188,8 +188,8 @@ router.post("/track-click", async (req, res) => {
 
 router.post("/track-signup", async (req, res) => {
   try {
-    const { referralCode, userId } = req.body;
-    console.log(`[Ambassador] 📝 Track-signup request: userId=${userId}, referralCode=${referralCode}`);
+    const { referralCode, userId, userName, userEmail } = req.body;
+    console.log(`[Ambassador] 📝 Track-signup request: userId=${userId}, referralCode=${referralCode}, userName=${userName}, userEmail=${userEmail}`);
 
     if (!referralCode || !userId) {
       console.log(`[Ambassador] ❌ Missing required fields for signup tracking`);
@@ -205,6 +205,16 @@ router.post("/track-signup", async (req, res) => {
 
     const existing = await db.select().from(referralSignups).where(eq(referralSignups.userId, userId)).limit(1);
     if (existing.length > 0) {
+      // Update existing record with user info if we now have it
+      if ((userName || userEmail) && (!existing[0].userName || !existing[0].userEmail)) {
+        await db.update(referralSignups)
+          .set({ 
+            userName: userName || existing[0].userName,
+            userEmail: userEmail || existing[0].userEmail 
+          })
+          .where(eq(referralSignups.userId, userId));
+        console.log(`[Ambassador] ℹ️ Updated user info for existing signup: ${userId}`);
+      }
       console.log(`[Ambassador] ℹ️ User ${userId} already has a referral signup record (code: ${existing[0].referralCode})`);
       return res.json({ success: true, existing: true });
     }
@@ -212,6 +222,8 @@ router.post("/track-signup", async (req, res) => {
     await db.insert(referralSignups).values({
       referralCode,
       userId,
+      userName: userName || null,
+      userEmail: userEmail || null,
       convertedToPro: false,
     });
 

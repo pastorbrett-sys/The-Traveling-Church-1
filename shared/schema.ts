@@ -178,6 +178,8 @@ export const referralSignups = pgTable("referral_signups", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   referralCode: text("referral_code").notNull(),
   userId: text("user_id").notNull(), // The user who signed up
+  userName: text("user_name"), // User's display name
+  userEmail: text("user_email"), // User's email address
   convertedToPro: boolean("converted_to_pro").notNull().default(false),
   conversionDate: timestamp("conversion_date"),
   createdAt: timestamp("created_at").notNull().defaultNow(),

@@ -56,10 +56,10 @@ export function clearReferralCode() {
   localStorage.removeItem(REFERRAL_EXPIRY_KEY);
 }
 
-export async function trackReferralSignup(userId: string): Promise<boolean> {
+export async function trackReferralSignup(userId: string, userEmail?: string | null): Promise<boolean> {
   const referralCode = getReferralCode();
   
-  console.log("[Referral] Attempting to track signup for user:", userId, "with code:", referralCode);
+  console.log("[Referral] Attempting to track signup for user:", userId, "email:", userEmail, "with code:", referralCode);
   
   if (!referralCode) {
     console.log("[Referral] No referral code found in localStorage");
@@ -71,7 +71,7 @@ export async function trackReferralSignup(userId: string): Promise<boolean> {
     const response = await fetch("/api/ambassador/track-signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ referralCode, userId }),
+      body: JSON.stringify({ referralCode, userId, userEmail: userEmail || null }),
     });
     
     const data = await response.json();

@@ -196,7 +196,7 @@ export default function Login() {
       if (signedInUser) {
         // Always try to track referral - backend handles duplicates
         // The old creationTime === lastSignInTime check was unreliable
-        trackReferralSignup(signedInUser.uid).catch(console.error);
+        trackReferralSignup(signedInUser.uid, signedInUser.email).catch(console.error);
         await refetch();
         if (isInSafariSheet) {
           setNativeWantsDifferentAccount(false);
@@ -220,7 +220,7 @@ export default function Login() {
       const signedInUser = await signInWithApple();
       if (signedInUser) {
         // Always try to track referral - backend handles duplicates
-        trackReferralSignup(signedInUser.uid).catch(console.error);
+        trackReferralSignup(signedInUser.uid, signedInUser.email).catch(console.error);
         await refetch();
         if (isInSafariSheet) {
           setNativeWantsDifferentAccount(false);
@@ -281,7 +281,7 @@ export default function Login() {
       const newUser = await signUpWithEmail(signUpEmail, signUpPassword);
       
       if (newUser?.uid) {
-        trackReferralSignup(newUser.uid).catch(console.error);
+        trackReferralSignup(newUser.uid, signUpEmail).catch(console.error);
       }
       
       setSuccessMessage("Account created! We've sent a verification email to " + signUpEmail + ". Please check your inbox and verify your email, then sign in.");
