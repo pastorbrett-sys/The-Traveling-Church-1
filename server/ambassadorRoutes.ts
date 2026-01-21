@@ -394,6 +394,16 @@ router.post("/admin/approve/:id", isAuthenticated, async (req: any, res) => {
       .where(eq(ambassadors.id, id))
       .returning();
 
+    // Send approval email with the ambassador's real referral code from the database
+    if (updated) {
+      const { sendAmbassadorApprovedEmail } = await import('./email');
+      const firstName = updated.name?.split(' ')[0] || null;
+      
+      sendAmbassadorApprovedEmail(updated.email, firstName, updated.referralCode).catch(err => {
+        console.error('[Ambassador] Failed to send approval email:', err);
+      });
+    }
+
     res.json({ ambassador: updated });
   } catch (error) {
     console.error("Approve error:", error);
