@@ -430,12 +430,11 @@ export default function Profile() {
         ) : (
           <Button
             onClick={() => setLocation("/ambassador")}
-            variant="outline"
-            className="w-full border-[#c08e00] text-[#c08e00] hover:bg-[#c08e00]/10"
+            className="w-full bg-[#c08e00] hover:bg-[#a07800] text-white"
             data-testid="button-become-ambassador"
           >
             {t.becomeAmbassador}
-            <ChevronRight className="w-4 h-4 ml-2" />
+            <ChevronRight className="w-4 h-4 ml-2 text-white" />
           </Button>
         )}
       </CardContent>
