@@ -20,6 +20,7 @@ import {
 } from "@/lib/firebase";
 import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
 import { trackReferralSignup } from "@/hooks/use-referral";
+import { apiFetch } from "@/lib/queryClient";
 
 export default function Login() {
   const { user, isAuthenticated, isLoading, refetch } = useAuth();
@@ -113,7 +114,7 @@ export default function Login() {
       const idToken = await firebaseUser.getIdToken();
       console.log("[NATIVE AUTH] Got ID token, generating auth code...");
       
-      const response = await fetch("/api/native-auth/generate-code", {
+      const response = await apiFetch("/api/native-auth/generate-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ idToken }),
@@ -150,10 +151,9 @@ export default function Login() {
       
       // Also call backend logout to clear server session
       try {
-        await fetch("/api/logout", { 
+        await apiFetch("/api/logout", { 
           method: "GET",
           headers: { "Accept": "application/json" },
-          credentials: "include"
         });
       } catch (e) {
         console.log("Backend logout error (may be expected):", e);

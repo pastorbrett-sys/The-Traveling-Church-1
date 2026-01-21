@@ -4,6 +4,7 @@ import { Clock, Copy, Check, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
+import { apiFetch } from "@/lib/queryClient";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
 export default function AmbassadorPending() {
@@ -30,7 +31,7 @@ export default function AmbassadorPending() {
   const fetchAmbassador = async () => {
     if (!user) return;
     try {
-      const res = await fetch(`/api/ambassador/me?userId=${user.id}`);
+      const res = await apiFetch(`/api/ambassador/me?userId=${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setAmbassador(data.ambassador);

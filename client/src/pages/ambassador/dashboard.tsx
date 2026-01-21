@@ -4,6 +4,7 @@ import { Copy, Check, Link, Users, MousePointer, UserPlus, Crown, TrendingUp } f
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
+import { apiFetch } from "@/lib/queryClient";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
 interface AmbassadorStats {
@@ -50,7 +51,7 @@ export default function AmbassadorDashboard() {
   const fetchDashboard = async () => {
     if (!user) return;
     try {
-      const res = await fetch(`/api/ambassador/dashboard/${user.id}`);
+      const res = await apiFetch(`/api/ambassador/dashboard/${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setAmbassador(data.ambassador);

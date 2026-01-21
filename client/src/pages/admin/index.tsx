@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import { auth } from "@/lib/firebase";
+import { apiFetch } from "@/lib/queryClient";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
 interface AmbassadorWithStats {
@@ -78,7 +79,7 @@ export default function AdminPanel() {
   const checkAdminAccess = async () => {
     if (!user) return;
     try {
-      const res = await fetch(`/api/ambassador/me?userId=${user.id}`);
+      const res = await apiFetch(`/api/ambassador/me?userId=${user.id}`);
       if (res.ok) {
         const { ambassador } = await res.json();
         if (!ambassador.isSuperAdmin) {
@@ -111,7 +112,7 @@ export default function AdminPanel() {
     if (!user) return;
     try {
       const headers = await getAuthHeaders();
-      const res = await fetch("/api/ambassador/admin/all", { headers });
+      const res = await apiFetch("/api/ambassador/admin/all", { headers });
       if (res.ok) {
         const data = await res.json();
         setAmbassadors(data.ambassadors);
@@ -127,7 +128,7 @@ export default function AdminPanel() {
     if (!user) return;
     try {
       const headers = await getAuthHeaders();
-      await fetch(`/api/ambassador/admin/approve/${id}`, { 
+      await apiFetch(`/api/ambassador/admin/approve/${id}`, { 
         method: "POST",
         headers,
       });
@@ -141,7 +142,7 @@ export default function AdminPanel() {
     if (!user) return;
     try {
       const headers = await getAuthHeaders();
-      await fetch(`/api/ambassador/admin/pause/${id}`, { 
+      await apiFetch(`/api/ambassador/admin/pause/${id}`, { 
         method: "POST",
         headers,
       });
@@ -155,7 +156,7 @@ export default function AdminPanel() {
     if (!user) return;
     try {
       const headers = await getAuthHeaders();
-      await fetch(`/api/ambassador/admin/set-super-admin/${id}`, {
+      await apiFetch(`/api/ambassador/admin/set-super-admin/${id}`, {
         method: "POST",
         headers,
         body: JSON.stringify({ isSuperAdmin }),

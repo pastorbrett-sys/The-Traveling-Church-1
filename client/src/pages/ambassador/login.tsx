@@ -17,6 +17,7 @@ import {
   handleRedirectResult,
 } from "@/lib/firebase";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
+import { apiFetch } from "@/lib/queryClient";
 
 export default function AmbassadorLogin() {
   const { user, isAuthenticated, isLoading, refetch } = useAuth();
@@ -62,7 +63,7 @@ export default function AmbassadorLogin() {
     if (!user) return;
     
     try {
-      const res = await fetch(`/api/ambassador/me?userId=${user.id}`);
+      const res = await apiFetch(`/api/ambassador/me?userId=${user.id}`);
       if (res.ok) {
         const { ambassador } = await res.json();
         if (ambassador.status === "active") {
@@ -140,7 +141,7 @@ export default function AmbassadorLogin() {
     try {
       const firebaseUser = await signUpWithEmail(signUpEmail, signUpPassword, signUpName);
       
-      const res = await fetch("/api/ambassador/register", {
+      const res = await apiFetch("/api/ambassador/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

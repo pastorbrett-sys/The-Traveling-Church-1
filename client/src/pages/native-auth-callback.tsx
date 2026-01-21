@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth } from "@/lib/firebase";
 import { Loader2 } from "lucide-react";
+import { apiFetch } from "@/lib/queryClient";
 
 // This page handles the OAuth callback on web, then redirects back to the native app
 export default function NativeAuthCallback() {
@@ -32,7 +33,7 @@ export default function NativeAuthCallback() {
         const idToken = await user.getIdToken();
         
         // Exchange for a short-lived code via backend
-        const response = await fetch("/api/native-auth/generate-code", {
+        const response = await apiFetch("/api/native-auth/generate-code", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idToken }),
