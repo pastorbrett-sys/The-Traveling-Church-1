@@ -240,24 +240,26 @@ export class WebhookHandlers {
     });
     console.log(`Successfully linked Stripe info for user ${userId}`);
     
-    // Track ambassador conversion and send confirmation email - only if subscription exists and is active
+    // Track ambassador conversion and send confirmation email
+    // NOTE: For checkout.session.completed, we don't re-check subscription status because:
+    // 1. The checkout succeeded, so the subscription WAS active at that moment
+    // 2. Webhook delivery can be delayed by Stripe (sometimes 5+ minutes)
+    // 3. If user refunds quickly, subscription may already be canceled when webhook arrives
+    // 4. We want to send the welcome email regardless - they DID subscribe
     if (subscriptionId) {
-      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-      if (subscription.status === 'active' || subscription.status === 'trialing') {
-        await trackAmbassadorConversion(userId, 'Stripe checkout.session.completed', referralCode, email);
+      await trackAmbassadorConversion(userId, 'Stripe checkout.session.completed', referralCode, email);
+      
+      // Send subscription confirmation email (fire and forget)
+      if (email) {
+        const user = await storage.getUser(userId);
+        // Determine pricing tier from session metadata or subscription
+        const pricingTier = session.metadata?.pricingTier as 'premium' | 'emerging' | undefined;
+        const planType = pricingTier || 'premium';
         
-        // Send subscription confirmation email (fire and forget)
-        if (email) {
-          const user = await storage.getUser(userId);
-          // Determine pricing tier from session metadata or subscription
-          const pricingTier = session.metadata?.pricingTier as 'premium' | 'emerging' | undefined;
-          const planType = pricingTier || 'premium';
-          
-          console.log(`[Webhook] Sending subscription confirmation email to ${email} (plan: ${planType})`);
-          sendSubscriptionConfirmationEmail(email, user?.firstName, planType).catch(error => {
-            console.error('[Webhook] Failed to send subscription confirmation email:', error);
-          });
-        }
+        console.log(`[Webhook] Sending subscription confirmation email to ${email} (plan: ${planType})`);
+        sendSubscriptionConfirmationEmail(email, user?.firstName, planType).catch(error => {
+          console.error('[Webhook] Failed to send subscription confirmation email:', error);
+        });
       }
     }
   }
