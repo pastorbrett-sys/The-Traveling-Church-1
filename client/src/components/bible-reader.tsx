@@ -794,6 +794,12 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   };
 
   const handleVerseClick = (verse: BibleVerse) => {
+    // If clicking the persistently highlighted verse, just clear highlight and don't select
+    if (persistentHighlightVerse === verse.verse) {
+      setPersistentHighlightVerse(null);
+      return;
+    }
+    
     // Clear any persistent highlight from smart search when user interacts
     setPersistentHighlightVerse(null);
     
