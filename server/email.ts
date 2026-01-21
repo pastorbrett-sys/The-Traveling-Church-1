@@ -103,14 +103,14 @@ export function getWelcomeEmailHtml(displayName: string): string {
         
         <!-- Content -->
         <div style="padding: 40px 30px; text-align: center;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0;">Welcome to Vagabond Bible</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif;">Welcome to Vagabond Bible</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
             Vagabond Bible brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word—wherever you are.
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
-             style="background-color: #d97706; color: white; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px;">
+             style="background-color: #D4A84B; color: #1a1a1a; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px;">
             Start Exploring
           </a>
         </div>
@@ -175,7 +175,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         
         <!-- Content -->
         <div style="padding: 40px 30px; text-align: center;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0;">You're Pro Now</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif;">You're Pro Now</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 24px 0;">
             Thank you for supporting the mission. You now have unlimited access to:
@@ -195,7 +195,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
-             style="background-color: #d97706; color: white; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px;">
+             style="background-color: #D4A84B; color: #1a1a1a; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px;">
             Open Vagabond Bible
           </a>
         </div>
