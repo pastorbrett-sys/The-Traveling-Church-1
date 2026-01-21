@@ -15,25 +15,25 @@ export default function CheckoutSuccess() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navigation />
       
-      <main className="flex-1 flex items-center justify-center py-20">
+      <main className="flex-1 flex items-center justify-center py-20 bg-white">
         <div className="container max-w-lg mx-auto px-4 text-center">
-          <div className="bg-green-100 dark:bg-green-900/20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
+          <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
           
-          <h1 className="text-3xl font-bold mb-4" data-testid="text-success-title">
+          <h1 className="text-3xl font-bold mb-4 text-gray-900" data-testid="text-success-title">
             Welcome to Pro!
           </h1>
           
-          <p className="text-lg text-muted-foreground mb-8" data-testid="text-success-message">
+          <p className="text-lg text-gray-600 mb-8" data-testid="text-success-message">
             Thank you for subscribing to The Traveling Church Pro plan. You now have unlimited access to Vagabond Bible for spiritual guidance and support.
           </p>
           
           <Link href="/pastor-chat">
-            <Button size="lg" className="w-full sm:w-auto" data-testid="button-go-to-chat">
+            <Button size="lg" className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground" data-testid="button-go-to-chat">
               <MessageCircle className="w-5 h-5 mr-2" />
               Continue to Vagabond Bible
               <ArrowRight className="w-4 h-4 ml-2" />
