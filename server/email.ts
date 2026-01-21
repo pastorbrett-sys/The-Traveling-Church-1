@@ -102,7 +102,7 @@ export function getWelcomeEmailHtml(displayName: string): string {
         </div>
         
         <!-- Content -->
-        <div style="padding: 50px 30px 55px; text-align: center;">
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Vagabond Bible</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
@@ -116,16 +116,20 @@ export function getWelcomeEmailHtml(displayName: string): string {
         </div>
         
         <!-- Footer -->
-        <div style="background-color: #1a1a1a; padding: 24px; text-align: center;">
-          <a href="https://thetravelingchurch.com" style="display: inline-block;">
-            <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
-          </a>
-          <p style="color: #888; font-size: 12px; margin: 16px 0 0 0;">
-            <a href="${BASE_URL}" style="color: #888; text-decoration: none;">vagabondbible.com</a>
-            <span style="color: #555; margin: 0 8px;">•</span>
-            <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
-          </p>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #0a0a0a !important; background-color: #0a0a0a !important;">
+          <tr>
+            <td style="background: #0a0a0a !important; background-color: #0a0a0a !important; padding: 24px; text-align: center;">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+              </a>
+              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                <span style="color: #555555; margin: 0 8px;">•</span>
+                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+              </p>
+            </td>
+          </tr>
+        </table>
         
       </div>
     </body>
@@ -178,7 +182,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         </div>
         
         <!-- Content -->
-        <div style="padding: 50px 30px 55px; text-align: center;">
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">You're Pro Now</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 24px 0;">
@@ -205,16 +209,20 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         </div>
         
         <!-- Footer -->
-        <div style="background-color: #1a1a1a; padding: 24px; text-align: center;">
-          <a href="https://thetravelingchurch.com" style="display: inline-block;">
-            <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
-          </a>
-          <p style="color: #888; font-size: 12px; margin: 16px 0 0 0;">
-            <a href="${BASE_URL}" style="color: #888; text-decoration: none;">vagabondbible.com</a>
-            <span style="color: #555; margin: 0 8px;">•</span>
-            <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
-          </p>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #0a0a0a !important; background-color: #0a0a0a !important;">
+          <tr>
+            <td style="background: #0a0a0a !important; background-color: #0a0a0a !important; padding: 24px; text-align: center;">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+              </a>
+              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                <span style="color: #555555; margin: 0 8px;">•</span>
+                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+              </p>
+            </td>
+          </tr>
+        </table>
         
       </div>
     </body>
