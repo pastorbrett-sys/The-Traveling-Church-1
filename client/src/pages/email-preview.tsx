@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const BASE_URL = window.location.origin;
 
+type EmailType = 'welcome' | 'subscription' | 'ambassador-applied' | 'ambassador-approved' | 'ambassador-admin';
+
 function getWelcomeEmailHtml(): string {
   return `
     <!DOCTYPE html>
@@ -133,51 +135,413 @@ function getSubscriptionEmailHtml(): string {
   `;
 }
 
-export default function EmailPreview() {
-  const [activeEmail, setActiveEmail] = useState<'welcome' | 'subscription'>('welcome');
+function getAmbassadorAppliedEmailHtml(): string {
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Ambassador Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/ambassador-hero.png" alt="Ambassador" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Application Received!</h1>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            Thank you for applying to become a Vagabond Bible Ambassador, Sarah. We're excited to review your application!
+          </p>
+          
+          <!-- What Happens Next Section -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <h2 style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin: 0 0 16px 0;">What Happens Next?</h2>
+            
+            <div style="margin-bottom: 16px;">
+              <span style="font-size: 24px; margin-right: 12px;">📋</span>
+              <span style="font-size: 15px; color: #333; vertical-align: middle;"><strong>Review</strong> — We'll review your application within 24-48 hours</span>
+            </div>
+            
+            <div style="margin-bottom: 16px;">
+              <span style="font-size: 24px; margin-right: 12px;">📧</span>
+              <span style="font-size: 15px; color: #333; vertical-align: middle;"><strong>Notification</strong> — You'll receive an email with our decision</span>
+            </div>
+            
+            <div>
+              <span style="font-size: 24px; margin-right: 12px;">🚀</span>
+              <span style="font-size: 15px; color: #333; vertical-align: middle;"><strong>Get Started</strong> — If approved, you'll get instant access to your dashboard</span>
+            </div>
+          </div>
+          
+          <!-- Note about limited spots -->
+          <p style="font-size: 14px; line-height: 1.5; color: #666; margin: 0 0 30px 0; font-style: italic;">
+            Ambassador spots are limited to ensure quality support for each member. Either way, we'll be in touch soon!
+          </p>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
+            Explore Vagabond Bible
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="background-color: #000000 !important;">
+          <tr>
+            <td align="center" bgcolor="#000000" style="background-color: #000000 !important; padding: 24px;">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+              </a>
+              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                <span style="color: #555555; margin: 0 8px;">•</span>
+                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+function getAmbassadorApprovedEmailHtml(): string {
+  const referralLink = `${BASE_URL}/?ref=SARAH2025`;
+  const teamInviteLink = `${BASE_URL}/ambassador/apply?invite=SARAH2025`;
   
-  const emailHtml = activeEmail === 'welcome' ? getWelcomeEmailHtml() : getSubscriptionEmailHtml();
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Ambassador Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/ambassador-hero.png" alt="Ambassador" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">You're Approved!</h1>
+          <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">Welcome to the Team, Sarah</p>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            You're now a Vagabond Bible Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
+          </p>
+          
+          <!-- Your Links Box -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">🔗 Your Referral Link</h2>
+            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 14px; color: #333; word-break: break-all; margin-bottom: 16px;">
+              ${referralLink}
+            </div>
+            
+            <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">👥 Team Invite Link</h2>
+            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 14px; color: #333; word-break: break-all;">
+              ${teamInviteLink}
+            </div>
+          </div>
+          
+          <!-- Pro Tip -->
+          <div style="background-color: #FFF8E7; border-radius: 12px; padding: 16px 20px; margin: 0 0 30px 0; text-align: left; border-left: 4px solid #C99A2E;">
+            <p style="font-size: 14px; line-height: 1.5; color: #333; margin: 0;">
+              <strong>💡 Pro Tip:</strong> Share via web for a bigger commission! Web subscriptions earn you more than app subscriptions.
+            </p>
+          </div>
+          
+          <!-- How It Works -->
+          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
+          
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 30px;">
+            <tr>
+              <td width="33%" align="center" style="padding: 10px;">
+                <div style="background-color: #ffffff; border-radius: 12px; padding: 20px 10px; border: 1px solid #e5e5e5;">
+                  <div style="font-size: 32px; margin-bottom: 8px;">🔗</div>
+                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Share</div>
+                  <div style="font-size: 12px; color: #666;">Send your link</div>
+                </div>
+              </td>
+              <td width="33%" align="center" style="padding: 10px;">
+                <div style="background-color: #ffffff; border-radius: 12px; padding: 20px 10px; border: 1px solid #e5e5e5;">
+                  <div style="font-size: 32px; margin-bottom: 8px;">👥</div>
+                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">They Sign Up</div>
+                  <div style="font-size: 12px; color: #666;">Free or Pro</div>
+                </div>
+              </td>
+              <td width="33%" align="center" style="padding: 10px;">
+                <div style="background-color: #ffffff; border-radius: 12px; padding: 20px 10px; border: 1px solid #e5e5e5;">
+                  <div style="font-size: 32px; margin-bottom: 8px;">💰</div>
+                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Earn</div>
+                  <div style="font-size: 12px; color: #666;">Get rewarded</div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          
+          <!-- Dashboard Instructions with Mockups -->
+          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">Access Your Dashboard</h2>
+          
+          <div style="margin-bottom: 24px;">
+            <p style="font-size: 14px; color: #666; margin: 0 0 12px 0;"><strong>Step 1:</strong> Open Vagabond Bible and tap the Ambassador tab</p>
+            <img src="${BASE_URL}/email-assets/ambassador-nav-mockup.png" alt="Step 1: Tap Ambassador tab" style="max-width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          </div>
+          
+          <div style="margin-bottom: 30px;">
+            <p style="font-size: 14px; color: #666; margin: 0 0 12px 0;"><strong>Step 2:</strong> Copy your referral link and share it!</p>
+            <img src="${BASE_URL}/email-assets/ambassador-copy-mockup.png" alt="Step 2: Copy your link" style="max-width: 200px; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          </div>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
+            Open Your Dashboard
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="background-color: #000000 !important;">
+          <tr>
+            <td align="center" bgcolor="#000000" style="background-color: #000000 !important; padding: 24px;">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+              </a>
+              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                <span style="color: #555555; margin: 0 8px;">•</span>
+                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+function getAmbassadorAdminEmailHtml(): string {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5;">
+      <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        
+        <!-- Header -->
+        <div style="background-color: #1a1a1a; padding: 24px; text-align: center;">
+          <h1 style="color: #C99A2E; font-size: 24px; margin: 0; font-family: Georgia, 'Times New Roman', serif;">New Ambassador Application</h1>
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 30px;">
+          <p style="font-size: 16px; color: #333; margin: 0 0 24px 0;">
+            <strong>Tadesse Bekele</strong> has applied to become a Vagabond Bible Ambassador.
+          </p>
+          
+          <!-- Applicant Details -->
+          <div style="background-color: #f9f9f9; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+            <h2 style="font-size: 16px; color: #1a1a1a; margin: 0 0 16px 0;">Applicant Details</h2>
+            
+            <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 14px;">
+              <tr>
+                <td style="padding: 8px 0; color: #666; width: 100px;">Name:</td>
+                <td style="padding: 8px 0; color: #333; font-weight: 500;">Tadesse Bekele</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #666;">Email:</td>
+                <td style="padding: 8px 0; color: #333; font-weight: 500;">tadesse@example.com</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #666;">Country:</td>
+                <td style="padding: 8px 0; color: #333; font-weight: 500;">Ethiopia</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #666;">Source:</td>
+                <td style="padding: 8px 0; color: #333; font-weight: 500;">Tour Guide</td>
+              </tr>
+            </table>
+            
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e5e5;">
+              <p style="font-size: 14px; color: #666; margin: 0 0 8px 0;">Why they want to be an ambassador:</p>
+              <p style="font-size: 14px; color: #333; margin: 0; font-style: italic;">"I lead tours for Christian travelers in Ethiopia and want to share Vagabond Bible with my guests to help them connect with the biblical history of our country."</p>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div style="text-align: center;">
+            <a href="${BASE_URL}/admin/ambassadors?action=approve&id=123" 
+               style="background-color: #22c55e; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block; font-size: 16px; margin-right: 12px;">
+              ✓ Approve
+            </a>
+            <a href="mailto:tadesse@example.com?subject=Your%20Vagabond%20Bible%20Ambassador%20Application" 
+               style="background-color: #3b82f6; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block; font-size: 16px;">
+              ✉️ Message
+            </a>
+          </div>
+          
+          <div style="text-align: center; margin-top: 20px;">
+            <a href="${BASE_URL}/admin/ambassadors?id=123" style="color: #666; font-size: 14px; text-decoration: underline;">
+              View in Admin Dashboard
+            </a>
+          </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #f9f9f9; padding: 16px; text-align: center; border-top: 1px solid #e5e5e5;">
+          <p style="font-size: 12px; color: #888; margin: 0;">
+            Vagabond Bible Ambassador Program
+          </p>
+        </div>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+const emailConfig: Record<EmailType, { title: string; subject: string; getHtml: () => string }> = {
+  'welcome': {
+    title: 'Welcome Email',
+    subject: 'Welcome to Vagabond Bible, Friend!',
+    getHtml: getWelcomeEmailHtml
+  },
+  'subscription': {
+    title: 'Pro Subscription',
+    subject: "You're Pro Now, Friend!",
+    getHtml: getSubscriptionEmailHtml
+  },
+  'ambassador-applied': {
+    title: 'Ambassador Applied',
+    subject: 'Application Received, Sarah!',
+    getHtml: getAmbassadorAppliedEmailHtml
+  },
+  'ambassador-approved': {
+    title: 'Ambassador Approved',
+    subject: "You're Approved, Sarah! Welcome to the Team",
+    getHtml: getAmbassadorApprovedEmailHtml
+  },
+  'ambassador-admin': {
+    title: 'Admin Notification',
+    subject: 'New Ambassador Application: Tadesse Bekele',
+    getHtml: getAmbassadorAdminEmailHtml
+  }
+};
+
+export default function EmailPreview() {
+  const [activeEmail, setActiveEmail] = useState<EmailType>('welcome');
+  
+  const config = emailConfig[activeEmail];
+  const emailHtml = config.getHtml();
   
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-4xl mx-auto px-4">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Email Preview</h1>
-          <div className="flex gap-4">
-            <button
-              onClick={() => setActiveEmail('welcome')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                activeEmail === 'welcome'
-                  ? 'bg-amber-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
-              }`}
-              data-testid="button-preview-welcome"
-            >
-              Welcome Email
-            </button>
-            <button
-              onClick={() => setActiveEmail('subscription')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                activeEmail === 'subscription'
-                  ? 'bg-amber-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
-              }`}
-              data-testid="button-preview-subscription"
-            >
-              Pro Subscription Email
-            </button>
+          
+          <div className="mb-4">
+            <h2 className="text-sm font-medium text-gray-500 mb-2">User Emails</h2>
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => setActiveEmail('welcome')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                  activeEmail === 'welcome'
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+                data-testid="button-preview-welcome"
+              >
+                Welcome
+              </button>
+              <button
+                onClick={() => setActiveEmail('subscription')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                  activeEmail === 'subscription'
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+                data-testid="button-preview-subscription"
+              >
+                Pro Subscription
+              </button>
+            </div>
+          </div>
+          
+          <div className="mb-4">
+            <h2 className="text-sm font-medium text-gray-500 mb-2">Ambassador Emails</h2>
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => setActiveEmail('ambassador-applied')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                  activeEmail === 'ambassador-applied'
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+                data-testid="button-preview-ambassador-applied"
+              >
+                Applied (To User)
+              </button>
+              <button
+                onClick={() => setActiveEmail('ambassador-approved')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                  activeEmail === 'ambassador-approved'
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+                data-testid="button-preview-ambassador-approved"
+              >
+                Approved (To User)
+              </button>
+              <button
+                onClick={() => setActiveEmail('ambassador-admin')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                  activeEmail === 'ambassador-admin'
+                    ? 'bg-green-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+                data-testid="button-preview-ambassador-admin"
+              >
+                Admin Notification
+              </button>
+            </div>
           </div>
         </div>
         
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="bg-gray-800 text-white px-4 py-2 text-sm">
-            Subject: {activeEmail === 'welcome' 
-              ? 'Welcome to Vagabond Bible, Friend!' 
-              : "You're Pro Now, Friend!"}
+            Subject: {config.subject}
           </div>
           <iframe
             srcDoc={emailHtml}
-            className="w-full h-[800px] border-0"
+            className="w-full h-[900px] border-0"
             title="Email Preview"
             data-testid="iframe-email-preview"
           />
