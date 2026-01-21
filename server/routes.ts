@@ -43,7 +43,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerChatRoutes(app);
   
   // Social media crawler middleware - serves correct OG meta tags per domain
-  app.use((req, res, next) => {
+  app.use(async (req, res, next) => {
     const userAgent = req.get("user-agent") || "";
     const isCrawler = /facebookexternalhit|Facebot|Twitterbot|WhatsApp|LinkedInBot|Slackbot|TelegramBot|Pinterest|Discordbot/i.test(userAgent);
     
@@ -55,6 +55,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const isVagabond = host.includes("vagabondbible") || host.includes("localhost") || host.includes("replit");
     
     if (isVagabond) {
+      // Check for ambassador invite link: /ambassador?invite=XXX
+      const inviteCode = req.query.invite as string | undefined;
+      if (req.path === "/ambassador" && inviteCode) {
+        return res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>You're Invited to Become an Ambassador</title>
+  <meta name="description" content="You've been invited to join the Vagabond Bible Ambassador Program. Share the AI-powered Bible and earn rewards.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vagabondbible.com/ambassador?invite=${inviteCode}">
+  <meta property="og:title" content="You're Invited to Become an Ambassador">
+  <meta property="og:description" content="You've been invited to join the Vagabond Bible Ambassador Program. Share the AI-powered Bible and earn rewards.">
+  <meta property="og:image" content="https://vagabondbible.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://vagabondbible.com/ambassador?invite=${inviteCode}">
+  <meta name="twitter:title" content="You're Invited to Become an Ambassador">
+  <meta name="twitter:description" content="You've been invited to join the Vagabond Bible Ambassador Program. Share the AI-powered Bible and earn rewards.">
+  <meta name="twitter:image" content="https://vagabondbible.com/og-image.png">
+</head>
+<body></body>
+</html>`);
+      }
+      
+      // Check for referral link: /?ref=XXX
+      const refCode = req.query.ref as string | undefined;
+      if (refCode) {
+        try {
+          const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.referralCode, refCode)).limit(1);
+          if (ambassador) {
+            const firstName = ambassador.name.split(' ')[0];
+            return res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>${firstName} invited you to Vagabond Bible</title>
+  <meta name="description" content="${firstName} has invited you to try Vagabond Bible - the AI-powered Bible that makes you feel like you were there.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vagabondbible.com/?ref=${refCode}">
+  <meta property="og:title" content="${firstName} invited you to Vagabond Bible">
+  <meta property="og:description" content="${firstName} has invited you to try Vagabond Bible - the AI-powered Bible that makes you feel like you were there.">
+  <meta property="og:image" content="https://vagabondbible.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://vagabondbible.com/?ref=${refCode}">
+  <meta name="twitter:title" content="${firstName} invited you to Vagabond Bible">
+  <meta name="twitter:description" content="${firstName} has invited you to try Vagabond Bible - the AI-powered Bible that makes you feel like you were there.">
+  <meta name="twitter:image" content="https://vagabondbible.com/og-image.png">
+</head>
+<body></body>
+</html>`);
+          }
+        } catch (e) {
+          // Fall through to default if DB lookup fails
+        }
+      }
+      
+      // DEFAULT: Regular vagabondbible.com links (unchanged)
       res.send(`<!DOCTYPE html>
 <html lang="en">
 <head>
