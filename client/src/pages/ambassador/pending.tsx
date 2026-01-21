@@ -58,14 +58,14 @@ export default function AmbassadorPending() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #212121, #000000)' }}>
         <div className="animate-spin w-8 h-8 border-2 border-[#c08e00] border-t-transparent rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #212121, #000000)' }}>
       <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
         <CardHeader className="text-center">
           <img 

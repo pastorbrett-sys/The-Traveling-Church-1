@@ -157,14 +157,14 @@ export default function AdminPanel() {
 
   if (isLoading || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #212121, #000000)' }}>
         <div className="animate-spin w-8 h-8 border-2 border-[#c08e00] border-t-transparent rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-6" style={{ background: 'linear-gradient(to bottom, #1E1E1E, #000000)' }}>
+    <div className="min-h-screen p-4 md:p-6" style={{ background: 'linear-gradient(to bottom, #212121, #000000)' }}>
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="space-y-4">
           <div className="flex items-center gap-4">
