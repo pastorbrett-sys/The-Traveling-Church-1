@@ -77,3 +77,41 @@ In Android Studio: **File** → **Sync Project with Gradle Files**
 
 **App bundle still too large?**
 Run `node scripts/prepare-native-build.js` again
+
+---
+
+## Testing Subscriptions
+
+After uploading to Internal Testing, test the subscription flow:
+
+### Step 1: Add License Testers
+
+1. Go to Play Console → **Setup** → **License testing**
+2. Add tester emails (Google accounts)
+3. Set License response: "RESPOND_NORMALLY"
+
+### Step 2: Share Test Link
+
+1. Go to **Testing** → **Internal testing** → **Testers** tab
+2. Copy the **"Join on the web"** link
+3. Share with testers - they must accept the invite first
+
+### Step 3: Test Purchase Flow
+
+1. Testers install app from Internal Testing track
+2. Open app → Navigate to upgrade/subscription screen
+3. Complete purchase with Google's test payment method (no real charges)
+4. Verify Pro features unlock
+
+### Verify in RevenueCat
+
+1. Go to RevenueCat Dashboard → Customers
+2. Search for tester's app user ID
+3. Confirm "Vagabond Bible Pro" entitlement is active
+
+---
+
+## Related Documentation
+
+- `docs/REGIONAL_PRICING_SETUP.md` — Complete regional pricing setup (Web, iOS, Android)
+- `docs/Regional_Pricing_Ambassador_Strategy_v2.md` — Business strategy and ambassador program

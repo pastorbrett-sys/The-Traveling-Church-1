@@ -244,17 +244,17 @@ const price = packageToPurchase.product.priceString;
 
 ---
 
-# Part 3: Android (Google Play) ⏳ TODO
+# Part 3: Android (Google Play) ✅ COMPLETE
 
-## Strategy: Single Product with Regional Pricing
+## Strategy: Single Product with Country-Specific Pricing
 
-Unlike iOS, Google Play supports per-country pricing on a single product, making setup simpler.
+Unlike iOS, Google Play supports per-country pricing within a single base plan, making setup simpler - no targeting rules needed.
 
-| Product ID | Base Price | Regional Override |
-|------------|------------|-------------------|
-| `pro_monthly` | $7.99 | $1.99 for emerging markets |
+| Product ID | Base Plan | Premium Markets | Emerging Markets |
+|------------|-----------|-----------------|------------------|
+| `pro_monthly` | `monthly` | $7.99 USD | ~$1.99 USD equivalent |
 
-## Google Play Console Setup
+## Google Play Console Setup ✅
 
 ### Step 1: Create Subscription
 
@@ -274,40 +274,87 @@ Unlike iOS, Google Play supports per-country pricing on a single product, making
    - **Billing period**: 1 Month
    - **Grace period**: 3 days
 
-### Step 3: Set Pricing
+### Step 3: Set Country-Specific Pricing
 
 1. Set **default price**: **$7.99 USD**
-2. Click **Set prices by country** or **Edit prices**
-3. For each emerging market country, override to **~$1.99 USD equivalent** in local currency
+2. Click **Edit base plan** → **Price and availability**
+3. Use "Select All" then **uncheck** these 33 Premium countries:
+   - Australia, Austria, Bahrain, Belgium, Canada, Denmark, Finland, France, Germany
+   - Hong Kong, Iceland, Ireland, Israel, Japan, Kuwait, Liechtenstein, Luxembourg
+   - Netherlands, New Zealand, Norway, Qatar, Saudi Arabia, Singapore, Slovenia
+   - South Korea, Spain, Sweden, Switzerland, Taiwan, Turks and Caicos
+   - United Arab Emirates, United Kingdom, United States, Vatican City
+4. For remaining countries (emerging markets), set price to **$1.99 USD**
+5. Save
 
 ### Step 4: Activate
 
 1. Click **Activate** on the base plan
 2. The subscription becomes available for purchase
 
-## RevenueCat Setup (Android)
+## RevenueCat Setup (Android) ✅
 
 ### Step 1: Add Product
 
 1. Go to RevenueCat Dashboard → Product Catalog → Products
-2. Click **+ New** next to "Vagabond Bible (Play Store)"
+2. Click **+ New** in "Vagabond Bible (Play Store)" section
 3. Configure:
-   - **Identifier**: `pro_monthly:monthly` (format: `product_id:base_plan_id`)
-   - **Display Name**: Pro Monthly
+   - **Display Name**: `Pro Monthly`
+   - **Product type**: Subscription
+   - **Subscription**: `pro_monthly`
+   - **Base plan Id**: `monthly`
+   - **Backwards compatible**: Checked
 
 ### Step 2: Attach to Entitlement
 
-1. Go to the product page
-2. Click **+ Attach** in Associated Entitlements
+1. Click on the newly created product
+2. In Entitlements section, click **Attach**
 3. Select **"Vagabond Bible Pro"**
 
 ### Step 3: Add to Offering
 
-1. Go to Offerings → `default` offering
-2. Edit the existing package or add new
-3. Select the Android product for "Vagabond Bible (Play Store)"
+1. Go to Product Catalog → Offerings → `default`
+2. Click on the **Monthly** package
+3. In the dropdown for "Vagabond Bible (Play...)", select **Pro Monthly (pro_monthly:monthly)**
+4. Save
 
-**Note:** Android doesn't need separate targeting - Google Play automatically shows regional prices.
+**Note:** Android doesn't need separate targeting rules - Google Play automatically shows the correct regional price based on the user's Play Store country.
+
+---
+
+## Testing Android Subscriptions
+
+### Step 1: Add License Testers
+
+1. Go to [Google Play Console](https://play.google.com/console) → **Setup** → **License testing**
+2. Add tester email addresses (must be Google accounts)
+3. Set **License response** to "RESPOND_NORMALLY"
+
+### Step 2: Share Internal Testing Link
+
+1. Go to **Testing** → **Internal testing**
+2. Click **Testers** tab → copy the **Join on the web** link
+3. Share link with testers (they must accept the invite)
+
+### Step 3: Install and Test
+
+1. Testers install the app from the Internal Testing track
+2. Open app → Go to upgrade screen
+3. Tap Subscribe → Complete purchase with test payment method
+4. Google provides test cards for free testing (no real charges)
+
+### Step 4: Verify Entitlement
+
+1. After purchase, check RevenueCat Dashboard → Customers
+2. Search for tester's user ID
+3. Verify "Vagabond Bible Pro" entitlement is active
+
+### Testing Regional Pricing
+
+To verify regional pricing works:
+1. Use a Google account with Play Store set to an emerging market country
+2. The price displayed should be ~$1.99 equivalent in local currency
+3. Premium market accounts should see $7.99
 
 ---
 
@@ -337,15 +384,15 @@ Unlike iOS, Google Play supports per-country pricing on a single product, making
 - [ ] Subscriptions submitted with app version
 - [ ] Tested with sandbox accounts
 
-## Android (Google Play + RevenueCat) ⏳
-- [ ] Subscription `pro_monthly` created
-- [ ] Base plan `monthly` created
-- [ ] Default price $7.99 USD
-- [ ] Regional price overrides for emerging markets (~$1.99)
-- [ ] Base plan activated
-- [ ] Product added to RevenueCat: `pro_monthly:monthly`
-- [ ] Product attached to "Vagabond Bible Pro" entitlement
-- [ ] Product added to `default` offering
+## Android (Google Play + RevenueCat) ✅
+- [x] Subscription `pro_monthly` created
+- [x] Base plan `monthly` created
+- [x] Default price $7.99 USD for 33 premium countries
+- [x] Regional price $1.99 USD for emerging markets
+- [x] Base plan activated
+- [x] Product added to RevenueCat: `pro_monthly:monthly`
+- [x] Product attached to "Vagabond Bible Pro" entitlement
+- [x] Product added to `default` offering (Monthly package)
 - [ ] Tested with license testers
 
 ---
