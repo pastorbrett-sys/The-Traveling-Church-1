@@ -14,8 +14,8 @@ function getWelcomeEmailHtml(): string {
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
-        <div style="background: linear-gradient(to bottom, #1a1a1a, #000000); padding: 24px; text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-logo.png" alt="Vagabond Bible" style="height: 50px; width: auto;">
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-logo.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -63,8 +63,8 @@ function getSubscriptionEmailHtml(): string {
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
-        <div style="background: linear-gradient(to bottom, #1a1a1a, #000000); padding: 24px; text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-logo.png" alt="Vagabond Bible" style="height: 50px; width: auto;">
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-logo.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
