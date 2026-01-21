@@ -153,9 +153,9 @@ function getAmbassadorAppliedEmailHtml(): string {
           <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
         </div>
         
-        <!-- Hero Image -->
+        <!-- Hero Image - Different from Approved email -->
         <div style="width: 100%;">
-          <img src="${BASE_URL}/email-assets/ambassador-hero.png" alt="Ambassador" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/ambassador-applied-hero.png" alt="Ambassador Application" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Content -->
@@ -166,24 +166,52 @@ function getAmbassadorAppliedEmailHtml(): string {
             Thank you for applying to become a Vagabond Bible Ambassador, Sarah. We're excited to review your application!
           </p>
           
-          <!-- What Happens Next Section -->
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <h2 style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin: 0 0 16px 0;">What Happens Next?</h2>
-            
-            <div style="margin-bottom: 16px;">
-              <span style="font-size: 24px; margin-right: 12px;">📋</span>
-              <span style="font-size: 15px; color: #333; vertical-align: middle;"><strong>Review</strong> — We'll review your application within 24-48 hours</span>
-            </div>
-            
-            <div style="margin-bottom: 16px;">
-              <span style="font-size: 24px; margin-right: 12px;">📧</span>
-              <span style="font-size: 15px; color: #333; vertical-align: middle;"><strong>Notification</strong> — You'll receive an email with our decision</span>
-            </div>
-            
-            <div>
-              <span style="font-size: 24px; margin-right: 12px;">🚀</span>
-              <span style="font-size: 15px; color: #333; vertical-align: middle;"><strong>Get Started</strong> — If approved, you'll get instant access to your dashboard</span>
-            </div>
+          <!-- What Happens Next Section - Stacked Cards -->
+          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">What Happens Next</h2>
+          
+          <!-- Card 1: Review -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">📋</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Review</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">We'll review your application within 24-48 hours</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Card 2: Notification -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">📧</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Notification</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">You'll receive an email with our decision</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Card 3: Get Started -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">🚀</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Get Started</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">If approved, you'll get instant access to your dashboard</div>
+                </td>
+              </tr>
+            </table>
           </div>
           
           <!-- Note about limited spots -->
