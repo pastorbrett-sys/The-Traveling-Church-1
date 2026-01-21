@@ -127,15 +127,12 @@ export function NativeTabBar() {
     setTimeout(() => setTappedTab(null), 300);
   };
   
-  // Detect Android for gesture navigation padding
-  const isAndroid = /android/i.test(navigator.userAgent);
-  
   return (
     <nav 
       className="fixed bottom-0 left-0 right-0 z-[150]"
       style={{ 
         background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)',
-        paddingBottom: isAndroid ? 'max(env(safe-area-inset-bottom, 0px), 12px)' : 'env(safe-area-inset-bottom, 0px)'
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)'
       }}
       data-testid="native-tab-bar"
     >
@@ -181,17 +178,6 @@ export function NativeTabBarSpacer() {
   
   if (!isNative) return null;
   
-  // Detect Android for gesture navigation padding
-  const isAndroid = /android/i.test(navigator.userAgent);
-  
-  // Total height = 64px tab bar + safe-area-inset-bottom (with Android minimum)
-  return (
-    <div 
-      style={{ 
-        height: isAndroid 
-          ? 'calc(64px + max(env(safe-area-inset-bottom, 0px), 12px))' 
-          : 'calc(64px + env(safe-area-inset-bottom, 0px))' 
-      }} 
-    />
-  );
+  // Total height = 64px tab bar + safe-area-inset-bottom
+  return <div style={{ height: 'calc(64px + env(safe-area-inset-bottom, 0px))' }} />;
 }
