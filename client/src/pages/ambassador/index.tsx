@@ -234,6 +234,19 @@ export default function AmbassadorPage() {
         setAmbassador(data.ambassador);
         setStats(data.stats);
         setTeam(data.team || []);
+        // Set signups from dashboard response (for My Signups section)
+        if (data.signups) {
+          const formattedSignups = data.signups.map((s: any) => ({
+            id: s.id,
+            userId: s.userId,
+            email: s.userEmail || '',
+            name: s.userName || 'Unknown User',
+            convertedToPro: s.convertedToPro || false,
+            conversionDate: s.conversionDate,
+            signupDate: s.createdAt,
+          }));
+          setSignupsList(formattedSignups);
+        }
       }
     } catch (err) {
       console.error("Fetch dashboard error:", err);
@@ -840,6 +853,54 @@ export default function AmbassadorPage() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* My Signups Section - visible to all ambassadors */}
+        {signupsList.length > 0 && (
+          <Card className="bg-[#1a1a1a] border-[#333]">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg text-white flex items-center gap-2">
+                <UserPlus className="w-5 h-5 text-green-400" />
+                My Signups ({signupsList.length})
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 mt-1">
+                {signupsList.slice(0, 10).map((signup) => (
+                  <div 
+                    key={signup.id}
+                    className="p-3 bg-[#0a0a0a] rounded-lg"
+                    data-testid={`signup-${signup.id}`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white font-medium truncate">{signup.name}</p>
+                        <p className="text-gray-500 text-sm truncate">{signup.email}</p>
+                        <p className="text-gray-600 text-xs mt-1">
+                          Signed up {new Date(signup.signupDate).toLocaleDateString()}
+                        </p>
+                      </div>
+                      {signup.convertedToPro && (
+                        <div className="px-2 py-1 rounded text-xs bg-[#c08e00]/20 text-[#c08e00]">
+                          <Crown className="w-3 h-3 inline mr-1" />
+                          Pro
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {signupsList.length > 10 && (
+                  <Button
+                    variant="ghost"
+                    className="w-full text-gray-400 hover:text-white"
+                    onClick={() => setShowSignups(true)}
+                  >
+                    View all {signupsList.length} signups
+                  </Button>
+                )}
               </div>
             </CardContent>
           </Card>

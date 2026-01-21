@@ -143,6 +143,13 @@ router.get("/dashboard/:userId", async (req, res) => {
       };
     }));
 
+    // Get the ambassador's signups list
+    const signupsList = await db.select()
+      .from(referralSignups)
+      .where(eq(referralSignups.referralCode, ambassador.referralCode))
+      .orderBy(sql`${referralSignups.createdAt} DESC`)
+      .limit(50);
+
     res.json({
       ambassador,
       stats: {
@@ -151,6 +158,7 @@ router.get("/dashboard/:userId", async (req, res) => {
         conversions: Number(conversionsResult[0]?.count || 0),
       },
       team: teamWithStats,
+      signups: signupsList,
     });
   } catch (error) {
     console.error("Dashboard error:", error);
