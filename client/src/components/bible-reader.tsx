@@ -106,15 +106,16 @@ interface BibleReaderProps {
 }
 
 // Parse verse text to extract heading if present (marked with §heading§)
+// Also removes paragraph symbols (¶) which are formatting marks in KJV text
 function parseVerseText(text: string): { heading?: string; content: string } {
   const headingMatch = text.match(/^§([^§]+)§\s*/);
   if (headingMatch) {
     return {
       heading: headingMatch[1],
-      content: text.slice(headingMatch[0].length)
+      content: text.slice(headingMatch[0].length).replace(/¶\s*/g, '')
     };
   }
-  return { content: text };
+  return { content: text.replace(/¶\s*/g, '') };
 }
 
 // Check if translation is Amharic-based
