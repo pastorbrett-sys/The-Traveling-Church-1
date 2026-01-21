@@ -803,7 +803,7 @@ export default function PastorChat() {
                 <Button
                   onClick={sendMessage}
                   disabled={!input.trim() || isStreaming}
-                  className="flex-1"
+                  className="flex-1 bg-[#b8860b] hover:bg-[#9a7209] text-white"
                   data-testid="button-send"
                 >
                   <Send className="w-4 h-4 mr-2" />
