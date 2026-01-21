@@ -26,6 +26,7 @@ import { Label } from "@/components/ui/label";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useAuth } from "@/hooks/use-auth";
+import { apiFetch } from "@/lib/queryClient";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
 const INVITE_CODE_KEY = "vagabond_ambassador_invite";
@@ -210,7 +211,7 @@ export default function AmbassadorPage() {
     if (!user) return;
     
     try {
-      const res = await fetch(`/api/ambassador/me?userId=${user.id}`);
+      const res = await apiFetch(`/api/ambassador/me?userId=${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setAmbassador(data.ambassador);
@@ -235,7 +236,7 @@ export default function AmbassadorPage() {
   const fetchDashboardData = async () => {
     if (!user) return;
     try {
-      const res = await fetch(`/api/ambassador/dashboard/${user.id}`);
+      const res = await apiFetch(`/api/ambassador/dashboard/${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setAmbassador(data.ambassador);
@@ -275,7 +276,7 @@ export default function AmbassadorPage() {
     setError(null);
     
     try {
-      const res = await fetch("/api/ambassador/register", {
+      const res = await apiFetch("/api/ambassador/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -314,7 +315,7 @@ export default function AmbassadorPage() {
     setShowSignups(true);
     setLoadingSignups(true);
     try {
-      const res = await fetch(`/api/ambassador/signups/${targetUserId}`);
+      const res = await apiFetch(`/api/ambassador/signups/${targetUserId}`);
       if (res.ok) {
         const data = await res.json();
         setSignupsList(data.signups || []);
@@ -331,7 +332,7 @@ export default function AmbassadorPage() {
     setShowClicks(true);
     setLoadingClicks(true);
     try {
-      const res = await fetch(`/api/ambassador/clicks/${user.id}`);
+      const res = await apiFetch(`/api/ambassador/clicks/${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setClicksList(data.clicks || []);
@@ -348,7 +349,7 @@ export default function AmbassadorPage() {
     setShowConversions(true);
     setLoadingConversions(true);
     try {
-      const res = await fetch(`/api/ambassador/conversions/${user.id}`);
+      const res = await apiFetch(`/api/ambassador/conversions/${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setConversionsList(data.conversions || []);
@@ -876,7 +877,7 @@ export default function AmbassadorPage() {
                               onClick={async (e) => {
                                 e.stopPropagation();
                                 try {
-                                  const res = await fetch(`/api/ambassador/admin/approve/${member.id}`, {
+                                  const res = await apiFetch(`/api/ambassador/admin/approve/${member.id}`, {
                                     method: "POST",
                                   });
                                   if (res.ok) {
