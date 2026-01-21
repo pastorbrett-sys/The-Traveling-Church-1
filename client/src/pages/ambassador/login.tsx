@@ -174,14 +174,14 @@ export default function AmbassadorLogin() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-[#c08e00]" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
         <CardHeader className="text-center pb-2">
           <img 

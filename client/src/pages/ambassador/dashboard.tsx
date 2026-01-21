@@ -90,14 +90,14 @@ export default function AmbassadorDashboard() {
 
   if (isLoading || loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-2 border-[#c08e00] border-t-transparent rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-4 md:p-8">
+    <div className="min-h-screen bg-black p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <img 
