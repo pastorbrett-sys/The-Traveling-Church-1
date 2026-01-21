@@ -332,16 +332,19 @@ export default function AmbassadorPage() {
 
   if (viewState === "login-required") {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 relative" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setLocation("/vagabond-bible")}
-          className="absolute top-4 left-4 text-gray-400 hover:text-white bg-transparent hover:bg-[#c08e00]/30"
-          data-testid="button-back-login"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
+      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
+        <div className="w-full max-w-md mb-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setLocation("/vagabond-bible")}
+            className="text-gray-400 hover:text-white bg-transparent hover:bg-[#c08e00]/30"
+            data-testid="button-back-login"
+          >
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Back
+          </Button>
+        </div>
         <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
           <CardHeader className="text-center">
             <img 
@@ -378,16 +381,19 @@ export default function AmbassadorPage() {
 
   if (viewState === "apply") {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 relative" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setLocation("/vagabond-bible")}
-          className="absolute top-4 left-4 text-gray-400 hover:text-white bg-transparent hover:bg-[#c08e00]/30"
-          data-testid="button-back-apply"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
+      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
+        <div className="w-full max-w-md mb-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setLocation("/vagabond-bible")}
+            className="text-gray-400 hover:text-white bg-transparent hover:bg-[#c08e00]/30"
+            data-testid="button-back-apply"
+          >
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Back
+          </Button>
+        </div>
         <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
           <CardHeader className="text-center">
             <img 
