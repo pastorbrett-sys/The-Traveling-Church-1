@@ -12,7 +12,7 @@ This document provides the complete setup for two-tier regional pricing across a
 |----------|---------------|--------|
 | **Web (Stripe)** | Device locale detection → correct Stripe price ID | ✅ Complete |
 | **iOS (App Store)** | Two separate products + RevenueCat Targeting | ✅ Complete |
-| **Android (Play Store)** | Single product with regional pricing | ⏳ TODO |
+| **Android (Play Store)** | Single product with country-specific pricing | ✅ Complete |
 
 ---
 
