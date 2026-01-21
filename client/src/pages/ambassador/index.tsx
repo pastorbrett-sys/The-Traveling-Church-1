@@ -14,7 +14,6 @@ import {
   Shield,
   ArrowLeft,
   ChevronRight,
-  ChevronDown,
   X,
   ChevronsUpDown
 } from "lucide-react";
@@ -186,8 +185,8 @@ export default function AmbassadorPage() {
   const [conversionsList, setConversionsList] = useState<ConversionDetail[]>([]);
   const [loadingConversions, setLoadingConversions] = useState(false);
   
-  const [teamOpen, setTeamOpen] = useState(true);
-  const [signupsOpen, setSignupsOpen] = useState(true);
+  const [teamOpen, setTeamOpen] = useState(false);
+  const [signupsOpen, setSignupsOpen] = useState(false);
 
   useEffect(() => {
     document.title = "Ambassador Program | Vagabond Bible";
@@ -844,13 +843,13 @@ export default function AmbassadorPage() {
           <Collapsible open={teamOpen} onOpenChange={setTeamOpen}>
             <Card className="bg-[#1a1a1a] border-[#333]">
               <CollapsibleTrigger asChild>
-                <CardHeader className="pb-2 cursor-pointer hover:bg-[#222] transition-colors rounded-t-lg">
+                <CardHeader className={`cursor-pointer hover:bg-[#222] transition-colors rounded-lg ${teamOpen ? 'pb-2' : 'pb-4'}`}>
                   <CardTitle className="text-lg text-white flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-[#c08e00]" />
                       My Team ({team.length})
                     </div>
-                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${teamOpen ? '' : '-rotate-90'}`} />
+                    <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${teamOpen ? 'rotate-90' : ''}`} />
                   </CardTitle>
                 </CardHeader>
               </CollapsibleTrigger>
@@ -915,13 +914,13 @@ export default function AmbassadorPage() {
           <Collapsible open={signupsOpen} onOpenChange={setSignupsOpen}>
             <Card className="bg-[#1a1a1a] border-[#333]">
               <CollapsibleTrigger asChild>
-                <CardHeader className="pb-2 cursor-pointer hover:bg-[#222] transition-colors rounded-t-lg">
+                <CardHeader className={`cursor-pointer hover:bg-[#222] transition-colors rounded-lg ${signupsOpen ? 'pb-2' : 'pb-4'}`}>
                   <CardTitle className="text-lg text-white flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <UserPlus className="w-5 h-5 text-green-400" />
                       My Signups ({signupsList.length})
                     </div>
-                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${signupsOpen ? '' : '-rotate-90'}`} />
+                    <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${signupsOpen ? 'rotate-90' : ''}`} />
                   </CardTitle>
                 </CardHeader>
               </CollapsibleTrigger>
