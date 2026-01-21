@@ -159,6 +159,7 @@ export default function AmbassadorPage() {
   const [team, setTeam] = useState<TeamMember[]>([]);
   
   const [applyName, setApplyName] = useState("");
+  const [applyEmail, setApplyEmail] = useState("");
   const [applyCountry, setApplyCountry] = useState("");
   const [countryOpen, setCountryOpen] = useState(false);
   const [applyReason, setApplyReason] = useState("");
@@ -217,6 +218,7 @@ export default function AmbassadorPage() {
         }
       } else {
         setApplyName(user.firstName ? `${user.firstName} ${user.lastName || ""}`.trim() : "");
+        setApplyEmail(user.email || "");
         setViewState("apply");
       }
     } catch (err) {
@@ -255,7 +257,14 @@ export default function AmbassadorPage() {
 
   const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !applyName.trim()) return;
+    if (!user || !applyName.trim() || !applyEmail.trim()) return;
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(applyEmail.trim())) {
+      setError("Please enter a valid email address");
+      return;
+    }
     
     setIsSubmitting(true);
     setError(null);
@@ -266,7 +275,7 @@ export default function AmbassadorPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: user.id,
-          email: user.email,
+          email: applyEmail.trim(),
           name: applyName.trim(),
           inviteCode: inviteCode,
           country: applyCountry.trim() || undefined,
@@ -478,6 +487,20 @@ export default function AmbassadorPage() {
               </div>
               
               <div className="space-y-2">
+                <Label htmlFor="email" className="text-gray-300">Your Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={applyEmail}
+                  onChange={(e) => setApplyEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="bg-[#0a0a0a] border-gray-700 text-white"
+                  data-testid="input-apply-email"
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
                 <Label htmlFor="country" className="text-gray-300">Country</Label>
                 <Popover open={countryOpen} onOpenChange={setCountryOpen}>
                   <PopoverTrigger asChild>
@@ -556,7 +579,7 @@ export default function AmbassadorPage() {
 
               <Button
                 type="submit"
-                disabled={isSubmitting || !applyName.trim()}
+                disabled={isSubmitting || !applyName.trim() || !applyEmail.trim()}
                 className="w-full bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
                 data-testid="button-apply-submit"
               >
