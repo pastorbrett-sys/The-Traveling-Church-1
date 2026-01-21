@@ -5,12 +5,14 @@ const BASE_URL = window.location.origin;
 function getWelcomeEmailHtml(): string {
   return `
     <!DOCTYPE html>
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
     </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
@@ -38,9 +40,9 @@ function getWelcomeEmailHtml(): string {
         </div>
         
         <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #0a0a0a !important; background-color: #0a0a0a !important;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="background-color: #000000 !important;">
           <tr>
-            <td style="background: #0a0a0a !important; background-color: #0a0a0a !important; padding: 24px; text-align: center;">
+            <td align="center" bgcolor="#000000" style="background-color: #000000 !important; padding: 24px;">
               <a href="https://thetravelingchurch.com" style="display: inline-block;">
                 <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
               </a>
@@ -62,12 +64,14 @@ function getWelcomeEmailHtml(): string {
 function getSubscriptionEmailHtml(): string {
   return `
     <!DOCTYPE html>
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
     </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
@@ -108,9 +112,9 @@ function getSubscriptionEmailHtml(): string {
         </div>
         
         <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #0a0a0a !important; background-color: #0a0a0a !important;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="background-color: #000000 !important;">
           <tr>
-            <td style="background: #0a0a0a !important; background-color: #0a0a0a !important; padding: 24px; text-align: center;">
+            <td align="center" bgcolor="#000000" style="background-color: #000000 !important; padding: 24px;">
               <a href="https://thetravelingchurch.com" style="display: inline-block;">
                 <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
               </a>

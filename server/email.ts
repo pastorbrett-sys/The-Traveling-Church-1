@@ -83,12 +83,21 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 export function getWelcomeEmailHtml(displayName: string): string {
   return `
     <!DOCTYPE html>
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+      <style>
+        :root { color-scheme: light; }
+        @media (prefers-color-scheme: dark) {
+          .dark-footer { background-color: #000000 !important; }
+          .dark-footer td { background-color: #000000 !important; }
+        }
+      </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
@@ -116,9 +125,9 @@ export function getWelcomeEmailHtml(displayName: string): string {
         </div>
         
         <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #0a0a0a !important; background-color: #0a0a0a !important;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000 !important;" bgcolor="#000000">
           <tr>
-            <td style="background: #0a0a0a !important; background-color: #0a0a0a !important; padding: 24px; text-align: center;">
+            <td align="center" style="background-color: #000000 !important; padding: 24px;" bgcolor="#000000">
               <a href="https://thetravelingchurch.com" style="display: inline-block;">
                 <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
               </a>
@@ -163,12 +172,21 @@ export async function sendWelcomeEmail(userEmail: string, firstName?: string | n
 export function getSubscriptionEmailHtml(displayName: string): string {
   return `
     <!DOCTYPE html>
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+      <style>
+        :root { color-scheme: light; }
+        @media (prefers-color-scheme: dark) {
+          .dark-footer { background-color: #000000 !important; }
+          .dark-footer td { background-color: #000000 !important; }
+        }
+      </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header with Logo -->
@@ -209,9 +227,9 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         </div>
         
         <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #0a0a0a !important; background-color: #0a0a0a !important;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000 !important;" bgcolor="#000000">
           <tr>
-            <td style="background: #0a0a0a !important; background-color: #0a0a0a !important; padding: 24px; text-align: center;">
+            <td align="center" style="background-color: #000000 !important; padding: 24px;" bgcolor="#000000">
               <a href="https://thetravelingchurch.com" style="display: inline-block;">
                 <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
               </a>
