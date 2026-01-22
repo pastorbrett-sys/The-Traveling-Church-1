@@ -514,10 +514,10 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 12px 0;">
                 <tr>
                   <td style="padding: 20px; text-align: left;">
-                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                       <tr>
-                        <td style="width: 44px; vertical-align: top; font-size: 24px;">&#128279;</td>
-                        <td style="vertical-align: top;">
+                        <td style="width: 40px; vertical-align: middle; font-size: 24px;">&#128279;</td>
+                        <td style="vertical-align: middle;">
                           <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">Share Your Link</p>
                           <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Send to friends, family, and community</p>
                         </td>
@@ -530,10 +530,10 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 12px 0;">
                 <tr>
                   <td style="padding: 20px; text-align: left;">
-                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                       <tr>
-                        <td style="width: 44px; vertical-align: top; font-size: 24px;">&#128101;</td>
-                        <td style="vertical-align: top;">
+                        <td style="width: 40px; vertical-align: middle; font-size: 24px;">&#128101;</td>
+                        <td style="vertical-align: middle;">
                           <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">They Sign Up</p>
                           <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Free or Pro, you get credit</p>
                         </td>
@@ -546,10 +546,10 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
                 <tr>
                   <td style="padding: 20px; text-align: left;">
-                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                       <tr>
-                        <td style="width: 44px; vertical-align: top; font-size: 24px;">&#128176;</td>
-                        <td style="vertical-align: top;">
+                        <td style="width: 40px; vertical-align: middle; font-size: 24px;">&#128176;</td>
+                        <td style="vertical-align: middle;">
                           <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">Earn Rewards</p>
                           <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Get paid for Pro conversions</p>
                         </td>
@@ -564,18 +564,24 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
                 <tr>
                   <td style="padding: 20px; text-align: left;">
-                    <p style="font-size: 15px; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">1</span> Open the App or Site</p>
-                    <p style="font-size: 15px; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">2</span> Go to the Menu</p>
-                    <p style="font-size: 15px; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">3</span> Tap "Ambassadors"</p>
+                    <p style="font-size: 15px; color: #333; margin: 0 0 16px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">1</span> Open the App or Site</p>
+                    <p style="font-size: 15px; color: #333; margin: 0 0 16px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">2</span> Go to the Menu</p>
+                    <p style="font-size: 15px; color: #333; margin: 0 0 16px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">3</span> Tap "Ambassadors"</p>
                     <p style="font-size: 15px; color: #333; margin: 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">4</span> Copy your referral link and share it!</p>
                   </td>
                 </tr>
               </table>
           
-          <a href="${BASE_URL}/ambassador" 
-             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center;">
-            Open Your Dashboard
-          </a>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="padding-bottom: 20px;">
+                    <a href="${BASE_URL}/ambassador" 
+                       style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center;">
+                      Open Your Dashboard
+                    </a>
+                  </td>
+                </tr>
+              </table>
                 </td>
               </tr>
               <tr>
