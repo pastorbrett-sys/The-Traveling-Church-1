@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import { apiFetch } from "@/lib/queryClient";
 import { isNativePlatform } from "@/lib/host-detection";
+import { Haptics, NotificationType } from "@capacitor/haptics";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
 interface AmbassadorStats {
@@ -74,17 +75,27 @@ export default function AmbassadorDashboard() {
     }
   };
 
-  const handleCopyRef = () => {
+  const handleCopyRef = async () => {
     if (ambassador?.referralCode) {
       navigator.clipboard.writeText(`https://vagabondbible.com/?ref=${ambassador.referralCode}`);
+      try {
+        await Haptics.notification({ type: NotificationType.Success });
+      } catch (e) {
+        // Haptics not available on web
+      }
       setCopiedRef(true);
       setTimeout(() => setCopiedRef(false), 2000);
     }
   };
 
-  const handleCopyInvite = () => {
+  const handleCopyInvite = async () => {
     if (ambassador?.inviteCode) {
       navigator.clipboard.writeText(`https://vagabondbible.com/ambassador?invite=${ambassador.inviteCode}`);
+      try {
+        await Haptics.notification({ type: NotificationType.Success });
+      } catch (e) {
+        // Haptics not available on web
+      }
       setCopiedInvite(true);
       setTimeout(() => setCopiedInvite(false), 2000);
     }
