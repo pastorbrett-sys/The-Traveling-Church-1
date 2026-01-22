@@ -993,7 +993,10 @@ export default function AmbassadorPage() {
             </SheetTitle>
           </SheetHeader>
           
-          <div className="mt-6 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)]">
+          <div 
+            className="mt-6 space-y-3 overflow-y-auto" 
+            style={{ maxHeight: isNative ? 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 200px)' : 'calc(100vh - 120px)' }}
+          >
             {loadingSignups ? (
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
@@ -1048,7 +1051,10 @@ export default function AmbassadorPage() {
             </SheetTitle>
           </SheetHeader>
           
-          <div className="mt-6 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)]">
+          <div 
+            className="mt-6 space-y-3 overflow-y-auto" 
+            style={{ maxHeight: isNative ? 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 200px)' : 'calc(100vh - 120px)' }}
+          >
             {loadingClicks ? (
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
@@ -1096,7 +1102,10 @@ export default function AmbassadorPage() {
             </SheetTitle>
           </SheetHeader>
           
-          <div className="mt-6 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)]">
+          <div 
+            className="mt-6 space-y-3 overflow-y-auto" 
+            style={{ maxHeight: isNative ? 'calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 200px)' : 'calc(100vh - 120px)' }}
+          >
             {loadingConversions ? (
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="w-6 h-6 animate-spin text-[#c08e00]" />
