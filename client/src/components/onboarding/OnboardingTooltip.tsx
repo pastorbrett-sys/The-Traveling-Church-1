@@ -37,6 +37,7 @@ export function OnboardingTooltip({
   const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [readyToAnimate, setReadyToAnimate] = useState(false);
   const [bounceComplete, setBounceComplete] = useState(false);
 
   const handleDismiss = useCallback(() => {
@@ -45,7 +46,9 @@ export function OnboardingTooltip({
     setTimeout(() => {
       setMounted(false);
       setIsExiting(false);
+      setReadyToAnimate(false);
       setBounceComplete(false);
+      setTooltipPosition(null);
       onDismiss();
     }, 150);
   }, [onDismiss, isExiting]);
@@ -70,43 +73,51 @@ export function OnboardingTooltip({
     // Position above or below target
     let y: number;
     if (position === "above") {
-      // Place tooltip so its bottom edge is `offset` pixels above the target's top edge
       y = targetRect.top - tooltipRect.height - ARROW_SIZE - offset;
     } else {
-      // Place tooltip so its top edge is `offset` pixels below the target's bottom edge
       y = targetRect.bottom + ARROW_SIZE + offset;
     }
     
     setTooltipPosition({ x, y, arrowX });
   }, [targetRef, position, offset]);
 
+  // Mount the tooltip when visible
   useEffect(() => {
     if (visible && !mounted) {
       setMounted(true);
       setIsExiting(false);
+      setReadyToAnimate(false);
       setBounceComplete(false);
-      const timer = setTimeout(() => {
-        setBounceComplete(true);
-      }, BOUNCE_DURATION);
-      return () => clearTimeout(timer);
     } else if (!visible && mounted && !isExiting) {
       handleDismiss();
     }
   }, [visible, mounted, isExiting, handleDismiss]);
 
+  // Calculate position after mount
   useEffect(() => {
-    if (mounted && targetRef.current) {
-      // Initial position calculation
-      const rafId = requestAnimationFrame(updatePosition);
-      // Also update after a short delay to catch any layout shifts
-      const timer = setTimeout(updatePosition, 100);
-      return () => {
-        cancelAnimationFrame(rafId);
-        clearTimeout(timer);
-      };
+    if (mounted && !tooltipPosition && targetRef.current) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          updatePosition();
+        });
+      });
     }
-  }, [mounted, updatePosition]);
+  }, [mounted, targetRef, tooltipPosition, updatePosition]);
 
+  // Start animation AFTER position is set
+  useEffect(() => {
+    if (tooltipPosition && !readyToAnimate && !isExiting) {
+      const timer = setTimeout(() => {
+        setReadyToAnimate(true);
+        setTimeout(() => {
+          setBounceComplete(true);
+        }, BOUNCE_DURATION);
+      }, 20);
+      return () => clearTimeout(timer);
+    }
+  }, [tooltipPosition, readyToAnimate, isExiting]);
+
+  // Resize/scroll handlers
   useEffect(() => {
     if (!mounted) return;
 
@@ -119,6 +130,7 @@ export function OnboardingTooltip({
     };
   }, [mounted, updatePosition]);
 
+  // Dismiss on any tap
   useEffect(() => {
     if (!mounted || !dismissOnAnyTap || isExiting) return;
 
@@ -165,11 +177,15 @@ export function OnboardingTooltip({
         borderColor: "transparent transparent #f59e0b transparent",
       };
 
+  // Only apply animation class after position is set
   const animationClass = isExiting
     ? "animate-tooltip-exit"
-    : bounceComplete
-      ? "animate-tooltip-float"
-      : "animate-tooltip-enter";
+    : readyToAnimate
+      ? (bounceComplete ? "animate-tooltip-float" : "animate-tooltip-enter")
+      : "";
+
+  // Hide until position is calculated, then show with animation
+  const isPositioned = tooltipPosition !== null;
 
   return createPortal(
     <div
@@ -185,7 +201,8 @@ export function OnboardingTooltip({
       style={{
         left: tooltipPosition?.x ?? -9999,
         top: tooltipPosition?.y ?? -9999,
-        visibility: tooltipPosition ? "visible" : "hidden",
+        opacity: isPositioned && readyToAnimate ? undefined : 0,
+        visibility: isPositioned ? "visible" : "hidden",
       }}
     >
       <div style={arrowStyle} />

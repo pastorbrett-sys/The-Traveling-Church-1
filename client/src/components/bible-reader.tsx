@@ -446,7 +446,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       shouldShowTooltip("verse")
     ) {
       const timer = setTimeout(() => {
-        if (!hasTriggeredVerseTooltip.current && verseAreaRef.current) {
+        if (!hasTriggeredVerseTooltip.current && firstVerseRef.current) {
           hasTriggeredVerseTooltip.current = true;
           setShowVerseTooltip(true);
         }
