@@ -516,7 +516,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
                   <td style="padding: 20px; text-align: left;">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                       <tr>
-                        <td style="width: 44px; vertical-align: top; font-size: 24px;">1.</td>
+                        <td style="width: 44px; vertical-align: top; font-size: 24px;">&#128279;</td>
                         <td style="vertical-align: top;">
                           <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">Share Your Link</p>
                           <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Send to friends, family, and community</p>
@@ -532,7 +532,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
                   <td style="padding: 20px; text-align: left;">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                       <tr>
-                        <td style="width: 44px; vertical-align: top; font-size: 24px;">2.</td>
+                        <td style="width: 44px; vertical-align: top; font-size: 24px;">&#128101;</td>
                         <td style="vertical-align: top;">
                           <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">They Sign Up</p>
                           <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Free or Pro, you get credit</p>
@@ -548,7 +548,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
                   <td style="padding: 20px; text-align: left;">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                       <tr>
-                        <td style="width: 44px; vertical-align: top; font-size: 24px;">3.</td>
+                        <td style="width: 44px; vertical-align: top; font-size: 24px;">&#128176;</td>
                         <td style="vertical-align: top;">
                           <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">Earn Rewards</p>
                           <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Get paid for Pro conversions</p>
