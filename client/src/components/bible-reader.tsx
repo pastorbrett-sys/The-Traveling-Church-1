@@ -2356,7 +2356,7 @@ Reference: ${verseRef} (${translation})`;
         text={getTooltipText("verse")}
         visible={showVerseTooltip}
         position="below"
-        offset={8}
+        offset={10}
         onDismiss={() => {
           setShowVerseTooltip(false);
           markSeen("verse");
@@ -2368,7 +2368,7 @@ Reference: ${verseRef} (${translation})`;
         text={getTooltipText("actionBar")}
         visible={showActionBarTooltip}
         position="above"
-        offset={8}
+        offset={10}
         dismissOnAnyTap={true}
         onDismiss={() => {
           setShowActionBarTooltip(false);

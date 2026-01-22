@@ -2,13 +2,10 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
-type ArrowPosition = "top" | "bottom";
-
 interface TooltipPosition {
   x: number;
   y: number;
-  arrow: ArrowPosition;
-  arrowOffset: number;
+  arrowX: number;
 }
 
 interface OnboardingTooltipProps {
@@ -26,49 +23,13 @@ const TOOLTIP_PADDING = 16;
 const ARROW_SIZE = 8;
 const BOUNCE_DURATION = 500;
 
-function calculatePosition(
-  targetRect: DOMRect,
-  tooltipWidth: number,
-  tooltipHeight: number,
-  preferredPosition: "above" | "below",
-  gap: number
-): TooltipPosition {
-  const viewport = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
-
-  const targetCenterX = targetRect.left + targetRect.width / 2;
-  
-  let x = Math.max(
-    TOOLTIP_PADDING,
-    Math.min(targetCenterX - tooltipWidth / 2, viewport.width - tooltipWidth - TOOLTIP_PADDING)
-  );
-
-  let y: number;
-  let arrow: ArrowPosition;
-
-  if (preferredPosition === "above") {
-    arrow = "bottom";
-    y = targetRect.top - tooltipHeight - gap - ARROW_SIZE;
-  } else {
-    arrow = "top";
-    y = targetRect.bottom + gap + ARROW_SIZE;
-  }
-
-  // Calculate arrow offset to point at target center
-  const arrowOffset = Math.max(20, Math.min(targetCenterX - x, tooltipWidth - 20));
-
-  return { x, y, arrow, arrowOffset };
-}
-
 export function OnboardingTooltip({
   targetRef,
   text,
   visible,
   onDismiss,
   position = "below",
-  offset = 8,
+  offset = 10,
   dismissOnAnyTap = false,
   className,
 }: OnboardingTooltipProps) {
@@ -94,15 +55,29 @@ export function OnboardingTooltip({
     
     const targetRect = targetRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
+    const viewport = { width: window.innerWidth };
     
-    const newPosition = calculatePosition(
-      targetRect, 
-      tooltipRect.width, 
-      tooltipRect.height,
-      position,
-      offset
-    );
-    setTooltipPosition(newPosition);
+    // Center tooltip on target horizontally
+    const targetCenterX = targetRect.left + targetRect.width / 2;
+    let x = targetCenterX - tooltipRect.width / 2;
+    
+    // Clamp to viewport bounds
+    x = Math.max(TOOLTIP_PADDING, Math.min(x, viewport.width - tooltipRect.width - TOOLTIP_PADDING));
+    
+    // Arrow should point at target center
+    const arrowX = targetCenterX - x;
+    
+    // Position above or below target
+    let y: number;
+    if (position === "above") {
+      // Place tooltip so its bottom edge is `offset` pixels above the target's top edge
+      y = targetRect.top - tooltipRect.height - ARROW_SIZE - offset;
+    } else {
+      // Place tooltip so its top edge is `offset` pixels below the target's bottom edge
+      y = targetRect.bottom + ARROW_SIZE + offset;
+    }
+    
+    setTooltipPosition({ x, y, arrowX });
   }, [targetRef, position, offset]);
 
   useEffect(() => {
@@ -121,23 +96,26 @@ export function OnboardingTooltip({
 
   useEffect(() => {
     if (mounted && targetRef.current) {
+      // Initial position calculation
       const rafId = requestAnimationFrame(updatePosition);
-      return () => cancelAnimationFrame(rafId);
+      // Also update after a short delay to catch any layout shifts
+      const timer = setTimeout(updatePosition, 100);
+      return () => {
+        cancelAnimationFrame(rafId);
+        clearTimeout(timer);
+      };
     }
   }, [mounted, updatePosition]);
 
   useEffect(() => {
     if (!mounted) return;
 
-    const handleResize = () => updatePosition();
-    const handleScroll = () => updatePosition();
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll, true);
+    window.addEventListener("resize", updatePosition);
+    window.addEventListener("scroll", updatePosition, true);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll, true);
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
     };
   }, [mounted, updatePosition]);
 
@@ -162,36 +140,30 @@ export function OnboardingTooltip({
 
   if (!mounted) return null;
 
-  const getArrowStyle = (): React.CSSProperties => {
-    if (!tooltipPosition) return {};
-    
-    const base: React.CSSProperties = {
-      position: "absolute",
-      width: 0,
-      height: 0,
-      borderStyle: "solid",
-    };
-
-    if (tooltipPosition.arrow === "top") {
-      return {
-        ...base,
-        top: -ARROW_SIZE,
-        left: tooltipPosition.arrowOffset,
+  // Arrow CSS triangle styles
+  const arrowStyle: React.CSSProperties = position === "above" 
+    ? {
+        position: "absolute",
+        bottom: -ARROW_SIZE,
+        left: tooltipPosition?.arrowX ?? 0,
         transform: "translateX(-50%)",
+        width: 0,
+        height: 0,
+        borderStyle: "solid",
+        borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
+        borderColor: "#f59e0b transparent transparent transparent",
+      }
+    : {
+        position: "absolute",
+        top: -ARROW_SIZE,
+        left: tooltipPosition?.arrowX ?? 0,
+        transform: "translateX(-50%)",
+        width: 0,
+        height: 0,
+        borderStyle: "solid",
         borderWidth: `0 ${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px`,
         borderColor: "transparent transparent #f59e0b transparent",
       };
-    } else {
-      return {
-        ...base,
-        bottom: -ARROW_SIZE,
-        left: tooltipPosition.arrowOffset,
-        transform: "translateX(-50%)",
-        borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
-        borderColor: "#f59e0b transparent transparent transparent",
-      };
-    }
-  };
 
   const animationClass = isExiting
     ? "animate-tooltip-exit"
@@ -216,7 +188,7 @@ export function OnboardingTooltip({
         visibility: tooltipPosition ? "visible" : "hidden",
       }}
     >
-      <div style={getArrowStyle()} />
+      <div style={arrowStyle} />
       
       <p className="text-white text-[15px] font-medium leading-snug">
         {text}
