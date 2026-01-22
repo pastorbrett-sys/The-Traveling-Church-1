@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
-type ArrowPosition = "top" | "bottom" | "left" | "right";
+type ArrowPosition = "top" | "bottom";
 
 interface TooltipPosition {
   x: number;
@@ -16,71 +16,48 @@ interface OnboardingTooltipProps {
   text: string;
   visible: boolean;
   onDismiss: () => void;
+  position?: "above" | "below";
+  offset?: number;
   dismissOnAnyTap?: boolean;
   className?: string;
 }
 
 const TOOLTIP_PADDING = 16;
 const ARROW_SIZE = 8;
-const GAP = 10;
-const BOUNCE_DURATION = 500; // ms - matches CSS animation duration
+const BOUNCE_DURATION = 500;
 
 function calculatePosition(
   targetRect: DOMRect,
   tooltipWidth: number,
-  tooltipHeight: number
+  tooltipHeight: number,
+  preferredPosition: "above" | "below",
+  gap: number
 ): TooltipPosition {
   const viewport = {
     width: window.innerWidth,
     height: window.innerHeight,
   };
 
-  const spaceAbove = targetRect.top;
-  const spaceBelow = viewport.height - targetRect.bottom;
-  const spaceLeft = targetRect.left;
-  const spaceRight = viewport.width - targetRect.right;
-
   const targetCenterX = targetRect.left + targetRect.width / 2;
-  const targetCenterY = targetRect.top + targetRect.height / 2;
+  
+  let x = Math.max(
+    TOOLTIP_PADDING,
+    Math.min(targetCenterX - tooltipWidth / 2, viewport.width - tooltipWidth - TOOLTIP_PADDING)
+  );
 
-  let x: number;
   let y: number;
   let arrow: ArrowPosition;
 
-  if (spaceBelow >= tooltipHeight + GAP + TOOLTIP_PADDING || spaceBelow >= spaceAbove) {
-    arrow = "top";
-    y = targetRect.bottom + GAP;
-    x = Math.max(
-      TOOLTIP_PADDING,
-      Math.min(targetCenterX - tooltipWidth / 2, viewport.width - tooltipWidth - TOOLTIP_PADDING)
-    );
-  } else if (spaceAbove >= tooltipHeight + GAP + TOOLTIP_PADDING) {
+  if (preferredPosition === "above") {
     arrow = "bottom";
-    y = targetRect.top - tooltipHeight - GAP;
-    x = Math.max(
-      TOOLTIP_PADDING,
-      Math.min(targetCenterX - tooltipWidth / 2, viewport.width - tooltipWidth - TOOLTIP_PADDING)
-    );
-  } else if (spaceRight >= spaceLeft) {
-    arrow = "left";
-    x = targetRect.right + GAP;
-    y = Math.max(
-      TOOLTIP_PADDING,
-      Math.min(targetCenterY - tooltipHeight / 2, viewport.height - tooltipHeight - TOOLTIP_PADDING)
-    );
+    y = targetRect.top - tooltipHeight - gap - ARROW_SIZE;
   } else {
-    arrow = "right";
-    x = targetRect.left - tooltipWidth - GAP;
-    y = Math.max(
-      TOOLTIP_PADDING,
-      Math.min(targetCenterY - tooltipHeight / 2, viewport.height - tooltipHeight - TOOLTIP_PADDING)
-    );
+    arrow = "top";
+    y = targetRect.bottom + gap + ARROW_SIZE;
   }
 
-  const arrowOffset =
-    arrow === "top" || arrow === "bottom"
-      ? Math.max(20, Math.min(targetCenterX - x, tooltipWidth - 20))
-      : Math.max(20, Math.min(targetCenterY - y, tooltipHeight - 20));
+  // Calculate arrow offset to point at target center
+  const arrowOffset = Math.max(20, Math.min(targetCenterX - x, tooltipWidth - 20));
 
   return { x, y, arrow, arrowOffset };
 }
@@ -90,17 +67,19 @@ export function OnboardingTooltip({
   text,
   visible,
   onDismiss,
+  position = "below",
+  offset = 8,
   dismissOnAnyTap = false,
   className,
 }: OnboardingTooltipProps) {
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<TooltipPosition | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [bounceComplete, setBounceComplete] = useState(false);
 
   const handleDismiss = useCallback(() => {
-    if (isExiting) return; // Prevent double dismiss
+    if (isExiting) return;
     setIsExiting(true);
     setTimeout(() => {
       setMounted(false);
@@ -116,17 +95,21 @@ export function OnboardingTooltip({
     const targetRect = targetRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
     
-    const newPosition = calculatePosition(targetRect, tooltipRect.width, tooltipRect.height);
-    setPosition(newPosition);
-  }, [targetRef]);
+    const newPosition = calculatePosition(
+      targetRect, 
+      tooltipRect.width, 
+      tooltipRect.height,
+      position,
+      offset
+    );
+    setTooltipPosition(newPosition);
+  }, [targetRef, position, offset]);
 
-  // Handle mounting/unmounting
   useEffect(() => {
     if (visible && !mounted) {
       setMounted(true);
       setIsExiting(false);
       setBounceComplete(false);
-      // Start float animation after bounce completes
       const timer = setTimeout(() => {
         setBounceComplete(true);
       }, BOUNCE_DURATION);
@@ -136,7 +119,6 @@ export function OnboardingTooltip({
     }
   }, [visible, mounted, isExiting, handleDismiss]);
 
-  // Position updates
   useEffect(() => {
     if (mounted && targetRef.current) {
       const rafId = requestAnimationFrame(updatePosition);
@@ -144,7 +126,6 @@ export function OnboardingTooltip({
     }
   }, [mounted, updatePosition]);
 
-  // Resize/scroll handlers
   useEffect(() => {
     if (!mounted) return;
 
@@ -160,7 +141,6 @@ export function OnboardingTooltip({
     };
   }, [mounted, updatePosition]);
 
-  // Handle dismiss on any tap (for action bar tooltip)
   useEffect(() => {
     if (!mounted || !dismissOnAnyTap || isExiting) return;
 
@@ -168,7 +148,6 @@ export function OnboardingTooltip({
       handleDismiss();
     };
 
-    // Add listeners after bounce animation completes to avoid immediate dismissal
     const timer = setTimeout(() => {
       document.addEventListener("click", handleTap, { capture: true });
       document.addEventListener("touchend", handleTap, { capture: true });
@@ -183,9 +162,8 @@ export function OnboardingTooltip({
 
   if (!mounted) return null;
 
-  // Arrow styles using CSS triangles
   const getArrowStyle = (): React.CSSProperties => {
-    if (!position) return {};
+    if (!tooltipPosition) return {};
     
     const base: React.CSSProperties = {
       position: "absolute",
@@ -194,49 +172,27 @@ export function OnboardingTooltip({
       borderStyle: "solid",
     };
 
-    switch (position.arrow) {
-      case "top":
-        return {
-          ...base,
-          top: -ARROW_SIZE,
-          left: position.arrowOffset,
-          transform: "translateX(-50%)",
-          borderWidth: `0 ${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px`,
-          borderColor: "transparent transparent #f59e0b transparent",
-        };
-      case "bottom":
-        return {
-          ...base,
-          bottom: -ARROW_SIZE,
-          left: position.arrowOffset,
-          transform: "translateX(-50%)",
-          borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
-          borderColor: "#f59e0b transparent transparent transparent",
-        };
-      case "left":
-        return {
-          ...base,
-          left: -ARROW_SIZE,
-          top: position.arrowOffset,
-          transform: "translateY(-50%)",
-          borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px 0`,
-          borderColor: "transparent #f59e0b transparent transparent",
-        };
-      case "right":
-        return {
-          ...base,
-          right: -ARROW_SIZE,
-          top: position.arrowOffset,
-          transform: "translateY(-50%)",
-          borderWidth: `${ARROW_SIZE}px 0 ${ARROW_SIZE}px ${ARROW_SIZE}px`,
-          borderColor: "transparent transparent transparent #f59e0b",
-        };
-      default:
-        return base;
+    if (tooltipPosition.arrow === "top") {
+      return {
+        ...base,
+        top: -ARROW_SIZE,
+        left: tooltipPosition.arrowOffset,
+        transform: "translateX(-50%)",
+        borderWidth: `0 ${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px`,
+        borderColor: "transparent transparent #f59e0b transparent",
+      };
+    } else {
+      return {
+        ...base,
+        bottom: -ARROW_SIZE,
+        left: tooltipPosition.arrowOffset,
+        transform: "translateX(-50%)",
+        borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
+        borderColor: "#f59e0b transparent transparent transparent",
+      };
     }
   };
 
-  // Determine animation class - only float after bounce is complete
   const animationClass = isExiting
     ? "animate-tooltip-exit"
     : bounceComplete
@@ -255,9 +211,9 @@ export function OnboardingTooltip({
         className
       )}
       style={{
-        left: position?.x ?? -9999,
-        top: position?.y ?? -9999,
-        visibility: position ? "visible" : "hidden",
+        left: tooltipPosition?.x ?? -9999,
+        top: tooltipPosition?.y ?? -9999,
+        visibility: tooltipPosition ? "visible" : "hidden",
       }}
     >
       <div style={getArrowStyle()} />

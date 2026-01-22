@@ -365,7 +365,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
   const prevTranslationRef = useRef<string>(translation);
   const verseAreaRef = useRef<HTMLDivElement>(null);
-  const actionBarRef = useRef<HTMLDivElement>(null);
+  const firstVerseRef = useRef<HTMLSpanElement>(null);
+  const sparkleButtonRef = useRef<HTMLButtonElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
   
@@ -1768,7 +1769,13 @@ Reference: ${verseRef} (${translation})`;
                     )}
                     <motion.span
                       ref={(el) => {
-                        if (el) verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
+                        if (el) {
+                          verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
+                          // Also set firstVerseRef for onboarding tooltip
+                          if (isFirstVerse) {
+                            (firstVerseRef as React.MutableRefObject<HTMLSpanElement | null>).current = el as unknown as HTMLSpanElement;
+                          }
+                        }
                       }}
                       onClick={() => handleVerseClick(verse)}
                       animate={{
@@ -1796,7 +1803,6 @@ Reference: ${verseRef} (${translation})`;
       <AnimatePresence>
         {selectedVerse && (
           <motion.div
-            ref={actionBarRef}
             key={footerKey}
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -1822,14 +1828,43 @@ Reference: ${verseRef} (${translation})`;
                 </motion.p>
               </AnimatePresence>
               <div className="flex items-center gap-1">
+                {/* Sparkles button - separate for onboarding tooltip ref */}
+                <motion.div
+                  key={`${footerKey}-button-get-insight`}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ 
+                    delay: 0.1,
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25
+                  }}
+                >
+                  <Button
+                    ref={sparkleButtonRef}
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      if (showActionBarTooltip) {
+                        setShowActionBarTooltip(false);
+                        markSeen("actionBar");
+                      }
+                      handleGetInsight();
+                    }}
+                    className="gap-1 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
+                    data-testid="button-get-insight"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span className="hidden sm:inline">{t.insight}</span>
+                  </Button>
+                </motion.div>
+                {/* Other action buttons */}
                 {[
-                  { icon: Sparkles, label: t.insight, onClick: handleGetInsight, testId: "button-get-insight" },
                   { icon: Columns2, label: t.compare, onClick: () => setShowCompare(true), testId: "button-compare" },
                   { icon: StickyNote, label: t.note, onClick: () => setShowNote(true), testId: "button-add-note" },
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
                   { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
                 ].map((item, index) => {
-                  // Wrap onClick to dismiss action bar tooltip on any button click
                   const wrappedOnClick = () => {
                     if (showActionBarTooltip) {
                       setShowActionBarTooltip(false);
@@ -1843,7 +1878,7 @@ Reference: ${verseRef} (${translation})`;
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ 
-                      delay: 0.1 + index * 0.06,
+                      delay: 0.1 + (index + 1) * 0.06,
                       type: "spring",
                       stiffness: 400,
                       damping: 25
@@ -2317,9 +2352,11 @@ Reference: ${verseRef} (${translation})`;
 
       {/* Onboarding Tooltips */}
       <OnboardingTooltip
-        targetRef={verseAreaRef}
+        targetRef={firstVerseRef}
         text={getTooltipText("verse")}
         visible={showVerseTooltip}
+        position="below"
+        offset={8}
         onDismiss={() => {
           setShowVerseTooltip(false);
           markSeen("verse");
@@ -2327,9 +2364,11 @@ Reference: ${verseRef} (${translation})`;
       />
 
       <OnboardingTooltip
-        targetRef={actionBarRef}
+        targetRef={sparkleButtonRef}
         text={getTooltipText("actionBar")}
         visible={showActionBarTooltip}
+        position="above"
+        offset={8}
         dismissOnAnyTap={true}
         onDismiss={() => {
           setShowActionBarTooltip(false);
