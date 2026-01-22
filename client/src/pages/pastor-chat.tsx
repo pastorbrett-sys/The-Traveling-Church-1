@@ -611,7 +611,7 @@ export default function PastorChat() {
         rightContent={isNative && activeTab === "bible" ? (
           <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
             <SelectTrigger className="w-20" data-testid="select-bible-translation-nav">
-              <SelectValue />
+              <SelectValue placeholder={bibleTranslation} />
             </SelectTrigger>
             <SelectContent>
               {bibleTranslations?.map((t) => (
@@ -678,7 +678,7 @@ export default function PastorChat() {
                   <span className="text-sm text-muted-foreground hidden sm:inline">{t.bibleVersion}</span>
                   <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
                     <SelectTrigger className="w-20" data-testid="select-bible-translation">
-                      <SelectValue />
+                      <SelectValue placeholder={bibleTranslation} />
                     </SelectTrigger>
                     <SelectContent>
                       {bibleTranslations?.map((t) => (
