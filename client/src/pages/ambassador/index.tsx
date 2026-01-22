@@ -978,7 +978,14 @@ export default function AmbassadorPage() {
       </div>
 
       <Sheet open={showSignups} onOpenChange={setShowSignups}>
-        <SheetContent side="right" className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md">
+        <SheetContent 
+          side="right" 
+          className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md"
+          style={isNative ? { 
+            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)',
+            paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 100px)'
+          } : undefined}
+        >
           <SheetHeader>
             <SheetTitle className="text-white flex items-center gap-2">
               <UserPlus className="w-5 h-5 text-green-400" />
@@ -1026,7 +1033,14 @@ export default function AmbassadorPage() {
       </Sheet>
 
       <Sheet open={showClicks} onOpenChange={setShowClicks}>
-        <SheetContent side="right" className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md">
+        <SheetContent 
+          side="right" 
+          className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md"
+          style={isNative ? { 
+            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)',
+            paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 100px)'
+          } : undefined}
+        >
           <SheetHeader>
             <SheetTitle className="text-white flex items-center gap-2">
               <MousePointer className="w-5 h-5 text-blue-400" />
@@ -1067,7 +1081,14 @@ export default function AmbassadorPage() {
       </Sheet>
 
       <Sheet open={showConversions} onOpenChange={setShowConversions}>
-        <SheetContent side="right" className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md">
+        <SheetContent 
+          side="right" 
+          className="bg-[#1a1a1a] border-[#333] w-full sm:max-w-md"
+          style={isNative ? { 
+            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 24px)',
+            paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 100px)'
+          } : undefined}
+        >
           <SheetHeader>
             <SheetTitle className="text-white flex items-center gap-2">
               <Crown className="w-5 h-5 text-[#c08e00]" />
