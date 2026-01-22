@@ -60,9 +60,24 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       console.log("[IntroAnimation] Attempting manual video.play()");
       video.play().then(() => {
         console.log("[IntroAnimation] Manual play succeeded");
-        // Trigger 1-second vibration to sync with video
+        // Haptic sequence: soft 1.5s → medium 0.5s → sharp tap
         try {
-          Haptics.vibrate({ duration: 1000 });
+          // 0ms: Start with soft vibration for 1.5 seconds
+          Haptics.vibrate({ duration: 1500 });
+          
+          // 1500ms: Medium vibration for 0.5 seconds
+          setTimeout(() => {
+            try {
+              Haptics.vibrate({ duration: 500 });
+            } catch (e) {}
+          }, 1500);
+          
+          // 2000ms: Sharp heavy tap
+          setTimeout(() => {
+            try {
+              Haptics.impact({ style: ImpactStyle.Heavy });
+            } catch (e) {}
+          }, 2000);
         } catch (e) {
           // Haptics not available on web
         }
