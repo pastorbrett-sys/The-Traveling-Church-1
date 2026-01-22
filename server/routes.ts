@@ -12,6 +12,7 @@ import {
   FEATURE_LIMITS,
   referralSignups,
   ambassadors,
+  users,
 } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { getUsageSummary, checkNotesLimit } from "./usageService";
@@ -538,6 +539,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting account:", error);
       res.status(500).json({ message: "Failed to delete account" });
+    }
+  });
+
+  // ============================================
+  // ONBOARDING TOOLTIPS ENDPOINTS
+  // ============================================
+
+  app.get("/api/onboarding/status", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user?.uid || req.session?.userId;
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json({
+        hasSeenTranslationTooltip: user.hasSeenTranslationTooltip ?? false,
+        hasSeenVerseTooltip: user.hasSeenVerseTooltip ?? false,
+        hasSeenActionBarTooltip: user.hasSeenActionBarTooltip ?? false,
+      });
+    } catch (error) {
+      console.error("Error fetching onboarding status:", error);
+      res.status(500).json({ message: "Failed to fetch onboarding status" });
+    }
+  });
+
+  app.post("/api/onboarding/mark-seen", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user?.uid || req.session?.userId;
+      const { tooltip } = req.body;
+
+      if (!tooltip || !["translation", "verse", "actionBar"].includes(tooltip)) {
+        return res.status(400).json({ message: "Invalid tooltip type" });
+      }
+
+      const fieldMap: Record<string, string> = {
+        translation: "has_seen_translation_tooltip",
+        verse: "has_seen_verse_tooltip",
+        actionBar: "has_seen_action_bar_tooltip",
+      };
+
+      await db.update(users)
+        .set({ [fieldMap[tooltip]]: true })
+        .where(eq(users.id, userId));
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error marking tooltip seen:", error);
+      res.status(500).json({ message: "Failed to mark tooltip seen" });
+    }
+  });
+
+  app.post("/api/onboarding/reset", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user?.uid || req.session?.userId;
+
+      await db.update(users)
+        .set({
+          hasSeenTranslationTooltip: false,
+          hasSeenVerseTooltip: false,
+          hasSeenActionBarTooltip: false,
+        })
+        .where(eq(users.id, userId));
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error resetting onboarding:", error);
+      res.status(500).json({ message: "Failed to reset onboarding" });
     }
   });
 
