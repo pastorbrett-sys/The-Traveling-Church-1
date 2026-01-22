@@ -2,7 +2,7 @@
   "onboarding": {
     "translation_tooltip": "Choose your Bible version",
     "verse_tooltip": "Tap any verse for insights",
-    "action_bar_tooltip": "Your AI study companion"
+    "action_bar_tooltip": "Analyze with AI"
   },
   "landing": {
     "hero_title": "Your AI Bible Companion",
