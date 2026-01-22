@@ -176,29 +176,21 @@ export function OnboardingTooltip({
       top: -ARROW_SIZE + 1,
       left: position?.arrowOffset ?? 0,
       transform: "translateX(-50%) rotate(45deg)",
-      borderTop: "2px solid #F59E0B",
-      borderLeft: "2px solid #F59E0B",
     },
     bottom: {
       bottom: -ARROW_SIZE + 1,
       left: position?.arrowOffset ?? 0,
       transform: "translateX(-50%) rotate(45deg)",
-      borderBottom: "2px solid #F59E0B",
-      borderRight: "2px solid #F59E0B",
     },
     left: {
       left: -ARROW_SIZE + 1,
       top: position?.arrowOffset ?? 0,
       transform: "translateY(-50%) rotate(45deg)",
-      borderTop: "2px solid #F59E0B",
-      borderLeft: "2px solid #F59E0B",
     },
     right: {
       right: -ARROW_SIZE + 1,
       top: position?.arrowOffset ?? 0,
       transform: "translateY(-50%) rotate(45deg)",
-      borderBottom: "2px solid #F59E0B",
-      borderRight: "2px solid #F59E0B",
     },
   };
 
@@ -209,7 +201,7 @@ export function OnboardingTooltip({
       data-testid="onboarding-tooltip"
       className={cn(
         "fixed z-[9999] max-w-[280px] rounded-xl px-4 py-3 shadow-lg",
-        "bg-amber-50 border-2 border-amber-400",
+        "bg-amber-500",
         isExiting ? "animate-tooltip-exit" : "animate-tooltip-enter",
         !isExiting && "animate-tooltip-float",
         className
@@ -222,11 +214,11 @@ export function OnboardingTooltip({
       onClick={(e) => e.stopPropagation()}
     >
       <div
-        className="absolute w-3 h-3 bg-amber-50"
+        className="absolute w-3 h-3 bg-amber-500"
         style={position ? arrowStyles[position.arrow] : {}}
       />
       
-      <p className="text-amber-900 text-[15px] font-medium leading-snug pr-6">
+      <p className="text-white text-[15px] font-medium leading-snug pr-6">
         {text}
       </p>
       
@@ -235,8 +227,8 @@ export function OnboardingTooltip({
         onClick={handleDismiss}
         className={cn(
           "absolute top-2 right-2 w-6 h-6 flex items-center justify-center",
-          "text-amber-600 hover:text-amber-800 transition-colors",
-          "rounded-full hover:bg-amber-100"
+          "text-white/80 hover:text-white transition-colors",
+          "rounded-full hover:bg-white/20"
         )}
         aria-label="Dismiss"
       >

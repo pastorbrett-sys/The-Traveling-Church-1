@@ -13,7 +13,6 @@ import {
   Bookmark,
   ChevronLeft, 
   ChevronRight,
-  ChevronDown,
   Search, 
   X, 
   Sparkles,
@@ -365,7 +364,6 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const discussionInputRef = useRef<HTMLTextAreaElement>(null);
   const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
   const prevTranslationRef = useRef<string>(translation);
-  const translationButtonRef = useRef<HTMLButtonElement>(null);
   const verseAreaRef = useRef<HTMLDivElement>(null);
   const actionBarRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -374,10 +372,8 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   // Authentication and onboarding
   const { user } = useAuth();
   const { shouldShowTooltip, markSeen, getTooltipText } = useOnboardingState(user?.id);
-  const [showTranslationTooltip, setShowTranslationTooltip] = useState(false);
   const [showVerseTooltip, setShowVerseTooltip] = useState(false);
   const [showActionBarTooltip, setShowActionBarTooltip] = useState(false);
-  const hasTriggeredTranslationTooltip = useRef(false);
   const hasTriggeredVerseTooltip = useRef(false);
   const hasTriggeredActionBarTooltip = useRef(false);
   
@@ -440,42 +436,23 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     };
   }, [searchQuery]);
 
-  // Onboarding: Trigger translation tooltip when reader first loads with a book selected
-  useEffect(() => {
-    if (
-      selectedBook && 
-      !hasTriggeredTranslationTooltip.current &&
-      shouldShowTooltip("translation") &&
-      translationButtonRef.current
-    ) {
-      const timer = setTimeout(() => {
-        if (!hasTriggeredTranslationTooltip.current) {
-          hasTriggeredTranslationTooltip.current = true;
-          setShowTranslationTooltip(true);
-        }
-      }, 1200);
-      return () => clearTimeout(timer);
-    }
-  }, [selectedBook, shouldShowTooltip]);
-
   // Onboarding: Trigger verse tooltip when user navigates to a chapter
   useEffect(() => {
     if (
       selectedBook &&
       !showBookPicker &&
       !hasTriggeredVerseTooltip.current &&
-      shouldShowTooltip("verse") &&
-      !showTranslationTooltip
+      shouldShowTooltip("verse")
     ) {
       const timer = setTimeout(() => {
         if (!hasTriggeredVerseTooltip.current && verseAreaRef.current) {
           hasTriggeredVerseTooltip.current = true;
           setShowVerseTooltip(true);
         }
-      }, 800);
+      }, 1200);
       return () => clearTimeout(timer);
     }
-  }, [selectedBook, showBookPicker, shouldShowTooltip, showTranslationTooltip]);
+  }, [selectedBook, showBookPicker, shouldShowTooltip]);
 
   // Onboarding: Trigger action bar tooltip when user selects a verse (only once)
   useEffect(() => {
@@ -1753,22 +1730,7 @@ Reference: ${verseRef} (${translation})`;
               </button>
             )}
           </motion.div>
-          <button
-            ref={translationButtonRef}
-            onClick={() => {
-              // Dismiss the translation tooltip when user clicks
-              if (showTranslationTooltip) {
-                setShowTranslationTooltip(false);
-                markSeen("translation");
-              }
-              setShowCompare(true);
-            }}
-            className="text-sm text-muted-foreground hover:text-[#c08e00] transition-colors mb-6 flex items-center gap-1"
-            data-testid="button-translation-selector"
-          >
-            {translation}
-            <ChevronDown className="w-3 h-3" />
-          </button>
+          <p className="text-sm text-muted-foreground mb-6">{translation}</p>
 
           {isLoadingChapter ? (
             <div className="flex items-center justify-center py-12">
@@ -2339,16 +2301,6 @@ Reference: ${verseRef} (${translation})`;
       />
 
       {/* Onboarding Tooltips */}
-      <OnboardingTooltip
-        targetRef={translationButtonRef}
-        text={getTooltipText("translation")}
-        visible={showTranslationTooltip}
-        onDismiss={() => {
-          setShowTranslationTooltip(false);
-          markSeen("translation");
-        }}
-      />
-
       <OnboardingTooltip
         targetRef={verseAreaRef}
         text={getTooltipText("verse")}
