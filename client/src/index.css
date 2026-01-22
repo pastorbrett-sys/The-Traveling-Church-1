@@ -875,23 +875,59 @@
 @keyframes tooltipEnter {
   0% {
     opacity: 0;
+    -webkit-transform: translateY(-20px);
     transform: translateY(-20px);
   }
   45% {
     opacity: 1;
+    -webkit-transform: translateY(6px);
     transform: translateY(6px);
   }
   65% {
+    -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
   }
   80% {
+    -webkit-transform: translateY(2px);
     transform: translateY(2px);
   }
   90% {
+    -webkit-transform: translateY(-1px);
     transform: translateY(-1px);
   }
   100% {
     opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes tooltipEnter {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+  45% {
+    opacity: 1;
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px);
+  }
+  65% {
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
+  }
+  80% {
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+  }
+  90% {
+    -webkit-transform: translateY(-1px);
+    transform: translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
 }
@@ -917,13 +953,16 @@
 }
 
 .animate-tooltip-enter {
+  -webkit-animation: tooltipEnter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   animation: tooltipEnter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .animate-tooltip-exit {
+  -webkit-animation: tooltipExit 0.15s ease-in forwards;
   animation: tooltipExit 0.15s ease-in forwards;
 }
 
 .animate-tooltip-float {
+  -webkit-animation: tooltipFloat 2.5s ease-in-out infinite;
   animation: tooltipFloat 2.5s ease-in-out infinite;
 }
