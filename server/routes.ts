@@ -575,15 +575,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid tooltip type" });
       }
 
-      const fieldMap: Record<string, string> = {
-        translation: "has_seen_translation_tooltip",
-        verse: "has_seen_verse_tooltip",
-        actionBar: "has_seen_action_bar_tooltip",
-      };
-
-      await db.update(users)
-        .set({ [fieldMap[tooltip]]: true })
-        .where(eq(users.id, userId));
+      if (tooltip === "translation") {
+        await db.update(users)
+          .set({ hasSeenTranslationTooltip: true })
+          .where(eq(users.id, userId));
+      } else if (tooltip === "verse") {
+        await db.update(users)
+          .set({ hasSeenVerseTooltip: true })
+          .where(eq(users.id, userId));
+      } else if (tooltip === "actionBar") {
+        await db.update(users)
+          .set({ hasSeenActionBarTooltip: true })
+          .where(eq(users.id, userId));
+      }
 
       res.json({ success: true });
     } catch (error) {
