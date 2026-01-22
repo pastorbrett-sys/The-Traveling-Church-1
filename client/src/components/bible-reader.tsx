@@ -446,14 +446,20 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       !hasTriggeredVerseTooltip.current &&
       shouldShowTooltip("verse")
     ) {
-      // Wait for verses to render and ref to be set
-      const timer = setTimeout(() => {
-        if (!hasTriggeredVerseTooltip.current && firstVerseRef.current) {
+      // Poll for the ref to be ready (handles async rendering)
+      let attempts = 0;
+      const maxAttempts = 30;
+      const interval = setInterval(() => {
+        attempts++;
+        if (firstVerseRef.current && !hasTriggeredVerseTooltip.current) {
+          clearInterval(interval);
           hasTriggeredVerseTooltip.current = true;
           setShowVerseTooltip(true);
+        } else if (attempts >= maxAttempts) {
+          clearInterval(interval);
         }
-      }, 1500);
-      return () => clearTimeout(timer);
+      }, 100);
+      return () => clearInterval(interval);
     }
   }, [chapter?.verses?.length, selectedBook, showBookPicker, shouldShowTooltip]);
 

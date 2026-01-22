@@ -935,19 +935,47 @@
 @keyframes tooltipExit {
   0% {
     opacity: 1;
+    -webkit-transform: scale(1);
     transform: scale(1);
   }
   100% {
     opacity: 0;
+    -webkit-transform: scale(0.9) translateY(4px);
+    transform: scale(0.9) translateY(4px);
+  }
+}
+
+@-webkit-keyframes tooltipExit {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) translateY(4px);
     transform: scale(0.9) translateY(4px);
   }
 }
 
 @keyframes tooltipFloat {
   0%, 100% {
+    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
   50% {
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
+  }
+}
+
+@-webkit-keyframes tooltipFloat {
+  0%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
   }
 }
