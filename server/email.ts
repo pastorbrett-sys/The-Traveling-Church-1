@@ -499,9 +499,10 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
           <!-- Your Referral Link -->
           <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
             <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">🔗 Your Referral Link</h2>
-            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 14px; color: #333; word-break: break-all;">
-              ${referralLink}
+            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px;">
+              <a href="${referralLink}" style="font-family: monospace; font-size: 14px; color: #C99A2E; text-decoration: none; word-break: break-all; display: block;">${referralLink}</a>
             </div>
+            <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;">Tap to open or copy and share with others</p>
           </div>
           
           <!-- How It Works - Individual Stacked Cards -->
