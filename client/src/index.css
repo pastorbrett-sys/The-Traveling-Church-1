@@ -923,5 +923,4 @@
 
 .animate-tooltip-float {
   animation: tooltipFloat 2.5s ease-in-out infinite;
-  animation-delay: 0.35s;
 }

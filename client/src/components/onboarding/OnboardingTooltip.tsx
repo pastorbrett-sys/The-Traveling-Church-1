@@ -23,6 +23,7 @@ interface OnboardingTooltipProps {
 const TOOLTIP_PADDING = 16;
 const ARROW_SIZE = 8;
 const GAP = 10;
+const BOUNCE_DURATION = 500; // ms - matches CSS animation duration
 
 function calculatePosition(
   targetRect: DOMRect,
@@ -96,15 +97,18 @@ export function OnboardingTooltip({
   const [position, setPosition] = useState<TooltipPosition | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [bounceComplete, setBounceComplete] = useState(false);
 
   const handleDismiss = useCallback(() => {
+    if (isExiting) return; // Prevent double dismiss
     setIsExiting(true);
     setTimeout(() => {
       setMounted(false);
       setIsExiting(false);
+      setBounceComplete(false);
       onDismiss();
     }, 150);
-  }, [onDismiss]);
+  }, [onDismiss, isExiting]);
 
   const updatePosition = useCallback(() => {
     if (!targetRef.current || !tooltipRef.current) return;
@@ -116,19 +120,23 @@ export function OnboardingTooltip({
     setPosition(newPosition);
   }, [targetRef]);
 
+  // Handle mounting/unmounting
   useEffect(() => {
     if (visible && !mounted) {
       setMounted(true);
       setIsExiting(false);
+      setBounceComplete(false);
+      // Start float animation after bounce completes
+      const timer = setTimeout(() => {
+        setBounceComplete(true);
+      }, BOUNCE_DURATION);
+      return () => clearTimeout(timer);
     } else if (!visible && mounted && !isExiting) {
-      setIsExiting(true);
-      setTimeout(() => {
-        setMounted(false);
-        setIsExiting(false);
-      }, 150);
+      handleDismiss();
     }
-  }, [visible, mounted, isExiting]);
+  }, [visible, mounted, isExiting, handleDismiss]);
 
+  // Position updates
   useEffect(() => {
     if (mounted && targetRef.current) {
       const rafId = requestAnimationFrame(updatePosition);
@@ -136,6 +144,7 @@ export function OnboardingTooltip({
     }
   }, [mounted, updatePosition]);
 
+  // Resize/scroll handlers
   useEffect(() => {
     if (!mounted) return;
 
@@ -153,31 +162,28 @@ export function OnboardingTooltip({
 
   // Handle dismiss on any tap (for action bar tooltip)
   useEffect(() => {
-    if (!mounted || !dismissOnAnyTap) return;
+    if (!mounted || !dismissOnAnyTap || isExiting) return;
 
-    const handleTap = (e: MouseEvent | TouchEvent) => {
-      // Small delay to allow the animation to complete before dismissing
-      setTimeout(() => {
-        handleDismiss();
-      }, 100);
+    const handleTap = () => {
+      handleDismiss();
     };
 
-    // Add listeners after a short delay to avoid immediate dismissal
+    // Add listeners after bounce animation completes to avoid immediate dismissal
     const timer = setTimeout(() => {
-      document.addEventListener("click", handleTap);
-      document.addEventListener("touchstart", handleTap);
-    }, 300);
+      document.addEventListener("click", handleTap, { capture: true });
+      document.addEventListener("touchend", handleTap, { capture: true });
+    }, BOUNCE_DURATION + 100);
 
     return () => {
       clearTimeout(timer);
-      document.removeEventListener("click", handleTap);
-      document.removeEventListener("touchstart", handleTap);
+      document.removeEventListener("click", handleTap, { capture: true });
+      document.removeEventListener("touchend", handleTap, { capture: true });
     };
-  }, [mounted, dismissOnAnyTap, handleDismiss]);
+  }, [mounted, dismissOnAnyTap, isExiting, handleDismiss]);
 
   if (!mounted) return null;
 
-  // Arrow styles using CSS triangles (proper tooltip arrows)
+  // Arrow styles using CSS triangles
   const getArrowStyle = (): React.CSSProperties => {
     if (!position) return {};
     
@@ -230,6 +236,13 @@ export function OnboardingTooltip({
     }
   };
 
+  // Determine animation class - only float after bounce is complete
+  const animationClass = isExiting
+    ? "animate-tooltip-exit"
+    : bounceComplete
+      ? "animate-tooltip-float"
+      : "animate-tooltip-enter";
+
   return createPortal(
     <div
       ref={tooltipRef}
@@ -238,8 +251,7 @@ export function OnboardingTooltip({
       className={cn(
         "fixed z-[9999] max-w-[280px] rounded-lg px-4 py-3 shadow-lg",
         "bg-amber-500",
-        isExiting ? "animate-tooltip-exit" : "animate-tooltip-enter",
-        !isExiting && "animate-tooltip-float",
+        animationClass,
         className
       )}
       style={{
@@ -247,7 +259,6 @@ export function OnboardingTooltip({
         top: position?.y ?? -9999,
         visibility: position ? "visible" : "hidden",
       }}
-      onClick={(e) => e.stopPropagation()}
     >
       <div style={getArrowStyle()} />
       
