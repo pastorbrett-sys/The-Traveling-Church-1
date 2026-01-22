@@ -27,6 +27,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useAuth } from "@/hooks/use-auth";
 import { apiFetch } from "@/lib/queryClient";
+import { isNativePlatform } from "@/lib/host-detection";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 
 const INVITE_CODE_KEY = "vagabond_ambassador_invite";
@@ -138,6 +139,7 @@ export default function AmbassadorPage() {
   const { user, isAuthenticated, isLoading } = useAuth();
   const [, setLocation] = useLocation();
   const searchString = useSearch();
+  const isNative = isNativePlatform();
   const params = new URLSearchParams(searchString);
   
   // Get invite code from URL or localStorage (persists through login flow)
@@ -678,7 +680,14 @@ export default function AmbassadorPage() {
   }
 
   return (
-    <div className="min-h-screen p-4 pb-24 md:p-8" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
+    <div 
+      className="min-h-screen p-4 pb-24 md:p-8" 
+      style={{ 
+        background: 'linear-gradient(to bottom, #191919, #000000)',
+        paddingTop: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : undefined,
+        paddingBottom: isNative ? 'calc(env(safe-area-inset-bottom, 0px) + 100px)' : undefined
+      }}
+    >
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
