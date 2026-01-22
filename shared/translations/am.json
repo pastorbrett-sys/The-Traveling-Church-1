@@ -1,0 +1,22 @@
+{
+  "onboarding": {
+    "translation_tooltip": "የመጽሐፍ ቅዱስ ትርጉም ይምረጡ",
+    "verse_tooltip": "ለማስተዋል ማንኛውንም ጥቅስ ይንኩ",
+    "action_bar_tooltip": "የእርስዎ AI የጥናት ጓደኛ"
+  },
+  "landing": {
+    "hero_title": "የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ",
+    "hero_subtitle": "በብልህ ግንዛቤዎች፣ በመንፈሳዊ መመሪያ እና በጥልቅ የጥናት መሳሪያዎች ቅዱሳት መጻሕፍትን ይለማመዱ",
+    "cta_start": "ማንበብ ጀምር",
+    "cta_learn": "ተጨማሪ እወቅ",
+    "features_title": "ባህሪያት",
+    "feature_chat_title": "ከፓስተር ብሬት ጋር ይወያዩ",
+    "feature_chat_desc": "መንፈሳዊ መመሪያ እና መጽሐፍ ቅዱሳዊ መልሶች ያግኙ",
+    "feature_reader_title": "ብዙ ትርጉም አንባቢ",
+    "feature_reader_desc": "በተለያዩ የመጽሐፍ ቅዱስ ትርጉሞች ያንብቡ",
+    "feature_search_title": "ብልህ ፍለጋ",
+    "feature_search_desc": "በ AI የሚነዳ ጥቅስ ግኝት",
+    "feature_notes_title": "የግል ማስታወሻዎች",
+    "feature_notes_desc": "የጥናት ማስታወሻዎችዎን ያስቀምጡ እና ያደራጁ"
+  }
+}

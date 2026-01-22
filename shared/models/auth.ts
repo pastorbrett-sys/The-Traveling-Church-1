@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { index, jsonb, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
+import { boolean, index, jsonb, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 
 // Session storage table.
 // (IMPORTANT) This table is mandatory for Replit Auth, don't drop it.
@@ -26,6 +26,9 @@ export const users = pgTable("users", {
   revenueCatUserId: varchar("revenuecat_user_id"),
   revenueCatEntitlement: varchar("revenuecat_entitlement"),
   revenueCatExpiresAt: timestamp("revenuecat_expires_at"),
+  hasSeenTranslationTooltip: boolean("has_seen_translation_tooltip").default(false),
+  hasSeenVerseTooltip: boolean("has_seen_verse_tooltip").default(false),
+  hasSeenActionBarTooltip: boolean("has_seen_action_bar_tooltip").default(false),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
