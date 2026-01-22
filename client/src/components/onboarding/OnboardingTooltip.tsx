@@ -16,6 +16,7 @@ interface OnboardingTooltipProps {
   text: string;
   visible: boolean;
   onDismiss: () => void;
+  dismissOnAnyTap?: boolean;
   className?: string;
 }
 
@@ -88,12 +89,22 @@ export function OnboardingTooltip({
   text,
   visible,
   onDismiss,
+  dismissOnAnyTap = false,
   className,
 }: OnboardingTooltipProps) {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<TooltipPosition | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  const handleDismiss = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setMounted(false);
+      setIsExiting(false);
+      onDismiss();
+    }, 150);
+  }, [onDismiss]);
 
   const updatePosition = useCallback(() => {
     if (!targetRef.current || !tooltipRef.current) return;
@@ -109,14 +120,14 @@ export function OnboardingTooltip({
     if (visible && !mounted) {
       setMounted(true);
       setIsExiting(false);
-    } else if (!visible && mounted) {
+    } else if (!visible && mounted && !isExiting) {
       setIsExiting(true);
       setTimeout(() => {
         setMounted(false);
         setIsExiting(false);
       }, 150);
     }
-  }, [visible, mounted]);
+  }, [visible, mounted, isExiting]);
 
   useEffect(() => {
     if (mounted && targetRef.current) {
@@ -139,6 +150,30 @@ export function OnboardingTooltip({
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, [mounted, updatePosition]);
+
+  // Handle dismiss on any tap (for action bar tooltip)
+  useEffect(() => {
+    if (!mounted || !dismissOnAnyTap) return;
+
+    const handleTap = (e: MouseEvent | TouchEvent) => {
+      // Small delay to allow the animation to complete before dismissing
+      setTimeout(() => {
+        handleDismiss();
+      }, 100);
+    };
+
+    // Add listeners after a short delay to avoid immediate dismissal
+    const timer = setTimeout(() => {
+      document.addEventListener("click", handleTap);
+      document.addEventListener("touchstart", handleTap);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("click", handleTap);
+      document.removeEventListener("touchstart", handleTap);
+    };
+  }, [mounted, dismissOnAnyTap, handleDismiss]);
 
   if (!mounted) return null;
 

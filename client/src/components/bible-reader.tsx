@@ -2330,6 +2330,7 @@ Reference: ${verseRef} (${translation})`;
         targetRef={actionBarRef}
         text={getTooltipText("actionBar")}
         visible={showActionBarTooltip}
+        dismissOnAnyTap={true}
         onDismiss={() => {
           setShowActionBarTooltip(false);
           markSeen("actionBar");
