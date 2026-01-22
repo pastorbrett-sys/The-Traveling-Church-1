@@ -20,8 +20,8 @@ interface OnboardingTooltipProps {
 }
 
 const TOOLTIP_PADDING = 16;
-const ARROW_SIZE = 10;
-const GAP = 12;
+const ARROW_SIZE = 8;
+const GAP = 10;
 
 function calculatePosition(
   targetRect: DOMRect,
@@ -109,6 +109,12 @@ export function OnboardingTooltip({
     if (visible && !mounted) {
       setMounted(true);
       setIsExiting(false);
+    } else if (!visible && mounted) {
+      setIsExiting(true);
+      setTimeout(() => {
+        setMounted(false);
+        setIsExiting(false);
+      }, 150);
     }
   }, [visible, mounted]);
 
@@ -134,64 +140,59 @@ export function OnboardingTooltip({
     };
   }, [mounted, updatePosition]);
 
-  const handleDismiss = useCallback(() => {
-    setIsExiting(true);
-    setTimeout(() => {
-      setMounted(false);
-      setIsExiting(false);
-      onDismiss();
-    }, 150);
-  }, [onDismiss]);
-
-  useEffect(() => {
-    if (!mounted) return;
-
-    const handleClick = (e: MouseEvent) => {
-      if (tooltipRef.current && !tooltipRef.current.contains(e.target as Node)) {
-        handleDismiss();
-      }
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        handleDismiss();
-      }
-    };
-
-    setTimeout(() => {
-      document.addEventListener("click", handleClick);
-      document.addEventListener("keydown", handleKeyDown);
-    }, 100);
-
-    return () => {
-      document.removeEventListener("click", handleClick);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [mounted, handleDismiss]);
-
   if (!mounted) return null;
 
-  const arrowStyles: Record<ArrowPosition, React.CSSProperties> = {
-    top: {
-      top: -ARROW_SIZE + 1,
-      left: position?.arrowOffset ?? 0,
-      transform: "translateX(-50%) rotate(45deg)",
-    },
-    bottom: {
-      bottom: -ARROW_SIZE + 1,
-      left: position?.arrowOffset ?? 0,
-      transform: "translateX(-50%) rotate(45deg)",
-    },
-    left: {
-      left: -ARROW_SIZE + 1,
-      top: position?.arrowOffset ?? 0,
-      transform: "translateY(-50%) rotate(45deg)",
-    },
-    right: {
-      right: -ARROW_SIZE + 1,
-      top: position?.arrowOffset ?? 0,
-      transform: "translateY(-50%) rotate(45deg)",
-    },
+  // Arrow styles using CSS triangles (proper tooltip arrows)
+  const getArrowStyle = (): React.CSSProperties => {
+    if (!position) return {};
+    
+    const base: React.CSSProperties = {
+      position: "absolute",
+      width: 0,
+      height: 0,
+      borderStyle: "solid",
+    };
+
+    switch (position.arrow) {
+      case "top":
+        return {
+          ...base,
+          top: -ARROW_SIZE,
+          left: position.arrowOffset,
+          transform: "translateX(-50%)",
+          borderWidth: `0 ${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px`,
+          borderColor: "transparent transparent #f59e0b transparent",
+        };
+      case "bottom":
+        return {
+          ...base,
+          bottom: -ARROW_SIZE,
+          left: position.arrowOffset,
+          transform: "translateX(-50%)",
+          borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
+          borderColor: "#f59e0b transparent transparent transparent",
+        };
+      case "left":
+        return {
+          ...base,
+          left: -ARROW_SIZE,
+          top: position.arrowOffset,
+          transform: "translateY(-50%)",
+          borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px 0`,
+          borderColor: "transparent #f59e0b transparent transparent",
+        };
+      case "right":
+        return {
+          ...base,
+          right: -ARROW_SIZE,
+          top: position.arrowOffset,
+          transform: "translateY(-50%)",
+          borderWidth: `${ARROW_SIZE}px 0 ${ARROW_SIZE}px ${ARROW_SIZE}px`,
+          borderColor: "transparent transparent transparent #f59e0b",
+        };
+      default:
+        return base;
+    }
   };
 
   return createPortal(
@@ -200,7 +201,7 @@ export function OnboardingTooltip({
       role="tooltip"
       data-testid="onboarding-tooltip"
       className={cn(
-        "fixed z-[9999] max-w-[280px] rounded-xl px-4 py-3 shadow-lg",
+        "fixed z-[9999] max-w-[280px] rounded-lg px-4 py-3 shadow-lg",
         "bg-amber-500",
         isExiting ? "animate-tooltip-exit" : "animate-tooltip-enter",
         !isExiting && "animate-tooltip-float",
@@ -213,37 +214,11 @@ export function OnboardingTooltip({
       }}
       onClick={(e) => e.stopPropagation()}
     >
-      <div
-        className="absolute w-3 h-3 bg-amber-500"
-        style={position ? arrowStyles[position.arrow] : {}}
-      />
+      <div style={getArrowStyle()} />
       
-      <p className="text-white text-[15px] font-medium leading-snug pr-6">
+      <p className="text-white text-[15px] font-medium leading-snug">
         {text}
       </p>
-      
-      <button
-        data-testid="tooltip-dismiss-button"
-        onClick={handleDismiss}
-        className={cn(
-          "absolute top-2 right-2 w-6 h-6 flex items-center justify-center",
-          "text-white/80 hover:text-white transition-colors",
-          "rounded-full hover:bg-white/20"
-        )}
-        aria-label="Dismiss"
-      >
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        >
-          <path d="M1 1l12 12M13 1L1 13" />
-        </svg>
-      </button>
     </div>,
     document.body
   );

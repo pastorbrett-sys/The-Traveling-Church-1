@@ -846,6 +846,12 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     // Light haptic feedback on verse tap
     try { Haptics.impact({ style: ImpactStyle.Light }); } catch (e) {}
     
+    // Dismiss verse tooltip when user taps a verse (onboarding progression)
+    if (showVerseTooltip) {
+      setShowVerseTooltip(false);
+      markSeen("verse");
+    }
+    
     // If clicking the persistently highlighted verse, just clear highlight and don't select
     if (persistentHighlightVerse === verse.verse) {
       setPersistentHighlightVerse(null);
@@ -1822,7 +1828,16 @@ Reference: ${verseRef} (${translation})`;
                   { icon: StickyNote, label: t.note, onClick: () => setShowNote(true), testId: "button-add-note" },
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
                   { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
-                ].map((item, index) => (
+                ].map((item, index) => {
+                  // Wrap onClick to dismiss action bar tooltip on any button click
+                  const wrappedOnClick = () => {
+                    if (showActionBarTooltip) {
+                      setShowActionBarTooltip(false);
+                      markSeen("actionBar");
+                    }
+                    item.onClick();
+                  };
+                  return (
                   <motion.div
                     key={`${footerKey}-${item.testId}`}
                     initial={{ scale: 0, opacity: 0 }}
@@ -1837,7 +1852,7 @@ Reference: ${verseRef} (${translation})`;
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={item.onClick}
+                      onClick={wrappedOnClick}
                       className="gap-1 hover:bg-[#c08e00]/10 hover:text-[#c08e00] active:bg-[#c08e00]/20"
                       data-testid={item.testId}
                     >
@@ -1845,7 +1860,7 @@ Reference: ${verseRef} (${translation})`;
                       {item.label && <span className="hidden sm:inline">{item.label}</span>}
                     </Button>
                   </motion.div>
-                ))}
+                );})}
               </div>
             </div>
           </motion.div>
