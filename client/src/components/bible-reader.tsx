@@ -437,23 +437,25 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     };
   }, [searchQuery]);
 
-  // Onboarding: Trigger verse tooltip when user navigates to a chapter
+  // Onboarding: Trigger verse tooltip when chapter loads
   useEffect(() => {
     if (
+      chapter?.verses?.length &&
       selectedBook &&
       !showBookPicker &&
       !hasTriggeredVerseTooltip.current &&
       shouldShowTooltip("verse")
     ) {
+      // Wait for verses to render and ref to be set
       const timer = setTimeout(() => {
         if (!hasTriggeredVerseTooltip.current && firstVerseRef.current) {
           hasTriggeredVerseTooltip.current = true;
           setShowVerseTooltip(true);
         }
-      }, 1200);
+      }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [selectedBook, showBookPicker, shouldShowTooltip]);
+  }, [chapter?.verses?.length, selectedBook, showBookPicker, shouldShowTooltip]);
 
   // Onboarding: Trigger action bar tooltip when user selects a verse (only once)
   useEffect(() => {
