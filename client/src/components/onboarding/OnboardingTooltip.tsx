@@ -1,12 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
-
-interface TooltipPosition {
-  x: number;
-  y: number;
-  arrowX: number;
-}
 
 interface OnboardingTooltipProps {
   targetRef: React.RefObject<HTMLElement>;
@@ -19,9 +12,7 @@ interface OnboardingTooltipProps {
   className?: string;
 }
 
-const TOOLTIP_PADDING = 16;
 const ARROW_SIZE = 8;
-const BOUNCE_DURATION = 500;
 
 export function OnboardingTooltip({
   targetRef,
@@ -31,187 +22,153 @@ export function OnboardingTooltip({
   position = "below",
   offset = 10,
   dismissOnAnyTap = false,
-  className,
 }: OnboardingTooltipProps) {
+  const [coords, setCoords] = useState<{ top: number; left: number; arrowLeft: number } | null>(null);
+  const [show, setShow] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition | null>(null);
-  const [isExiting, setIsExiting] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [readyToAnimate, setReadyToAnimate] = useState(false);
-  const [bounceComplete, setBounceComplete] = useState(false);
 
-  const handleDismiss = useCallback(() => {
-    if (isExiting) return;
-    setIsExiting(true);
-    setTimeout(() => {
-      setMounted(false);
-      setIsExiting(false);
-      setReadyToAnimate(false);
-      setBounceComplete(false);
-      setTooltipPosition(null);
-      onDismiss();
-    }, 150);
-  }, [onDismiss, isExiting]);
-
-  const updatePosition = useCallback(() => {
-    if (!targetRef.current || !tooltipRef.current) return;
-    
-    const targetRect = targetRef.current.getBoundingClientRect();
-    const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    const viewport = { width: window.innerWidth };
-    
-    // Center tooltip on target horizontally
-    const targetCenterX = targetRect.left + targetRect.width / 2;
-    let x = targetCenterX - tooltipRect.width / 2;
-    
-    // Clamp to viewport bounds
-    x = Math.max(TOOLTIP_PADDING, Math.min(x, viewport.width - tooltipRect.width - TOOLTIP_PADDING));
-    
-    // Arrow should point at target center
-    const arrowX = targetCenterX - x;
-    
-    // Position above or below target
-    let y: number;
-    if (position === "above") {
-      y = targetRect.top - tooltipRect.height - ARROW_SIZE - offset;
-    } else {
-      y = targetRect.bottom + ARROW_SIZE + offset;
+  // Calculate position when visible and target exists
+  useEffect(() => {
+    if (!visible) {
+      setShow(false);
+      setCoords(null);
+      return;
     }
+
+    // Poll until target ref is available and has dimensions
+    let attempts = 0;
+    const maxAttempts = 50;
     
-    setTooltipPosition({ x, y, arrowX });
-  }, [targetRef, position, offset]);
+    const checkAndPosition = () => {
+      const target = targetRef.current;
+      const tooltip = tooltipRef.current;
+      
+      if (!target || !tooltip) {
+        attempts++;
+        if (attempts < maxAttempts) {
+          requestAnimationFrame(checkAndPosition);
+        }
+        return;
+      }
 
-  // Mount the tooltip when visible
-  useEffect(() => {
-    if (visible && !mounted) {
-      setMounted(true);
-      setIsExiting(false);
-      setReadyToAnimate(false);
-      setBounceComplete(false);
-    } else if (!visible && mounted && !isExiting) {
-      handleDismiss();
-    }
-  }, [visible, mounted, isExiting, handleDismiss]);
+      const targetRect = target.getBoundingClientRect();
+      
+      // Check if target is actually visible (has dimensions)
+      if (targetRect.width === 0 || targetRect.height === 0) {
+        attempts++;
+        if (attempts < maxAttempts) {
+          requestAnimationFrame(checkAndPosition);
+        }
+        return;
+      }
 
-  // Calculate position after mount
-  useEffect(() => {
-    if (mounted && !tooltipPosition && targetRef.current) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          updatePosition();
-        });
-      });
-    }
-  }, [mounted, targetRef, tooltipPosition, updatePosition]);
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
 
-  // Start animation AFTER position is set
-  useEffect(() => {
-    if (tooltipPosition && !readyToAnimate && !isExiting) {
-      const timer = setTimeout(() => {
-        setReadyToAnimate(true);
-        setTimeout(() => {
-          setBounceComplete(true);
-        }, BOUNCE_DURATION);
-      }, 20);
-      return () => clearTimeout(timer);
-    }
-  }, [tooltipPosition, readyToAnimate, isExiting]);
+      // Calculate horizontal position (centered on target)
+      const targetCenterX = targetRect.left + targetRect.width / 2;
+      let left = targetCenterX - tooltipRect.width / 2;
+      
+      // Keep within viewport
+      const padding = 12;
+      left = Math.max(padding, Math.min(left, viewportWidth - tooltipRect.width - padding));
 
-  // Resize/scroll handlers
-  useEffect(() => {
-    if (!mounted) return;
+      // Arrow position relative to tooltip
+      const arrowLeft = targetCenterX - left;
 
-    window.addEventListener("resize", updatePosition);
-    window.addEventListener("scroll", updatePosition, true);
+      // Calculate vertical position
+      let top: number;
+      if (position === "above") {
+        top = targetRect.top - tooltipRect.height - ARROW_SIZE - offset;
+      } else {
+        top = targetRect.bottom + ARROW_SIZE + offset;
+      }
 
-    return () => {
-      window.removeEventListener("resize", updatePosition);
-      window.removeEventListener("scroll", updatePosition, true);
-    };
-  }, [mounted, updatePosition]);
-
-  // Dismiss on any tap
-  useEffect(() => {
-    if (!mounted || !dismissOnAnyTap || isExiting) return;
-
-    const handleTap = () => {
-      handleDismiss();
+      setCoords({ top, left, arrowLeft });
+      
+      // Small delay before showing to ensure position is applied
+      setTimeout(() => setShow(true), 50);
     };
 
+    // Start checking after a brief delay to let the DOM settle
     const timer = setTimeout(() => {
-      document.addEventListener("click", handleTap, { capture: true });
-      document.addEventListener("touchend", handleTap, { capture: true });
-    }, BOUNCE_DURATION + 100);
+      requestAnimationFrame(checkAndPosition);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [visible, targetRef, position, offset]);
+
+  // Handle dismiss on any tap
+  useEffect(() => {
+    if (!show || !dismissOnAnyTap) return;
+
+    const handleTap = (e: Event) => {
+      e.stopPropagation();
+      onDismiss();
+    };
+
+    // Delay adding listener to prevent immediate dismiss
+    const timer = setTimeout(() => {
+      document.addEventListener("touchstart", handleTap, { passive: true });
+      document.addEventListener("click", handleTap);
+    }, 600);
 
     return () => {
       clearTimeout(timer);
-      document.removeEventListener("click", handleTap, { capture: true });
-      document.removeEventListener("touchend", handleTap, { capture: true });
+      document.removeEventListener("touchstart", handleTap);
+      document.removeEventListener("click", handleTap);
     };
-  }, [mounted, dismissOnAnyTap, isExiting, handleDismiss]);
+  }, [show, dismissOnAnyTap, onDismiss]);
 
-  if (!mounted) return null;
+  // Always render but control visibility
+  const isVisible = visible && coords && show;
 
-  // Arrow CSS triangle styles
-  const arrowStyle: React.CSSProperties = position === "above" 
-    ? {
-        position: "absolute",
-        bottom: -ARROW_SIZE,
-        left: tooltipPosition?.arrowX ?? 0,
-        transform: "translateX(-50%)",
-        width: 0,
-        height: 0,
-        borderStyle: "solid",
-        borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
-        borderColor: "#f59e0b transparent transparent transparent",
-      }
-    : {
-        position: "absolute",
-        top: -ARROW_SIZE,
-        left: tooltipPosition?.arrowX ?? 0,
-        transform: "translateX(-50%)",
-        width: 0,
-        height: 0,
-        borderStyle: "solid",
-        borderWidth: `0 ${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px`,
-        borderColor: "transparent transparent #f59e0b transparent",
-      };
-
-  // Only apply animation class after position is set
-  const animationClass = isExiting
-    ? "animate-tooltip-exit"
-    : readyToAnimate
-      ? (bounceComplete ? "animate-tooltip-float" : "animate-tooltip-enter")
-      : "";
-
-  // Hide until position is calculated, then show with animation
-  const isPositioned = tooltipPosition !== null;
-
-  return createPortal(
+  return (
     <div
       ref={tooltipRef}
       role="tooltip"
       data-testid="onboarding-tooltip"
       className={cn(
         "fixed z-[9999] max-w-[280px] rounded-lg px-4 py-3 shadow-lg",
-        "bg-amber-500",
-        animationClass,
-        className
+        "bg-amber-500 text-white",
+        "transition-opacity duration-200",
+        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
       style={{
-        left: tooltipPosition?.x ?? -9999,
-        top: tooltipPosition?.y ?? -9999,
-        opacity: isPositioned && readyToAnimate ? undefined : 0,
-        visibility: isPositioned ? "visible" : "hidden",
+        top: coords?.top ?? -9999,
+        left: coords?.left ?? -9999,
+        WebkitTransform: show ? "translateY(0)" : "translateY(-10px)",
+        transform: show ? "translateY(0)" : "translateY(-10px)",
+        transition: "opacity 0.2s ease, transform 0.3s ease",
       }}
     >
-      <div style={arrowStyle} />
+      {/* Arrow */}
+      <div
+        style={{
+          position: "absolute",
+          left: coords?.arrowLeft ?? 0,
+          transform: "translateX(-50%)",
+          width: 0,
+          height: 0,
+          borderStyle: "solid",
+          ...(position === "above"
+            ? {
+                bottom: -ARROW_SIZE,
+                borderWidth: `${ARROW_SIZE}px ${ARROW_SIZE}px 0 ${ARROW_SIZE}px`,
+                borderColor: "#f59e0b transparent transparent transparent",
+              }
+            : {
+                top: -ARROW_SIZE,
+                borderWidth: `0 ${ARROW_SIZE}px ${ARROW_SIZE}px ${ARROW_SIZE}px`,
+                borderColor: "transparent transparent #f59e0b transparent",
+              }),
+        }}
+      />
       
-      <p className="text-white text-[15px] font-medium leading-snug">
+      <p className="text-[15px] font-medium leading-snug">
         {text}
       </p>
-    </div>,
-    document.body
+    </div>
   );
 }
 
