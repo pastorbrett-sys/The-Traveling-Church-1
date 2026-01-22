@@ -1259,7 +1259,7 @@ Reference: ${verseRef} (${translation})`;
         </div>
 
         <ScrollArea className="flex-1">
-          <div className="p-4 space-y-6" style={{ paddingBottom: isNative ? 'calc(100px + env(safe-area-inset-bottom, 0px))' : undefined }}>
+          <div className="p-4 space-y-6" style={{ paddingBottom: isNative ? 'calc(40px + env(safe-area-inset-bottom, 0px))' : undefined }}>
             {showSearch && searchQuery.length >= 2 ? (
               <div className="space-y-4">
                 {isSmartSearching && (
