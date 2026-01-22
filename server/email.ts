@@ -592,7 +592,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
                   <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
                     <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
                     <span style="color: #555555; margin: 0 8px;">&#8226;</span>
-                    <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">Donate</a>
+                    <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤ Donate</a>
                   </p>
                 </td>
               </tr>
