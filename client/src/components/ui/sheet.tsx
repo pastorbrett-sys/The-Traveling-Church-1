@@ -69,7 +69,7 @@ const SheetContent = React.forwardRef<
       >
         {children}
         <SheetPrimitive.Close 
-          className="absolute right-6 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none"
+          className="absolute right-6 text-white ring-offset-background transition-opacity hover:opacity-80 focus:outline-none disabled:pointer-events-none"
           style={{ top: isNative ? 'calc(env(safe-area-inset-top, 0px) + 28px)' : '1.5rem' }}
         >
           <X className="h-5 w-5" strokeWidth={1.5} />
