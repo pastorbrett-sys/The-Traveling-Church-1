@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
-import { auth } from "@/lib/firebase";
 import { apiFetch } from "@/lib/queryClient";
 import { isNativePlatform } from "@/lib/host-detection";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
@@ -97,23 +96,10 @@ export default function AdminPanel() {
     }
   };
 
-  const getAuthHeaders = async (): Promise<HeadersInit> => {
-    const currentUser = auth.currentUser;
-    if (!currentUser) {
-      throw new Error("Not authenticated");
-    }
-    const token = await currentUser.getIdToken();
-    return {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    };
-  };
-
   const fetchAmbassadors = async () => {
     if (!user) return;
     try {
-      const headers = await getAuthHeaders();
-      const res = await apiFetch("/api/ambassador/admin/all", { headers });
+      const res = await apiFetch("/api/ambassador/admin/all");
       if (res.ok) {
         const data = await res.json();
         setAmbassadors(data.ambassadors);
@@ -128,10 +114,8 @@ export default function AdminPanel() {
   const handleApprove = async (id: string) => {
     if (!user) return;
     try {
-      const headers = await getAuthHeaders();
       await apiFetch(`/api/ambassador/admin/approve/${id}`, { 
         method: "POST",
-        headers,
       });
       fetchAmbassadors();
     } catch (err) {
@@ -142,10 +126,8 @@ export default function AdminPanel() {
   const handlePause = async (id: string) => {
     if (!user) return;
     try {
-      const headers = await getAuthHeaders();
       await apiFetch(`/api/ambassador/admin/pause/${id}`, { 
         method: "POST",
-        headers,
       });
       fetchAmbassadors();
     } catch (err) {
@@ -156,10 +138,9 @@ export default function AdminPanel() {
   const handleSetSuperAdmin = async (id: string, isSuperAdmin: boolean) => {
     if (!user) return;
     try {
-      const headers = await getAuthHeaders();
       await apiFetch(`/api/ambassador/admin/set-super-admin/${id}`, {
         method: "POST",
-        headers,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ isSuperAdmin }),
       });
       fetchAmbassadors();
