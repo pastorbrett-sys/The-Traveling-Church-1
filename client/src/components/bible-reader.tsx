@@ -437,49 +437,6 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     };
   }, [searchQuery]);
 
-  // Onboarding: Trigger verse tooltip when chapter loads
-  useEffect(() => {
-    if (
-      chapter?.verses?.length &&
-      selectedBook &&
-      !showBookPicker &&
-      !hasTriggeredVerseTooltip.current &&
-      shouldShowTooltip("verse")
-    ) {
-      // Poll for the ref to be ready (handles async rendering)
-      let attempts = 0;
-      const maxAttempts = 30;
-      const interval = setInterval(() => {
-        attempts++;
-        if (firstVerseRef.current && !hasTriggeredVerseTooltip.current) {
-          clearInterval(interval);
-          hasTriggeredVerseTooltip.current = true;
-          setShowVerseTooltip(true);
-        } else if (attempts >= maxAttempts) {
-          clearInterval(interval);
-        }
-      }, 100);
-      return () => clearInterval(interval);
-    }
-  }, [chapter?.verses?.length, selectedBook, showBookPicker, shouldShowTooltip]);
-
-  // Onboarding: Trigger action bar tooltip when user selects a verse (only once)
-  useEffect(() => {
-    if (
-      selectedVerse &&
-      !hasTriggeredActionBarTooltip.current &&
-      shouldShowTooltip("actionBar")
-    ) {
-      const timer = setTimeout(() => {
-        if (!hasTriggeredActionBarTooltip.current) {
-          hasTriggeredActionBarTooltip.current = true;
-          setShowActionBarTooltip(true);
-        }
-      }, 400);
-      return () => clearTimeout(timer);
-    }
-  }, [selectedVerse, shouldShowTooltip]);
-
   useEffect(() => {
     if (debouncedSearchQuery.length >= 2 && showSearch) {
       performSmartSearch(debouncedSearchQuery);
@@ -657,6 +614,49 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     queryKey: ["/api/bible/chapter", translation, selectedBook?.bookid, selectedChapter],
     enabled: !!selectedBook && !showBookPicker,
   });
+
+  // Onboarding: Trigger verse tooltip when chapter loads
+  useEffect(() => {
+    if (
+      chapter?.verses?.length &&
+      selectedBook &&
+      !showBookPicker &&
+      !hasTriggeredVerseTooltip.current &&
+      shouldShowTooltip("verse")
+    ) {
+      // Poll for the ref to be ready (handles async rendering)
+      let attempts = 0;
+      const maxAttempts = 30;
+      const interval = setInterval(() => {
+        attempts++;
+        if (firstVerseRef.current && !hasTriggeredVerseTooltip.current) {
+          clearInterval(interval);
+          hasTriggeredVerseTooltip.current = true;
+          setShowVerseTooltip(true);
+        } else if (attempts >= maxAttempts) {
+          clearInterval(interval);
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [chapter?.verses?.length, selectedBook, showBookPicker, shouldShowTooltip]);
+
+  // Onboarding: Trigger action bar tooltip when user selects a verse (only once)
+  useEffect(() => {
+    if (
+      selectedVerse &&
+      !hasTriggeredActionBarTooltip.current &&
+      shouldShowTooltip("actionBar")
+    ) {
+      const timer = setTimeout(() => {
+        if (!hasTriggeredActionBarTooltip.current) {
+          hasTriggeredActionBarTooltip.current = true;
+          setShowActionBarTooltip(true);
+        }
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedVerse, shouldShowTooltip]);
 
   const { data: comparisonData, isLoading: isLoadingComparison } = useQuery<{ translation: string; verses: BibleVerse[] }[]>({
     queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, selectedVerse?.verse, compareTranslations],
