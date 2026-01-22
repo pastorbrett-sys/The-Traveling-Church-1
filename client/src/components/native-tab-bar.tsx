@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
 import { motion } from "framer-motion";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -118,7 +119,14 @@ export function NativeTabBar() {
     return currentPath.startsWith(hrefPath + "/");
   };
   
-  const handleTabClick = (tab: TabItem) => {
+  const handleTabClick = async (tab: TabItem) => {
+    // Trigger haptic feedback on native
+    try {
+      await Haptics.impact({ style: ImpactStyle.Light });
+    } catch (e) {
+      // Haptics not available on web, ignore
+    }
+    
     setTappedTab(tab.id);
     setLocation(tab.href);
     // Immediately update currentUrl to ensure active state changes
