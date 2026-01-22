@@ -3,6 +3,7 @@ import { usePlatform } from "@/contexts/platform-context";
 import { isNativePlatform } from "@/lib/host-detection";
 import { Capacitor } from "@capacitor/core";
 import { SplashScreen } from "@capacitor/splash-screen";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import splashVideo from "@/assets/splash-intro.mp4";
 
 interface IntroAnimationProps {
@@ -16,8 +17,14 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
   console.log("[IntroAnimation] Mounted, isNative:", isNative, "video src:", splashVideo);
 
-  const handleVideoEnd = () => {
+  const handleVideoEnd = async () => {
     console.log("[IntroAnimation] Video ended");
+    // Heavy impact tap as video completes
+    try {
+      await Haptics.impact({ style: ImpactStyle.Heavy });
+    } catch (e) {
+      // Haptics not available on web
+    }
     setFadeOut(true);
     setTimeout(() => {
       onComplete();
@@ -59,6 +66,12 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       console.log("[IntroAnimation] Attempting manual video.play()");
       video.play().then(() => {
         console.log("[IntroAnimation] Manual play succeeded");
+        // Trigger 1-second vibration to sync with video
+        try {
+          Haptics.vibrate({ duration: 1000 });
+        } catch (e) {
+          // Haptics not available on web
+        }
       }).catch((err) => {
         console.error("[IntroAnimation] Manual play failed:", err);
       });
