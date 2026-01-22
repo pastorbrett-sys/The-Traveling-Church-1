@@ -394,7 +394,14 @@ export default function AmbassadorPage() {
 
   if (viewState === "login-required") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
+      <div 
+        className="min-h-screen flex flex-col items-center justify-center p-4" 
+        style={{ 
+          background: 'linear-gradient(to bottom, #191919, #000000)',
+          paddingTop: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : undefined,
+          paddingBottom: isNative ? 'calc(env(safe-area-inset-bottom, 0px) + 100px)' : undefined
+        }}
+      >
         <div className="w-full max-w-md mb-4">
           <Button
             variant="ghost"
@@ -443,8 +450,15 @@ export default function AmbassadorPage() {
 
   if (viewState === "apply") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{ background: 'linear-gradient(to bottom, #191919, #000000)' }}>
-        <div className="w-full max-w-md mb-4">
+      <div 
+        className="min-h-screen overflow-y-auto p-4" 
+        style={{ 
+          background: 'linear-gradient(to bottom, #191919, #000000)',
+          paddingTop: isNative ? 'calc(env(safe-area-inset-top, 0px) + 16px)' : undefined,
+          paddingBottom: isNative ? 'calc(env(safe-area-inset-bottom, 0px) + 100px)' : undefined
+        }}
+      >
+        <div className="w-full max-w-md mx-auto mb-4">
           <Button
             variant="ghost"
             size="sm"
@@ -456,7 +470,7 @@ export default function AmbassadorPage() {
             Back
           </Button>
         </div>
-        <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
+        <Card className="w-full max-w-md mx-auto bg-[#1a1a1a] border-[#333] shadow-2xl">
           <CardHeader className="text-center">
             <img 
               src={ambassadorLogo} 
