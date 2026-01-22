@@ -4,6 +4,7 @@ import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Capacitor } from "@capacitor/core";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";
 import { 
   Book, 
@@ -595,6 +596,42 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       });
     },
   });
+
+  // Haptic feedback sequence when book picker animates in
+  const hasPlayedBookPickerHaptics = useRef(false);
+  useEffect(() => {
+    if (showBookPicker && books && books.length > 0 && !hasPlayedBookPickerHaptics.current) {
+      hasPlayedBookPickerHaptics.current = true;
+      
+      // Haptic sequence synced with book card animations:
+      // - Cards start animating at 0ms with 300ms duration
+      // - Staggered by 100ms per testament, 15ms per book
+      const playHapticSequence = async () => {
+        try {
+          // Light tap as animation starts
+          await Haptics.impact({ style: ImpactStyle.Light });
+          
+          // Medium tap as momentum builds (150ms)
+          setTimeout(async () => {
+            try {
+              await Haptics.impact({ style: ImpactStyle.Medium });
+            } catch (e) {}
+          }, 150);
+          
+          // Heavy tap when cards land (350ms)
+          setTimeout(async () => {
+            try {
+              await Haptics.impact({ style: ImpactStyle.Heavy });
+            } catch (e) {}
+          }, 350);
+        } catch (e) {
+          // Haptics not available on web
+        }
+      };
+      
+      playHapticSequence();
+    }
+  }, [showBookPicker, books]);
 
   const { data: chapter, isLoading: isLoadingChapter } = useQuery<BibleChapter>({
     queryKey: ["/api/bible/chapter", translation, selectedBook?.bookid, selectedChapter],
