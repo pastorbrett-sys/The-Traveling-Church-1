@@ -509,77 +509,68 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
                 </tr>
               </table>
               
-              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
-          
-          <!-- Card 1: Share Your Link -->
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <table cellpadding="0" cellspacing="0" border="0" width="100%">
-              <tr>
-                <td style="width: 44px; vertical-align: top;">
-                  <span style="font-size: 24px;">🔗</span>
-                </td>
-                <td style="vertical-align: top;">
-                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Share Your Link</div>
-                  <div style="font-size: 13px; color: #666; margin-top: 4px;">Send to friends, family, and community</div>
-                </td>
-              </tr>
-            </table>
-          </div>
-          
-          <!-- Card 2: They Sign Up -->
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <table cellpadding="0" cellspacing="0" border="0" width="100%">
-              <tr>
-                <td style="width: 44px; vertical-align: top;">
-                  <span style="font-size: 24px;">👥</span>
-                </td>
-                <td style="vertical-align: top;">
-                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">They Sign Up</div>
-                  <div style="font-size: 13px; color: #666; margin-top: 4px;">Free or Pro, you get credit</div>
-                </td>
-              </tr>
-            </table>
-          </div>
-          
-          <!-- Card 3: Earn Rewards -->
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <table cellpadding="0" cellspacing="0" border="0" width="100%">
-              <tr>
-                <td style="width: 44px; vertical-align: top;">
-                  <span style="font-size: 24px;">💰</span>
-                </td>
-                <td style="vertical-align: top;">
-                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">Earn Rewards</div>
-                  <div style="font-size: 13px; color: #666; margin-top: 4px;">Get paid for Pro conversions</div>
-                </td>
-              </tr>
-            </table>
-          </div>
-          
-          <!-- Access Your Dashboard - Simple Steps -->
-          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">Access Your Dashboard</h2>
-          
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <div style="margin-bottom: 12px;">
-              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">1</span>
-              <span style="font-size: 15px; color: #333;">Open the App or Site</span>
-            </div>
-            
-            <div style="margin-bottom: 12px;">
-              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">2</span>
-              <span style="font-size: 15px; color: #333;">Go to the Menu</span>
-            </div>
-            
-            <div style="margin-bottom: 12px;">
-              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">3</span>
-              <span style="font-size: 15px; color: #333;">Tap "Ambassadors"</span>
-            </div>
-            
-            <div>
-              <span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">4</span>
-              <span style="font-size: 15px; color: #333;">Copy your referral link and share it!</span>
-            </div>
-          </div>
+              <p style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 30px 0 20px 0;">How It Works</p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 12px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="width: 44px; vertical-align: top; font-size: 24px;">1.</td>
+                        <td style="vertical-align: top;">
+                          <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">Share Your Link</p>
+                          <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Send to friends, family, and community</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 12px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="width: 44px; vertical-align: top; font-size: 24px;">2.</td>
+                        <td style="vertical-align: top;">
+                          <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">They Sign Up</p>
+                          <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Free or Pro, you get credit</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="width: 44px; vertical-align: top; font-size: 24px;">3.</td>
+                        <td style="vertical-align: top;">
+                          <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">Earn Rewards</p>
+                          <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Get paid for Pro conversions</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">Access Your Dashboard</p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <p style="font-size: 15px; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">1</span> Open the App or Site</p>
+                    <p style="font-size: 15px; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">2</span> Go to the Menu</p>
+                    <p style="font-size: 15px; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">3</span> Tap "Ambassadors"</p>
+                    <p style="font-size: 15px; color: #333; margin: 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px;">4</span> Copy your referral link and share it!</p>
+                  </td>
+                </tr>
+              </table>
           
           <a href="${BASE_URL}/ambassador" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center;">
