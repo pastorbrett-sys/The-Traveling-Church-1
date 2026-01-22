@@ -1,6 +1,6 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { Capacitor } from '@capacitor/core';
-import { auth } from './firebase';
+import { getIdToken } from './firebase';
 
 // Production server URL for native apps
 const PRODUCTION_URL = 'https://vagabondbible.com';
@@ -16,31 +16,18 @@ export function getApiUrl(url: string): string {
   return url;
 }
 
-// Get Firebase ID token for Authorization header (native apps)
+// Get Firebase ID token for Authorization header
+// Uses the centralized getIdToken() which handles both web and native platforms
 async function getAuthHeaders(): Promise<HeadersInit> {
   const headers: HeadersInit = {};
   
-  // On native, use Bearer token since cookies don't work
-  if (Capacitor.isNativePlatform()) {
-    try {
-      // Try native Firebase plugin first
-      const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication');
-      const result = await FirebaseAuthentication.getIdToken();
-      if (result.token) {
-        headers['Authorization'] = `Bearer ${result.token}`;
-      }
-    } catch (error) {
-      // Fallback to web SDK auth
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          const idToken = await user.getIdToken();
-          headers['Authorization'] = `Bearer ${idToken}`;
-        }
-      } catch (fallbackError) {
-        console.error('Error getting Firebase ID token:', fallbackError);
-      }
+  try {
+    const token = await getIdToken();
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
     }
+  } catch (error) {
+    // Silent fail - some routes don't need auth
   }
   
   return headers;
