@@ -2365,7 +2365,6 @@ Reference: ${verseRef} (${translation})`;
         visible={showVerseTooltip}
         position="below"
         offset={10}
-        dismissOnAnyTap={true}
         onDismiss={() => {
           setShowVerseTooltip(false);
           markSeen("verse");
