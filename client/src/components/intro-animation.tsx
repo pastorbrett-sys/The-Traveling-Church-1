@@ -60,23 +60,28 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       console.log("[IntroAnimation] Attempting manual video.play()");
       video.play().then(() => {
         console.log("[IntroAnimation] Manual play succeeded");
-        // Haptic sequence: soft 1.5s → medium 0.5s → sharp tap
+        // Haptic sequence using impact() for better iOS compatibility:
+        // 0-1.5s: Light taps every 100ms (simulates soft vibration)
+        // 1.5-2s: Medium taps every 100ms (simulates medium vibration)
+        // 2s: Heavy impact (sharp tap)
         try {
-          // 0ms: Start with soft vibration for 1.5 seconds
-          Haptics.vibrate({ duration: 1500 });
+          // Light taps for 1.5 seconds (15 taps @ 100ms intervals)
+          for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+              try { Haptics.impact({ style: ImpactStyle.Light }); } catch (e) {}
+            }, i * 100);
+          }
           
-          // 1500ms: Medium vibration for 0.5 seconds
-          setTimeout(() => {
-            try {
-              Haptics.vibrate({ duration: 500 });
-            } catch (e) {}
-          }, 1500);
+          // Medium taps from 1.5s to 2s (5 taps @ 100ms intervals)
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+              try { Haptics.impact({ style: ImpactStyle.Medium }); } catch (e) {}
+            }, 1500 + (i * 100));
+          }
           
-          // 2000ms: Sharp heavy tap
+          // Heavy impact at 2 seconds
           setTimeout(() => {
-            try {
-              Haptics.impact({ style: ImpactStyle.Heavy });
-            } catch (e) {}
+            try { Haptics.impact({ style: ImpactStyle.Heavy }); } catch (e) {}
           }, 2000);
         } catch (e) {
           // Haptics not available on web

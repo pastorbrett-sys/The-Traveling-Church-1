@@ -4,6 +4,7 @@ import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Capacitor } from "@capacitor/core";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";
 import { 
   Book, 
@@ -795,6 +796,9 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   };
 
   const handleVerseClick = (verse: BibleVerse) => {
+    // Light haptic feedback on verse tap
+    try { Haptics.impact({ style: ImpactStyle.Light }); } catch (e) {}
+    
     // If clicking the persistently highlighted verse, just clear highlight and don't select
     if (persistentHighlightVerse === verse.verse) {
       setPersistentHighlightVerse(null);
@@ -1113,6 +1117,9 @@ Reference: ${verseRef} (${translation})`;
 
   const handleBookSynopsis = async () => {
     if (!selectedBook) return;
+    
+    // Light haptic feedback on synopsis tap
+    try { Haptics.impact({ style: ImpactStyle.Light }); } catch (e) {}
     
     setIsLoadingBookSynopsis(true);
     try {
