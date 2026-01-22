@@ -1,0 +1,448 @@
+# 📲 Push Notifications - Verse of the Week
+
+> A comprehensive guide to implementing push notifications for Vagabond Bible using Firebase Cloud Messaging (FCM).
+
+---
+
+## 📋 Overview
+
+### What We're Building
+A weekly push notification system that sends inspiring Bible verses to users, with deep linking that opens the app directly to the verse with the action menu visible.
+
+### Why Firebase Cloud Messaging?
+| Factor | FCM | OneSignal |
+|--------|-----|-----------|
+| **Cost** | Free forever | Free up to 10k, then paid |
+| **Data Ownership** | You own everything | Data on their platform |
+| **Scalability** | Unlimited | Pricing tiers |
+| **Migration** | N/A - it's the standard | Harder to migrate away |
+| **Complexity** | Moderate setup | Easier initial setup |
+
+**Decision:** FCM gives us full control, zero cost, and no scaling surprises.
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     NOTIFICATION FLOW                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     │
+│  │   User App   │────▶│  Your Server │────▶│   Firebase   │     │
+│  │  (Capacitor) │     │  (Express)   │     │     FCM      │     │
+│  └──────────────┘     └──────────────┘     └──────────────┘     │
+│         │                    │                    │              │
+│         │                    │                    │              │
+│         ▼                    ▼                    ▼              │
+│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     │
+│  │   Request    │     │    Store     │     │   Route to   │     │
+│  │  Permission  │     │   Tokens     │     │  APNs/FCM    │     │
+│  └──────────────┘     └──────────────┘     └──────────────┘     │
+│         │                    │                    │              │
+│         ▼                    ▼                    ▼              │
+│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     │
+│  │   Get Token  │     │  Weekly Job  │     │   Deliver    │     │
+│  │   Send to    │     │  AI Selects  │     │   to Device  │     │
+│  │   Server     │     │   Verse      │     │              │     │
+│  └──────────────┘     └──────────────┘     └──────────────┘     │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Data Flow
+
+1. **User opens app** → Requests notification permission
+2. **Permission granted** → Device registers with Apple/Google, receives unique token
+3. **Token sent to server** → Stored in Postgres with user ID
+4. **Weekly cron job runs** → AI picks uplifting verse based on themes
+5. **Server calls FCM API** → Sends verse + deep link data to all tokens
+6. **User receives notification** → Taps to open app
+7. **App opens** → Deep link navigates to verse, triggers highlight animation, opens action menu
+
+---
+
+## 💾 Database Schema
+
+```typescript
+// New table: push_tokens
+export const pushTokens = pgTable("push_tokens", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: text("user_id").notNull().references(() => users.id),
+  deviceToken: text("device_token").notNull().unique(),
+  platform: text("platform").notNull(), // 'ios' | 'android'
+  optedOut: boolean("opted_out").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// New table: notification_log (for tracking/debugging)
+export const notificationLog = pgTable("notification_log", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  type: text("type").notNull(), // 'verse_of_week' | 'test'
+  verseReference: text("verse_reference"),
+  sentAt: timestamp("sent_at").defaultNow(),
+  recipientCount: integer("recipient_count"),
+  status: text("status"), // 'sent' | 'failed'
+});
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Register Device Token
+```
+POST /api/notifications/register-token
+Body: { deviceToken: string, platform: 'ios' | 'android' }
+Auth: Required
+```
+
+### Opt Out of Notifications
+```
+POST /api/notifications/opt-out
+Auth: Required
+```
+
+### Opt Back In
+```
+POST /api/notifications/opt-in
+Auth: Required
+```
+
+### Get Notification Status
+```
+GET /api/notifications/status
+Auth: Required
+Response: { optedOut: boolean, registeredDevices: number }
+```
+
+### Admin: Send Test Notification
+```
+POST /api/admin/send-test-notification
+Body: { userId?: string } // Optional, defaults to caller
+Auth: Admin only
+```
+
+---
+
+## 📱 Native App Integration
+
+### Capacitor Plugin
+```bash
+npm install @capacitor/push-notifications
+npx cap sync
+```
+
+### iOS Setup (Info.plist)
+```xml
+<key>UIBackgroundModes</key>
+<array>
+  <string>remote-notification</string>
+</array>
+```
+
+### Permission Flow
+```typescript
+import { PushNotifications } from '@capacitor/push-notifications';
+
+// Request permission
+const result = await PushNotifications.requestPermissions();
+
+// Register for push
+await PushNotifications.register();
+
+// Listen for token
+PushNotifications.addListener('registration', (token) => {
+  // Send token.value to your server
+});
+
+// Handle notification tap
+PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+  // Deep link to verse
+  const { book, chapter, verse } = notification.notification.data;
+  navigateToVerse(book, chapter, verse, { showActionMenu: true });
+});
+```
+
+---
+
+## 🍎 Apple Developer Console Setup
+
+### Checklist
+
+- [ ] **1. Enable Push Notifications Capability**
+  - Go to [developer.apple.com](https://developer.apple.com) → Certificates, IDs & Profiles
+  - Select your App ID → Capabilities
+  - Enable "Push Notifications"
+
+- [ ] **2. Create APNs Key**
+  - Go to Keys → Create a new key
+  - Name it "Vagabond Bible Push Key"
+  - Enable "Apple Push Notifications service (APNs)"
+  - Download the .p8 file (save it securely!)
+  - Note the Key ID
+
+- [ ] **3. Note Your Team ID**
+  - Found in Membership section of developer portal
+
+- [ ] **4. Add Entitlement in Xcode**
+  - Open ios/App/App.xcworkspace
+  - Select your target → Signing & Capabilities
+  - Click "+ Capability" → Add "Push Notifications"
+
+---
+
+## 🔥 Firebase Setup
+
+### Checklist
+
+- [ ] **1. Create Firebase Project** (if not already done)
+  - Go to [console.firebase.google.com](https://console.firebase.google.com)
+  - Create project or use existing
+
+- [ ] **2. Add iOS App**
+  - Project Settings → Add app → iOS
+  - Enter Bundle ID: `com.thetravelingchurch.vagabondbible`
+  - Download GoogleService-Info.plist
+  - Add to ios/App/App/
+
+- [ ] **3. Add Android App**
+  - Project Settings → Add app → Android
+  - Enter package name: `com.thetravelingchurch.vagabondbible`
+  - Download google-services.json
+  - Add to android/app/
+
+- [ ] **4. Upload APNs Key to Firebase**
+  - Project Settings → Cloud Messaging → iOS app configuration
+  - Upload APNs Authentication Key (.p8 file)
+  - Enter Key ID and Team ID
+
+- [ ] **5. Generate Server Credentials**
+  - Project Settings → Service Accounts
+  - Generate new private key (JSON file)
+  - Save as secret: `FIREBASE_SERVICE_ACCOUNT`
+
+---
+
+## 🤖 AI Verse Selection
+
+### Themes for Weekly Verses
+- Hope & Promise
+- Encouragement & Strength
+- Love & Acceptance
+- Guidance in Tough Times
+- Motivation & Purpose
+- Peace & Comfort
+- Faith & Trust
+- Gratitude & Joy
+
+### Selection Logic
+```typescript
+async function selectVerseOfTheWeek(): Promise<VerseSelection> {
+  const prompt = `Select an uplifting Bible verse for this week's notification.
+  
+  Themes to choose from (rotate through these):
+  - Hope & Promise
+  - Encouragement & Strength  
+  - Love & Acceptance
+  - Guidance in Tough Times
+  - Motivation & Purpose
+  - Peace & Comfort
+  
+  Return a JSON object with:
+  - book: string (e.g., "Jeremiah")
+  - chapter: number
+  - verse: number
+  - text: string (the verse text)
+  - theme: string (which theme this fits)
+  - notificationText: string (short preview for notification, max 100 chars)
+  `;
+  
+  // Call OpenAI and parse response
+}
+```
+
+---
+
+## 🔗 Deep Linking
+
+### Notification Payload
+```json
+{
+  "notification": {
+    "title": "✨ Verse of the Week",
+    "body": "For I know the plans I have for you... - Jeremiah 29:11"
+  },
+  "data": {
+    "type": "verse_of_week",
+    "book": "Jeremiah",
+    "bookId": 24,
+    "chapter": 29,
+    "verse": 11,
+    "showActionMenu": true,
+    "triggerHighlight": true
+  }
+}
+```
+
+### App Handler
+When notification is tapped:
+1. Parse the `data` payload
+2. Navigate to `/pastor-chat?tab=bible`
+3. Set book, chapter in Bible reader state
+4. Scroll to verse
+5. Trigger highlight animation
+6. Auto-open action menu
+
+---
+
+## ⏰ Scheduling
+
+### Weekly Cron Job
+```typescript
+// Run every Sunday at 9:00 AM UTC
+// Cron: 0 9 * * 0
+
+async function sendWeeklyVerse() {
+  // 1. Select verse using AI
+  const verse = await selectVerseOfTheWeek();
+  
+  // 2. Get all active tokens
+  const tokens = await db.select()
+    .from(pushTokens)
+    .where(eq(pushTokens.optedOut, false));
+  
+  // 3. Send via FCM
+  await sendPushNotification(tokens, verse);
+  
+  // 4. Log for debugging
+  await logNotification('verse_of_week', verse, tokens.length);
+}
+```
+
+---
+
+## 🧪 Testing Strategy
+
+### Development Testing
+
+1. **Immediate Test Button**
+   - Add admin endpoint: `POST /api/admin/send-test-notification`
+   - Sends notification to your own device instantly
+   - No waiting for scheduled times
+
+2. **Firebase Console Testing**
+   - Go to Firebase Console → Cloud Messaging → Compose notification
+   - Paste your device token
+   - Send test message directly
+
+3. **Local Scheduling Test**
+   - Temporarily change cron from "Sunday 9am" to "every 2 minutes"
+   - Verify the full flow works
+   - Reset to weekly before deploying
+
+### Testing Checklist
+
+- [ ] Permission request shows correctly
+- [ ] Token is saved to database after permission granted
+- [ ] Test notification arrives on device
+- [ ] Tapping notification opens app
+- [ ] Deep link navigates to correct verse
+- [ ] Highlight animation plays
+- [ ] Action menu opens automatically
+- [ ] Opt-out toggle works
+- [ ] Opted-out users don't receive notifications
+- [ ] Weekly cron fires correctly (test with short interval)
+
+---
+
+## 👤 User Settings
+
+### Profile/Settings Screen Addition
+
+```
+┌─────────────────────────────────────────┐
+│  Notifications                          │
+├─────────────────────────────────────────┤
+│                                         │
+│  Verse of the Week          [Toggle]    │
+│  Receive weekly inspiring verses        │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 Implementation Phases
+
+### Phase 1: Core Infrastructure (MVP)
+- [ ] Database schema for tokens
+- [ ] FCM server integration
+- [ ] Capacitor plugin setup
+- [ ] Token registration flow
+- [ ] Basic notification sending
+- [ ] Deep linking to verses
+- [ ] Admin test endpoint
+
+### Phase 2: User Experience
+- [ ] Opt-out toggle in settings
+- [ ] Highlight animation on deep link
+- [ ] Action menu auto-open
+- [ ] Notification preferences UI
+
+### Phase 3: AI & Automation
+- [ ] AI verse selection service
+- [ ] Weekly cron job
+- [ ] Theme rotation logic
+- [ ] Notification logging/analytics
+
+### Phase 4: Rich Media (Future)
+- [ ] AI-generated verse images
+- [ ] Rich notification with image preview
+- [ ] "Share this verse" card feature
+- [ ] Social sharing integration
+
+---
+
+## 🔐 Environment Variables
+
+```bash
+# Firebase Admin SDK
+FIREBASE_SERVICE_ACCOUNT={"type":"service_account",...}
+
+# Or as separate values
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n..."
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxx@your-project.iam.gserviceaccount.com
+```
+
+---
+
+## 📊 Future Analytics (Nice to Have)
+
+- Notification open rate
+- Time-to-open after delivery
+- Most engaged verses/themes
+- Opt-out rate trends
+- Device platform breakdown
+
+---
+
+## ⚠️ Common Gotchas
+
+1. **iOS Simulator doesn't support push** - Test on real device
+2. **APNs key expires** - Keys don't expire, but certificates do (use keys!)
+3. **Token can change** - Re-register on each app launch
+4. **Background vs foreground** - Handle both states differently
+5. **Payload size limit** - FCM max is 4KB, keep it small
+
+---
+
+## 📚 Resources
+
+- [Capacitor Push Notifications Docs](https://capacitorjs.com/docs/apis/push-notifications)
+- [Firebase Cloud Messaging Docs](https://firebase.google.com/docs/cloud-messaging)
+- [Apple Push Notification Service](https://developer.apple.com/documentation/usernotifications)
+- [Deep Linking in Capacitor](https://capacitorjs.com/docs/guides/deep-links)
