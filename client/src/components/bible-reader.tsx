@@ -372,7 +372,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   
   // Authentication and onboarding
   const { user } = useAuth();
-  const { shouldShowTooltip, markSeen, getTooltipText } = useOnboardingState(user?.id);
+  const { shouldShowTooltip, markSeen, getTooltipText, isReady } = useOnboardingState(user?.id);
   const [showVerseTooltip, setShowVerseTooltip] = useState(false);
   const [showActionBarTooltip, setShowActionBarTooltip] = useState(false);
   const hasTriggeredVerseTooltip = useRef(false);
@@ -615,9 +615,10 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
     enabled: !!selectedBook && !showBookPicker,
   });
 
-  // Onboarding: Trigger verse tooltip when chapter loads
+  // Onboarding: Trigger verse tooltip when chapter loads AND onboarding data is ready
   useEffect(() => {
     if (
+      isReady &&
       chapter?.verses?.length &&
       selectedBook &&
       !showBookPicker &&
@@ -639,11 +640,12 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       }, 100);
       return () => clearInterval(interval);
     }
-  }, [chapter?.verses?.length, selectedBook, showBookPicker, shouldShowTooltip]);
+  }, [isReady, chapter?.verses?.length, selectedBook, showBookPicker, shouldShowTooltip]);
 
   // Onboarding: Trigger action bar tooltip when user selects a verse (only once)
   useEffect(() => {
     if (
+      isReady &&
       selectedVerse &&
       !hasTriggeredActionBarTooltip.current &&
       shouldShowTooltip("actionBar")
@@ -656,7 +658,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       }, 400);
       return () => clearTimeout(timer);
     }
-  }, [selectedVerse, shouldShowTooltip]);
+  }, [isReady, selectedVerse, shouldShowTooltip]);
 
   const { data: comparisonData, isLoading: isLoadingComparison } = useQuery<{ translation: string; verses: BibleVerse[] }[]>({
     queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, selectedVerse?.verse, compareTranslations],

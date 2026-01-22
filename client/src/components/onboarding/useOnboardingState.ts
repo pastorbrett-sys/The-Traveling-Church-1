@@ -68,11 +68,15 @@ export function useOnboardingState(userId: string | undefined) {
     }
   }, []);
 
+  // isReady = data is loaded and we can show tooltips (or in test mode)
+  const isReady = testMode || (!isLoading && !!onboardingState);
+
   return {
     shouldShowTooltip,
     markSeen,
     getTooltipText,
     isLoading,
+    isReady,
     testMode,
   };
 }

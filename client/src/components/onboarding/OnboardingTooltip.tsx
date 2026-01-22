@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface OnboardingTooltipProps {
@@ -24,18 +24,17 @@ export function OnboardingTooltip({
   dismissOnAnyTap = false,
 }: OnboardingTooltipProps) {
   const [coords, setCoords] = useState<{ top: number; left: number; arrowLeft: number } | null>(null);
-  const [show, setShow] = useState(false);
+  const [animationState, setAnimationState] = useState<"hidden" | "entering" | "floating">("hidden");
   const tooltipRef = useRef<HTMLDivElement>(null);
 
-  // Calculate position when visible and target exists
+  // Calculate position when visible
   useEffect(() => {
     if (!visible) {
-      setShow(false);
+      setAnimationState("hidden");
       setCoords(null);
       return;
     }
 
-    // Poll until target ref is available and has dimensions
     let attempts = 0;
     const maxAttempts = 50;
     
@@ -53,7 +52,6 @@ export function OnboardingTooltip({
 
       const targetRect = target.getBoundingClientRect();
       
-      // Check if target is actually visible (has dimensions)
       if (targetRect.width === 0 || targetRect.height === 0) {
         attempts++;
         if (attempts < maxAttempts) {
@@ -65,18 +63,14 @@ export function OnboardingTooltip({
       const tooltipRect = tooltip.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
 
-      // Calculate horizontal position (centered on target)
       const targetCenterX = targetRect.left + targetRect.width / 2;
       let left = targetCenterX - tooltipRect.width / 2;
       
-      // Keep within viewport
       const padding = 12;
       left = Math.max(padding, Math.min(left, viewportWidth - tooltipRect.width - padding));
 
-      // Arrow position relative to tooltip
       const arrowLeft = targetCenterX - left;
 
-      // Calculate vertical position
       let top: number;
       if (position === "above") {
         top = targetRect.top - tooltipRect.height - ARROW_SIZE - offset;
@@ -86,11 +80,16 @@ export function OnboardingTooltip({
 
       setCoords({ top, left, arrowLeft });
       
-      // Small delay before showing to ensure position is applied
-      setTimeout(() => setShow(true), 50);
+      // Start enter animation
+      setTimeout(() => {
+        setAnimationState("entering");
+        // Switch to floating after bounce completes
+        setTimeout(() => {
+          setAnimationState("floating");
+        }, 500);
+      }, 50);
     };
 
-    // Start checking after a brief delay to let the DOM settle
     const timer = setTimeout(() => {
       requestAnimationFrame(checkAndPosition);
     }, 100);
@@ -100,14 +99,13 @@ export function OnboardingTooltip({
 
   // Handle dismiss on any tap
   useEffect(() => {
-    if (!show || !dismissOnAnyTap) return;
+    if (animationState === "hidden" || !dismissOnAnyTap) return;
 
     const handleTap = (e: Event) => {
       e.stopPropagation();
       onDismiss();
     };
 
-    // Delay adding listener to prevent immediate dismiss
     const timer = setTimeout(() => {
       document.addEventListener("touchstart", handleTap, { passive: true });
       document.addEventListener("click", handleTap);
@@ -118,10 +116,9 @@ export function OnboardingTooltip({
       document.removeEventListener("touchstart", handleTap);
       document.removeEventListener("click", handleTap);
     };
-  }, [show, dismissOnAnyTap, onDismiss]);
+  }, [animationState, dismissOnAnyTap, onDismiss]);
 
-  // Always render but control visibility
-  const isVisible = visible && coords && show;
+  const isVisible = visible && coords && animationState !== "hidden";
 
   return (
     <div
@@ -131,15 +128,13 @@ export function OnboardingTooltip({
       className={cn(
         "fixed z-[9999] max-w-[280px] rounded-lg px-4 py-3 shadow-lg",
         "bg-amber-500 text-white",
-        "transition-opacity duration-200",
-        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+        animationState === "entering" && "animate-tooltip-enter",
+        animationState === "floating" && "animate-tooltip-float",
+        !isVisible && "opacity-0 pointer-events-none"
       )}
       style={{
         top: coords?.top ?? -9999,
         left: coords?.left ?? -9999,
-        WebkitTransform: show ? "translateY(0)" : "translateY(-10px)",
-        transform: show ? "translateY(0)" : "translateY(-10px)",
-        transition: "opacity 0.2s ease, transform 0.3s ease",
       }}
     >
       {/* Arrow */}
