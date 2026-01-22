@@ -453,60 +453,63 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="color-scheme" content="light">
-      <meta name="supported-color-schemes" content="light">
+      <meta name="color-scheme" content="light only">
+      <meta name="supported-color-schemes" content="light only">
       <style>
-        :root { color-scheme: light; }
-        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
-        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
-        @media (prefers-color-scheme: dark) {
-          .dark-footer { background-color: #000000 !important; }
-          .dark-footer td { background-color: #000000 !important; }
-        }
-        [data-ogsc] .footer-text { color: #888888 !important; }
-        [data-ogsb] .dark-footer { background-color: #000000 !important; }
+        :root { color-scheme: light only; supported-color-schemes: light only; }
       </style>
     </head>
-    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
-      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
-        
-        <!-- Header with Ambassador Logo -->
-        <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
-        </div>
-        
-        <!-- Hero Image -->
-        <div style="width: 100%;">
-          <img src="${BASE_URL}/email-assets/ambassador-hero.png" alt="Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
-        </div>
-        
-        <!-- Content -->
-        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">You're Approved!</h1>
-          <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">Welcome to the Team, ${displayName}</p>
-          
-          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            You're now a Vagabond Bible Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
-          </p>
-          
-          <!-- Pro Tip - Above referral link -->
-          <div style="background-color: #FFF8E7; border-radius: 12px; padding: 16px 20px; margin: 0 0 24px 0; text-align: left; border-left: 4px solid #C99A2E;">
-            <p style="font-size: 14px; line-height: 1.5; color: #333; margin: 0;">
-              <strong>💡 Pro Tip:</strong> You earn more commission if people sign up through web instead of app. So encourage them to sign up on the vagabondbible.com site!
-            </p>
-          </div>
-          
-          <!-- Your Referral Link -->
-          <div style="background-color: #ffffff; border-radius: 12px; padding: 24px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
-            <h2 style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">🔗 Your Referral Link</h2>
-            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 12px 16px;">
-              <a href="${referralLink}" style="font-family: monospace; font-size: 14px; color: #C99A2E; text-decoration: none; word-break: break-all; display: block;">${referralLink}</a>
-            </div>
-            <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;">Tap to open or copy and share with others</p>
-          </div>
-          
-          <!-- How It Works - Individual Stacked Cards -->
-          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;" bgcolor="#ffffff">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;" bgcolor="#ffffff">
+        <tr>
+          <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff;" bgcolor="#ffffff">
+              <tr>
+                <td>
+                  <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="${BASE_URL}/email-assets/ambassador-hero.png" alt="Ambassador" style="width: 100%; height: auto; display: block;">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;" bgcolor="#FAF9F6">
+              <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">You're Approved!</h1>
+              <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">Welcome to the Team, ${displayName}</p>
+              
+              <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+                You're now a Vagabond Bible Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
+              </p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FFF8E7; border-radius: 12px; border-left: 4px solid #C99A2E; margin: 0 0 24px 0;">
+                <tr>
+                  <td style="padding: 16px 20px; text-align: left;">
+                    <p style="font-size: 14px; line-height: 1.5; color: #333; margin: 0;">
+                      <strong>Pro Tip:</strong> You earn more commission if people sign up through web instead of app. So encourage them to sign up on the vagabondbible.com site!
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
+                <tr>
+                  <td style="padding: 24px; text-align: left;">
+                    <p style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">Your Referral Link</p>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f5f5f5; border-radius: 8px;">
+                      <tr>
+                        <td style="padding: 12px 16px;">
+                          <a href="${referralLink}" style="font-family: monospace; font-size: 14px; color: #C99A2E; text-decoration: none; word-break: break-all;">${referralLink}</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;">Tap to open or copy and share with others</p>
+                  </td>
+                </tr>
+              </table>
+              
+              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">How It Works</h2>
           
           <!-- Card 1: Share Your Link -->
           <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
@@ -579,30 +582,27 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
           </div>
           
           <a href="${BASE_URL}/ambassador" 
-             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center;">
             Open Your Dashboard
           </a>
-        </div>
-        
-        <!-- Footer -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
-          <tr>
-            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
-              <a href="https://thetravelingchurch.com" style="display: inline-block;">
-                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
-              </a>
-              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
-                <span class="gm-screen"><span class="gm-diff">
-                  <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
-                  <span style="color: #555555; margin: 0 8px;">•</span>
-                  <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ Donate</a>
-                </span></span>
-              </p>
-            </td>
-          </tr>
-        </table>
-        
-      </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="background-color: #1a1a1a; padding: 24px;" bgcolor="#1a1a1a">
+                  <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                    <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+                  </a>
+                  <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                    <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                    <span style="color: #555555; margin: 0 8px;">&#8226;</span>
+                    <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">Donate</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
     </body>
     </html>
   `;
