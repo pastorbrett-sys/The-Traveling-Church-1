@@ -17,14 +17,8 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
   console.log("[IntroAnimation] Mounted, isNative:", isNative, "video src:", splashVideo);
 
-  const handleVideoEnd = async () => {
+  const handleVideoEnd = () => {
     console.log("[IntroAnimation] Video ended");
-    // Heavy impact tap as video completes
-    try {
-      await Haptics.impact({ style: ImpactStyle.Heavy });
-    } catch (e) {
-      // Haptics not available on web
-    }
     setFadeOut(true);
     setTimeout(() => {
       onComplete();
