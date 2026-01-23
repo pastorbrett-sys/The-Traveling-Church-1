@@ -308,7 +308,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
             transition={{ type: "tween", duration: 0.25, ease: "easeInOut" }}
             className="fixed left-0 right-0 bg-background rounded-t-2xl z-[201] flex flex-col"
             style={{
-              bottom: isNative ? (isIOS ? "80px" : "80px") : "0px",
+              bottom: isNative && isIOS ? "80px" : "0px",
               maxHeight: isNative ? "70vh" : "85vh",
               paddingBottom: "16px"
             }}
