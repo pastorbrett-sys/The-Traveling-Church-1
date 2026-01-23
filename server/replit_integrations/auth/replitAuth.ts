@@ -6,7 +6,7 @@ import session from "express-session";
 import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
-import { authStorage } from "./storage";
+import { authStorage, updateUserLanguage } from "./storage";
 
 const getOidcConfig = memoize(
   async () => {
@@ -50,13 +50,14 @@ function updateUserSession(
   user.expires_at = user.claims?.exp;
 }
 
-async function upsertUser(claims: any) {
+async function upsertUser(claims: any, language?: string) {
   await authStorage.upsertUser({
     id: claims["sub"],
     email: claims["email"],
     firstName: claims["first_name"],
     lastName: claims["last_name"],
     profileImageUrl: claims["profile_image_url"],
+    language: language || 'en',
   });
 }
 
@@ -122,9 +123,37 @@ export async function setupAuth(app: Express) {
 
   app.get("/api/callback", (req, res, next) => {
     ensureStrategy(req.hostname);
-    passport.authenticate(`replitauth:${req.hostname}`, {
-      successReturnToOrRedirect: "/",
-      failureRedirect: "/api/login",
+    passport.authenticate(`replitauth:${req.hostname}`, async (err: any, user: any) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.redirect("/api/login");
+      }
+      
+      req.logIn(user, async (loginErr) => {
+        if (loginErr) {
+          return next(loginErr);
+        }
+        
+        // Update user's language preference from session (captured during login)
+        const userId = user.claims?.sub;
+        const sessionLanguage = (req.session as any).userLanguage;
+        if (userId && sessionLanguage) {
+          try {
+            await updateUserLanguage(userId, sessionLanguage);
+            console.log(`[Auth] Updated language for user ${userId} to ${sessionLanguage}`);
+          } catch (error) {
+            console.error('[Auth] Failed to update language:', error);
+          }
+        }
+        
+        // Redirect to return URL or home
+        const returnTo = (req.session as any).returnTo || "/";
+        delete (req.session as any).returnTo;
+        delete (req.session as any).userLanguage;
+        return res.redirect(returnTo);
+      });
     })(req, res, next);
   });
 

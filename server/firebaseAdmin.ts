@@ -73,7 +73,7 @@ export const isAuthenticated: RequestHandler = async (req: any, res, next) => {
   }
 };
 
-export async function upsertFirebaseUser(decodedToken: admin.auth.DecodedIdToken) {
+export async function upsertFirebaseUser(decodedToken: admin.auth.DecodedIdToken, language?: string) {
   const nameParts = (decodedToken.name || "").split(" ");
   const firstName = nameParts[0] || null;
   const lastName = nameParts.slice(1).join(" ") || null;
@@ -84,5 +84,6 @@ export async function upsertFirebaseUser(decodedToken: admin.auth.DecodedIdToken
     firstName,
     lastName,
     profileImageUrl: decodedToken.picture || null,
+    language: language || 'en', // Include language preference for new users
   });
 }

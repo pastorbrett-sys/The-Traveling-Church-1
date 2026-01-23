@@ -33,7 +33,7 @@ export async function setupAuth(app: Express) {
 
   app.post("/api/auth/firebase", async (req, res) => {
     try {
-      const { idToken } = req.body;
+      const { idToken, language: bodyLanguage } = req.body;
       
       if (!idToken) {
         return res.status(400).json({ message: "ID token required" });
@@ -45,7 +45,15 @@ export async function setupAuth(app: Express) {
         return res.status(401).json({ message: "Invalid token" });
       }
 
-      const user = await upsertFirebaseUser(decodedToken);
+      // Use language from request body, or fallback to Accept-Language header
+      let language = bodyLanguage;
+      if (!language) {
+        const acceptLang = req.headers['accept-language'] || '';
+        language = acceptLang.startsWith('am') ? 'am' : 'en';
+      }
+
+      // Pass language to upsert so new users get welcome email in their language
+      const user = await upsertFirebaseUser(decodedToken, language);
       
       (req.session as any).userId = user.id;
       (req.session as any).user = user;

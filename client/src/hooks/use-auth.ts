@@ -28,12 +28,15 @@ async function fetchUser(): Promise<User | null> {
 async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null> {
   try {
     const idToken = await firebaseUser.getIdToken();
+    // Detect user's language before syncing to include in signup
+    const language = detectUserLanguage();
+    
     const response = await apiFetch("/api/auth/firebase", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ idToken }),
+      body: JSON.stringify({ idToken, language }),
     });
 
     if (!response.ok) {
@@ -43,8 +46,8 @@ async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null
 
     const user = await response.json();
     
-    // Sync user's language preference based on device locale
-    syncUserLanguage();
+    // Also sync language preference separately (with auth token)
+    syncUserLanguage(idToken);
     
     return user;
   } catch (error) {
@@ -60,14 +63,21 @@ function detectUserLanguage(): 'am' | 'en' {
 }
 
 // Sync user's language preference to backend (fire and forget)
-async function syncUserLanguage(): Promise<void> {
+async function syncUserLanguage(idToken?: string): Promise<void> {
   try {
     const language = detectUserLanguage();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+    
+    // Include Authorization header for native apps using Firebase auth
+    if (idToken) {
+      headers["Authorization"] = `Bearer ${idToken}`;
+    }
+    
     await apiFetch("/api/auth/language", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({ language }),
     });
     console.log(`[Auth] Synced user language: ${language}`);
