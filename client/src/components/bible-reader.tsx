@@ -108,6 +108,10 @@ interface DiscussionMessage {
 interface BibleReaderProps {
   translation: string;
   onTranslationChange: (translation: string) => void;
+  initialBookId?: number;
+  initialChapter?: number;
+  initialVerse?: number;
+  triggerHighlight?: boolean;
 }
 
 // Parse verse text to extract heading if present (marked with §heading§)
@@ -310,11 +314,19 @@ function BookHeaderImage({ src, bookName, isNative }: { src: string; bookName: s
   );
 }
 
-export default function BibleReader({ translation, onTranslationChange }: BibleReaderProps) {
+export default function BibleReader({ 
+  translation, 
+  onTranslationChange,
+  initialBookId,
+  initialChapter,
+  initialVerse,
+  triggerHighlight 
+}: BibleReaderProps) {
   const { isNative, platform } = usePlatform();
   const [, navigate] = useLocation();
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
+  const [hasAppliedInitialNav, setHasAppliedInitialNav] = useState(false);
   const [selectedVerse, setSelectedVerse] = useState<BibleVerse | null>(null);
   const [showBookPicker, setShowBookPicker] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -611,6 +623,26 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
       });
     },
   });
+
+  // Handle initial navigation from push notifications (deep links)
+  useEffect(() => {
+    if (books && initialBookId && !hasAppliedInitialNav) {
+      const targetBook = books.find(b => b.bookid === initialBookId);
+      if (targetBook) {
+        console.log('[BibleReader] Deep link navigation to:', targetBook.name, initialChapter, initialVerse);
+        setSelectedBook(targetBook);
+        setSelectedChapter(initialChapter || 1);
+        setShowBookPicker(false);
+        if (initialVerse && triggerHighlight) {
+          // Delay to ensure chapter is loaded first
+          setTimeout(() => {
+            setScrollToVerse(initialVerse);
+          }, 500);
+        }
+        setHasAppliedInitialNav(true);
+      }
+    }
+  }, [books, initialBookId, initialChapter, initialVerse, triggerHighlight, hasAppliedInitialNav]);
 
   const { data: chapter, isLoading: isLoadingChapter } = useQuery<BibleChapter>({
     queryKey: ["/api/bible/chapter", translation, selectedBook?.bookid, selectedChapter],

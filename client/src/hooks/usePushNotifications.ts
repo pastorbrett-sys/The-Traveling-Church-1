@@ -82,13 +82,14 @@ export function usePushNotifications(userId: string | null | undefined) {
 
       if (bookId && chapter) {
         const params = new URLSearchParams();
+        params.set('tab', 'bible');
+        params.set('book', bookId);
+        params.set('chapter', chapter);
         if (verse) params.set('verse', verse);
-        if (data.showActionMenu === 'true') params.set('showAction', 'true');
         if (data.triggerHighlight === 'true') params.set('highlight', 'true');
 
-        const queryString = params.toString();
-        const path = `/bible/${bookId}/${chapter}${queryString ? `?${queryString}` : ''}`;
-        console.log('[Push] Navigating to:', path);
+        const path = `/pastor-chat?${params.toString()}`;
+        console.log('[Push] Navigating to verse:', path);
         setLocation(path);
       }
     }

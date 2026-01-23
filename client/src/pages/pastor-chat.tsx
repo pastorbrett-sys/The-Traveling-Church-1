@@ -153,6 +153,17 @@ export default function PastorChat() {
   const seedFollowUp = urlParams.get("seedFollowUp");
   const upgradeParam = urlParams.get("upgrade");
   
+  // Deep link params for push notification navigation to specific verse
+  const bookParam = urlParams.get("book");
+  const chapterParam = urlParams.get("chapter");
+  const verseParam = urlParams.get("verse");
+  const highlightParam = urlParams.get("highlight");
+  
+  const initialBookId = bookParam ? parseInt(bookParam, 10) : undefined;
+  const initialChapter = chapterParam ? parseInt(chapterParam, 10) : undefined;
+  const initialVerse = verseParam ? parseInt(verseParam, 10) : undefined;
+  const triggerHighlight = highlightParam === "true";
+  
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
   
   // Sync activeTab with URL param changes (for native tab bar navigation)
@@ -701,7 +712,14 @@ export default function PastorChat() {
         <div 
           className={`w-full max-w-3xl mx-auto px-4 h-full ${activeTab === "bible" ? "" : "hidden"}`}
         >
-          <BibleReader translation={bibleTranslation} onTranslationChange={setBibleTranslation} />
+          <BibleReader 
+            translation={bibleTranslation} 
+            onTranslationChange={setBibleTranslation}
+            initialBookId={initialBookId}
+            initialChapter={initialChapter}
+            initialVerse={initialVerse}
+            triggerHighlight={triggerHighlight}
+          />
         </div>
 
         <div className={activeTab === "chat" ? "" : "hidden"}>
