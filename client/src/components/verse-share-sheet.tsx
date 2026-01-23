@@ -255,7 +255,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         
         await Share.share({
           title: verseReference,
-          text: `📖 ${verseReference}\nVagabond Bible\nhttps://vagabondbible.com/bible-buddy`,
+          text: `📖 ${verseReference}\nvagabondbible.com`,
           url: fileUri.uri,
           dialogTitle: "Share Verse",
         });
@@ -267,7 +267,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         if (navigator.share && navigator.canShare({ files: [file] })) {
           await navigator.share({
             title: verseReference,
-            text: `📖 ${verseReference}\nVagabond Bible\nhttps://vagabondbible.com/bible-buddy`,
+            text: `📖 ${verseReference}\nvagabondbible.com`,
             files: [file],
           });
         } else {
