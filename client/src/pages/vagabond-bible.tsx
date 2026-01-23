@@ -12,12 +12,13 @@ import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
 import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 import burstIcon from "@assets/Burst_1767600505667.png";
 import { usePlatform } from "@/contexts/platform-context";
-import { t } from "@/lib/i18n";
+import { t, detectLanguage } from "@/lib/i18n";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { isNative, platform } = usePlatform();
+  const isAmharic = detectLanguage() === "am";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +51,7 @@ export default function VagabondBible() {
             style={{ bottom: platform === 'android' ? '32px' : 'calc(env(safe-area-inset-bottom, 0px) + 32px)' }}
           >
             <div className="max-w-md mx-auto text-center">
-              <h1 className="font-heading text-[36px] sm:text-5xl mb-4 text-white font-extrabold leading-[1.12]">
+              <h1 className={`font-heading mb-4 text-white font-extrabold leading-[1.12] ${isAmharic ? 'text-[28px] sm:text-4xl' : 'text-[36px] sm:text-5xl'}`}>
                 {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
               </h1>
               <p className="text-[15px] text-white/90 mb-10 leading-relaxed">
@@ -165,7 +166,7 @@ export default function VagabondBible() {
               <span className="text-[hsl(35,65%,55%)]">★</span>
               <span className="text-sm font-medium">{t("landing.badge")}</span>
             </div>
-            <h1 className="font-heading text-[40px] sm:text-5xl lg:text-[68px] mb-6 text-white font-extrabold leading-[1.12] sm:leading-[1.06]">
+            <h1 className={`font-heading mb-6 text-white font-extrabold leading-[1.12] sm:leading-[1.06] ${isAmharic ? 'text-[32px] sm:text-4xl lg:text-[52px]' : 'text-[40px] sm:text-5xl lg:text-[68px]'}`}>
               {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
             </h1>
             <p className="text-[14px] sm:text-xl lg:text-[18px] text-white/90 mb-8 leading-relaxed">
