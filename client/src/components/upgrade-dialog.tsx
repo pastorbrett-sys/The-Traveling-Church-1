@@ -13,6 +13,7 @@ import { openExternalUrl } from "@/lib/open-url";
 import { usePlatform } from "@/contexts/platform-context";
 import { useToast } from "@/hooks/use-toast";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
+import { detectLanguage } from "@/lib/i18n";
 
 interface PricingTierResponse {
   tier: 'premium' | 'emerging';
@@ -108,7 +109,10 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const { isNative, platform } = usePlatform();
   const { toast } = useToast();
   
-  const isAmharic = translation === "ETH" || translation === "AMPROT";
+  // Check both Bible translation AND device language for Amharic
+  const isAmharicBible = translation === "ETH" || translation === "AMPROT";
+  const isAmharicDevice = detectLanguage() === "am";
+  const isAmharic = isAmharicBible || isAmharicDevice;
   const t = isAmharic ? uiText.am : uiText.en;
 
   useEffect(() => {
