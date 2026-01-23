@@ -155,19 +155,102 @@ export function getWelcomeEmailHtml(displayName: string): string {
   `;
 }
 
-export async function sendWelcomeEmail(userEmail: string, firstName?: string | null) {
-  console.log(`[Email] Sending welcome email to ${userEmail}...`);
+// Amharic Welcome Email Template
+export function getWelcomeEmailHtmlAmharic(displayName: string): string {
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="am">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+      <style>
+        :root { color-scheme: light; }
+        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
+        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
+        @media (prefers-color-scheme: dark) {
+          .dark-footer { background-color: #000000 !important; }
+          .dark-footer td { background-color: #000000 !important; }
+        }
+        [data-ogsc] .footer-text { color: #888888 !important; }
+        [data-ogsb] .dark-footer { background-color: #000000 !important; }
+      </style>
+    </head>
+    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/woman-in-van-animated.gif" alt="Woman reading Bible" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">እንኳን ወደ Vagabond Bible በደህና መጡ</h1>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            Vagabond Bible በ AI የተጎለበተ ግንዛቤዎች፣ ታሪካዊ ዐውድ፣ እና በየትም ቦታ ሆነው በእግዚአብሔር ቃል ውስጥ የሚመራዎት 24/7 ፓስተር በማቅረብ መጽሐፍ ቅዱስን ሕያው ያደርገዋል።
+          </p>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
+            ማሰስ ይጀምሩ
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
+          <tr>
+            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
+              </a>
+              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <span class="gm-screen"><span class="gm-diff">
+                  <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                  <span style="color: #555555; margin: 0 8px;">•</span>
+                  <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ ልገሳ</a>
+                </span></span>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+export async function sendWelcomeEmail(userEmail: string, firstName?: string | null, language: string = 'en') {
+  const isAmharic = language === 'am' || language?.startsWith('am');
+  console.log(`[Email] Sending welcome email to ${userEmail} (language: ${language}, isAmharic: ${isAmharic})...`);
   
   try {
     const client = await getResendClient();
     const fromEmail = await getFromEmail();
-    const displayName = firstName || 'Friend';
+    const displayName = firstName || (isAmharic ? 'ወዳጅ' : 'Friend');
+    
+    // Choose subject and template based on language
+    const subject = isAmharic 
+      ? `እንኳን ወደ Vagabond Bible በደህና መጡ፣ ${displayName}!`
+      : `Welcome to Vagabond Bible, ${displayName}!`;
+    
+    const html = isAmharic 
+      ? getWelcomeEmailHtmlAmharic(displayName)
+      : getWelcomeEmailHtml(displayName);
     
     const result = await client.emails.send({
       from: fromEmail,
       to: userEmail,
-      subject: `Welcome to Vagabond Bible, ${displayName}!`,
-      html: getWelcomeEmailHtml(displayName)
+      subject,
+      html
     });
     
     console.log('[Email] Welcome email sent:', JSON.stringify(result));
@@ -266,23 +349,120 @@ export function getSubscriptionEmailHtml(displayName: string): string {
   `;
 }
 
+// Amharic Subscription Confirmation Email Template
+export function getSubscriptionEmailHtmlAmharic(displayName: string): string {
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="am">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+      <style>
+        :root { color-scheme: light; }
+        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
+        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
+        @media (prefers-color-scheme: dark) {
+          .dark-footer { background-color: #000000 !important; }
+          .dark-footer td { background-color: #000000 !important; }
+        }
+        [data-ogsc] .footer-text { color: #888888 !important; }
+        [data-ogsb] .dark-footer { background-color: #000000 !important; }
+      </style>
+    </head>
+    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/moses-pro-animated.gif" alt="Moses parting the sea" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">አሁን Pro ሆነዋል</h1>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 24px 0;">
+            ተልእኮውን ስለደገፉ እናመሰግናለን። አሁን ያልተገደበ መዳረሻ አለዎት፦
+          </p>
+          
+          <div style="text-align: left; display: inline-block; margin: 0 0 24px 0;">
+            <p style="font-size: 16px; line-height: 2; color: #333; margin: 0;">
+              ✓ ያልተገደበ ብልጥ ፍለጋዎች<br>
+              ✓ ያልተገደበ የመጽሐፍ ማጠቃለያዎች<br>
+              ✓ ያልተገደበ የጥቅስ ግንዛቤዎች<br>
+              ✓ ያልተገደበ ማስታወሻዎች
+            </p>
+          </div>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            ምዝገባዎ የእግዚአብሔርን ቃል በመላው ዓለም እንድናካፍል ይረዳናል።
+          </p>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
+            Vagabond Bible ክፈት
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
+          <tr>
+            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
+              </a>
+              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <span class="gm-screen"><span class="gm-diff">
+                  <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                  <span style="color: #555555; margin: 0 8px;">•</span>
+                  <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ ልገሳ</a>
+                </span></span>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
 export async function sendSubscriptionConfirmationEmail(
   userEmail: string, 
   firstName?: string | null,
-  planType: 'premium' | 'emerging' = 'premium'
+  planType: 'premium' | 'emerging' = 'premium',
+  language: string = 'en'
 ) {
-  console.log(`[Email] Sending subscription confirmation to ${userEmail}...`);
+  const isAmharic = language === 'am' || language?.startsWith('am');
+  console.log(`[Email] Sending subscription confirmation to ${userEmail} (language: ${language}, isAmharic: ${isAmharic})...`);
   
   try {
     const client = await getResendClient();
     const fromEmail = await getFromEmail();
-    const displayName = firstName || 'Friend';
+    const displayName = firstName || (isAmharic ? 'ወዳጅ' : 'Friend');
+    
+    // Choose subject and template based on language
+    const subject = isAmharic 
+      ? `አሁን Pro ሆነዋል፣ ${displayName}!`
+      : `You're Pro Now, ${displayName}!`;
+    
+    const html = isAmharic 
+      ? getSubscriptionEmailHtmlAmharic(displayName)
+      : getSubscriptionEmailHtml(displayName);
     
     const result = await client.emails.send({
       from: fromEmail,
       to: userEmail,
-      subject: `You're Pro Now, ${displayName}!`,
-      html: getSubscriptionEmailHtml(displayName)
+      subject,
+      html
     });
     
     console.log('[Email] Subscription confirmation email sent:', JSON.stringify(result));
