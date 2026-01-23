@@ -135,7 +135,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       const fontSize = Math.min(72, Math.max(48, 1200 / verseText.length * 4.5));
       ctx.font = `500 ${fontSize}px "Spectral SC", Georgia, serif`;
       
-      const cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
+      let cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
+      cleanText = cleanText.replace(/§[^§]+§\s*/g, '').trim();
       const displayText = `"${cleanText.toUpperCase()}"`;
       
       const lineHeight = fontSize * 1.4;
