@@ -26,6 +26,7 @@ import { getTierForCountry, getPricingForCountry, PRICING_TIERS, type PricingTie
 import { getStripePublishableKey } from "./stripeClient";
 import bibleRoutes from "./bibleRoutes";
 import ambassadorRoutes from "./ambassadorRoutes";
+import notificationRoutes from "./notificationRoutes";
 import { registerRevenueCatWebhook } from "./revenueCatWebhook";
 import { isUserPro } from "./proStatusService";
 import { registerNativeAuthRoutes } from "./nativeAuthRoutes";
@@ -168,6 +169,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Ambassador program routes (completely separate from Bible app)
   app.use("/api/ambassador", ambassadorRoutes);
+  app.use("/api/notifications", notificationRoutes);
 
   // Dynamic OG image serving based on domain
   app.get("/og-image.png", (req, res) => {

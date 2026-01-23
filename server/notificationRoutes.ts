@@ -1,0 +1,248 @@
+import { Router, Request, Response } from "express";
+import { db } from "./db";
+import { 
+  pushTokens, 
+  notificationTypes, 
+  userNotificationPreferences, 
+  notificationLog,
+  insertPushTokenSchema
+} from "@shared/schema";
+import { eq, and, sql } from "drizzle-orm";
+import { sendPushNotification, buildVerseNotificationPayload } from "./firebaseAdmin";
+
+const router = Router();
+
+// Register or update a push token
+router.post("/register-token", async (req: Request, res: Response) => {
+  try {
+    const { deviceToken, platform, timezone, utcOffset, userId } = req.body;
+
+    if (!deviceToken || !platform) {
+      return res.status(400).json({ error: "deviceToken and platform are required" });
+    }
+
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required" });
+    }
+
+    // Upsert the token (update if exists, insert if new)
+    const existing = await db
+      .select()
+      .from(pushTokens)
+      .where(eq(pushTokens.deviceToken, deviceToken))
+      .limit(1);
+
+    if (existing.length > 0) {
+      // Update existing token
+      await db
+        .update(pushTokens)
+        .set({
+          userId,
+          platform,
+          timezone,
+          utcOffset,
+          updatedAt: new Date(),
+        })
+        .where(eq(pushTokens.deviceToken, deviceToken));
+    } else {
+      // Insert new token
+      await db.insert(pushTokens).values({
+        userId,
+        deviceToken,
+        platform,
+        timezone,
+        utcOffset,
+      });
+
+      // Create default preferences for all active notification types
+      const activeTypes = await db
+        .select()
+        .from(notificationTypes)
+        .where(eq(notificationTypes.isActive, true));
+
+      for (const type of activeTypes) {
+        await db.insert(userNotificationPreferences).values({
+          userId,
+          notificationTypeId: type.id,
+          enabled: type.defaultEnabled,
+        }).onConflictDoNothing();
+      }
+    }
+
+    res.json({ success: true });
+  } catch (error: any) {
+    console.error("Error registering push token:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get all notification types and user preferences
+router.get("/preferences", async (req: Request, res: Response) => {
+  try {
+    const userId = req.query.userId as string;
+
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required" });
+    }
+
+    // Get all active notification types
+    const types = await db
+      .select()
+      .from(notificationTypes)
+      .where(eq(notificationTypes.isActive, true));
+
+    // Get user preferences
+    const preferences = await db
+      .select()
+      .from(userNotificationPreferences)
+      .where(eq(userNotificationPreferences.userId, userId));
+
+    // Merge types with preferences
+    const result = types.map(type => {
+      const pref = preferences.find(p => p.notificationTypeId === type.id);
+      return {
+        id: type.id,
+        name: type.name,
+        description: type.description,
+        enabled: pref ? pref.enabled : type.defaultEnabled,
+      };
+    });
+
+    res.json(result);
+  } catch (error: any) {
+    console.error("Error getting preferences:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update a specific notification preference
+router.put("/preferences/:typeId", async (req: Request, res: Response) => {
+  try {
+    const { typeId } = req.params;
+    const { userId, enabled } = req.body;
+
+    if (!userId || typeof enabled !== "boolean") {
+      return res.status(400).json({ error: "userId and enabled (boolean) are required" });
+    }
+
+    // Check if preference exists
+    const existing = await db
+      .select()
+      .from(userNotificationPreferences)
+      .where(
+        and(
+          eq(userNotificationPreferences.userId, userId),
+          eq(userNotificationPreferences.notificationTypeId, typeId)
+        )
+      )
+      .limit(1);
+
+    if (existing.length > 0) {
+      // Update
+      await db
+        .update(userNotificationPreferences)
+        .set({ enabled })
+        .where(
+          and(
+            eq(userNotificationPreferences.userId, userId),
+            eq(userNotificationPreferences.notificationTypeId, typeId)
+          )
+        );
+    } else {
+      // Insert
+      await db.insert(userNotificationPreferences).values({
+        userId,
+        notificationTypeId: typeId,
+        enabled,
+      });
+    }
+
+    res.json({ success: true });
+  } catch (error: any) {
+    console.error("Error updating preference:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Admin: Send a test notification to a specific token
+router.post("/admin/test", async (req: Request, res: Response) => {
+  try {
+    const { token, title, body, bookId, chapter, verse, verseRef } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ error: "token is required" });
+    }
+
+    const payload = bookId && chapter && verse
+      ? buildVerseNotificationPayload(
+          verseRef || `Test Verse ${bookId}:${chapter}:${verse}`,
+          body || "For I know the plans I have for you...",
+          bookId,
+          chapter,
+          verse
+        )
+      : {
+          title: title || "Test Notification",
+          body: body || "This is a test notification from Vagabond Bible",
+          data: { type: "test" },
+        };
+
+    const result = await sendPushNotification(token, payload);
+
+    // Log the notification
+    await db.insert(notificationLog).values({
+      notificationTypeId: "test",
+      verseReference: verseRef || null,
+      verseText: body || null,
+      recipientCount: 1,
+      status: result.success ? "sent" : "failed",
+      errorMessage: result.error || null,
+    });
+
+    res.json(result);
+  } catch (error: any) {
+    console.error("Error sending test notification:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Admin: Get notification logs
+router.get("/admin/logs", async (req: Request, res: Response) => {
+  try {
+    const logs = await db
+      .select()
+      .from(notificationLog)
+      .orderBy(sql`${notificationLog.sentAt} DESC`)
+      .limit(50);
+
+    res.json(logs);
+  } catch (error: any) {
+    console.error("Error getting notification logs:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Admin: Get all registered tokens (for debugging)
+router.get("/admin/tokens", async (req: Request, res: Response) => {
+  try {
+    const tokens = await db
+      .select({
+        id: pushTokens.id,
+        userId: pushTokens.userId,
+        platform: pushTokens.platform,
+        timezone: pushTokens.timezone,
+        utcOffset: pushTokens.utcOffset,
+        createdAt: pushTokens.createdAt,
+      })
+      .from(pushTokens)
+      .orderBy(sql`${pushTokens.createdAt} DESC`)
+      .limit(100);
+
+    res.json(tokens);
+  } catch (error: any) {
+    console.error("Error getting tokens:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+export default router;

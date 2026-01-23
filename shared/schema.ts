@@ -205,15 +205,87 @@ export const emailQueue = pgTable("email_queue", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-// Scaffold for future: Notifications
-export const notifications = pgTable("notifications", {
+// ============================================
+// PUSH NOTIFICATION TABLES
+// ============================================
+
+// push_tokens - stores device tokens with timezone for global delivery
+export const pushTokens = pgTable("push_tokens", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: text("title"),
-  message: text("message"),
-  targetType: text("target_type"), // 'all', 'ambassadors', 'users'
-  sentAt: timestamp("sent_at"),
+  userId: text("user_id").notNull(),
+  deviceToken: text("device_token").notNull().unique(),
+  platform: text("platform").notNull(), // 'ios' | 'android'
+  timezone: text("timezone"), // e.g., "America/New_York"
+  utcOffset: integer("utc_offset"), // e.g., -5 (hours from UTC)
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// notification_types - company-configurable notification types
+export const notificationTypes = pgTable("notification_types", {
+  id: text("id").primaryKey(), // 'verse_of_week', 'call_to_prayer'
+  name: text("name").notNull(), // "Verse of the Week"
+  description: text("description"), // "Receive a weekly inspiring verse"
+  defaultEnabled: boolean("default_enabled").notNull().default(true),
+  sendDay: integer("send_day"), // 0-6 (0=Sunday, 2=Tuesday) - null means daily
+  sendHour: integer("send_hour").notNull(), // 0-23 (8 = 8am local time)
+  isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+// user_notification_preferences - per-user opt-in/out for each type
+export const userNotificationPreferences = pgTable("user_notification_preferences", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull(),
+  notificationTypeId: text("notification_type_id").notNull(),
+  enabled: boolean("enabled").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+// notification_log - for debugging and analytics
+export const notificationLog = pgTable("notification_log", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  notificationTypeId: text("notification_type_id"),
+  verseReference: text("verse_reference"),
+  verseText: text("verse_text"),
+  sentAt: timestamp("sent_at").notNull().defaultNow(),
+  recipientCount: integer("recipient_count"),
+  status: text("status"), // 'sent' | 'failed'
+  errorMessage: text("error_message"),
+});
+
+// Push notification schemas and types
+export const insertPushTokenSchema = createInsertSchema(pushTokens).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertNotificationTypeSchema = createInsertSchema(notificationTypes).omit({
+  createdAt: true,
+});
+
+export const insertUserNotificationPreferenceSchema = createInsertSchema(userNotificationPreferences).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertNotificationLogSchema = createInsertSchema(notificationLog).omit({
+  id: true,
+  sentAt: true,
+});
+
+export type InsertPushToken = z.infer<typeof insertPushTokenSchema>;
+export type PushToken = typeof pushTokens.$inferSelect;
+
+export type InsertNotificationType = z.infer<typeof insertNotificationTypeSchema>;
+export type NotificationType = typeof notificationTypes.$inferSelect;
+
+export type InsertUserNotificationPreference = z.infer<typeof insertUserNotificationPreferenceSchema>;
+export type UserNotificationPreference = typeof userNotificationPreferences.$inferSelect;
+
+export type InsertNotificationLog = z.infer<typeof insertNotificationLogSchema>;
+export type NotificationLog = typeof notificationLog.$inferSelect;
 
 // Ambassador schemas
 export const insertAmbassadorSchema = createInsertSchema(ambassadors).omit({
@@ -242,7 +314,6 @@ export type ReferralSignup = typeof referralSignups.$inferSelect;
 
 export type BibleStudy = typeof bibleStudies.$inferSelect;
 export type EmailQueueItem = typeof emailQueue.$inferSelect;
-export type Notification = typeof notifications.$inferSelect;
 
 export * from "./models/chat";
 export * from "./models/bible";

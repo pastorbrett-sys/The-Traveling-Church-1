@@ -14,6 +14,8 @@ import { NativeTabBar } from "@/components/native-tab-bar";
 import { OfflineBanner } from "@/components/offline-banner";
 import { useDeepLinks } from "@/hooks/use-deep-links";
 import { useReferralCapture } from "@/hooks/use-referral";
+import { usePushNotifications } from "@/hooks/usePushNotifications";
+import { useAuth } from "@/hooks/use-auth";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -133,6 +135,12 @@ function ReferralHandler() {
   return null;
 }
 
+function PushNotificationsHandler() {
+  const { user } = useAuth();
+  usePushNotifications(user?.id);
+  return null;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -143,6 +151,7 @@ function App() {
             <ScrollToTop />
             <DeepLinkHandler />
             <ReferralHandler />
+            <PushNotificationsHandler />
             <Toaster />
             <OfflineBanner />
             <Router />
