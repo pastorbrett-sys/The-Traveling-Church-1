@@ -332,26 +332,17 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 bg-background rounded-t-2xl z-[201] max-h-[90vh] flex flex-col"
+            className="fixed bottom-0 left-0 right-0 bg-background rounded-t-2xl z-[201] max-h-[85vh] flex flex-col pb-4"
             style={{
               paddingBottom: isNative 
                 ? isAndroid 
-                  ? "calc(16px + var(--android-nav-height, 0px))" 
-                  : "calc(16px + env(safe-area-inset-bottom, 0px))"
-                : "16px"
+                  ? "calc(8px + var(--android-nav-height, 0px))" 
+                  : "calc(8px + env(safe-area-inset-bottom, 0px))"
+                : undefined
             }}
           >
             <div 
               className="flex items-center justify-between p-4 border-b"
-              style={{
-                paddingTop: isNative 
-                  ? isAndroid 
-                    ? "calc(16px + var(--android-status-bar-height, 0px))" 
-                    : isIOS 
-                      ? "calc(16px + env(safe-area-inset-top, 0px))"
-                      : undefined
-                  : undefined
-              }}
             >
               <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-share-cancel" className="hover:bg-[#daa520]/20 hover:text-[#daa520]">
                 Cancel
