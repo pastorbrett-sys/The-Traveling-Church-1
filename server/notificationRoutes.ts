@@ -222,6 +222,72 @@ router.get("/admin/logs", async (req: Request, res: Response) => {
   }
 });
 
+// Admin: Send a verse of the week test to a specific user
+router.post("/admin/test-verse", async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required" });
+    }
+
+    // Get user's token
+    const tokens = await db
+      .select()
+      .from(pushTokens)
+      .where(eq(pushTokens.userId, userId));
+
+    if (tokens.length === 0) {
+      return res.status(404).json({ error: "No registered device for this user" });
+    }
+
+    // Import verse selection dynamically
+    const { selectVerseOfTheWeek } = await import("./verseSelection");
+    const verse = await selectVerseOfTheWeek();
+    
+    const verseRef = `${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse ? `-${verse.endVerse}` : ''}`;
+    
+    const payload = buildVerseNotificationPayload(
+      verseRef,
+      verse.text,
+      verse.bookId,
+      verse.chapter,
+      verse.verse
+    );
+
+    // Send to all user's devices
+    const results = [];
+    for (const token of tokens) {
+      const result = await sendPushNotification(token.deviceToken, payload);
+      results.push({ platform: token.platform, ...result });
+    }
+
+    // Log the notification
+    await db.insert(notificationLog).values({
+      notificationTypeId: "verse_of_week",
+      verseReference: verseRef,
+      verseText: verse.text,
+      recipientCount: tokens.length,
+      status: results.every(r => r.success) ? "sent" : "partial",
+      errorMessage: results.filter(r => !r.success).map(r => r.error).join("; ") || null,
+    });
+
+    res.json({
+      success: true,
+      verse: {
+        reference: verseRef,
+        text: verse.text,
+        theme: verse.theme,
+        notificationText: verse.notificationText,
+      },
+      results,
+    });
+  } catch (error: any) {
+    console.error("Error sending verse test:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Admin: Get all registered tokens (for debugging)
 router.get("/admin/tokens", async (req: Request, res: Response) => {
   try {
