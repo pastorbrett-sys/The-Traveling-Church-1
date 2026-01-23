@@ -187,8 +187,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       if (logoImgRef.current) {
         const logoHeight = 72;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
-        const logoX = 50;
-        const logoY = canvas.height - logoHeight - 50;
+        const logoX = 55;
+        const logoY = canvas.height - logoHeight - 55;
         
         ctx.globalAlpha = 0.9;
         ctx.drawImage(logoImgRef.current, logoX, logoY, logoWidth, logoHeight);
@@ -207,8 +207,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       }
       
       ctx.textAlign = "left";
-      let refX = canvas.width - totalWidth - 50;
-      const refY = canvas.height - 77;
+      let refX = canvas.width - totalWidth - 45;
+      const refY = canvas.height - 82;
       
       for (let i = 0; i < refText.length; i++) {
         ctx.fillText(refText[i], refX, refY);
