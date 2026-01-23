@@ -7,3 +7,8 @@ vite.config.ts.*
 
 # Ignore future chat screenshots (timestamp pattern)
 attached_assets/image_*.png
+
+# Ignore Firebase/Google service account keys (secrets)
+attached_assets/*firebase*.json
+attached_assets/*google-services*.json
+*-firebase-adminsdk-*.json
