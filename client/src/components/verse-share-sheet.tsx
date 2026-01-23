@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, Check } from "lucide-react";
+import { X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Capacitor } from "@capacitor/core";
 import { Share } from "@capacitor/share";
@@ -288,32 +288,6 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
     }
   };
 
-  const handleDownload = async () => {
-    if (!generatedImage) return;
-    
-    try {
-      if (isNative) {
-        const base64Data = generatedImage.split(",")[1];
-        const fileName = `Vagabond-${verseReference.replace(/\s+/g, "-")}-${Date.now()}.jpg`;
-        
-        await Filesystem.writeFile({
-          path: fileName,
-          data: base64Data,
-          directory: Directory.Documents,
-        });
-        
-        setIsSaved(true);
-      } else {
-        const link = document.createElement("a");
-        link.href = generatedImage;
-        link.download = `${verseReference.replace(/\s+/g, "-")}.jpg`;
-        link.click();
-        setIsSaved(true);
-      }
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
-  };
 
   return (
     <AnimatePresence>
@@ -331,10 +305,10 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            transition={{ type: "tween", duration: 0.25, ease: "easeInOut" }}
             className="fixed left-0 right-0 bg-background rounded-t-2xl z-[201] flex flex-col"
             style={{
-              bottom: isNative ? (isIOS ? "80px" : "60px") : "0px",
+              bottom: isNative ? (isIOS ? "80px" : "80px") : "0px",
               maxHeight: isNative ? "70vh" : "85vh",
               paddingBottom: "16px"
             }}
@@ -398,29 +372,18 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                     )}
                   </div>
                   
-                  <div className="flex gap-3 w-full max-w-md">
-                    <Button
-                      variant="outline"
-                      className="flex-1 gap-2 hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
-                      onClick={() => {
-                        setGeneratedImage(null);
-                        setSelectedBackground(null);
-                        setIsSaved(false);
-                      }}
-                      data-testid="button-change-background"
-                    >
-                      Change
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={handleDownload}
-                      data-testid="button-download-image"
-                      className="hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
-                    >
-                      <Download className="w-5 h-5" />
-                    </Button>
-                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full max-w-md hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
+                    onClick={() => {
+                      setGeneratedImage(null);
+                      setSelectedBackground(null);
+                      setIsSaved(false);
+                    }}
+                    data-testid="button-change-background"
+                  >
+                    Change
+                  </Button>
                   
                   <Button
                     className="w-full max-w-md bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white"
