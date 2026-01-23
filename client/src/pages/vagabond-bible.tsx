@@ -163,7 +163,7 @@ export default function VagabondBible() {
           <div className="max-w-2xl text-center" style={{ transform: 'translateY(2px)' }}>
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/20 scale-[0.94]">
               <span className="text-[hsl(35,65%,55%)]">★</span>
-              <span className="text-sm font-medium">Voted #1 Bible App by Experts</span>
+              <span className="text-sm font-medium">{t("landing.badge")}</span>
             </div>
             <h1 className="font-heading text-[40px] sm:text-5xl lg:text-[68px] mb-6 text-white font-extrabold leading-[1.12] sm:leading-[1.06]">
               {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
@@ -192,9 +192,9 @@ export default function VagabondBible() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <img src={ladderIcon} alt="Vagabond Icon" className="w-[80px] h-[80px] sm:w-[160px] sm:h-[160px] mx-auto mb-[35px] sm:mb-6" data-testid="img-features-icon" />
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-[hsl(20,10%,20%)]">Powerful Features for Your Spiritual Journey</h2>
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-[hsl(20,10%,20%)]">{t("landing.features_title")}</h2>
             <p className="text-[hsl(20,10%,40%)] text-lg max-w-2xl mx-auto">
-              Everything you need to study, reflect, and grow — designed for life on the move.
+              {t("landing.features_subtitle")}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -203,9 +203,9 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <Sparkles className="w-7 h-7 text-[hsl(25,35%,45%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">AI Verse Insights</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">{t("landing.feature_insights_title")}</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Get AI-powered explanations of any verse with historical context, cultural background, and practical application.
+                  {t("landing.feature_insights_desc")}
                 </p>
               </CardContent>
             </Card>
@@ -214,9 +214,9 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(35,65%,55%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <MessageCircle className="w-7 h-7 text-[hsl(35,65%,55%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">24/7 Pastor Chat</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">{t("landing.feature_chat_title")}</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Have meaningful conversations about faith, get guidance, and explore biblical wisdom with our AI pastor.
+                  {t("landing.feature_chat_desc")}
                 </p>
               </CardContent>
             </Card>
@@ -225,9 +225,9 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(15,45%,60%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <Search className="w-7 h-7 text-[hsl(15,45%,60%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Smart Search</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">{t("landing.feature_search_title")}</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Find any verse instantly. Search by keyword, topic, or theme across the entire Bible.
+                  {t("landing.feature_search_desc")}
                 </p>
               </CardContent>
             </Card>
@@ -236,9 +236,9 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(35,65%,55%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <Heart className="w-7 h-7 text-[hsl(35,65%,55%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Notes and Journal</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">{t("landing.feature_notes_title")}</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Save your reflections, bookmark favorite verses, and build your personal study journal.
+                  {t("landing.feature_notes_desc")}
                 </p>
               </CardContent>
             </Card>
@@ -247,9 +247,9 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(25,35%,45%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <BookOpen className="w-7 h-7 text-[hsl(25,35%,45%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Multi-Translation</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">{t("landing.feature_translations_title")}</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Access multiple Bible translations side-by-side. Compare verses across KJV, NIV, ESV, and more.
+                  {t("landing.feature_translations_desc")}
                 </p>
               </CardContent>
             </Card>
@@ -258,9 +258,9 @@ export default function VagabondBible() {
                 <div className="w-14 h-14 bg-[hsl(15,45%,60%)]/10 rounded-xl flex items-center justify-center mb-5">
                   <MapPin className="w-7 h-7 text-[hsl(15,45%,60%)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">Built for Travelers</h3>
+                <h3 className="font-heading text-xl font-semibold text-[hsl(20,10%,20%)] mb-3">{t("landing.feature_travelers_title")}</h3>
                 <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                  Designed for life on the road. Study anywhere, anytime — whether you have WiFi or not.
+                  {t("landing.feature_travelers_desc")}
                 </p>
               </CardContent>
             </Card>
@@ -272,31 +272,28 @@ export default function VagabondBible() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="font-heading text-[38px] font-semibold mb-6 text-[hsl(20,10%,20%)] leading-[43px]">
-                Faith Meets the <span className="text-[hsl(25,35%,45%)]">Open Road</span>
+                {t("landing.about_title_1")} <span className="text-[hsl(25,35%,45%)]">{t("landing.about_title_2")}</span>
               </h2>
               <p className="text-[hsl(20,10%,35%)] text-lg mb-6 leading-relaxed">
-                Vagabond Bible AI was born from a simple truth: your spiritual journey shouldn't stop 
-                just because you're on one. Whether you're a digital nomad, van-lifer, backpacker, 
-                or simply someone who finds God in the great outdoors — this is for you.
+                {t("landing.about_p1")}
               </p>
               <p className="text-[hsl(20,10%,35%)] text-lg mb-8 leading-relaxed">
-                We combine the timeless wisdom of Scripture with modern AI technology to create 
-                a Bible study experience that travels with you. No church building required.
+                {t("landing.about_p2")}
               </p>
               <div className="flex items-center gap-6">
                 <div className="text-center">
                   <div className="font-heading text-4xl font-bold text-[hsl(25,35%,45%)]">66</div>
-                  <div className="text-[hsl(20,10%,40%)] text-sm font-medium">Books</div>
+                  <div className="text-[hsl(20,10%,40%)] text-sm font-medium">{t("landing.about_books")}</div>
                 </div>
                 <div className="w-px h-14 bg-[hsl(30,20%,85%)]" />
                 <div className="text-center">
                   <div className="font-heading text-4xl font-bold text-[hsl(35,65%,55%)]">5+</div>
-                  <div className="text-[hsl(20,10%,40%)] text-sm font-medium">Translations</div>
+                  <div className="text-[hsl(20,10%,40%)] text-sm font-medium">{t("landing.about_translations")}</div>
                 </div>
                 <div className="w-px h-14 bg-[hsl(30,20%,85%)]" />
                 <div className="text-center">
                   <div className="font-heading text-4xl font-bold text-[hsl(15,45%,60%)]">24/7</div>
-                  <div className="text-[hsl(20,10%,40%)] text-sm font-medium">AI Support</div>
+                  <div className="text-[hsl(20,10%,40%)] text-sm font-medium">{t("landing.about_support")}</div>
                 </div>
               </div>
             </div>
@@ -304,7 +301,7 @@ export default function VagabondBible() {
               <img src={camperImage} alt="Person studying in camper van" className="rounded-2xl shadow-xl" />
               <img src={vagaburstIcon} alt="" className="absolute -top-[43px] -right-[43px] sm:-top-[53px] sm:-right-[53px] w-[85px] h-[85px] sm:w-[106px] sm:h-[106px] drop-shadow-lg" />
               <div className="absolute -bottom-6 -left-6 text-white p-5 rounded-xl shadow-lg bg-[#d79942]">
-                <p className="font-medium text-lg">"My quiet time, anywhere."</p>
+                <p className="font-medium text-lg">"{t("landing.about_quote")}"</p>
               </div>
               {/* Fireflies floating over the image */}
               <div className="fireflies-container">
@@ -340,20 +337,18 @@ export default function VagabondBible() {
             <div className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 bg-[hsl(35,65%,55%)]/10 text-[hsl(35,65%,45%)] px-4 py-2 rounded-full mb-6">
                 <Users className="w-4 h-4" />
-                <span className="text-sm font-semibold">Join the Community</span>
+                <span className="text-sm font-semibold">{t("landing.community_badge")}</span>
               </div>
               <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 text-[hsl(20,10%,20%)]">
-                Connect with Fellow Travelers
+                {t("landing.community_title")}
               </h2>
               <p className="text-[hsl(20,10%,35%)] text-lg mb-8 leading-relaxed">
-                You're not alone on this journey. Join a growing community of vagabonds, nomads, 
-                and seekers who are exploring faith on the move. Share insights, ask questions, 
-                and find your tribe.
+                {t("landing.community_desc")}
               </p>
               <a href="https://thetravelingchurch.com" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white rounded-full px-8 md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-join-community">
                   <Users className="w-5 h-5 mr-2" />
-                  Join The Traveling Church
+                  {t("landing.community_button")}
                 </Button>
               </a>
             </div>
@@ -380,19 +375,19 @@ export default function VagabondBible() {
             <div>
               <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10 mb-4" />
               <p className="text-[hsl(20,10%,40%)] leading-relaxed">
-                Your AI-powered Bible companion for life on the move.
+                {t("landing.footer_tagline")}
               </p>
             </div>
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">Quick Links</h3>
+              <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">{t("landing.footer_quick_links")}</h3>
               <ul className="space-y-3 text-[hsl(20,10%,40%)]">
-                <li><a href="#features" className="hover:text-[hsl(25,35%,45%)] transition-colors">Features</a></li>
-                <li><a href="#about" className="hover:text-[hsl(25,35%,45%)] transition-colors">About</a></li>
-                <li><a href="#community" className="hover:text-[hsl(25,35%,45%)] transition-colors">Community</a></li>
+                <li><a href="#features" className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_features")}</a></li>
+                <li><a href="#about" className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_about")}</a></li>
+                <li><a href="#community" className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_community")}</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">Contact</h3>
+              <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">{t("landing.footer_contact")}</h3>
               <div className="flex items-center gap-2 text-[hsl(20,10%,40%)] mb-3">
                 <Mail className="w-4 h-4" />
                 <a href="mailto:Pastorbrett@thetravelingchurch.com" className="hover:text-[hsl(25,35%,45%)] transition-colors" data-testid="link-email">
@@ -400,12 +395,12 @@ export default function VagabondBible() {
                 </a>
               </div>
               <p className="text-[hsl(20,10%,50%)] text-sm mt-4">
-                A project by The Traveling Church
+                {t("landing.footer_project_by")}
               </p>
             </div>
           </div>
           <div className="border-t border-[hsl(30,20%,88%)] mt-12 pt-8 text-center text-[hsl(20,10%,50%)] text-sm">
-            © {new Date().getFullYear()} Vagabond Bible AI. All rights reserved.
+            © {new Date().getFullYear()} {t("landing.footer_copyright")}
           </div>
         </div>
       </footer>
