@@ -1874,7 +1874,7 @@ Reference: ${verseRef} (${translation})`;
                 {[
                   { icon: Columns2, label: t.compare, onClick: () => setShowCompare(true), testId: "button-compare" },
                   { icon: StickyNote, label: t.note, onClick: () => setShowNote(true), testId: "button-add-note" },
-                  { icon: Share2, label: null, onClick: () => setShowShareSheet(true), testId: "button-share-verse" },
+                  { icon: Share2, label: t.share, onClick: () => setShowShareSheet(true), testId: "button-share-verse" },
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
                   { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
                 ].map((item, index) => {
