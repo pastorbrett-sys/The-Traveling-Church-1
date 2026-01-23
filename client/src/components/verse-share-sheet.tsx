@@ -24,6 +24,9 @@ import greenBlur from "@/assets/share-backgrounds/green-blur.jpg";
 import darkMountain from "@/assets/share-backgrounds/dark-mountain.jpg";
 import darkForest from "@/assets/share-backgrounds/dark-forest.jpg";
 import darkOcean from "@/assets/share-backgrounds/dark-ocean.jpg";
+import lightningStorm from "@/assets/share-backgrounds/lightning-storm.jpg";
+import darkRock from "@/assets/share-backgrounds/dark-rock.jpg";
+import fireEmbers from "@/assets/share-backgrounds/fire-embers.jpg";
 import vagabondLogo from "@/assets/vagabond-share-logo.png";
 
 const BACKGROUNDS = [
@@ -33,6 +36,9 @@ const BACKGROUNDS = [
   { id: "dark-mountain", src: darkMountain, name: "Dark Mountain" },
   { id: "dark-forest", src: darkForest, name: "Dark Forest" },
   { id: "dark-ocean", src: darkOcean, name: "Dark Ocean" },
+  { id: "lightning-storm", src: lightningStorm, name: "Lightning Storm" },
+  { id: "dark-rock", src: darkRock, name: "Dark Rock" },
+  { id: "fire-embers", src: fireEmbers, name: "Fire Embers" },
   { id: "calm-ocean", src: calmOcean, name: "Calm Ocean" },
   { id: "night-sky", src: nightSky, name: "Night Sky" },
   { id: "soft-clouds", src: softClouds, name: "Soft Clouds" },
@@ -347,7 +353,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                   : undefined
               }}
             >
-              <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-share-cancel">
+              <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-share-cancel" className="hover:bg-[#daa520]/20 hover:text-[#daa520]">
                 Cancel
               </Button>
               <span className="font-semibold">Choose Image</span>
@@ -406,7 +412,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                   <div className="flex gap-3 w-full max-w-md">
                     <Button
                       variant="outline"
-                      className="flex-1 gap-2"
+                      className="flex-1 gap-2 hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
                       onClick={() => {
                         setGeneratedImage(null);
                         setSelectedBackground(null);
@@ -421,6 +427,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                       size="icon"
                       onClick={handleDownload}
                       data-testid="button-download-image"
+                      className="hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
                     >
                       <Download className="w-5 h-5" />
                     </Button>
