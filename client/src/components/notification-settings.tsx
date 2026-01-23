@@ -63,17 +63,27 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
     checkPermission();
   }, [isNative]);
 
-  const { data: preferences, isLoading: isLoadingPrefs } = useQuery<NotificationPreference[]>({
+  const { data: preferences, isLoading: isLoadingPrefs, error: prefsError } = useQuery<NotificationPreference[]>({
     queryKey: ['notification-preferences', userId],
     queryFn: async () => {
+      console.log('[Notifications] Fetching preferences for userId:', userId);
       const response = await apiFetch(`/api/notifications/preferences?userId=${userId}`);
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('[Notifications] Failed to fetch preferences:', response.status, errorText);
         throw new Error('Failed to fetch notification preferences');
       }
-      return response.json();
+      const data = await response.json();
+      console.log('[Notifications] Received preferences:', data);
+      return data;
     },
     enabled: isNative && permissionStatus === 'granted' && !!userId,
   });
+
+  // Log errors for debugging
+  if (prefsError) {
+    console.error('[Notifications] Query error:', prefsError);
+  }
 
   const updatePreferenceMutation = useMutation({
     mutationFn: async ({ notificationTypeId, enabled }: { notificationTypeId: string; enabled: boolean }) => {
@@ -169,14 +179,15 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
               const isPending = updatePreferenceMutation.isPending && 
                 updatePreferenceMutation.variables?.notificationTypeId === pref.id;
 
-              const displayName = pref.name === 'verse_of_week' ? labels.verseOfWeek : pref.name;
-              const description = pref.name === 'verse_of_week' ? labels.verseOfWeekDesc : pref.description;
+              // Use pref.id to check notification type (id is 'verse_of_week', name is display name)
+              const displayName = pref.id === 'verse_of_week' ? labels.verseOfWeek : pref.name;
+              const description = pref.id === 'verse_of_week' ? labels.verseOfWeekDesc : pref.description;
 
               return (
                 <div
                   key={pref.id}
                   className="flex items-center justify-between py-2"
-                  data-testid={`notification-row-${pref.name}`}
+                  data-testid={`notification-row-${pref.id}`}
                 >
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm">{displayName}</p>
@@ -191,7 +202,7 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
                       <Switch
                         checked={pref.enabled}
                         onCheckedChange={() => handleToggle(pref.id, pref.enabled)}
-                        data-testid={`switch-${pref.name}`}
+                        data-testid={`switch-${pref.id}`}
                       />
                     )}
                   </div>
