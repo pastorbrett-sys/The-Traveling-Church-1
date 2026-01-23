@@ -18,7 +18,9 @@ import softGradient from "@/assets/share-backgrounds/soft-gradient.jpg";
 import calmOcean from "@/assets/share-backgrounds/calm-ocean.jpg";
 import softClouds from "@/assets/share-backgrounds/soft-clouds.jpg";
 import mistyForest from "@/assets/share-backgrounds/misty-forest.jpg";
-import lavenderField from "@/assets/share-backgrounds/lavender-field.jpg";
+import blueWater from "@/assets/share-backgrounds/blue-water.jpg";
+import goldenSunset from "@/assets/share-backgrounds/golden-sunset.jpg";
+import greenBlur from "@/assets/share-backgrounds/green-blur.jpg";
 import vagabondLogo from "@/assets/vagabond-share-logo.png";
 
 const BACKGROUNDS = [
@@ -31,7 +33,9 @@ const BACKGROUNDS = [
   { id: "wheat-field", src: wheatField, name: "Wheat Field" },
   { id: "misty-forest", src: mistyForest, name: "Misty Forest" },
   { id: "desert-dunes", src: desertDunes, name: "Desert Dunes" },
-  { id: "lavender-field", src: lavenderField, name: "Lavender Field" },
+  { id: "blue-water", src: blueWater, name: "Blue Water" },
+  { id: "golden-sunset", src: goldenSunset, name: "Golden Sunset" },
+  { id: "green-blur", src: greenBlur, name: "Green Blur" },
   { id: "lake-reflection", src: lakeReflection, name: "Lake Reflection" },
   { id: "pink-sky", src: pinkSky, name: "Pink Sky" },
   { id: "white-flower", src: whiteFlower, name: "White Flower" },
