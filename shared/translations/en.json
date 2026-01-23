@@ -128,6 +128,8 @@
     "share_to_earn": "Share this link to Earn money for users you share The Bible with that Subscribe",
     "grow_your_team": "Grow your team. When they earn, you earn. Invite others to join the Ambassador Program.",
     "admin_panel": "Admin Panel",
-    "approve": "Approve"
+    "approve": "Approve",
+    "my_signups": "My Signups",
+    "member_signups": "{name}'s Signups"
   }
 }

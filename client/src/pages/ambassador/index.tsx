@@ -179,7 +179,7 @@ export default function AmbassadorPage() {
   const [showSignups, setShowSignups] = useState(false);
   const [signupsList, setSignupsList] = useState<SignupDetail[]>([]);
   const [loadingSignups, setLoadingSignups] = useState(false);
-  const [signupsTitle, setSignupsTitle] = useState("My Signups");
+  const [signupsTitle, setSignupsTitle] = useState("");
   
   const [showClicks, setShowClicks] = useState(false);
   const [clicksList, setClicksList] = useState<ClickDetail[]>([]);
@@ -314,7 +314,7 @@ export default function AmbassadorPage() {
     const targetUserId = userId || user?.id;
     if (!targetUserId) return;
     
-    setSignupsTitle(memberName ? `${memberName}'s Signups` : "My Signups");
+    setSignupsTitle(memberName ? t("ambassador.member_signups").replace("{name}", memberName) : t("ambassador.my_signups"));
     setShowSignups(true);
     setLoadingSignups(true);
     try {
@@ -941,7 +941,7 @@ export default function AmbassadorPage() {
                   <CardTitle className="text-lg text-white flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <UserPlus className="w-5 h-5 text-green-400" />
-                      My Signups ({signupsList.length})
+                      {t("ambassador.my_signups")} ({signupsList.length})
                     </div>
                     <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${signupsOpen ? 'rotate-90' : ''}`} />
                   </CardTitle>
