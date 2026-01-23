@@ -1,0 +1,209 @@
+import { useState, useEffect } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Bell, BellOff, Loader2 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { usePlatform } from "@/contexts/platform-context";
+import { Capacitor } from "@capacitor/core";
+import { PushNotifications } from "@capacitor/push-notifications";
+
+interface NotificationPreference {
+  id: string;
+  name: string;
+  description: string;
+  enabled: boolean;
+}
+
+interface NotificationSettingsProps {
+  userId: string;
+  t: {
+    notifications?: string;
+    manageNotifications?: string;
+    verseOfWeek?: string;
+    verseOfWeekDesc?: string;
+    enableNotifications?: string;
+  };
+}
+
+const defaultText = {
+  notifications: "Notifications",
+  manageNotifications: "Manage your notification preferences",
+  verseOfWeek: "Verse of the Week",
+  verseOfWeekDesc: "Receive an inspiring Bible verse every Tuesday morning",
+  enableNotifications: "Enable push notifications to receive verses",
+};
+
+export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
+  const { isNative } = usePlatform();
+  const queryClient = useQueryClient();
+  const [permissionStatus, setPermissionStatus] = useState<'prompt' | 'granted' | 'denied' | 'unknown'>('unknown');
+  const [isCheckingPermission, setIsCheckingPermission] = useState(true);
+
+  const labels = { ...defaultText, ...t };
+
+  useEffect(() => {
+    async function checkPermission() {
+      if (!isNative || !Capacitor.isNativePlatform()) {
+        setPermissionStatus('unknown');
+        setIsCheckingPermission(false);
+        return;
+      }
+
+      try {
+        const result = await PushNotifications.checkPermissions();
+        setPermissionStatus(result.receive as 'prompt' | 'granted' | 'denied');
+      } catch (error) {
+        console.error('Error checking notification permission:', error);
+        setPermissionStatus('unknown');
+      } finally {
+        setIsCheckingPermission(false);
+      }
+    }
+    checkPermission();
+  }, [isNative]);
+
+  const { data: preferences, isLoading: isLoadingPrefs } = useQuery<NotificationPreference[]>({
+    queryKey: ['/api/notifications/preferences', userId],
+    enabled: isNative && permissionStatus === 'granted' && !!userId,
+  });
+
+  const updatePreferenceMutation = useMutation({
+    mutationFn: async ({ notificationTypeId, enabled }: { notificationTypeId: string; enabled: boolean }) => {
+      const response = await fetch(`/api/notifications/preferences/${notificationTypeId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, enabled }),
+      });
+      if (!response.ok) throw new Error('Failed to update preference');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/notifications/preferences', userId] });
+    },
+  });
+
+  const requestPermission = async () => {
+    if (!Capacitor.isNativePlatform()) return;
+    try {
+      const result = await PushNotifications.requestPermissions();
+      setPermissionStatus(result.receive as 'prompt' | 'granted' | 'denied');
+      if (result.receive === 'granted') {
+        await PushNotifications.register();
+      }
+    } catch (error) {
+      console.error('Error requesting notification permission:', error);
+    }
+  };
+
+  const handleToggle = (notificationTypeId: string, currentEnabled: boolean) => {
+    updatePreferenceMutation.mutate({ notificationTypeId, enabled: !currentEnabled });
+  };
+
+  if (!isNative) {
+    return null;
+  }
+
+  if (isCheckingPermission) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
+            <Bell className="w-5 h-5" />
+            {labels.notifications}
+          </CardTitle>
+          <CardDescription>{labels.manageNotifications}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-center py-4">
+            <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (permissionStatus !== 'granted') {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
+            <BellOff className="w-5 h-5 text-muted-foreground" />
+            {labels.notifications}
+          </CardTitle>
+          <CardDescription>{labels.manageNotifications}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <button
+            onClick={requestPermission}
+            className="w-full py-3 px-4 bg-[hsl(25,35%,45%)] text-white rounded-lg hover:bg-[hsl(25,35%,40%)] transition-colors text-sm font-medium"
+            data-testid="button-enable-notifications"
+          >
+            <Bell className="w-4 h-4 inline mr-2" />
+            {labels.enableNotifications}
+          </button>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
+          <Bell className="w-5 h-5 text-[hsl(25,35%,45%)]" />
+          {labels.notifications}
+        </CardTitle>
+        <CardDescription>{labels.manageNotifications}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        {isLoadingPrefs ? (
+          <div className="flex items-center justify-center py-4">
+            <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {preferences?.map((pref) => {
+              const isPending = updatePreferenceMutation.isPending && 
+                updatePreferenceMutation.variables?.notificationTypeId === pref.id;
+
+              const displayName = pref.name === 'verse_of_week' ? labels.verseOfWeek : pref.name;
+              const description = pref.name === 'verse_of_week' ? labels.verseOfWeekDesc : pref.description;
+
+              return (
+                <div
+                  key={pref.id}
+                  className="flex items-center justify-between py-2"
+                  data-testid={`notification-row-${pref.name}`}
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm">{displayName}</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {description}
+                    </p>
+                  </div>
+                  <div className="ml-4">
+                    {isPending ? (
+                      <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
+                    ) : (
+                      <Switch
+                        checked={pref.enabled}
+                        onCheckedChange={() => handleToggle(pref.id, pref.enabled)}
+                        data-testid={`switch-${pref.name}`}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+
+            {(!preferences || preferences.length === 0) && (
+              <p className="text-sm text-muted-foreground text-center py-2">
+                No notification types available
+              </p>
+            )}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}

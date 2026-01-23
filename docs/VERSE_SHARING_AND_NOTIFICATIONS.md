@@ -4,6 +4,68 @@
 
 ---
 
+## 📊 Market Research: Optimal Notification Timing
+
+| Finding | Research Data |
+|---------|---------------|
+| **Best Days** | Tuesday & Wednesday (8.4% CTR - highest engagement) |
+| **Best Morning Time** | 6-8 AM local (178% better than average) |
+| **Best Evening Time** | 6-8 PM local (8.4% CTR - highest click-through) |
+| **Worst Day** | Saturday (lowest engagement) |
+| **Avoid Sunday** | Only 10% of notifications sent (least popular) |
+
+**Our Default:** Tuesday at 8:00 AM local time for Verse of the Week
+
+---
+
+## 🌍 Timezone Handling
+
+**Approach:** Send notifications at target time in user's LOCAL timezone
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  How Global Notifications Work                                  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1. User registers push token on app launch                     │
+│     ↓                                                           │
+│  2. Device timezone detected automatically                      │
+│     (e.g., "America/New_York", "Africa/Addis_Ababa")           │
+│     ↓                                                           │
+│  3. Stored in push_tokens table with UTC offset                 │
+│     ↓                                                           │
+│  4. Hourly cron job runs every hour (0 * * * *)                 │
+│     ↓                                                           │
+│  5. For each notification type, finds users where:              │
+│     - Local time = target hour (e.g., 8am)                      │
+│     - Local day = target day (e.g., Tuesday)                    │
+│     - User has that notification enabled                        │
+│     ↓                                                           │
+│  6. Sends notifications to those users only                     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Example:** When cron runs at 14:00 UTC on Tuesday:
+- Users in UTC-6 (Chicago) → It's 8am Tuesday ✅ SEND
+- Users in UTC+3 (Ethiopia) → It's 5pm Tuesday ❌ SKIP
+- Users in UTC+0 (UK) → It's 2pm Tuesday ❌ SKIP
+- Users in UTC+8 (Singapore) → It's 10pm Tuesday ❌ SKIP
+
+**Every timezone is caught!** The cron runs 24 times per day, so 8am happens for everyone.
+
+---
+
+## 🔌 Plugin Stack (Proven & Reliable)
+
+| Component | Plugin | Weekly Downloads | Purpose |
+|-----------|--------|------------------|---------|
+| **Push Notifications** | `@capacitor/push-notifications` | 1.2M | Device token registration, notification handling |
+| **Job Scheduler** | `node-cron` | 1.2M | Hourly timezone checks |
+| **Server FCM** | `firebase-admin` | 2M+ | Send notifications via Firebase Cloud Messaging |
+
+---
+
 ## 🎯 The Big Picture
 
 **Goal:** Make it easy for users to share beautiful verse images, and remind them weekly with an inspiring verse that funnels them right to the share feature.
@@ -247,27 +309,59 @@ server/
 ## 💾 Database Schema
 
 ```typescript
-// push_tokens table
+// push_tokens table - stores device tokens with timezone for global delivery
 export const pushTokens = pgTable("push_tokens", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: text("user_id").notNull().references(() => users.id),
   deviceToken: text("device_token").notNull().unique(),
   platform: text("platform").notNull(), // 'ios' | 'android'
-  optedOut: boolean("opted_out").default(false),
+  timezone: text("timezone"),           // e.g., "America/New_York"
+  utcOffset: integer("utc_offset"),      // e.g., -5 (hours from UTC)
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// notification_log table (for debugging)
+// notification_types table - company-configurable notification types
+// Each type can have different day/time settings
+export const notificationTypes = pgTable("notification_types", {
+  id: text("id").primaryKey(),           // 'verse_of_week', 'call_to_prayer', 'daily_devotional'
+  name: text("name").notNull(),           // "Verse of the Week"
+  description: text("description"),       // "Receive a weekly inspiring verse"
+  defaultEnabled: boolean("default_enabled").default(true),
+  sendDay: integer("send_day"),           // 0-6 (0=Sunday, 2=Tuesday) - null means daily
+  sendHour: integer("send_hour").notNull(), // 0-23 (8 = 8am local time)
+  isActive: boolean("is_active").default(true), // Admin can disable types
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// user_notification_preferences - per-user opt-in/out for each type
+export const userNotificationPreferences = pgTable("user_notification_preferences", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: text("user_id").notNull().references(() => users.id),
+  notificationTypeId: text("notification_type_id").notNull()
+    .references(() => notificationTypes.id),
+  enabled: boolean("enabled").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// notification_log table - for debugging and analytics
 export const notificationLog = pgTable("notification_log", {
   id: uuid("id").defaultRandom().primaryKey(),
-  type: text("type").notNull(), // 'verse_of_week' | 'test'
+  notificationTypeId: text("notification_type_id"),
   verseReference: text("verse_reference"),
   sentAt: timestamp("sent_at").defaultNow(),
   recipientCount: integer("recipient_count"),
   status: text("status"), // 'sent' | 'failed'
+  errorMessage: text("error_message"),
 });
 ```
+
+**Example notification_types rows:**
+| id | name | sendDay | sendHour | Description |
+|----|------|---------|----------|-------------|
+| verse_of_week | Verse of the Week | 2 (Tuesday) | 8 | Weekly inspiring verse |
+| call_to_prayer | Call to Prayer | null (daily) | 19 | Daily 7pm prayer reminder |
+| daily_devotional | Daily Devotional | null (daily) | 6 | Morning devotional |
 
 ---
 

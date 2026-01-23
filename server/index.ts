@@ -5,6 +5,7 @@ import { setupVite, serveStatic, log } from "./vite";
 import { runMigrations } from 'stripe-replit-sync';
 import { getStripeSync } from './stripeClient';
 import { WebhookHandlers } from './webhookHandlers';
+import { initNotificationCron } from './notificationCron';
 
 const app = express();
 
@@ -199,6 +200,9 @@ app.use((req, res, next) => {
   } else {
     serveStatic(app);
   }
+
+  // Initialize notification cron job
+  initNotificationCron();
 
   const port = parseInt(process.env.PORT || '5000', 10);
   server.listen({

@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
+import { NotificationSettings } from "@/components/notification-settings";
 
 interface PricingTierResponse {
   tier: 'premium' | 'emerging';
@@ -128,6 +129,11 @@ const profileUiText = {
     pendingApproval: "Your application is being reviewed",
     viewDashboard: "View Dashboard",
     yourReferrals: "Your Referrals",
+    notifications: "Notifications",
+    manageNotifications: "Manage your notification preferences",
+    verseOfWeek: "Verse of the Week",
+    verseOfWeekDesc: "Receive an inspiring Bible verse every Tuesday morning",
+    enableNotifications: "Enable push notifications to receive verses",
   },
   am: {
     myProfile: "የእኔ መገለጫ",
@@ -214,6 +220,11 @@ const profileUiText = {
     pendingApproval: "ማመልከቻዎ በመገምገም ላይ ነው",
     viewDashboard: "ዳሽቦርድ ይመልከቱ",
     yourReferrals: "ሪፈራሎችዎ",
+    notifications: "ማሳወቂያዎች",
+    manageNotifications: "የማሳወቂያ ምርጫዎችዎን ያስተዳድሩ",
+    verseOfWeek: "የሳምንቱ ጥቅስ",
+    verseOfWeekDesc: "በየማክሰኞ ጠዋት አነቃቂ የመጽሐፍ ቅዱስ ጥቅስ ይቀበሉ",
+    enableNotifications: "ጥቅሶችን ለመቀበል ማሳወቂያዎችን ያንቁ",
   }
 };
 
@@ -925,6 +936,20 @@ export default function Profile() {
                 )}
               </CardContent>
             </Card>
+
+            {/* Notification Settings - only shown on native platforms */}
+            {user?.id && (
+              <NotificationSettings 
+                userId={user.id}
+                t={{
+                  notifications: t.notifications,
+                  manageNotifications: t.manageNotifications,
+                  verseOfWeek: t.verseOfWeek,
+                  verseOfWeekDesc: t.verseOfWeekDesc,
+                  enableNotifications: t.enableNotifications,
+                }}
+              />
+            )}
 
             <Card>
               <CardHeader>

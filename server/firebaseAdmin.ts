@@ -87,3 +87,145 @@ export async function upsertFirebaseUser(decodedToken: admin.auth.DecodedIdToken
     language: language || 'en', // Include language preference for new users
   });
 }
+
+// ============================================
+// PUSH NOTIFICATION FUNCTIONS (FCM)
+// ============================================
+
+export interface NotificationPayload {
+  title: string;
+  body: string;
+  data?: Record<string, string>;
+}
+
+export interface DeepLinkData {
+  type: string;
+  bookId?: number;
+  chapter?: number;
+  verse?: number;
+  showActionMenu?: boolean;
+  triggerHighlight?: boolean;
+}
+
+export async function sendPushNotification(
+  token: string,
+  payload: NotificationPayload
+): Promise<{ success: boolean; messageId?: string; error?: string }> {
+  try {
+    const app = getFirebaseAdmin();
+    const message: admin.messaging.Message = {
+      token,
+      notification: {
+        title: payload.title,
+        body: payload.body,
+      },
+      data: payload.data,
+      apns: {
+        payload: {
+          aps: {
+            sound: 'default',
+            badge: 1,
+          },
+        },
+      },
+      android: {
+        priority: 'high',
+        notification: {
+          sound: 'default',
+          channelId: 'verse_notifications',
+        },
+      },
+    };
+
+    const messageId = await app.messaging().send(message);
+    return { success: true, messageId };
+  } catch (error: any) {
+    console.error("Error sending push notification:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function sendBatchNotifications(
+  tokens: string[],
+  payload: NotificationPayload
+): Promise<{ successCount: number; failureCount: number; errors: string[] }> {
+  if (tokens.length === 0) {
+    return { successCount: 0, failureCount: 0, errors: [] };
+  }
+
+  try {
+    const app = getFirebaseAdmin();
+    const messages: admin.messaging.Message[] = tokens.map(token => ({
+      token,
+      notification: {
+        title: payload.title,
+        body: payload.body,
+      },
+      data: payload.data,
+      apns: {
+        payload: {
+          aps: {
+            sound: 'default',
+            badge: 1,
+          },
+        },
+      },
+      android: {
+        priority: 'high' as const,
+        notification: {
+          sound: 'default',
+          channelId: 'verse_notifications',
+        },
+      },
+    }));
+
+    // Firebase supports up to 500 messages per batch
+    const batchSize = 500;
+    let successCount = 0;
+    let failureCount = 0;
+    const errors: string[] = [];
+
+    for (let i = 0; i < messages.length; i += batchSize) {
+      const batch = messages.slice(i, i + batchSize);
+      const response = await app.messaging().sendEach(batch);
+      
+      successCount += response.successCount;
+      failureCount += response.failureCount;
+      
+      response.responses.forEach((resp, idx) => {
+        if (!resp.success && resp.error) {
+          errors.push(`Token ${i + idx}: ${resp.error.message}`);
+        }
+      });
+    }
+
+    return { successCount, failureCount, errors };
+  } catch (error: any) {
+    console.error("Error sending batch notifications:", error);
+    return { successCount: 0, failureCount: tokens.length, errors: [error.message] };
+  }
+}
+
+export function buildVerseNotificationPayload(
+  verseRef: string,
+  verseText: string,
+  bookId: number,
+  chapter: number,
+  verse: number
+): NotificationPayload {
+  const shortText = verseText.length > 100 ? verseText.substring(0, 97) + '...' : verseText;
+  
+  return {
+    title: '✨ Verse of the Week',
+    body: `${shortText} - ${verseRef}`,
+    data: {
+      type: 'verse_of_week',
+      bookId: String(bookId),
+      chapter: String(chapter),
+      verse: String(verse),
+      verseRef,
+      showActionMenu: 'true',
+      triggerHighlight: 'true',
+    },
+  };
+}

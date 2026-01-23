@@ -43,6 +43,14 @@ The application uses a component-based frontend architecture and an Express.js b
   - Implementation: `server/email.ts`, triggered from auth storage (welcome) and Stripe webhooks (subscription).
 - **Native App (Capacitor)**: Supports iOS and Android via Capacitor, with platform-specific UI/UX adaptations like native tab bars, full-screen modals, and safe area handling. API calls from native platforms prepend the production URL and handle session cookies securely. App Transport Security (ATS) is configured for broader compatibility.
   - **Android Safe Area Fix**: Uses `@capacitor-community/safe-area` plugin to fix Android WebView's broken `env(safe-area-inset-*)` CSS variables (Chromium <140 bug). MainActivity.java enables edge-to-edge mode via `EdgeToEdge.enable(this)`. The plugin auto-detects Chromium version and applies correct padding.
+- **Verse Sharing**: Canvas-based image generation with 21 background options. Native Share API integration for iOS/Android. Custom share format with verse reference and Vagabond Bible branding. See `client/src/components/verse-share-sheet.tsx`.
+- **Push Notifications**: Firebase Cloud Messaging (FCM) integration for weekly verse reminders.
+  - **Timezone-aware delivery**: Hourly cron job sends notifications at user's local time (e.g., Tuesday 8am local).
+  - **AI verse selection**: GPT-4o selects thematic verses (10 rotating themes) each week.
+  - **Database tables**: `push_tokens`, `notification_types`, `user_notification_preferences`, `notification_log`.
+  - **Configurable types**: Each notification type (verse_of_week, etc.) has separate day/time settings.
+  - **User preferences**: Toggle on/off per notification type in Profile settings.
+  - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `client/src/hooks/usePushNotifications.ts`.
 
 ## External Dependencies
 
