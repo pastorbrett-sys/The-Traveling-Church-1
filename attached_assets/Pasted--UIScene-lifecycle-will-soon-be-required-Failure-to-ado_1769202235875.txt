@@ -1,0 +1,121 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Could not create a sandbox extension for '/var/containers/Bundle/Application/ED8C7AF8-16D3-44C3-8F5E-805CE36AF6D3/App.app'
+⚡️  Loading app at capacitor://localhost...
+WebContent[14014] Unable to hide query parameters from script (missing data)
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 55876992
+⚡️  To Native ->  FirebaseAuthentication addListener 55876993
+⚡️  TO JS {"user":{"isAnonymous":false,"email":"pastorbrett@thetravelingchurch.com","metadata":{"lastSignInTime":1769125239511,"creationTime":1767847137438},"tenantId":null,"emailVerified":true,"photoUrl":"https:\/\/lh3.googleusercontent.com\/a-\/ALV-UjVU8PUfjnDupiI
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 55876994
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55876995
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2 (Build 23C55)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  [log] - [NATIVE AUTH] Auth state changed: pastorbrett@thetravelingchurch.com
+⚡️  TO JS {"customerInfo":{"subscriptionsByProductIdentifier":{},"entitlements":{"all":{},"active":{},"verification":"VERIFIED"},"allPurchasedProductIdentifiers":[],"activeSubscriptions":[],"originalPurchaseDateMillis":null,"latestExpirationDateMillis":null,"request
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings'
+⚡️  To Native ->  CapacitorHttp request 55876996
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["pro_monthly_emerging", "vagabond_bible_pro_monthly"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings, 0 requests left in the queue
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report' (304)
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55876997
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  To Native ->  CapacitorHttp request 55876998
+DEBUG: ℹ️ HealthReportOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report, 0 requests left in the queue
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+⚡️  TO JS {"url":"https:\/\/developers.google.com\/","headers":{"alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","cache-control":"no-cache, must-revalidate","expires":"0","x-xss-protection":"0","pragma":"no-cache","content-encoding":"gzip","x-cloud-tra
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+⚡️  TO JS {"headers":{"server":"Google Frontend","content-length":"1590","expires":"Fri, 23 Jan 2026 21:02:41 GMT","date":"Fri, 23 Jan 2026 21:02:41 GMT","set-cookie":"connect.sid=s%3AMhV7f-djH6mjekon4fzCiPWXvzC0H3gr.yG1pxCz4iUC1wnHcYaUNMCtAnzP%2Fohw8SteaqOhn5FQ; Pa
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55876999
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  To Native ->  PushNotifications removeAllListeners 55877000
+⚡️  To Native ->  PushNotifications ⚡️  TO JS checkPermissions 55877001
+undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 55877002
+⚡️  TO JS ⚡️  To Native ->  undefined
+FirebaseAuthentication addListener 55877003
+⚡️  To Native ->  CapacitorHttp request 55877004
+⚡️  TO JS {"receive":"granted"}
+⚡️  To Native ->  PushNotifications register 55877005
+⚡️  TO JS undefined
+⚡️  To Native ->  PushNotifications addListener 55877006
+⚡️  To Native ->  PushNotifications addListener 55877007
+⚡️  To Native ->  PushNotifications addListener 55877008
+⚡️  To Native ->  PushNotifications addListener 55877009
+⚡️  TO JS {"headers":{"etag":"W\/\"20-hMn53EMmkodjvGi1nqRqRjzwzfo\"","x-cloud-trace-context":"f1ab6da01c4bee9f33a0d5fe033a54f1","strict-transport-security":"max-age=63072000; includeSubDomains","x-powered-by":"Express","content-length":"32","content-type":"applicati
+⚡️  [log] - [Auth] Synced user language: en
+⚡️  To Native ->  FirebaseAuthentication addListener 55877010
+⚡️  To Native ->  FirebaseAuthentication addListener 55877011
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55877012
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55877013
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55877014
+⚡️  To Native ->  FirebaseAuthentication addListener 55877015
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55877016
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55877017
+⚡️  To Native ->  FirebaseAuthentication getIdToken 55877018
+⚡️  To Native ->  FirebaseAuthentication addListener 55877019
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
