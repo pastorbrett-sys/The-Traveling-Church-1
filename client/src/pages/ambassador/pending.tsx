@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import { apiFetch } from "@/lib/queryClient";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
+import { t } from "@/lib/i18n";
 
 export default function AmbassadorPending() {
   const { user, isAuthenticated, isLoading } = useAuth();
@@ -76,19 +77,18 @@ export default function AmbassadorPending() {
           />
           <div className="flex items-center justify-center gap-2 text-[#c08e00]">
             <Clock className="w-5 h-5" />
-            <CardTitle className="text-xl text-[#c08e00]">Application Pending</CardTitle>
+            <CardTitle className="text-xl text-[#c08e00]">{t("ambassador.application_pending")}</CardTitle>
           </div>
         </CardHeader>
         
         <CardContent className="space-y-6">
           <p className="text-gray-400 text-center">
-            Thank you for applying to the Vagabond Bible Ambassador Program! 
-            Your application is being reviewed and you'll be notified once approved.
+            {t("ambassador.thank_you")}
           </p>
 
           {ambassador && (
             <div className="bg-[#0a0a0a] rounded-lg p-4 space-y-3">
-              <p className="text-sm text-gray-500">Your referral link is ready:</p>
+              <p className="text-sm text-gray-500">{t("ambassador.referral_ready")}</p>
               <div className="flex items-center gap-2">
                 <div className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-lg px-3 py-2 text-sm text-gray-300 truncate">
                   <Link className="inline w-4 h-4 mr-2 text-[#c08e00]" />
@@ -109,14 +109,14 @@ export default function AmbassadorPending() {
                 </Button>
               </div>
               <p className="text-xs text-gray-500">
-                You can start sharing this link now - clicks will be tracked!
+                {t("ambassador.start_sharing")}
               </p>
             </div>
           )}
 
           <div className="pt-4 border-t border-[#333]">
             <p className="text-xs text-gray-500 text-center">
-              Questions? Contact us at support@vagabondbible.com
+              {t("ambassador.questions")}
             </p>
           </div>
         </CardContent>

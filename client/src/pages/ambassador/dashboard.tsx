@@ -8,6 +8,7 @@ import { apiFetch } from "@/lib/queryClient";
 import { isNativePlatform } from "@/lib/host-detection";
 import { Haptics, NotificationType } from "@capacitor/haptics";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
+import { t } from "@/lib/i18n";
 
 interface AmbassadorStats {
   clicks: number;
@@ -128,7 +129,7 @@ export default function AmbassadorDashboard() {
             className="h-14 object-contain"
           />
           <div className="text-right">
-            <p className="text-gray-400 text-sm">Welcome back,</p>
+            <p className="text-gray-400 text-sm">{t("ambassador.welcome_back")}</p>
             <p className="text-white font-medium">{ambassador?.name}</p>
           </div>
         </div>
@@ -137,7 +138,7 @@ export default function AmbassadorDashboard() {
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-white flex items-center gap-2">
               <Link className="w-5 h-5 text-[#c08e00]" />
-              Your Referral Link
+              {t("ambassador.your_referral_link")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -151,14 +152,14 @@ export default function AmbassadorDashboard() {
                 data-testid="button-copy-referral"
               >
                 {copiedRef ? (
-                  <><Check className="w-4 h-4 mr-2" /> Copied!</>
+                  <><Check className="w-4 h-4 mr-2" /> {t("ambassador.copied")}</>
                 ) : (
-                  <><Copy className="w-4 h-4 mr-2" /> Copy</>
+                  <><Copy className="w-4 h-4 mr-2" /> {t("ambassador.copy")}</>
                 )}
               </Button>
             </div>
             <p className="text-xs text-gray-500 mt-2">
-              Share this link to track signups and earn credit for Pro conversions
+              {t("ambassador.share_to_track")}
             </p>
           </CardContent>
         </Card>
@@ -168,7 +169,7 @@ export default function AmbassadorDashboard() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Link Clicks</p>
+                  <p className="text-gray-500 text-sm">{t("ambassador.link_clicks")}</p>
                   <p className="text-3xl font-bold text-white">{stats.clicks}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
@@ -182,7 +183,7 @@ export default function AmbassadorDashboard() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Signups</p>
+                  <p className="text-gray-500 text-sm">{t("ambassador.signups")}</p>
                   <p className="text-3xl font-bold text-white">{stats.signups}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
@@ -196,7 +197,7 @@ export default function AmbassadorDashboard() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Pro Conversions</p>
+                  <p className="text-gray-500 text-sm">{t("ambassador.pro_conversions")}</p>
                   <p className="text-3xl font-bold text-[#c08e00]">{stats.conversions}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-[#c08e00]/20 flex items-center justify-center">
@@ -211,12 +212,12 @@ export default function AmbassadorDashboard() {
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-white flex items-center gap-2">
               <Users className="w-5 h-5 text-[#c08e00]" />
-              Recruit Ambassadors
+              {t("ambassador.recruit_ambassadors")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-gray-400 text-sm">
-              Invite others to join the Ambassador Program and grow your team
+              {t("ambassador.invite_others")}
             </p>
             <div className="flex items-center gap-2">
               <div className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-gray-300 truncate font-mono text-sm">
@@ -229,9 +230,9 @@ export default function AmbassadorDashboard() {
                 data-testid="button-copy-invite"
               >
                 {copiedInvite ? (
-                  <><Check className="w-4 h-4 mr-2" /> Copied!</>
+                  <><Check className="w-4 h-4 mr-2" /> {t("ambassador.copied")}</>
                 ) : (
-                  <><Copy className="w-4 h-4 mr-2" /> Copy</>
+                  <><Copy className="w-4 h-4 mr-2" /> {t("ambassador.copy")}</>
                 )}
               </Button>
             </div>
@@ -243,7 +244,7 @@ export default function AmbassadorDashboard() {
             <CardHeader className="pb-2">
               <CardTitle className="text-lg text-white flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-[#c08e00]" />
-                My Team ({team.length})
+                {t("ambassador.my_team")} ({team.length})
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -259,11 +260,11 @@ export default function AmbassadorDashboard() {
                     </div>
                     <div className="flex items-center gap-4 text-sm">
                       <div className="text-center">
-                        <p className="text-gray-500">Clicks</p>
+                        <p className="text-gray-500">{t("ambassador.clicks")}</p>
                         <p className="text-white font-medium">{member.clicks}</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-gray-500">Signups</p>
+                        <p className="text-gray-500">{t("ambassador.signups")}</p>
                         <p className="text-white font-medium">{member.signups}</p>
                       </div>
                       <div className={`px-2 py-1 rounded text-xs ${
@@ -271,7 +272,7 @@ export default function AmbassadorDashboard() {
                           ? "bg-green-500/20 text-green-400" 
                           : "bg-yellow-500/20 text-yellow-400"
                       }`}>
-                        {member.status}
+                        {member.status === "active" ? t("ambassador.active") : t("ambassador.pending")}
                       </div>
                     </div>
                   </div>

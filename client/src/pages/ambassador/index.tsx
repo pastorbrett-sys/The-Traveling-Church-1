@@ -29,6 +29,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { apiFetch } from "@/lib/queryClient";
 import { isNativePlatform } from "@/lib/host-detection";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
+import { t } from "@/lib/i18n";
 
 const INVITE_CODE_KEY = "vagabond_ambassador_invite";
 const INVITE_EXPIRY_KEY = "vagabond_ambassador_invite_expiry";
@@ -411,7 +412,7 @@ export default function AmbassadorPage() {
             data-testid="button-back-login"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back
+            {t("ambassador.back")}
           </Button>
         </div>
         <Card className="w-full max-w-md bg-[#1a1a1a] border-[#333] shadow-2xl">
@@ -421,13 +422,13 @@ export default function AmbassadorPage() {
               alt="Vagabond Bible Ambassador" 
               className="h-24 mx-auto mb-4 object-contain"
             />
-            <CardTitle className="text-xl text-white">Join the Ambassador Program</CardTitle>
+            <CardTitle className="text-xl text-white">{t("ambassador.join_program")}</CardTitle>
             <CardDescription className="text-gray-400">
-              Sign in to your Vagabond Bible account to become an ambassador
+              {t("ambassador.sign_in_to_continue")}
             </CardDescription>
             {inviteCode && (
               <p className="text-sm text-[#c08e00] mt-2">
-                You've been invited to join the Ambassador Program
+                {t("ambassador.invited_to_join")}
               </p>
             )}
           </CardHeader>
@@ -437,10 +438,10 @@ export default function AmbassadorPage() {
               className="w-full bg-[#c08e00] hover:bg-[#a07800] text-black font-medium"
               data-testid="button-go-to-login"
             >
-              Sign In to Continue
+              {t("ambassador.sign_in_continue")}
             </Button>
             <p className="text-xs text-gray-500 text-center">
-              Don't have an account? You can create one during sign in.
+              {t("ambassador.no_account")}
             </p>
           </CardContent>
         </Card>
@@ -467,7 +468,7 @@ export default function AmbassadorPage() {
             data-testid="button-back-apply"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back
+            {t("ambassador.back")}
           </Button>
         </div>
         <Card className="w-full max-w-md mx-auto bg-[#1a1a1a] border-[#333] shadow-2xl">
@@ -477,13 +478,13 @@ export default function AmbassadorPage() {
               alt="Vagabond Bible Ambassador" 
               className="h-24 mx-auto mb-4 object-contain"
             />
-            <CardTitle className="text-xl text-white">Become an Ambassador</CardTitle>
+            <CardTitle className="text-xl text-white">{t("ambassador.become_ambassador")}</CardTitle>
             <CardDescription className="text-gray-400">
-              Share Vagabond Bible with your community and earn rewards
+              {t("ambassador.share_and_earn")}
             </CardDescription>
             {inviteCode && (
               <p className="text-sm text-[#c08e00] mt-2">
-                You've been invited by another ambassador
+                {t("ambassador.invited_by_ambassador")}
               </p>
             )}
           </CardHeader>
@@ -496,13 +497,13 @@ export default function AmbassadorPage() {
               )}
               
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-gray-300">Your Name</Label>
+                <Label htmlFor="name" className="text-gray-300">{t("ambassador.your_name")}</Label>
                 <Input
                   id="name"
                   type="text"
                   value={applyName}
                   onChange={(e) => setApplyName(e.target.value)}
-                  placeholder="Enter your name"
+                  placeholder={t("ambassador.enter_name")}
                   className="bg-[#0a0a0a] border-gray-700 text-white"
                   data-testid="input-apply-name"
                   required
@@ -510,13 +511,13 @@ export default function AmbassadorPage() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-300">Your Email</Label>
+                <Label htmlFor="email" className="text-gray-300">{t("ambassador.your_email")}</Label>
                 <Input
                   id="email"
                   type="email"
                   value={applyEmail}
                   onChange={(e) => setApplyEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder={t("ambassador.enter_email")}
                   className="bg-[#0a0a0a] border-gray-700 text-white"
                   data-testid="input-apply-email"
                   required
@@ -524,20 +525,20 @@ export default function AmbassadorPage() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="whatsapp" className="text-gray-300">WhatsApp Number (optional)</Label>
+                <Label htmlFor="whatsapp" className="text-gray-300">{t("ambassador.whatsapp")}</Label>
                 <Input
                   id="whatsapp"
                   type="tel"
                   value={applyWhatsapp}
                   onChange={(e) => setApplyWhatsapp(e.target.value)}
-                  placeholder="e.g., +1 555 123 4567"
+                  placeholder={t("ambassador.whatsapp_placeholder")}
                   className="bg-[#0a0a0a] border-gray-700 text-white"
                   data-testid="input-apply-whatsapp"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="country" className="text-gray-300">Country</Label>
+                <Label htmlFor="country" className="text-gray-300">{t("ambassador.country")}</Label>
                 <Popover open={countryOpen} onOpenChange={setCountryOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -547,15 +548,15 @@ export default function AmbassadorPage() {
                       className="w-full justify-between bg-[#0a0a0a] border-gray-700 text-white hover:bg-[#1a1a1a] hover:text-white"
                       data-testid="input-apply-country"
                     >
-                      {applyCountry || "Select your country..."}
+                      {applyCountry || t("ambassador.select_country")}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-full p-0 bg-[#0a0a0a] border-gray-700" align="start">
                     <Command className="bg-[#0a0a0a]">
-                      <CommandInput placeholder="Search countries..." className="text-white" />
+                      <CommandInput placeholder={t("ambassador.search_countries")} className="text-white" />
                       <CommandList>
-                        <CommandEmpty className="text-gray-400 py-4 text-center text-sm">No country found.</CommandEmpty>
+                        <CommandEmpty className="text-gray-400 py-4 text-center text-sm">{t("ambassador.no_country")}</CommandEmpty>
                         <CommandGroup>
                           {COUNTRIES.map((country) => (
                             <CommandItem
@@ -579,37 +580,36 @@ export default function AmbassadorPage() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="source" className="text-gray-300">How did you hear about us?</Label>
+                <Label htmlFor="source" className="text-gray-300">{t("ambassador.how_heard")}</Label>
                 <Input
                   id="source"
                   type="text"
                   value={applySource}
                   onChange={(e) => setApplySource(e.target.value)}
-                  placeholder="e.g., Tour guide, friend, social media"
+                  placeholder={t("ambassador.how_heard_placeholder")}
                   className="bg-[#0a0a0a] border-gray-700 text-white"
                   data-testid="input-apply-source"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="reason" className="text-gray-300">Why do you want to be an ambassador?</Label>
+                <Label htmlFor="reason" className="text-gray-300">{t("ambassador.why_ambassador")}</Label>
                 <textarea
                   id="reason"
                   value={applyReason}
                   onChange={(e) => setApplyReason(e.target.value)}
-                  placeholder="Tell us about yourself and why you'd like to share Vagabond Bible..."
+                  placeholder={t("ambassador.why_ambassador_placeholder")}
                   className="w-full bg-[#0a0a0a] border border-gray-700 text-white rounded-md px-3 py-2 text-sm min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#c08e00] focus:border-transparent"
                   data-testid="input-apply-reason"
                 />
               </div>
               
               <div className="bg-[#0a0a0a] rounded-lg p-4 space-y-2">
-                <p className="text-sm font-medium text-white">As an Ambassador, you'll:</p>
+                <p className="text-sm font-medium text-white">{t("ambassador.benefits_title")}</p>
                 <ul className="text-sm text-gray-400 space-y-1">
-                  <li>• Get your own unique referral link</li>
-                  <li>• Track signups and conversions</li>
-                  <li>• Recruit other ambassadors to your team</li>
-                  <li>• Earn rewards for Pro subscriptions</li>
+                  <li>• {t("ambassador.benefit_1")}</li>
+                  <li>• {t("ambassador.benefit_2")}</li>
+                  <li>• {t("ambassador.benefit_3")}</li>
                 </ul>
               </div>
 
@@ -620,9 +620,9 @@ export default function AmbassadorPage() {
                 data-testid="button-apply-submit"
               >
                 {isSubmitting ? (
-                  <><Loader2 className="w-4 h-4 animate-spin mr-2" /> Submitting...</>
+                  <><Loader2 className="w-4 h-4 animate-spin mr-2" /> {t("ambassador.submitting")}</>
                 ) : (
-                  "Apply to be an Ambassador"
+                  t("ambassador.submit_application")
                 )}
               </Button>
             </form>
@@ -644,19 +644,18 @@ export default function AmbassadorPage() {
             />
             <div className="flex items-center justify-center gap-2 text-[#c08e00]">
               <Clock className="w-5 h-5" />
-              <CardTitle className="text-xl text-[#c08e00]">Application Pending</CardTitle>
+              <CardTitle className="text-xl text-[#c08e00]">{t("ambassador.application_pending")}</CardTitle>
             </div>
           </CardHeader>
           
           <CardContent className="space-y-6">
             <p className="text-gray-400 text-center">
-              Thank you for applying to the Vagabond Bible Ambassador Program! 
-              Your application is being reviewed and you'll be notified once approved.
+              {t("ambassador.thank_you")}
             </p>
 
             {ambassador && (
               <div className="bg-[#0a0a0a] rounded-lg p-4 space-y-3">
-                <p className="text-sm text-gray-500">Your referral link is ready:</p>
+                <p className="text-sm text-gray-500">{t("ambassador.referral_ready")}</p>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-lg px-3 py-2 text-sm text-gray-300 truncate">
                     <LinkIcon className="inline w-4 h-4 mr-2 text-[#c08e00]" />
@@ -677,14 +676,14 @@ export default function AmbassadorPage() {
                   </Button>
                 </div>
                 <p className="text-xs text-gray-500">
-                  You can start sharing this link now - clicks will be tracked!
+                  {t("ambassador.start_sharing")}
                 </p>
               </div>
             )}
 
             <div className="pt-4 border-t border-[#333]">
               <p className="text-xs text-gray-500 text-center">
-                Questions? Contact us at support@vagabondbible.com
+                {t("ambassador.questions")}
               </p>
             </div>
           </CardContent>

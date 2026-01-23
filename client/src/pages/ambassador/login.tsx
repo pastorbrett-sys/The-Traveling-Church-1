@@ -18,6 +18,7 @@ import {
 } from "@/lib/firebase";
 import ambassadorLogo from "@assets/Ambassador_Logo_1768768266982.png";
 import { apiFetch } from "@/lib/queryClient";
+import { t } from "@/lib/i18n";
 
 export default function AmbassadorLogin() {
   const { user, isAuthenticated, isLoading, refetch } = useAuth();
@@ -197,7 +198,7 @@ export default function AmbassadorLogin() {
           />
           {inviteCode && (
             <p className="text-sm text-[#c08e00] mt-2">
-              You've been invited to join the Ambassador Program
+              {t("ambassador.invited_to_join")}
             </p>
           )}
         </CardHeader>
@@ -213,7 +214,7 @@ export default function AmbassadorLogin() {
               }`}
               data-testid="button-signin-tab"
             >
-              Sign In
+              {t("login.sign_in")}
             </button>
             <button
               onClick={() => { setActiveTab("signup"); setError(null); setSuccessMessage(null); }}
@@ -224,7 +225,7 @@ export default function AmbassadorLogin() {
               }`}
               data-testid="button-signup-tab"
             >
-              Create Account
+              {t("login.create_account")}
             </button>
           </div>
 
@@ -252,7 +253,7 @@ export default function AmbassadorLogin() {
               ) : (
                 <SiGoogle className="w-4 h-4 mr-2" />
               )}
-              Continue with Google
+              {t("login.continue_google")}
             </Button>
 
             <Button
@@ -266,7 +267,7 @@ export default function AmbassadorLogin() {
               ) : (
                 <SiApple className="w-4 h-4 mr-2" />
               )}
-              Continue with Apple
+              {t("login.continue_apple")}
             </Button>
           </div>
 
@@ -275,14 +276,14 @@ export default function AmbassadorLogin() {
               <div className="w-full border-t border-gray-700"></div>
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-[#1a1a1a] px-2 text-gray-500">or</span>
+              <span className="bg-[#1a1a1a] px-2 text-gray-500">{t("login.or")}</span>
             </div>
           </div>
 
           {activeTab === "signin" ? (
             <form onSubmit={handleEmailSignIn} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="signin-email" className="text-gray-300">Email</Label>
+                <Label htmlFor="signin-email" className="text-gray-300">{t("login.email")}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <Input
@@ -299,7 +300,7 @@ export default function AmbassadorLogin() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="signin-password" className="text-gray-300">Password</Label>
+                <Label htmlFor="signin-password" className="text-gray-300">{t("login.password")}</Label>
                 <div className="relative">
                   <Input
                     id="signin-password"
@@ -327,7 +328,7 @@ export default function AmbassadorLogin() {
                 className="text-sm text-[#c08e00] hover:underline"
                 data-testid="button-forgot-password"
               >
-                Forgot password?
+                {t("login.forgot_password")}
               </button>
 
               <Button
@@ -339,13 +340,13 @@ export default function AmbassadorLogin() {
                 {isEmailSubmitting ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
                 ) : null}
-                Sign In
+                {t("login.sign_in")}
               </Button>
             </form>
           ) : (
             <form onSubmit={handleEmailSignUp} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="signup-name" className="text-gray-300">Name</Label>
+                <Label htmlFor="signup-name" className="text-gray-300">{t("login.name")}</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <Input
@@ -353,7 +354,7 @@ export default function AmbassadorLogin() {
                     type="text"
                     value={signUpName}
                     onChange={(e) => setSignUpName(e.target.value)}
-                    placeholder="Your name"
+                    placeholder={t("login.name_placeholder")}
                     className="pl-10 bg-[#0a0a0a] border-gray-700 text-white"
                     data-testid="input-signup-name"
                     required
@@ -362,7 +363,7 @@ export default function AmbassadorLogin() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="signup-email" className="text-gray-300">Email</Label>
+                <Label htmlFor="signup-email" className="text-gray-300">{t("login.email")}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                   <Input
@@ -379,7 +380,7 @@ export default function AmbassadorLogin() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="signup-password" className="text-gray-300">Password</Label>
+                <Label htmlFor="signup-password" className="text-gray-300">{t("login.password")}</Label>
                 <div className="relative">
                   <Input
                     id="signup-password"
@@ -410,7 +411,7 @@ export default function AmbassadorLogin() {
                 {isEmailSubmitting ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
                 ) : null}
-                Create Ambassador Account
+                {t("ambassador.create_ambassador_account")}
               </Button>
             </form>
           )}
