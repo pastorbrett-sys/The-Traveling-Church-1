@@ -21,6 +21,9 @@ import mistyForest from "@/assets/share-backgrounds/misty-forest.jpg";
 import darkCharcoal from "@/assets/share-backgrounds/dark-charcoal.jpg";
 import goldenSunset from "@/assets/share-backgrounds/golden-sunset.jpg";
 import greenBlur from "@/assets/share-backgrounds/green-blur.jpg";
+import darkMountain from "@/assets/share-backgrounds/dark-mountain.jpg";
+import darkForest from "@/assets/share-backgrounds/dark-forest.jpg";
+import darkOcean from "@/assets/share-backgrounds/dark-ocean.jpg";
 import vagabondLogo from "@/assets/vagabond-share-logo.png";
 
 const BACKGROUNDS = [
@@ -39,6 +42,9 @@ const BACKGROUNDS = [
   { id: "lake-reflection", src: lakeReflection, name: "Lake Reflection" },
   { id: "pink-sky", src: pinkSky, name: "Pink Sky" },
   { id: "white-flower", src: whiteFlower, name: "White Flower" },
+  { id: "dark-mountain", src: darkMountain, name: "Dark Mountain" },
+  { id: "dark-forest", src: darkForest, name: "Dark Forest" },
+  { id: "dark-ocean", src: darkOcean, name: "Dark Ocean" },
 ];
 
 interface VerseShareSheetProps {
