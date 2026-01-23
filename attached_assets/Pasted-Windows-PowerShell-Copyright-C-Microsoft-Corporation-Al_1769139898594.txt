@@ -1,0 +1,46 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\brett> git pull origin main
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+PS C:\Users\brett>
+PS C:\Users\brett> npm install
+npm error code ENOENT
+npm error syscall open
+npm error path C:\Users\brett\package.json
+npm error errno -4058
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\Users\brett\package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: C:\Users\brett\AppData\Local\npm-cache\_logs\2026-01-23T03_44_14_879Z-debug-0.log
+PS C:\Users\brett>
+PS C:\Users\brett> npm run build
+npm error code ENOENT
+npm error syscall open
+npm error path C:\Users\brett\package.json
+npm error errno -4058
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\Users\brett\package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: C:\Users\brett\AppData\Local\npm-cache\_logs\2026-01-23T03_44_15_514Z-debug-0.log
+PS C:\Users\brett>
+PS C:\Users\brett> rm -rf android/app/src/main/assets/public/videos
+Remove-Item : A parameter cannot be found that matches parameter name 'rf'.
+At line:1 char:4
++ rm -rf android/app/src/main/assets/public/videos
++    ~~~
+    + CategoryInfo          : InvalidArgument: (:) [Remove-Item], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
+
+PS C:\Users\brett>
+PS C:\Users\brett> npx cap sync android
+npm error could not determine executable to run
+npm error A complete log of this run can be found in: C:\Users\brett\AppData\Local\npm-cache\_logs\2026-01-23T03_44_15_850Z-debug-0.log
+PS C:\Users\brett>
+PS C:\Users\brett> npx cap open android
