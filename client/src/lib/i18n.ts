@@ -26,8 +26,9 @@ export function detectLanguage(): SupportedLanguage {
 
 export function getDefaultBibleTranslation(): string {
   const lang = detectLanguage();
-  // Ethiopian Orthodox Bible (ETHE) for Amharic speakers
-  return lang === "am" ? "ETHE" : "KJV";
+  // Ethiopian Orthodox Bible in Amharic (ETH) for Amharic speakers
+  // Note: ETHE is English version, ETH is Amharic - we want Amharic
+  return lang === "am" ? "ETH" : "KJV";
 }
 
 export function isAmharic(): boolean {
