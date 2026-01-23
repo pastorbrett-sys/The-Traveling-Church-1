@@ -18,7 +18,7 @@ import lakeReflection from "@/assets/share-backgrounds/lake-reflection.jpg";
 import pinkSky from "@/assets/share-backgrounds/pink-sky.jpg";
 import crossSunrise from "@/assets/share-backgrounds/cross-sunrise.jpg";
 import autumnLeaves from "@/assets/share-backgrounds/autumn-leaves.jpg";
-import vagabondLogo from "@/assets/vagabond-logo.png";
+import vagabondLogo from "@/assets/vagabond-logo-white.png";
 
 const BACKGROUNDS = [
   { id: "sunset-ocean", src: sunsetOcean, name: "Sunset Ocean" },
@@ -156,7 +156,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       ctx.shadowBlur = 0;
       
       if (logoImgRef.current) {
-        const logoHeight = 40;
+        const logoHeight = 42;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
         const logoX = canvas.width - logoWidth - 30;
         const logoY = canvas.height - logoHeight - 30;
