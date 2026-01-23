@@ -11,28 +11,30 @@ import mountainMist from "@/assets/share-backgrounds/mountain-mist.jpg";
 import whiteFlower from "@/assets/share-backgrounds/white-flower.jpg";
 import nightSky from "@/assets/share-backgrounds/night-sky.jpg";
 import wheatField from "@/assets/share-backgrounds/wheat-field.jpg";
-import darkMarble from "@/assets/share-backgrounds/dark-marble.jpg";
-import forestLight from "@/assets/share-backgrounds/forest-light.jpg";
 import desertDunes from "@/assets/share-backgrounds/desert-dunes.jpg";
 import lakeReflection from "@/assets/share-backgrounds/lake-reflection.jpg";
 import pinkSky from "@/assets/share-backgrounds/pink-sky.jpg";
-import crossSunrise from "@/assets/share-backgrounds/cross-sunrise.jpg";
-import autumnLeaves from "@/assets/share-backgrounds/autumn-leaves.jpg";
+import softGradient from "@/assets/share-backgrounds/soft-gradient.jpg";
+import calmOcean from "@/assets/share-backgrounds/calm-ocean.jpg";
+import softClouds from "@/assets/share-backgrounds/soft-clouds.jpg";
+import mistyForest from "@/assets/share-backgrounds/misty-forest.jpg";
+import lavenderField from "@/assets/share-backgrounds/lavender-field.jpg";
 import vagabondLogo from "@/assets/vagabond-share-logo.png";
 
 const BACKGROUNDS = [
   { id: "sunset-ocean", src: sunsetOcean, name: "Sunset Ocean" },
   { id: "mountain-mist", src: mountainMist, name: "Mountain Mist" },
-  { id: "white-flower", src: whiteFlower, name: "White Flower" },
+  { id: "soft-gradient", src: softGradient, name: "Soft Gradient" },
+  { id: "calm-ocean", src: calmOcean, name: "Calm Ocean" },
   { id: "night-sky", src: nightSky, name: "Night Sky" },
+  { id: "soft-clouds", src: softClouds, name: "Soft Clouds" },
   { id: "wheat-field", src: wheatField, name: "Wheat Field" },
-  { id: "dark-marble", src: darkMarble, name: "Dark Marble" },
-  { id: "forest-light", src: forestLight, name: "Forest Light" },
+  { id: "misty-forest", src: mistyForest, name: "Misty Forest" },
   { id: "desert-dunes", src: desertDunes, name: "Desert Dunes" },
+  { id: "lavender-field", src: lavenderField, name: "Lavender Field" },
   { id: "lake-reflection", src: lakeReflection, name: "Lake Reflection" },
   { id: "pink-sky", src: pinkSky, name: "Pink Sky" },
-  { id: "cross-sunrise", src: crossSunrise, name: "Cross Sunrise" },
-  { id: "autumn-leaves", src: autumnLeaves, name: "Autumn Leaves" },
+  { id: "white-flower", src: whiteFlower, name: "White Flower" },
 ];
 
 interface VerseShareSheetProps {
