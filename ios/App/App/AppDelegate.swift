@@ -13,29 +13,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Firebase for native authentication and messaging
         FirebaseApp.configure()
         
-        // Set messaging delegate
+        // Set messaging delegate for token updates
         Messaging.messaging().delegate = self
+        
+        print("[AppDelegate] Firebase configured, MessagingDelegate set")
         
         return true
     }
     
-    // Handle APNs token registration - pass to Firebase for FCM conversion
+    // Handle APNs token registration - convert to FCM and notify Capacitor
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Pass the APNs token to Firebase Messaging
-        // Firebase will automatically convert this to an FCM token
-        Messaging.messaging().apnsToken = deviceToken
-        
         // Debug: log the APNs token
         let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print("APNs token received: \(tokenString)")
+        print("[AppDelegate] APNs token received: \(tokenString.prefix(20))...")
         
-        // The FCM token will be delivered via MessagingDelegate (didReceiveRegistrationToken)
-        // which will then notify Capacitor
+        // Pass the APNs token to Firebase Messaging
+        Messaging.messaging().apnsToken = deviceToken
+        
+        // IMPORTANT: Explicitly request FCM token and post to Capacitor
+        // This ensures the token is posted even if MessagingDelegate fired too early
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print("[AppDelegate] Error getting FCM token: \(error.localizedDescription)")
+                NotificationCenter.default.post(
+                    name: .capacitorDidFailToRegisterForRemoteNotifications,
+                    object: error
+                )
+            } else if let token = token {
+                print("[AppDelegate] FCM token obtained: \(token.prefix(20))...")
+                // Post on main thread to ensure Capacitor receives it
+                DispatchQueue.main.async {
+                    print("[AppDelegate] Posting FCM token to Capacitor")
+                    NotificationCenter.default.post(
+                        name: .capacitorDidRegisterForRemoteNotifications,
+                        object: token
+                    )
+                }
+            }
+        }
     }
     
     // Handle registration failures
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register for remote notifications: \(error)")
+        print("[AppDelegate] Failed to register for remote notifications: \(error.localizedDescription)")
         NotificationCenter.default.post(
             name: .capacitorDidFailToRegisterForRemoteNotifications,
             object: error
@@ -43,25 +63,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -74,9 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        // Called when the app was launched with an activity, including Universal Links.
-        // Feel free to add additional processing here, but if you want the App API to support
-        // tracking app url opens, make sure to keep this call
         return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
 
@@ -85,16 +95,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - MessagingDelegate for FCM token updates
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase FCM token received: \(fcmToken ?? "nil")")
+        print("[AppDelegate] MessagingDelegate received FCM token: \(fcmToken?.prefix(20) ?? "nil")...")
         
         guard let token = fcmToken else {
-            print("FCM token is nil, skipping notification")
+            print("[AppDelegate] FCM token is nil, skipping")
             return
         }
         
-        // Post notification on main thread to ensure Capacitor receives it
+        // Also post here for token refresh scenarios
         DispatchQueue.main.async {
-            print("Posting FCM token to Capacitor via NotificationCenter")
+            print("[AppDelegate] MessagingDelegate posting token to Capacitor")
             NotificationCenter.default.post(
                 name: .capacitorDidRegisterForRemoteNotifications,
                 object: token
