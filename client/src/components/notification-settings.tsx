@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { usePlatform } from "@/contexts/platform-context";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
+import { apiRequest } from "@/lib/queryClient";
 
 interface NotificationPreference {
   id: string;
@@ -69,12 +70,7 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
 
   const updatePreferenceMutation = useMutation({
     mutationFn: async ({ notificationTypeId, enabled }: { notificationTypeId: string; enabled: boolean }) => {
-      const response = await fetch(`/api/notifications/preferences/${notificationTypeId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, enabled }),
-      });
-      if (!response.ok) throw new Error('Failed to update preference');
+      const response = await apiRequest('PUT', `/api/notifications/preferences/${notificationTypeId}`, { userId, enabled });
       return response.json();
     },
     onSuccess: () => {

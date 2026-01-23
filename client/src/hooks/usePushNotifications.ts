@@ -3,6 +3,14 @@ import { Capacitor } from '@capacitor/core';
 import { PushNotifications, Token, PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications';
 import { useLocation } from 'wouter';
 
+// Production server URL for native apps
+const PRODUCTION_URL = 'https://vagabondbible.com';
+
+function getApiUrl(path: string): string {
+  const isNative = Capacitor.isNativePlatform();
+  return isNative ? `${PRODUCTION_URL}${path}` : path;
+}
+
 interface PushNotificationState {
   token: string | null;
   isRegistered: boolean;
@@ -47,9 +55,10 @@ export function usePushNotifications(userId: string | null | undefined) {
     const { timezone, utcOffset } = getTimezoneInfo();
 
     try {
-      const response = await fetch('/api/notifications/register-token', {
+      const response = await fetch(getApiUrl('/api/notifications/register-token'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
           deviceToken: token,
           platform,
