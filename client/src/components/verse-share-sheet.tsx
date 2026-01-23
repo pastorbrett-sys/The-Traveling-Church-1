@@ -1,0 +1,404 @@
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Download, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Capacitor } from "@capacitor/core";
+import { Share } from "@capacitor/share";
+import { Filesystem, Directory } from "@capacitor/filesystem";
+
+import sunsetOcean from "@/assets/share-backgrounds/sunset-ocean.jpg";
+import mountainMist from "@/assets/share-backgrounds/mountain-mist.jpg";
+import whiteFlower from "@/assets/share-backgrounds/white-flower.jpg";
+import nightSky from "@/assets/share-backgrounds/night-sky.jpg";
+import wheatField from "@/assets/share-backgrounds/wheat-field.jpg";
+import darkMarble from "@/assets/share-backgrounds/dark-marble.jpg";
+import forestLight from "@/assets/share-backgrounds/forest-light.jpg";
+import desertDunes from "@/assets/share-backgrounds/desert-dunes.jpg";
+import lakeReflection from "@/assets/share-backgrounds/lake-reflection.jpg";
+import pinkSky from "@/assets/share-backgrounds/pink-sky.jpg";
+import crossSunrise from "@/assets/share-backgrounds/cross-sunrise.jpg";
+import autumnLeaves from "@/assets/share-backgrounds/autumn-leaves.jpg";
+import vagabondLogo from "@/assets/vagabond-logo.png";
+
+const BACKGROUNDS = [
+  { id: "sunset-ocean", src: sunsetOcean, name: "Sunset Ocean" },
+  { id: "mountain-mist", src: mountainMist, name: "Mountain Mist" },
+  { id: "white-flower", src: whiteFlower, name: "White Flower" },
+  { id: "night-sky", src: nightSky, name: "Night Sky" },
+  { id: "wheat-field", src: wheatField, name: "Wheat Field" },
+  { id: "dark-marble", src: darkMarble, name: "Dark Marble" },
+  { id: "forest-light", src: forestLight, name: "Forest Light" },
+  { id: "desert-dunes", src: desertDunes, name: "Desert Dunes" },
+  { id: "lake-reflection", src: lakeReflection, name: "Lake Reflection" },
+  { id: "pink-sky", src: pinkSky, name: "Pink Sky" },
+  { id: "cross-sunrise", src: crossSunrise, name: "Cross Sunrise" },
+  { id: "autumn-leaves", src: autumnLeaves, name: "Autumn Leaves" },
+];
+
+interface VerseShareSheetProps {
+  isOpen: boolean;
+  onClose: () => void;
+  verseText: string;
+  verseReference: string;
+}
+
+export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: VerseShareSheetProps) {
+  const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const logoImgRef = useRef<HTMLImageElement | null>(null);
+  
+  const isNative = Capacitor.isNativePlatform();
+  const isAndroid = Capacitor.getPlatform() === "android";
+  const isIOS = Capacitor.getPlatform() === "ios";
+
+  useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = vagabondLogo;
+    img.onload = () => {
+      logoImgRef.current = img;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSelectedBackground(null);
+      setGeneratedImage(null);
+      setIsSaved(false);
+    }
+  }, [isOpen]);
+
+  const wrapText = useCallback((ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number): number => {
+    const words = text.split(" ");
+    let line = "";
+    let lineCount = 0;
+    
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + " ";
+      const metrics = ctx.measureText(testLine);
+      const testWidth = metrics.width;
+      
+      if (testWidth > maxWidth && n > 0) {
+        ctx.fillText(line.trim(), x, y + lineCount * lineHeight);
+        line = words[n] + " ";
+        lineCount++;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line.trim(), x, y + lineCount * lineHeight);
+    return lineCount + 1;
+  }, []);
+
+  const generateImage = useCallback(async (backgroundSrc: string) => {
+    setIsGenerating(true);
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    
+    canvas.width = 1080;
+    canvas.height = 1080;
+    
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+    
+    bgImg.onload = () => {
+      const imgRatio = bgImg.width / bgImg.height;
+      let drawWidth = canvas.width;
+      let drawHeight = canvas.height;
+      let offsetX = 0;
+      let offsetY = 0;
+      
+      if (imgRatio > 1) {
+        drawWidth = canvas.height * imgRatio;
+        offsetX = (canvas.width - drawWidth) / 2;
+      } else {
+        drawHeight = canvas.width / imgRatio;
+        offsetY = (canvas.height - drawHeight) / 2;
+      }
+      
+      ctx.drawImage(bgImg, offsetX, offsetY, drawWidth, drawHeight);
+      
+      ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      
+      const fontSize = Math.min(54, Math.max(36, 1200 / verseText.length * 3));
+      ctx.font = `600 ${fontSize}px Georgia, serif`;
+      
+      const cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
+      const displayText = `"${cleanText}"`;
+      
+      const lineHeight = fontSize * 1.4;
+      const maxWidth = canvas.width - 140;
+      const startY = canvas.height / 2 - 60;
+      
+      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetX = 2;
+      ctx.shadowOffsetY = 2;
+      
+      const linesUsed = wrapText(ctx, displayText, canvas.width / 2, startY, maxWidth, lineHeight);
+      
+      ctx.font = "400 36px Georgia, serif";
+      ctx.fillText(verseReference.toUpperCase(), canvas.width / 2, startY + linesUsed * lineHeight + 50);
+      
+      ctx.shadowColor = "transparent";
+      ctx.shadowBlur = 0;
+      
+      if (logoImgRef.current) {
+        const logoHeight = 40;
+        const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
+        const logoX = canvas.width - logoWidth - 30;
+        const logoY = canvas.height - logoHeight - 30;
+        
+        ctx.globalAlpha = 0.85;
+        ctx.drawImage(logoImgRef.current, logoX, logoY, logoWidth, logoHeight);
+        ctx.globalAlpha = 1;
+      }
+      
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+      setGeneratedImage(dataUrl);
+      setIsGenerating(false);
+    };
+    
+    bgImg.onerror = () => {
+      console.error("Failed to load background image");
+      setIsGenerating(false);
+    };
+    
+    bgImg.src = backgroundSrc;
+  }, [verseText, verseReference, wrapText]);
+
+  const handleBackgroundSelect = (bg: typeof BACKGROUNDS[0]) => {
+    setSelectedBackground(bg.id);
+    setIsSaved(false);
+    generateImage(bg.src);
+  };
+
+  const handleShare = async () => {
+    if (!generatedImage) return;
+    
+    try {
+      if (isNative) {
+        const base64Data = generatedImage.split(",")[1];
+        const fileName = `verse-${Date.now()}.jpg`;
+        
+        await Filesystem.writeFile({
+          path: fileName,
+          data: base64Data,
+          directory: Directory.Cache,
+        });
+        
+        const fileUri = await Filesystem.getUri({
+          path: fileName,
+          directory: Directory.Cache,
+        });
+        
+        await Share.share({
+          title: verseReference,
+          text: `${verseReference} - Vagabond Bible`,
+          url: fileUri.uri,
+          dialogTitle: "Share Verse",
+        });
+      } else {
+        const response = await fetch(generatedImage);
+        const blob = await response.blob();
+        const file = new File([blob], `${verseReference.replace(/\s+/g, "-")}.jpg`, { type: "image/jpeg" });
+        
+        if (navigator.share && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: verseReference,
+            text: `${verseReference} - Vagabond Bible`,
+            files: [file],
+          });
+        } else {
+          const link = document.createElement("a");
+          link.href = generatedImage;
+          link.download = `${verseReference.replace(/\s+/g, "-")}.jpg`;
+          link.click();
+          setIsSaved(true);
+        }
+      }
+    } catch (error) {
+      console.error("Share failed:", error);
+      const link = document.createElement("a");
+      link.href = generatedImage;
+      link.download = `${verseReference.replace(/\s+/g, "-")}.jpg`;
+      link.click();
+      setIsSaved(true);
+    }
+  };
+
+  const handleDownload = async () => {
+    if (!generatedImage) return;
+    
+    try {
+      if (isNative) {
+        const base64Data = generatedImage.split(",")[1];
+        const fileName = `Vagabond-${verseReference.replace(/\s+/g, "-")}-${Date.now()}.jpg`;
+        
+        await Filesystem.writeFile({
+          path: fileName,
+          data: base64Data,
+          directory: Directory.Documents,
+        });
+        
+        setIsSaved(true);
+      } else {
+        const link = document.createElement("a");
+        link.href = generatedImage;
+        link.download = `${verseReference.replace(/\s+/g, "-")}.jpg`;
+        link.click();
+        setIsSaved(true);
+      }
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 z-[200]"
+            onClick={onClose}
+          />
+          
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed bottom-0 left-0 right-0 bg-background rounded-t-2xl z-[201] max-h-[90vh] flex flex-col"
+            style={{
+              paddingBottom: isNative 
+                ? isAndroid 
+                  ? "calc(16px + var(--android-nav-height, 0px))" 
+                  : "calc(16px + env(safe-area-inset-bottom, 0px))"
+                : "16px"
+            }}
+          >
+            <div 
+              className="flex items-center justify-between p-4 border-b"
+              style={{
+                paddingTop: isNative 
+                  ? isAndroid 
+                    ? "calc(16px + var(--android-status-bar-height, 0px))" 
+                    : isIOS 
+                      ? "calc(16px + env(safe-area-inset-top, 0px))"
+                      : undefined
+                  : undefined
+              }}
+            >
+              <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-share-cancel">
+                Cancel
+              </Button>
+              <span className="font-semibold">Choose Image</span>
+              <div className="w-16" />
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-4">
+              {!generatedImage ? (
+                <>
+                  <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide">Choose Your Background</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {BACKGROUNDS.map((bg) => (
+                      <button
+                        key={bg.id}
+                        onClick={() => handleBackgroundSelect(bg)}
+                        className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                          selectedBackground === bg.id 
+                            ? "border-[#c08e00] ring-2 ring-[#c08e00]/50" 
+                            : "border-transparent hover:border-[#c08e00]/50"
+                        }`}
+                        data-testid={`bg-${bg.id}`}
+                      >
+                        <img
+                          src={bg.src}
+                          alt={bg.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="flex flex-col items-center gap-4">
+                  {isSaved && (
+                    <div className="flex items-center gap-2 text-green-600">
+                      <Check className="w-5 h-5" />
+                      <span>Image Saved</span>
+                    </div>
+                  )}
+                  
+                  <div className="relative w-full max-w-md aspect-square rounded-lg overflow-hidden shadow-xl">
+                    {isGenerating ? (
+                      <div className="w-full h-full bg-muted flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-8 w-8 border-2 border-[#c08e00] border-t-transparent" />
+                      </div>
+                    ) : (
+                      <img
+                        src={generatedImage}
+                        alt="Generated verse image"
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
+                  
+                  <div className="flex gap-3 w-full max-w-md">
+                    <Button
+                      variant="outline"
+                      className="flex-1 gap-2"
+                      onClick={() => {
+                        setGeneratedImage(null);
+                        setSelectedBackground(null);
+                        setIsSaved(false);
+                      }}
+                      data-testid="button-change-background"
+                    >
+                      Change
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={handleDownload}
+                      data-testid="button-download-image"
+                    >
+                      <Download className="w-5 h-5" />
+                    </Button>
+                  </div>
+                  
+                  <Button
+                    className="w-full max-w-md bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white"
+                    size="lg"
+                    onClick={handleShare}
+                    data-testid="button-share-image"
+                  >
+                    Share
+                  </Button>
+                </div>
+              )}
+            </div>
+            
+            <canvas ref={canvasRef} className="hidden" />
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}

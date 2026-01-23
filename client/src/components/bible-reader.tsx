@@ -62,6 +62,7 @@ import { ToastAction } from "@/components/ui/toast";
 import { apiRequest, apiFetch } from "@/lib/queryClient";
 import ReactMarkdown from "react-markdown";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
+import { VerseShareSheet } from "@/components/verse-share-sheet";
 import { usePlatform } from "@/contexts/platform-context";
 
 interface BibleBook {
@@ -324,6 +325,7 @@ export default function BibleReader({ translation, onTranslationChange }: BibleR
   const [noteText, setNoteText] = useState("");
   const [noteTags, setNoteTags] = useState<string[]>([]);
   const [showSaveGlow, setShowSaveGlow] = useState(false);
+  const [showShareSheet, setShowShareSheet] = useState(false);
   const [insight, setInsight] = useState("");
   const [isLoadingInsight, setIsLoadingInsight] = useState(false);
   const [compareTranslations, setCompareTranslations] = useState<string[]>(["KJV", "BSB", "WEB", "ASV"]);
@@ -1872,6 +1874,7 @@ Reference: ${verseRef} (${translation})`;
                 {[
                   { icon: Columns2, label: t.compare, onClick: () => setShowCompare(true), testId: "button-compare" },
                   { icon: StickyNote, label: t.note, onClick: () => setShowNote(true), testId: "button-add-note" },
+                  { icon: Share2, label: null, onClick: () => setShowShareSheet(true), testId: "button-share-verse" },
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
                   { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
                 ].map((item, index) => {
@@ -2384,6 +2387,13 @@ Reference: ${verseRef} (${translation})`;
           setShowActionBarTooltip(false);
           markSeen("actionBar");
         }}
+      />
+
+      <VerseShareSheet
+        isOpen={showShareSheet}
+        onClose={() => setShowShareSheet(false)}
+        verseText={selectedVerse?.text || ""}
+        verseReference={selectedVerse && selectedBook ? `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}` : ""}
       />
     </div>
   );
