@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { usePlatform } from "@/contexts/platform-context";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, apiFetch } from "@/lib/queryClient";
 
 interface NotificationPreference {
   id: string;
@@ -64,7 +64,14 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
   }, [isNative]);
 
   const { data: preferences, isLoading: isLoadingPrefs } = useQuery<NotificationPreference[]>({
-    queryKey: ['/api/notifications/preferences', userId],
+    queryKey: ['notification-preferences', userId],
+    queryFn: async () => {
+      const response = await apiFetch(`/api/notifications/preferences?userId=${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch notification preferences');
+      }
+      return response.json();
+    },
     enabled: isNative && permissionStatus === 'granted' && !!userId,
   });
 
@@ -74,7 +81,7 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/notifications/preferences', userId] });
+      queryClient.invalidateQueries({ queryKey: ['notification-preferences', userId] });
     },
   });
 
