@@ -600,19 +600,153 @@ export function getAmbassadorApplicationEmailHtml(displayName: string): string {
   `;
 }
 
-export async function sendAmbassadorApplicationEmail(userEmail: string, firstName?: string | null) {
-  console.log(`[Email] Sending ambassador application email to ${userEmail}...`);
+export function getAmbassadorApplicationEmailHtmlAmharic(displayName: string): string {
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+      <style>
+        :root { color-scheme: light; }
+        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
+        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
+        @media (prefers-color-scheme: dark) {
+          .dark-footer { background-color: #000000 !important; }
+          .dark-footer td { background-color: #000000 !important; }
+        }
+        [data-ogsc] .footer-text { color: #888888 !important; }
+        [data-ogsb] .dark-footer { background-color: #000000 !important; }
+      </style>
+    </head>
+    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Ambassador Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/ambassador-applied-hero.png" alt="Ambassador Application" style="width: 100%; height: auto; display: block; min-height: 54px;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">ማመልከቻዎ ደርሷል!</h1>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            የ Vagabond Bible አምባሳደር ለመሆን ስለአመለከቱ እናመሰግናለን፣ ${displayName}። ማመልከቻዎን ለመገምገም ጓጉተናል!
+          </p>
+          
+          <!-- What Happens Next Section -->
+          <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">ቀጣይ ምን ይሆናል</h2>
+          
+          <!-- Card 1: Review -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">📋</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">ግምገማ</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">ማመልከቻዎን በ24-48 ሰዓታት ውስጥ እንገመግማለን</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Card 2: Notification -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 12px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">📧</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">ማሳወቂያ</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">ውሳኔያችንን በኢሜይል ይቀበላሉ</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Card 3: Get Started -->
+          <div style="background-color: #ffffff; border-radius: 12px; padding: 20px; margin: 0 0 30px 0; text-align: left; border: 1px solid #e5e5e5;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width: 44px; vertical-align: top;">
+                  <span style="font-size: 24px;">🚀</span>
+                </td>
+                <td style="vertical-align: top;">
+                  <div style="font-size: 15px; font-weight: 600; color: #1a1a1a;">ይጀምሩ</div>
+                  <div style="font-size: 13px; color: #666; margin-top: 4px;">ከተፈቀደልዎ፣ ወዲያውኑ ወደ ዳሽቦርድዎ መዳረሻ ያገኛሉ</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- Note about limited spots -->
+          <p style="font-size: 14px; line-height: 1.5; color: #666; margin: 0 0 30px 0; font-style: italic;">
+            ለእያንዳንዱ አባል ጥራት ያለው ድጋፍ ለማረጋገጥ የአምባሳደር ቦታዎች ውስን ናቸው። ምንም ይሁን ምን፣ በቅርቡ እናገኝዎታለን!
+          </p>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
+            Vagabond Bible ያስሱ
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
+          <tr>
+            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
+              </a>
+              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <span class="gm-screen"><span class="gm-diff">
+                  <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                  <span style="color: #555555; margin: 0 8px;">•</span>
+                  <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ ይለግሱ</a>
+                </span></span>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+export async function sendAmbassadorApplicationEmail(userEmail: string, firstName?: string | null, language: string = 'en') {
+  const isAmharic = language === 'am' || language?.startsWith('am');
+  console.log(`[Email] Sending ambassador application email to ${userEmail} (language: ${language}, isAmharic: ${isAmharic})...`);
   
   try {
     const client = await getResendClient();
     const fromEmail = await getFromEmail();
-    const displayName = firstName || 'Friend';
+    const displayName = firstName || (isAmharic ? 'ወዳጅ' : 'Friend');
+    
+    const subject = isAmharic 
+      ? `ማመልከቻዎ ደርሷል፣ ${displayName}!`
+      : `Application Received, ${displayName}!`;
+    
+    const html = isAmharic 
+      ? getAmbassadorApplicationEmailHtmlAmharic(displayName)
+      : getAmbassadorApplicationEmailHtml(displayName);
     
     const result = await client.emails.send({
       from: fromEmail,
       to: userEmail,
-      subject: `Application Received, ${displayName}!`,
-      html: getAmbassadorApplicationEmailHtml(displayName)
+      subject,
+      html
     });
     
     console.log('[Email] Ambassador application email sent:', JSON.stringify(result));
@@ -785,23 +919,194 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
   `;
 }
 
+export function getAmbassadorApprovedEmailHtmlAmharic(displayName: string, referralCode: string): string {
+  const referralLink = `${BASE_URL}/?ref=${referralCode}`;
+  
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light only">
+      <meta name="supported-color-schemes" content="light only">
+      <style>
+        :root { color-scheme: light only; supported-color-schemes: light only; }
+      </style>
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;" bgcolor="#ffffff">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;" bgcolor="#ffffff">
+        <tr>
+          <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff;" bgcolor="#ffffff">
+              <tr>
+                <td>
+                  <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="${BASE_URL}/email-assets/ambassador-hero.png" alt="Ambassador" style="width: 100%; height: auto; display: block;">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;" bgcolor="#FAF9F6">
+              <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">ተቀባይነት አግኝተዋል!</h1>
+              <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">ወደ ቡድኑ እንኳን በደህና መጡ፣ ${displayName}</p>
+              
+              <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+                አሁን የ Vagabond Bible አምባሳደር ነዎት። ልዩ ማገናኛዎን ከጓደኞችና ከቤተሰብ ጋር ያጋሩ፣ Pro ሲመዘገቡ ሽልማቶችን ያግኙ።
+              </p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FFF8E7; border-radius: 12px; border-left: 4px solid #C99A2E; margin: 0 0 24px 0;">
+                <tr>
+                  <td style="padding: 16px 20px; text-align: left;">
+                    <p style="font-size: 14px; line-height: 1.5; color: #333; margin: 0;">
+                      <strong>ጠቃሚ ምክር:</strong> ሰዎች በድር ጣቢያ ከመተግበሪያ ይልቅ ሲመዘገቡ ብዙ ኮሚሽን ያገኛሉ። ስለዚህ በ vagabondbible.com ጣቢያ እንዲመዘገቡ ያበረታቷቸው!
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
+                <tr>
+                  <td style="padding: 24px; text-align: left;">
+                    <p style="color: #1a1a1a; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">የእርስዎ ማጣቀሻ ማገናኛ</p>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f5f5f5; border-radius: 8px;">
+                      <tr>
+                        <td style="padding: 12px 16px;">
+                          <a href="${referralLink}" style="font-family: monospace; font-size: 14px; color: #C99A2E; text-decoration: none; word-break: break-all;">${referralLink}</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <p style="font-size: 12px; color: #666; margin: 8px 0 0 0;">ለመክፈት ይንኩ ወይም ይቅዱና ለሌሎች ያጋሩ</p>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 30px 0 20px 0;">እንዴት ይሰራል</p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 12px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                      <tr>
+                        <td style="width: 40px; vertical-align: middle; font-size: 24px;">&#128279;</td>
+                        <td style="vertical-align: middle;">
+                          <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">ማገናኛዎን ያጋሩ</p>
+                          <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">ለጓደኞች፣ ለቤተሰብና ለማህበረሰብ ይላኩ</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 12px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                      <tr>
+                        <td style="width: 40px; vertical-align: middle; font-size: 24px;">&#128101;</td>
+                        <td style="vertical-align: middle;">
+                          <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">ይመዘገባሉ</p>
+                          <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">ነፃ ወይም Pro፣ ክሬዲት ያገኛሉ</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                      <tr>
+                        <td style="width: 40px; vertical-align: middle; font-size: 24px;">&#128176;</td>
+                        <td style="vertical-align: middle;">
+                          <p style="font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 0;">ሽልማቶችን ያግኙ</p>
+                          <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">ለ Pro ልወጣዎች ክፍያ ያግኙ</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin: 0 0 20px 0;">ዳሽቦርድዎን ይድረሱ</p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; margin: 0 0 30px 0;">
+                <tr>
+                  <td style="padding: 20px; text-align: left;">
+                    <p style="font-size: 15px; line-height: 1.5; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px; vertical-align: middle;">1</span> መተግበሪያውን ወይም ጣቢያውን ይክፈቱ</p>
+                    <p style="font-size: 15px; line-height: 1.5; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px; vertical-align: middle;">2</span> ወደ ምናሌ ይሂዱ</p>
+                    <p style="font-size: 15px; line-height: 1.5; color: #333; margin: 0 0 12px 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px; vertical-align: middle;">3</span> "አምባሳደሮች" ላይ ይንኩ</p>
+                    <p style="font-size: 15px; line-height: 1.5; color: #333; margin: 0;"><span style="display: inline-block; width: 24px; height: 24px; background-color: #C99A2E; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 14px; font-weight: 600; margin-right: 12px; vertical-align: middle;">4</span> የማጣቀሻ ማገናኛዎን ይቅዱና ያጋሩ!</p>
+                  </td>
+                </tr>
+              </table>
+          
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="padding-bottom: 20px;">
+                    <a href="${BASE_URL}/ambassador" 
+                       style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center;">
+                      ዳሽቦርድዎን ይክፈቱ
+                    </a>
+                  </td>
+                </tr>
+              </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="background-color: #1a1a1a; padding: 24px;" bgcolor="#1a1a1a">
+                  <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                    <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+                  </a>
+                  <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                    <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                    <span style="color: #555555; margin: 0 8px;">&#8226;</span>
+                    <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤ ይለግሱ</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+}
+
 export async function sendAmbassadorApprovedEmail(
   userEmail: string, 
   firstName: string | null | undefined, 
-  referralCode: string
+  referralCode: string,
+  language: string = 'en'
 ) {
-  console.log(`[Email] Sending ambassador approved email to ${userEmail}...`);
+  const isAmharic = language === 'am' || language?.startsWith('am');
+  console.log(`[Email] Sending ambassador approved email to ${userEmail} (language: ${language}, isAmharic: ${isAmharic})...`);
   
   try {
     const client = await getResendClient();
     const fromEmail = await getFromEmail();
-    const displayName = firstName || 'Ambassador';
+    const displayName = firstName || (isAmharic ? 'አምባሳደር' : 'Ambassador');
+    
+    const subject = isAmharic 
+      ? `ተቀባይነት አግኝተዋል፣ ${displayName}! ወደ ቡድኑ እንኳን በደህና መጡ`
+      : `You're Approved, ${displayName}! Welcome to the Team`;
+    
+    const html = isAmharic 
+      ? getAmbassadorApprovedEmailHtmlAmharic(displayName, referralCode)
+      : getAmbassadorApprovedEmailHtml(displayName, referralCode);
     
     const result = await client.emails.send({
       from: fromEmail,
       to: userEmail,
-      subject: `You're Approved, ${displayName}! Welcome to the Team`,
-      html: getAmbassadorApprovedEmailHtml(displayName, referralCode)
+      subject,
+      html
     });
     
     console.log('[Email] Ambassador approved email sent:', JSON.stringify(result));

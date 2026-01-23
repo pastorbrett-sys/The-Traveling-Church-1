@@ -1,10 +1,19 @@
 import { Router } from "express";
 import { db } from "./storage";
-import { ambassadors, referralClicks, referralSignups } from "@shared/schema";
+import { ambassadors, referralClicks, referralSignups, users } from "@shared/schema";
 import { eq, desc, sql } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import crypto from "crypto";
 import { isAuthenticated } from "./firebaseAdmin";
+
+async function getUserLanguage(userId: string): Promise<string> {
+  try {
+    const [user] = await db.select({ language: users.language }).from(users).where(eq(users.id, userId)).limit(1);
+    return user?.language || 'en';
+  } catch {
+    return 'en';
+  }
+}
 
 const router = Router();
 
@@ -61,9 +70,12 @@ router.post("/register", async (req, res) => {
     
     console.log(`[Ambassador] Sending emails for ${email} at ${new Date().toISOString()}`);
     
+    // Get user's language preference for localized emails
+    const userLanguage = await getUserLanguage(userId);
+    
     // Send confirmation to applicant
-    sendAmbassadorApplicationEmail(email, name.split(' ')[0]).then(result => {
-      console.log(`[Ambassador] Application email SENT to ${email} at ${new Date().toISOString()}:`, JSON.stringify(result));
+    sendAmbassadorApplicationEmail(email, name.split(' ')[0], userLanguage).then(result => {
+      console.log(`[Ambassador] Application email SENT to ${email} (language: ${userLanguage}) at ${new Date().toISOString()}:`, JSON.stringify(result));
     }).catch(err => {
       console.error('[Ambassador] Failed to send application email:', err);
     });
@@ -426,10 +438,13 @@ router.post("/admin/approve/:id", isAuthenticated, async (req: any, res) => {
       const { sendAmbassadorApprovedEmail } = await import('./email');
       const firstName = updated.name?.split(' ')[0] || null;
       
-      console.log(`[Ambassador] Sending approval email to ${updated.email} at ${new Date().toISOString()}`);
+      // Get user's language preference for localized emails
+      const userLanguage = await getUserLanguage(updated.userId);
       
-      sendAmbassadorApprovedEmail(updated.email, firstName, updated.referralCode).then(result => {
-        console.log(`[Ambassador] Approval email SENT to ${updated.email} at ${new Date().toISOString()}:`, JSON.stringify(result));
+      console.log(`[Ambassador] Sending approval email to ${updated.email} (language: ${userLanguage}) at ${new Date().toISOString()}`);
+      
+      sendAmbassadorApprovedEmail(updated.email, firstName, updated.referralCode, userLanguage).then(result => {
+        console.log(`[Ambassador] Approval email SENT to ${updated.email} (language: ${userLanguage}) at ${new Date().toISOString()}:`, JSON.stringify(result));
       }).catch(err => {
         console.error('[Ambassador] Failed to send approval email:', err);
       });
