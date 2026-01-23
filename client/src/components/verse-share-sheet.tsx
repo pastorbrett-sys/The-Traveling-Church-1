@@ -132,7 +132,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       
-      const fontSize = Math.min(60, Math.max(40, 1200 / verseText.length * 3.5));
+      const fontSize = Math.min(72, Math.max(48, 1200 / verseText.length * 4.5));
       ctx.font = `600 ${fontSize}px "Spectral SC", Georgia, serif`;
       
       const cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
@@ -149,7 +149,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       
       const linesUsed = wrapText(ctx, displayText, canvas.width / 2, startY, maxWidth, lineHeight);
       
-      ctx.font = "400 32px Poppins, sans-serif";
+      ctx.font = "400 38px Poppins, sans-serif";
       ctx.textAlign = "left";
       const refText = verseReference.toUpperCase();
       const refY = startY + linesUsed * lineHeight + 50;
