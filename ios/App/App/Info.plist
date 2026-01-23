@@ -49,6 +49,8 @@
         <array>
                 <string>remote-notification</string>
         </array>
+        <key>FirebaseAppDelegateProxyEnabled</key>
+        <false/>
         <key>GIDClientID</key>
         <string>120766949732-5fu6t0hegaaaf8fdqenn2gu0mplghh5e.apps.googleusercontent.com</string>
         <key>CFBundleURLTypes</key>

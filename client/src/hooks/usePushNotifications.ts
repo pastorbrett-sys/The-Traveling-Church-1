@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, useRef } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications, Token, PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications';
 import { useLocation } from 'wouter';
@@ -15,6 +15,7 @@ interface PushNotificationState {
   token: string | null;
   isRegistered: boolean;
   permissionStatus: 'prompt' | 'granted' | 'denied' | 'unknown';
+  isInitialized: boolean;
 }
 
 interface DeepLinkData {
@@ -33,7 +34,11 @@ export function usePushNotifications(userId: string | null | undefined) {
     token: null,
     isRegistered: false,
     permissionStatus: 'unknown',
+    isInitialized: false,
   });
+  
+  // Use ref to prevent multiple initialization attempts
+  const initializingRef = useRef(false);
 
   // Get device timezone info
   const getTimezoneInfo = useCallback(() => {
@@ -106,6 +111,14 @@ export function usePushNotifications(userId: string | null | undefined) {
       return;
     }
 
+    // Prevent multiple simultaneous initialization attempts
+    if (initializingRef.current || state.isInitialized) {
+      console.log('Push notifications already initializing or initialized');
+      return;
+    }
+    
+    initializingRef.current = true;
+
     try {
       // Check current permission status
       let permStatus = await PushNotifications.checkPermissions();
@@ -122,10 +135,12 @@ export function usePushNotifications(userId: string | null | undefined) {
 
       if (permStatus.receive !== 'granted') {
         console.log('Push notification permission denied');
+        initializingRef.current = false;
         return;
       }
 
       // IMPORTANT: Set up listeners BEFORE calling register() to not miss the token event
+      console.log('[Push] Setting up notification listeners...');
       
       // Listen for registration success
       await PushNotifications.addListener('registration', async (token: Token) => {
@@ -164,27 +179,38 @@ export function usePushNotifications(userId: string | null | undefined) {
         }
       });
 
+      console.log('[Push] Calling PushNotifications.register()...');
       // NOW register for push notifications (after listeners are set up)
       await PushNotifications.register();
+      
+      setState(prev => ({
+        ...prev,
+        isInitialized: true,
+      }));
 
     } catch (error) {
       console.error('Error initializing push notifications:', error);
+    } finally {
+      initializingRef.current = false;
     }
-  }, [registerTokenWithBackend, handleDeepLink]);
+  }, [registerTokenWithBackend, handleDeepLink, state.isInitialized]);
 
-  // Initialize on mount when userId is available
+  // Initialize when userId becomes available
   useEffect(() => {
-    if (userId) {
+    if (userId && !state.isInitialized) {
       initializePushNotifications();
     }
+  }, [userId, state.isInitialized, initializePushNotifications]);
 
-    // Cleanup listeners on unmount
+  // Cleanup listeners only on component unmount (not on every dependency change)
+  useEffect(() => {
     return () => {
       if (Capacitor.isNativePlatform()) {
+        console.log('[Push] Cleaning up notification listeners on unmount');
         PushNotifications.removeAllListeners();
       }
     };
-  }, [userId, initializePushNotifications]);
+  }, []); // Empty deps - only runs on unmount
 
   // Re-register token if userId changes (e.g., after login)
   useEffect(() => {
