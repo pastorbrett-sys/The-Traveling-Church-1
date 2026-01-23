@@ -132,8 +132,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       
-      const fontSize = Math.min(54, Math.max(36, 1200 / verseText.length * 3));
-      ctx.font = `600 ${fontSize}px Georgia, serif`;
+      const fontSize = Math.min(60, Math.max(40, 1200 / verseText.length * 3.5));
+      ctx.font = `600 ${fontSize}px "Spectral SC", Georgia, serif`;
       
       const cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
       const displayText = `"${cleanText}"`;
@@ -149,8 +149,24 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       
       const linesUsed = wrapText(ctx, displayText, canvas.width / 2, startY, maxWidth, lineHeight);
       
-      ctx.font = "400 36px Georgia, serif";
-      ctx.fillText(verseReference.toUpperCase(), canvas.width / 2, startY + linesUsed * lineHeight + 50);
+      ctx.font = "400 32px Poppins, sans-serif";
+      ctx.textAlign = "left";
+      const refText = verseReference.toUpperCase();
+      const refY = startY + linesUsed * lineHeight + 50;
+      
+      const letterSpacing = 8;
+      let totalWidth = 0;
+      for (let i = 0; i < refText.length; i++) {
+        totalWidth += ctx.measureText(refText[i]).width;
+        if (i < refText.length - 1) totalWidth += letterSpacing;
+      }
+      let refX = (canvas.width - totalWidth) / 2;
+      
+      for (let i = 0; i < refText.length; i++) {
+        ctx.fillText(refText[i], refX, refY);
+        refX += ctx.measureText(refText[i]).width + letterSpacing;
+      }
+      ctx.textAlign = "center";
       
       ctx.shadowColor = "transparent";
       ctx.shadowBlur = 0;
