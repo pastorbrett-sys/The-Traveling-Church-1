@@ -29,6 +29,7 @@ import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";
+import { getDefaultBibleTranslation } from "@/lib/i18n";
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -163,8 +164,8 @@ export default function PastorChat() {
   }, [tabParam]);
   
   const [bibleTranslation, setBibleTranslation] = useState(() => {
-    // Load from localStorage or default to KJV
-    return localStorage.getItem("bibleTranslation") || "KJV";
+    // Load from localStorage or use locale-aware default (ETHE for Amharic, KJV otherwise)
+    return localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
   });
   
   // Persist translation choice to localStorage and notify other components
@@ -177,7 +178,7 @@ export default function PastorChat() {
   // Listen for storage changes (when user switches translation in another tab/page)
   useEffect(() => {
     const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      const newTranslation = localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
       if (newTranslation !== bibleTranslation) {
         setBibleTranslation(newTranslation);
       }

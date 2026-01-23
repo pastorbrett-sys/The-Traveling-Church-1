@@ -6,8 +6,15 @@ export type SupportedLanguage = "en" | "am";
 const translations: Record<SupportedLanguage, typeof en> = { en, am };
 
 export function detectLanguage(): SupportedLanguage {
-  if (typeof navigator === "undefined") return "en";
+  if (typeof window === "undefined") return "en";
   
+  // Check URL param for testing (?lang=am)
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get("lang");
+  if (langParam === "am") return "am";
+  if (langParam === "en") return "en";
+  
+  // Check device language
   const browserLang = navigator.language || (navigator as any).languages?.[0] || "en";
   
   if (browserLang.startsWith("am")) {
@@ -15,6 +22,12 @@ export function detectLanguage(): SupportedLanguage {
   }
   
   return "en";
+}
+
+export function getDefaultBibleTranslation(): string {
+  const lang = detectLanguage();
+  // Ethiopian Orthodox Bible (ETHE) for Amharic speakers
+  return lang === "am" ? "ETHE" : "KJV";
 }
 
 export function isAmharic(): boolean {

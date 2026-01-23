@@ -18,6 +18,7 @@ import {
   SortDesc,
   Plus
 } from "lucide-react";
+import { getDefaultBibleTranslation } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -208,13 +209,13 @@ export default function Notes() {
   
   // Get translation from localStorage for localization
   const [translation, setTranslation] = useState(() => {
-    return localStorage.getItem("bibleTranslation") || "KJV";
+    return localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
   });
   
   // Listen for storage changes (when user switches translation in another tab/page)
   useEffect(() => {
     const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      const newTranslation = localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
       setTranslation(newTranslation);
     };
     window.addEventListener("storage", handleStorageChange);

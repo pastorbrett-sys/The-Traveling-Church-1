@@ -14,6 +14,7 @@ import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { useToast } from "@/hooks/use-toast";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
+import { getDefaultBibleTranslation } from "@/lib/i18n";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -289,13 +290,13 @@ export default function Profile() {
   
   // Get translation from localStorage for localization
   const [translation, setTranslation] = useState(() => {
-    return localStorage.getItem("bibleTranslation") || "KJV";
+    return localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
   });
   
   // Listen for storage changes
   useEffect(() => {
     const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      const newTranslation = localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
       setTranslation(newTranslation);
     };
     window.addEventListener("storage", handleStorageChange);

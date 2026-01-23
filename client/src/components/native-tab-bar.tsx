@@ -4,6 +4,7 @@ import { usePlatform } from "@/contexts/platform-context";
 import { Book, MessageCircle, FileText, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { getDefaultBibleTranslation } from "@/lib/i18n";
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -50,19 +51,19 @@ export function NativeTabBar() {
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
   const [tappedTab, setTappedTab] = useState<string | null>(null);
   const [translation, setTranslation] = useState(() => {
-    return localStorage.getItem("bibleTranslation") || "KJV";
+    return localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
   });
   
   // Listen for translation changes (storage for cross-tab, custom event for same-tab)
   useEffect(() => {
     const handleStorageChange = () => {
-      const newTranslation = localStorage.getItem("bibleTranslation") || "KJV";
+      const newTranslation = localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
       setTranslation(newTranslation);
     };
     
     // Custom event for same-tab updates
     const handleTranslationChange = (e: CustomEvent) => {
-      setTranslation(e.detail || "KJV");
+      setTranslation(e.detail || getDefaultBibleTranslation());
     };
     
     window.addEventListener("storage", handleStorageChange);
