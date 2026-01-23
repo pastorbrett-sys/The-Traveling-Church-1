@@ -125,9 +125,8 @@ export function usePushNotifications(userId: string | null | undefined) {
         return;
       }
 
-      // Register for push notifications
-      await PushNotifications.register();
-
+      // IMPORTANT: Set up listeners BEFORE calling register() to not miss the token event
+      
       // Listen for registration success
       await PushNotifications.addListener('registration', async (token: Token) => {
         console.log('Push registration success, token:', token.value);
@@ -164,6 +163,9 @@ export function usePushNotifications(userId: string | null | undefined) {
           handleDeepLink(data);
         }
       });
+
+      // NOW register for push notifications (after listeners are set up)
+      await PushNotifications.register();
 
     } catch (error) {
       console.error('Error initializing push notifications:', error);
