@@ -6,24 +6,35 @@ let firebaseApp: admin.app.App | null = null;
 
 function getFirebaseAdmin(): admin.app.App {
   if (firebaseApp) {
+    console.log("[Firebase Admin] Using existing app instance");
     return firebaseApp;
   }
 
   const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
   
+  console.log("[Firebase Admin] Initializing new app...");
+  console.log("[Firebase Admin] Service account key present:", !!serviceAccount);
+  
   if (serviceAccount) {
     try {
       const parsedKey = JSON.parse(serviceAccount);
+      console.log("[Firebase Admin] Parsed key - project_id:", parsedKey.project_id);
+      console.log("[Firebase Admin] Parsed key - client_email:", parsedKey.client_email);
+      console.log("[Firebase Admin] Parsed key - private_key length:", parsedKey.private_key?.length);
+      
       firebaseApp = admin.initializeApp({
         credential: admin.credential.cert(parsedKey),
       });
+      console.log("[Firebase Admin] Initialized with service account credentials");
     } catch (error) {
-      console.error("Error parsing Firebase service account key:", error);
+      console.error("[Firebase Admin] Error parsing service account key:", error);
       firebaseApp = admin.initializeApp({
         projectId: process.env.VITE_FIREBASE_PROJECT_ID,
       });
+      console.log("[Firebase Admin] Fell back to project ID only (NO MESSAGING SUPPORT)");
     }
   } else {
+    console.log("[Firebase Admin] No service account key - using project ID only (NO MESSAGING SUPPORT)");
     firebaseApp = admin.initializeApp({
       projectId: process.env.VITE_FIREBASE_PROJECT_ID,
     });
