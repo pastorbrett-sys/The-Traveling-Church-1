@@ -19,27 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // Handle APNs token registration - convert to FCM token
+    // Handle APNs token registration - pass to Firebase for FCM conversion
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Pass the APNs token to Firebase Messaging
+        // Firebase will automatically convert this to an FCM token
         Messaging.messaging().apnsToken = deviceToken
         
-        // Get the FCM token and notify Capacitor
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM token: \(error)")
-                NotificationCenter.default.post(
-                    name: .capacitorDidFailToRegisterForRemoteNotifications,
-                    object: error
-                )
-            } else if let token = token {
-                print("FCM token: \(token)")
-                NotificationCenter.default.post(
-                    name: .capacitorDidRegisterForRemoteNotifications,
-                    object: token
-                )
-            }
-        }
+        // Debug: log the APNs token
+        let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("APNs token received: \(tokenString)")
+        
+        // The FCM token will be delivered via MessagingDelegate (didReceiveRegistrationToken)
+        // which will then notify Capacitor
     }
     
     // Handle registration failures
@@ -94,10 +85,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - MessagingDelegate for FCM token updates
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token refreshed: \(fcmToken ?? "nil")")
+        print("Firebase FCM token received: \(fcmToken ?? "nil")")
         
-        if let token = fcmToken {
-            // Notify Capacitor about the new FCM token
+        guard let token = fcmToken else {
+            print("FCM token is nil, skipping notification")
+            return
+        }
+        
+        // Post notification on main thread to ensure Capacitor receives it
+        DispatchQueue.main.async {
+            print("Posting FCM token to Capacitor via NotificationCenter")
             NotificationCenter.default.post(
                 name: .capacitorDidRegisterForRemoteNotifications,
                 object: token
