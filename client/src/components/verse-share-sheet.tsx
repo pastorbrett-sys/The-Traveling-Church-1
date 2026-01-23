@@ -18,7 +18,7 @@ import lakeReflection from "@/assets/share-backgrounds/lake-reflection.jpg";
 import pinkSky from "@/assets/share-backgrounds/pink-sky.jpg";
 import crossSunrise from "@/assets/share-backgrounds/cross-sunrise.jpg";
 import autumnLeaves from "@/assets/share-backgrounds/autumn-leaves.jpg";
-import vagabondLogo from "@/assets/vagabond-logo-white.png";
+import vagabondLogo from "@/assets/vagabond-share-logo.png";
 
 const BACKGROUNDS = [
   { id: "sunset-ocean", src: sunsetOcean, name: "Sunset Ocean" },
@@ -140,47 +140,75 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       
       const lineHeight = fontSize * 1.4;
       const maxWidth = canvas.width - 140;
-      const startY = canvas.height / 2 - 60;
       
       ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
       ctx.shadowBlur = 10;
       ctx.shadowOffsetX = 2;
       ctx.shadowOffsetY = 2;
       
-      const linesUsed = wrapText(ctx, displayText, canvas.width / 2, startY, maxWidth, lineHeight);
+      const words = displayText.split(" ");
+      let lines: string[] = [];
+      let currentLine = "";
       
-      ctx.font = "400 38px Poppins, sans-serif";
-      ctx.textAlign = "left";
-      const refText = verseReference.toUpperCase();
-      const refY = startY + linesUsed * lineHeight + 50;
-      
-      const letterSpacing = 8;
-      let totalWidth = 0;
-      for (let i = 0; i < refText.length; i++) {
-        totalWidth += ctx.measureText(refText[i]).width;
-        if (i < refText.length - 1) totalWidth += letterSpacing;
+      for (const word of words) {
+        const testLine = currentLine ? `${currentLine} ${word}` : word;
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
       }
-      let refX = (canvas.width - totalWidth) / 2;
+      if (currentLine) lines.push(currentLine);
       
-      for (let i = 0; i < refText.length; i++) {
-        ctx.fillText(refText[i], refX, refY);
-        refX += ctx.measureText(refText[i]).width + letterSpacing;
-      }
-      ctx.textAlign = "center";
+      const totalTextHeight = lines.length * lineHeight;
+      const startY = (canvas.height - totalTextHeight) / 2 + lineHeight / 2;
+      
+      lines.forEach((line, index) => {
+        ctx.fillText(line, canvas.width / 2, startY + index * lineHeight);
+      });
       
       ctx.shadowColor = "transparent";
       ctx.shadowBlur = 0;
       
       if (logoImgRef.current) {
-        const logoHeight = 42;
+        const logoHeight = 50;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
-        const logoX = canvas.width - logoWidth - 30;
+        const logoX = 30;
         const logoY = canvas.height - logoHeight - 30;
         
-        ctx.globalAlpha = 0.85;
+        ctx.globalAlpha = 0.9;
         ctx.drawImage(logoImgRef.current, logoX, logoY, logoWidth, logoHeight);
         ctx.globalAlpha = 1;
       }
+      
+      ctx.font = "400 28px Poppins, sans-serif";
+      ctx.textAlign = "right";
+      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetX = 1;
+      ctx.shadowOffsetY = 1;
+      
+      const refText = verseReference.toUpperCase();
+      const letterSpacing = 6;
+      let totalWidth = 0;
+      for (let i = 0; i < refText.length; i++) {
+        totalWidth += ctx.measureText(refText[i]).width;
+        if (i < refText.length - 1) totalWidth += letterSpacing;
+      }
+      
+      ctx.textAlign = "left";
+      let refX = canvas.width - totalWidth - 30;
+      const refY = canvas.height - 42;
+      
+      for (let i = 0; i < refText.length; i++) {
+        ctx.fillText(refText[i], refX, refY);
+        refX += ctx.measureText(refText[i]).width + letterSpacing;
+      }
+      
+      ctx.shadowColor = "transparent";
+      ctx.shadowBlur = 0;
       
       const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
       setGeneratedImage(dataUrl);
