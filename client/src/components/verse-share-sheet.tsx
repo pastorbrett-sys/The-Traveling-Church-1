@@ -144,10 +144,6 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       const lineHeight = fontSize * 1.4;
       const maxWidth = canvas.width - 140;
       
-      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-      ctx.shadowBlur = 10;
-      ctx.shadowOffsetX = 2;
-      ctx.shadowOffsetY = 2;
       
       const words = displayText.split(" ");
       let lines: string[] = [];
@@ -172,9 +168,6 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         ctx.fillText(line, canvas.width / 2, startY + index * lineHeight);
       });
       
-      ctx.shadowColor = "transparent";
-      ctx.shadowBlur = 0;
-      
       if (logoImgRef.current) {
         const logoHeight = 50;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
@@ -188,10 +181,6 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       
       ctx.font = "400 28px Poppins, sans-serif";
       ctx.textAlign = "right";
-      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-      ctx.shadowBlur = 8;
-      ctx.shadowOffsetX = 1;
-      ctx.shadowOffsetY = 1;
       
       const refText = verseReference.toUpperCase();
       const letterSpacing = 6;
@@ -209,9 +198,6 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         ctx.fillText(refText[i], refX, refY);
         refX += ctx.measureText(refText[i]).width + letterSpacing;
       }
-      
-      ctx.shadowColor = "transparent";
-      ctx.shadowBlur = 0;
       
       const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
       setGeneratedImage(dataUrl);
