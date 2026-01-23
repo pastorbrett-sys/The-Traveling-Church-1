@@ -5,18 +5,19 @@
     "action_bar_tooltip": "በ AI ይተንትኑ"
   },
   "landing": {
-    "hero_title": "የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ",
-    "hero_subtitle": "በብልህ ግንዛቤዎች፣ በመንፈሳዊ መመሪያ እና በጥልቅ የጥናት መሳሪያዎች ቅዱሳት መጻሕፍትን ይለማመዱ",
+    "hero_title_1": "ምርጥ",
+    "hero_title_2": "AI መጽሐፍ ቅዱስ",
+    "hero_title_3": "በታሪክ",
+    "hero_subtitle": "ጥቅሶችን ይተንትኑ፣ ጥያቄዎችን ይጠይቁ፣ እና ከ24/7 ፓስተራችን ጋር በማንኛውም ቦታ ይወያዩ።",
     "cta_start": "ማንበብ ጀምር",
-    "cta_learn": "ተጨማሪ እወቅ",
-    "features_title": "ባህሪያት",
-    "feature_chat_title": "ከፓስተር ብሬት ጋር ይወያዩ",
-    "feature_chat_desc": "መንፈሳዊ መመሪያ እና መጽሐፍ ቅዱሳዊ መልሶች ያግኙ",
-    "feature_reader_title": "ብዙ ትርጉም አንባቢ",
-    "feature_reader_desc": "በተለያዩ የመጽሐፍ ቅዱስ ትርጉሞች ያንብቡ",
-    "feature_search_title": "ብልህ ፍለጋ",
-    "feature_search_desc": "በ AI የሚነዳ ጥቅስ ግኝት",
-    "feature_notes_title": "የግል ማስታወሻዎች",
-    "feature_notes_desc": "የጥናት ማስታወሻዎችዎን ያስቀምጡ እና ያደራጁ"
+    "cta_pastor": "AI ፓስተር",
+    "cta_try_free": "በነፃ ይሞክሩ",
+    "cta_section_title": "ጉዞዎን ለመጀመር ዝግጁ ነዎት?",
+    "cta_section_desc": "Vagabond Bible AI በነፃ ይሞክሩ። ክሬዲት ካርድ አያስፈልግም።",
+    "nav_features": "ባህሪያት",
+    "nav_about": "ስለ እኛ",
+    "nav_community": "ማህበረሰብ",
+    "nav_contact": "ያግኙን",
+    "nav_login": "ግባ"
   }
 }

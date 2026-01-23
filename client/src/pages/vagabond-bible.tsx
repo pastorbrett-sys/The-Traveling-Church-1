@@ -12,6 +12,7 @@ import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
 import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 import burstIcon from "@assets/Burst_1767600505667.png";
 import { usePlatform } from "@/contexts/platform-context";
+import { t } from "@/lib/i18n";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,22 +51,22 @@ export default function VagabondBible() {
           >
             <div className="max-w-md mx-auto text-center">
               <h1 className="font-heading text-[36px] sm:text-5xl mb-4 text-white font-extrabold leading-[1.12]">
-                The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
+                {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
               </h1>
               <p className="text-[15px] text-white/90 mb-10 leading-relaxed">
-                Analyze verses, ask questions, and chat with our 24/7 pastor wherever, whenever.
+                {t("landing.hero_subtitle")}
               </p>
               <div className="flex flex-col gap-4">
                 <Link href="/pastor-chat">
                   <Button size="lg" className="w-full hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading-native">
                     <BookOpen className="w-5 h-5 mr-2" />
-                    Start Reading
+                    {t("landing.cta_start")}
                   </Button>
                 </Link>
                 <Link href="/pastor-chat?tab=chat">
                   <Button size="lg" variant="ghost" className="w-full border-[1.5px] border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-chat-pastor-native">
                     <MessageCircle className="w-5 h-5 mr-2" />
-                    AI Pastor
+                    {t("landing.cta_pastor")}
                   </Button>
                 </Link>
               </div>
@@ -103,13 +104,13 @@ export default function VagabondBible() {
               data-testid="img-vagabond-logo" 
             />
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features">Features</a>
-              <a href="#about" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about">About</a>
-              <a href="#community" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community">Community</a>
-              <a href="#contact" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact">Contact</a>
+              <a href="#features" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features">{t("landing.nav_features")}</a>
+              <a href="#about" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about">{t("landing.nav_about")}</a>
+              <a href="#community" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community">{t("landing.nav_community")}</a>
+              <a href="#contact" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact">{t("landing.nav_contact")}</a>
               <Link href="/login">
                 <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-login">
-                  Login
+                  {t("landing.nav_login")}
                 </Button>
               </Link>
             </div>
@@ -131,13 +132,13 @@ export default function VagabondBible() {
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-[hsl(30,20%,88%)] py-4 pb-[21px]">
               <div className="flex flex-col gap-4">
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '0ms' }} data-testid="link-features-mobile">Features</a>
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '50ms' }} data-testid="link-about-mobile">About</a>
-                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '100ms' }} data-testid="link-community-mobile">Community</a>
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '150ms' }} data-testid="link-contact-mobile">Contact</a>
+                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '0ms' }} data-testid="link-features-mobile">{t("landing.nav_features")}</a>
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '50ms' }} data-testid="link-about-mobile">{t("landing.nav_about")}</a>
+                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '100ms' }} data-testid="link-community-mobile">{t("landing.nav_community")}</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '150ms' }} data-testid="link-contact-mobile">{t("landing.nav_contact")}</a>
                 <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="mt-[5px]">
                   <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px] animate-fade-in-up" style={{ animationDelay: '200ms' }} data-testid="button-login-mobile">
-                    Login
+                    {t("landing.nav_login")}
                   </Button>
                 </Link>
               </div>
@@ -165,22 +166,22 @@ export default function VagabondBible() {
               <span className="text-sm font-medium">Voted #1 Bible App by Experts</span>
             </div>
             <h1 className="font-heading text-[40px] sm:text-5xl lg:text-[68px] mb-6 text-white font-extrabold leading-[1.12] sm:leading-[1.06]">
-              The Best <span className="text-[hsl(35,65%,55%)]">AI Bible</span><br />Ever Built
+              {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
             </h1>
             <p className="text-[14px] sm:text-xl lg:text-[18px] text-white/90 mb-8 leading-relaxed">
-              Analyze verses, ask questions, dive deeper, and chat with our 24/7 pastor wherever, whenever.
+              {t("landing.hero_subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/pastor-chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
                 <Button size="lg" className="w-full sm:w-auto hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading">
                   <BookOpen className="w-5 h-5 mr-2" />
-                  Start Reading
+                  {t("landing.cta_start")}
                 </Button>
               </Link>
               <Link href="/pastor-chat?tab=chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
                 <Button size="lg" variant="ghost" className="w-full sm:w-auto border-[1.5px] border-white text-white bg-transparent hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-chat-pastor">
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  AI Pastor
+                  {t("landing.cta_pastor")}
                 </Button>
               </Link>
             </div>
@@ -361,14 +362,14 @@ export default function VagabondBible() {
       </section>
       <section className="py-24 from-[hsl(25,35%,45%)] to-[hsl(25,35%,38%)] text-[#d79942] bg-[#d79942]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 text-white">Ready to Start Your Journey?</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 text-white">{t("landing.cta_section_title")}</h2>
           <p className="text-white/90 text-xl mb-10">
-            Try Vagabond Bible AI free. No credit card required.
+            {t("landing.cta_section_desc")}
           </p>
           <Link href="/pastor-chat">
             <Button size="lg" className="bg-white text-[hsl(25,35%,45%)] hover:bg-white/90 hover:scale-105 transition-all duration-200 text-lg px-12 rounded-full" data-testid="button-try-free">
               <Sparkles className="w-5 h-5 mr-2" />
-              Try It Free
+              {t("landing.cta_try_free")}
             </Button>
           </Link>
         </div>

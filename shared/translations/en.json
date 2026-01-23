@@ -5,18 +5,19 @@
     "action_bar_tooltip": "Analyze with AI"
   },
   "landing": {
-    "hero_title": "Your AI Bible Companion",
-    "hero_subtitle": "Experience Scripture with intelligent insights, pastoral guidance, and deep study tools",
+    "hero_title_1": "The Best",
+    "hero_title_2": "AI Bible",
+    "hero_title_3": "Ever Built",
+    "hero_subtitle": "Analyze verses, ask questions, and chat with our 24/7 pastor wherever, whenever.",
     "cta_start": "Start Reading",
-    "cta_learn": "Learn More",
-    "features_title": "Features",
-    "feature_chat_title": "Chat with Pastor Brett",
-    "feature_chat_desc": "Get pastoral guidance and biblical answers",
-    "feature_reader_title": "Multi-Translation Reader",
-    "feature_reader_desc": "Read across multiple Bible translations",
-    "feature_search_title": "Smart Search",
-    "feature_search_desc": "AI-powered verse discovery",
-    "feature_notes_title": "Personal Notes",
-    "feature_notes_desc": "Save and organize your study notes"
+    "cta_pastor": "AI Pastor",
+    "cta_try_free": "Try It Free",
+    "cta_section_title": "Ready to Start Your Journey?",
+    "cta_section_desc": "Try Vagabond Bible AI free. No credit card required.",
+    "nav_features": "Features",
+    "nav_about": "About",
+    "nav_community": "Community",
+    "nav_contact": "Contact",
+    "nav_login": "Login"
   }
 }
