@@ -1,0 +1,105 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Could not create a sandbox extension for '/var/containers/Bundle/Application/191E47CF-98F0-4BC1-9C53-4F280B6F4897/App.app'
+⚡️  Loading app at capacitor://localhost...
+WebContent[13980] Unable to hide query parameters from script (missing data)
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 85695030
+⚡️  To Native ->  FirebaseAuthentication addListener 85695031
+⚡️  TO JS {"user":{"isAnonymous":false,"uid":"2fx3XCCUwsSCdAdIaXDcCHdA7I22","displayName":"Brett Lindstrom","photoUrl":"https:\/\/lh3.googleusercontent.com\/a-\/ALV-UjVU8PUfjnDupiICzXCdKOv3OoqCx9vWCq9Nj0AEztzp2g79vIcYkBNRAXr-PunGkpVr_HW8GMkeGBs5XRm1yLZDAregKr48P7Crg
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 85695032
+⚡️  TO JS undefined
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+⚡️  To Native ->  FirebaseAuthentication getIdToken 85695033
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2 (Build 23C55)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  [log] - [NATIVE AUTH] Auth state changed: pastorbrett@thetravelingchurch.com
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+⚡️  TO JS {"customerInfo":{"nonSubscriptionTransactions":[],"subscriptionsByProductIdentifier":{},"entitlements":{"verification":"VERIFIED","all":{},"active":{}},"originalPurchaseDate":null,"originalPurchaseDateMillis":null,"originalApplicationVersion":null,"allPurc
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+DEBUG: ℹ️ GetOfferingsOperation: Started
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings'
+⚡️  To Native ->  CapacitorHttp request 85695034
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["vagabond_bible_pro_monthly", "pro_monthly_emerging"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report' (304)
+⚡️  To Native ->  FirebaseAuthentication getIdToken 85695035
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  To Native ->  CapacitorHttp request 85695036
+DEBUG: ℹ️ HealthReportOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604/health_report, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604'
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A7ba925d3cb754a3e9c27e706e9bd9604, 0 requests left in the queue
+⚡️  TO JS {"status":200,"url":"https:\/\/developers.google.com\/","headers":{"expires":"0","strict-transport-security":"max-age=63072000; includeSubdomains; preload","x-content-type-options":"nosniff","x-xss-protection":"0","vary":"Cookie, Accept-Encoding","content-
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+⚡️  TO JS {"url":"https:\/\/vagabondbible.com\/api\/auth\/firebase","headers":{"expires":"Fri, 23 Jan 2026 20:51:37 GMT","etag":"W\/\"636-ctCKDb9x+2y4LeJbNKiO\/j1zCro\"","server":"Google Frontend","date":"Fri, 23 Jan 2026 20:51:37 GMT","strict-transport-security":"m
+⚡️  To Native ->  FirebaseAuthentication getIdToken 85695037
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjFjMzIxOTgzNGRhNTBlMjBmYWVhZWE3Yzg2Y2U3YjU1MzhmMTdiZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BTFYtVWpWVThQVWZqbkR1cGlJQ3pYQ2RLT3YzT29xQ3g
+⚡️  To Native ->  PushNotifications removeAllListeners 85695038
+⚡️  TO JS undefined
+⚡️  To Native ->  PushNotifications checkPermissions 85695039
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 85695040
+⚡️  To Native ->  FirebaseAuthentication addListener 85695041
+⚡️  TO JS undefined
+⚡️  To Native ->  CapacitorHttp request 85695042
+⚡️  TO JS {"receive":"granted"}
+⚡️  To Native ->  PushNotifications register 85695043
+⚡️  TO JS undefined
+⚡️  To Native ->  PushNotifications addListener 85695044
+⚡️  To Native ->  PushNotifications addListener 85695045
+⚡️  To Native ->  PushNotifications addListener 85695046
+⚡️  To Native ->  PushNotifications addListener 85695047
+⚡️  TO JS {"url":"https:\/\/vagabondbible.com\/api\/auth\/language","headers":{"content-length":"32","via":"1.1 google","server":"Google Frontend","content-type":"application\/json; charset=utf-8","x-cloud-trace-context":"e55d7e2cd653a50de7f14fafc85d9eb1","x-powered
+⚡️  [log] - [Auth] Synced user language: en
