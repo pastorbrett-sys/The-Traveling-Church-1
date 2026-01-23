@@ -11,13 +11,6 @@ function getApiUrl(path: string): string {
   return isNative ? `${PRODUCTION_URL}${path}` : path;
 }
 
-interface PushNotificationState {
-  token: string | null;
-  isRegistered: boolean;
-  permissionStatus: 'prompt' | 'granted' | 'denied' | 'unknown';
-  isInitialized: boolean;
-}
-
 interface DeepLinkData {
   type: string;
   bookId?: string;
@@ -30,15 +23,13 @@ interface DeepLinkData {
 
 export function usePushNotifications(userId: string | null | undefined) {
   const [, setLocation] = useLocation();
-  const [state, setState] = useState<PushNotificationState>({
-    token: null,
-    isRegistered: false,
-    permissionStatus: 'unknown',
-    isInitialized: false,
-  });
+  const [token, setToken] = useState<string | null>(null);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [permissionStatus, setPermissionStatus] = useState<'prompt' | 'granted' | 'denied' | 'unknown'>('unknown');
   
-  // Use ref to prevent multiple initialization attempts
-  const initializingRef = useRef(false);
+  // Track initialization state with refs to avoid re-renders triggering re-init
+  const isInitializedRef = useRef(false);
+  const listenersAddedRef = useRef(false);
 
   // Get device timezone info
   const getTimezoneInfo = useCallback(() => {
@@ -52,24 +43,23 @@ export function usePushNotifications(userId: string | null | undefined) {
     }
   }, []);
 
-  // Register token with backend
-  const registerTokenWithBackend = useCallback(async (token: string) => {
-    if (!userId) return;
-
+  // Register token with backend - stable callback
+  const registerTokenWithBackend = useCallback(async (tokenValue: string, userIdValue: string) => {
     const platform = Capacitor.getPlatform();
     const { timezone, utcOffset } = getTimezoneInfo();
 
     try {
+      console.log('[Push] Registering token with backend for user:', userIdValue);
       const response = await fetch(getApiUrl('/api/notifications/register-token'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({
-          deviceToken: token,
+          deviceToken: tokenValue,
           platform,
           timezone,
           utcOffset,
-          userId,
+          userId: userIdValue,
         }),
       });
 
@@ -77,21 +67,21 @@ export function usePushNotifications(userId: string | null | undefined) {
         throw new Error('Failed to register token');
       }
 
-      console.log('Push token registered successfully');
+      console.log('[Push] Token registered successfully with backend');
     } catch (error) {
-      console.error('Error registering push token:', error);
+      console.error('[Push] Error registering push token:', error);
     }
-  }, [userId, getTimezoneInfo]);
+  }, [getTimezoneInfo]);
 
-  // Handle deep link navigation
+  // Handle deep link navigation - stable callback
   const handleDeepLink = useCallback((data: DeepLinkData) => {
+    console.log('[Push] Handling deep link:', data);
     if (data.type === 'verse_of_week' || data.type === 'verse') {
       const bookId = data.bookId;
       const chapter = data.chapter;
       const verse = data.verse;
 
       if (bookId && chapter) {
-        // Navigate to the Bible reader with the specific verse
         const params = new URLSearchParams();
         if (verse) params.set('verse', verse);
         if (data.showActionMenu === 'true') params.set('showAction', 'true');
@@ -99,130 +89,122 @@ export function usePushNotifications(userId: string | null | undefined) {
 
         const queryString = params.toString();
         const path = `/bible/${bookId}/${chapter}${queryString ? `?${queryString}` : ''}`;
+        console.log('[Push] Navigating to:', path);
         setLocation(path);
       }
     }
   }, [setLocation]);
 
-  // Initialize push notifications
-  const initializePushNotifications = useCallback(async () => {
+  // Main initialization effect - runs once when userId becomes available
+  useEffect(() => {
+    // Skip if not on native platform
     if (!Capacitor.isNativePlatform()) {
-      console.log('Push notifications only work on native platforms');
+      console.log('[Push] Not a native platform, skipping');
       return;
     }
 
-    // Prevent multiple simultaneous initialization attempts
-    if (initializingRef.current || state.isInitialized) {
-      console.log('Push notifications already initializing or initialized');
+    // Skip if already initialized or no user
+    if (isInitializedRef.current || !userId) {
       return;
     }
-    
-    initializingRef.current = true;
 
-    try {
-      // Check current permission status
-      let permStatus = await PushNotifications.checkPermissions();
-      
-      if (permStatus.receive === 'prompt') {
-        // Request permission
-        permStatus = await PushNotifications.requestPermissions();
-      }
+    // Mark as initializing to prevent duplicate attempts
+    isInitializedRef.current = true;
 
-      setState(prev => ({
-        ...prev,
-        permissionStatus: permStatus.receive as 'prompt' | 'granted' | 'denied',
-      }));
+    const setupPushNotifications = async () => {
+      try {
+        console.log('[Push] Starting push notification setup...');
 
-      if (permStatus.receive !== 'granted') {
-        console.log('Push notification permission denied');
-        initializingRef.current = false;
-        return;
-      }
-
-      // IMPORTANT: Set up listeners BEFORE calling register() to not miss the token event
-      console.log('[Push] Setting up notification listeners...');
-      
-      // Listen for registration success
-      await PushNotifications.addListener('registration', async (token: Token) => {
-        console.log('Push registration success, token:', token.value);
-        setState(prev => ({
-          ...prev,
-          token: token.value,
-          isRegistered: true,
-        }));
-
-        // Register with backend
-        await registerTokenWithBackend(token.value);
-      });
-
-      // Listen for registration errors
-      await PushNotifications.addListener('registrationError', (error) => {
-        console.error('Push registration error:', error);
-        setState(prev => ({
-          ...prev,
-          isRegistered: false,
-        }));
-      });
-
-      // Listen for notifications received while app is in foreground
-      await PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-        console.log('Push notification received:', notification);
-        // Could show an in-app banner here if desired
-      });
-
-      // Listen for notification tap (from background or killed state)
-      await PushNotifications.addListener('pushNotificationActionPerformed', (action: ActionPerformed) => {
-        console.log('Push notification action performed:', action);
-        const data = action.notification.data as DeepLinkData;
-        if (data) {
-          handleDeepLink(data);
+        // Step 1: Check/request permissions
+        let permStatus = await PushNotifications.checkPermissions();
+        console.log('[Push] Current permission status:', permStatus.receive);
+        
+        if (permStatus.receive === 'prompt') {
+          console.log('[Push] Requesting permissions...');
+          permStatus = await PushNotifications.requestPermissions();
+          console.log('[Push] Permission result:', permStatus.receive);
         }
-      });
 
-      console.log('[Push] Calling PushNotifications.register()...');
-      // NOW register for push notifications (after listeners are set up)
-      await PushNotifications.register();
-      
-      setState(prev => ({
-        ...prev,
-        isInitialized: true,
-      }));
+        setPermissionStatus(permStatus.receive as 'prompt' | 'granted' | 'denied');
 
-    } catch (error) {
-      console.error('Error initializing push notifications:', error);
-    } finally {
-      initializingRef.current = false;
-    }
-  }, [registerTokenWithBackend, handleDeepLink, state.isInitialized]);
+        if (permStatus.receive !== 'granted') {
+          console.log('[Push] Permission not granted, aborting');
+          isInitializedRef.current = false;
+          return;
+        }
 
-  // Initialize when userId becomes available
-  useEffect(() => {
-    if (userId && !state.isInitialized) {
-      initializePushNotifications();
-    }
-  }, [userId, state.isInitialized, initializePushNotifications]);
+        // Step 2: Add listeners FIRST (critical ordering)
+        if (!listenersAddedRef.current) {
+          console.log('[Push] Adding notification listeners...');
+          
+          await PushNotifications.addListener('registration', async (tokenData: Token) => {
+            console.log('[Push] Registration success! Token:', tokenData.value.substring(0, 20) + '...');
+            setToken(tokenData.value);
+            setIsRegistered(true);
+          });
 
-  // Cleanup listeners only on component unmount (not on every dependency change)
-  useEffect(() => {
-    return () => {
-      if (Capacitor.isNativePlatform()) {
-        console.log('[Push] Cleaning up notification listeners on unmount');
-        PushNotifications.removeAllListeners();
+          await PushNotifications.addListener('registrationError', (error) => {
+            console.error('[Push] Registration error:', error);
+            setIsRegistered(false);
+          });
+
+          await PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
+            console.log('[Push] Notification received in foreground:', notification.title);
+          });
+
+          await PushNotifications.addListener('pushNotificationActionPerformed', (action: ActionPerformed) => {
+            console.log('[Push] Notification tapped:', action.notification.title);
+            const data = action.notification.data as DeepLinkData;
+            if (data) {
+              handleDeepLink(data);
+            }
+          });
+
+          listenersAddedRef.current = true;
+          console.log('[Push] All listeners added successfully');
+        }
+
+        // Step 3: Register for push (AFTER listeners are set up)
+        console.log('[Push] Calling register()...');
+        await PushNotifications.register();
+        console.log('[Push] Register() called successfully');
+
+      } catch (error) {
+        console.error('[Push] Setup error:', error);
+        isInitializedRef.current = false;
       }
     };
-  }, []); // Empty deps - only runs on unmount
 
-  // Re-register token if userId changes (e.g., after login)
+    setupPushNotifications();
+
+    // Cleanup only on unmount
+    return () => {
+      if (listenersAddedRef.current) {
+        console.log('[Push] Cleaning up listeners on unmount');
+        PushNotifications.removeAllListeners();
+        listenersAddedRef.current = false;
+        isInitializedRef.current = false;
+      }
+    };
+  }, [userId, handleDeepLink]);
+
+  // Separate effect to register token with backend when we have both token and userId
   useEffect(() => {
-    if (userId && state.token) {
-      registerTokenWithBackend(state.token);
+    if (token && userId) {
+      registerTokenWithBackend(token, userId);
     }
-  }, [userId, state.token, registerTokenWithBackend]);
+  }, [token, userId, registerTokenWithBackend]);
+
+  // Allow manual re-initialization
+  const reinitialize = useCallback(() => {
+    isInitializedRef.current = false;
+    listenersAddedRef.current = false;
+  }, []);
 
   return {
-    token: state.token,
-    isRegistered: state.isRegistered,
-    permissionStatus: state.permissionStatus,
-    reinitialize: initializePushNotifications,
+    token,
+    isRegistered,
+    permissionStatus,
+    reinitialize,
   };
 }
