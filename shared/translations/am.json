@@ -51,5 +51,25 @@
     "footer_contact": "ያግኙን",
     "footer_project_by": "በተጓዥ ቤተ ክርስቲያን ፕሮጀክት",
     "footer_copyright": "Vagabond Bible AI። መብቱ በሕግ የተጠበቀ ነው።"
+  },
+  "login": {
+    "welcome_back": "እንኳን ደህና መጡ!",
+    "signed_in": "ገብተዋል",
+    "continue_to_app": "ወደ መተግበሪያው ቀጥል",
+    "signing_in": "በመግባት ላይ...",
+    "use_different_account": "ሌላ መለያ ተጠቀም",
+    "sign_in": "ግባ",
+    "create_account": "መለያ ፍጠር",
+    "email": "ኢሜይል",
+    "password": "የይለፍ ቃል",
+    "password_placeholder_signin": "የይለፍ ቃልዎን ያስገቡ",
+    "password_placeholder_signup": "ቢያንስ 6 ቁምፊዎች",
+    "forgot_password": "የይለፍ ቃል ረሱ?",
+    "or": "ወይም",
+    "continue_google": "በGoogle ቀጥል",
+    "signup_google": "በGoogle ተመዝገብ",
+    "continue_apple": "በApple ቀጥል",
+    "signup_apple": "በApple ተመዝገብ",
+    "terms": "በመቀጠል፣ የአገልግሎት ውሎቻችንን እና የግላዊነት ፖሊሲያችንን ይስማማሉ።"
   }
 }

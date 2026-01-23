@@ -21,6 +21,7 @@ import {
 import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
 import { trackReferralSignup } from "@/hooks/use-referral";
 import { apiFetch } from "@/lib/queryClient";
+import { t } from "@/lib/i18n";
 
 export default function Login() {
   const { user, isAuthenticated, isLoading, refetch } = useAuth();
@@ -344,7 +345,7 @@ export default function Login() {
                 <div className="flex justify-center mb-4">
                   <img src={vagabondLogoWhite} alt="Vagabond Bible" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
                 </div>
-                <h2 className="text-xl font-semibold text-white mt-4">Welcome Back!</h2>
+                <h2 className="text-xl font-semibold text-white mt-4">{t("login.welcome_back")}</h2>
               </CardHeader>
 
               <CardContent className="space-y-6 pt-4">
@@ -361,7 +362,7 @@ export default function Login() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-white font-medium truncate">{user?.email}</p>
-                    <p className="text-gray-400 text-sm">Signed in</p>
+                    <p className="text-gray-400 text-sm">{t("login.signed_in")}</p>
                   </div>
                 </div>
 
@@ -377,10 +378,10 @@ export default function Login() {
                   {isNativeRedirecting ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Signing in...
+                      {t("login.signing_in")}
                     </>
                   ) : (
-                    "Continue to App"
+                    t("login.continue_to_app")
                   )}
                 </Button>
 
@@ -396,7 +397,7 @@ export default function Login() {
                   {isGoogleSubmitting ? (
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   ) : null}
-                  Use a Different Account
+                  {t("login.use_different_account")}
                 </Button>
               </CardContent>
             </Card>
@@ -438,7 +439,7 @@ export default function Login() {
                   className={`py-2 text-sm font-medium rounded-md transition-colors ${activeTab === "signin" ? "bg-[#3a3a3a] text-white" : "text-gray-400"}`}
                   data-testid="tab-signin"
                 >
-                  Sign In
+                  {t("login.sign_in")}
                 </button>
                 <button
                   type="button"
@@ -446,14 +447,14 @@ export default function Login() {
                   className={`py-2 text-sm font-medium rounded-md transition-colors ${activeTab === "signup" ? "bg-[#3a3a3a] text-white" : "text-gray-400"}`}
                   data-testid="tab-signup"
                 >
-                  Create Account
+                  {t("login.create_account")}
                 </button>
               </div>
 
               {/* Unified Form - Fixed Position Elements */}
               <form onSubmit={activeTab === "signin" ? handleEmailSignIn : handleEmailSignUp} className="space-y-4 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-300">Email</Label>
+                  <Label htmlFor="email" className="text-gray-300">{t("login.email")}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -467,12 +468,12 @@ export default function Login() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-gray-300">Password</Label>
+                  <Label htmlFor="password" className="text-gray-300">{t("login.password")}</Label>
                   <div className="relative">
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      placeholder={activeTab === "signin" ? "Enter your password" : "At least 6 characters"}
+                      placeholder={activeTab === "signin" ? t("login.password_placeholder_signin") : t("login.password_placeholder_signup")}
                       value={activeTab === "signin" ? signInPassword : signUpPassword}
                       onChange={(e) => activeTab === "signin" ? setSignInPassword(e.target.value) : setSignUpPassword(e.target.value)}
                       required
@@ -502,7 +503,7 @@ export default function Login() {
                   ) : activeTab === "signup" ? (
                     <Mail className="w-4 h-4 mr-2" />
                   ) : null}
-                  {activeTab === "signin" ? "Sign In" : "Create Account"}
+                  {activeTab === "signin" ? t("login.sign_in") : t("login.create_account")}
                 </Button>
               </form>
 
@@ -515,7 +516,7 @@ export default function Login() {
                     className="text-sm hover:underline text-[#b8860b]"
                     data-testid="button-forgot-password"
                   >
-                    Forgot password?
+                    {t("login.forgot_password")}
                   </button>
                 </div>
               )}
@@ -524,7 +525,7 @@ export default function Login() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-[#333333]" />
-                  <span className="text-sm text-gray-500">or</span>
+                  <span className="text-sm text-gray-500">{t("login.or")}</span>
                   <div className="flex-1 h-px bg-[#333333]" />
                 </div>
                 
@@ -541,7 +542,7 @@ export default function Login() {
                   ) : (
                     <SiGoogle className="w-4 h-4 mr-2" />
                   )}
-                  {activeTab === "signin" ? "Continue with Google" : "Sign up with Google"}
+                  {activeTab === "signin" ? t("login.continue_google") : t("login.signup_google")}
                 </Button>
                 
                 <Button
@@ -557,11 +558,11 @@ export default function Login() {
                   ) : (
                     <SiApple className="w-4 h-4 mr-2" />
                   )}
-                  {activeTab === "signin" ? "Continue with Apple" : "Sign up with Apple"}
+                  {activeTab === "signin" ? t("login.continue_apple") : t("login.signup_apple")}
                 </Button>
                 
                 <p className="text-xs text-center text-gray-500 pt-1">
-                  By continuing, you agree to our Terms of Service and Privacy Policy.
+                  {t("login.terms")}
                 </p>
               </div>
             </CardContent>

@@ -51,5 +51,25 @@
     "footer_contact": "Contact",
     "footer_project_by": "A project by The Traveling Church",
     "footer_copyright": "Vagabond Bible AI. All rights reserved."
+  },
+  "login": {
+    "welcome_back": "Welcome Back!",
+    "signed_in": "Signed in",
+    "continue_to_app": "Continue to App",
+    "signing_in": "Signing in...",
+    "use_different_account": "Use a Different Account",
+    "sign_in": "Sign In",
+    "create_account": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "password_placeholder_signin": "Enter your password",
+    "password_placeholder_signup": "At least 6 characters",
+    "forgot_password": "Forgot password?",
+    "or": "or",
+    "continue_google": "Continue with Google",
+    "signup_google": "Sign up with Google",
+    "continue_apple": "Continue with Apple",
+    "signup_apple": "Sign up with Apple",
+    "terms": "By continuing, you agree to our Terms of Service and Privacy Policy."
   }
 }
