@@ -187,8 +187,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       if (logoImgRef.current) {
         const logoHeight = 72;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
-        const logoX = 45;
-        const logoY = canvas.height - logoHeight - 45;
+        const logoX = 50;
+        const logoY = canvas.height - logoHeight - 50;
         
         ctx.globalAlpha = 0.9;
         ctx.drawImage(logoImgRef.current, logoX, logoY, logoWidth, logoHeight);
@@ -207,8 +207,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       }
       
       ctx.textAlign = "left";
-      let refX = canvas.width - totalWidth - 45;
-      const refY = canvas.height - 72;
+      let refX = canvas.width - totalWidth - 50;
+      const refY = canvas.height - 77;
       
       for (let i = 0; i < refText.length; i++) {
         ctx.fillText(refText[i], refX, refY);
@@ -255,7 +255,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         
         await Share.share({
           title: verseReference,
-          text: `${verseReference} - Vagabond Bible`,
+          text: `📖 ${verseReference} - Vagabond Bible`,
           url: fileUri.uri,
           dialogTitle: "Share Verse",
         });
@@ -267,7 +267,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         if (navigator.share && navigator.canShare({ files: [file] })) {
           await navigator.share({
             title: verseReference,
-            text: `${verseReference} - Vagabond Bible`,
+            text: `📖 ${verseReference} - Vagabond Bible`,
             files: [file],
           });
         } else {
