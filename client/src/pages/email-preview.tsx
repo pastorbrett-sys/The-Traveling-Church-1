@@ -3,6 +3,138 @@ import { useState } from "react";
 const BASE_URL = window.location.origin;
 
 type EmailType = 'welcome' | 'subscription' | 'ambassador-applied' | 'ambassador-approved' | 'ambassador-admin';
+type Language = 'en' | 'am';
+
+function getWelcomeEmailHtmlAmharic(): string {
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/woman-in-van-animated.gif" alt="Woman reading Bible" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">እንኳን ወደ Vagabond Bible በደህና መጡ</h1>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            Vagabond Bible በ AI የተደገፉ ማስተዋወቂያዎች፣ ታሪካዊ አውድ እና 24/7 የሚገኝ ፓስተር በመጽሐፍ ቅዱስ ውስጥ እንዲመሩዎት ዝግጁ ነው፣ በየትኛውም ቦታ ቢሆኑ።
+          </p>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
+            ማሰስ ይጀምሩ
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="background-color: #000000 !important;">
+          <tr>
+            <td align="center" bgcolor="#000000" style="background-color: #000000 !important; padding: 24px;">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+              </a>
+              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                <span style="color: #555555; margin: 0 8px;">•</span>
+                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ ይለግሱ</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+function getSubscriptionEmailHtmlAmharic(): string {
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header with Logo -->
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Hero Image -->
+        <div style="width: 100%;">
+          <img src="${BASE_URL}/email-assets/moses-pro-animated.gif" alt="Moses parting the sea" style="width: 100%; height: auto; display: block;">
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">አሁን Pro ነዎት</h1>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 24px 0;">
+            ተልዕኮውን ስለደገፉ እናመሰግናለን። አሁን ያልተገደበ መዳረሻ አለዎት ወደ፡
+          </p>
+          
+          <div style="text-align: left; display: inline-block; margin: 0 0 24px 0;">
+            <p style="font-size: 16px; line-height: 2; color: #333; margin: 0;">
+              ✓ ያልተገደበ ብልጥ ፍለጋዎች<br>
+              ✓ ያልተገደበ የመጽሐፍ ማጠቃለያዎች<br>
+              ✓ ያልተገደበ የጥቅስ ግንዛቤዎች<br>
+              ✓ ያልተገደበ ማስታወሻዎች
+            </p>
+          </div>
+          
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
+            የእርስዎ ምዝገባ የእግዚአብሔርን ቃል በዓለም ዙሪያ እንድናጋራ ይረዳናል።
+          </p>
+          
+          <a href="${BASE_URL}/vagabond-bible" 
+             style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
+            Vagabond Bible ይክፈቱ
+          </a>
+        </div>
+        
+        <!-- Footer -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" style="background-color: #000000 !important;">
+          <tr>
+            <td align="center" bgcolor="#000000" style="background-color: #000000 !important; padding: 24px;">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto;">
+              </a>
+              <p style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <a href="${BASE_URL}" style="color: #888888; text-decoration: none;">vagabondbible.com</a>
+                <span style="color: #555555; margin: 0 8px;">•</span>
+                <a href="https://thetravelingchurch.com/programs" style="color: #C99A2E; text-decoration: none;">❤️ ይለግሱ</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
 
 function getWelcomeEmailHtml(): string {
   return `
@@ -488,39 +620,80 @@ function getAmbassadorAdminEmailHtml(): string {
   `;
 }
 
-const emailConfig: Record<EmailType, { title: string; subject: string; getHtml: () => string }> = {
+const emailConfig: Record<EmailType, { 
+  title: string; 
+  subject: Record<Language, string>; 
+  getHtml: Record<Language, () => string>;
+  hasAmharic: boolean;
+}> = {
   'welcome': {
     title: 'Welcome Email',
-    subject: 'Welcome to Vagabond Bible, Friend!',
-    getHtml: getWelcomeEmailHtml
+    subject: {
+      en: 'Welcome to Vagabond Bible, Friend!',
+      am: 'እንኳን ወደ Vagabond Bible በደህና መጡ፣ ወዳጅ!'
+    },
+    getHtml: {
+      en: getWelcomeEmailHtml,
+      am: getWelcomeEmailHtmlAmharic
+    },
+    hasAmharic: true
   },
   'subscription': {
     title: 'Pro Subscription',
-    subject: "You're Pro Now, Friend!",
-    getHtml: getSubscriptionEmailHtml
+    subject: {
+      en: "You're Pro Now, Friend!",
+      am: 'አሁን Pro ነዎት፣ ወዳጅ!'
+    },
+    getHtml: {
+      en: getSubscriptionEmailHtml,
+      am: getSubscriptionEmailHtmlAmharic
+    },
+    hasAmharic: true
   },
   'ambassador-applied': {
     title: 'Ambassador Applied',
-    subject: 'Application Received, Sarah!',
-    getHtml: getAmbassadorAppliedEmailHtml
+    subject: {
+      en: 'Application Received, Sarah!',
+      am: 'Application Received, Sarah!'
+    },
+    getHtml: {
+      en: getAmbassadorAppliedEmailHtml,
+      am: getAmbassadorAppliedEmailHtml
+    },
+    hasAmharic: false
   },
   'ambassador-approved': {
     title: 'Ambassador Approved',
-    subject: "You're Approved, Sarah! Welcome to the Team",
-    getHtml: getAmbassadorApprovedEmailHtml
+    subject: {
+      en: "You're Approved, Sarah! Welcome to the Team",
+      am: "You're Approved, Sarah! Welcome to the Team"
+    },
+    getHtml: {
+      en: getAmbassadorApprovedEmailHtml,
+      am: getAmbassadorApprovedEmailHtml
+    },
+    hasAmharic: false
   },
   'ambassador-admin': {
     title: 'Admin Notification',
-    subject: 'New Ambassador Application: Tadesse Bekele',
-    getHtml: getAmbassadorAdminEmailHtml
+    subject: {
+      en: 'New Ambassador Application: Tadesse Bekele',
+      am: 'New Ambassador Application: Tadesse Bekele'
+    },
+    getHtml: {
+      en: getAmbassadorAdminEmailHtml,
+      am: getAmbassadorAdminEmailHtml
+    },
+    hasAmharic: false
   }
 };
 
 export default function EmailPreview() {
   const [activeEmail, setActiveEmail] = useState<EmailType>('welcome');
+  const [language, setLanguage] = useState<Language>('en');
   
   const config = emailConfig[activeEmail];
-  const emailHtml = config.getHtml();
+  const emailHtml = config.getHtml[language]();
   
   return (
     <div className="min-h-screen bg-gray-100 py-8">
@@ -597,8 +770,34 @@ export default function EmailPreview() {
         </div>
         
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gray-800 text-white px-4 py-2 text-sm">
-            Subject: {config.subject}
+          <div className="bg-gray-800 text-white px-4 py-2 text-sm flex justify-between items-center">
+            <span>Subject: {config.subject[language]}</span>
+            {config.hasAmharic && (
+              <div className="flex gap-1">
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`px-3 py-1 rounded text-xs font-medium ${
+                    language === 'en' 
+                      ? 'bg-amber-600 text-white' 
+                      : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                  }`}
+                  data-testid="button-language-en"
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => setLanguage('am')}
+                  className={`px-3 py-1 rounded text-xs font-medium ${
+                    language === 'am' 
+                      ? 'bg-amber-600 text-white' 
+                      : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                  }`}
+                  data-testid="button-language-am"
+                >
+                  አማርኛ
+                </button>
+              </div>
+            )}
           </div>
           <iframe
             srcDoc={emailHtml}
