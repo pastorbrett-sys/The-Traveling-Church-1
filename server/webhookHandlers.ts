@@ -4,6 +4,7 @@ import { referralSignups } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
 import { sendSubscriptionConfirmationEmail } from './email';
+import { getUserLanguage } from './replit_integrations/auth/storage';
 
 async function trackAmbassadorConversion(userId: string, source: string, referralCode?: string, email?: string): Promise<void> {
   try {
@@ -256,8 +257,11 @@ export class WebhookHandlers {
         const pricingTier = session.metadata?.pricingTier as 'premium' | 'emerging' | undefined;
         const planType = pricingTier || 'premium';
         
-        console.log(`[Webhook] Sending subscription confirmation email to ${email} (plan: ${planType})`);
-        sendSubscriptionConfirmationEmail(email, user?.firstName, planType).catch(error => {
+        // Get user's language preference for localized email
+        const userLanguage = userId ? await getUserLanguage(userId) : 'en';
+        
+        console.log(`[Webhook] Sending subscription confirmation email to ${email} (plan: ${planType}, language: ${userLanguage})`);
+        sendSubscriptionConfirmationEmail(email, user?.firstName, planType, userLanguage).catch(error => {
           console.error('[Webhook] Failed to send subscription confirmation email:', error);
         });
       }

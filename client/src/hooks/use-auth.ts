@@ -15,7 +15,14 @@ async function fetchUser(): Promise<User | null> {
     throw new Error(`${response.status}: ${response.statusText}`);
   }
 
-  return response.json();
+  const user = await response.json();
+  
+  // Sync user's language preference based on device locale (for session auth users)
+  if (user) {
+    syncUserLanguage();
+  }
+  
+  return user;
 }
 
 async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null> {
@@ -34,10 +41,39 @@ async function syncFirebaseUser(firebaseUser: FirebaseUser): Promise<User | null
       return null;
     }
 
-    return response.json();
+    const user = await response.json();
+    
+    // Sync user's language preference based on device locale
+    syncUserLanguage();
+    
+    return user;
   } catch (error) {
     console.error("Error syncing Firebase user:", error);
     return null;
+  }
+}
+
+// Detect if user's device is set to Amharic and sync language preference
+function detectUserLanguage(): 'am' | 'en' {
+  const lang = navigator.language || (navigator as any).userLanguage || 'en';
+  return lang.startsWith('am') ? 'am' : 'en';
+}
+
+// Sync user's language preference to backend (fire and forget)
+async function syncUserLanguage(): Promise<void> {
+  try {
+    const language = detectUserLanguage();
+    await apiFetch("/api/auth/language", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ language }),
+    });
+    console.log(`[Auth] Synced user language: ${language}`);
+  } catch (error) {
+    // Don't block auth for language sync failure
+    console.error("[Auth] Failed to sync language:", error);
   }
 }
 

@@ -107,6 +107,12 @@ export async function setupAuth(app: Express) {
     if (returnTo && req.session) {
       (req.session as any).returnTo = returnTo;
     }
+    // Capture Accept-Language header for email localization
+    const acceptLang = req.headers['accept-language'] || 'en';
+    const language = acceptLang.startsWith('am') ? 'am' : 'en';
+    if (req.session) {
+      (req.session as any).userLanguage = language;
+    }
     ensureStrategy(req.hostname);
     passport.authenticate(`replitauth:${req.hostname}`, {
       prompt: "login consent",

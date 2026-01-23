@@ -3,6 +3,7 @@ import { db } from "./storage";
 import { users, referralSignups } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { sendSubscriptionConfirmationEmail } from "./email";
+import { getUserLanguage } from "./replit_integrations/auth/storage";
 
 // Enhanced ambassador tracking with multi-priority matching (matches Stripe handler)
 async function trackAmbassadorConversion(userId: string, source: string, email?: string, referralCode?: string): Promise<void> {
@@ -151,11 +152,14 @@ async function handleRevenueCatEvent(event: RevenueCatEvent["event"]): Promise<v
               planType = 'emerging';
             }
             
-            console.log(`[RevenueCat] 📧 Sending subscription confirmation email to ${user.email} (plan: ${planType}, store: ${store})`);
+            // Get user's language preference for localized email
+            const userLanguage = await getUserLanguage(user.id);
+            
+            console.log(`[RevenueCat] 📧 Sending subscription confirmation email to ${user.email} (plan: ${planType}, store: ${store}, language: ${userLanguage})`);
             const timestamp = new Date().toISOString();
             console.log(`[RevenueCat] Email send initiated at: ${timestamp}`);
             
-            sendSubscriptionConfirmationEmail(user.email, user.firstName || undefined, planType).catch(error => {
+            sendSubscriptionConfirmationEmail(user.email, user.firstName || undefined, planType, userLanguage).catch(error => {
               console.error('[RevenueCat] ❌ Failed to send subscription confirmation email:', error);
             });
           }

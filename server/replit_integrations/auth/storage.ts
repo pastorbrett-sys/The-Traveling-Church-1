@@ -10,6 +10,17 @@ neonConfig.webSocketConstructor = ws;
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const db = drizzle(pool);
 
+// Function to update user's language preference
+export async function updateUserLanguage(userId: string, language: string): Promise<void> {
+  await db.update(users).set({ language, updatedAt: new Date() }).where(eq(users.id, userId));
+}
+
+// Function to get user's language preference
+export async function getUserLanguage(userId: string): Promise<string> {
+  const [user] = await db.select({ language: users.language }).from(users).where(eq(users.id, userId));
+  return user?.language || 'en';
+}
+
 // Interface for auth storage operations
 // (IMPORTANT) These user operations are mandatory for Replit Auth.
 export interface IAuthStorage {
@@ -42,8 +53,10 @@ class AuthStorage implements IAuthStorage {
     
     // Send welcome email to new users (fire and forget - don't block auth)
     if (isNewUser && user.email) {
-      console.log(`[Auth] New user detected: ${user.email} - sending welcome email`);
-      sendWelcomeEmail(user.email, user.firstName).catch(error => {
+      // Use the user's stored language (defaults to 'en' if not set)
+      const userLanguage = user.language || 'en';
+      console.log(`[Auth] New user detected: ${user.email} - sending welcome email (language: ${userLanguage})`);
+      sendWelcomeEmail(user.email, user.firstName, userLanguage).catch(error => {
         console.error('[Auth] Failed to send welcome email:', error);
       });
     }
