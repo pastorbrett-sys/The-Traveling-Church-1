@@ -207,7 +207,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       }
       
       ctx.textAlign = "left";
-      let refX = canvas.width - totalWidth - 45;
+      let refX = canvas.width - totalWidth - 55;
       const refY = canvas.height - 82;
       
       for (let i = 0; i < refText.length; i++) {
@@ -255,7 +255,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         
         await Share.share({
           title: verseReference,
-          text: `📖 ${verseReference} - Vagabond Bible`,
+          text: `📖 ${verseReference}\nVagabond Bible`,
           url: fileUri.uri,
           dialogTitle: "Share Verse",
         });
@@ -267,7 +267,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         if (navigator.share && navigator.canShare({ files: [file] })) {
           await navigator.share({
             title: verseReference,
-            text: `📖 ${verseReference} - Vagabond Bible`,
+            text: `📖 ${verseReference}\nVagabond Bible`,
             files: [file],
           });
         } else {
