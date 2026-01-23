@@ -19,15 +19,6 @@ import localGuide from "@assets/IMG_1756_1767118533610.jpg";
 import nightCooking from "@assets/IMG_1767_1767118533610.jpg";
 import expeditionTeam from "@assets/IMG_1843_1767118533610.jpg";
 
-import video1 from "@assets/ethiopia_v1_compressed.mp4";
-import video2 from "@assets/ethiopia_v2_compressed.mp4";
-import video3 from "@assets/ethiopia_v3_compressed.mp4";
-import video4 from "@assets/ethiopia_danakil_compressed.mp4";
-import video5 from "@assets/ethiopia_v5_compressed.mp4";
-import video6 from "@assets/ethiopia_v6_compressed.mp4";
-import video7 from "@assets/ethiopia_churches_compressed.mp4";
-import video8 from "@assets/ethiopia_v8_compressed.mp4";
-
 interface GalleryImage {
   src: string;
   alt: string;
@@ -97,55 +88,6 @@ const galleryImages: GalleryImage[] = [
     src: nightCooking,
     alt: "Preparing meals in traditional setting",
     caption: "Sharing meals prepared in a traditional Afar dwelling"
-  }
-];
-
-interface GalleryVideo {
-  src: string;
-  caption: string;
-  vertical?: boolean;
-}
-
-const galleryVideos: GalleryVideo[] = [
-  {
-    src: video1,
-    caption: "Exploring the ancient rock-hewn churches of Lalibela",
-    vertical: true
-  },
-  {
-    src: video2,
-    caption: "Walking through sacred grounds",
-    vertical: true
-  },
-  {
-    src: video3,
-    caption: "The stunning landscapes of Ethiopia",
-    vertical: true
-  },
-  {
-    src: video4,
-    caption: "Journey through the Danakil Depression",
-    vertical: false
-  },
-  {
-    src: video5,
-    caption: "Moments from our Ethiopian journey",
-    vertical: true
-  },
-  {
-    src: video6,
-    caption: "Life in the Afar region",
-    vertical: true
-  },
-  {
-    src: video7,
-    caption: "Inside the ancient churches",
-    vertical: true
-  },
-  {
-    src: video8,
-    caption: "Sacred traditions preserved through centuries",
-    vertical: true
   }
 ];
 
@@ -221,36 +163,6 @@ export default function MissionEthiopia() {
                 geography. This is what it means to be a traveling church - going where God leads and 
                 finding His family already there.
               </p>
-            </div>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-videos">
-              Videos
-            </h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryVideos.map((video, index) => (
-                <div 
-                  key={index}
-                  className="overflow-hidden rounded-lg shadow-md bg-card"
-                  data-testid={`video-item-${index}`}
-                >
-                  <div className="relative aspect-[9/16]">
-                    <video
-                      src={video.src}
-                      controls
-                      preload="metadata"
-                      playsInline
-                      className="w-full h-full object-cover bg-black"
-                      data-testid={`video-${index}`}
-                    />
-                  </div>
-                  <div className="p-3 bg-card">
-                    <p className="text-xs text-muted-foreground">{video.caption}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </section>
 

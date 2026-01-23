@@ -26,11 +26,6 @@ import tireKids from "@assets/IMG_0652_1767124933010.jpg";
 import localMeeting from "@assets/IMG_0680_1767124933010.jpg";
 import caveSelfie from "@assets/IMG_0729_1767124933010.jpg";
 
-import video1 from "@assets/egypt_street_compressed.mp4";
-import video2 from "@assets/egypt_sinai_compressed.mp4";
-import video3 from "@assets/egypt_v3_compressed.mp4";
-import video4 from "@assets/IMG_0311_1767125302509.mov?url";
-
 interface GalleryImage {
   src: string;
   alt: string;
@@ -143,35 +138,6 @@ const galleryImages: GalleryImage[] = [
   }
 ];
 
-interface GalleryVideo {
-  src: string;
-  caption: string;
-  vertical?: boolean;
-}
-
-const galleryVideos: GalleryVideo[] = [
-  {
-    src: video1,
-    caption: "Walking through the streets of Egypt",
-    vertical: true
-  },
-  {
-    src: video2,
-    caption: "Life in the Sinai region",
-    vertical: true
-  },
-  {
-    src: video3,
-    caption: "Preparing meals for those in need",
-    vertical: true
-  },
-  {
-    src: video4,
-    caption: "Morning in Egypt",
-    vertical: true
-  }
-];
-
 export default function MissionEgypt() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -242,36 +208,6 @@ export default function MissionEgypt() {
                 warmth of the Egyptian people and the depth of their hospitality reflected the love of Christ 
                 in ways words cannot capture.
               </p>
-            </div>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-videos">
-              Videos
-            </h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryVideos.map((video, index) => (
-                <div 
-                  key={index}
-                  className="overflow-hidden rounded-lg shadow-md bg-card"
-                  data-testid={`video-item-${index}`}
-                >
-                  <div className="relative aspect-[9/16]">
-                    <video
-                      src={video.src}
-                      controls
-                      preload="metadata"
-                      playsInline
-                      className="w-full h-full object-cover bg-black"
-                      data-testid={`video-${index}`}
-                    />
-                  </div>
-                  <div className="p-3 bg-card">
-                    <p className="text-xs text-muted-foreground">{video.caption}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </section>
 

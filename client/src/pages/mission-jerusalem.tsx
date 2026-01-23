@@ -6,11 +6,6 @@ import Footer from "@/components/footer";
 
 import heroImage from "@assets/generated_images/jerusalem_western_wall_sunset_view.png";
 import originalHeroImage from "@assets/IMG_1239_1767120447756.jpg";
-
-import soldierVideo from "@assets/soldier_1767121798377.mp4?url";
-import video1 from "@assets/jerusalem_v1_compressed.mp4";
-import video2 from "@assets/jerusalem_v2_compressed.mp4";
-import video3 from "@assets/jerusalem_v3_compressed.mp4";
 import westernWall from "@assets/IMG_1138_1767120447756.jpg";
 import domeOfRock from "@assets/IMG_1271_1767120447754.jpg";
 import cityView from "@assets/IMG_1270_1767120447754.jpg";
@@ -31,35 +26,6 @@ interface GalleryImage {
   caption: string;
   featured?: boolean;
 }
-
-interface GalleryVideo {
-  src: string;
-  caption: string;
-  vertical?: boolean;
-}
-
-const galleryVideos: GalleryVideo[] = [
-  {
-    src: soldierVideo,
-    caption: "Inside a war zone - witnessing what few are allowed to see",
-    vertical: true
-  },
-  {
-    src: video1,
-    caption: "Moments from the streets of Jerusalem",
-    vertical: true
-  },
-  {
-    src: video2,
-    caption: "Life continues in the Holy City",
-    vertical: true
-  },
-  {
-    src: video3,
-    caption: "Walking the ancient paths",
-    vertical: true
-  }
-];
 
 const galleryImages: GalleryImage[] = [
   {
@@ -213,36 +179,6 @@ export default function MissionJerusalem() {
                 and eternity meet, we found that the Prince of Peace still walks these streets, inviting 
                 all who come to find rest for their souls.
               </p>
-            </div>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-videos">
-              Videos
-            </h2>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryVideos.map((video, index) => (
-                <div 
-                  key={index}
-                  className="overflow-hidden rounded-lg shadow-md bg-card"
-                  data-testid={`video-item-${index}`}
-                >
-                  <div className="relative aspect-[9/16]">
-                    <video
-                      src={video.src}
-                      controls
-                      preload="metadata"
-                      playsInline
-                      className="w-full h-full object-cover bg-black"
-                      data-testid={`video-${index}`}
-                    />
-                  </div>
-                  <div className="p-3 bg-card">
-                    <p className="text-xs text-muted-foreground">{video.caption}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </section>
 
