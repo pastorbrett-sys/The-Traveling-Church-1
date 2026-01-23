@@ -133,7 +133,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       ctx.textBaseline = "middle";
       
       const fontSize = Math.min(72, Math.max(48, 1200 / verseText.length * 4.5));
-      ctx.font = `600 ${fontSize}px "Spectral SC", Georgia, serif`;
+      ctx.font = `500 ${fontSize}px "Spectral SC", Georgia, serif`;
       
       const cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
       const displayText = `"${cleanText.toUpperCase()}"`;
@@ -175,8 +175,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       if (logoImgRef.current) {
         const logoHeight = 50;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
-        const logoX = 30;
-        const logoY = canvas.height - logoHeight - 30;
+        const logoX = 35;
+        const logoY = canvas.height - logoHeight - 35;
         
         ctx.globalAlpha = 0.9;
         ctx.drawImage(logoImgRef.current, logoX, logoY, logoWidth, logoHeight);
@@ -199,8 +199,8 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       }
       
       ctx.textAlign = "left";
-      let refX = canvas.width - totalWidth - 30;
-      const refY = canvas.height - 42;
+      let refX = canvas.width - totalWidth - 35;
+      const refY = canvas.height - 47;
       
       for (let i = 0; i < refText.length; i++) {
         ctx.fillText(refText[i], refX, refY);
