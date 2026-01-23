@@ -30,6 +30,9 @@ const BACKGROUNDS = [
   { id: "sunset-ocean", src: sunsetOcean, name: "Sunset Ocean" },
   { id: "mountain-mist", src: mountainMist, name: "Mountain Mist" },
   { id: "storm-clouds", src: stormClouds, name: "Storm Clouds" },
+  { id: "dark-mountain", src: darkMountain, name: "Dark Mountain" },
+  { id: "dark-forest", src: darkForest, name: "Dark Forest" },
+  { id: "dark-ocean", src: darkOcean, name: "Dark Ocean" },
   { id: "calm-ocean", src: calmOcean, name: "Calm Ocean" },
   { id: "night-sky", src: nightSky, name: "Night Sky" },
   { id: "soft-clouds", src: softClouds, name: "Soft Clouds" },
@@ -42,9 +45,6 @@ const BACKGROUNDS = [
   { id: "lake-reflection", src: lakeReflection, name: "Lake Reflection" },
   { id: "pink-sky", src: pinkSky, name: "Pink Sky" },
   { id: "white-flower", src: whiteFlower, name: "White Flower" },
-  { id: "dark-mountain", src: darkMountain, name: "Dark Mountain" },
-  { id: "dark-forest", src: darkForest, name: "Dark Forest" },
-  { id: "dark-ocean", src: darkOcean, name: "Dark Ocean" },
 ];
 
 interface VerseShareSheetProps {
