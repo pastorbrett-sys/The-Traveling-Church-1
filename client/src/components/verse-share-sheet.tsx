@@ -332,13 +332,11 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 bg-background rounded-t-2xl z-[201] max-h-[85vh] flex flex-col pb-4"
+            className="fixed left-0 right-0 bg-background rounded-t-2xl z-[201] flex flex-col"
             style={{
-              paddingBottom: isNative 
-                ? isAndroid 
-                  ? "calc(8px + var(--android-nav-height, 0px))" 
-                  : "calc(8px + env(safe-area-inset-bottom, 0px))"
-                : undefined
+              bottom: isNative ? (isIOS ? "80px" : "60px") : "0px",
+              maxHeight: isNative ? "70vh" : "85vh",
+              paddingBottom: "16px"
             }}
           >
             <div 
