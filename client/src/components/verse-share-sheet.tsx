@@ -136,7 +136,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       ctx.font = `600 ${fontSize}px "Spectral SC", Georgia, serif`;
       
       const cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
-      const displayText = `"${cleanText}"`;
+      const displayText = `"${cleanText.toUpperCase()}"`;
       
       const lineHeight = fontSize * 1.4;
       const maxWidth = canvas.width - 140;
