@@ -123,6 +123,11 @@
     "clicks": "ጠቅታዎች",
     "active": "ንቁ",
     "pending": "በመጠባበቅ ላይ",
-    "create_ambassador_account": "የአምባሳደር መለያ ፍጠር"
+    "create_ambassador_account": "የአምባሳደር መለያ ፍጠር",
+    "invite_new_users": "አዳዲስ ተጠቃሚዎችን ይጋብዙ",
+    "share_to_earn": "መጽሐፍ ቅዱስን ለሚያጋሩባቸው እና ለሚመዘገቡ ተጠቃሚዎች ገንዘብ ለማግኘት ይህን ማስፈንጠሪያ ያጋሩ",
+    "grow_your_team": "ቡድንዎን ያሳድጉ። እነሱ ሲያገኙ እርስዎም ያገኛሉ። ሌሎችን የአምባሳደር ፕሮግራምን እንዲቀላቀሉ ይጋብዙ።",
+    "admin_panel": "አስተዳዳሪ ፓነል",
+    "approve": "አጽድቅ"
   }
 }

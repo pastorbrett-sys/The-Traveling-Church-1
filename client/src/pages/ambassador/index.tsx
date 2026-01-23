@@ -735,7 +735,7 @@ export default function AmbassadorPage() {
                 data-testid="button-admin-panel"
               >
                 <Shield className="w-4 h-4 mr-2" />
-                Admin Panel
+                {t("ambassador.admin_panel")}
               </Button>
             </>
           )}
@@ -745,7 +745,7 @@ export default function AmbassadorPage() {
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-white flex items-center gap-2">
               <LinkIcon className="w-5 h-5 text-[#c08e00]" />
-              Invite New Users
+              {t("ambassador.invite_new_users")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -759,13 +759,13 @@ export default function AmbassadorPage() {
                 data-testid="button-copy-referral"
               >
                 {copiedRef ? (
-                  <><Check className="w-4 h-4 mr-2" /> Copied!</>
+                  <><Check className="w-4 h-4 mr-2" /> {t("ambassador.copied")}</>
                 ) : (
-                  <><Copy className="w-4 h-4 mr-2" /> Copy</>
+                  <><Copy className="w-4 h-4 mr-2" /> {t("ambassador.copy")}</>
                 )}
               </Button>
             </div>
-            <p className="text-xs text-gray-500 mt-2">Share this link to Earn money for users you share The Bible with that Subscribe</p>
+            <p className="text-xs text-gray-500 mt-2">{t("ambassador.share_to_earn")}</p>
           </CardContent>
         </Card>
 
@@ -778,7 +778,7 @@ export default function AmbassadorPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Link Clicks</p>
+                  <p className="text-gray-500 text-sm">{t("ambassador.link_clicks")}</p>
                   <p className="text-3xl font-bold text-white">{stats.clicks}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -799,7 +799,7 @@ export default function AmbassadorPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Signups</p>
+                  <p className="text-gray-500 text-sm">{t("ambassador.signups")}</p>
                   <p className="text-3xl font-bold text-white">{stats.signups}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -820,7 +820,7 @@ export default function AmbassadorPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Pro Conversions</p>
+                  <p className="text-gray-500 text-sm">{t("ambassador.pro_conversions")}</p>
                   <p className="text-3xl font-bold text-[#c08e00]">{stats.conversions}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -838,11 +838,11 @@ export default function AmbassadorPage() {
           <CardHeader className="pb-2">
             <CardTitle className="text-lg text-white flex items-center gap-2">
               <Users className="w-5 h-5 text-[#c08e00]" />
-              Recruit Ambassadors
+              {t("ambassador.recruit_ambassadors")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-gray-400 text-sm">Grow your team. When they earn, you earn. Invite others to join the Ambassador Program.</p>
+            <p className="text-gray-400 text-sm">{t("ambassador.grow_your_team")}</p>
             <div className="flex items-center gap-2">
               <div className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-gray-300 truncate font-mono text-sm">
                 vagabondbible.com/ambassador?invite={ambassador?.inviteCode}
@@ -853,9 +853,9 @@ export default function AmbassadorPage() {
                 data-testid="button-copy-invite"
               >
                 {copiedInvite ? (
-                  <><Check className="w-4 h-4 mr-2" /> Copied!</>
+                  <><Check className="w-4 h-4 mr-2" /> {t("ambassador.copied")}</>
                 ) : (
-                  <><Copy className="w-4 h-4 mr-2" /> Copy</>
+                  <><Copy className="w-4 h-4 mr-2" /> {t("ambassador.copy")}</>
                 )}
               </Button>
             </div>
@@ -870,7 +870,7 @@ export default function AmbassadorPage() {
                   <CardTitle className="text-lg text-white flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-[#c08e00]" />
-                      My Team ({team.length})
+                      {t("ambassador.my_team")} ({team.length})
                     </div>
                     <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${teamOpen ? 'rotate-90' : ''}`} />
                   </CardTitle>
@@ -911,7 +911,7 @@ export default function AmbassadorPage() {
                               }}
                               data-testid={`button-approve-${member.id}`}
                             >
-                              Approve
+                              {t("ambassador.approve")}
                             </Button>
                           ) : (
                             <div className={`px-2 py-1 rounded text-xs ${
@@ -919,7 +919,7 @@ export default function AmbassadorPage() {
                                 ? "bg-green-500/20 text-green-400" 
                                 : "bg-yellow-500/20 text-yellow-400"
                             }`}>
-                              {member.status}
+                              {member.status === "active" ? t("ambassador.active") : t("ambassador.pending")}
                             </div>
                           )}
                         </div>

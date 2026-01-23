@@ -123,6 +123,11 @@
     "clicks": "Clicks",
     "active": "active",
     "pending": "pending",
-    "create_ambassador_account": "Create Ambassador Account"
+    "create_ambassador_account": "Create Ambassador Account",
+    "invite_new_users": "Invite New Users",
+    "share_to_earn": "Share this link to Earn money for users you share The Bible with that Subscribe",
+    "grow_your_team": "Grow your team. When they earn, you earn. Invite others to join the Ambassador Program.",
+    "admin_panel": "Admin Panel",
+    "approve": "Approve"
   }
 }

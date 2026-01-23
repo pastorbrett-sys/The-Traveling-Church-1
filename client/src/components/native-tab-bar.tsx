@@ -99,8 +99,8 @@ export function NativeTabBar() {
   
   if (!isNative) return null;
   
-  // Hide on video landing page and login
-  if (location === "/" || location === "/login" || location === "/vagabond-bible") return null;
+  // Hide on video landing page, login, and ambassador pages
+  if (location === "/" || location === "/login" || location === "/vagabond-bible" || location.startsWith("/ambassador")) return null;
   
   const isActive = (href: string) => {
     const [hrefPath, hrefQuery] = href.split("?");
