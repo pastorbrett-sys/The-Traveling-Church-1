@@ -208,7 +208,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       
       ctx.textAlign = "left";
       let refX = canvas.width - totalWidth - 45;
-      const refY = canvas.height - 37;
+      const refY = canvas.height - 72;
       
       for (let i = 0; i < refText.length; i++) {
         ctx.fillText(refText[i], refX, refY);
