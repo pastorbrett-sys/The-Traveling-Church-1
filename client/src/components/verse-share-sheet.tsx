@@ -173,7 +173,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       });
       
       if (logoImgRef.current) {
-        const logoHeight = 50;
+        const logoHeight = 56;
         const logoWidth = (logoImgRef.current.width / logoImgRef.current.height) * logoHeight;
         const logoX = 35;
         const logoY = canvas.height - logoHeight - 35;
@@ -183,7 +183,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
         ctx.globalAlpha = 1;
       }
       
-      ctx.font = "400 28px Poppins, sans-serif";
+      ctx.font = "400 32px Poppins, sans-serif";
       ctx.textAlign = "right";
       
       const refText = verseReference.toUpperCase();
