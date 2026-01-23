@@ -29,7 +29,6 @@ export function usePushNotifications(userId: string | null | undefined) {
   
   // Track initialization state with refs to avoid re-renders triggering re-init
   const isInitializedRef = useRef(false);
-  const listenersAddedRef = useRef(false);
 
   // Get device timezone info
   const getTimezoneInfo = useCallback(() => {
@@ -110,14 +109,18 @@ export function usePushNotifications(userId: string | null | undefined) {
 
     // Mark as initializing to prevent duplicate attempts
     isInitializedRef.current = true;
+    
+    // Store userId for use in callbacks
+    const currentUserId = userId;
 
     const setupPushNotifications = async () => {
-      try {
-        console.log('[Push] Starting push notification setup...');
+      console.log('[Push] ====== STARTING PUSH NOTIFICATION SETUP ======');
 
+      try {
         // Step 1: Check/request permissions
+        console.log('[Push] Step 1: Checking permissions...');
         let permStatus = await PushNotifications.checkPermissions();
-        console.log('[Push] Current permission status:', permStatus.receive);
+        console.log('[Push] Permission status:', permStatus.receive);
         
         if (permStatus.receive === 'prompt') {
           console.log('[Push] Requesting permissions...');
@@ -133,41 +136,55 @@ export function usePushNotifications(userId: string | null | undefined) {
           return;
         }
 
-        // Step 2: Add listeners FIRST (critical ordering)
-        if (!listenersAddedRef.current) {
-          console.log('[Push] Adding notification listeners...');
-          
-          await PushNotifications.addListener('registration', async (tokenData: Token) => {
-            console.log('[Push] Registration success! Token:', tokenData.value.substring(0, 20) + '...');
+        // Step 2: Remove any stale listeners first
+        console.log('[Push] Step 2: Removing any stale listeners...');
+        await PushNotifications.removeAllListeners();
+        
+        // Step 3: Add ALL listeners BEFORE calling register
+        // Using Promise.all to ensure all are set up before proceeding
+        console.log('[Push] Step 3: Adding notification listeners...');
+        
+        await Promise.all([
+          PushNotifications.addListener('registration', async (tokenData: Token) => {
+            console.log('[Push] >>> REGISTRATION EVENT RECEIVED <<<');
+            console.log('[Push] Token:', tokenData.value.substring(0, 30) + '...');
             setToken(tokenData.value);
             setIsRegistered(true);
-          });
-
-          await PushNotifications.addListener('registrationError', (error) => {
-            console.error('[Push] Registration error:', error);
+            
+            // Register with backend immediately
+            if (currentUserId) {
+              await registerTokenWithBackend(tokenData.value, currentUserId);
+            }
+          }),
+          
+          PushNotifications.addListener('registrationError', (error) => {
+            console.error('[Push] >>> REGISTRATION ERROR <<<', error);
             setIsRegistered(false);
-          });
-
-          await PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
+          }),
+          
+          PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
             console.log('[Push] Notification received in foreground:', notification.title);
-          });
-
-          await PushNotifications.addListener('pushNotificationActionPerformed', (action: ActionPerformed) => {
+          }),
+          
+          PushNotifications.addListener('pushNotificationActionPerformed', (action: ActionPerformed) => {
             console.log('[Push] Notification tapped:', action.notification.title);
             const data = action.notification.data as DeepLinkData;
             if (data) {
               handleDeepLink(data);
             }
-          });
+          })
+        ]);
+        
+        console.log('[Push] All 4 listeners added successfully');
 
-          listenersAddedRef.current = true;
-          console.log('[Push] All listeners added successfully');
-        }
+        // Step 4: Small delay to ensure native side has processed listeners
+        console.log('[Push] Step 4: Waiting for listeners to be ready...');
+        await new Promise(resolve => setTimeout(resolve, 100));
 
-        // Step 3: Register for push (AFTER listeners are set up)
-        console.log('[Push] Calling register()...');
+        // Step 5: NOW call register
+        console.log('[Push] Step 5: Calling register()...');
         await PushNotifications.register();
-        console.log('[Push] Register() called successfully');
+        console.log('[Push] ====== SETUP COMPLETE - WAITING FOR REGISTRATION EVENT ======');
 
       } catch (error) {
         console.error('[Push] Setup error:', error);
@@ -179,26 +196,16 @@ export function usePushNotifications(userId: string | null | undefined) {
 
     // Cleanup only on unmount
     return () => {
-      if (listenersAddedRef.current) {
-        console.log('[Push] Cleaning up listeners on unmount');
-        PushNotifications.removeAllListeners();
-        listenersAddedRef.current = false;
-        isInitializedRef.current = false;
-      }
+      console.log('[Push] Cleaning up listeners on unmount');
+      PushNotifications.removeAllListeners();
+      isInitializedRef.current = false;
     };
-  }, [userId, handleDeepLink]);
-
-  // Separate effect to register token with backend when we have both token and userId
-  useEffect(() => {
-    if (token && userId) {
-      registerTokenWithBackend(token, userId);
-    }
-  }, [token, userId, registerTokenWithBackend]);
+  }, [userId, handleDeepLink, registerTokenWithBackend]);
 
   // Allow manual re-initialization
   const reinitialize = useCallback(() => {
+    console.log('[Push] Manual reinitialize requested');
     isInitializedRef.current = false;
-    listenersAddedRef.current = false;
   }, []);
 
   return {
