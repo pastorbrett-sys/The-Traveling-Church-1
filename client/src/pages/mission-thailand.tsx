@@ -18,6 +18,26 @@ import rockFormations from "@assets/IMG_9923_1767128055584.jpg";
 import jungleFloating from "@assets/IMG_9938_1767128055584.jpg";
 import bambooRaft from "@assets/IMG_9949_1767128055585.jpg";
 
+import video1 from "@assets/thailand_v1_compressed.mp4";
+import video2 from "@assets/thailand_v2_compressed.mp4";
+import video3 from "@assets/thailand_video2_compressed.mp4";
+import video4 from "@assets/thailand_v4_compressed.mp4";
+import video5 from "@assets/thailand_v5_compressed.mp4";
+import video6 from "@assets/thailand_video3_compressed.mp4";
+import video7 from "@assets/thailand_video1_compressed.mp4";
+import video8 from "@assets/thailand_v8_compressed.mp4";
+
+const videos = [
+  { src: video1, title: "Elephant in Transport" },
+  { src: video2, title: "Elephant Sanctuary Visit" },
+  { src: video3, title: "Feeding the Elephants" },
+  { src: video4, title: "Elephants at Play" },
+  { src: video5, title: "Meeting the Elephants" },
+  { src: video6, title: "Walking with Giants" },
+  { src: video7, title: "Sanctuary Moments" },
+  { src: video8, title: "Conservation in Action" }
+];
+
 interface GalleryImage {
   src: string;
   alt: string;
@@ -162,6 +182,25 @@ export default function MissionThailand() {
                 Supporting animal conservation is an extension of our faith - caring for the 
                 creatures God has entrusted to us and the communities that protect them.
               </p>
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6" data-testid="heading-videos">
+              Videos
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {videos.map((video, index) => (
+                <div key={index} className="relative" data-testid={`video-item-${index}`}>
+                  <video
+                    src={video.src}
+                    controls
+                    preload="metadata"
+                    className="w-full aspect-[9/16] object-cover rounded-lg shadow-md bg-black"
+                    data-testid={`video-${index}`}
+                  />
+                </div>
+              ))}
             </div>
           </section>
 

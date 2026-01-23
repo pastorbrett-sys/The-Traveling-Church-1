@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
+import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
 import ladderIcon from "@assets/Vagabond_Icon_1767598919164.png";
@@ -33,8 +34,17 @@ export default function VagabondBible() {
       <div className="min-h-screen bg-black">
         <section className="relative min-h-[100svh] flex items-center justify-center">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="w-full h-full bg-gradient-to-br from-[hsl(25,35%,25%)] via-[hsl(20,30%,15%)] to-black" />
-            <div className="absolute inset-0 bg-black/30" />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover"
+            >
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/50" />
           </div>
           <div 
             className="absolute left-0 right-0 z-10 w-full px-6"
@@ -139,8 +149,16 @@ export default function VagabondBible() {
       </nav>
       <section className="relative min-h-[100svh] sm:min-h-[90vh] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="w-full h-full bg-gradient-to-br from-[hsl(25,35%,25%)] via-[hsl(20,30%,15%)] to-black" />
-          <div className="absolute inset-0 bg-black/30" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-2xl text-center" style={{ transform: 'translateY(2px)' }}>

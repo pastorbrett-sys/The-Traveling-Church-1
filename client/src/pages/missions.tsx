@@ -5,6 +5,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import FloatingDonateButton from "@/components/floating-donate-button";
 
+import heroVideo from "@assets/text-to-video-ffe46d5c_(1)_1767132632981.mp4?url";
 import jordanHero from "@assets/IMG_1160_1767129664288.jpg";
 import israelHero from "@assets/IMG_1239_1767120447756.jpg";
 import cambodiaHero from "@assets/IMG_5162_1767126443573.jpg";
@@ -63,11 +64,15 @@ export default function Missions() {
       
       <main>
         <section className="relative h-[60vh] min-h-[400px] bg-black">
-          <img
-            src={ethiopiaHero}
-            alt="Missions"
+          <video
+            src={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
             className="w-full h-full object-cover"
-            data-testid="img-missions-hero"
+            data-testid="video-missions-hero"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
           <div className="absolute inset-0 flex items-center justify-center">
