@@ -16,35 +16,77 @@ export default function PrayerTimer() {
   const [timeRemaining, setTimeRemaining] = useState(5 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isIntroAnimating, setIsIntroAnimating] = useState(true);
-  const [introProgress, setIntroProgress] = useState(0);
+  const [swoopHead, setSwoopHead] = useState(0);
+  const [swoopTail, setSwoopTail] = useState(0);
+  const [isPushing, setIsPushing] = useState(false);
+  const [pushProgress, setPushProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const introAnimationRef = useRef<number | null>(null);
 
   const totalSeconds = selectedDuration * 60;
   const progress = isRunning ? (totalSeconds - timeRemaining) / totalSeconds : 0;
 
-  // Intro swoop animation
+  // Intro swoop animation - fluid wooshy effect with collapsing tail
   useEffect(() => {
     if (!isIntroAnimating) return;
     
     const startTime = performance.now();
-    const introDuration = 1200; // 1.2 seconds for the swoop
+    const swoopDuration = 900; // Head takes 0.9s to complete the circle
+    const tailDelay = 150; // Tail starts 150ms after head
+    const collapseTime = 400; // Time for tail to collapse into start
+    const pushDuration = 300; // Push momentum into the timer
     
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
-      const rawProgress = Math.min(elapsed / introDuration, 1);
       
-      // Easing function for smooth acceleration then deceleration
-      const easeOutCubic = 1 - Math.pow(1 - rawProgress, 3);
+      // Wooshy easing - fast start, smooth deceleration
+      const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
+      const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       
-      setIntroProgress(easeOutCubic);
+      // Head position - swoops around fast
+      const headRaw = Math.min(elapsed / swoopDuration, 1);
+      const headPos = easeOutQuart(headRaw);
       
-      if (rawProgress < 1) {
+      // Tail position - follows behind, then accelerates to catch up
+      const tailElapsed = Math.max(0, elapsed - tailDelay);
+      const tailRaw = Math.min(tailElapsed / (swoopDuration + collapseTime - tailDelay), 1);
+      // Tail uses different easing - starts slow, accelerates at end to collapse
+      const tailPos = easeInOutCubic(tailRaw);
+      
+      setSwoopHead(headPos);
+      setSwoopTail(tailPos);
+      
+      // When tail catches up to head (both at 1), start the push phase
+      if (headPos >= 1 && tailPos >= 0.98) {
+        setIsPushing(true);
+        const pushStart = startTime + swoopDuration + collapseTime - tailDelay;
+        
+        const pushAnimate = (pushTime: number) => {
+          const pushElapsed = pushTime - pushStart;
+          const pushRaw = Math.min(pushElapsed / pushDuration, 1);
+          // Smooth push that transfers momentum
+          const pushEased = easeOutQuart(pushRaw);
+          setPushProgress(pushEased * 0.02); // Small initial push
+          
+          if (pushRaw < 1) {
+            introAnimationRef.current = requestAnimationFrame(pushAnimate);
+          } else {
+            // Animation complete - start the countdown
+            setIsIntroAnimating(false);
+            setIsPushing(false);
+            setPushProgress(0);
+            setSwoopHead(0);
+            setSwoopTail(0);
+            setIsRunning(true);
+          }
+        };
+        
+        introAnimationRef.current = requestAnimationFrame(pushAnimate);
+        return;
+      }
+      
+      if (headRaw < 1 || tailRaw < 1) {
         introAnimationRef.current = requestAnimationFrame(animate);
-      } else {
-        // Animation complete - start the countdown
-        setIsIntroAnimating(false);
-        setIsRunning(true);
       }
     };
     
@@ -80,8 +122,11 @@ export default function PrayerTimer() {
   const handleDurationSelect = (minutes: number) => {
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
+    setSwoopHead(0);
+    setSwoopTail(0);
+    setIsPushing(false);
+    setPushProgress(0);
     setIsIntroAnimating(true);
-    setIntroProgress(0);
     setIsRunning(false);
   };
 
@@ -89,6 +134,10 @@ export default function PrayerTimer() {
     if (isRunning || isIntroAnimating) {
       setIsRunning(false);
       setIsIntroAnimating(false);
+      setIsPushing(false);
+      setSwoopHead(0);
+      setSwoopTail(0);
+      setPushProgress(0);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
@@ -97,7 +146,10 @@ export default function PrayerTimer() {
       }
     } else {
       setTimeRemaining(selectedDuration * 60);
-      setIntroProgress(0);
+      setSwoopHead(0);
+      setSwoopTail(0);
+      setIsPushing(false);
+      setPushProgress(0);
       setIsIntroAnimating(true);
     }
   };
@@ -208,37 +260,64 @@ export default function PrayerTimer() {
             />
             {isIntroAnimating ? (
               <>
-                {/* Swoop animation - the arc that travels around */}
-                <circle
-                  cx="150"
-                  cy="150"
-                  r="130"
-                  fill="none"
-                  stroke="url(#orangeGradient)"
-                  strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeDasharray={circumference}
-                  strokeDashoffset={circumference - (introProgress * circumference)}
-                  style={{ 
-                    filter: "drop-shadow(0 0 8px rgba(255, 150, 0, 0.6))",
-                  }}
-                />
-                {/* Tail effect - fading trail behind the swoop */}
-                <circle
-                  cx="150"
-                  cy="150"
-                  r="130"
-                  fill="none"
-                  stroke="url(#tailGradient)"
-                  strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeDasharray={circumference}
-                  strokeDashoffset={circumference - (Math.max(0, introProgress - 0.15) * circumference)}
-                  style={{ 
-                    opacity: Math.max(0, 1 - introProgress * 1.2),
-                  }}
-                />
+                {/* Swoop arc - drawn from tail to head position */}
+                {(() => {
+                  // Calculate the visible arc length (head - tail)
+                  const arcLength = (swoopHead - swoopTail) * circumference;
+                  // The dash offset positions the arc starting from the tail
+                  const dashOffset = circumference - (swoopHead * circumference);
+                  
+                  return (
+                    <circle
+                      cx="150"
+                      cy="150"
+                      r="130"
+                      fill="none"
+                      stroke="url(#swoopGradient)"
+                      strokeWidth="12"
+                      strokeLinecap="round"
+                      strokeDasharray={`${arcLength} ${circumference}`}
+                      strokeDashoffset={dashOffset}
+                      style={{ 
+                        filter: "drop-shadow(0 0 12px rgba(255, 150, 0, 0.8))",
+                      }}
+                    />
+                  );
+                })()}
+                {/* Glow trail effect */}
+                {swoopHead > 0.1 && (
+                  <circle
+                    cx="150"
+                    cy="150"
+                    r="130"
+                    fill="none"
+                    stroke="url(#glowGradient)"
+                    strokeWidth="20"
+                    strokeLinecap="round"
+                    strokeDasharray={`${(swoopHead - swoopTail) * circumference * 0.3} ${circumference}`}
+                    strokeDashoffset={circumference - (swoopHead * circumference)}
+                    style={{ 
+                      opacity: 0.4,
+                      filter: "blur(4px)",
+                    }}
+                  />
+                )}
               </>
+            ) : isPushing ? (
+              <circle
+                cx="150"
+                cy="150"
+                r="130"
+                fill="none"
+                stroke="url(#orangeGradient)"
+                strokeWidth="12"
+                strokeLinecap="round"
+                strokeDasharray={circumference}
+                strokeDashoffset={circumference - (pushProgress * circumference)}
+                style={{ 
+                  filter: "drop-shadow(0 0 8px rgba(255, 150, 0, 0.6))",
+                }}
+              />
             ) : (
               <circle
                 cx="150"
@@ -258,9 +337,14 @@ export default function PrayerTimer() {
                 <stop offset="0%" stopColor="#FFBE00" />
                 <stop offset="100%" stopColor="#FF6A00" />
               </linearGradient>
-              <linearGradient id="tailGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FFBE00" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#FF6A00" stopOpacity="0.1" />
+              <linearGradient id="swoopGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FF6A00" />
+                <stop offset="50%" stopColor="#FFBE00" />
+                <stop offset="100%" stopColor="#FFF5D4" />
+              </linearGradient>
+              <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FF6A00" stopOpacity="0" />
+                <stop offset="100%" stopColor="#FFBE00" stopOpacity="0.8" />
               </linearGradient>
             </defs>
           </svg>
