@@ -48,6 +48,41 @@ Scheduled weekly verse notifications:
 
 &nbsp;
 
+### How It Works
+
+&nbsp;
+
+#### 1. Cron Job
+
+`server/notificationCron.ts`
+
+- Runs every hour
+- Checks which timezones are at 8am
+- Queries users in those timezones
+- Sends notifications
+
+&nbsp;
+
+#### 2. AI Verse Selection
+
+`server/verseSelection.ts`
+
+- GPT-4o selects thematic verses
+- 8 rotating themes each week
+- Ensures variety and relevance
+
+&nbsp;
+
+#### 3. Firebase Delivery
+
+`server/firebaseAdmin.ts`
+
+- Builds notification payload
+- Includes image URL for rich notifications
+- Sends via FCM
+
+&nbsp;
+
 ---
 
 &nbsp;
@@ -86,45 +121,6 @@ curl -X POST "https://vagabondbible.com/api/notifications/admin/announcement" \
 | `body` | Yes | Notification message |
 | `url` | No | External URL to open on tap |
 | `userId` | No | Send to specific user (omit for broadcast)
-
-&nbsp;
-
----
-
-&nbsp;
-
-## ⚙️ How It Works
-
-&nbsp;
-
-### 1. Cron Job
-
-`server/notificationCron.ts`
-
-- Runs every hour
-- Checks which timezones are at 8am
-- Queries users in those timezones
-- Sends notifications
-
-&nbsp;
-
-### 2. AI Verse Selection
-
-`server/verseSelection.ts`
-
-- GPT-4o selects thematic verses
-- 8 rotating themes each week
-- Ensures variety and relevance
-
-&nbsp;
-
-### 3. Firebase Delivery
-
-`server/firebaseAdmin.ts`
-
-- Builds notification payload
-- Includes image URL for rich notifications
-- Sends via FCM
 
 &nbsp;
 
