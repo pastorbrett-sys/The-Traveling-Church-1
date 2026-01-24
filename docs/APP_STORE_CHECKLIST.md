@@ -37,11 +37,13 @@
 - [ ] App Privacy Labels (data collection disclosure in App Store Connect)
 
 ## 6. In-App Purchases (RevenueCat)
-- [x] Product created: "vagabond_bible_pro_monthly" at $9.99/month
+- [x] Product created: "vagabond_bible_pro_monthly" at $7.99/month (Premium)
+- [x] Product created: "pro_monthly_emerging" at $1.99/month (Emerging)
 - [x] Entitlement configured: "Vagabond Bible Pro"
 - [x] App-Specific Shared Secret: 6293c71538394d9b93709c2798159625
-- [ ] Subscription Group created in App Store Connect
-- [ ] Product localized for all territories
+- [x] Subscription Group created in App Store Connect
+- [x] Product localized for all territories
+- [x] RevenueCat Targeting configured for regional pricing
 - [ ] Review notes explaining how to test subscription
 
 ## 7. Build Preparation
