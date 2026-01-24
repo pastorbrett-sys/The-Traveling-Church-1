@@ -93,7 +93,7 @@ export default function PrayerTimer() {
       </button>
 
       <h1 
-        className="text-white text-center tracking-wide mt-2"
+        className="text-white text-center tracking-wide mt-[15px]"
         style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
       >
         PRAYER TIMER
@@ -205,7 +205,7 @@ export default function PrayerTimer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mt-8 px-4">
+        <div className="flex flex-wrap justify-center gap-3 mt-[17px] px-4">
           {DURATION_OPTIONS.map((option) => (
             <button
               key={option.minutes}
@@ -231,7 +231,7 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4 mt-6">
+        <div className="flex items-center gap-4 mt-[9px]">
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
