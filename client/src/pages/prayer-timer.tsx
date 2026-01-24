@@ -71,7 +71,7 @@ export default function PrayerTimer() {
     <div 
       className="w-full flex flex-col overflow-hidden"
       style={{ 
-        background: "linear-gradient(180deg, #191919 0%, #000000 100%)",
+        background: "#000000",
         height: "calc(100vh - 83px)",
         paddingTop: "env(safe-area-inset-top, 44px)",
       }}
@@ -118,7 +118,7 @@ export default function PrayerTimer() {
         </h1>
 
         {/* Timer Circle */}
-        <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] flex items-center justify-center">
+        <div className="relative w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] flex items-center justify-center">
           {isRunning && (
             <>
               <div 
@@ -190,7 +190,7 @@ export default function PrayerTimer() {
             <img
               src={maryImage}
               alt="Mary"
-              className="w-[148px] h-[223px] sm:w-[185px] sm:h-[279px] object-contain"
+              className="w-[148px] h-[223px] sm:w-[222px] sm:h-[335px] object-contain"
             />
           </div>
 
@@ -199,7 +199,7 @@ export default function PrayerTimer() {
             style={{ fontFamily: "'SCHABO Condensed', 'Impact', sans-serif" }}
           >
             <span 
-              className="text-white text-5xl sm:text-7xl tracking-wider"
+              className="text-white text-5xl sm:text-8xl tracking-wider"
               style={{ 
                 fontWeight: 400,
                 letterSpacing: "2px",
