@@ -2,9 +2,6 @@ import { usePlatform } from "@/contexts/platform-context";
 import { Smartphone, Globe } from "lucide-react";
 
 export function PlatformToggle() {
-  // TEMPORARILY HIDDEN FOR APP STORE SCREENSHOTS
-  return null;
-  
   const { isNative, isSimulating, toggleSimulation } = usePlatform();
 
   // Only show in development mode on web (hide on actual native devices and production)
