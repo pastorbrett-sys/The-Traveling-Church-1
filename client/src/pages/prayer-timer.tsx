@@ -156,8 +156,11 @@ export default function PrayerTimer() {
     setSmoothProgress(0);
     timerStartRef.current = null;
     
-    // Start the intro animation
-    setIsIntroAnimating(true);
+    // Force re-trigger by setting false first, then true on next tick
+    setIsIntroAnimating(false);
+    requestAnimationFrame(() => {
+      setIsIntroAnimating(true);
+    });
   };
 
   const handleStartStop = () => {
