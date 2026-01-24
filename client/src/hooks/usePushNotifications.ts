@@ -14,6 +14,7 @@ function getApiUrl(path: string): string {
 interface DeepLinkData {
   type: string;
   bookId?: string;
+  bookName?: string; // Book name for reliable lookup (e.g., "Psalms")
   chapter?: string;
   verse?: string;
   verseRef?: string;
@@ -77,15 +78,17 @@ export function usePushNotifications(userId: string | null | undefined) {
     console.log('[Push] Handling deep link:', data);
     if (data.type === 'verse_of_week' || data.type === 'verse') {
       const bookId = data.bookId;
+      const bookName = data.bookName;
       const chapter = data.chapter;
       const verse = data.verse;
 
       console.log('[Push] Notification data received:', data);
       
-      if (bookId && chapter) {
+      if ((bookId || bookName) && chapter) {
         const params = new URLSearchParams();
         params.set('tab', 'bible');
-        params.set('book', bookId);
+        if (bookId) params.set('book', bookId);
+        if (bookName) params.set('bookName', bookName); // Include book name for reliable lookup
         params.set('chapter', chapter);
         if (verse) params.set('verse', verse);
         if (data.triggerHighlight === 'true') params.set('highlight', 'true');

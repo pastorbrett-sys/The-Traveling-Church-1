@@ -234,7 +234,8 @@ export function buildVerseNotificationPayload(
   verseText: string,
   bookId: number,
   chapter: number,
-  verse: number
+  verse: number,
+  bookName?: string
 ): NotificationPayload {
   const shortText = verseText.length > 100 ? verseText.substring(0, 97) + '...' : verseText;
   
@@ -245,6 +246,7 @@ export function buildVerseNotificationPayload(
     data: {
       type: 'verse_of_week',
       bookId: String(bookId),
+      bookName: bookName || '', // Include book name for reliable lookup
       chapter: String(chapter),
       verse: String(verse),
       verseRef,

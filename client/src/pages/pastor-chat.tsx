@@ -155,22 +155,24 @@ export default function PastorChat() {
   
   // Deep link params for push notification navigation to specific verse
   const bookParam = urlParams.get("book");
+  const bookNameParam = urlParams.get("bookName"); // Book name for reliable lookup
   const chapterParam = urlParams.get("chapter");
   const verseParam = urlParams.get("verse");
   const highlightParam = urlParams.get("highlight");
   const showActionMenuParam = urlParams.get("showActionMenu");
   
   const initialBookId = bookParam ? parseInt(bookParam, 10) : undefined;
+  const initialBookName = bookNameParam || undefined;
   const initialChapter = chapterParam ? parseInt(chapterParam, 10) : undefined;
   const initialVerse = verseParam ? parseInt(verseParam, 10) : undefined;
   const triggerHighlight = highlightParam === "true";
   const showActionMenu = showActionMenuParam === "true";
   
   // Debug logging for deep link params
-  if (bookParam || showActionMenuParam) {
+  if (bookParam || bookNameParam || showActionMenuParam) {
     console.log('[PastorChat] Deep link params:', { 
-      bookParam, chapterParam, verseParam, highlightParam, showActionMenuParam,
-      parsed: { initialBookId, initialChapter, initialVerse, triggerHighlight, showActionMenu }
+      bookParam, bookNameParam, chapterParam, verseParam, highlightParam, showActionMenuParam,
+      parsed: { initialBookId, initialBookName, initialChapter, initialVerse, triggerHighlight, showActionMenu }
     });
   }
   
@@ -726,6 +728,7 @@ export default function PastorChat() {
             translation={bibleTranslation} 
             onTranslationChange={setBibleTranslation}
             initialBookId={initialBookId}
+            initialBookName={initialBookName}
             initialChapter={initialChapter}
             initialVerse={initialVerse}
             triggerHighlight={triggerHighlight}

@@ -252,7 +252,8 @@ router.post("/admin/test-verse", async (req: Request, res: Response) => {
       verse.text,
       verse.bookId,
       verse.chapter,
-      verse.verse
+      verse.verse,
+      verse.book // Pass book name for reliable lookup
     );
 
     // Send to all user's devices

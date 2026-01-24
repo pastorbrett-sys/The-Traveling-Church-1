@@ -109,6 +109,7 @@ interface BibleReaderProps {
   translation: string;
   onTranslationChange: (translation: string) => void;
   initialBookId?: number;
+  initialBookName?: string; // Book name for reliable lookup (e.g., "Psalms")
   initialChapter?: number;
   initialVerse?: number;
   triggerHighlight?: boolean;
@@ -319,6 +320,7 @@ export default function BibleReader({
   translation, 
   onTranslationChange,
   initialBookId,
+  initialBookName,
   initialChapter,
   initialVerse,
   triggerHighlight,
@@ -629,10 +631,21 @@ export default function BibleReader({
 
   // Handle initial navigation from push notifications (deep links)
   useEffect(() => {
-    if (books && initialBookId && !hasAppliedInitialNav) {
-      const targetBook = books.find(b => b.bookid === initialBookId);
+    if (books && (initialBookId || initialBookName) && !hasAppliedInitialNav) {
+      // Try to find book by name first (more reliable), then fall back to ID
+      let targetBook = initialBookName 
+        ? books.find(b => b.name.toLowerCase() === initialBookName.toLowerCase() || 
+                         b.name.toLowerCase().startsWith(initialBookName.toLowerCase().replace(/s$/, ''))) // Handle "Psalm" vs "Psalms"
+        : null;
+      
+      // Fall back to ID lookup if name lookup failed
+      if (!targetBook && initialBookId) {
+        targetBook = books.find(b => b.bookid === initialBookId);
+      }
+      
       if (targetBook) {
-        console.log('[BibleReader] Deep link navigation to:', targetBook.name, initialChapter, initialVerse);
+        console.log('[BibleReader] Deep link navigation to:', targetBook.name, initialChapter, initialVerse, 
+                    '(lookup method:', initialBookName ? 'name' : 'id', ')');
         setSelectedBook(targetBook);
         setSelectedChapter(initialChapter || 1);
         setShowBookPicker(false);
@@ -646,9 +659,11 @@ export default function BibleReader({
           }, 200);
         }
         setHasAppliedInitialNav(true);
+      } else {
+        console.warn('[BibleReader] Deep link: Could not find book:', { initialBookName, initialBookId });
       }
     }
-  }, [books, initialBookId, initialChapter, initialVerse, triggerHighlight, showActionMenuOnDeepLink, hasAppliedInitialNav]);
+  }, [books, initialBookId, initialBookName, initialChapter, initialVerse, triggerHighlight, showActionMenuOnDeepLink, hasAppliedInitialNav]);
 
   const { data: chapter, isLoading: isLoadingChapter } = useQuery<BibleChapter>({
     queryKey: ["/api/bible/chapter", translation, selectedBook?.bookid, selectedChapter],

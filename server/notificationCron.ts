@@ -130,7 +130,8 @@ async function processNotificationType(
       verse.text,
       verse.bookId,
       verse.chapter,
-      verse.verse
+      verse.verse,
+      verse.book // Pass book name for reliable lookup
     );
   } else {
     // Default notification for other types
