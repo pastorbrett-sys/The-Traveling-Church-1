@@ -121,16 +121,22 @@ export interface DeepLinkData {
 
 export async function sendPushNotification(
   token: string,
-  payload: NotificationPayload
+  payload: NotificationPayload,
+  platform?: 'ios' | 'android'
 ): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
     const app = getFirebaseAdmin();
+    
+    // Use platform-specific images for verse notifications
+    const iosImageUrl = payload.imageUrl === VERSE_OF_WEEK_IMAGE_IOS ? VERSE_OF_WEEK_IMAGE_IOS : payload.imageUrl;
+    const androidImageUrl = payload.imageUrl === VERSE_OF_WEEK_IMAGE_IOS ? VERSE_OF_WEEK_IMAGE_ANDROID : payload.imageUrl;
+    
     const message: admin.messaging.Message = {
       token,
       notification: {
         title: payload.title,
         body: payload.body,
-        ...(payload.imageUrl && { image: payload.imageUrl }),
+        // Don't set image here - let platform-specific configs handle it
       },
       data: payload.data,
       apns: {
@@ -141,14 +147,14 @@ export async function sendPushNotification(
             'mutable-content': 1, // Required for image on iOS
           },
         },
-        fcmOptions: payload.imageUrl ? { imageUrl: payload.imageUrl } : undefined,
+        fcmOptions: iosImageUrl ? { imageUrl: iosImageUrl } : undefined,
       },
       android: {
         priority: 'high',
         notification: {
           sound: 'default',
           channelId: 'verse_notifications',
-          ...(payload.imageUrl && { imageUrl: payload.imageUrl }),
+          ...(androidImageUrl && { imageUrl: androidImageUrl }),
         },
       },
     };
@@ -171,12 +177,17 @@ export async function sendBatchNotifications(
 
   try {
     const app = getFirebaseAdmin();
+    
+    // Use platform-specific images for verse notifications
+    const iosImageUrl = payload.imageUrl === VERSE_OF_WEEK_IMAGE_IOS ? VERSE_OF_WEEK_IMAGE_IOS : payload.imageUrl;
+    const androidImageUrl = payload.imageUrl === VERSE_OF_WEEK_IMAGE_IOS ? VERSE_OF_WEEK_IMAGE_ANDROID : payload.imageUrl;
+    
     const messages: admin.messaging.Message[] = tokens.map(token => ({
       token,
       notification: {
         title: payload.title,
         body: payload.body,
-        ...(payload.imageUrl && { image: payload.imageUrl }),
+        // Don't set image here - let platform-specific configs handle it
       },
       data: payload.data,
       apns: {
@@ -187,14 +198,14 @@ export async function sendBatchNotifications(
             'mutable-content': 1,
           },
         },
-        fcmOptions: payload.imageUrl ? { imageUrl: payload.imageUrl } : undefined,
+        fcmOptions: iosImageUrl ? { imageUrl: iosImageUrl } : undefined,
       },
       android: {
         priority: 'high' as const,
         notification: {
           sound: 'default',
           channelId: 'verse_notifications',
-          ...(payload.imageUrl && { imageUrl: payload.imageUrl }),
+          ...(androidImageUrl && { imageUrl: androidImageUrl }),
         },
       },
     }));
@@ -226,8 +237,9 @@ export async function sendBatchNotifications(
   }
 }
 
-// Verse of the Week notification image (hosted in client/public/)
-const VERSE_OF_WEEK_IMAGE_URL = 'https://vagabondbible.com/verse-of-the-week-notification.png';
+// Verse of the Week notification images (hosted in client/public/)
+const VERSE_OF_WEEK_IMAGE_IOS = 'https://vagabondbible.com/verse-of-the-week-notification.png';
+const VERSE_OF_WEEK_IMAGE_ANDROID = 'https://vagabondbible.com/verse-of-the-week-android.png';
 
 export function buildVerseNotificationPayload(
   verseRef: string,
@@ -242,7 +254,7 @@ export function buildVerseNotificationPayload(
   return {
     title: '✨ Verse of the Week',
     body: `${shortText} - ${verseRef}`,
-    imageUrl: VERSE_OF_WEEK_IMAGE_URL,
+    imageUrl: VERSE_OF_WEEK_IMAGE_IOS, // Will be swapped to Android version in send functions
     data: {
       type: 'verse_of_week',
       bookId: String(bookId),
