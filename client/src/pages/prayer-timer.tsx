@@ -139,7 +139,7 @@ export default function PrayerTimer() {
           </svg>
 
           <div 
-            className="absolute inset-[20px] rounded-full border-2"
+            className="absolute inset-[30px] rounded-full border-2"
             style={{ borderColor: "#2a2a2a" }}
           />
 
