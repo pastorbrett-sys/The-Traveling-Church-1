@@ -23,14 +23,69 @@ Timezone-aware push notifications for weekly verse reminders with rich images an
 
 &nbsp;
 
+## 📋 Notification Types
+
+| Type | Trigger | Use Cases |
+|------|---------|-----------|
+| **Verse of the Week** | Scheduled (cron) | Weekly verse reminders with deep linking |
+| **Announcements** | On-demand (API) | Donation campaigns, events, live streams, ministry updates |
+
+&nbsp;
+
+---
+
+&nbsp;
+
 ## 📅 Verse of the Week
 
-The flagship notification type:
+Scheduled weekly verse notifications:
 
-- 📆 **Delivery**: Tuesday at 8am (user's local time)
-- 🎨 **Image**: Custom branded notification image
-- 🔗 **Action**: Tapping opens verse with highlight animation
+- 📆 **Trigger**: Cron job (hourly check)
+- ⏰ **Delivery**: Tuesday at 8am (user's local time)
+- 🎨 **Image**: Platform-specific (iOS: 1024x1024, Android: 1024x512)
+- 🔗 **Action**: Opens verse in Bible reader with highlight
 - 📖 **Translation**: World English Bible (public domain)
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 📢 Announcements
+
+On-demand notifications for any purpose:
+
+- 📆 **Trigger**: Manual API call
+- 🔗 **Action**: Opens external URL in browser (or app if no URL)
+- 🎨 **Image**: Platform-specific branded images
+- 🎯 **Use Cases**: Donation campaigns, event reminders, live streams, ministry updates
+
+&nbsp;
+
+### Sending an Announcement
+
+```bash
+curl -X POST "https://vagabondbible.com/api/notifications/admin/announcement" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "🙏 Support Our Mission",
+    "body": "Your $25 helps bring Bibles to families in Ethiopia. Tap to give.",
+    "url": "https://thetravelingchurch.com/donate",
+    "userId": "USER_ID_HERE"
+  }'
+```
+
+&nbsp;
+
+### Parameters
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `title` | Yes | Notification title |
+| `body` | Yes | Notification message |
+| `url` | No | External URL to open on tap |
+| `userId` | No | Send to specific user (omit for broadcast)
 
 &nbsp;
 
@@ -117,11 +172,15 @@ Configurable notification types.
 
 | Column | Type | Purpose |
 |--------|------|---------|
-| `id` | text | e.g., 'verse_of_week' |
+| `id` | text | e.g., 'verse_of_week', 'announcement' |
 | `name` | text | Display name |
-| `sendDay` | integer | 0-6 (0=Sunday) |
-| `sendHour` | integer | 0-23 (local time) |
+| `sendDay` | integer | 0-6 (0=Sunday) - only for scheduled types |
+| `sendHour` | integer | 0-23 (local time) - only for scheduled types |
 | `isActive` | boolean | Enable/disable |
+
+**Default Types:**
+- `verse_of_week` - Scheduled Tuesday 8am, deep links to Bible verse
+- `announcement` - On-demand, opens external URLs
 
 &nbsp;
 
@@ -186,10 +245,25 @@ See full code in the iOS Setup documentation.
 
 ## 🧪 Testing
 
-Send a test notification:
+### Test Verse of the Week
 
 ```bash
 curl -X POST "https://vagabondbible.com/api/notifications/admin/test-verse" \
   -H "Content-Type: application/json" \
   -d '{"userId": "USER_ID_HERE"}'
+```
+
+&nbsp;
+
+### Test Announcement
+
+```bash
+curl -X POST "https://vagabondbible.com/api/notifications/admin/announcement" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Test Announcement",
+    "body": "This is a test notification.",
+    "url": "https://thetravelingchurch.com",
+    "userId": "USER_ID_HERE"
+  }'
 ```
