@@ -205,7 +205,7 @@ export default function PrayerTimer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mt-[17px] px-4">
+        <div className="flex flex-wrap justify-center gap-3 mt-[13px] px-4">
           {DURATION_OPTIONS.map((option) => (
             <button
               key={option.minutes}
