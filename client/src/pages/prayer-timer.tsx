@@ -124,16 +124,16 @@ export default function PrayerTimer() {
               r="130"
               fill="none"
               stroke="url(#orangeGradient)"
-              strokeWidth="9"
+              strokeWidth="12"
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
               style={{ transition: "stroke-dashoffset 1s linear" }}
             />
             <defs>
-              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#b98500" />
-                <stop offset="100%" stopColor="#ff6a00" />
+              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#FFBE00" />
+                <stop offset="100%" stopColor="#FF6A00" />
               </linearGradient>
             </defs>
           </svg>
@@ -147,7 +147,7 @@ export default function PrayerTimer() {
             <img
               src={maryImage}
               alt="Mary"
-              className="w-40 h-60 object-contain"
+              className="w-[168px] h-[252px] object-contain"
             />
           </div>
 
