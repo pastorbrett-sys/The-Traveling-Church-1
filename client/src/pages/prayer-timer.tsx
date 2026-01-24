@@ -82,7 +82,7 @@ export default function PrayerTimer() {
         @keyframes pulse-ring {
           0% {
             transform: scale(1);
-            opacity: 0.2;
+            opacity: 0.3;
           }
           100% {
             transform: scale(1.4);
@@ -127,7 +127,7 @@ export default function PrayerTimer() {
                 style={{
                   width: "100%",
                   height: "100%",
-                  border: "2px solid rgba(255, 255, 255, 0.2)",
+                  border: "2px solid rgba(255, 255, 255, 0.3)",
                   animation: "pulse-ring 4s ease-out infinite",
                 }}
               />
@@ -136,7 +136,7 @@ export default function PrayerTimer() {
                 style={{
                   width: "100%",
                   height: "100%",
-                  border: "2px solid rgba(255, 255, 255, 0.2)",
+                  border: "2px solid rgba(255, 255, 255, 0.3)",
                   animation: "pulse-ring 4s ease-out infinite 2s",
                 }}
               />
