@@ -110,7 +110,7 @@ export default function PrayerTimer() {
           </span>
         </button>
 
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-end justify-center pb-4">
           <h1 
             className="text-white text-center tracking-wide"
             style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
@@ -122,7 +122,7 @@ export default function PrayerTimer() {
 
       {/* Middle 40% - Timer Circle */}
       <div 
-        className="flex items-center justify-center px-5"
+        className="flex items-start justify-center px-5 pt-4"
         style={{ height: "40%" }}
       >
         <div className="relative w-[350px] h-[350px] flex items-center justify-center">
@@ -221,7 +221,7 @@ export default function PrayerTimer() {
 
       {/* Bottom 30% - Buttons */}
       <div 
-        className="flex flex-col items-center justify-center px-5"
+        className="flex flex-col items-center justify-start px-5 pt-4"
         style={{ 
           height: "30%",
           paddingBottom: "env(safe-area-inset-bottom, 34px)",
