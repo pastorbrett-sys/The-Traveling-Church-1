@@ -14,11 +14,48 @@ export default function PrayerTimer() {
   const [, setLocation] = useLocation();
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [timeRemaining, setTimeRemaining] = useState(5 * 60);
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isIntroAnimating, setIsIntroAnimating] = useState(true);
+  const [introProgress, setIntroProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const introAnimationRef = useRef<number | null>(null);
 
   const totalSeconds = selectedDuration * 60;
   const progress = isRunning ? (totalSeconds - timeRemaining) / totalSeconds : 0;
+
+  // Intro swoop animation
+  useEffect(() => {
+    if (!isIntroAnimating) return;
+    
+    const startTime = performance.now();
+    const introDuration = 1200; // 1.2 seconds for the swoop
+    
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const rawProgress = Math.min(elapsed / introDuration, 1);
+      
+      // Easing function for smooth acceleration then deceleration
+      const easeOutCubic = 1 - Math.pow(1 - rawProgress, 3);
+      
+      setIntroProgress(easeOutCubic);
+      
+      if (rawProgress < 1) {
+        introAnimationRef.current = requestAnimationFrame(animate);
+      } else {
+        // Animation complete - start the countdown
+        setIsIntroAnimating(false);
+        setIsRunning(true);
+      }
+    };
+    
+    introAnimationRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      if (introAnimationRef.current) {
+        cancelAnimationFrame(introAnimationRef.current);
+      }
+    };
+  }, [isIntroAnimating]);
 
   useEffect(() => {
     if (isRunning && timeRemaining > 0) {
@@ -43,18 +80,25 @@ export default function PrayerTimer() {
   const handleDurationSelect = (minutes: number) => {
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
-    setIsRunning(true);
+    setIsIntroAnimating(true);
+    setIntroProgress(0);
+    setIsRunning(false);
   };
 
   const handleStartStop = () => {
-    if (isRunning) {
+    if (isRunning || isIntroAnimating) {
       setIsRunning(false);
+      setIsIntroAnimating(false);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      if (introAnimationRef.current) {
+        cancelAnimationFrame(introAnimationRef.current);
+      }
     } else {
       setTimeRemaining(selectedDuration * 60);
-      setIsRunning(true);
+      setIntroProgress(0);
+      setIsIntroAnimating(true);
     }
   };
 
@@ -120,7 +164,7 @@ export default function PrayerTimer() {
 
         {/* Timer Circle */}
         <div className="relative w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] flex items-center justify-center">
-          {isRunning && (
+          {(isRunning || isIntroAnimating) && (
             <>
               <div 
                 className="absolute rounded-full"
@@ -162,22 +206,61 @@ export default function PrayerTimer() {
               stroke="#1a1a1a"
               strokeWidth="4"
             />
-            <circle
-              cx="150"
-              cy="150"
-              r="130"
-              fill="none"
-              stroke="url(#orangeGradient)"
-              strokeWidth="12"
-              strokeLinecap="round"
-              strokeDasharray={circumference}
-              strokeDashoffset={strokeDashoffset}
-              style={{ transition: "stroke-dashoffset 1s linear" }}
-            />
+            {isIntroAnimating ? (
+              <>
+                {/* Swoop animation - the arc that travels around */}
+                <circle
+                  cx="150"
+                  cy="150"
+                  r="130"
+                  fill="none"
+                  stroke="url(#orangeGradient)"
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={circumference - (introProgress * circumference)}
+                  style={{ 
+                    filter: "drop-shadow(0 0 8px rgba(255, 150, 0, 0.6))",
+                  }}
+                />
+                {/* Tail effect - fading trail behind the swoop */}
+                <circle
+                  cx="150"
+                  cy="150"
+                  r="130"
+                  fill="none"
+                  stroke="url(#tailGradient)"
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={circumference - (Math.max(0, introProgress - 0.15) * circumference)}
+                  style={{ 
+                    opacity: Math.max(0, 1 - introProgress * 1.2),
+                  }}
+                />
+              </>
+            ) : (
+              <circle
+                cx="150"
+                cy="150"
+                r="130"
+                fill="none"
+                stroke="url(#orangeGradient)"
+                strokeWidth="12"
+                strokeLinecap="round"
+                strokeDasharray={circumference}
+                strokeDashoffset={strokeDashoffset}
+                style={{ transition: "stroke-dashoffset 1s linear" }}
+              />
+            )}
             <defs>
               <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#FFBE00" />
                 <stop offset="100%" stopColor="#FF6A00" />
+              </linearGradient>
+              <linearGradient id="tailGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#FFBE00" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#FF6A00" stopOpacity="0.1" />
               </linearGradient>
             </defs>
           </svg>
@@ -249,7 +332,7 @@ export default function PrayerTimer() {
             }}
             data-testid="button-start-stop"
           >
-            {isRunning ? "STOP" : "START"}
+            {(isRunning || isIntroAnimating) ? "STOP" : "START"}
           </button>
 
           <button
