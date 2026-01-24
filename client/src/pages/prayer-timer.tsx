@@ -261,10 +261,11 @@ export default function PrayerTimer() {
               <>
                 {/* Swoop arc - drawn from tail to head position */}
                 {(() => {
-                  // Calculate the visible arc length (head - tail)
-                  const arcLength = (swoopHead - swoopTail) * circumference;
-                  // The dash offset positions the arc starting from the tail
-                  const dashOffset = circumference - (swoopHead * circumference);
+                  // Arc goes from tail position to head position
+                  const arcLength = Math.max(0, (swoopHead - swoopTail)) * circumference;
+                  // Offset positions the START of the visible arc at the tail position
+                  // Negative offset moves the arc forward (clockwise)
+                  const dashOffset = -swoopTail * circumference;
                   
                   return (
                     <circle
@@ -283,21 +284,21 @@ export default function PrayerTimer() {
                     />
                   );
                 })()}
-                {/* Glow trail effect */}
-                {swoopHead > 0.1 && (
+                {/* Glow at the head of the swoosh */}
+                {swoopHead > 0.05 && (
                   <circle
                     cx="150"
                     cy="150"
                     r="130"
                     fill="none"
                     stroke="url(#glowGradient)"
-                    strokeWidth="20"
+                    strokeWidth="24"
                     strokeLinecap="round"
-                    strokeDasharray={`${(swoopHead - swoopTail) * circumference * 0.3} ${circumference}`}
-                    strokeDashoffset={circumference - (swoopHead * circumference)}
+                    strokeDasharray={`${circumference * 0.08} ${circumference}`}
+                    strokeDashoffset={-swoopHead * circumference + circumference * 0.04}
                     style={{ 
-                      opacity: 0.4,
-                      filter: "blur(4px)",
+                      opacity: 0.6,
+                      filter: "blur(6px)",
                     }}
                   />
                 )}
