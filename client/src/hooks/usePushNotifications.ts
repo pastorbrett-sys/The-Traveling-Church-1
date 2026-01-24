@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useState, useRef } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications, Token, PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications';
+import { Browser } from '@capacitor/browser';
 import { useLocation } from 'wouter';
 
 // Production server URL for native apps
@@ -20,6 +21,7 @@ interface DeepLinkData {
   verseRef?: string;
   showActionMenu?: string;
   triggerHighlight?: string;
+  url?: string; // External URL to open (for announcements)
 }
 
 export function usePushNotifications(userId: string | null | undefined) {
@@ -74,8 +76,23 @@ export function usePushNotifications(userId: string | null | undefined) {
   }, [getTimezoneInfo]);
 
   // Handle deep link navigation - stable callback
-  const handleDeepLink = useCallback((data: DeepLinkData) => {
+  const handleDeepLink = useCallback(async (data: DeepLinkData) => {
     console.log('[Push] Handling deep link:', data);
+    
+    // Handle announcement with external URL
+    if (data.type === 'announcement' && data.url) {
+      console.log('[Push] Opening announcement URL:', data.url);
+      try {
+        await Browser.open({ url: data.url });
+      } catch (error) {
+        console.error('[Push] Error opening URL:', error);
+        // Fallback to window.open
+        window.open(data.url, '_blank');
+      }
+      return;
+    }
+    
+    // Handle verse notifications
     if (data.type === 'verse_of_week' || data.type === 'verse') {
       const bookId = data.bookId;
       const bookName = data.bookName;

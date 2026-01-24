@@ -289,6 +289,91 @@ router.post("/admin/test-verse", async (req: Request, res: Response) => {
   }
 });
 
+// Admin: Send an announcement notification to all users (or specific user)
+router.post("/admin/announcement", async (req: Request, res: Response) => {
+  try {
+    const { title, body, url, userId } = req.body;
+
+    if (!title || !body) {
+      return res.status(400).json({ error: "title and body are required" });
+    }
+
+    // Build the notification payload
+    const payload = {
+      title,
+      body,
+      data: {
+        type: 'announcement',
+        ...(url && { url }), // External URL to open when tapped
+      },
+    };
+
+    let tokens;
+    if (userId) {
+      // Send to specific user
+      tokens = await db
+        .select()
+        .from(pushTokens)
+        .where(eq(pushTokens.userId, userId));
+    } else {
+      // Send to all users who have announcements enabled
+      const enabledUsers = await db
+        .select({ userId: userNotificationPreferences.userId })
+        .from(userNotificationPreferences)
+        .where(
+          and(
+            eq(userNotificationPreferences.notificationTypeId, 'announcement'),
+            eq(userNotificationPreferences.enabled, true)
+          )
+        );
+      
+      const userIds = enabledUsers.map(u => u.userId);
+      
+      if (userIds.length === 0) {
+        // If no preferences exist yet, send to all tokens
+        tokens = await db.select().from(pushTokens);
+      } else {
+        tokens = await db
+          .select()
+          .from(pushTokens)
+          .where(sql`${pushTokens.userId} = ANY(ARRAY[${sql.join(userIds.map(id => sql`${id}`), sql`, `)}])`);
+      }
+    }
+
+    if (tokens.length === 0) {
+      return res.status(404).json({ error: "No registered devices found" });
+    }
+
+    // Send to all tokens
+    const results = [];
+    for (const token of tokens) {
+      const result = await sendPushNotification(token.deviceToken, payload);
+      results.push({ platform: token.platform, userId: token.userId, ...result });
+    }
+
+    // Log the notification
+    await db.insert(notificationLog).values({
+      notificationTypeId: "announcement",
+      verseReference: null,
+      verseText: `${title}: ${body}`,
+      recipientCount: tokens.length,
+      status: results.every(r => r.success) ? "sent" : results.some(r => r.success) ? "partial" : "failed",
+      errorMessage: results.filter(r => !r.success).map(r => r.error).join("; ") || null,
+    });
+
+    res.json({
+      success: true,
+      recipientCount: tokens.length,
+      successCount: results.filter(r => r.success).length,
+      failureCount: results.filter(r => !r.success).length,
+      results,
+    });
+  } catch (error: any) {
+    console.error("Error sending announcement:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Admin: Get all registered tokens (for debugging)
 router.get("/admin/tokens", async (req: Request, res: Response) => {
   try {
