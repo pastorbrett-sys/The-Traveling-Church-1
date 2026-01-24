@@ -941,22 +941,6 @@ This section models total revenue potential including all revenue streams at sca
 
 &nbsp;
 
-### 🎯 Your Goal: Fund Missions + Live Comfortably
-
-| Monthly Need | Users Required |
-|--------------|----------------|
-| $3,000/mo | ~20,000 users |
-| $5,000/mo | ~30,000 users |
-| $8,000/mo | ~50,000 users |
-| $10,000/mo | ~60,000 users |
-| $15,000/mo | ~90,000 users |
-
-&nbsp;
-
----
-
-&nbsp;
-
 ### 💡 Revenue Stream Priority
 
 | Priority | Stream | Effort | Impact |
@@ -1000,4 +984,4 @@ This section models total revenue potential including all revenue streams at sca
 - Free users cost ~$0.01/month max — essentially free to serve
 - Pro users cover 165-915 free users each depending on tier
 - All revenue streams together roughly 2x subscription-only revenue
-- 50K users with all streams = ~$100K/year
+- See **docs/REVENUE_SCENARIOS.md** for comprehensive 10-scenario business model analysis
