@@ -366,7 +366,7 @@ export default function BibleReader({
   const [isLoadingBookSynopsis, setIsLoadingBookSynopsis] = useState(false);
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
   const [persistentHighlightVerse, setPersistentHighlightVerse] = useState<number | null>(null);
-  const [isDeepLinkScroll, setIsDeepLinkScroll] = useState(false);
+  const isDeepLinkScrollRef = useRef(false);
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
   const [upgradeFeature, setUpgradeFeature] = useState<string>("smart_search");
   const [upgradeResetAt, setUpgradeResetAt] = useState<string | null>(null);
@@ -637,7 +637,7 @@ export default function BibleReader({
         if (initialVerse && triggerHighlight) {
           // Delay to ensure chapter is loaded first
           setTimeout(() => {
-            setIsDeepLinkScroll(true); // Mark as deep link to auto-open action bar
+            isDeepLinkScrollRef.current = true; // Mark as deep link to auto-open action bar
             setScrollToVerse(initialVerse);
           }, 500);
         }
@@ -740,9 +740,9 @@ export default function BibleReader({
               verseElement.classList.remove("verse-burst-highlight");
               setPersistentHighlightVerse(verseNum);
               // Auto-open action bar after animation if this is a deep link
-              if (isDeepLinkScroll && verseData) {
+              if (isDeepLinkScrollRef.current && verseData) {
                 setSelectedVerse(verseData);
-                setIsDeepLinkScroll(false);
+                isDeepLinkScrollRef.current = false;
               }
             }, 4000);
           };
@@ -778,7 +778,7 @@ export default function BibleReader({
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [scrollToVerse, chapter, isLoadingChapter, isDeepLinkScroll]);
+  }, [scrollToVerse, chapter, isLoadingChapter]);
 
   const MILESTONES = [1, 5, 10, 25, 50, 100, 250, 500];
   const getMilestoneMessage = (count: number) => {
