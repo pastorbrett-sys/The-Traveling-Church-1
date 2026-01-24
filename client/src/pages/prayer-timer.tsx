@@ -147,7 +147,7 @@ export default function PrayerTimer() {
             <img
               src={maryImage}
               alt="Mary"
-              className="w-[168px] h-[252px] object-contain"
+              className="w-[218px] h-[328px] object-contain"
             />
           </div>
 
