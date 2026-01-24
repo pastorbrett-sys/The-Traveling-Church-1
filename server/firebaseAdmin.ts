@@ -107,6 +107,7 @@ export interface NotificationPayload {
   title: string;
   body: string;
   data?: Record<string, string>;
+  imageUrl?: string; // Optional image URL for rich notifications
 }
 
 export interface DeepLinkData {
@@ -129,6 +130,7 @@ export async function sendPushNotification(
       notification: {
         title: payload.title,
         body: payload.body,
+        ...(payload.imageUrl && { image: payload.imageUrl }),
       },
       data: payload.data,
       apns: {
@@ -136,14 +138,17 @@ export async function sendPushNotification(
           aps: {
             sound: 'default',
             badge: 1,
+            'mutable-content': 1, // Required for image on iOS
           },
         },
+        fcmOptions: payload.imageUrl ? { imageUrl: payload.imageUrl } : undefined,
       },
       android: {
         priority: 'high',
         notification: {
           sound: 'default',
           channelId: 'verse_notifications',
+          ...(payload.imageUrl && { imageUrl: payload.imageUrl }),
         },
       },
     };
@@ -171,6 +176,7 @@ export async function sendBatchNotifications(
       notification: {
         title: payload.title,
         body: payload.body,
+        ...(payload.imageUrl && { image: payload.imageUrl }),
       },
       data: payload.data,
       apns: {
@@ -178,14 +184,17 @@ export async function sendBatchNotifications(
           aps: {
             sound: 'default',
             badge: 1,
+            'mutable-content': 1,
           },
         },
+        fcmOptions: payload.imageUrl ? { imageUrl: payload.imageUrl } : undefined,
       },
       android: {
         priority: 'high' as const,
         notification: {
           sound: 'default',
           channelId: 'verse_notifications',
+          ...(payload.imageUrl && { imageUrl: payload.imageUrl }),
         },
       },
     }));
