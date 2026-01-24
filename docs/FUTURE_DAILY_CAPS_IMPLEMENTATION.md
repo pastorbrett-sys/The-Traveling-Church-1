@@ -747,6 +747,246 @@ Given religious apps typically hit 3-7%, you have **2-5x safety margin**.
 
 &nbsp;
 
+## 🚀 Complete Revenue Projections (All Streams)
+
+This section models total revenue potential including all revenue streams at scale.
+
+&nbsp;
+
+### Revenue Streams Overview
+
+| Stream | Description | % of Users | Revenue per User |
+|--------|-------------|------------|------------------|
+| 💳 **Subscriptions** | Core Pro subscriptions | 4% of total | $2.16/mo avg net |
+| 📦 **Credit Packs** | Power user upsells | 10% of Pro users | $5/mo avg |
+| 📅 **Annual Plans** | 2 months free, better retention | 30% of Pro users | +15% LTV |
+| ⛪ **Church Licenses** | Group/church subscriptions | Direct sales | $50-200/mo each |
+| 🎁 **Donations** | Optional giving (faith apps) | 1-2% of users | $5-10 avg |
+
+&nbsp;
+
+### Assumptions
+
+- **Conversion rate**: 4% (conservative for religious apps)
+- **Premium/Emerging split**: 50/50
+- **Base subscription net profit**: $2.16/user/month avg
+- **Credit pack buyers**: 10% of Pro users buy $5 avg/month
+- **Annual plan adoption**: 30% of Pro (adds 15% to their LTV)
+- **Church licenses**: 1 per 10,000 users at $100/month
+- **Donations**: 1% of all users give $5/month avg
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 10,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 400 Pro × $2.16 | $864 |
+| Credit Packs | 40 buyers × $5 | $200 |
+| Annual Boost | 120 annual × $0.32 bonus | $38 |
+| Church Licenses | 1 church × $100 | $100 |
+| Donations | 100 donors × $5 | $500 |
+| **TOTAL** | | **$1,702/mo** |
+| Free User Costs | 9,600 × $0.004 | -$38 |
+| **NET PROFIT** | | **$1,664/mo** |
+| **Annual** | | **$20K/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 25,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 1,000 Pro × $2.16 | $2,160 |
+| Credit Packs | 100 buyers × $5 | $500 |
+| Annual Boost | 300 annual × $0.32 | $96 |
+| Church Licenses | 2 churches × $100 | $200 |
+| Donations | 250 donors × $5 | $1,250 |
+| **TOTAL** | | **$4,206/mo** |
+| Free User Costs | 24,000 × $0.004 | -$96 |
+| **NET PROFIT** | | **$4,110/mo** |
+| **Annual** | | **$49K/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 50,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 2,000 Pro × $2.16 | $4,320 |
+| Credit Packs | 200 buyers × $5 | $1,000 |
+| Annual Boost | 600 annual × $0.32 | $192 |
+| Church Licenses | 5 churches × $100 | $500 |
+| Donations | 500 donors × $5 | $2,500 |
+| **TOTAL** | | **$8,512/mo** |
+| Free User Costs | 48,000 × $0.004 | -$192 |
+| **NET PROFIT** | | **$8,320/mo** |
+| **Annual** | | **$100K/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 100,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 4,000 Pro × $2.16 | $8,640 |
+| Credit Packs | 400 buyers × $5 | $2,000 |
+| Annual Boost | 1,200 annual × $0.32 | $384 |
+| Church Licenses | 10 churches × $100 | $1,000 |
+| Donations | 1,000 donors × $5 | $5,000 |
+| **TOTAL** | | **$17,024/mo** |
+| Free User Costs | 96,000 × $0.004 | -$384 |
+| **NET PROFIT** | | **$16,640/mo** |
+| **Annual** | | **$200K/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 250,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 10,000 Pro × $2.16 | $21,600 |
+| Credit Packs | 1,000 buyers × $5 | $5,000 |
+| Annual Boost | 3,000 annual × $0.32 | $960 |
+| Church Licenses | 25 churches × $100 | $2,500 |
+| Donations | 2,500 donors × $5 | $12,500 |
+| **TOTAL** | | **$42,560/mo** |
+| Free User Costs | 240,000 × $0.004 | -$960 |
+| **NET PROFIT** | | **$41,600/mo** |
+| **Annual** | | **$499K/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 500,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 20,000 Pro × $2.16 | $43,200 |
+| Credit Packs | 2,000 buyers × $5 | $10,000 |
+| Annual Boost | 6,000 annual × $0.32 | $1,920 |
+| Church Licenses | 50 churches × $100 | $5,000 |
+| Donations | 5,000 donors × $5 | $25,000 |
+| **TOTAL** | | **$85,120/mo** |
+| Free User Costs | 480,000 × $0.004 | -$1,920 |
+| **NET PROFIT** | | **$83,200/mo** |
+| **Annual** | | **$998K/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📊 Projection: 1,000,000 Total Users
+
+| Revenue Stream | Calculation | Monthly |
+|----------------|-------------|---------|
+| Subscriptions | 40,000 Pro × $2.16 | $86,400 |
+| Credit Packs | 4,000 buyers × $5 | $20,000 |
+| Annual Boost | 12,000 annual × $0.32 | $3,840 |
+| Church Licenses | 100 churches × $100 | $10,000 |
+| Donations | 10,000 donors × $5 | $50,000 |
+| **TOTAL** | | **$170,240/mo** |
+| Free User Costs | 960,000 × $0.004 | -$3,840 |
+| **NET PROFIT** | | **$166,400/mo** |
+| **Annual** | | **$2M/year** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 📈 Summary: Revenue by Scale
+
+| Users | Subs Only | **All Streams** | Annual |
+|-------|-----------|-----------------|--------|
+| 10K | $826 | **$1,664** | $20K |
+| 25K | $2,064 | **$4,110** | $49K |
+| 50K | $4,128 | **$8,320** | $100K |
+| 100K | $8,256 | **$16,640** | $200K |
+| 250K | $20,640 | **$41,600** | $499K |
+| 500K | $41,280 | **$83,200** | $998K |
+| 1M | $82,560 | **$166,400** | $2M |
+
+**All revenue streams roughly DOUBLE your subscription-only income.**
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 🎯 Your Goal: Fund Missions + Live Comfortably
+
+| Monthly Need | Users Required |
+|--------------|----------------|
+| $3,000/mo | ~20,000 users |
+| $5,000/mo | ~30,000 users |
+| $8,000/mo | ~50,000 users |
+| $10,000/mo | ~60,000 users |
+| $15,000/mo | ~90,000 users |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 💡 Revenue Stream Priority
+
+| Priority | Stream | Effort | Impact |
+|----------|--------|--------|--------|
+| 1 | Subscriptions | Already built | Core revenue |
+| 2 | Annual Plans | Low (pricing option) | +15% LTV, better retention |
+| 3 | Credit Packs | Medium (future build) | +20% from power users |
+| 4 | Donations | Low (add button) | Significant for faith apps |
+| 5 | Church Licenses | Medium (sales) | High-value accounts |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+### 🔑 Key Takeaways
+
+1. **Diversified revenue doubles your income** vs subscriptions alone
+2. **Donations are significant** for faith apps (YouVersion runs entirely on them)
+3. **50K users = ~$8K/month** = comfortable missions lifestyle
+4. **100K users = ~$17K/month** = fund church + live very well
+5. **Church licenses** are high-leverage (one $100/mo account = 50 individual subs)
+
+&nbsp;
+
+---
+
+&nbsp;
+
 ## 📝 Notes
 
 - Free tier remains MONTHLY limits (unchanged)
@@ -759,3 +999,5 @@ Given religious apps typically hit 3-7%, you have **2-5x safety margin**.
 - Ambassador system math is included but NOT being implemented now
 - Free users cost ~$0.01/month max — essentially free to serve
 - Pro users cover 165-915 free users each depending on tier
+- All revenue streams together roughly 2x subscription-only revenue
+- 50K users with all streams = ~$100K/year
