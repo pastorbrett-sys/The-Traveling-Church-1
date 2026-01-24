@@ -366,6 +366,7 @@ export default function BibleReader({
   const [isLoadingBookSynopsis, setIsLoadingBookSynopsis] = useState(false);
   const [scrollToVerse, setScrollToVerse] = useState<number | null>(null);
   const [persistentHighlightVerse, setPersistentHighlightVerse] = useState<number | null>(null);
+  const [isDeepLinkScroll, setIsDeepLinkScroll] = useState(false);
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
   const [upgradeFeature, setUpgradeFeature] = useState<string>("smart_search");
   const [upgradeResetAt, setUpgradeResetAt] = useState<string | null>(null);
@@ -636,6 +637,7 @@ export default function BibleReader({
         if (initialVerse && triggerHighlight) {
           // Delay to ensure chapter is loaded first
           setTimeout(() => {
+            setIsDeepLinkScroll(true); // Mark as deep link to auto-open action bar
             setScrollToVerse(initialVerse);
           }, 500);
         }
@@ -729,11 +731,19 @@ export default function BibleReader({
           // Clear any previous persistent highlight
           setPersistentHighlightVerse(null);
           
+          // Find the verse data to auto-open action bar after animation
+          const verseData = chapter.verses?.find(v => v.verse === scrollToVerse);
+          
           const applyBurstAndPersist = (verseNum: number) => {
             verseElement.classList.add("verse-burst-highlight");
             setTimeout(() => {
               verseElement.classList.remove("verse-burst-highlight");
               setPersistentHighlightVerse(verseNum);
+              // Auto-open action bar after animation if this is a deep link
+              if (isDeepLinkScroll && verseData) {
+                setSelectedVerse(verseData);
+                setIsDeepLinkScroll(false);
+              }
             }, 4000);
           };
           
@@ -768,7 +778,7 @@ export default function BibleReader({
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [scrollToVerse, chapter, isLoadingChapter]);
+  }, [scrollToVerse, chapter, isLoadingChapter, isDeepLinkScroll]);
 
   const MILESTONES = [1, 5, 10, 25, 50, 100, 250, 500];
   const getMilestoneMessage = (count: number) => {
