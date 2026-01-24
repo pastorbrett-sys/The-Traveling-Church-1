@@ -93,8 +93,8 @@ export default function PrayerTimer() {
       </button>
 
       <h1 
-        className="text-white text-center text-4xl tracking-wide mt-2"
-        style={{ fontFamily: "'Abhaya Libre', serif" }}
+        className="text-white text-center tracking-wide mt-2"
+        style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "21.6px" }}
       >
         PRAYER TIMER
       </h1>
@@ -106,8 +106,8 @@ export default function PrayerTimer() {
               <div 
                 className="absolute rounded-full"
                 style={{
-                  width: "276px",
-                  height: "276px",
+                  width: "324px",
+                  height: "324px",
                   border: "2px solid rgba(255, 255, 255, 0.2)",
                   animation: "pulse-ring 2s ease-out infinite",
                 }}
@@ -115,8 +115,8 @@ export default function PrayerTimer() {
               <div 
                 className="absolute rounded-full"
                 style={{
-                  width: "276px",
-                  height: "276px",
+                  width: "324px",
+                  height: "324px",
                   border: "2px solid rgba(255, 255, 255, 0.2)",
                   animation: "pulse-ring 2s ease-out infinite 1s",
                 }}
