@@ -98,7 +98,17 @@ export default function PrayerTimer() {
     
     const animateProgress = (currentTime: number) => {
       const elapsed = currentTime - startTime;
-      const newProgress = Math.min(elapsed / totalMs, 1);
+      const linearProgress = Math.min(elapsed / totalMs, 1);
+      
+      // Initial burst: Start faster and ease into natural pace
+      // For the first 2 seconds, add extra progress that fades out
+      const burstDuration = 2000; // 2 seconds of initial burst
+      const burstAmount = 0.008; // Extra progress at peak (visible push)
+      const burstFactor = elapsed < burstDuration 
+        ? Math.pow(1 - elapsed / burstDuration, 2) // Quadratic ease-out
+        : 0;
+      const newProgress = Math.min(linearProgress + burstAmount * burstFactor, 1);
+      
       setSmoothProgress(newProgress);
       
       // Update timeRemaining for display (every second)
