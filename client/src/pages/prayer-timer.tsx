@@ -139,7 +139,7 @@ export default function PrayerTimer() {
           </svg>
 
           <div 
-            className="absolute inset-[30px] rounded-full border-2"
+            className="absolute inset-[42px] rounded-full border-2"
             style={{ borderColor: "#2a2a2a" }}
           />
 
@@ -147,7 +147,7 @@ export default function PrayerTimer() {
             <img
               src={maryImage}
               alt="Mary"
-              className="w-40 h-60 object-contain opacity-15"
+              className="w-40 h-60 object-contain opacity-30"
             />
           </div>
 
