@@ -158,11 +158,13 @@ export default function PastorChat() {
   const chapterParam = urlParams.get("chapter");
   const verseParam = urlParams.get("verse");
   const highlightParam = urlParams.get("highlight");
+  const showActionMenuParam = urlParams.get("showActionMenu");
   
   const initialBookId = bookParam ? parseInt(bookParam, 10) : undefined;
   const initialChapter = chapterParam ? parseInt(chapterParam, 10) : undefined;
   const initialVerse = verseParam ? parseInt(verseParam, 10) : undefined;
   const triggerHighlight = highlightParam === "true";
+  const showActionMenu = showActionMenuParam === "true";
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
   
@@ -719,6 +721,7 @@ export default function PastorChat() {
             initialChapter={initialChapter}
             initialVerse={initialVerse}
             triggerHighlight={triggerHighlight}
+            showActionMenuOnDeepLink={showActionMenu}
           />
         </div>
 

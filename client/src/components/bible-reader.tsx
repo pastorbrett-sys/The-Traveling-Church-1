@@ -112,6 +112,7 @@ interface BibleReaderProps {
   initialChapter?: number;
   initialVerse?: number;
   triggerHighlight?: boolean;
+  showActionMenuOnDeepLink?: boolean;
 }
 
 // Parse verse text to extract heading if present (marked with §heading§)
@@ -320,7 +321,8 @@ export default function BibleReader({
   initialBookId,
   initialChapter,
   initialVerse,
-  triggerHighlight 
+  triggerHighlight,
+  showActionMenuOnDeepLink 
 }: BibleReaderProps) {
   const { isNative, platform } = usePlatform();
   const [, navigate] = useLocation();
@@ -637,14 +639,16 @@ export default function BibleReader({
         if (initialVerse && triggerHighlight) {
           // Delay to ensure chapter is loaded first
           setTimeout(() => {
-            isDeepLinkScrollRef.current = true; // Mark as deep link to auto-open action bar
+            // Mark as deep link to auto-open action bar if showActionMenu is requested
+            isDeepLinkScrollRef.current = !!showActionMenuOnDeepLink;
+            console.log('[BibleReader] Setting deep link scroll, showActionMenu:', showActionMenuOnDeepLink);
             setScrollToVerse(initialVerse);
           }, 500);
         }
         setHasAppliedInitialNav(true);
       }
     }
-  }, [books, initialBookId, initialChapter, initialVerse, triggerHighlight, hasAppliedInitialNav]);
+  }, [books, initialBookId, initialChapter, initialVerse, triggerHighlight, showActionMenuOnDeepLink, hasAppliedInitialNav]);
 
   const { data: chapter, isLoading: isLoadingChapter } = useQuery<BibleChapter>({
     queryKey: ["/api/bible/chapter", translation, selectedBook?.bookid, selectedChapter],
@@ -739,8 +743,9 @@ export default function BibleReader({
             setTimeout(() => {
               verseElement.classList.remove("verse-burst-highlight");
               setPersistentHighlightVerse(verseNum);
-              // Auto-open action bar after animation if this is a deep link
+              // Auto-open action bar after animation if this is a deep link with showActionMenu
               if (isDeepLinkScrollRef.current && verseData) {
+                console.log('[BibleReader] Deep link animation complete, opening action bar for verse:', verseNum);
                 setSelectedVerse(verseData);
                 isDeepLinkScrollRef.current = false;
               }

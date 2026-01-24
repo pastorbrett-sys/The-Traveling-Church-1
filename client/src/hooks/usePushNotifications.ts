@@ -87,6 +87,7 @@ export function usePushNotifications(userId: string | null | undefined) {
         params.set('chapter', chapter);
         if (verse) params.set('verse', verse);
         if (data.triggerHighlight === 'true') params.set('highlight', 'true');
+        if (data.showActionMenu === 'true') params.set('showActionMenu', 'true');
 
         const path = `/pastor-chat?${params.toString()}`;
         console.log('[Push] Navigating to verse:', path);
