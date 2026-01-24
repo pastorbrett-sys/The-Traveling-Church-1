@@ -55,10 +55,9 @@ export default function PrayerTimer() {
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // Start the timer when tail is catching up - seamless transition
-      // The swoop should feel like it never stopped, just became the timer
-      if (tailPos >= 0.88) {
-        // Immediately start the countdown - seamless continuation
+      // Start timer EARLY - half second before swoosh ends
+      // Timer begins while tail is still very visible, creating seamless flow
+      if (tailPos >= 0.55) {
         setIsIntroAnimating(false);
         setSwoopHead(0);
         setSwoopTail(0);
