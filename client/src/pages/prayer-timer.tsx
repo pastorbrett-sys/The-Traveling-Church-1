@@ -125,14 +125,14 @@ export default function PrayerTimer() {
         className="flex items-center justify-center px-5"
         style={{ height: "40%" }}
       >
-        <div className="relative w-[350px] h-[350px] flex items-center justify-center">
+        <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] flex items-center justify-center">
           {isRunning && (
             <>
               <div 
                 className="absolute rounded-full"
                 style={{
-                  width: "324px",
-                  height: "324px",
+                  width: "100%",
+                  height: "100%",
                   border: "2px solid rgba(255, 255, 255, 0.2)",
                   animation: "pulse-ring 4s ease-out infinite",
                 }}
@@ -140,8 +140,8 @@ export default function PrayerTimer() {
               <div 
                 className="absolute rounded-full"
                 style={{
-                  width: "324px",
-                  height: "324px",
+                  width: "100%",
+                  height: "100%",
                   border: "2px solid rgba(255, 255, 255, 0.2)",
                   animation: "pulse-ring 4s ease-out infinite 2s",
                 }}
@@ -197,7 +197,7 @@ export default function PrayerTimer() {
             <img
               src={maryImage}
               alt="Mary"
-              className="w-[185px] h-[279px] object-contain"
+              className="w-[148px] h-[223px] sm:w-[185px] sm:h-[279px] object-contain"
             />
           </div>
 
@@ -206,7 +206,7 @@ export default function PrayerTimer() {
             style={{ fontFamily: "'SCHABO Condensed', 'Impact', sans-serif" }}
           >
             <span 
-              className="text-white text-7xl tracking-wider"
+              className="text-white text-5xl sm:text-7xl tracking-wider"
               style={{ 
                 fontWeight: 400,
                 letterSpacing: "2px",
