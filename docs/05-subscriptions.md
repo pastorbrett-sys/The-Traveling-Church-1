@@ -24,23 +24,15 @@ Stripe for web payments, RevenueCat for iOS/Android in-app purchases.
 
 ## 💰 Pricing Tiers
 
-&nbsp;
+| Feature | Free Tier | Pro Tier |
+|---------|-----------|----------|
+| 💬 Chat Messages | 10/month | ♾️ Unlimited |
+| 🔍 Smart Search | 5/month | ♾️ Unlimited |
+| 📖 Book Synopsis | 2/month | ♾️ Unlimited |
+| 💡 Verse Insights | 6/month | ♾️ Unlimited |
+| 📝 Notes | 3 total | ♾️ Unlimited |
 
-### Free Tier
-
-| Feature | Limit |
-|---------|-------|
-| 💬 Chat Messages | 10/month |
-| 🔍 Smart Search | 5/month |
-| 📖 Book Synopsis | 2/month |
-| 💡 Verse Insights | 6/month |
-| 📝 Notes | 3 total |
-
-&nbsp;
-
-### Pro Tier
-
-✨ **Unlimited** access to everything!
+> Limits defined in `shared/schema.ts` → `FEATURE_LIMITS`
 
 &nbsp;
 

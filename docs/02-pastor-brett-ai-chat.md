@@ -85,20 +85,16 @@ Pastor Brett's personality is defined with:
 
 ## 📊 Usage Limits
 
-### Free Tier
+| Feature | Free Tier | Pro Tier |
+|---------|-----------|----------|
+| 💬 Chat Messages | 10/month | ♾️ Unlimited |
+| 🔍 Smart Search | 5/month | ♾️ Unlimited |
+| 📖 Book Synopsis | 2/month | ♾️ Unlimited |
+| 💡 Verse Insights | 6/month | ♾️ Unlimited |
+| 📝 Notes | 3 total | ♾️ Unlimited |
 
-| Feature | Monthly Limit |
-|---------|---------------|
-| 💬 Chat Messages | 10 |
-| 🔍 Smart Search | 5 |
-| 📖 Book Synopsis | 2 |
-| 💡 Verse Insights | 6 |
-
-&nbsp;
-
-### Pro Tier
-
-✨ **Unlimited access** to all AI features
+> See `shared/schema.ts` → `FEATURE_LIMITS` for free tier values.  
+> Pro users bypass all limits (`limit: Infinity` in `server/usageService.ts`).
 
 &nbsp;
 
