@@ -100,12 +100,13 @@ export default function PrayerTimer() {
       const elapsed = currentTime - startTime;
       const t = Math.min(elapsed / totalMs, 1); // Normalized time 0-1
       
-      // Smooth continuous easing: starts ~1.5x faster, smoothly blends to linear
-      // Uses a custom curve that never stops or jerks
-      // Formula: progress = t + amplitude * t * (1 - t)^2
-      // This adds extra speed early that smoothly fades, keeping motion continuous
-      const amplitude = 0.15; // How much faster at start (adjusts the "push")
-      const newProgress = Math.min(t + amplitude * t * Math.pow(1 - t, 2), 1);
+      // Smooth continuous easing with visible burst to ~1 o'clock position
+      // Uses a custom curve: fast initial burst that smoothly blends to linear
+      // The burst peaks early then gradually settles into natural pace
+      const burstPeak = 0.085; // ~1 o'clock position (1/12 of circle)
+      const burstDecay = 0.92; // How quickly burst settles (higher = faster settle)
+      const burstContribution = burstPeak * Math.pow(1 - t, 3); // Cubic decay for smooth settle
+      const newProgress = Math.min(t + burstContribution, 1);
       
       setSmoothProgress(newProgress);
       
