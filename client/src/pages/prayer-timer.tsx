@@ -55,13 +55,17 @@ export default function PrayerTimer() {
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // Start timer EARLY - half second before swoosh ends
-      // Timer begins while tail is still very visible, creating seamless flow
-      if (tailPos >= 0.55) {
+      // Start the countdown timer EARLY while swoosh still animates
+      // This makes the tail "push" the timer forward
+      if (tailPos >= 0.5 && !isRunning) {
+        setIsRunning(true); // Start countdown while swoosh continues
+      }
+      
+      // End the swoosh animation when tail fully catches up
+      if (tailPos >= 0.98) {
         setIsIntroAnimating(false);
         setSwoopHead(0);
         setSwoopTail(0);
-        setIsRunning(true);
         return;
       }
       
@@ -238,12 +242,25 @@ export default function PrayerTimer() {
             />
             {isIntroAnimating ? (
               <>
+                {/* Timer progress arc - shows when countdown starts during swoosh */}
+                {isRunning && progress > 0 && (
+                  <circle
+                    cx="150"
+                    cy="150"
+                    r="130"
+                    fill="none"
+                    stroke="url(#orangeGradient)"
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={strokeDashoffset}
+                  />
+                )}
                 {/* Swoop arc - drawn from tail to head position */}
                 {(() => {
                   // Arc goes from tail position to head position
                   const arcLength = Math.max(0, (swoopHead - swoopTail)) * circumference;
                   // Offset positions the START of the visible arc at the tail position
-                  // Negative offset moves the arc forward (clockwise)
                   const dashOffset = -swoopTail * circumference;
                   
                   return (
@@ -282,21 +299,6 @@ export default function PrayerTimer() {
                   />
                 )}
               </>
-            ) : isPushing ? (
-              <circle
-                cx="150"
-                cy="150"
-                r="130"
-                fill="none"
-                stroke="url(#orangeGradient)"
-                strokeWidth="12"
-                strokeLinecap="round"
-                strokeDasharray={circumference}
-                strokeDashoffset={circumference - (pushProgress * circumference)}
-                style={{ 
-                  filter: "drop-shadow(0 0 8px rgba(255, 150, 0, 0.6))",
-                }}
-              />
             ) : (
               <circle
                 cx="150"
