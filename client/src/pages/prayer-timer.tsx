@@ -69,38 +69,63 @@ export default function PrayerTimer() {
 
   return (
     <div 
-      className="min-h-screen w-full flex flex-col"
+      className="h-screen w-full flex flex-col overflow-hidden"
       style={{ background: "linear-gradient(180deg, #191919 0%, #000000 100%)" }}
       data-testid="prayer-timer-screen"
     >
+      <style>{`
+        @keyframes pulse-ring {
+          0% {
+            transform: scale(1);
+            opacity: 0.2;
+          }
+          100% {
+            transform: scale(1.4);
+            opacity: 0;
+          }
+        }
+      `}</style>
+
+      {/* Top 30% - Header and Title */}
       <div 
-        className="w-full h-1 bg-[#333]"
-        style={{ marginTop: "env(safe-area-inset-top, 44px)" }}
-      />
-
-      <button
-        onClick={() => setLocation("/")}
-        className="flex items-center gap-1 px-4 py-4"
-        data-testid="button-back"
+        className="flex flex-col items-center"
+        style={{ 
+          height: "30%",
+          paddingTop: "env(safe-area-inset-top, 44px)",
+        }}
       >
-        <ChevronLeft className="w-4 h-4 text-white" />
-        <span 
-          className="text-white text-sm font-semibold tracking-wide"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
+        <div className="w-full h-1 bg-[#333]" />
+        
+        <button
+          onClick={() => setLocation("/")}
+          className="flex items-center gap-1 px-4 py-3 self-start"
+          data-testid="button-back"
         >
-          BACK
-        </span>
-      </button>
+          <ChevronLeft className="w-4 h-4 text-white" />
+          <span 
+            className="text-white text-sm font-semibold tracking-wide"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            BACK
+          </span>
+        </button>
 
-      <h1 
-        className="text-white text-center tracking-wide mt-[15px]"
-        style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
+        <div className="flex-1 flex items-center justify-center">
+          <h1 
+            className="text-white text-center tracking-wide"
+            style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
+          >
+            PRAYER TIMER
+          </h1>
+        </div>
+      </div>
+
+      {/* Middle 40% - Timer Circle */}
+      <div 
+        className="flex items-center justify-center px-5"
+        style={{ height: "40%" }}
       >
-        PRAYER TIMER
-      </h1>
-
-      <div className="flex-1 flex flex-col items-center justify-start px-5">
-        <div className="relative w-[350px] h-[350px] mt-8 flex items-center justify-center">
+        <div className="relative w-[350px] h-[350px] flex items-center justify-center">
           {isRunning && (
             <>
               <div 
@@ -123,18 +148,6 @@ export default function PrayerTimer() {
               />
             </>
           )}
-          <style>{`
-            @keyframes pulse-ring {
-              0% {
-                transform: scale(1);
-                opacity: 0.2;
-              }
-              100% {
-                transform: scale(1.4);
-                opacity: 0;
-              }
-            }
-          `}</style>
           <div 
             className="absolute inset-0 rounded-full"
             style={{
@@ -204,8 +217,17 @@ export default function PrayerTimer() {
             </span>
           </div>
         </div>
+      </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mt-[13px] px-4">
+      {/* Bottom 30% - Buttons */}
+      <div 
+        className="flex flex-col items-center justify-center px-5"
+        style={{ 
+          height: "30%",
+          paddingBottom: "env(safe-area-inset-bottom, 34px)",
+        }}
+      >
+        <div className="flex flex-wrap justify-center gap-3 px-4">
           {DURATION_OPTIONS.map((option) => (
             <button
               key={option.minutes}
@@ -259,8 +281,6 @@ export default function PrayerTimer() {
           </button>
         </div>
       </div>
-
-      <div style={{ paddingBottom: "env(safe-area-inset-bottom, 34px)" }} />
     </div>
   );
 }
