@@ -19,9 +19,9 @@ export default function PrayerTimer() {
   const [swoopHead, setSwoopHead] = useState(0);
   const [swoopTail, setSwoopTail] = useState(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
+  const countdownAnimationRef = useRef<number | null>(null);
 
   const totalSeconds = selectedDuration * 60;
 
@@ -84,19 +84,24 @@ export default function PrayerTimer() {
   // Smooth progress animation using requestAnimationFrame
   useEffect(() => {
     if (!isRunning) {
-      timerStartRef.current = null;
+      if (countdownAnimationRef.current) {
+        cancelAnimationFrame(countdownAnimationRef.current);
+        countdownAnimationRef.current = null;
+      }
       return;
     }
     
+    // Use existing start time or create new one
+    const startTime = timerStartRef.current || performance.now();
     if (!timerStartRef.current) {
-      timerStartRef.current = performance.now();
+      timerStartRef.current = startTime;
     }
     
-    let animationId: number;
-    const startTime = timerStartRef.current;
     const totalMs = totalSeconds * 1000;
     
     const animateProgress = (currentTime: number) => {
+      if (!isRunning) return;
+      
       const elapsed = currentTime - startTime;
       const t = Math.min(elapsed / totalMs, 1); // Normalized time 0-1
       
@@ -104,7 +109,6 @@ export default function PrayerTimer() {
       // Uses a custom curve: fast initial burst that smoothly blends to linear
       // The burst peaks early then gradually settles into natural pace
       const burstPeak = 0.085; // ~1 o'clock position (1/12 of circle)
-      const burstDecay = 0.92; // How quickly burst settles (higher = faster settle)
       const burstContribution = burstPeak * Math.pow(1 - t, 3); // Cubic decay for smooth settle
       const newProgress = Math.min(t + burstContribution, 1);
       
@@ -112,47 +116,68 @@ export default function PrayerTimer() {
       
       // Update timeRemaining for display (every second)
       const newTimeRemaining = Math.max(0, totalSeconds - Math.floor(elapsed / 1000));
-      if (newTimeRemaining !== timeRemaining) {
-        setTimeRemaining(newTimeRemaining);
-      }
+      setTimeRemaining(prev => prev !== newTimeRemaining ? newTimeRemaining : prev);
       
-      if (newProgress < 1 && isRunning) {
-        animationId = requestAnimationFrame(animateProgress);
-      } else if (newProgress >= 1) {
+      if (newProgress < 1) {
+        countdownAnimationRef.current = requestAnimationFrame(animateProgress);
+      } else {
         setIsRunning(false);
         setTimeRemaining(0);
       }
     };
     
-    animationId = requestAnimationFrame(animateProgress);
+    // Start immediately
+    countdownAnimationRef.current = requestAnimationFrame(animateProgress);
     
     return () => {
-      cancelAnimationFrame(animationId);
+      if (countdownAnimationRef.current) {
+        cancelAnimationFrame(countdownAnimationRef.current);
+      }
     };
   }, [isRunning, totalSeconds]);
 
   const handleDurationSelect = (minutes: number) => {
+    // Cancel any running animations first
+    if (countdownAnimationRef.current) {
+      cancelAnimationFrame(countdownAnimationRef.current);
+      countdownAnimationRef.current = null;
+    }
+    if (introAnimationRef.current) {
+      cancelAnimationFrame(introAnimationRef.current);
+      introAnimationRef.current = null;
+    }
+    
+    // Reset all state
+    setIsRunning(false);
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
     setSwoopHead(0);
     setSwoopTail(0);
     setSmoothProgress(0);
     timerStartRef.current = null;
+    
+    // Start the intro animation
     setIsIntroAnimating(true);
-    setIsRunning(false);
   };
 
   const handleStartStop = () => {
     if (isRunning || isIntroAnimating) {
+      // Cancel animations
+      if (countdownAnimationRef.current) {
+        cancelAnimationFrame(countdownAnimationRef.current);
+        countdownAnimationRef.current = null;
+      }
+      if (introAnimationRef.current) {
+        cancelAnimationFrame(introAnimationRef.current);
+        introAnimationRef.current = null;
+      }
+      
       setIsRunning(false);
       setIsIntroAnimating(false);
       setSwoopHead(0);
       setSwoopTail(0);
       setSmoothProgress(0);
       timerStartRef.current = null;
-      if (introAnimationRef.current) {
-        cancelAnimationFrame(introAnimationRef.current);
-      }
     } else {
       setTimeRemaining(selectedDuration * 60);
       setSwoopHead(0);
