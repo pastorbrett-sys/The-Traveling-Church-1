@@ -94,7 +94,7 @@ export default function PrayerTimer() {
 
       <h1 
         className="text-white text-center tracking-wide mt-2"
-        style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "21.6px" }}
+        style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
       >
         PRAYER TIMER
       </h1>
@@ -109,7 +109,7 @@ export default function PrayerTimer() {
                   width: "324px",
                   height: "324px",
                   border: "2px solid rgba(255, 255, 255, 0.2)",
-                  animation: "pulse-ring 2s ease-out infinite",
+                  animation: "pulse-ring 4s ease-out infinite",
                 }}
               />
               <div 
@@ -118,7 +118,7 @@ export default function PrayerTimer() {
                   width: "324px",
                   height: "324px",
                   border: "2px solid rgba(255, 255, 255, 0.2)",
-                  animation: "pulse-ring 2s ease-out infinite 1s",
+                  animation: "pulse-ring 4s ease-out infinite 2s",
                 }}
               />
             </>
