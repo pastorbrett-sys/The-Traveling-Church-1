@@ -122,7 +122,7 @@ export default function PrayerTimer() {
 
       {/* Middle 40% - Timer Circle */}
       <div 
-        className="flex items-start justify-center px-5 pt-4"
+        className="flex items-center justify-center px-5"
         style={{ height: "40%" }}
       >
         <div className="relative w-[350px] h-[350px] flex items-center justify-center">
