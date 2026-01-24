@@ -103,6 +103,40 @@ export default function PrayerTimer() {
 
       <div className="flex-1 flex flex-col items-center justify-start px-5">
         <div className="relative w-[350px] h-[350px] mt-8 flex items-center justify-center">
+          {isRunning && (
+            <>
+              <div 
+                className="absolute rounded-full"
+                style={{
+                  width: "276px",
+                  height: "276px",
+                  border: "2px solid rgba(255, 255, 255, 0.1)",
+                  animation: "pulse-ring 2s ease-out infinite",
+                }}
+              />
+              <div 
+                className="absolute rounded-full"
+                style={{
+                  width: "276px",
+                  height: "276px",
+                  border: "2px solid rgba(255, 255, 255, 0.1)",
+                  animation: "pulse-ring 2s ease-out infinite 1s",
+                }}
+              />
+            </>
+          )}
+          <style>{`
+            @keyframes pulse-ring {
+              0% {
+                transform: scale(1);
+                opacity: 0.1;
+              }
+              100% {
+                transform: scale(1.4);
+                opacity: 0;
+              }
+            }
+          `}</style>
           <div 
             className="absolute inset-0 rounded-full"
             style={{
