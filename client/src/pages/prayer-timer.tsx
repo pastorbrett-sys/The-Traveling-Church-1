@@ -90,7 +90,7 @@ export default function PrayerTimer() {
       <div 
         className="flex flex-col items-center"
         style={{ 
-          height: "30%",
+          height: "25%",
           paddingTop: "env(safe-area-inset-top, 44px)",
         }}
       >
@@ -120,10 +120,10 @@ export default function PrayerTimer() {
         </div>
       </div>
 
-      {/* Middle 40% - Timer Circle */}
+      {/* Middle 45% - Timer Circle */}
       <div 
         className="flex items-center justify-center px-5"
-        style={{ height: "40%" }}
+        style={{ height: "45%" }}
       >
         <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] flex items-center justify-center">
           {isRunning && (
