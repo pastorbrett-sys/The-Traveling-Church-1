@@ -48,10 +48,15 @@ export default function PrayerTimer() {
     setIsRunning(true);
   };
 
-  const handleStop = () => {
-    setIsRunning(false);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
+  const handleStartStop = () => {
+    if (isRunning) {
+      setIsRunning(false);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    } else {
+      setTimeRemaining(selectedDuration * 60);
+      setIsRunning(true);
     }
   };
 
@@ -147,7 +152,7 @@ export default function PrayerTimer() {
             <img
               src={maryImage}
               alt="Mary"
-              className="w-[218px] h-[328px] object-contain"
+              className="w-[185px] h-[279px] object-contain"
             />
           </div>
 
@@ -221,15 +226,15 @@ export default function PrayerTimer() {
 
         <div className="flex items-center gap-4 mt-10">
           <button
-            onClick={handleStop}
+            onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
             style={{
               fontFamily: "'Poppins', sans-serif",
-              background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
+              background: "linear-gradient(180deg, #FFBE00 0%, #FF6A00 100%)",
             }}
-            data-testid="button-stop"
+            data-testid="button-start-stop"
           >
-            STOP
+            {isRunning ? "STOP" : "START"}
           </button>
 
           <button
