@@ -5,17 +5,15 @@ import maryImage from "@assets/Mary_1769243057081.png";
 import soundIcon from "@assets/Sound_Icon_1769243057081.png";
 
 const DURATION_OPTIONS = [
-  { label: "2 MIN", minutes: 2 },
   { label: "5 MIN", minutes: 5 },
   { label: "10 MIN", minutes: 10 },
   { label: "30 MIN", minutes: 30 },
-  { label: "60 MIN", minutes: 60 },
 ];
 
 export default function PrayerTimer() {
   const [, setLocation] = useLocation();
-  const [selectedDuration, setSelectedDuration] = useState(2);
-  const [timeRemaining, setTimeRemaining] = useState(2 * 60);
+  const [selectedDuration, setSelectedDuration] = useState(5);
+  const [timeRemaining, setTimeRemaining] = useState(5 * 60);
   const [isRunning, setIsRunning] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -110,7 +108,7 @@ export default function PrayerTimer() {
                 style={{
                   width: "276px",
                   height: "276px",
-                  border: "2px solid rgba(255, 255, 255, 0.1)",
+                  border: "2px solid rgba(255, 255, 255, 0.2)",
                   animation: "pulse-ring 2s ease-out infinite",
                 }}
               />
@@ -119,7 +117,7 @@ export default function PrayerTimer() {
                 style={{
                   width: "276px",
                   height: "276px",
-                  border: "2px solid rgba(255, 255, 255, 0.1)",
+                  border: "2px solid rgba(255, 255, 255, 0.2)",
                   animation: "pulse-ring 2s ease-out infinite 1s",
                 }}
               />
@@ -129,7 +127,7 @@ export default function PrayerTimer() {
             @keyframes pulse-ring {
               0% {
                 transform: scale(1);
-                opacity: 0.1;
+                opacity: 0.2;
               }
               100% {
                 transform: scale(1.4);
@@ -208,32 +206,7 @@ export default function PrayerTimer() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mt-8 px-4">
-          {DURATION_OPTIONS.slice(0, 3).map((option) => (
-            <button
-              key={option.minutes}
-              onClick={() => handleDurationSelect(option.minutes)}
-              className="h-9 px-5 rounded-full text-sm tracking-wide transition-all"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                ...(selectedDuration === option.minutes
-                  ? {
-                      background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
-                      color: "white",
-                    }
-                  : {
-                      background: "transparent",
-                      border: "2px solid #161616",
-                      color: "#747373",
-                    }),
-              }}
-              data-testid={`button-duration-${option.minutes}`}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex flex-wrap justify-center gap-3 mt-3 px-4">
-          {DURATION_OPTIONS.slice(3).map((option) => (
+          {DURATION_OPTIONS.map((option) => (
             <button
               key={option.minutes}
               onClick={() => handleDurationSelect(option.minutes)}
@@ -258,7 +231,7 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4 mt-10">
+        <div className="flex items-center gap-4 mt-6">
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
