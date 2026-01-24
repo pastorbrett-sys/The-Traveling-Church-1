@@ -55,17 +55,14 @@ export default function PrayerTimer() {
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // Start the countdown timer EARLY while swoosh still animates
-      // This makes the tail "push" the timer forward
-      if (tailPos >= 0.5 && !isRunning) {
-        setIsRunning(true); // Start countdown while swoosh continues
-      }
-      
-      // End the swoosh animation when tail fully catches up
-      if (tailPos >= 0.98) {
+      // When tail catches up to about 90%, immediately end swoosh and start timer
+      // No delay - instant transition
+      if (tailPos >= 0.92) {
+        // Instantly switch from swoosh to timer - no gap
         setIsIntroAnimating(false);
         setSwoopHead(0);
         setSwoopTail(0);
+        setIsRunning(true);
         return;
       }
       
@@ -240,27 +237,12 @@ export default function PrayerTimer() {
               stroke="#1a1a1a"
               strokeWidth="4"
             />
-            {isIntroAnimating ? (
+            {/* SWOOSH SVG - only during intro animation */}
+            {isIntroAnimating && (
               <>
-                {/* Timer progress arc - shows when countdown starts during swoosh */}
-                {isRunning && progress > 0 && (
-                  <circle
-                    cx="150"
-                    cy="150"
-                    r="130"
-                    fill="none"
-                    stroke="url(#orangeGradient)"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                    strokeDasharray={circumference}
-                    strokeDashoffset={strokeDashoffset}
-                  />
-                )}
                 {/* Swoop arc - drawn from tail to head position */}
                 {(() => {
-                  // Arc goes from tail position to head position
                   const arcLength = Math.max(0, (swoopHead - swoopTail)) * circumference;
-                  // Offset positions the START of the visible arc at the tail position
                   const dashOffset = -swoopTail * circumference;
                   
                   return (
@@ -299,7 +281,9 @@ export default function PrayerTimer() {
                   />
                 )}
               </>
-            ) : (
+            )}
+            {/* COUNTDOWN TIMER SVG - appears instantly when swoosh ends */}
+            {!isIntroAnimating && (
               <circle
                 cx="150"
                 cy="150"
@@ -310,7 +294,7 @@ export default function PrayerTimer() {
                 strokeLinecap="round"
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}
-                style={{ transition: "stroke-dashoffset 1s linear" }}
+                style={{ transition: isRunning ? "stroke-dashoffset 1s linear" : "none" }}
               />
             )}
             <defs>
