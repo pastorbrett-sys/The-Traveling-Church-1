@@ -93,8 +93,9 @@ Pastor Brett's personality is defined with:
 | 💡 Verse Insights | 6/month | ♾️ Unlimited |
 | 📝 Notes | 3 total | ♾️ Unlimited |
 
-> See `shared/schema.ts` → `FEATURE_LIMITS` for free tier values.  
-> Pro users bypass all limits (`limit: Infinity` in `server/usageService.ts`).
+See **shared/schema.ts → FEATURE_LIMITS** for free tier values.
+
+Pro users bypass all limits in **server/usageService.ts**.
 
 &nbsp;
 
