@@ -1,0 +1,573 @@
+# 🔒 Daily Usage Caps & Credit Packs - Complete Implementation Guide
+
+This document contains everything needed to implement daily usage caps and credit pack upsells. Give this to Claude when ready to build.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🎯 Executive Summary
+
+**Goal**: Replace unlimited Pro access with sustainable daily caps, plus credit pack upsells for power users.
+
+**Why Daily Caps (not monthly)**:
+- Daily reset = fresh start tomorrow (less frustrating)
+- Prevents abuse while feeling generous
+- Research shows weekly caps cause cancellations (Claude's model)
+- ChatGPT's "unlimited feel" comes from generous daily headroom
+
+**Key Stat**: 95% of users (Light/Medium/Heavy) will never hit these caps.
+
+### The Model at a Glance
+
+| Tier | Monthly Price | Target Markets | Daily Chat Cap | Min Profit* |
+|------|---------------|----------------|----------------|-------------|
+| 🥇 Premium | $7.99 | USA, UK, EU, Japan, Australia | 50/day | $3.66 |
+| 🥈 Emerging | $1.99 | Ethiopia, India, Kenya, Brazil | 25/day | $0.66 |
+
+*Min Profit = Mobile platform (30%) + both ambassador tiers (20%) + Heavy user AI ($0.33)
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 💰 AI Cost Breakdown
+
+### Token Costs (GPT-4o-mini)
+
+| Token Type | Cost per 1M Tokens |
+|------------|-------------------|
+| Input tokens | $0.15 |
+| Output tokens | $0.60 |
+
+### Cost Per Feature
+
+| Feature | Input Tokens | Output Tokens | Cost per Use |
+|---------|--------------|---------------|--------------|
+| 💬 Chat Message | ~2,000 | ~400 | $0.00054 |
+| 🔍 Smart Search | ~1,500 | ~600 | $0.00059 |
+| 📖 Book Synopsis | ~1,000 | ~1,500 | $0.00105 |
+| ✨ Verse Insight | ~1,200 | ~500 | $0.00048 |
+
+### Monthly AI Cost by User Behavior
+
+| User Type | Chat | Search | Synopsis | Insights | Total Cost |
+|-----------|------|--------|----------|----------|------------|
+| 🟢 Light | 100 | 15 | 3 | 20 | $0.08 |
+| 🟡 Medium | 300 | 40 | 10 | 60 | $0.22 |
+| 🔴 Heavy | 450 | 60 | 15 | 80 | $0.33 |
+| ⚫ Extreme | 900 | 120 | 30 | 200 | $0.68 |
+
+**Calculation verification (Heavy user)**:
+- 450 × $0.00054 = $0.243
+- 60 × $0.00059 = $0.035
+- 15 × $0.00105 = $0.016
+- 80 × $0.00048 = $0.038
+- **Total = $0.332 ≈ $0.33**
+
+> Note: Profit calculations use "Heavy" user assumptions ($0.33). Daily caps prevent Extreme usage losses.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 💳 Platform Fees
+
+| Platform | Fee Structure | $7.99 Fee | $1.99 Fee |
+|----------|---------------|-----------|-----------|
+| 💳 Stripe (Web) | 2.9% + $0.30 | $0.53 | $0.36 |
+| 🍎 Apple App Store | 30% | $2.40 | $0.60 |
+| 🤖 Google Play Store | 30% | $2.40 | $0.60 |
+
+**Calculation verification**:
+- Stripe $7.99: ($7.99 × 0.029) + $0.30 = $0.23 + $0.30 = $0.53
+- Stripe $1.99: ($1.99 × 0.029) + $0.30 = $0.06 + $0.30 = $0.36
+- Mobile $7.99: $7.99 × 0.30 = $2.40
+- Mobile $1.99: $1.99 × 0.30 = $0.60
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🌍 Two-Tier Regional Pricing
+
+### Tier Definitions
+
+| Tier | Price | Detection Method |
+|------|-------|------------------|
+| 🥇 Premium | $7.99/month | Device locale / App Store region |
+| 🥈 Emerging | $1.99/month | Device locale / App Store region |
+
+### Premium Markets ($7.99)
+
+| Region | Countries |
+|--------|-----------|
+| North America | 🇺🇸 USA, 🇨🇦 Canada |
+| Western Europe | 🇬🇧 UK, 🇩🇪 Germany, 🇫🇷 France, 🇳🇱 Netherlands, 🇧🇪 Belgium, 🇦🇹 Austria, 🇨🇭 Switzerland, 🇮🇪 Ireland |
+| Scandinavia | 🇩🇰 Denmark, 🇸🇪 Sweden, 🇳🇴 Norway, 🇫🇮 Finland |
+| Asia-Pacific | 🇯🇵 Japan, 🇰🇷 South Korea, 🇸🇬 Singapore, 🇦🇺 Australia, 🇳🇿 New Zealand |
+| Middle East | 🇦🇪 UAE, 🇶🇦 Qatar, 🇰🇼 Kuwait, 🇸🇦 Saudi Arabia, 🇮🇱 Israel |
+
+### Emerging Markets ($1.99)
+
+| Region | Countries |
+|--------|-----------|
+| Africa | 🇪🇹 Ethiopia, 🇰🇪 Kenya, 🇳🇬 Nigeria, 🇬🇭 Ghana, 🇹🇿 Tanzania, 🇺🇬 Uganda, 🇷🇼 Rwanda, 🇿🇦 South Africa, 🇲🇦 Morocco, 🇪🇬 Egypt, 🇹🇳 Tunisia |
+| South Asia | 🇮🇳 India, 🇧🇩 Bangladesh, 🇵🇰 Pakistan, 🇱🇰 Sri Lanka, 🇳🇵 Nepal |
+| Southeast Asia | 🇵🇭 Philippines, 🇮🇩 Indonesia, 🇲🇲 Myanmar, 🇰🇭 Cambodia, 🇹🇭 Thailand, 🇲🇾 Malaysia, 🇻🇳 Vietnam, 🇱🇦 Laos |
+| Latin America | 🇧🇷 Brazil, 🇲🇽 Mexico, 🇦🇷 Argentina, 🇨🇱 Chile, 🇨🇴 Colombia, 🇵🇪 Peru, 🇪🇨 Ecuador, 🇧🇴 Bolivia, 🇵🇾 Paraguay |
+| Central America | 🇬🇹 Guatemala, 🇭🇳 Honduras, 🇸🇻 El Salvador, 🇳🇮 Nicaragua |
+| Eastern Europe | 🇵🇱 Poland, 🇨🇿 Czech Republic, 🇭🇺 Hungary, 🇷🇴 Romania, 🇬🇷 Greece, 🇵🇹 Portugal, 🇺🇦 Ukraine, 🇲🇩 Moldova, 🇬🇪 Georgia, 🇦🇲 Armenia |
+| Central Asia | 🇺🇿 Uzbekistan, 🇰🇿 Kazakhstan |
+
+**ISO Country Codes (for implementation)**:
+> ET, KE, NG, GH, TZ, UG, RW, ZA, MA, EG, TN, IN, BD, PK, LK, NP, PH, ID, MM, KH, TH, MY, VN, LA, BR, MX, AR, CL, CO, PE, EC, BO, PY, GT, HN, SV, NI, PL, CZ, HU, RO, GR, PT, UA, MD, GE, AM, UZ, KZ
+
+### Why Device Locale (Not IP)
+
+**The Tourist Problem**: A US tourist in Ethiopia using IP geolocation would see $1.99 instead of $7.99.
+
+| Detection Method | US Tourist in Ethiopia | Result |
+|------------------|------------------------|--------|
+| ❌ IP Geolocation | Ethiopia | $1.99 (wrong) |
+| ✅ Device Locale | USA (en-US) | $7.99 (correct) |
+| ✅ App Store Account | USA | $7.99 (correct) |
+
+**How Device Locale Works**: The user's phone/browser reports its locale setting (e.g., en-US, am-ET, de-DE). This reflects where the device was set up, not their current physical location. A US tourist traveling with a US-configured phone will always show their US locale.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## ⚡ Usage Limits by Tier
+
+### Daily Caps by Feature
+
+| Feature | 🥇 Premium | 🥈 Emerging |
+|---------|------------|-------------|
+| 💬 Chat Messages | 50/day | 25/day |
+| 🔍 Smart Search | 15/day | 8/day |
+| 📖 Book Synopsis | 8/day | 4/day |
+| ✨ Verse Insights | 25/day | 12/day |
+
+### Monthly Maximums (if user maxes daily cap every day)
+
+| Feature | 🥇 Premium | 🥈 Emerging |
+|---------|------------|-------------|
+| 💬 Chat Messages | 1,500 | 750 |
+| 🔍 Smart Search | 450 | 240 |
+| 📖 Book Synopsis | 240 | 120 |
+| ✨ Verse Insights | 750 | 360 |
+
+### Max AI Cost at Cap (Abuse Prevention)
+
+| Tier | Chat | Search | Synopsis | Insights | Max Total |
+|------|------|--------|----------|----------|-----------|
+| 🥇 Premium | $0.81 | $0.27 | $0.25 | $0.36 | **$1.69** |
+| 🥈 Emerging | $0.41 | $0.14 | $0.13 | $0.17 | **$0.85** |
+
+**Calculation verification (Premium max)**:
+- 1,500 × $0.00054 = $0.81
+- 450 × $0.00059 = $0.2655 ≈ $0.27
+- 240 × $0.00105 = $0.252 ≈ $0.25
+- 750 × $0.00048 = $0.36
+- **Total = $1.69**
+
+**Calculation verification (Emerging max)**:
+- 750 × $0.00054 = $0.405 ≈ $0.41
+- 240 × $0.00059 = $0.1416 ≈ $0.14
+- 120 × $0.00105 = $0.126 ≈ $0.13
+- 360 × $0.00048 = $0.1728 ≈ $0.17
+- **Total = $0.85**
+
+> Reality: 95% of users fall into Light/Medium category ($0.08-$0.22 AI cost). Caps exist to prevent the 1% of extreme users from causing losses.
+
+### What This Means for Users
+
+| Tier | Daily Experience |
+|------|------------------|
+| 🥇 Premium | 5-6 full Bible study sessions, research-grade access |
+| 🥈 Emerging | 2-3 full study sessions, generous for the price |
+
+> All tiers reset daily at midnight UTC.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 📈 Profit Analysis
+
+> Assumptions: AI costs use "Heavy" user behavior ($0.33/month). Commissions rounded to nearest cent. Caps prevent extreme usage losses.
+
+### Premium Tier ($7.99) — Bottom Line Profit
+
+| Platform | Price | Fees | AI Cost | Tier 1 (15%) | Tier 2 (5%) | YOUR PROFIT |
+|----------|-------|------|---------|--------------|-------------|-------------|
+| 💳 Web (Stripe) | $7.99 | $0.53 | $0.33 | $1.20 | $0.40 | **$5.53** |
+| 💳 Web (no T2) | $7.99 | $0.53 | $0.33 | $1.20 | — | **$5.93** |
+| 🍎 Mobile (30%) | $7.99 | $2.40 | $0.33 | $1.20 | $0.40 | **$3.66** |
+| 🍎 Mobile (no T2) | $7.99 | $2.40 | $0.33 | $1.20 | — | **$4.06** |
+| Direct (no ref) | $7.99 | $0.53 | $0.33 | — | — | **$7.13** |
+
+**Calculation verification (Mobile + Both Tiers)**: $7.99 - $2.40 - $0.33 - $1.20 - $0.40 = $3.66 ✓
+
+### Emerging Tier ($1.99) — Bottom Line Profit
+
+| Platform | Price | Fees | AI Cost | Tier 1 (15%) | Tier 2 (5%) | YOUR PROFIT |
+|----------|-------|------|---------|--------------|-------------|-------------|
+| 💳 Web (Stripe) | $1.99 | $0.36 | $0.33 | $0.30 | $0.10 | **$0.90** |
+| 💳 Web (no T2) | $1.99 | $0.36 | $0.33 | $0.30 | — | **$1.00** |
+| 🍎 Mobile (30%) | $1.99 | $0.60 | $0.33 | $0.30 | $0.10 | **$0.66** |
+| 🍎 Mobile (no T2) | $1.99 | $0.60 | $0.33 | $0.30 | — | **$0.76** |
+| Direct (no ref) | $1.99 | $0.36 | $0.33 | — | — | **$1.30** |
+
+**Calculation verification (Mobile + Both Tiers)**: $1.99 - $0.60 - $0.33 - $0.30 - $0.10 = $0.66 ✓
+
+### Profit Summary (Heavy User)
+
+| Tier | Heavy User Worst Case | Best Case (Web Direct) |
+|------|----------------------|------------------------|
+| 🥇 Premium | $3.66 (Mobile + Both Tiers) | $7.13 |
+| 🥈 Emerging | $0.66 (Mobile + Both Tiers) | $1.30 |
+
+✅ All Heavy-user scenarios profitable. Extreme users (maxing caps daily) remain positive — see stress test below.
+
+### Extreme User Stress Test
+
+What if a user maxes out daily caps every single day?
+
+| Tier | Price | Platform (30%) | Max AI | Tier 1 (15%) | Tier 2 (5%) | Profit |
+|------|-------|----------------|--------|--------------|-------------|--------|
+| 🥇 Premium | $7.99 | $2.40 | $1.69 | $1.20 | $0.40 | **$2.30** ✅ |
+| 🥈 Emerging | $1.99 | $0.60 | $0.85 | $0.30 | $0.10 | **$0.14** ⚠️ |
+
+**Calculation verification (Premium extreme)**: $7.99 - $2.40 - $1.69 - $1.20 - $0.40 = $2.30 ✓
+**Calculation verification (Emerging extreme)**: $1.99 - $0.60 - $0.85 - $0.30 - $0.10 = $0.14 ✓
+
+> Key insight: Even the worst-case Premium user ($2.30 profit) is highly profitable. The $0.66 "Heavy User" scenario is the realistic floor for Emerging.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🤝 Ambassador Commission Structure (Future)
+
+### Two-Level Recurring Model
+
+| Level | Description | Commission |
+|-------|-------------|------------|
+| Tier 1 | You directly refer a user | 15% of subscription |
+| Tier 2 | Ambassador you recruited refers a user | 5% of subscription |
+
+Commissions are RECURRING — paid every month the user stays subscribed.
+
+### Ambassador Earnings Potential
+
+| Scenario | Monthly Recurring |
+|----------|-------------------|
+| Refer 10 tourists directly (15%) | $12.00/month |
+| Recruit 1 ambassador who refers 10 tourists (5%) | $4.00/month |
+| **Total passive income** | **$16.00/month** |
+
+> Note: Ambassador system is not yet implemented. Math included for future reference.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🛒 Credit Packs (Upsell for Power Users)
+
+For the 5% of users who need more, offer consumable credit packs via RevenueCat.
+
+### Suggested Products
+
+| Pack Name | Credits | Price | Per Credit |
+|-----------|---------|-------|------------|
+| Starter | 50 | $2.99 | $0.06 |
+| Value | 150 | $6.99 | $0.047 |
+| Power User | 500 | $14.99 | $0.03 |
+
+### How Credits Work
+
+1. User hits daily limit
+2. Modal appears: "Out of messages for today. Buy credits to continue?"
+3. User purchases via RevenueCat (iOS/Android)
+4. Credits added to their account
+5. When over daily limit, deduct from credits instead of blocking
+
+### Credit Rules
+
+- Credits do NOT expire (better UX)
+- Credits only used AFTER daily limit exhausted
+- Credits work across all features (universal currency)
+- 1 credit = 1 use of any feature
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 📊 Headroom Analysis (Why Caps Won't Frustrate Users)
+
+| Feature | Heavy User Needs | Premium Cap | Buffer |
+|---------|------------------|-------------|--------|
+| Chat | 450/month (15/day avg) | 50/day | **3.3x** |
+| Search | 60/month (2/day avg) | 15/day | **7.5x** |
+| Synopsis | 15/month (0.5/day avg) | 8/day | **16x** |
+| Insights | 80/month (2.7/day avg) | 25/day | **9.4x** |
+
+**Result**: Heavy users have 3-16x headroom. Caps will feel unlimited for 95%+ of users.
+
+### Competitor Comparison
+
+| Service | Price | Limit | Our Model |
+|---------|-------|-------|-----------|
+| Claude Pro | $20/mo | ~45/5hrs | Premium: 50/day at $7.99 |
+| ChatGPT Plus | $20/mo | ~80/3hrs | Premium: 50/day at $7.99 |
+| Emerging | $1.99 | 25/day | Remarkable value |
+
+### Research Findings
+
+| Research Finding | Your Model | Verdict |
+|------------------|------------|---------|
+| Claude's 45 msg/5hr cap causes cancellations | 50/DAY (not per 5 hrs) | ✅ Much better |
+| Weekly caps are "unusable" | Daily reset | ✅ Avoids frustration |
+| ChatGPT "unlimited feel" keeps users | 3.3x buffer for Heavy users | ✅ Should feel unlimited |
+| Opaque limits cause churn | Daily is transparent | ✅ Clear mental model |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🔔 UX Requirements
+
+### Usage Warnings (Prevent Surprise)
+
+| Threshold | Action |
+|-----------|--------|
+| 80% of daily limit | Toast: "You have X messages remaining today" |
+| 90% of daily limit | Toast: "Almost at your daily limit. Resets at midnight." |
+| 100% (limit hit) | Modal: "You've reached your daily limit" with options |
+
+### Limit Hit Modal Options
+
+1. **Wait** - "Your limit resets at midnight UTC"
+2. **Buy Credits** - Opens credit pack purchase flow
+3. **Upgrade** - If Emerging user, show Premium upsell
+
+### Usage Display in UI
+
+Show remaining count somewhere visible in AI Bible Buddy:
+- "47 messages remaining today"
+- Or a simple progress bar/indicator
+
+### Reset Timing
+
+- **When**: Midnight UTC daily
+- **Why UTC**: Simple, consistent, no per-user timezone tracking needed
+- **Note**: US users reset 4pm-7pm local time (evening) which is actually convenient
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🗄️ Database Changes
+
+### New Table: daily_usage
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | varchar | Primary key (UUID) |
+| userId | text | FK to users table |
+| date | date | The calendar date (UTC) |
+| chatCount | integer | Messages used today |
+| searchCount | integer | Searches used today |
+| synopsisCount | integer | Synopses used today |
+| insightCount | integer | Insights used today |
+
+### New Table: user_credits
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | varchar | Primary key (UUID) |
+| userId | text | FK to users table |
+| credits | integer | Current credit balance |
+| purchasedAt | timestamp | Last purchase timestamp |
+
+### Schema Changes: shared/schema.ts
+
+Add new constants:
+
+```
+PRO_LIMITS_PREMIUM = {
+  chat: 50,
+  search: 15,
+  synopsis: 8,
+  insights: 25
+}
+
+PRO_LIMITS_EMERGING = {
+  chat: 25,
+  search: 8,
+  synopsis: 4,
+  insights: 12
+}
+```
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 📁 Files to Modify
+
+| File | Changes |
+|------|---------|
+| **shared/schema.ts** | Add PRO_LIMITS_PREMIUM, PRO_LIMITS_EMERGING, daily_usage table, user_credits table |
+| **server/usageService.ts** | Check daily limits, tier-aware caps, credit deduction logic |
+| **server/storage.ts** | Add getDailyUsage, incrementDailyUsage, getUserCredits, deductCredit methods |
+| **server/routes.ts** | Add /api/usage/daily endpoint, /api/credits endpoint |
+| **server/creditRoutes.ts** | NEW - handle RevenueCat webhook for credit purchases |
+| **client/src/hooks/useUsageStatus.ts** | NEW - fetch remaining daily usage |
+| **client/src/hooks/useCredits.ts** | NEW - fetch credit balance |
+| **client/src/components/usage-warning-toast.tsx** | NEW - 80%/90% warning toasts |
+| **client/src/components/limit-reached-modal.tsx** | NEW - options when limit hit |
+| **client/src/components/credit-purchase-modal.tsx** | NEW - credit pack selection |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 📱 RevenueCat Configuration
+
+### Products to Create
+
+**App Store Connect**:
+1. `vagabond_credits_50` - Consumable - $2.99
+2. `vagabond_credits_150` - Consumable - $6.99
+3. `vagabond_credits_500` - Consumable - $14.99
+
+**Google Play Console**:
+1. Same product IDs as iOS
+2. Mark as "Consumable" (can purchase multiple times)
+
+**RevenueCat**:
+1. Create products matching above
+2. Create "Credits" offering
+3. Configure webhook to notify our server on purchase
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🔄 Logic Flow
+
+### When User Makes AI Request
+
+```
+1. Get user's subscription tier (Premium/Emerging/Free)
+2. If Free tier → use existing FREE_LIMITS (monthly)
+3. If Pro tier:
+   a. Get today's usage from daily_usage table
+   b. Get user's credit balance
+   c. Determine limit based on tier (Premium vs Emerging)
+   d. If under daily limit → allow, increment daily count
+   e. If over daily limit but has credits → allow, deduct credit
+   f. If over limit and no credits → block, show modal
+4. Before allowing, check thresholds:
+   - At 80%: show warning toast
+   - At 90%: show urgent warning toast
+```
+
+### On RevenueCat Credit Purchase
+
+```
+1. Receive webhook from RevenueCat
+2. Validate receipt
+3. Determine pack size from product ID
+4. Add credits to user_credits table
+5. Send confirmation email (optional)
+```
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 🧪 Testing Checklist
+
+| Test Case | Expected Result |
+|-----------|-----------------|
+| Premium user under limit | Request allowed |
+| Premium user at 80% | Warning toast shown |
+| Premium user at 100% | Modal with options |
+| Premium user with credits at 100% | Request allowed, credit deducted |
+| Emerging user limits are lower | 25 chat vs 50 chat |
+| Midnight UTC reset | Counts reset to 0 |
+| Credit purchase | Credits added to balance |
+| Free tier unchanged | Still uses monthly limits |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## ⏱️ Implementation Time Estimate
+
+| Task | Time |
+|------|------|
+| Schema + database changes | 1 hour |
+| usageService daily logic | 2 hours |
+| API endpoints | 1 hour |
+| Frontend hooks | 1 hour |
+| Warning toasts | 30 min |
+| Limit modal | 1 hour |
+| Credit purchase flow | 2 hours |
+| RevenueCat products + webhook | 1 hour |
+| Testing | 2 hours |
+| **TOTAL** | **~12 hours** |
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 📝 Notes
+
+- Free tier remains MONTHLY limits (unchanged)
+- Pro tiers switch to DAILY limits
+- Credits are universal (work for any feature)
+- Credits never expire
+- Reset at midnight UTC (simple implementation)
+- 95% of users will never notice caps exist
+- Credit packs only shown when user actually hits limit (not before)
+- Ambassador system math is included but NOT being implemented now
