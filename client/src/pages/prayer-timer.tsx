@@ -31,42 +31,43 @@ export default function PrayerTimer() {
     if (!isIntroAnimating) return;
     
     const startTime = performance.now();
-    const swoopDuration = 900; // Head takes 0.9s to complete the circle
-    const tailDelay = 150; // Tail starts 150ms after head
-    const collapseTime = 400; // Time for tail to collapse into start
-    const pushDuration = 300; // Push momentum into the timer
+    const swoopDuration = 1000; // Head takes 1s to complete the full circle
+    const tailStartDelay = 200; // Tail starts after head has a lead
+    const tailDuration = 1200; // Tail takes longer, then accelerates to catch up
+    const pushDuration = 250; // Push momentum into the timer
     
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       
-      // Wooshy easing - fast start, smooth deceleration
+      // Easing functions
       const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
-      const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const easeInQuad = (t: number) => t * t;
       
-      // Head position - swoops around fast
+      // Head position - swoops around the full circle with wooshy easing
       const headRaw = Math.min(elapsed / swoopDuration, 1);
       const headPos = easeOutQuart(headRaw);
       
-      // Tail position - follows behind, then accelerates to catch up
-      const tailElapsed = Math.max(0, elapsed - tailDelay);
-      const tailRaw = Math.min(tailElapsed / (swoopDuration + collapseTime - tailDelay), 1);
-      // Tail uses different easing - starts slow, accelerates at end to collapse
-      const tailPos = easeInOutCubic(tailRaw);
+      // Tail position - starts slow, then accelerates to catch up to start position
+      const tailElapsed = Math.max(0, elapsed - tailStartDelay);
+      const tailRaw = Math.min(tailElapsed / tailDuration, 1);
+      // Tail accelerates as it goes - easeInQuad makes it speed up toward the end
+      const tailPos = easeInQuad(tailRaw);
       
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // When tail catches up to head (both at 1), start the push phase
-      if (headPos >= 1 && tailPos >= 0.98) {
+      // When both head and tail reach full circle (1.0), start the push phase
+      const totalDuration = tailStartDelay + tailDuration;
+      if (elapsed >= totalDuration) {
         setIsPushing(true);
-        const pushStart = startTime + swoopDuration + collapseTime - tailDelay;
+        const pushStartTime = performance.now();
         
         const pushAnimate = (pushTime: number) => {
-          const pushElapsed = pushTime - pushStart;
+          const pushElapsed = pushTime - pushStartTime;
           const pushRaw = Math.min(pushElapsed / pushDuration, 1);
           // Smooth push that transfers momentum
           const pushEased = easeOutQuart(pushRaw);
-          setPushProgress(pushEased * 0.02); // Small initial push
+          setPushProgress(pushEased * 0.03); // Initial push visible on screen
           
           if (pushRaw < 1) {
             introAnimationRef.current = requestAnimationFrame(pushAnimate);
@@ -85,9 +86,7 @@ export default function PrayerTimer() {
         return;
       }
       
-      if (headRaw < 1 || tailRaw < 1) {
-        introAnimationRef.current = requestAnimationFrame(animate);
-      }
+      introAnimationRef.current = requestAnimationFrame(animate);
     };
     
     introAnimationRef.current = requestAnimationFrame(animate);
