@@ -166,6 +166,14 @@ export default function PastorChat() {
   const triggerHighlight = highlightParam === "true";
   const showActionMenu = showActionMenuParam === "true";
   
+  // Debug logging for deep link params
+  if (bookParam || showActionMenuParam) {
+    console.log('[PastorChat] Deep link params:', { 
+      bookParam, chapterParam, verseParam, highlightParam, showActionMenuParam,
+      parsed: { initialBookId, initialChapter, initialVerse, triggerHighlight, showActionMenu }
+    });
+  }
+  
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
   
   // Sync activeTab with URL param changes (for native tab bar navigation)

@@ -80,6 +80,8 @@ export function usePushNotifications(userId: string | null | undefined) {
       const chapter = data.chapter;
       const verse = data.verse;
 
+      console.log('[Push] Notification data received:', data);
+      
       if (bookId && chapter) {
         const params = new URLSearchParams();
         params.set('tab', 'bible');
@@ -90,7 +92,7 @@ export function usePushNotifications(userId: string | null | undefined) {
         if (data.showActionMenu === 'true') params.set('showActionMenu', 'true');
 
         const path = `/pastor-chat?${params.toString()}`;
-        console.log('[Push] Navigating to verse:', path);
+        console.log('[Push] Navigating to verse with showActionMenu:', data.showActionMenu, 'path:', path);
         setLocation(path);
       }
     }
