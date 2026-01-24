@@ -69,8 +69,12 @@ export default function PrayerTimer() {
 
   return (
     <div 
-      className="h-screen w-full flex flex-col overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #191919 0%, #000000 100%)" }}
+      className="w-full flex flex-col overflow-hidden"
+      style={{ 
+        background: "linear-gradient(180deg, #191919 0%, #000000 100%)",
+        height: "calc(100vh - 83px)",
+        paddingTop: "env(safe-area-inset-top, 44px)",
+      }}
       data-testid="prayer-timer-screen"
     >
       <style>{`
@@ -86,45 +90,34 @@ export default function PrayerTimer() {
         }
       `}</style>
 
-      {/* Top 30% - Header and Title */}
-      <div 
-        className="flex flex-col items-center"
-        style={{ 
-          height: "25%",
-          paddingTop: "env(safe-area-inset-top, 44px)",
-        }}
+      {/* Header bar */}
+      <div className="w-full h-1 bg-[#333]" />
+      
+      <button
+        onClick={() => setLocation("/")}
+        className="flex items-center gap-1 px-4 py-3 self-start"
+        data-testid="button-back"
       >
-        <div className="w-full h-1 bg-[#333]" />
-        
-        <button
-          onClick={() => setLocation("/")}
-          className="flex items-center gap-1 px-4 py-3 self-start"
-          data-testid="button-back"
+        <ChevronLeft className="w-4 h-4 text-white" />
+        <span 
+          className="text-white text-sm font-semibold tracking-wide"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          <ChevronLeft className="w-4 h-4 text-white" />
-          <span 
-            className="text-white text-sm font-semibold tracking-wide"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
-          >
-            BACK
-          </span>
-        </button>
+          BACK
+        </span>
+      </button>
 
-        <div className="flex-1 flex items-end justify-center pb-4">
-          <h1 
-            className="text-white text-center tracking-wide"
-            style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
-          >
-            PRAYER TIMER
-          </h1>
-        </div>
-      </div>
+      {/* Content area - centered vertically */}
+      <div className="flex-1 flex flex-col items-center justify-center px-5">
+        {/* Title */}
+        <h1 
+          className="text-white text-center tracking-wide mb-6"
+          style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
+        >
+          PRAYER TIMER
+        </h1>
 
-      {/* Middle 45% - Timer Circle */}
-      <div 
-        className="flex items-center justify-center px-5"
-        style={{ height: "45%" }}
-      >
+        {/* Timer Circle */}
         <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] flex items-center justify-center">
           {isRunning && (
             <>
@@ -217,17 +210,9 @@ export default function PrayerTimer() {
             </span>
           </div>
         </div>
-      </div>
 
-      {/* Bottom 30% - Buttons */}
-      <div 
-        className="flex flex-col items-center justify-start px-5 pt-4"
-        style={{ 
-          height: "30%",
-          paddingBottom: "env(safe-area-inset-bottom, 34px)",
-        }}
-      >
-        <div className="flex flex-wrap justify-center gap-3 px-4">
+        {/* Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 px-4 mt-6">
           {DURATION_OPTIONS.map((option) => (
             <button
               key={option.minutes}
