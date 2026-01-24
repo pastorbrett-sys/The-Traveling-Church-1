@@ -33,56 +33,36 @@ export default function PrayerTimer() {
     const startTime = performance.now();
     const swoopDuration = 1000; // Head takes 1s to complete the full circle
     const tailStartDelay = 200; // Tail starts after head has a lead
-    const tailDuration = 1200; // Tail takes longer, then accelerates to catch up
-    const pushDuration = 250; // Push momentum into the timer
+    const tailDuration = 1100; // Tail catches up quickly
     
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       
       // Easing functions
       const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
-      const easeInQuad = (t: number) => t * t;
+      const easeInCubic = (t: number) => t * t * t;
       
       // Head position - swoops around the full circle with wooshy easing
       const headRaw = Math.min(elapsed / swoopDuration, 1);
       const headPos = easeOutQuart(headRaw);
       
-      // Tail position - starts slow, then accelerates to catch up to start position
+      // Tail position - starts slow, then accelerates to catch up
       const tailElapsed = Math.max(0, elapsed - tailStartDelay);
       const tailRaw = Math.min(tailElapsed / tailDuration, 1);
-      // Tail accelerates as it goes - easeInQuad makes it speed up toward the end
-      const tailPos = easeInQuad(tailRaw);
+      // Tail accelerates aggressively - easeInCubic for faster catch-up
+      const tailPos = easeInCubic(tailRaw);
       
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // When both head and tail reach full circle (1.0), start the push phase
-      const totalDuration = tailStartDelay + tailDuration;
-      if (elapsed >= totalDuration) {
-        setIsPushing(true);
-        const pushStartTime = performance.now();
-        
-        const pushAnimate = (pushTime: number) => {
-          const pushElapsed = pushTime - pushStartTime;
-          const pushRaw = Math.min(pushElapsed / pushDuration, 1);
-          // Smooth push that transfers momentum
-          const pushEased = easeOutQuart(pushRaw);
-          setPushProgress(pushEased * 0.03); // Initial push visible on screen
-          
-          if (pushRaw < 1) {
-            introAnimationRef.current = requestAnimationFrame(pushAnimate);
-          } else {
-            // Animation complete - start the countdown
-            setIsIntroAnimating(false);
-            setIsPushing(false);
-            setPushProgress(0);
-            setSwoopHead(0);
-            setSwoopTail(0);
-            setIsRunning(true);
-          }
-        };
-        
-        introAnimationRef.current = requestAnimationFrame(pushAnimate);
+      // Start the timer when tail is about to collapse (at 95%)
+      // This creates the "bounce" effect where the tail pushes the timer forward
+      if (tailPos >= 0.95 && headPos >= 0.99) {
+        // Immediately start the countdown - the tail "bounces" into it
+        setIsIntroAnimating(false);
+        setSwoopHead(0);
+        setSwoopTail(0);
+        setIsRunning(true);
         return;
       }
       
