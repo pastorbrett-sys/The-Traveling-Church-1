@@ -124,7 +124,7 @@ export default function PrayerTimer() {
               r="130"
               fill="none"
               stroke="url(#orangeGradient)"
-              strokeWidth="6"
+              strokeWidth="9"
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
