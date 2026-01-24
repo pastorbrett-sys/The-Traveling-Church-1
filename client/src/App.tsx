@@ -116,6 +116,7 @@ function ChurchRouter() {
       <Route path="/ambassador/dashboard">{() => <Redirect to="/ambassador" />}</Route>
       <Route path="/admin" component={AdminPanel} />
       <Route path="/email-preview" component={EmailPreview} />
+      <Route path="/prayer-timer" component={PrayerTimer} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>
