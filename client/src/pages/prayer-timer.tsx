@@ -231,7 +231,7 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4 mt-[9px]">
+        <div className="flex items-center gap-4 mt-5">
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
