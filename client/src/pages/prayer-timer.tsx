@@ -55,10 +55,10 @@ export default function PrayerTimer() {
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // Start the timer when tail is about to collapse (at 95%)
-      // This creates the "bounce" effect where the tail pushes the timer forward
-      if (tailPos >= 0.95 && headPos >= 0.99) {
-        // Immediately start the countdown - the tail "bounces" into it
+      // Start the timer when tail is catching up - seamless transition
+      // The swoop should feel like it never stopped, just became the timer
+      if (tailPos >= 0.88) {
+        // Immediately start the countdown - seamless continuation
         setIsIntroAnimating(false);
         setSwoopHead(0);
         setSwoopTail(0);
