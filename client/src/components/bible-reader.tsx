@@ -637,13 +637,13 @@ export default function BibleReader({
         setSelectedChapter(initialChapter || 1);
         setShowBookPicker(false);
         if (initialVerse && triggerHighlight) {
-          // Delay to ensure chapter is loaded first
+          // Delay to ensure chapter is loaded first (reduced from 500ms to 200ms)
           setTimeout(() => {
             // Mark as deep link to auto-open action bar if showActionMenu is requested
             isDeepLinkScrollRef.current = !!showActionMenuOnDeepLink;
             console.log('[BibleReader] Setting deep link scroll, showActionMenu:', showActionMenuOnDeepLink);
             setScrollToVerse(initialVerse);
-          }, 500);
+          }, 200);
         }
         setHasAppliedInitialNav(true);
       }
@@ -735,20 +735,21 @@ export default function BibleReader({
           // Clear any previous persistent highlight
           setPersistentHighlightVerse(null);
           
-          // Find the verse data to auto-open action bar after animation
+          // Find the verse data to auto-open action bar
           const verseData = chapter.verses?.find(v => v.verse === scrollToVerse);
+          
+          // Open action bar immediately if this is a deep link with showActionMenu
+          if (isDeepLinkScrollRef.current && verseData) {
+            console.log('[BibleReader] Deep link - opening action bar immediately for verse:', scrollToVerse);
+            setSelectedVerse(verseData);
+            isDeepLinkScrollRef.current = false;
+          }
           
           const applyBurstAndPersist = (verseNum: number) => {
             verseElement.classList.add("verse-burst-highlight");
             setTimeout(() => {
               verseElement.classList.remove("verse-burst-highlight");
               setPersistentHighlightVerse(verseNum);
-              // Auto-open action bar after animation if this is a deep link with showActionMenu
-              if (isDeepLinkScrollRef.current && verseData) {
-                console.log('[BibleReader] Deep link animation complete, opening action bar for verse:', verseNum);
-                setSelectedVerse(verseData);
-                isDeepLinkScrollRef.current = false;
-              }
             }, 4000);
           };
           
