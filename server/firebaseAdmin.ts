@@ -226,6 +226,9 @@ export async function sendBatchNotifications(
   }
 }
 
+// Verse of the Week notification image (hosted in client/public/)
+const VERSE_OF_WEEK_IMAGE_URL = 'https://vagabondbible.com/verse-of-the-week-notification.png';
+
 export function buildVerseNotificationPayload(
   verseRef: string,
   verseText: string,
@@ -238,6 +241,7 @@ export function buildVerseNotificationPayload(
   return {
     title: '✨ Verse of the Week',
     body: `${shortText} - ${verseRef}`,
+    imageUrl: VERSE_OF_WEEK_IMAGE_URL,
     data: {
       type: 'verse_of_week',
       bookId: String(bookId),
