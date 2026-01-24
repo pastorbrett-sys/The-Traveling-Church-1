@@ -18,13 +18,12 @@ export default function PrayerTimer() {
   const [isIntroAnimating, setIsIntroAnimating] = useState(true);
   const [swoopHead, setSwoopHead] = useState(0);
   const [swoopTail, setSwoopTail] = useState(0);
-  const [isPushing, setIsPushing] = useState(false);
-  const [pushProgress, setPushProgress] = useState(0);
+  const [smoothProgress, setSmoothProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const introAnimationRef = useRef<number | null>(null);
+  const timerStartRef = useRef<number | null>(null);
 
   const totalSeconds = selectedDuration * 60;
-  const progress = isRunning ? (totalSeconds - timeRemaining) / totalSeconds : 0;
 
   // Intro swoop animation - fluid wooshy effect with collapsing tail
   useEffect(() => {
@@ -58,6 +57,10 @@ export default function PrayerTimer() {
       // When tail catches up to about 90%, immediately end swoosh and start timer
       // No delay - instant transition
       if (tailPos >= 0.92) {
+        // Set timer start time BEFORE state changes so countdown starts immediately
+        timerStartRef.current = performance.now();
+        // Give a small initial progress so the arc is immediately visible
+        setSmoothProgress(0.001);
         // Instantly switch from swoosh to timer - no gap
         setIsIntroAnimating(false);
         setSwoopHead(0);
@@ -78,33 +81,54 @@ export default function PrayerTimer() {
     };
   }, [isIntroAnimating]);
 
+  // Smooth progress animation using requestAnimationFrame
   useEffect(() => {
-    if (isRunning && timeRemaining > 0) {
-      intervalRef.current = setInterval(() => {
-        setTimeRemaining((prev) => {
-          if (prev <= 1) {
-            setIsRunning(false);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
+    if (!isRunning) {
+      timerStartRef.current = null;
+      return;
     }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+    
+    if (!timerStartRef.current) {
+      timerStartRef.current = performance.now();
+    }
+    
+    let animationId: number;
+    const startTime = timerStartRef.current;
+    const totalMs = totalSeconds * 1000;
+    
+    const animateProgress = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const newProgress = Math.min(elapsed / totalMs, 1);
+      setSmoothProgress(newProgress);
+      
+      // Update timeRemaining for display (every second)
+      const newTimeRemaining = Math.max(0, totalSeconds - Math.floor(elapsed / 1000));
+      if (newTimeRemaining !== timeRemaining) {
+        setTimeRemaining(newTimeRemaining);
+      }
+      
+      if (newProgress < 1 && isRunning) {
+        animationId = requestAnimationFrame(animateProgress);
+      } else if (newProgress >= 1) {
+        setIsRunning(false);
+        setTimeRemaining(0);
       }
     };
-  }, [isRunning, timeRemaining]);
+    
+    animationId = requestAnimationFrame(animateProgress);
+    
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [isRunning, totalSeconds]);
 
   const handleDurationSelect = (minutes: number) => {
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
     setSwoopHead(0);
     setSwoopTail(0);
-    setIsPushing(false);
-    setPushProgress(0);
+    setSmoothProgress(0);
+    timerStartRef.current = null;
     setIsIntroAnimating(true);
     setIsRunning(false);
   };
@@ -113,13 +137,10 @@ export default function PrayerTimer() {
     if (isRunning || isIntroAnimating) {
       setIsRunning(false);
       setIsIntroAnimating(false);
-      setIsPushing(false);
       setSwoopHead(0);
       setSwoopTail(0);
-      setPushProgress(0);
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      setSmoothProgress(0);
+      timerStartRef.current = null;
       if (introAnimationRef.current) {
         cancelAnimationFrame(introAnimationRef.current);
       }
@@ -127,8 +148,8 @@ export default function PrayerTimer() {
       setTimeRemaining(selectedDuration * 60);
       setSwoopHead(0);
       setSwoopTail(0);
-      setIsPushing(false);
-      setPushProgress(0);
+      setSmoothProgress(0);
+      timerStartRef.current = null;
       setIsIntroAnimating(true);
     }
   };
@@ -140,7 +161,7 @@ export default function PrayerTimer() {
   };
 
   const circumference = 2 * Math.PI * 130;
-  const strokeDashoffset = circumference - progress * circumference;
+  const strokeDashoffset = circumference - smoothProgress * circumference;
 
   return (
     <div 
