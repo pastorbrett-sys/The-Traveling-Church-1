@@ -53,8 +53,8 @@ export default function PrayerTimer() {
   const pausedTimeRemainingRef = useRef<number | null>(null);
   // Mutable ref to track current animation session - callbacks check this to abort
   const animationSessionRef = useRef<object | null>(null);
-  // Flag to trigger intro animation start
-  const shouldStartIntroRef = useRef(true);
+  // Track if component has been initialized (survives StrictMode remount)
+  const hasInitializedRef = useRef(false);
 
   const {
     isPlaying: audioPlaying,
@@ -81,6 +81,8 @@ export default function PrayerTimer() {
 
   // Function to start intro animation - called directly, not through state
   const startIntroAnimation = useCallback(() => {
+    console.log('[ANIM] startIntroAnimation called, duration:', selectedDurationRef.current);
+    
     // Cancel any existing animations
     if (introAnimationRef.current) {
       cancelAnimationFrame(introAnimationRef.current);
@@ -108,9 +110,12 @@ export default function PrayerTimer() {
     const tailStartDelay = 200;
     const tailDuration = 1100;
     
+    console.log('[ANIM] Starting intro swoop at', startTime);
+    
     const animate = (currentTime: number) => {
       // Abort if session changed (user switched duration or stopped)
       if (animationSessionRef.current !== session) {
+        console.log('[ANIM] Intro aborted - session changed');
         return;
       }
       
@@ -133,6 +138,8 @@ export default function PrayerTimer() {
         // Transition to countdown - inline the countdown start here
         // Read duration from ref to get current value
         const duration = selectedDurationRef.current;
+        console.log('[ANIM] Intro complete, starting countdown with duration:', duration, 'minutes');
+        
         timerStartRef.current = performance.now();
         setSmoothProgress(0.001);
         setIsIntroAnimating(false);
@@ -142,9 +149,13 @@ export default function PrayerTimer() {
         
         const countdownStartTime = timerStartRef.current;
         const totalMs = duration * 60 * 1000;
+        console.log('[ANIM] Countdown totalMs:', totalMs);
         
         const animateCountdown = (countdownTime: number) => {
-          if (animationSessionRef.current !== session) return;
+          if (animationSessionRef.current !== session) {
+            console.log('[ANIM] Countdown aborted - session changed');
+            return;
+          }
           
           const countdownElapsed = countdownTime - countdownStartTime;
           const t = Math.min(countdownElapsed / totalMs, 1);
@@ -161,6 +172,7 @@ export default function PrayerTimer() {
           if (newProgress < 1) {
             countdownAnimationRef.current = requestAnimationFrame(animateCountdown);
           } else {
+            console.log('[ANIM] Countdown complete');
             setIsRunning(false);
             setTimeRemaining(0);
             animationSessionRef.current = null;
@@ -177,12 +189,11 @@ export default function PrayerTimer() {
     introAnimationRef.current = requestAnimationFrame(animate);
   }, []);
 
-  // Start intro on mount
+  // Start intro on mount - always start fresh on mount
+  // The session mechanism handles StrictMode's unmount/remount
   useEffect(() => {
-    if (shouldStartIntroRef.current) {
-      shouldStartIntroRef.current = false;
-      startIntroAnimation();
-    }
+    startIntroAnimation();
+    // Cleanup will happen via the session invalidation
   }, [startIntroAnimation]);
 
   // Cleanup on unmount
@@ -195,6 +206,7 @@ export default function PrayerTimer() {
   }, []);
 
   const handleDurationSelect = async (minutes: number) => {
+    console.log('[ANIM] handleDurationSelect called with minutes:', minutes);
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
@@ -205,6 +217,7 @@ export default function PrayerTimer() {
     // Update duration - MUST update ref BEFORE calling startIntroAnimation
     // because React state update is async but the animation reads the ref immediately
     selectedDurationRef.current = minutes;
+    console.log('[ANIM] Updated selectedDurationRef to:', selectedDurationRef.current);
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
     
