@@ -517,7 +517,7 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4" style={{ marginTop: "25px" }}>
+        <div className="flex items-center gap-4" style={{ marginTop: "35px" }}>
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
