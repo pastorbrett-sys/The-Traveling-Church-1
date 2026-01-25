@@ -682,26 +682,6 @@ export default function PrayerTimer() {
               ))}
             </div>
 
-            {/* Audio toggle at bottom */}
-            <div className="px-5 pt-4 border-t border-white/10 mt-2">
-              <button
-                onClick={handleAudioToggle}
-                className="w-full py-3 rounded-xl flex items-center justify-center gap-2"
-                style={{
-                  background: audioEnabled 
-                    ? "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)"
-                    : "rgba(255,255,255,0.1)",
-                }}
-                data-testid="button-toggle-audio"
-              >
-                <span 
-                  className="text-white text-sm font-medium"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}
-                >
-                  {audioEnabled ? "Music Enabled" : "Music Disabled"}
-                </span>
-              </button>
-            </div>
           </div>
         </div>
       )}
