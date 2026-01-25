@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft, X, Loader2 } from "lucide-react";
+import { ChevronLeft, X, Loader2, Play, Pause } from "lucide-react";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudio } from "@/hooks/usePrayerAudio";
 
@@ -22,6 +22,12 @@ function SoundWaveIcon({ isActive }: { isActive: boolean }) {
   );
 }
 
+const BUTTON_POSITIONS = {
+  durationRow: { marginTop: 24 },
+  controlRow: { marginTop: 20 },
+  nowPlaying: { marginTop: 21 },
+};
+
 const DURATION_OPTIONS = [
   { label: "5 MIN", minutes: 5 },
   { label: "10 MIN", minutes: 10 },
@@ -40,6 +46,7 @@ export default function PrayerTimer() {
   const [animationKey, setAnimationKey] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
   const [showTrackSelector, setShowTrackSelector] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
@@ -57,6 +64,12 @@ export default function PrayerTimer() {
   } = usePrayerAudio();
 
   const totalSeconds = selectedDuration * 60;
+
+  // Page load entrance animation
+  useEffect(() => {
+    const timer = setTimeout(() => setPageLoaded(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Intro swoop animation - fluid wooshy effect with collapsing tail
   // Uses animationKey to force restart when duration changes
@@ -303,6 +316,16 @@ export default function PrayerTimer() {
             height: 14px;
           }
         }
+        @keyframes fadeSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       `}</style>
 
       {/* Header bar */}
@@ -491,7 +514,15 @@ export default function PrayerTimer() {
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 px-4 mt-6">
+        <div 
+          className="flex flex-wrap justify-center gap-3 px-4"
+          style={{
+            marginTop: `${BUTTON_POSITIONS.durationRow.marginTop}px`,
+            opacity: pageLoaded ? 1 : 0,
+            transform: pageLoaded ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+          }}
+        >
           {DURATION_OPTIONS.map((option) => (
             <button
               key={option.minutes}
@@ -517,7 +548,15 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4 mt-5">
+        <div 
+          className="flex items-center gap-4"
+          style={{
+            marginTop: `${BUTTON_POSITIONS.controlRow.marginTop}px`,
+            opacity: pageLoaded ? 1 : 0,
+            transform: pageLoaded ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
+          }}
+        >
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
@@ -542,8 +581,10 @@ export default function PrayerTimer() {
           >
             {audioLoading ? (
               <Loader2 className="w-5 h-5 text-white animate-spin" />
+            ) : (isRunning ? audioPlaying : audioEnabled) ? (
+              <Pause className="w-5 h-5 text-white" />
             ) : (
-              <SoundWaveIcon isActive={isRunning ? audioPlaying : audioEnabled} />
+              <Play className="w-5 h-5 text-white/60 ml-0.5" />
             )}
           </button>
         </div>
@@ -553,7 +594,11 @@ export default function PrayerTimer() {
           <button 
             onClick={() => setShowTrackSelector(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-full"
-            style={{ background: "rgba(255,255,255,0.1)", marginTop: "21px" }}
+            style={{ 
+              background: "rgba(255,255,255,0.1)", 
+              marginTop: `${BUTTON_POSITIONS.nowPlaying.marginTop}px`,
+              animation: "fadeSlideIn 0.4s ease-out",
+            }}
             data-testid="container-now-playing"
           >
             <SoundWaveIcon isActive={true} />
