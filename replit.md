@@ -44,16 +44,19 @@ The application uses a component-based frontend architecture and an Express.js b
 - **Native App (Capacitor)**: Supports iOS and Android via Capacitor, with platform-specific UI/UX adaptations like native tab bars, full-screen modals, and safe area handling. API calls from native platforms prepend the production URL and handle session cookies securely. App Transport Security (ATS) is configured for broader compatibility.
   - **Android Safe Area Fix**: Uses `@capacitor-community/safe-area` plugin to fix Android WebView's broken `env(safe-area-inset-*)` CSS variables (Chromium <140 bug). MainActivity.java enables edge-to-edge mode via `EdgeToEdge.enable(this)`. The plugin auto-detects Chromium version and applies correct padding.
 - **Verse Sharing**: Canvas-based image generation with 21 background options. Native Share API integration for iOS/Android. Custom share format with verse reference and Vagabond Bible branding. See `client/src/components/verse-share-sheet.tsx`.
-- **Push Notifications**: Firebase Cloud Messaging (FCM) integration for weekly verse reminders.
-  - **Timezone-aware delivery**: Hourly cron job sends notifications at user's local time (Tuesday 8am local).
-  - **AI verse selection**: GPT-4o selects thematic verses (8 rotating themes) each week.
+- **Push Notifications**: Firebase Cloud Messaging (FCM) integration for verse reminders.
+  - **Timezone-aware delivery**: Hourly cron job sends notifications at user's local time.
+  - **Verse of the Week**: AI-selected verse with graphic, sent Tuesdays 8am local. Uses GPT-4o with 8 rotating themes.
+  - **Daily Verse**: 365 curated verses from `server/dailyVerseData.ts`, sent daily 8am local (skipped on weekly verse day).
+  - **Collision detection**: Per-user, per-timezone - daily verse skips only for users who would receive weekly verse that day AND have weekly enabled.
+  - **Priority system**: `notification_types.priority` column (weekly=10, daily=5, announcement=1). Higher priority wins on collision.
   - **World English Bible (WEB)**: Uses public domain translation to avoid copyright issues.
   - **Deep linking**: Tapping notification opens directly to the verse with highlight animation.
   - **Database tables**: `push_tokens`, `notification_types`, `user_notification_preferences`, `notification_log`.
-  - **Configurable types**: Each notification type (verse_of_week, etc.) has separate day/time settings in database.
+  - **Configurable types**: Each notification type has separate day/time settings in database. Schedule changes via DB auto-adapt collision logic.
   - **User preferences**: Toggle on/off per notification type in Profile settings.
   - **Firebase setup**: APNs key S48F6S762Z (Sandbox & Production), Team ID FBD94PWXT2. Service account key in FIREBASE_SERVICE_ACCOUNT_KEY secret.
-  - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `server/verseSelection.ts`, `client/src/hooks/usePushNotifications.ts`.
+  - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `server/verseSelection.ts`, `server/dailyVerseData.ts`, `client/src/hooks/usePushNotifications.ts`.
 
 ## External Dependencies
 
