@@ -553,6 +553,22 @@ export default function PrayerTimer() {
             {(isRunning || isIntroAnimating) ? "STOP" : "START"}
           </button>
 
+          <button
+            onClick={handleAudioToggle}
+            className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
+            style={{
+              background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
+            }}
+            data-testid="button-sound"
+          >
+            {audioLoading ? (
+              <Loader2 className="w-5 h-5 text-white animate-spin" />
+            ) : audioPlaying ? (
+              <Pause className="w-5 h-5 text-white" />
+            ) : (
+              <Play className="w-5 h-5 text-white ml-0.5" />
+            )}
+          </button>
         </div>
 
         {/* Now Playing / Pick Music indicator */}
