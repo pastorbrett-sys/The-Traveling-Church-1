@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
 
-const TRACKS = [
+export const PRAYER_TRACKS = [
   "Breath Like Quiet Water.mp3",
   "Floating Above The Morning.mp3",
   "Sky Slowly Opens.mp3",
@@ -15,20 +15,23 @@ const TRACKS = [
   "Stillness Between Heartbeats.mp3",
 ];
 
-const CROSSFADE_DURATION = 3000; // 3 seconds crossfade
-const END_FADE_DURATION = 5000; // 5 seconds fade out at end
+const CROSSFADE_DURATION = 3000;
+const END_FADE_DURATION = 5000;
 
 interface UsePrayerAudioReturn {
   isPlaying: boolean;
   currentTrack: string | null;
   volume: number;
   isLoading: boolean;
+  tracks: string[];
   play: () => void;
   pause: () => void;
   toggle: () => void;
   setVolume: (vol: number) => void;
   fadeOutAndStop: () => void;
   startWithTimer: (durationSeconds: number) => void;
+  resumeWithTimer: (remainingSeconds: number) => void;
+  selectTrack: (trackName: string) => void;
 }
 
 export function usePrayerAudio(): UsePrayerAudioReturn {
@@ -81,7 +84,7 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const eased = progress * progress * (3 - 2 * progress); // smoothstep
+        const eased = progress * progress * (3 - 2 * progress);
         const newVolume = from + (to - from) * eased;
         
         audio.volume = Math.max(0, Math.min(1, newVolume * volume));
@@ -175,11 +178,12 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
 
   const play = useCallback(() => {
     if (audioRef.current) {
+      audioRef.current.volume = volume;
       audioRef.current.play().catch(console.error);
       setIsPlaying(true);
       scheduleNextCrossfade();
     } else {
-      playlistRef.current = shuffleArray(TRACKS);
+      playlistRef.current = shuffleArray(PRAYER_TRACKS);
       currentIndexRef.current = 0;
       const firstTrack = playlistRef.current[0];
       
@@ -267,6 +271,59 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
     play();
   }, [clearAllTimeouts, play]);
 
+  const resumeWithTimer = useCallback((remainingSeconds: number) => {
+    timerEndTimeRef.current = Date.now() + remainingSeconds * 1000;
+    endFadeStartedRef.current = false;
+    
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+      audioRef.current.play().catch(console.error);
+      setIsPlaying(true);
+      scheduleNextCrossfade();
+    } else {
+      play();
+    }
+  }, [volume, play, scheduleNextCrossfade]);
+
+  const selectTrack = useCallback((trackName: string) => {
+    const trackIndex = PRAYER_TRACKS.indexOf(trackName);
+    if (trackIndex === -1) return;
+    
+    clearAllTimeouts();
+    
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    if (nextAudioRef.current) {
+      nextAudioRef.current.pause();
+      nextAudioRef.current = null;
+    }
+    
+    playlistRef.current = [...PRAYER_TRACKS];
+    currentIndexRef.current = trackIndex;
+    
+    setIsLoading(true);
+    const audio = new Audio(getTrackUrl(trackName));
+    audio.volume = volume;
+    
+    audio.addEventListener("canplaythrough", () => {
+      setIsLoading(false);
+      audio.play().catch(console.error);
+      setIsPlaying(true);
+      setCurrentTrack(getDisplayName(trackName));
+      preloadNextTrack();
+      scheduleNextCrossfade();
+    }, { once: true });
+    
+    audio.addEventListener("error", () => {
+      setIsLoading(false);
+      console.error("Error loading audio");
+    }, { once: true });
+    
+    audioRef.current = audio;
+  }, [clearAllTimeouts, volume, preloadNextTrack, scheduleNextCrossfade]);
+
   useEffect(() => {
     return () => {
       clearAllTimeouts();
@@ -286,11 +343,14 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
     currentTrack,
     volume,
     isLoading,
+    tracks: PRAYER_TRACKS.map(getDisplayName),
     play,
     pause,
     toggle,
     setVolume,
     fadeOutAndStop,
     startWithTimer,
+    resumeWithTimer,
+    selectTrack,
   };
 }

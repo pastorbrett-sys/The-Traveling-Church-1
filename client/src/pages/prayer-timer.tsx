@@ -1,8 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft, Volume2, VolumeX, Music, Loader2 } from "lucide-react";
+import { ChevronLeft, X, Loader2 } from "lucide-react";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudio } from "@/hooks/usePrayerAudio";
+
+function SoundWaveIcon({ isActive }: { isActive: boolean }) {
+  return (
+    <div className="flex items-center justify-center gap-[2px] w-5 h-5">
+      {[0, 1, 2].map((i) => (
+        <div
+          key={i}
+          className="w-[3px] rounded-full"
+          style={{
+            background: isActive ? "white" : "rgba(255,255,255,0.6)",
+            height: isActive ? "100%" : "8px",
+            animation: isActive ? `soundWave 0.8s ease-in-out infinite ${i * 0.15}s` : "none",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 const DURATION_OPTIONS = [
   { label: "5 MIN", minutes: 5 },
@@ -21,17 +39,21 @@ export default function PrayerTimer() {
   const [smoothProgress, setSmoothProgress] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [showTrackSelector, setShowTrackSelector] = useState(false);
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
+  const pausedTimeRemainingRef = useRef<number | null>(null);
 
   const {
     isPlaying: audioPlaying,
     currentTrack,
     isLoading: audioLoading,
-    toggle: toggleAudio,
-    fadeOutAndStop,
+    tracks,
+    pause: pauseAudio,
     startWithTimer,
+    resumeWithTimer,
+    selectTrack,
   } = usePrayerAudio();
 
   const totalSeconds = selectedDuration * 60;
@@ -163,8 +185,9 @@ export default function PrayerTimer() {
       introAnimationRef.current = null;
     }
     
-    // Fully stop and reset audio when switching durations
-    fadeOutAndStop();
+    // Pause audio when switching durations
+    pauseAudio();
+    pausedTimeRemainingRef.current = null;
     
     // Reset all state
     setIsRunning(false);
@@ -192,30 +215,52 @@ export default function PrayerTimer() {
         introAnimationRef.current = null;
       }
       
-      // Fade out and stop audio
-      fadeOutAndStop();
+      // Pause audio (keep position) instead of stopping
+      pauseAudio();
+      pausedTimeRemainingRef.current = timeRemaining;
       
       setIsRunning(false);
       setIsIntroAnimating(false);
-      setSwoopHead(0);
-      setSwoopTail(0);
-      setSmoothProgress(0);
-      timerStartRef.current = null;
     } else {
-      setTimeRemaining(selectedDuration * 60);
-      setSwoopHead(0);
-      setSwoopTail(0);
-      setSmoothProgress(0);
-      timerStartRef.current = null;
-      setIsIntroAnimating(true);
+      // Check if we have a paused position to resume from
+      if (pausedTimeRemainingRef.current !== null && smoothProgress > 0) {
+        // Resume from paused position
+        timerStartRef.current = performance.now() - (totalSeconds - pausedTimeRemainingRef.current) * 1000;
+        setIsRunning(true);
+        if (audioEnabled) {
+          resumeWithTimer(pausedTimeRemainingRef.current);
+        }
+        pausedTimeRemainingRef.current = null;
+      } else {
+        // Fresh start
+        setTimeRemaining(selectedDuration * 60);
+        setSwoopHead(0);
+        setSwoopTail(0);
+        setSmoothProgress(0);
+        timerStartRef.current = null;
+        pausedTimeRemainingRef.current = null;
+        setIsIntroAnimating(true);
+      }
     }
   };
 
+  const handleTrackSelect = (trackName: string) => {
+    if (!audioEnabled) {
+      setAudioEnabled(true);
+    }
+    selectTrack(trackName + ".mp3");
+    setShowTrackSelector(false);
+  };
+
   const handleAudioToggle = () => {
-    if (isRunning) {
-      toggleAudio();
+    if (audioEnabled) {
+      pauseAudio();
+      setAudioEnabled(false);
     } else {
-      setAudioEnabled(!audioEnabled);
+      setAudioEnabled(true);
+      if (isRunning) {
+        resumeWithTimer(timeRemaining);
+      }
     }
   };
 
@@ -248,6 +293,14 @@ export default function PrayerTimer() {
           100% {
             transform: scale(1.4);
             opacity: 0;
+          }
+        }
+        @keyframes soundWave {
+          0%, 100% {
+            height: 4px;
+          }
+          50% {
+            height: 14px;
           }
         }
       `}</style>
@@ -478,7 +531,7 @@ export default function PrayerTimer() {
           </button>
 
           <button
-            onClick={handleAudioToggle}
+            onClick={() => setShowTrackSelector(true)}
             className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
             style={{
               background: (isRunning ? audioPlaying : audioEnabled) 
@@ -489,22 +542,21 @@ export default function PrayerTimer() {
           >
             {audioLoading ? (
               <Loader2 className="w-5 h-5 text-white animate-spin" />
-            ) : (isRunning ? audioPlaying : audioEnabled) ? (
-              <Volume2 className="w-5 h-5 text-white" />
             ) : (
-              <VolumeX className="w-5 h-5 text-white/60" />
+              <SoundWaveIcon isActive={isRunning ? audioPlaying : audioEnabled} />
             )}
           </button>
         </div>
 
         {/* Now Playing indicator */}
         {currentTrack && audioPlaying && (
-          <div 
+          <button 
+            onClick={() => setShowTrackSelector(true)}
             className="flex items-center gap-2 mt-4 px-4 py-2 rounded-full"
             style={{ background: "rgba(255,255,255,0.1)" }}
             data-testid="container-now-playing"
           >
-            <Music className="w-4 h-4 text-[#FFBE00]" />
+            <SoundWaveIcon isActive={true} />
             <span 
               className="text-white/70 text-xs truncate max-w-[200px]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -512,9 +564,94 @@ export default function PrayerTimer() {
             >
               {currentTrack}
             </span>
-          </div>
+          </button>
         )}
       </div>
+
+      {/* Track Selector Sheet */}
+      {showTrackSelector && (
+        <div 
+          className="fixed inset-0 z-50 flex items-end justify-center"
+          style={{ background: "rgba(0,0,0,0.7)" }}
+          onClick={() => setShowTrackSelector(false)}
+          data-testid="track-selector-overlay"
+        >
+          <div 
+            className="w-full max-w-md rounded-t-3xl pb-8"
+            style={{ 
+              background: "#1a1a1a",
+              paddingBottom: "calc(env(safe-area-inset-bottom, 20px) + 20px)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <h3 
+                className="text-white text-lg font-semibold"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                Select Track
+              </h3>
+              <button 
+                onClick={() => setShowTrackSelector(false)}
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ background: "rgba(255,255,255,0.1)" }}
+                data-testid="button-close-tracks"
+              >
+                <X className="w-4 h-4 text-white" />
+              </button>
+            </div>
+            <div className="max-h-[50vh] overflow-y-auto">
+              {tracks.map((track) => (
+                <button
+                  key={track}
+                  onClick={() => handleTrackSelect(track)}
+                  className="w-full px-5 py-4 flex items-center gap-3 text-left transition-colors"
+                  style={{ 
+                    background: currentTrack === track ? "rgba(255,190,0,0.15)" : "transparent",
+                  }}
+                  data-testid={`track-${track.replace(/\s+/g, '-').toLowerCase()}`}
+                >
+                  {currentTrack === track && audioPlaying ? (
+                    <SoundWaveIcon isActive={true} />
+                  ) : (
+                    <div className="w-5 h-5 rounded-full border border-white/30" />
+                  )}
+                  <span 
+                    className="text-white text-sm"
+                    style={{ 
+                      fontFamily: "'Poppins', sans-serif",
+                      color: currentTrack === track ? "#FFBE00" : "white",
+                    }}
+                  >
+                    {track}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Audio toggle at bottom */}
+            <div className="px-5 pt-4 border-t border-white/10 mt-2">
+              <button
+                onClick={handleAudioToggle}
+                className="w-full py-3 rounded-xl flex items-center justify-center gap-2"
+                style={{
+                  background: audioEnabled 
+                    ? "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)"
+                    : "rgba(255,255,255,0.1)",
+                }}
+                data-testid="button-toggle-audio"
+              >
+                <span 
+                  className="text-white text-sm font-medium"
+                  style={{ fontFamily: "'Poppins', sans-serif" }}
+                >
+                  {audioEnabled ? "Music Enabled" : "Music Disabled"}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
