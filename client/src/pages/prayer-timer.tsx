@@ -45,7 +45,7 @@ export default function PrayerTimer() {
   const [swoopTail, setSwoopTail] = useState(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
-  const [audioEnabled, setAudioEnabled] = useState(true);
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const [showTrackSelector, setShowTrackSelector] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
   const introAnimationRef = useRef<number | null>(null);
