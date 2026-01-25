@@ -570,10 +570,10 @@ export default function PrayerTimer() {
           </button>
 
           <button
-            onClick={() => setShowTrackSelector(true)}
+            onClick={handleAudioToggle}
             className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
             style={{
-              background: (isRunning ? audioPlaying : audioEnabled) 
+              background: audioPlaying
                 ? "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)"
                 : "linear-gradient(180deg, #333 0%, #222 100%)",
             }}
@@ -581,7 +581,7 @@ export default function PrayerTimer() {
           >
             {audioLoading ? (
               <Loader2 className="w-5 h-5 text-white animate-spin" />
-            ) : (isRunning ? audioPlaying : audioEnabled) ? (
+            ) : audioPlaying ? (
               <Pause className="w-5 h-5 text-white" />
             ) : (
               <Play className="w-5 h-5 text-white/60 ml-0.5" />
