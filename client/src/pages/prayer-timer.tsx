@@ -355,8 +355,11 @@ export default function PrayerTimer() {
         </span>
       </button>
 
-      {/* Content area - centered vertically */}
-      <div className="flex-1 flex flex-col items-center justify-center px-5">
+      {/* Content area - centered vertically, nudged up on small screens */}
+      <div 
+        className="flex-1 flex flex-col items-center justify-center px-5"
+        style={{ marginTop: "-15px" }}
+      >
         {/* Title */}
         <h1 
           className="text-white text-center tracking-wide mb-6"
