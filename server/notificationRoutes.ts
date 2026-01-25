@@ -289,6 +289,81 @@ router.post("/admin/test-verse", async (req: Request, res: Response) => {
   }
 });
 
+// Admin: Send a daily verse test to a specific user or token
+router.post("/admin/test-daily-verse", async (req: Request, res: Response) => {
+  try {
+    const { userId, token } = req.body;
+
+    if (!userId && !token) {
+      return res.status(400).json({ error: "userId or token is required" });
+    }
+
+    let tokensToSend: string[] = [];
+    
+    if (token) {
+      tokensToSend = [token];
+    } else {
+      // Get user's token
+      const userTokens = await db
+        .select()
+        .from(pushTokens)
+        .where(eq(pushTokens.userId, userId));
+
+      if (userTokens.length === 0) {
+        return res.status(404).json({ error: "No registered device for this user" });
+      }
+      tokensToSend = userTokens.map(t => t.deviceToken);
+    }
+
+    // Get today's daily verse
+    const { getVerseForToday } = await import("./dailyVerseData");
+    const verse = getVerseForToday();
+    
+    const verseRef = `${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse ? `-${verse.endVerse}` : ''}`;
+    
+    const payload = buildVerseNotificationPayload(
+      verseRef,
+      verse.notificationText,
+      verse.bookId,
+      verse.chapter,
+      verse.verse,
+      verse.book
+    );
+
+    // Send to all specified tokens
+    const results = [];
+    for (const deviceToken of tokensToSend) {
+      const result = await sendPushNotification(deviceToken, payload);
+      results.push(result);
+    }
+
+    // Log the notification
+    await db.insert(notificationLog).values({
+      notificationTypeId: "verse_of_day",
+      verseReference: verseRef,
+      verseText: verse.text,
+      recipientCount: tokensToSend.length,
+      status: results.every(r => r.success) ? "sent" : "partial",
+      errorMessage: results.filter(r => !r.success).map(r => r.error).join("; ") || null,
+    });
+
+    res.json({
+      success: true,
+      verse: {
+        dayOfYear: verse.dayOfYear,
+        reference: verseRef,
+        text: verse.text,
+        theme: verse.theme,
+        notificationText: verse.notificationText,
+      },
+      results,
+    });
+  } catch (error: any) {
+    console.error("Error sending daily verse test:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Admin: Send an announcement notification to all users (or specific user)
 router.post("/admin/announcement", async (req: Request, res: Response) => {
   try {

@@ -1,9 +1,10 @@
 import cron from 'node-cron';
 import { db } from './db';
 import { pushTokens, notificationTypes, userNotificationPreferences, notificationLog } from '@shared/schema';
-import { eq, and, sql, isNull, or } from 'drizzle-orm';
+import { eq, and, sql, isNull, or, desc } from 'drizzle-orm';
 import { sendBatchNotifications, buildVerseNotificationPayload } from './firebaseAdmin';
 import { selectVerseOfTheWeek } from './verseSelection';
+import { getVerseForToday } from './dailyVerseData';
 
 export function initNotificationCron() {
   console.log('Initializing notification cron job...');
@@ -23,14 +24,15 @@ async function processScheduledNotifications() {
     const currentUtcHour = now.getUTCHours();
     const currentUtcDay = now.getUTCDay(); // 0 = Sunday, 2 = Tuesday, etc.
 
-    // Get all active notification types
+    // Get all active notification types, sorted by priority (highest first)
     const activeTypes = await db
       .select()
       .from(notificationTypes)
-      .where(eq(notificationTypes.isActive, true));
+      .where(eq(notificationTypes.isActive, true))
+      .orderBy(desc(notificationTypes.priority));
 
     for (const type of activeTypes) {
-      await processNotificationType(type, currentUtcHour, currentUtcDay);
+      await processNotificationType(type, currentUtcHour, currentUtcDay, activeTypes);
     }
   } catch (error) {
     console.error('[Cron] Error processing scheduled notifications:', error);
@@ -40,23 +42,18 @@ async function processScheduledNotifications() {
 async function processNotificationType(
   type: typeof notificationTypes.$inferSelect,
   currentUtcHour: number,
-  currentUtcDay: number
+  currentUtcDay: number,
+  allTypes: (typeof notificationTypes.$inferSelect)[]
 ) {
   const targetHour = type.sendHour;
   const targetDay = type.sendDay; // null means daily
 
   // Calculate which UTC offset would make it targetHour local time right now
-  // If current UTC is 14:00 and target local is 8:00, we need offset -6
-  // Formula: utcOffset = targetHour - currentUtcHour
   let requiredOffset = targetHour - currentUtcHour;
   
-  // Handle wrap-around (e.g., if required offset is -20, it should be +4)
+  // Handle wrap-around
   if (requiredOffset < -12) requiredOffset += 24;
   if (requiredOffset > 14) requiredOffset -= 24;
-
-  // For day-specific notifications, we need to check if it's the target day in the user's local timezone
-  // If targetDay is null (daily), we always send
-  // If targetDay is set, we need to verify the local day matches
 
   // Find users with this UTC offset who have this notification enabled
   const eligibleTokens = await db
@@ -76,7 +73,6 @@ async function processNotificationType(
     .where(
       and(
         eq(pushTokens.utcOffset, requiredOffset),
-        // Either no preference (uses default) or explicitly enabled
         or(
           isNull(userNotificationPreferences.enabled),
           eq(userNotificationPreferences.enabled, true)
@@ -84,32 +80,48 @@ async function processNotificationType(
       )
     );
 
-  // Filter by day if needed
+  // Filter by day if needed (for weekly notifications)
   let tokensToSend = eligibleTokens;
   
   if (targetDay !== null) {
-    // Calculate what day it is locally for each user
     tokensToSend = eligibleTokens.filter(token => {
-      const userOffset = token.utcOffset || 0;
-      // Calculate local hour and potentially day adjustment
-      let localHour = currentUtcHour + userOffset;
-      let dayAdjustment = 0;
-      
-      if (localHour >= 24) {
-        localHour -= 24;
-        dayAdjustment = 1;
-      } else if (localHour < 0) {
-        localHour += 24;
-        dayAdjustment = -1;
-      }
-      
-      const localDay = (currentUtcDay + dayAdjustment + 7) % 7;
+      const localDay = getLocalDay(currentUtcDay, currentUtcHour, token.utcOffset || 0);
       return localDay === targetDay;
     });
   }
 
+  // For verse_of_day, filter out users who would receive verse_of_week today
+  // This is per-user collision detection based on their local timezone AND weekly preference
+  if (type.id === 'verse_of_day') {
+    const weeklyType = allTypes.find(t => t.id === 'verse_of_week' && t.isActive);
+    if (weeklyType && weeklyType.sendDay !== null) {
+      // Get users who have weekly notifications enabled
+      const weeklyPrefs = await db
+        .select({ userId: userNotificationPreferences.userId, enabled: userNotificationPreferences.enabled })
+        .from(userNotificationPreferences)
+        .where(eq(userNotificationPreferences.notificationTypeId, 'verse_of_week'));
+      
+      const weeklyDisabledUsers = new Set(
+        weeklyPrefs.filter(p => p.enabled === false).map(p => p.userId)
+      );
+
+      tokensToSend = tokensToSend.filter(token => {
+        const localDay = getLocalDay(currentUtcDay, currentUtcHour, token.utcOffset || 0);
+        const isWeeklyVerseDay = localDay === weeklyType.sendDay;
+        
+        // Only skip if it's the weekly day AND user has weekly enabled (or no preference = default enabled)
+        const hasWeeklyDisabled = weeklyDisabledUsers.has(token.userId);
+        
+        if (isWeeklyVerseDay && !hasWeeklyDisabled) {
+          console.log(`[Cron] Skipping verse_of_day for user ${token.userId} - it's their weekly verse day (${localDay})`);
+          return false;
+        }
+        return true;
+      });
+    }
+  }
+
   if (tokensToSend.length === 0) {
-    // No users to notify at this hour for this type
     return;
   }
 
@@ -121,7 +133,6 @@ async function processNotificationType(
   let verseText = '';
 
   if (type.id === 'verse_of_week') {
-    // Use AI to select a verse
     const verse = await selectVerseOfTheWeek();
     verseRef = `${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse ? `-${verse.endVerse}` : ''}`;
     verseText = verse.text;
@@ -131,10 +142,21 @@ async function processNotificationType(
       verse.bookId,
       verse.chapter,
       verse.verse,
-      verse.book // Pass book name for reliable lookup
+      verse.book
+    );
+  } else if (type.id === 'verse_of_day') {
+    const verse = getVerseForToday();
+    verseRef = `${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse ? `-${verse.endVerse}` : ''}`;
+    verseText = verse.text;
+    payload = buildVerseNotificationPayload(
+      verseRef,
+      verse.notificationText,
+      verse.bookId,
+      verse.chapter,
+      verse.verse,
+      verse.book
     );
   } else {
-    // Default notification for other types
     payload = {
       title: type.name,
       body: type.description || 'Check out Vagabond Bible',
@@ -159,6 +181,20 @@ async function processNotificationType(
   console.log(`[Cron] ${type.id}: Sent to ${result.successCount}/${tokens.length} users`);
 }
 
+// Calculate local day of week for a user given their UTC offset
+function getLocalDay(currentUtcDay: number, currentUtcHour: number, utcOffset: number): number {
+  let localHour = currentUtcHour + utcOffset;
+  let dayAdjustment = 0;
+  
+  if (localHour >= 24) {
+    dayAdjustment = 1;
+  } else if (localHour < 0) {
+    dayAdjustment = -1;
+  }
+  
+  return (currentUtcDay + dayAdjustment + 7) % 7;
+}
+
 // Manual trigger for testing
 export async function triggerNotificationManually(typeId: string) {
   const types = await db
@@ -170,6 +206,29 @@ export async function triggerNotificationManually(typeId: string) {
     throw new Error(`Notification type ${typeId} not found`);
   }
 
+  const allTypes = await db
+    .select()
+    .from(notificationTypes)
+    .where(eq(notificationTypes.isActive, true));
+
   const now = new Date();
-  await processNotificationType(types[0], now.getUTCHours(), now.getUTCDay());
+  await processNotificationType(types[0], now.getUTCHours(), now.getUTCDay(), allTypes);
+}
+
+// Send a single daily verse notification (for testing)
+export async function sendDailyVerseTest(token: string) {
+  const verse = getVerseForToday();
+  const verseRef = `${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse ? `-${verse.endVerse}` : ''}`;
+  
+  const payload = buildVerseNotificationPayload(
+    verseRef,
+    verse.notificationText,
+    verse.bookId,
+    verse.chapter,
+    verse.verse,
+    verse.book
+  );
+
+  const { sendPushNotification } = await import('./firebaseAdmin');
+  return sendPushNotification(token, payload);
 }
