@@ -412,13 +412,10 @@ export default function PrayerTimer() {
             {/* SWOOSH SVG - only during intro animation */}
             {isIntroAnimating && (
               <>
-                {/* Swoop arc - drawn from tail to head position with building glow */}
+                {/* Swoop arc - drawn from tail to head position */}
                 {(() => {
                   const arcLength = Math.max(0, (swoopHead - swoopTail)) * circumference;
                   const dashOffset = -swoopTail * circumference;
-                  // Drop shadow builds intensity as tail catches up (charging effect)
-                  const shadowOpacity = 0.3 + 0.6 * Math.pow(swoopTail, 0.5);
-                  const shadowSize = 8 + 8 * swoopTail;
                   
                   return (
                     <circle
@@ -431,31 +428,6 @@ export default function PrayerTimer() {
                       strokeLinecap="round"
                       strokeDasharray={`${arcLength} ${circumference}`}
                       strokeDashoffset={dashOffset}
-                      style={{ 
-                        filter: `drop-shadow(0 0 ${shadowSize}px rgba(255, 150, 0, ${shadowOpacity}))`,
-                      }}
-                    />
-                  );
-                })()}
-                {/* Glow at the head of the swoosh - builds intensity as swoosh progresses */}
-                {swoopHead > 0.05 && (() => {
-                  // Glow builds from 0.2 to 0.8 as tail catches up (charging effect)
-                  const glowIntensity = 0.2 + 0.6 * Math.pow(swoopTail, 0.5);
-                  return (
-                    <circle
-                      cx="150"
-                      cy="150"
-                      r="130"
-                      fill="none"
-                      stroke="url(#glowGradient)"
-                      strokeWidth="24"
-                      strokeLinecap="round"
-                      strokeDasharray={`${circumference * 0.08} ${circumference}`}
-                      strokeDashoffset={-swoopHead * circumference + circumference * 0.04}
-                      style={{ 
-                        opacity: glowIntensity,
-                        filter: `blur(${4 + 4 * swoopTail}px)`,
-                      }}
                     />
                   );
                 })()}
@@ -485,10 +457,6 @@ export default function PrayerTimer() {
                 <stop offset="0%" stopColor="#FF6A00" />
                 <stop offset="50%" stopColor="#FFBE00" />
                 <stop offset="100%" stopColor="#FFF5D4" />
-              </linearGradient>
-              <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FF6A00" stopOpacity="0" />
-                <stop offset="100%" stopColor="#FFBE00" stopOpacity="0.8" />
               </linearGradient>
             </defs>
           </svg>
