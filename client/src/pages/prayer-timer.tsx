@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft, X, Loader2, Play, Pause } from "lucide-react";
+import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown } from "lucide-react";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudio } from "@/hooks/usePrayerAudio";
 
@@ -187,7 +188,10 @@ export default function PrayerTimer() {
     };
   }, [isRunning, totalSeconds]);
 
-  const handleDurationSelect = (minutes: number) => {
+  const handleDurationSelect = async (minutes: number) => {
+    // Haptic feedback
+    try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
+    
     // Cancel any running animations first
     if (countdownAnimationRef.current) {
       cancelAnimationFrame(countdownAnimationRef.current);
@@ -216,7 +220,10 @@ export default function PrayerTimer() {
     setIsIntroAnimating(true);
   };
 
-  const handleStartStop = () => {
+  const handleStartStop = async () => {
+    // Haptic feedback
+    try { await Haptics.impact({ style: ImpactStyle.Medium }); } catch {}
+    
     if (isRunning || isIntroAnimating) {
       // Cancel animations
       if (countdownAnimationRef.current) {
@@ -265,7 +272,10 @@ export default function PrayerTimer() {
     setShowTrackSelector(false);
   };
 
-  const handleAudioToggle = () => {
+  const handleAudioToggle = async () => {
+    // Haptic feedback
+    try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
+    
     if (audioEnabled) {
       pauseAudio();
       setAudioEnabled(false);
@@ -573,9 +583,7 @@ export default function PrayerTimer() {
             onClick={handleAudioToggle}
             className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
             style={{
-              background: audioPlaying
-                ? "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)"
-                : "linear-gradient(180deg, #333 0%, #222 100%)",
+              background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
             }}
             data-testid="button-sound"
           >
@@ -584,7 +592,7 @@ export default function PrayerTimer() {
             ) : audioPlaying ? (
               <Pause className="w-5 h-5 text-white" />
             ) : (
-              <Play className="w-5 h-5 text-white/60 ml-0.5" />
+              <Play className="w-5 h-5 text-white ml-0.5" />
             )}
           </button>
         </div>
@@ -599,10 +607,8 @@ export default function PrayerTimer() {
           }}
           data-testid="container-now-playing"
         >
-          {audioPlaying ? (
+          {audioPlaying && (
             <SoundWaveIcon isActive={true} />
-          ) : (
-            <Play className="w-4 h-4 text-white/50" />
           )}
           <span 
             className="text-white/70 text-xs truncate max-w-[200px]"
@@ -611,6 +617,7 @@ export default function PrayerTimer() {
           >
             {audioPlaying && currentTrack ? currentTrack : "Tap to pick music"}
           </span>
+          <ChevronDown className="w-4 h-4 text-white/50" style={{ marginTop: "1px" }} />
         </button>
       </div>
 
