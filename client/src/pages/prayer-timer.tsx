@@ -52,6 +52,8 @@ export default function PrayerTimer() {
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
   const pausedTimeRemainingRef = useRef<number | null>(null);
+  // Animation generation counter - incremented on each restart to abort stale callbacks
+  const animationGenerationRef = useRef(0);
 
   const {
     isPlaying: audioPlaying,
@@ -77,12 +79,19 @@ export default function PrayerTimer() {
   useEffect(() => {
     if (!isIntroAnimating) return;
     
+    // Capture current generation - if it changes mid-animation, abort
+    const currentGeneration = animationGenerationRef.current;
     const startTime = performance.now();
     const swoopDuration = 1000; // Head takes 1s to complete the full circle
     const tailStartDelay = 200; // Tail starts after head has a lead
     const tailDuration = 1100; // Tail catches up quickly
     
     const animate = (currentTime: number) => {
+      // CRITICAL: Abort if generation changed (user switched duration)
+      if (animationGenerationRef.current !== currentGeneration) {
+        return;
+      }
+      
       const elapsed = currentTime - startTime;
       
       // Easing functions
@@ -128,7 +137,7 @@ export default function PrayerTimer() {
         cancelAnimationFrame(introAnimationRef.current);
       }
     };
-  }, [isIntroAnimating, animationKey, audioEnabled, startWithTimer, selectedDuration]);
+  }, [isIntroAnimating, animationKey]);
 
   // Smooth progress animation using requestAnimationFrame
   useEffect(() => {
@@ -140,6 +149,9 @@ export default function PrayerTimer() {
       return;
     }
     
+    // Capture current generation - if it changes, abort
+    const currentGeneration = animationGenerationRef.current;
+    
     // Use existing start time or create new one
     const startTime = timerStartRef.current || performance.now();
     if (!timerStartRef.current) {
@@ -149,6 +161,10 @@ export default function PrayerTimer() {
     const totalMs = totalSeconds * 1000;
     
     const animateProgress = (currentTime: number) => {
+      // CRITICAL: Abort if generation changed (user switched duration)
+      if (animationGenerationRef.current !== currentGeneration) {
+        return;
+      }
       if (!isRunning) return;
       
       const elapsed = currentTime - startTime;
@@ -189,7 +205,10 @@ export default function PrayerTimer() {
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
-    // Cancel any running animations first
+    // CRITICAL: Increment generation FIRST to abort any in-flight animation callbacks
+    animationGenerationRef.current += 1;
+    
+    // Cancel any running animations
     if (countdownAnimationRef.current) {
       cancelAnimationFrame(countdownAnimationRef.current);
       countdownAnimationRef.current = null;
@@ -203,16 +222,18 @@ export default function PrayerTimer() {
     pauseAudio();
     pausedTimeRemainingRef.current = null;
     
-    // Reset all state synchronously - increment animationKey FIRST to force effect re-run
-    setAnimationKey(prev => prev + 1);
+    // Reset all state synchronously
     setIsRunning(false);
+    setIsIntroAnimating(false); // Set false first to ensure clean restart
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
     setSwoopHead(0);
     setSwoopTail(0);
     setSmoothProgress(0);
     timerStartRef.current = null;
-    // Set intro animating LAST after all other state is reset
+    
+    // Increment animationKey and set animating in next tick to ensure effect re-runs
+    setAnimationKey(prev => prev + 1);
     setIsIntroAnimating(true);
   };
 
