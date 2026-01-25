@@ -517,7 +517,7 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4" style={{ marginTop: "35px" }}>
+        <div className="flex items-center gap-4 mt-5">
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
@@ -552,8 +552,8 @@ export default function PrayerTimer() {
         {currentTrack && audioPlaying && (
           <button 
             onClick={() => setShowTrackSelector(true)}
-            className="flex items-center gap-2 mt-4 px-4 py-2 rounded-full"
-            style={{ background: "rgba(255,255,255,0.1)" }}
+            className="flex items-center gap-2 px-4 py-2 rounded-full"
+            style={{ background: "rgba(255,255,255,0.1)", marginTop: "30px" }}
             data-testid="container-now-playing"
           >
             <SoundWaveIcon isActive={true} />
