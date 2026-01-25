@@ -223,12 +223,13 @@ export const pushTokens = pgTable("push_tokens", {
 
 // notification_types - company-configurable notification types
 export const notificationTypes = pgTable("notification_types", {
-  id: text("id").primaryKey(), // 'verse_of_week', 'call_to_prayer'
+  id: text("id").primaryKey(), // 'verse_of_week', 'verse_of_day', 'announcement'
   name: text("name").notNull(), // "Verse of the Week"
   description: text("description"), // "Receive a weekly inspiring verse"
   defaultEnabled: boolean("default_enabled").notNull().default(true),
   sendDay: integer("send_day"), // 0-6 (0=Sunday, 2=Tuesday) - null means daily
   sendHour: integer("send_hour").notNull(), // 0-23 (8 = 8am local time)
+  priority: integer("priority").notNull().default(5), // Higher priority wins on collision (10=weekly, 5=daily)
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
