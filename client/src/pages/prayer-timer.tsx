@@ -589,28 +589,29 @@ export default function PrayerTimer() {
           </button>
         </div>
 
-        {/* Now Playing indicator */}
-        {currentTrack && audioPlaying && (
-          <button 
-            onClick={() => setShowTrackSelector(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-full"
-            style={{ 
-              background: "rgba(255,255,255,0.1)", 
-              marginTop: `${BUTTON_POSITIONS.nowPlaying.marginTop}px`,
-              animation: "fadeSlideIn 0.4s ease-out",
-            }}
-            data-testid="container-now-playing"
-          >
+        {/* Now Playing / Pick Music indicator */}
+        <button 
+          onClick={() => setShowTrackSelector(true)}
+          className="flex items-center gap-2 px-4 py-2 rounded-full"
+          style={{ 
+            background: "rgba(255,255,255,0.1)", 
+            marginTop: `${BUTTON_POSITIONS.nowPlaying.marginTop}px`,
+          }}
+          data-testid="container-now-playing"
+        >
+          {audioPlaying ? (
             <SoundWaveIcon isActive={true} />
-            <span 
-              className="text-white/70 text-xs truncate max-w-[200px]"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-              data-testid="text-now-playing"
-            >
-              {currentTrack}
-            </span>
-          </button>
-        )}
+          ) : (
+            <Play className="w-4 h-4 text-white/50" />
+          )}
+          <span 
+            className="text-white/70 text-xs truncate max-w-[200px]"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+            data-testid="text-now-playing"
+          >
+            {audioPlaying && currentTrack ? currentTrack : "Tap to pick music"}
+          </span>
+        </button>
       </div>
 
       {/* Track Selector Sheet */}
