@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Volume2, VolumeX, Music, Loader2 } from "lucide-react";
 import maryImage from "@assets/Mary_1769243057081.png";
-import soundIcon from "@assets/Sound_Icon_1769243057081.png";
+import { usePrayerAudio } from "@/hooks/usePrayerAudio";
 
 const DURATION_OPTIONS = [
   { label: "5 MIN", minutes: 5 },
@@ -19,10 +19,20 @@ export default function PrayerTimer() {
   const [swoopHead, setSwoopHead] = useState(0);
   const [swoopTail, setSwoopTail] = useState(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0); // Trigger for restarting animations
+  const [animationKey, setAnimationKey] = useState(0);
+  const [audioEnabled, setAudioEnabled] = useState(true);
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
+
+  const {
+    isPlaying: audioPlaying,
+    currentTrack,
+    isLoading: audioLoading,
+    toggle: toggleAudio,
+    fadeOutAndStop,
+    startWithTimer,
+  } = usePrayerAudio();
 
   const totalSeconds = selectedDuration * 60;
 
@@ -68,6 +78,10 @@ export default function PrayerTimer() {
         setSwoopHead(0);
         setSwoopTail(0);
         setIsRunning(true);
+        // Start audio when timer begins (if enabled)
+        if (audioEnabled) {
+          startWithTimer(selectedDuration * 60);
+        }
         return;
       }
       
@@ -81,7 +95,7 @@ export default function PrayerTimer() {
         cancelAnimationFrame(introAnimationRef.current);
       }
     };
-  }, [isIntroAnimating, animationKey]);
+  }, [isIntroAnimating, animationKey, audioEnabled, startWithTimer, selectedDuration]);
 
   // Smooth progress animation using requestAnimationFrame
   useEffect(() => {
@@ -149,6 +163,9 @@ export default function PrayerTimer() {
       introAnimationRef.current = null;
     }
     
+    // Fully stop and reset audio when switching durations
+    fadeOutAndStop();
+    
     // Reset all state
     setIsRunning(false);
     setSelectedDuration(minutes);
@@ -175,6 +192,9 @@ export default function PrayerTimer() {
         introAnimationRef.current = null;
       }
       
+      // Fade out and stop audio
+      fadeOutAndStop();
+      
       setIsRunning(false);
       setIsIntroAnimating(false);
       setSwoopHead(0);
@@ -188,6 +208,14 @@ export default function PrayerTimer() {
       setSmoothProgress(0);
       timerStartRef.current = null;
       setIsIntroAnimating(true);
+    }
+  };
+
+  const handleAudioToggle = () => {
+    if (isRunning) {
+      toggleAudio();
+    } else {
+      setAudioEnabled(!audioEnabled);
     }
   };
 
@@ -450,19 +478,42 @@ export default function PrayerTimer() {
           </button>
 
           <button
-            className="w-[52px] h-[52px] rounded-full flex items-center justify-center"
+            onClick={handleAudioToggle}
+            className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
             style={{
-              background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
+              background: (isRunning ? audioPlaying : audioEnabled) 
+                ? "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)"
+                : "linear-gradient(180deg, #333 0%, #222 100%)",
             }}
             data-testid="button-sound"
           >
-            <img
-              src={soundIcon}
-              alt="Sound"
-              className="w-5 h-5"
-            />
+            {audioLoading ? (
+              <Loader2 className="w-5 h-5 text-white animate-spin" />
+            ) : (isRunning ? audioPlaying : audioEnabled) ? (
+              <Volume2 className="w-5 h-5 text-white" />
+            ) : (
+              <VolumeX className="w-5 h-5 text-white/60" />
+            )}
           </button>
         </div>
+
+        {/* Now Playing indicator */}
+        {currentTrack && audioPlaying && (
+          <div 
+            className="flex items-center gap-2 mt-4 px-4 py-2 rounded-full"
+            style={{ background: "rgba(255,255,255,0.1)" }}
+            data-testid="container-now-playing"
+          >
+            <Music className="w-4 h-4 text-[#FFBE00]" />
+            <span 
+              className="text-white/70 text-xs truncate max-w-[200px]"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+              data-testid="text-now-playing"
+            >
+              {currentTrack}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
