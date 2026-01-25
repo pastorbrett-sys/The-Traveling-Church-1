@@ -19,6 +19,7 @@ export default function PrayerTimer() {
   const [swoopHead, setSwoopHead] = useState(0);
   const [swoopTail, setSwoopTail] = useState(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
+  const [animationKey, setAnimationKey] = useState(0); // Trigger for restarting animations
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
@@ -26,6 +27,7 @@ export default function PrayerTimer() {
   const totalSeconds = selectedDuration * 60;
 
   // Intro swoop animation - fluid wooshy effect with collapsing tail
+  // Uses animationKey to force restart when duration changes
   useEffect(() => {
     if (!isIntroAnimating) return;
     
@@ -79,7 +81,7 @@ export default function PrayerTimer() {
         cancelAnimationFrame(introAnimationRef.current);
       }
     };
-  }, [isIntroAnimating]);
+  }, [isIntroAnimating, animationKey]);
 
   // Smooth progress animation using requestAnimationFrame
   useEffect(() => {
@@ -156,11 +158,9 @@ export default function PrayerTimer() {
     setSmoothProgress(0);
     timerStartRef.current = null;
     
-    // Force re-trigger by setting false first, then true on next tick
-    setIsIntroAnimating(false);
-    requestAnimationFrame(() => {
-      setIsIntroAnimating(true);
-    });
+    // Increment key to force effect re-run even if isIntroAnimating is already true
+    setAnimationKey(prev => prev + 1);
+    setIsIntroAnimating(true);
   };
 
   const handleStartStop = () => {
