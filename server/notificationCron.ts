@@ -154,7 +154,8 @@ async function processNotificationType(
       verse.bookId,
       verse.chapter,
       verse.verse,
-      verse.book
+      verse.book,
+      'verse_of_day'
     );
   } else {
     payload = {

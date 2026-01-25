@@ -327,7 +327,8 @@ router.post("/admin/test-daily-verse", async (req: Request, res: Response) => {
       verse.bookId,
       verse.chapter,
       verse.verse,
-      verse.book
+      verse.book,
+      'verse_of_day'
     );
 
     // Send to all specified tokens

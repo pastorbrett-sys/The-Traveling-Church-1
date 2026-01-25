@@ -237,7 +237,7 @@ export async function sendBatchNotifications(
   }
 }
 
-// Verse of the Week notification images (hosted in client/public/)
+// Verse notification images (hosted in client/public/)
 const VERSE_OF_WEEK_IMAGE_IOS = 'https://vagabondbible.com/verse-of-the-week-notification.png';
 const VERSE_OF_WEEK_IMAGE_ANDROID = 'https://vagabondbible.com/verse-of-the-week-android.png';
 
@@ -247,18 +247,22 @@ export function buildVerseNotificationPayload(
   bookId: number,
   chapter: number,
   verse: number,
-  bookName?: string
+  bookName?: string,
+  notificationType: 'verse_of_week' | 'verse_of_day' = 'verse_of_week'
 ): NotificationPayload {
   const shortText = verseText.length > 100 ? verseText.substring(0, 97) + '...' : verseText;
   
+  const isDaily = notificationType === 'verse_of_day';
+  const title = isDaily ? '🌅 Verse of the Day' : '✨ Verse of the Week';
+  
   return {
-    title: '✨ Verse of the Week',
+    title,
     body: `${shortText} - ${verseRef}`,
-    imageUrl: VERSE_OF_WEEK_IMAGE_IOS, // Will be swapped to Android version in send functions
+    imageUrl: isDaily ? undefined : VERSE_OF_WEEK_IMAGE_IOS, // Only weekly has graphic
     data: {
-      type: 'verse_of_week',
+      type: notificationType,
       bookId: String(bookId),
-      bookName: bookName || '', // Include book name for reliable lookup
+      bookName: bookName || '',
       chapter: String(chapter),
       verse: String(verse),
       verseRef,
