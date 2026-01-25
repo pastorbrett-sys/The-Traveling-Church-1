@@ -114,10 +114,7 @@ export default function PrayerTimer() {
         setSwoopHead(0);
         setSwoopTail(0);
         setIsRunning(true);
-        // Start audio when timer begins (if enabled)
-        if (audioEnabled) {
-          startWithTimer(selectedDuration * 60);
-        }
+        // Audio only plays when user taps the play button
         return;
       }
       
