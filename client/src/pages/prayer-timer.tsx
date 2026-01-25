@@ -281,9 +281,9 @@ export default function PrayerTimer() {
       setAudioEnabled(false);
     } else {
       setAudioEnabled(true);
-      if (isRunning) {
-        resumeWithTimer(timeRemaining);
-      }
+      // Start audio regardless of timer state - use current timer or a long duration if not running
+      const duration = isRunning ? timeRemaining : 60 * 60; // 1 hour if timer not running
+      resumeWithTimer(duration);
     }
   };
 
