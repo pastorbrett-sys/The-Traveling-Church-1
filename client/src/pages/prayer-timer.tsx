@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown } from "lucide-react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
@@ -40,11 +40,10 @@ export default function PrayerTimer() {
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [timeRemaining, setTimeRemaining] = useState(5 * 60);
   const [isRunning, setIsRunning] = useState(false);
-  const [isIntroAnimating, setIsIntroAnimating] = useState(true);
+  const [isIntroAnimating, setIsIntroAnimating] = useState(false);
   const [swoopHead, setSwoopHead] = useState(0);
   const [swoopTail, setSwoopTail] = useState(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [showTrackSelector, setShowTrackSelector] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -52,8 +51,10 @@ export default function PrayerTimer() {
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
   const pausedTimeRemainingRef = useRef<number | null>(null);
-  // Animation generation counter - incremented on each restart to abort stale callbacks
-  const animationGenerationRef = useRef(0);
+  // Mutable ref to track current animation session - callbacks check this to abort
+  const animationSessionRef = useRef<object | null>(null);
+  // Flag to trigger intro animation start
+  const shouldStartIntroRef = useRef(true);
 
   const {
     isPlaying: audioPlaying,
@@ -74,56 +75,99 @@ export default function PrayerTimer() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Intro swoop animation - fluid wooshy effect with collapsing tail
-  // Uses animationKey to force restart when duration changes
-  useEffect(() => {
-    if (!isIntroAnimating) return;
+  // Use a ref to hold the current selectedDuration for animations
+  const selectedDurationRef = useRef(selectedDuration);
+  selectedDurationRef.current = selectedDuration;
+
+  // Function to start intro animation - called directly, not through state
+  const startIntroAnimation = useCallback(() => {
+    // Cancel any existing animations
+    if (introAnimationRef.current) {
+      cancelAnimationFrame(introAnimationRef.current);
+      introAnimationRef.current = null;
+    }
+    if (countdownAnimationRef.current) {
+      cancelAnimationFrame(countdownAnimationRef.current);
+      countdownAnimationRef.current = null;
+    }
     
-    // Capture current generation - if it changes mid-animation, abort
-    const currentGeneration = animationGenerationRef.current;
+    // Create new session - old callbacks will see their session is stale
+    const session = {};
+    animationSessionRef.current = session;
+    
+    // Reset state
+    setSwoopHead(0);
+    setSwoopTail(0);
+    setSmoothProgress(0);
+    setIsRunning(false);
+    setIsIntroAnimating(true);
+    timerStartRef.current = null;
+    
     const startTime = performance.now();
-    const swoopDuration = 1000; // Head takes 1s to complete the full circle
-    const tailStartDelay = 200; // Tail starts after head has a lead
-    const tailDuration = 1100; // Tail catches up quickly
+    const swoopDuration = 1000;
+    const tailStartDelay = 200;
+    const tailDuration = 1100;
     
     const animate = (currentTime: number) => {
-      // CRITICAL: Abort if generation changed (user switched duration)
-      if (animationGenerationRef.current !== currentGeneration) {
+      // Abort if session changed (user switched duration or stopped)
+      if (animationSessionRef.current !== session) {
         return;
       }
       
       const elapsed = currentTime - startTime;
       
-      // Easing functions
       const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
       const easeInCubic = (t: number) => t * t * t;
       
-      // Head position - swoops around the full circle with wooshy easing
       const headRaw = Math.min(elapsed / swoopDuration, 1);
       const headPos = easeOutQuart(headRaw);
       
-      // Tail position - starts slow, then accelerates to catch up
       const tailElapsed = Math.max(0, elapsed - tailStartDelay);
       const tailRaw = Math.min(tailElapsed / tailDuration, 1);
-      // Tail accelerates aggressively - easeInCubic for faster catch-up
       const tailPos = easeInCubic(tailRaw);
       
       setSwoopHead(headPos);
       setSwoopTail(tailPos);
       
-      // When tail catches up to about 90%, immediately end swoosh and start timer
-      // No delay - instant transition
       if (tailPos >= 0.92) {
-        // Set timer start time BEFORE state changes so countdown starts immediately
+        // Transition to countdown - inline the countdown start here
+        // Read duration from ref to get current value
+        const duration = selectedDurationRef.current;
         timerStartRef.current = performance.now();
-        // Give a small initial progress so the arc is immediately visible
         setSmoothProgress(0.001);
-        // Instantly switch from swoosh to timer - no gap
         setIsIntroAnimating(false);
         setSwoopHead(0);
         setSwoopTail(0);
         setIsRunning(true);
-        // Audio only plays when user taps the play button
+        
+        const countdownStartTime = timerStartRef.current;
+        const totalMs = duration * 60 * 1000;
+        
+        const animateCountdown = (countdownTime: number) => {
+          if (animationSessionRef.current !== session) return;
+          
+          const countdownElapsed = countdownTime - countdownStartTime;
+          const t = Math.min(countdownElapsed / totalMs, 1);
+          
+          const burstPeak = 0.085;
+          const burstContribution = burstPeak * Math.pow(1 - t, 3);
+          const newProgress = Math.min(t + burstContribution, 1);
+          
+          setSmoothProgress(newProgress);
+          
+          const newTimeRemaining = Math.max(0, duration * 60 - Math.floor(countdownElapsed / 1000));
+          setTimeRemaining(prev => prev !== newTimeRemaining ? newTimeRemaining : prev);
+          
+          if (newProgress < 1) {
+            countdownAnimationRef.current = requestAnimationFrame(animateCountdown);
+          } else {
+            setIsRunning(false);
+            setTimeRemaining(0);
+            animationSessionRef.current = null;
+          }
+        };
+        
+        countdownAnimationRef.current = requestAnimationFrame(animateCountdown);
         return;
       }
       
@@ -131,56 +175,70 @@ export default function PrayerTimer() {
     };
     
     introAnimationRef.current = requestAnimationFrame(animate);
-    
-    return () => {
-      if (introAnimationRef.current) {
-        cancelAnimationFrame(introAnimationRef.current);
-      }
-    };
-  }, [isIntroAnimating, animationKey]);
+  }, []);
 
-  // Smooth progress animation using requestAnimationFrame
+  // Start intro on mount
   useEffect(() => {
-    if (!isRunning) {
-      if (countdownAnimationRef.current) {
-        cancelAnimationFrame(countdownAnimationRef.current);
-        countdownAnimationRef.current = null;
-      }
-      return;
+    if (shouldStartIntroRef.current) {
+      shouldStartIntroRef.current = false;
+      startIntroAnimation();
     }
+  }, [startIntroAnimation]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (introAnimationRef.current) cancelAnimationFrame(introAnimationRef.current);
+      if (countdownAnimationRef.current) cancelAnimationFrame(countdownAnimationRef.current);
+      animationSessionRef.current = null;
+    };
+  }, []);
+
+  const handleDurationSelect = async (minutes: number) => {
+    // Haptic feedback
+    try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
-    // Capture current generation - if it changes, abort
-    const currentGeneration = animationGenerationRef.current;
+    // Pause audio when switching durations
+    pauseAudio();
+    pausedTimeRemainingRef.current = null;
     
-    // Use existing start time or create new one
-    const startTime = timerStartRef.current || performance.now();
-    if (!timerStartRef.current) {
-      timerStartRef.current = startTime;
-    }
+    // Update selected duration
+    setSelectedDuration(minutes);
+    setTimeRemaining(minutes * 60);
     
-    const totalMs = totalSeconds * 1000;
+    // Start fresh intro animation - this handles all cancellation and state reset
+    startIntroAnimation();
+  };
+
+  // Function to resume countdown from paused position
+  const resumeCountdown = useCallback(() => {
+    if (pausedTimeRemainingRef.current === null) return;
+    
+    const session = {};
+    animationSessionRef.current = session;
+    
+    const remainingSeconds = pausedTimeRemainingRef.current;
+    const elapsedSeconds = selectedDuration * 60 - remainingSeconds;
+    timerStartRef.current = performance.now() - elapsedSeconds * 1000;
+    
+    setIsRunning(true);
+    
+    const startTime = timerStartRef.current;
+    const totalMs = selectedDuration * 60 * 1000;
     
     const animateProgress = (currentTime: number) => {
-      // CRITICAL: Abort if generation changed (user switched duration)
-      if (animationGenerationRef.current !== currentGeneration) {
-        return;
-      }
-      if (!isRunning) return;
+      if (animationSessionRef.current !== session) return;
       
       const elapsed = currentTime - startTime;
-      const t = Math.min(elapsed / totalMs, 1); // Normalized time 0-1
+      const t = Math.min(elapsed / totalMs, 1);
       
-      // Smooth continuous easing with visible burst to ~1 o'clock position
-      // Uses a custom curve: fast initial burst that smoothly blends to linear
-      // The burst peaks early then gradually settles into natural pace
-      const burstPeak = 0.085; // ~1 o'clock position (1/12 of circle)
-      const burstContribution = burstPeak * Math.pow(1 - t, 3); // Cubic decay for smooth settle
+      const burstPeak = 0.085;
+      const burstContribution = burstPeak * Math.pow(1 - t, 3);
       const newProgress = Math.min(t + burstContribution, 1);
       
       setSmoothProgress(newProgress);
       
-      // Update timeRemaining for display (every second)
-      const newTimeRemaining = Math.max(0, totalSeconds - Math.floor(elapsed / 1000));
+      const newTimeRemaining = Math.max(0, selectedDuration * 60 - Math.floor(elapsed / 1000));
       setTimeRemaining(prev => prev !== newTimeRemaining ? newTimeRemaining : prev);
       
       if (newProgress < 1) {
@@ -188,61 +246,22 @@ export default function PrayerTimer() {
       } else {
         setIsRunning(false);
         setTimeRemaining(0);
+        animationSessionRef.current = null;
       }
     };
     
-    // Start immediately
     countdownAnimationRef.current = requestAnimationFrame(animateProgress);
-    
-    return () => {
-      if (countdownAnimationRef.current) {
-        cancelAnimationFrame(countdownAnimationRef.current);
-      }
-    };
-  }, [isRunning, totalSeconds]);
-
-  const handleDurationSelect = async (minutes: number) => {
-    // Haptic feedback
-    try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
-    
-    // CRITICAL: Increment generation FIRST to abort any in-flight animation callbacks
-    animationGenerationRef.current += 1;
-    
-    // Cancel any running animations
-    if (countdownAnimationRef.current) {
-      cancelAnimationFrame(countdownAnimationRef.current);
-      countdownAnimationRef.current = null;
-    }
-    if (introAnimationRef.current) {
-      cancelAnimationFrame(introAnimationRef.current);
-      introAnimationRef.current = null;
-    }
-    
-    // Pause audio when switching durations
-    pauseAudio();
     pausedTimeRemainingRef.current = null;
-    
-    // Reset all state synchronously
-    setIsRunning(false);
-    setIsIntroAnimating(false); // Set false first to ensure clean restart
-    setSelectedDuration(minutes);
-    setTimeRemaining(minutes * 60);
-    setSwoopHead(0);
-    setSwoopTail(0);
-    setSmoothProgress(0);
-    timerStartRef.current = null;
-    
-    // Increment animationKey and set animating in next tick to ensure effect re-runs
-    setAnimationKey(prev => prev + 1);
-    setIsIntroAnimating(true);
-  };
+  }, [selectedDuration]);
 
   const handleStartStop = async () => {
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Medium }); } catch {}
     
     if (isRunning || isIntroAnimating) {
-      // Cancel animations
+      // Stop/Pause - invalidate current session
+      animationSessionRef.current = null;
+      
       if (countdownAnimationRef.current) {
         cancelAnimationFrame(countdownAnimationRef.current);
         countdownAnimationRef.current = null;
@@ -252,31 +271,22 @@ export default function PrayerTimer() {
         introAnimationRef.current = null;
       }
       
-      // Pause audio (keep position) instead of stopping
       pauseAudio();
       pausedTimeRemainingRef.current = timeRemaining;
       
       setIsRunning(false);
       setIsIntroAnimating(false);
     } else {
-      // Check if we have a paused position to resume from
+      // Start - check if resuming or fresh start
       if (pausedTimeRemainingRef.current !== null && smoothProgress > 0) {
         // Resume from paused position
-        timerStartRef.current = performance.now() - (totalSeconds - pausedTimeRemainingRef.current) * 1000;
-        setIsRunning(true);
+        resumeCountdown();
         if (audioEnabled) {
-          resumeWithTimer(pausedTimeRemainingRef.current);
+          resumeWithTimer(pausedTimeRemainingRef.current || timeRemaining);
         }
-        pausedTimeRemainingRef.current = null;
       } else {
         // Fresh start
-        setTimeRemaining(selectedDuration * 60);
-        setSwoopHead(0);
-        setSwoopTail(0);
-        setSmoothProgress(0);
-        timerStartRef.current = null;
-        pausedTimeRemainingRef.current = null;
-        setIsIntroAnimating(true);
+        startIntroAnimation();
       }
     }
   };
