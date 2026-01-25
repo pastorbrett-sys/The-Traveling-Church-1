@@ -496,7 +496,7 @@ export default function PrayerTimer() {
             <button
               key={option.minutes}
               onClick={() => handleDurationSelect(option.minutes)}
-              className="h-9 px-5 rounded-full text-sm tracking-wide transition-all"
+              className="h-11 min-w-[80px] px-5 rounded-full text-sm tracking-wide transition-all"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 ...(selectedDuration === option.minutes
@@ -517,7 +517,7 @@ export default function PrayerTimer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4 mt-5">
+        <div className="flex items-center gap-4" style={{ marginTop: "25px" }}>
           <button
             onClick={handleStartStop}
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
