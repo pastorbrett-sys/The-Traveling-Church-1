@@ -553,7 +553,7 @@ export default function PrayerTimer() {
           <button 
             onClick={() => setShowTrackSelector(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-full"
-            style={{ background: "rgba(255,255,255,0.1)", marginTop: "26px" }}
+            style={{ background: "rgba(255,255,255,0.1)", marginTop: "18px" }}
             data-testid="container-now-playing"
           >
             <SoundWaveIcon isActive={true} />
