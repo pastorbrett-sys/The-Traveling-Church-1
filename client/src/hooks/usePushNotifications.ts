@@ -92,8 +92,8 @@ export function usePushNotifications(userId: string | null | undefined) {
       return;
     }
     
-    // Handle verse notifications
-    if (data.type === 'verse_of_week' || data.type === 'verse') {
+    // Handle verse notifications (weekly or daily)
+    if (data.type === 'verse_of_week' || data.type === 'verse_of_day' || data.type === 'verse') {
       const bookId = data.bookId;
       const bookName = data.bookName;
       const chapter = data.chapter;
