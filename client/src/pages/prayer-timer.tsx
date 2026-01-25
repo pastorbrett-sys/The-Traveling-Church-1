@@ -202,7 +202,9 @@ export default function PrayerTimer() {
     pauseAudio();
     pausedTimeRemainingRef.current = null;
     
-    // Update selected duration
+    // Update duration - MUST update ref BEFORE calling startIntroAnimation
+    // because React state update is async but the animation reads the ref immediately
+    selectedDurationRef.current = minutes;
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
     
