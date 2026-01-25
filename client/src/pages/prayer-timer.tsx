@@ -203,21 +203,17 @@ export default function PrayerTimer() {
     pauseAudio();
     pausedTimeRemainingRef.current = null;
     
-    // Reset all state synchronously
+    // Reset all state synchronously - increment animationKey FIRST to force effect re-run
+    setAnimationKey(prev => prev + 1);
     setIsRunning(false);
-    setIsIntroAnimating(false);
     setSelectedDuration(minutes);
     setTimeRemaining(minutes * 60);
     setSwoopHead(0);
     setSwoopTail(0);
     setSmoothProgress(0);
     timerStartRef.current = null;
-    
-    // Use setTimeout to ensure the false state is processed before triggering animation
-    setTimeout(() => {
-      setAnimationKey(prev => prev + 1);
-      setIsIntroAnimating(true);
-    }, 0);
+    // Set intro animating LAST after all other state is reset
+    setIsIntroAnimating(true);
   };
 
   const handleStartStop = async () => {
