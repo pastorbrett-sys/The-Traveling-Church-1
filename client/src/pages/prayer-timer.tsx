@@ -347,6 +347,7 @@ export default function PrayerTimer() {
       <button
         onClick={() => setLocation("/")}
         className="flex items-center gap-1 px-4 py-3 self-start"
+        style={{ marginTop: "7px" }}
         data-testid="button-back"
       >
         <ChevronLeft className="w-4 h-4 text-white" />
