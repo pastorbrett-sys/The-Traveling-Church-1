@@ -361,7 +361,7 @@ export default function PrayerTimer() {
       {/* Content area - centered vertically */}
       <div 
         className="flex-1 flex flex-col items-center justify-center px-5"
-        style={{ marginTop: "30px" }}
+        style={{ marginTop: "15px" }}
       >
         {/* Title */}
         <h1 
