@@ -9,6 +9,8 @@ import { isVagabondBibleDomain } from "@/lib/host-detection";
 import { DynamicHead } from "@/components/dynamic-head";
 import { PlatformProvider } from "@/contexts/platform-context";
 import { RevenueCatProvider } from "@/contexts/revenuecat-context";
+import { PrayerAudioProvider } from "@/contexts/prayer-audio-context";
+import { FloatingPrayerButton } from "@/components/floating-prayer-button";
 import { PlatformToggle } from "@/components/platform-toggle";
 import { NativeTabBar } from "@/components/native-tab-bar";
 import { OfflineBanner } from "@/components/offline-banner";
@@ -149,18 +151,21 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <PlatformProvider>
         <RevenueCatProvider>
-          <TooltipProvider>
-            <DynamicHead />
-            <ScrollToTop />
-            <DeepLinkHandler />
-            <ReferralHandler />
-            <PushNotificationsHandler />
-            <Toaster />
-            <OfflineBanner />
-            <Router />
-            <NativeTabBar />
-            <PlatformToggle />
-          </TooltipProvider>
+          <PrayerAudioProvider>
+            <TooltipProvider>
+              <DynamicHead />
+              <ScrollToTop />
+              <DeepLinkHandler />
+              <ReferralHandler />
+              <PushNotificationsHandler />
+              <Toaster />
+              <OfflineBanner />
+              <Router />
+              <NativeTabBar />
+              <FloatingPrayerButton />
+              <PlatformToggle />
+            </TooltipProvider>
+          </PrayerAudioProvider>
         </RevenueCatProvider>
       </PlatformProvider>
     </QueryClientProvider>

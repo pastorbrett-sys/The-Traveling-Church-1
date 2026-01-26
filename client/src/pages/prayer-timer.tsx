@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown } from "lucide-react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
-import { usePrayerAudio } from "@/hooks/usePrayerAudio";
+import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
 
 function SoundWaveIcon({ isActive }: { isActive: boolean }) {
   return (
@@ -65,7 +65,7 @@ export default function PrayerTimer() {
     startWithTimer,
     resumeWithTimer,
     selectTrack,
-  } = usePrayerAudio();
+  } = usePrayerAudioContext();
 
   const totalSeconds = selectedDuration * 60;
 
