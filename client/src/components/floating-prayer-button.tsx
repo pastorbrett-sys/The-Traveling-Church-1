@@ -77,15 +77,15 @@ function AudioBars() {
   return (
     <div className="flex items-end justify-center gap-[3px] h-5">
       <div 
-        className="w-[3px] bg-black rounded-full animate-audio-bar-1"
+        className="w-[3px] bg-white rounded-full animate-audio-bar-1"
         style={{ height: "100%" }}
       />
       <div 
-        className="w-[3px] bg-black rounded-full animate-audio-bar-2"
+        className="w-[3px] bg-white rounded-full animate-audio-bar-2"
         style={{ height: "100%" }}
       />
       <div 
-        className="w-[3px] bg-black rounded-full animate-audio-bar-3"
+        className="w-[3px] bg-white rounded-full animate-audio-bar-3"
         style={{ height: "100%" }}
       />
     </div>
