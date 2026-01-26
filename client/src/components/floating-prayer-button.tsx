@@ -32,20 +32,33 @@ function setStoredCorner(corner: Corner) {
   } catch {}
 }
 
+function getSafeAreaInsets() {
+  const style = getComputedStyle(document.documentElement);
+  return {
+    top: parseInt(style.getPropertyValue('--sat') || '0', 10) || 0,
+    bottom: parseInt(style.getPropertyValue('--sab') || '0', 10) || 0,
+    left: parseInt(style.getPropertyValue('--sal') || '0', 10) || 0,
+    right: parseInt(style.getPropertyValue('--sar') || '0', 10) || 0,
+  };
+}
+
 function getCornerPosition(corner: Corner, windowWidth: number, windowHeight: number): Position {
-  const safeTop = 60;
-  const safeBottom = 100;
+  const safeArea = getSafeAreaInsets();
+  const safeTop = Math.max(60, safeArea.top + 10);
+  const safeBottom = Math.max(100, safeArea.bottom + 20);
+  const safeLeft = Math.max(EDGE_PADDING, safeArea.left + EDGE_PADDING);
+  const safeRight = Math.max(EDGE_PADDING, safeArea.right + EDGE_PADDING);
   
   switch (corner) {
     case "top-left":
-      return { x: EDGE_PADDING, y: safeTop };
+      return { x: safeLeft, y: safeTop };
     case "top-right":
-      return { x: windowWidth - BUTTON_SIZE - EDGE_PADDING, y: safeTop };
+      return { x: windowWidth - BUTTON_SIZE - safeRight, y: safeTop };
     case "bottom-left":
-      return { x: EDGE_PADDING, y: windowHeight - BUTTON_SIZE - safeBottom };
+      return { x: safeLeft, y: windowHeight - BUTTON_SIZE - safeBottom };
     case "bottom-right":
     default:
-      return { x: windowWidth - BUTTON_SIZE - EDGE_PADDING, y: windowHeight - BUTTON_SIZE - safeBottom };
+      return { x: windowWidth - BUTTON_SIZE - safeRight, y: windowHeight - BUTTON_SIZE - safeBottom };
   }
 }
 
@@ -203,8 +216,14 @@ export function FloatingPrayerButton() {
     lastTimeRef.current = now;
     
     setPosition(prev => {
-      const newX = Math.max(EDGE_PADDING, Math.min(window.innerWidth - BUTTON_SIZE - EDGE_PADDING, prev.x + dx));
-      const newY = Math.max(60, Math.min(window.innerHeight - BUTTON_SIZE - 100, prev.y + dy));
+      const safeArea = getSafeAreaInsets();
+      const minX = Math.max(EDGE_PADDING, safeArea.left + EDGE_PADDING);
+      const maxX = window.innerWidth - BUTTON_SIZE - Math.max(EDGE_PADDING, safeArea.right + EDGE_PADDING);
+      const minY = Math.max(60, safeArea.top + 10);
+      const maxY = window.innerHeight - BUTTON_SIZE - Math.max(100, safeArea.bottom + 20);
+      
+      const newX = Math.max(minX, Math.min(maxX, prev.x + dx));
+      const newY = Math.max(minY, Math.min(maxY, prev.y + dy));
       return { x: newX, y: newY };
     });
   }, [isDragging]);
@@ -226,10 +245,11 @@ export function FloatingPrayerButton() {
         let newX = prev.x + velX;
         let newY = prev.y + velY;
         
-        const minX = EDGE_PADDING;
-        const maxX = window.innerWidth - BUTTON_SIZE - EDGE_PADDING;
-        const minY = 60;
-        const maxY = window.innerHeight - BUTTON_SIZE - 100;
+        const safeArea = getSafeAreaInsets();
+        const minX = Math.max(EDGE_PADDING, safeArea.left + EDGE_PADDING);
+        const maxX = window.innerWidth - BUTTON_SIZE - Math.max(EDGE_PADDING, safeArea.right + EDGE_PADDING);
+        const minY = Math.max(60, safeArea.top + 10);
+        const maxY = window.innerHeight - BUTTON_SIZE - Math.max(100, safeArea.bottom + 20);
         
         if (newX < minX) { newX = minX; velX = 0; }
         if (newX > maxX) { newX = maxX; velX = 0; }
@@ -288,6 +308,10 @@ export function FloatingPrayerButton() {
         top: position.y,
         transform: isDragging ? "scale(1.1)" : "scale(1)",
         transition: isDragging ? "none" : "transform 0.2s ease",
+        touchAction: "none",
+        WebkitUserSelect: "none",
+        WebkitTouchCallout: "none",
+        willChange: isDragging ? "transform, left, top" : "auto",
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
