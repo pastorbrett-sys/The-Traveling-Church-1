@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
 import { Capacitor } from "@capacitor/core";
 import { CapacitorMusicControls } from "capacitor-music-controls-plugin-v3";
+import { Haptics, NotificationType } from "@capacitor/haptics";
+import { LocalNotifications } from "@capacitor/local-notifications";
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
 const ARTWORK_URL = "https://vagabondbible.com/prayer-artwork.png";
@@ -20,6 +22,117 @@ export const PRAYER_TRACKS = [
 
 const CROSSFADE_DURATION = 3000;
 const END_FADE_DURATION = 5000;
+const CHIME_URL = `${R2_BUCKET_URL}/timer-complete-chime.mp3`;
+
+let chimeAudioElement: HTMLAudioElement | null = null;
+let androidChannelCreated = false;
+
+const setupAndroidChannel = async () => {
+  if (androidChannelCreated || Capacitor.getPlatform() !== 'android') return;
+  
+  try {
+    await LocalNotifications.createChannel({
+      id: 'timer_complete',
+      name: 'Timer Complete',
+      description: 'Prayer timer completion alerts',
+      sound: 'timer_chime.wav',
+      importance: 4,
+      vibration: true,
+    });
+    androidChannelCreated = true;
+  } catch (error) {
+    console.log("[PrayerAudio] Channel creation error:", error);
+  }
+};
+
+const preloadChime = () => {
+  if (Capacitor.isNativePlatform()) {
+    LocalNotifications.requestPermissions().catch(() => {});
+    setupAndroidChannel();
+  }
+  
+  if (!chimeAudioElement) {
+    chimeAudioElement = new Audio(CHIME_URL);
+    chimeAudioElement.volume = 0.5;
+    chimeAudioElement.preload = "auto";
+    chimeAudioElement.load();
+  }
+};
+
+const playCompletionChime = async () => {
+  if (Capacitor.isNativePlatform()) {
+    Haptics.notification({ type: NotificationType.Success }).catch(() => {});
+    
+    try {
+      const permission = await LocalNotifications.checkPermissions();
+      
+      if (permission.display === 'granted') {
+        await setupAndroidChannel();
+        await LocalNotifications.schedule({
+          notifications: [{
+            id: Date.now(),
+            title: "Prayer Complete",
+            body: "Your prayer time has ended. Peace be with you.",
+            sound: 'timer_chime.wav',
+            channelId: 'timer_complete',
+            schedule: { at: new Date(Date.now() + 100) },
+          }]
+        });
+      } else {
+        playWebAudioChime();
+      }
+    } catch (error) {
+      console.log("[PrayerAudio] Notification error:", error);
+      playWebAudioChime();
+    }
+  } else {
+    playWebAudioChime();
+  }
+};
+
+const playWebAudioChime = () => {
+  if (chimeAudioElement) {
+    chimeAudioElement.currentTime = 0;
+    chimeAudioElement.play().catch(() => {
+      playFallbackChime();
+    });
+  } else {
+    playFallbackChime();
+  }
+};
+
+const playFallbackChime = () => {
+  try {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    
+    const playTone = (frequency: number, startTime: number, duration: number, volume: number) => {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      
+      gainNode.gain.setValueAtTime(0, startTime);
+      gainNode.gain.linearRampToValueAtTime(volume, startTime + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+      
+      oscillator.start(startTime);
+      oscillator.stop(startTime + duration);
+    };
+    
+    const now = audioContext.currentTime;
+    playTone(528, now, 2.5, 0.3);
+    playTone(396, now + 0.05, 2.3, 0.2);
+    playTone(639, now + 0.1, 2.0, 0.15);
+    
+    setTimeout(() => audioContext.close(), 3000);
+  } catch (error) {
+    console.log("[PrayerAudio] Fallback chime error:", error);
+  }
+};
 
 interface PrayerAudioContextType {
   isPlaying: boolean;
@@ -422,6 +535,8 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
 
   // Global timer functions
   const startGlobalTimer = useCallback((durationMinutes: number) => {
+    preloadChime();
+    
     if (timerIntervalRef.current) {
       clearInterval(timerIntervalRef.current);
     }
@@ -440,6 +555,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
             timerIntervalRef.current = null;
           }
           setIsTimerRunning(false);
+          playCompletionChime();
           return 0;
         }
         return prev - 1;
@@ -458,6 +574,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   const resumeGlobalTimer = useCallback(() => {
     if (timerTimeRemaining <= 0) return;
     
+    preloadChime();
     setIsTimerRunning(true);
     timerIntervalRef.current = window.setInterval(() => {
       setTimerTimeRemaining(prev => {
@@ -467,6 +584,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
             timerIntervalRef.current = null;
           }
           setIsTimerRunning(false);
+          playCompletionChime();
           return 0;
         }
         return prev - 1;
