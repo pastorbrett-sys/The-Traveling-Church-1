@@ -630,7 +630,7 @@ export default function PrayerTimer() {
                 fontFamily: "'Poppins', sans-serif",
                 ...(selectedDuration === option.minutes
                   ? {
-                      background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
+                      backgroundColor: "#c08e00",
                       color: "white",
                     }
                   : {
@@ -660,7 +660,7 @@ export default function PrayerTimer() {
             className="h-[52px] px-12 rounded-full text-white text-sm font-semibold tracking-wide"
             style={{
               fontFamily: "'Poppins', sans-serif",
-              background: "linear-gradient(180deg, #FFBE00 0%, #FF6A00 100%)",
+              backgroundColor: "#c08e00",
             }}
             data-testid="button-start-stop"
           >
@@ -671,7 +671,7 @@ export default function PrayerTimer() {
             onClick={handleAudioToggle}
             className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
             style={{
-              background: "linear-gradient(180deg, #b98500 0%, #ff6a00 100%)",
+              backgroundColor: "#c08e00",
             }}
             data-testid="button-sound"
           >

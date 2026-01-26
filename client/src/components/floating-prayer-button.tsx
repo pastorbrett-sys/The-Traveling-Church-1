@@ -306,7 +306,7 @@ export function FloatingPrayerButton() {
         height: BUTTON_SIZE,
         left: position.x,
         top: position.y,
-        background: "linear-gradient(180deg, #FFBE00 0%, #FF6A00 100%)",
+        backgroundColor: "#c08e00",
         transform: isDragging ? "scale(1.1)" : "scale(1)",
         transition: isDragging ? "none" : "transform 0.2s ease",
         touchAction: "none",
