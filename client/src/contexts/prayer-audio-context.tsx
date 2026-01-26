@@ -197,6 +197,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const nextAudioRef = useRef<HTMLAudioElement | null>(null);
   const fadeIntervalRef = useRef<number | null>(null);
+  const crossfadeToNextRef = useRef<(() => void) | null>(null);
   const crossfadeTimeoutRef = useRef<number | null>(null);
   const timerEndTimeRef = useRef<number | null>(null);
   const endFadeStartedRef = useRef(false);
@@ -307,6 +308,13 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     const nextIndex = (currentIndexRef.current + 1) % playlistRef.current.length;
     const nextTrackName = playlistRef.current[nextIndex];
     
+    currentAudio.onended = null;
+    
+    nextAudio.onended = () => {
+      console.log("[PrayerAudio] Track ended naturally, auto-advancing");
+      crossfadeToNextRef.current?.();
+    };
+    
     nextAudio.volume = 0;
     nextAudio.play().catch(console.error);
     
@@ -325,6 +333,8 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     preloadNextTrack();
     scheduleNextCrossfade();
   }, [isPlaying, fadeVolume, preloadNextTrack, updateNowPlaying]);
+  
+  crossfadeToNextRef.current = crossfadeToNext;
 
   const scheduleNextCrossfade = useCallback(() => {
     if (!audioRef.current) return;
@@ -393,6 +403,11 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
         setIsLoading(false);
         console.error("Error loading audio");
       }, { once: true });
+      
+      audio.addEventListener("ended", () => {
+        console.log("[PrayerAudio] Track ended naturally, crossfading to next");
+        crossfadeToNextRef.current?.();
+      });
       
       audioRef.current = audio;
     }
