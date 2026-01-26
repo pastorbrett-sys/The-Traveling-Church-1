@@ -22,7 +22,7 @@ export const PRAYER_TRACKS = [
 
 const CROSSFADE_DURATION = 3000;
 const END_FADE_DURATION = 5000;
-const CHIME_URL = `${R2_BUCKET_URL}/timer-complete-chime.mp3`;
+const CHIME_URL = "https://cdn.freesound.org/previews/411/411089_5121236-lq.mp3";
 
 let chimeAudioElement: HTMLAudioElement | null = null;
 let androidChannelCreated = false;
