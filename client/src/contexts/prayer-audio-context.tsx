@@ -46,6 +46,8 @@ const setupAndroidChannel = async () => {
 };
 
 const preloadChime = () => {
+  console.log("[PrayerAudio] Preloading chime...");
+  
   if (Capacitor.isNativePlatform()) {
     LocalNotifications.requestPermissions().catch(() => {});
     setupAndroidChannel();
@@ -56,10 +58,13 @@ const preloadChime = () => {
     chimeAudioElement.volume = 0.5;
     chimeAudioElement.preload = "auto";
     chimeAudioElement.load();
+    console.log("[PrayerAudio] Chime audio element created:", CHIME_URL);
   }
 };
 
 const playCompletionChime = async () => {
+  console.log("[PrayerAudio] Timer complete! Playing chime. isNative:", Capacitor.isNativePlatform());
+  
   if (Capacitor.isNativePlatform()) {
     Haptics.notification({ type: NotificationType.Success }).catch(() => {});
     
@@ -91,17 +96,24 @@ const playCompletionChime = async () => {
 };
 
 const playWebAudioChime = () => {
+  console.log("[PrayerAudio] Playing web audio chime, element exists:", !!chimeAudioElement);
+  
   if (chimeAudioElement) {
     chimeAudioElement.currentTime = 0;
-    chimeAudioElement.play().catch(() => {
-      playFallbackChime();
-    });
+    chimeAudioElement.play()
+      .then(() => console.log("[PrayerAudio] Chime playing successfully"))
+      .catch((error) => {
+        console.log("[PrayerAudio] Chime play failed:", error);
+        playFallbackChime();
+      });
   } else {
+    console.log("[PrayerAudio] No chime element, using fallback");
     playFallbackChime();
   }
 };
 
 const playFallbackChime = () => {
+  console.log("[PrayerAudio] Playing fallback chime (Web Audio API)");
   try {
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
