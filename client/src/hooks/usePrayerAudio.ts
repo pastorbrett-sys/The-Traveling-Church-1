@@ -170,10 +170,11 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
     nextAudioRef.current = null;
     currentIndexRef.current = nextIndex;
     setCurrentTrack(getDisplayName(nextTrackName));
+    updateNowPlaying(nextTrackName, true);
     
     preloadNextTrack();
     scheduleNextCrossfade();
-  }, [isPlaying, fadeVolume, preloadNextTrack]);
+  }, [isPlaying, fadeVolume, preloadNextTrack, updateNowPlaying]);
 
   const scheduleNextCrossfade = useCallback(() => {
     if (!audioRef.current) return;
@@ -194,6 +195,7 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
             audio.pause();
             setIsPlaying(false);
             setCurrentTrack(null);
+            updateNowPlaying("", false);
           });
           return;
         }
@@ -207,7 +209,7 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
     };
     
     crossfadeTimeoutRef.current = window.setTimeout(checkTime, 1000);
-  }, [crossfadeToNext, fadeVolume, volume]);
+  }, [crossfadeToNext, fadeVolume, volume, updateNowPlaying]);
 
   const play = useCallback(() => {
     if (audioRef.current) {
@@ -285,9 +287,10 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
         }
         setIsPlaying(false);
         setCurrentTrack(null);
+        updateNowPlaying("", false);
       });
     }
-  }, [clearAllTimeouts, fadeVolume, isPlaying, volume]);
+  }, [clearAllTimeouts, fadeVolume, isPlaying, volume, updateNowPlaying]);
 
   const startWithTimer = useCallback((durationSeconds: number) => {
     timerEndTimeRef.current = Date.now() + durationSeconds * 1000;
@@ -347,6 +350,7 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
       audio.play().catch(console.error);
       setIsPlaying(true);
       setCurrentTrack(getDisplayName(trackName));
+      updateNowPlaying(trackName, true);
       preloadNextTrack();
       scheduleNextCrossfade();
     }, { once: true });
@@ -357,7 +361,7 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
     }, { once: true });
     
     audioRef.current = audio;
-  }, [clearAllTimeouts, volume, preloadNextTrack, scheduleNextCrossfade]);
+  }, [clearAllTimeouts, volume, preloadNextTrack, scheduleNextCrossfade, updateNowPlaying]);
 
   useEffect(() => {
     return () => {
