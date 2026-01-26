@@ -570,7 +570,7 @@ export default function PrayerTimer() {
                 cy="150"
                 r="130"
                 fill="none"
-                stroke="url(#orangeGradient)"
+                stroke="#c08e00"
                 strokeWidth="12"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
