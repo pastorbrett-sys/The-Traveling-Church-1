@@ -208,23 +208,31 @@ export default function PrayerTimer() {
     if (globalTimerRunning && globalTimeRemaining > 0) {
       // Resume from global timer state
       const durationMinutes = Math.round(globalTimerDuration / 60);
+      const totalDurationSeconds = globalTimerDuration;
+      
       setSelectedDuration(durationMinutes);
       selectedDurationRef.current = durationMinutes;
       setTimeRemaining(globalTimeRemaining);
       setIsRunning(true);
-      setSmoothProgress(globalTimerProgress);
       setIsIntroAnimating(false);
       
-      // Start local animation loop to sync with global timer
+      // Calculate initial progress
+      const initialProgress = (totalDurationSeconds - globalTimeRemaining) / totalDurationSeconds;
+      setSmoothProgress(initialProgress);
+      
+      // Start local animation loop for smooth progress updates
       const session = {};
       animationSessionRef.current = session;
-      timerStartRef.current = performance.now() - (globalTimerDuration - globalTimeRemaining) * 1000;
+      
+      // Calculate when the timer started based on current state
+      const elapsedSeconds = totalDurationSeconds - globalTimeRemaining;
+      timerStartRef.current = performance.now() - elapsedSeconds * 1000;
       
       const animateCountdown = (countdownTime: number) => {
         if (animationSessionRef.current !== session) return;
         
         const countdownStartTime = timerStartRef.current!;
-        const totalMs = globalTimerDuration * 1000;
+        const totalMs = totalDurationSeconds * 1000;
         const countdownElapsed = countdownTime - countdownStartTime;
         const t = Math.min(countdownElapsed / totalMs, 1);
         
@@ -235,11 +243,14 @@ export default function PrayerTimer() {
         const newProgress = Math.min(t + burstContribution, 1);
         
         setSmoothProgress(newProgress);
-        setTimeRemaining(globalTimeRemaining);
         
-        if (newProgress < 1 && globalTimerRunning) {
+        // Calculate time remaining from elapsed time (not from stale closure)
+        const newTimeRemaining = Math.max(0, totalDurationSeconds - Math.floor(countdownElapsed / 1000));
+        setTimeRemaining(prev => prev !== newTimeRemaining ? newTimeRemaining : prev);
+        
+        if (newProgress < 1) {
           countdownAnimationRef.current = requestAnimationFrame(animateCountdown);
-        } else if (newProgress >= 1) {
+        } else {
           setIsRunning(false);
           setTimeRemaining(0);
           animationSessionRef.current = null;
@@ -264,12 +275,6 @@ export default function PrayerTimer() {
     };
   }, []);
 
-  // Sync local timeRemaining with global timer when both are running
-  useEffect(() => {
-    if (globalTimerRunning && isRunning && globalTimeRemaining > 0) {
-      setTimeRemaining(globalTimeRemaining);
-    }
-  }, [globalTimerRunning, isRunning, globalTimeRemaining]);
 
   const handleDurationSelect = async (minutes: number) => {
     // Haptic feedback
