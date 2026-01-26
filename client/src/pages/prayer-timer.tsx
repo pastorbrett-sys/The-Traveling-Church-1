@@ -46,6 +46,7 @@ export default function PrayerTimer() {
   const [smoothProgress, setSmoothProgress] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [showTrackSelector, setShowTrackSelector] = useState(false);
+  const [isClosingTrackSelector, setIsClosingTrackSelector] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
@@ -381,12 +382,20 @@ export default function PrayerTimer() {
     }
   };
 
+  const closeTrackSelector = () => {
+    setIsClosingTrackSelector(true);
+    setTimeout(() => {
+      setShowTrackSelector(false);
+      setIsClosingTrackSelector(false);
+    }, 200);
+  };
+
   const handleTrackSelect = (trackName: string) => {
     if (!audioEnabled) {
       setAudioEnabled(true);
     }
     selectTrack(trackName + ".mp3");
-    setShowTrackSelector(false);
+    closeTrackSelector();
   };
 
   const handleAudioToggle = async () => {
@@ -715,9 +724,9 @@ export default function PrayerTimer() {
           className="fixed inset-0 z-50 flex items-end justify-center"
           style={{ 
             background: "rgba(0,0,0,0.7)",
-            animation: "fadeIn 0.2s ease-out",
+            animation: isClosingTrackSelector ? "fadeOut 0.2s ease-out forwards" : "fadeIn 0.2s ease-out",
           }}
-          onClick={() => setShowTrackSelector(false)}
+          onClick={closeTrackSelector}
           data-testid="track-selector-overlay"
         >
           <style>{`
@@ -725,9 +734,17 @@ export default function PrayerTimer() {
               from { opacity: 0; }
               to { opacity: 1; }
             }
+            @keyframes fadeOut {
+              from { opacity: 1; }
+              to { opacity: 0; }
+            }
             @keyframes slideUp {
               from { transform: translateY(100%); }
               to { transform: translateY(0); }
+            }
+            @keyframes slideDown {
+              from { transform: translateY(0); }
+              to { transform: translateY(100%); }
             }
           `}</style>
           <div 
@@ -735,7 +752,7 @@ export default function PrayerTimer() {
             style={{ 
               background: "#1a1a1a",
               paddingBottom: "calc(env(safe-area-inset-bottom, 20px) + 20px)",
-              animation: "slideUp 0.25s ease-out",
+              animation: isClosingTrackSelector ? "slideDown 0.2s ease-out forwards" : "slideUp 0.25s ease-out",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -747,7 +764,7 @@ export default function PrayerTimer() {
                 Select Track
               </h3>
               <button 
-                onClick={() => setShowTrackSelector(false)}
+                onClick={closeTrackSelector}
                 className="w-8 h-8 rounded-full flex items-center justify-center"
                 style={{ background: "rgba(255,255,255,0.1)" }}
                 data-testid="button-close-tracks"
