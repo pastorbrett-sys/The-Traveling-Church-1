@@ -36,12 +36,13 @@ const DURATION_OPTIONS = [
 ];
 
 const INSPIRATIONAL_PHRASES = [
-  "Breathe Spirit",
-  "Exhale stress",
-  "I'm blessed",
-  "It's my time",
-  "He's with me",
-  "I am enough",
+  "PRAYER TIMER",
+  "BREATHE SPIRIT",
+  "EXHALE STRESS",
+  "I'M BLESSED",
+  "IT'S MY TIME",
+  "HE'S WITH ME",
+  "I AM ENOUGH",
 ];
 
 export default function PrayerTimer() {
@@ -114,8 +115,8 @@ export default function PrayerTimer() {
       return;
     }
     
-    const cycleDuration = 4000; // 4 seconds per phrase
-    const fadeDuration = 500; // 0.5 second fade
+    const cycleDuration = 6000; // 6 seconds per phrase
+    const fadeDuration = 1000; // 1 second fade
     
     const interval = setInterval(() => {
       // Start fade out
@@ -547,7 +548,7 @@ export default function PrayerTimer() {
             fontFamily: "'Abhaya Libre', serif", 
             fontSize: "26px",
             opacity: (isRunning || isIntroAnimating) ? (phraseVisible ? 1 : 0) : 1,
-            transition: "opacity 0.5s ease-in-out",
+            transition: "opacity 1s ease-in-out",
             minHeight: "36px",
           }}
         >
