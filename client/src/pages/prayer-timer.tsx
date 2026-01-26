@@ -337,6 +337,7 @@ export default function PrayerTimer() {
     
     // Pause audio and stop global timer when switching durations
     pauseAudio();
+    setAudioEnabled(false); // Reset audio state to prevent double-tap issue
     stopGlobalTimer();
     pausedTimeRemainingRef.current = null;
     
@@ -415,6 +416,7 @@ export default function PrayerTimer() {
       }
       
       pauseAudio();
+      setAudioEnabled(false); // Reset audio state to prevent double-tap issue
       pauseGlobalTimer(); // Pause the global timer
       pausedTimeRemainingRef.current = timeRemaining;
       
@@ -453,10 +455,15 @@ export default function PrayerTimer() {
   };
 
   const handleAudioToggle = async () => {
+    // Prevent toggle while audio is loading to avoid state issues
+    if (audioLoading) return;
+    
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
-    if (audioEnabled) {
+    // Use audioPlaying from context as source of truth, not local audioEnabled state
+    // This prevents double-tap issues from state desync
+    if (audioPlaying) {
       pauseAudio();
       setAudioEnabled(false);
     } else {
@@ -738,9 +745,11 @@ export default function PrayerTimer() {
 
           <button
             onClick={handleAudioToggle}
+            disabled={audioLoading}
             className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative"
             style={{
               backgroundColor: "#c08e00",
+              opacity: audioLoading ? 0.7 : 1,
             }}
             data-testid="button-sound"
           >
