@@ -77,8 +77,8 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
       if (playing) {
         await CapacitorMusicControls.create({
           track: getDisplayName(trackName),
-          artist: "Vagabond Bible",
-          album: "Prayer Timer",
+          artist: "Pastor Brett",
+          album: "Vagabond Bible",
           cover: ARTWORK_URL,
           hasPrev: false,
           hasNext: true,
