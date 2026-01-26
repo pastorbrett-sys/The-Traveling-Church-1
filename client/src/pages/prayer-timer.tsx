@@ -713,15 +713,29 @@ export default function PrayerTimer() {
       {showTrackSelector && (
         <div 
           className="fixed inset-0 z-50 flex items-end justify-center"
-          style={{ background: "rgba(0,0,0,0.7)" }}
+          style={{ 
+            background: "rgba(0,0,0,0.7)",
+            animation: "fadeIn 0.2s ease-out",
+          }}
           onClick={() => setShowTrackSelector(false)}
           data-testid="track-selector-overlay"
         >
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes slideUp {
+              from { transform: translateY(100%); }
+              to { transform: translateY(0); }
+            }
+          `}</style>
           <div 
             className="w-full max-w-md rounded-t-3xl pb-8"
             style={{ 
               background: "#1a1a1a",
               paddingBottom: "calc(env(safe-area-inset-bottom, 20px) + 20px)",
+              animation: "slideUp 0.25s ease-out",
             }}
             onClick={(e) => e.stopPropagation()}
           >
