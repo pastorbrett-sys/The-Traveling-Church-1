@@ -35,6 +35,15 @@ const DURATION_OPTIONS = [
   { label: "30 MIN", minutes: 30 },
 ];
 
+const INSPIRATIONAL_PHRASES = [
+  "Breathe Spirit",
+  "Exhale stress",
+  "I'm blessed",
+  "It's my time",
+  "He's with me",
+  "I am enough",
+];
+
 export default function PrayerTimer() {
   const [, setLocation] = useLocation();
   const [selectedDuration, setSelectedDuration] = useState(5);
@@ -48,6 +57,9 @@ export default function PrayerTimer() {
   const [showTrackSelector, setShowTrackSelector] = useState(false);
   const [isClosingTrackSelector, setIsClosingTrackSelector] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [phraseVisible, setPhraseVisible] = useState(true);
+  const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const introAnimationRef = useRef<number | null>(null);
   const timerStartRef = useRef<number | null>(null);
   const countdownAnimationRef = useRef<number | null>(null);
@@ -89,6 +101,47 @@ export default function PrayerTimer() {
     const timer = setTimeout(() => setPageLoaded(true), 50);
     return () => clearTimeout(timer);
   }, []);
+
+  // Cycle through inspirational phrases when timer is running
+  useEffect(() => {
+    if (!isRunning && !isIntroAnimating) {
+      setCurrentPhraseIndex(0);
+      setPhraseVisible(true);
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+        fadeTimeoutRef.current = null;
+      }
+      return;
+    }
+    
+    const cycleDuration = 4000; // 4 seconds per phrase
+    const fadeDuration = 500; // 0.5 second fade
+    
+    const interval = setInterval(() => {
+      // Start fade out
+      setPhraseVisible(false);
+      
+      // Clear any existing fade timeout
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+      }
+      
+      // After fade out, change phrase and fade in
+      fadeTimeoutRef.current = setTimeout(() => {
+        setCurrentPhraseIndex((prev) => (prev + 1) % INSPIRATIONAL_PHRASES.length);
+        setPhraseVisible(true);
+        fadeTimeoutRef.current = null;
+      }, fadeDuration);
+    }, cycleDuration);
+    
+    return () => {
+      clearInterval(interval);
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+        fadeTimeoutRef.current = null;
+      }
+    };
+  }, [isRunning, isIntroAnimating]);
 
   // Use a ref to hold the current selectedDuration for animations
   const selectedDurationRef = useRef(selectedDuration);
@@ -487,12 +540,18 @@ export default function PrayerTimer() {
         className="flex-1 flex flex-col items-center justify-center px-5"
         style={{ marginTop: "15px" }}
       >
-        {/* Title */}
+        {/* Title - shows inspirational phrases when timer is running */}
         <h1 
           className="text-white text-center tracking-wide mb-6"
-          style={{ fontFamily: "'Abhaya Libre', serif", fontSize: "26px" }}
+          style={{ 
+            fontFamily: "'Abhaya Libre', serif", 
+            fontSize: "26px",
+            opacity: (isRunning || isIntroAnimating) ? (phraseVisible ? 1 : 0) : 1,
+            transition: "opacity 0.5s ease-in-out",
+            minHeight: "36px",
+          }}
         >
-          PRAYER TIMER
+          {(isRunning || isIntroAnimating) ? INSPIRATIONAL_PHRASES[currentPhraseIndex] : "PRAYER TIMER"}
         </h1>
 
         {/* Timer Circle */}
