@@ -380,7 +380,7 @@ export default function PrayerTimer() {
       <div className="w-full h-1 bg-[#333]" />
       
       <button
-        onClick={() => setLocation("/")}
+        onClick={() => setLocation("/bible-buddy")}
         className="flex items-center gap-1 px-4 py-3 self-start"
         style={{ marginTop: "7px" }}
         data-testid="button-back"
