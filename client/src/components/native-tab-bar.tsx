@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
-import { Book, MessageCircle, FileText, User } from "lucide-react";
+import { Book, MessageCircle, FileText, User, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { getDefaultBibleTranslation } from "@/lib/i18n";
@@ -16,12 +16,14 @@ const tabLabels = {
   en: {
     bible: "Bible",
     chat: "Chat",
+    prayer: "Prayer",
     notes: "Notes",
     profile: "Profile",
   },
   am: {
     bible: "መጽሐፍ ቅዱስ",
     chat: "ውይይት",
+    prayer: "ጸሎት",
     notes: "ማስታወሻዎች",
     profile: "መገለጫ",
   }
@@ -41,6 +43,7 @@ interface TabItem {
 const tabs: TabItem[] = [
   { id: "bible", labelKey: "bible", href: "/pastor-chat?tab=bible", icon: Book },
   { id: "chat", labelKey: "chat", href: "/pastor-chat?tab=chat", icon: MessageCircle },
+  { id: "prayer", labelKey: "prayer", href: "/prayer-timer", icon: Timer },
   { id: "notes", labelKey: "notes", href: "/notes", icon: FileText },
   { id: "profile", labelKey: "profile", href: "/profile", icon: User },
 ];
