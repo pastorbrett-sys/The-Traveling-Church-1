@@ -1,6 +1,10 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { Capacitor } from "@capacitor/core";
+import { CapacitorMusicControls } from "capacitor-music-controls-plugin-v3";
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
+
+const ARTWORK_URL = "https://vagabondbible.com/prayer-artwork.png";
 
 export const PRAYER_TRACKS = [
   "Breath Like Quiet Water.mp3",
@@ -65,6 +69,35 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
   const getDisplayName = (trackName: string): string => {
     return trackName.replace(".mp3", "");
   };
+
+  const updateNowPlaying = useCallback(async (trackName: string, playing: boolean) => {
+    if (!Capacitor.isNativePlatform()) return;
+    
+    try {
+      if (playing) {
+        await CapacitorMusicControls.create({
+          track: getDisplayName(trackName),
+          artist: "Vagabond Bible",
+          album: "Prayer Timer",
+          cover: ARTWORK_URL,
+          hasPrev: false,
+          hasNext: true,
+          hasClose: true,
+          isPlaying: true,
+          playIcon: "media_play",
+          pauseIcon: "media_pause",
+          prevIcon: "media_prev",
+          nextIcon: "media_next",
+          closeIcon: "media_close",
+          notificationIcon: "notification",
+        });
+      } else {
+        await CapacitorMusicControls.destroy();
+      }
+    } catch (error) {
+      console.log("[PrayerAudio] Music controls error:", error);
+    }
+  }, []);
 
   const clearAllTimeouts = useCallback(() => {
     if (fadeIntervalRef.current) {
@@ -196,6 +229,7 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
         audio.play().catch(console.error);
         setIsPlaying(true);
         setCurrentTrack(getDisplayName(firstTrack));
+        updateNowPlaying(firstTrack, true);
         preloadNextTrack();
         scheduleNextCrossfade();
       }, { once: true });
@@ -215,7 +249,8 @@ export function usePrayerAudio(): UsePrayerAudioReturn {
       audioRef.current.pause();
     }
     setIsPlaying(false);
-  }, [clearAllTimeouts]);
+    updateNowPlaying("", false);
+  }, [clearAllTimeouts, updateNowPlaying]);
 
   const toggle = useCallback(() => {
     if (isPlaying) {
