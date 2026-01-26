@@ -113,12 +113,19 @@ export function FloatingPrayerButton() {
   const shouldShow = isPlaying && !isPrayerTimerPage;
 
   useEffect(() => {
+    console.log("[FloatingPrayerButton] isPlaying:", isPlaying, "location:", location, "shouldShow:", shouldShow, "isVisible:", isVisible);
+  }, [isPlaying, location, shouldShow, isVisible]);
+
+  useEffect(() => {
     if (shouldShow && !isVisible) {
+      console.log("[FloatingPrayerButton] Showing button");
       const corner = getStoredCorner();
       const pos = getCornerPosition(corner, window.innerWidth, window.innerHeight);
+      console.log("[FloatingPrayerButton] Position:", pos);
       setPosition(pos);
       setIsVisible(true);
     } else if (!shouldShow && isVisible) {
+      console.log("[FloatingPrayerButton] Hiding button");
       setIsVisible(false);
     }
   }, [shouldShow, isVisible]);

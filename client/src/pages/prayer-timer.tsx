@@ -311,13 +311,16 @@ export default function PrayerTimer() {
   };
 
   const handleAudioToggle = async () => {
+    console.log("[PrayerTimer] handleAudioToggle called, audioEnabled:", audioEnabled);
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
     if (audioEnabled) {
+      console.log("[PrayerTimer] Pausing audio");
       pauseAudio();
       setAudioEnabled(false);
     } else {
+      console.log("[PrayerTimer] Enabling audio, calling resumeWithTimer");
       setAudioEnabled(true);
       // Start audio regardless of timer state - use current timer or a long duration if not running
       const duration = isRunning ? timeRemaining : 60 * 60; // 1 hour if timer not running

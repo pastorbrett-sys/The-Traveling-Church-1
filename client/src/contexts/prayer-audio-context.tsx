@@ -222,10 +222,12 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   }, [crossfadeToNext, fadeVolume, volume, updateNowPlaying]);
 
   const play = useCallback(() => {
+    console.log("[PrayerAudioContext] play() called");
     if (audioRef.current) {
       audioRef.current.volume = volume;
       audioRef.current.play().catch(console.error);
       setIsPlaying(true);
+      console.log("[PrayerAudioContext] setIsPlaying(true)");
       scheduleNextCrossfade();
     } else {
       playlistRef.current = shuffleArray(PRAYER_TRACKS);
@@ -321,15 +323,19 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   }, [clearAllTimeouts, play]);
 
   const resumeWithTimer = useCallback((remainingSeconds: number) => {
+    console.log("[PrayerAudioContext] resumeWithTimer called, remainingSeconds:", remainingSeconds);
     timerEndTimeRef.current = Date.now() + remainingSeconds * 1000;
     endFadeStartedRef.current = false;
     
     if (audioRef.current) {
+      console.log("[PrayerAudioContext] audioRef exists, resuming");
       audioRef.current.volume = volume;
       audioRef.current.play().catch(console.error);
       setIsPlaying(true);
+      console.log("[PrayerAudioContext] setIsPlaying(true) called");
       scheduleNextCrossfade();
     } else {
+      console.log("[PrayerAudioContext] no audioRef, calling play()");
       play();
     }
   }, [volume, play, scheduleNextCrossfade]);
