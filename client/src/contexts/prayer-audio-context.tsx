@@ -35,6 +35,15 @@ interface PrayerAudioContextType {
   startWithTimer: (durationSeconds: number) => void;
   resumeWithTimer: (remainingSeconds: number) => void;
   selectTrack: (trackName: string) => void;
+  // Timer state - persists across page navigation
+  isTimerRunning: boolean;
+  timerTimeRemaining: number;
+  timerDuration: number;
+  timerProgress: number;
+  startGlobalTimer: (durationMinutes: number) => void;
+  pauseGlobalTimer: () => void;
+  resumeGlobalTimer: () => void;
+  stopGlobalTimer: () => void;
 }
 
 const PrayerAudioContext = createContext<PrayerAudioContextType | null>(null);
@@ -52,6 +61,13 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   const [currentTrack, setCurrentTrack] = useState<string | null>(null);
   const [volume, setVolumeState] = useState(0.7);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Global timer state - persists across page navigation
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timerTimeRemaining, setTimerTimeRemaining] = useState(0);
+  const [timerDuration, setTimerDuration] = useState(0);
+  const timerIntervalRef = useRef<number | null>(null);
+  const timerStartTimeRef = useRef<number | null>(null);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const nextAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -323,19 +339,15 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   }, [clearAllTimeouts, play]);
 
   const resumeWithTimer = useCallback((remainingSeconds: number) => {
-    console.log("[PrayerAudioContext] resumeWithTimer called, remainingSeconds:", remainingSeconds);
     timerEndTimeRef.current = Date.now() + remainingSeconds * 1000;
     endFadeStartedRef.current = false;
     
     if (audioRef.current) {
-      console.log("[PrayerAudioContext] audioRef exists, resuming");
       audioRef.current.volume = volume;
       audioRef.current.play().catch(console.error);
       setIsPlaying(true);
-      console.log("[PrayerAudioContext] setIsPlaying(true) called");
       scheduleNextCrossfade();
     } else {
-      console.log("[PrayerAudioContext] no audioRef, calling play()");
       play();
     }
   }, [volume, play, scheduleNextCrossfade]);
@@ -401,8 +413,78 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
         nextAudioRef.current.pause();
         nextAudioRef.current = null;
       }
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+        timerIntervalRef.current = null;
+      }
     };
   }, [clearAllTimeouts]);
+
+  // Global timer functions
+  const startGlobalTimer = useCallback((durationMinutes: number) => {
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+    }
+    
+    const totalSeconds = durationMinutes * 60;
+    setTimerDuration(totalSeconds);
+    setTimerTimeRemaining(totalSeconds);
+    setIsTimerRunning(true);
+    timerStartTimeRef.current = Date.now();
+    
+    timerIntervalRef.current = window.setInterval(() => {
+      setTimerTimeRemaining(prev => {
+        if (prev <= 1) {
+          if (timerIntervalRef.current) {
+            clearInterval(timerIntervalRef.current);
+            timerIntervalRef.current = null;
+          }
+          setIsTimerRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }, []);
+
+  const pauseGlobalTimer = useCallback(() => {
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    setIsTimerRunning(false);
+  }, []);
+
+  const resumeGlobalTimer = useCallback(() => {
+    if (timerTimeRemaining <= 0) return;
+    
+    setIsTimerRunning(true);
+    timerIntervalRef.current = window.setInterval(() => {
+      setTimerTimeRemaining(prev => {
+        if (prev <= 1) {
+          if (timerIntervalRef.current) {
+            clearInterval(timerIntervalRef.current);
+            timerIntervalRef.current = null;
+          }
+          setIsTimerRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }, [timerTimeRemaining]);
+
+  const stopGlobalTimer = useCallback(() => {
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    setIsTimerRunning(false);
+    setTimerTimeRemaining(0);
+    setTimerDuration(0);
+  }, []);
+
+  const timerProgress = timerDuration > 0 ? (timerDuration - timerTimeRemaining) / timerDuration : 0;
 
   const value: PrayerAudioContextType = {
     isPlaying,
@@ -418,6 +500,15 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     startWithTimer,
     resumeWithTimer,
     selectTrack,
+    // Timer state
+    isTimerRunning,
+    timerTimeRemaining,
+    timerDuration,
+    timerProgress,
+    startGlobalTimer,
+    pauseGlobalTimer,
+    resumeGlobalTimer,
+    stopGlobalTimer,
   };
 
   return (

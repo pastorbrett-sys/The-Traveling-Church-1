@@ -113,19 +113,12 @@ export function FloatingPrayerButton() {
   const shouldShow = isPlaying && !isPrayerTimerPage;
 
   useEffect(() => {
-    console.log("[FloatingPrayerButton] isPlaying:", isPlaying, "location:", location, "shouldShow:", shouldShow, "isVisible:", isVisible);
-  }, [isPlaying, location, shouldShow, isVisible]);
-
-  useEffect(() => {
     if (shouldShow && !isVisible) {
-      console.log("[FloatingPrayerButton] Showing button");
       const corner = getStoredCorner();
       const pos = getCornerPosition(corner, window.innerWidth, window.innerHeight);
-      console.log("[FloatingPrayerButton] Position:", pos);
       setPosition(pos);
       setIsVisible(true);
     } else if (!shouldShow && isVisible) {
-      console.log("[FloatingPrayerButton] Hiding button");
       setIsVisible(false);
     }
   }, [shouldShow, isVisible]);
@@ -305,7 +298,7 @@ export function FloatingPrayerButton() {
     <button
       ref={buttonRef}
       data-testid="floating-prayer-button"
-      className={`fixed z-50 flex items-center justify-center rounded-full bg-yellow-400 shadow-lg transition-opacity duration-300 touch-none select-none ${
+      className={`fixed z-50 flex items-center justify-center rounded-full shadow-lg transition-opacity duration-300 touch-none select-none ${
         isDragging ? "cursor-grabbing scale-110" : "cursor-grab hover:scale-105"
       } ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{
@@ -313,6 +306,7 @@ export function FloatingPrayerButton() {
         height: BUTTON_SIZE,
         left: position.x,
         top: position.y,
+        backgroundColor: "#c08e00",
         transform: isDragging ? "scale(1.1)" : "scale(1)",
         transition: isDragging ? "none" : "transform 0.2s ease",
         touchAction: "none",

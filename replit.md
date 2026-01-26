@@ -46,8 +46,9 @@ The application uses a component-based frontend architecture and an Express.js b
 - **Verse Sharing**: Canvas-based image generation with 21 background options. Native Share API integration for iOS/Android. Custom share format with verse reference and Vagabond Bible branding. See `client/src/components/verse-share-sheet.tsx`.
 - **Prayer Timer**: Background meditation music with crossfade between tracks. Features:
   - **Lock Screen Controls**: iOS/Android lock screen displays track info, artwork ("Music by Pastor Brett"), and play/pause controls via `capacitor-music-controls-plugin-v3`.
-  - **Floating Prayer Button**: Persistent circular yellow button with animated audio bars appears when navigating away from prayer timer while audio plays. iOS PiP-style physics (velocity-based momentum, friction, spring animation). Draggable to any corner with position memory via localStorage. Cross-platform compatible (web/iOS/Android) with safe area support.
-  - **Implementation**: `client/src/contexts/prayer-audio-context.tsx` (global audio state), `client/src/components/floating-prayer-button.tsx`, `client/src/pages/prayer-timer.tsx`.
+  - **Persistent Timer State**: Timer continues running when navigating away from the prayer timer page. Global timer state managed in `PrayerAudioContext` persists across route changes. When user returns, page syncs with global timer.
+  - **Floating Prayer Button**: Persistent circular golden button (`#c08e00`, matching CTA buttons) with animated audio bars appears when navigating away while audio plays. iOS PiP-style physics (velocity-based momentum, friction, spring animation). Draggable to any corner with position memory via localStorage. Cross-platform compatible (web/iOS/Android) with safe area support.
+  - **Implementation**: `client/src/contexts/prayer-audio-context.tsx` (global audio + timer state), `client/src/components/floating-prayer-button.tsx`, `client/src/pages/prayer-timer.tsx`.
 - **Push Notifications**: Firebase Cloud Messaging (FCM) integration for verse reminders.
   - **Timezone-aware delivery**: Hourly cron job sends notifications at user's local time.
   - **Verse of the Week**: AI-selected verse with graphic, sent Tuesdays 8am local. Uses GPT-4o with 8 rotating themes.

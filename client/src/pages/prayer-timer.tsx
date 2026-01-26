@@ -55,6 +55,8 @@ export default function PrayerTimer() {
   const animationSessionRef = useRef<object | null>(null);
   // Track if component has been initialized (survives StrictMode remount)
   const hasInitializedRef = useRef(false);
+  // Ref to hold startGlobalTimer for use in animation callbacks
+  const startGlobalTimerRef = useRef<((durationMinutes: number) => void) | null>(null);
 
   const {
     isPlaying: audioPlaying,
@@ -65,9 +67,21 @@ export default function PrayerTimer() {
     startWithTimer,
     resumeWithTimer,
     selectTrack,
+    // Global timer state
+    isTimerRunning: globalTimerRunning,
+    timerTimeRemaining: globalTimeRemaining,
+    timerDuration: globalTimerDuration,
+    timerProgress: globalTimerProgress,
+    startGlobalTimer,
+    pauseGlobalTimer,
+    resumeGlobalTimer,
+    stopGlobalTimer,
   } = usePrayerAudioContext();
 
   const totalSeconds = selectedDuration * 60;
+  
+  // Keep refs updated with latest functions
+  startGlobalTimerRef.current = startGlobalTimer;
 
   // Page load entrance animation
   useEffect(() => {
@@ -141,6 +155,11 @@ export default function PrayerTimer() {
         setSwoopTail(0);
         setIsRunning(true);
         
+        // Start the global timer so it persists when navigating away
+        if (startGlobalTimerRef.current) {
+          startGlobalTimerRef.current(duration);
+        }
+        
         const countdownStartTime = timerStartRef.current;
         const totalMs = duration * 60 * 1000;
         
@@ -184,28 +203,81 @@ export default function PrayerTimer() {
     introAnimationRef.current = requestAnimationFrame(animate);
   }, []);
 
-  // Start intro on mount - always start fresh on mount
-  // The session mechanism handles StrictMode's unmount/remount
+  // On mount, check if there's an active global timer to resume
   useEffect(() => {
-    startIntroAnimation();
+    if (globalTimerRunning && globalTimeRemaining > 0) {
+      // Resume from global timer state
+      const durationMinutes = Math.round(globalTimerDuration / 60);
+      setSelectedDuration(durationMinutes);
+      selectedDurationRef.current = durationMinutes;
+      setTimeRemaining(globalTimeRemaining);
+      setIsRunning(true);
+      setSmoothProgress(globalTimerProgress);
+      setIsIntroAnimating(false);
+      
+      // Start local animation loop to sync with global timer
+      const session = {};
+      animationSessionRef.current = session;
+      timerStartRef.current = performance.now() - (globalTimerDuration - globalTimeRemaining) * 1000;
+      
+      const animateCountdown = (countdownTime: number) => {
+        if (animationSessionRef.current !== session) return;
+        
+        const countdownStartTime = timerStartRef.current!;
+        const totalMs = globalTimerDuration * 1000;
+        const countdownElapsed = countdownTime - countdownStartTime;
+        const t = Math.min(countdownElapsed / totalMs, 1);
+        
+        const burstPeak = 0.085;
+        const burstRampUp = Math.min(t * 40, 1);
+        const burstDecay = Math.pow(1 - t, 3);
+        const burstContribution = burstPeak * burstRampUp * burstDecay;
+        const newProgress = Math.min(t + burstContribution, 1);
+        
+        setSmoothProgress(newProgress);
+        setTimeRemaining(globalTimeRemaining);
+        
+        if (newProgress < 1 && globalTimerRunning) {
+          countdownAnimationRef.current = requestAnimationFrame(animateCountdown);
+        } else if (newProgress >= 1) {
+          setIsRunning(false);
+          setTimeRemaining(0);
+          animationSessionRef.current = null;
+        }
+      };
+      
+      countdownAnimationRef.current = requestAnimationFrame(animateCountdown);
+    } else {
+      // No active global timer, start fresh intro animation
+      startIntroAnimation();
+    }
     // Cleanup will happen via the session invalidation
-  }, [startIntroAnimation]);
+  }, []);
 
-  // Cleanup on unmount
+  // Cleanup on unmount - but don't stop the global timer!
   useEffect(() => {
     return () => {
       if (introAnimationRef.current) cancelAnimationFrame(introAnimationRef.current);
       if (countdownAnimationRef.current) cancelAnimationFrame(countdownAnimationRef.current);
       animationSessionRef.current = null;
+      // Note: We intentionally DO NOT stop the global timer here - it should continue running
     };
   }, []);
+
+  // Sync local timeRemaining with global timer when both are running
+  useEffect(() => {
+    if (globalTimerRunning && isRunning && globalTimeRemaining > 0) {
+      setTimeRemaining(globalTimeRemaining);
+    }
+  }, [globalTimerRunning, isRunning, globalTimeRemaining]);
 
   const handleDurationSelect = async (minutes: number) => {
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
-    // Pause audio when switching durations
+    // Pause audio and stop global timer when switching durations
     pauseAudio();
+    stopGlobalTimer();
     pausedTimeRemainingRef.current = null;
     
     // Update duration - MUST update ref BEFORE calling startIntroAnimation
@@ -283,6 +355,7 @@ export default function PrayerTimer() {
       }
       
       pauseAudio();
+      pauseGlobalTimer(); // Pause the global timer
       pausedTimeRemainingRef.current = timeRemaining;
       
       setIsRunning(false);
@@ -292,6 +365,7 @@ export default function PrayerTimer() {
       if (pausedTimeRemainingRef.current !== null && smoothProgress > 0) {
         // Resume from paused position
         resumeCountdown();
+        resumeGlobalTimer(); // Resume the global timer
         if (audioEnabled) {
           resumeWithTimer(pausedTimeRemainingRef.current || timeRemaining);
         }
@@ -311,16 +385,13 @@ export default function PrayerTimer() {
   };
 
   const handleAudioToggle = async () => {
-    console.log("[PrayerTimer] handleAudioToggle called, audioEnabled:", audioEnabled);
     // Haptic feedback
     try { await Haptics.impact({ style: ImpactStyle.Light }); } catch {}
     
     if (audioEnabled) {
-      console.log("[PrayerTimer] Pausing audio");
       pauseAudio();
       setAudioEnabled(false);
     } else {
-      console.log("[PrayerTimer] Enabling audio, calling resumeWithTimer");
       setAudioEnabled(true);
       // Start audio regardless of timer state - use current timer or a long duration if not running
       const duration = isRunning ? timeRemaining : 60 * 60; // 1 hour if timer not running
