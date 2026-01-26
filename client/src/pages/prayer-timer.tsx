@@ -152,8 +152,12 @@ export default function PrayerTimer() {
           const countdownElapsed = countdownTime - countdownStartTime;
           const t = Math.min(countdownElapsed / totalMs, 1);
           
+          // Burst effect: eases IN at start, peaks, then decays
+          // This prevents the jarring jump at t=0
           const burstPeak = 0.085;
-          const burstContribution = burstPeak * Math.pow(1 - t, 3);
+          const burstRampUp = Math.min(t * 40, 1); // Ramps from 0 to 1 over first 2.5% of timer
+          const burstDecay = Math.pow(1 - t, 3); // Decays over full duration
+          const burstContribution = burstPeak * burstRampUp * burstDecay;
           const newProgress = Math.min(t + burstContribution, 1);
           
           setSmoothProgress(newProgress);
@@ -236,8 +240,11 @@ export default function PrayerTimer() {
       const elapsed = currentTime - startTime;
       const t = Math.min(elapsed / totalMs, 1);
       
+      // Burst effect: eases IN at start, peaks, then decays
       const burstPeak = 0.085;
-      const burstContribution = burstPeak * Math.pow(1 - t, 3);
+      const burstRampUp = Math.min(t * 40, 1);
+      const burstDecay = Math.pow(1 - t, 3);
+      const burstContribution = burstPeak * burstRampUp * burstDecay;
       const newProgress = Math.min(t + burstContribution, 1);
       
       setSmoothProgress(newProgress);
