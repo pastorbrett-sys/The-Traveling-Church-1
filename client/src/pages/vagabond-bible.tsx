@@ -109,6 +109,7 @@ export default function VagabondBible() {
               <a href="#about" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about">{t("landing.nav_about")}</a>
               <a href="#community" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community">{t("landing.nav_community")}</a>
               <a href="#contact" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact">{t("landing.nav_contact")}</a>
+              <Link href="/prayer-timer" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-prayer">{t("landing.nav_prayer")}</Link>
               <Link href="/login">
                 <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-login">
                   {t("landing.nav_login")}
@@ -137,6 +138,7 @@ export default function VagabondBible() {
                 <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '50ms' }} data-testid="link-about-mobile">{t("landing.nav_about")}</a>
                 <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '100ms' }} data-testid="link-community-mobile">{t("landing.nav_community")}</a>
                 <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '150ms' }} data-testid="link-contact-mobile">{t("landing.nav_contact")}</a>
+                <Link href="/prayer-timer" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '200ms' }} data-testid="link-prayer-mobile">{t("landing.nav_prayer")}</Link>
                 <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="mt-[5px]">
                   <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px] animate-fade-in-up" style={{ animationDelay: '200ms' }} data-testid="button-login-mobile">
                     {t("landing.nav_login")}
