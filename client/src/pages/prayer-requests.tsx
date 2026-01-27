@@ -39,7 +39,11 @@ function AnimatedCandle() {
       <img 
         src={litCandleImage} 
         alt="Lit candle" 
-        className="h-full w-auto object-contain"
+        style={{
+          height: 'calc(100vh - 280px)',
+          width: 'auto',
+          maxHeight: '100%',
+        }}
       />
     </div>
   );
