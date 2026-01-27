@@ -47,6 +47,7 @@ import AdminEthiopianBible from "@/pages/admin-ethiopian-bible";
 import AmbassadorPage from "@/pages/ambassador/index";
 import AdminPanel from "@/pages/admin/index";
 import PrayerTimer from "@/pages/prayer-timer";
+import PrayerRequests from "@/pages/prayer-requests";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -80,6 +81,7 @@ function VagabondBibleRouter() {
       <Route path="/admin" component={AdminPanel} />
       <Route path="/email-preview" component={EmailPreview} />
       <Route path="/prayer-timer" component={PrayerTimer} />
+      <Route path="/prayer-requests" component={PrayerRequests} />
       <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
@@ -119,6 +121,7 @@ function ChurchRouter() {
       <Route path="/admin" component={AdminPanel} />
       <Route path="/email-preview" component={EmailPreview} />
       <Route path="/prayer-timer" component={PrayerTimer} />
+      <Route path="/prayer-requests" component={PrayerRequests} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route component={NotFound} />
     </Switch>

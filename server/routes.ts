@@ -799,6 +799,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create Stripe checkout for candle donation
+  app.post("/api/candle-donation/create-checkout", async (req: any, res) => {
+    try {
+      const { amountCents, prayerRequestId } = req.body;
+      const userId = req.session?.userId || null;
+      
+      if (!amountCents || amountCents < 100) {
+        return res.status(400).json({ message: "Invalid donation amount" });
+      }
+      
+      // Get the Stripe client
+      const stripe = await stripeService.getClient();
+      
+      // Determine success/cancel URLs based on request origin
+      const origin = req.headers.origin || 'https://vagabondbible.com';
+      
+      // Create Stripe checkout session for one-time donation
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'Light a Candle',
+              description: 'Support The Traveling Church prayer ministry',
+              images: ['https://vagabondbible.com/candle-icon.png'],
+            },
+            unit_amount: amountCents,
+          },
+          quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: `${origin}/prayer-requests?donation=success`,
+        cancel_url: `${origin}/prayer-requests?donation=cancelled`,
+        metadata: {
+          type: 'candle_donation',
+          userId: userId || 'guest',
+          prayerRequestId: prayerRequestId || '',
+        },
+      });
+      
+      // Record pending donation in database
+      if (!prayerRequestId || prayerRequestId === 'null') {
+        // If no prayer request ID, still log donation attempt
+        console.log(`[Candle] Donation checkout created: ${amountCents} cents, session: ${session.id}`);
+      } else {
+        await db.insert(candleDonations).values({
+          userId,
+          prayerRequestId,
+          amountCents,
+          stripePaymentIntentId: session.payment_intent as string || null,
+          status: 'pending',
+        });
+      }
+      
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Error creating candle donation checkout:", error);
+      res.status(500).json({ message: "Failed to create donation checkout" });
+    }
+  });
+
   // Stripe Routes
   app.get("/api/stripe/config", async (_req, res) => {
     try {
