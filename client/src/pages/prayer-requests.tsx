@@ -336,13 +336,13 @@ export default function PrayerRequests() {
       </AnimatePresence>
 
       {view === "list" && (
-        <div className="px-4 pb-4 mt-auto">
-          <div className="flex flex-col items-center justify-center mb-6">
+        <div className="px-4 mt-auto flex flex-col" style={{ gap: "16px", paddingBottom: "16px" }}>
+          <div className="flex flex-col items-center justify-center">
             <AnimatedCandle />
           </div>
           
           {isAuthenticated && stats && (
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="grid grid-cols-3 gap-3">
               <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
                 <div className="flex items-center gap-2 mb-2">
                   <Flame className="w-4 h-4 text-orange-400" />
