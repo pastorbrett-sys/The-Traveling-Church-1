@@ -116,14 +116,19 @@ export default function PrayerRequests() {
     },
   });
 
-  const handleSubmit = () => {
+  const handleContinue = () => {
     if (!prayerContent.trim()) return;
-    submitMutation.mutate({
-      name: isAnonymous ? undefined : name,
-      email: isAnonymous ? undefined : email,
-      content: prayerContent,
-      isAnonymous,
-    });
+    // Don't submit yet - just go to donation page
+    // Prayer will be submitted when they skip or complete donation
+    setView("donation");
+  };
+
+  const handlePrayerSubmitted = (prayerId: string | null) => {
+    queryClient.invalidateQueries({ queryKey: ["/api/prayer-requests"] });
+    queryClient.invalidateQueries({ queryKey: ["/api/prayer-stats"] });
+    setSubmittedPrayerId(prayerId);
+    setPrayerContent("");
+    setView("list");
   };
 
   const getNavStyle = () => {
@@ -283,23 +288,12 @@ export default function PrayerRequests() {
               </div>
 
               <Button
-                onClick={handleSubmit}
-                disabled={!prayerContent.trim() || submitMutation.isPending}
+                onClick={handleContinue}
+                disabled={!prayerContent.trim()}
                 className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
                 data-testid="button-send-prayer"
               >
-                {submitMutation.isPending ? (
-                  <span className="flex items-center gap-2">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full"
-                    />
-                    Sending...
-                  </span>
-                ) : (
-                  "Continue"
-                )}
+                Continue
               </Button>
             </div>
           </motion.div>
@@ -307,9 +301,14 @@ export default function PrayerRequests() {
 
         {view === "donation" && (
           <CandleDonation
-            prayerRequestId={submittedPrayerId}
-            onComplete={() => setView("list")}
-            onSkip={() => setView("list")}
+            prayerData={{
+              name: isAnonymous ? undefined : name,
+              email: isAnonymous ? undefined : email,
+              content: prayerContent,
+              isAnonymous,
+            }}
+            onComplete={handlePrayerSubmitted}
+            onSkip={handlePrayerSubmitted}
           />
         )}
       </AnimatePresence>

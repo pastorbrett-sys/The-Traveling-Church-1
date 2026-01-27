@@ -11,10 +11,17 @@ import candleLitImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473
 import candleUnlitImage from "@assets/628562E5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png";
 import matchLightingImage from "@assets/97EB6137-7CC3-42DE-8006-6F15161A8754_1769473638700.png";
 
+interface PrayerData {
+  name?: string;
+  email?: string;
+  content: string;
+  isAnonymous: boolean;
+}
+
 interface CandleDonationProps {
-  prayerRequestId: string | null;
-  onComplete: () => void;
-  onSkip: () => void;
+  prayerData: PrayerData;
+  onComplete: (prayerId: string | null) => void;
+  onSkip: (prayerId: string | null) => void;
 }
 
 const DONATION_AMOUNTS = [
@@ -24,14 +31,24 @@ const DONATION_AMOUNTS = [
   { value: 2500, label: "$25" },
 ];
 
-export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDonationProps) {
+export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonationProps) {
   const { isNative } = usePlatform();
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [candleState, setCandleState] = useState<"unlit" | "lighting" | "lit" | "success">("unlit");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedPrayerId, setSubmittedPrayerId] = useState<string | null>(null);
+
+  // Submit the prayer request
+  const submitPrayerMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", "/api/prayer-requests", prayerData);
+      return res.json();
+    },
+  });
 
   const donationMutation = useMutation({
-    mutationFn: async (amountCents: number) => {
+    mutationFn: async ({ amountCents, prayerRequestId }: { amountCents: number; prayerRequestId: string | null }) => {
       const res = await apiRequest("POST", "/api/candle-donation/create-checkout", {
         amountCents,
         prayerRequestId,
@@ -59,10 +76,32 @@ export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDo
       } catch (e) {}
     }
     
-    // After brief animation, proceed to Stripe
-    setTimeout(() => {
-      donationMutation.mutate(selectedAmount);
-    }, 1500);
+    // First submit the prayer, then proceed to Stripe
+    try {
+      const prayerResult = await submitPrayerMutation.mutateAsync();
+      const prayerId = prayerResult.prayerRequest?.id || null;
+      setSubmittedPrayerId(prayerId);
+      
+      // After brief animation, proceed to Stripe
+      setTimeout(() => {
+        donationMutation.mutate({ amountCents: selectedAmount, prayerRequestId: prayerId });
+      }, 1500);
+    } catch (e) {
+      setCandleState("unlit");
+    }
+  };
+
+  const handleSkip = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    
+    try {
+      const prayerResult = await submitPrayerMutation.mutateAsync();
+      const prayerId = prayerResult.prayerRequest?.id || null;
+      onSkip(prayerId);
+    } catch (e) {
+      setIsSubmitting(false);
+    }
   };
 
   const triggerSuccessAnimation = async () => {
@@ -78,7 +117,7 @@ export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDo
     
     // Auto-complete after celebration
     setTimeout(() => {
-      onComplete();
+      onComplete(submittedPrayerId);
     }, 3000);
   };
 
@@ -236,11 +275,12 @@ export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDo
         </Button>
 
         <button
-          onClick={onSkip}
-          className="w-full py-3 text-white/50 hover:text-white/70 transition-colors text-sm"
+          onClick={handleSkip}
+          disabled={isSubmitting}
+          className="w-full py-3 text-white/50 hover:text-white/70 transition-colors text-sm disabled:opacity-50"
           data-testid="button-skip-donation"
         >
-          No, Just Send my Prayer
+          {isSubmitting ? "Sending Prayer..." : "No, Just Send my Prayer"}
         </button>
       </motion.div>
     </motion.div>
