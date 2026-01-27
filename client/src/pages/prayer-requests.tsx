@@ -300,7 +300,7 @@ export default function PrayerRequests() {
                 ) : (
                   <>
                     <Send className="w-5 h-5 mr-2" />
-                    Send Prayer Request
+                    Continue
                   </>
                 )}
               </Button>
