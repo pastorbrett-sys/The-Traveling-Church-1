@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown, HandHeart } from "lucide-react";
+import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown, Heart } from "lucide-react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
@@ -549,9 +549,9 @@ export default function PrayerTimer() {
           className="flex items-center gap-2 px-4 py-3"
           data-testid="button-prayer-requests"
         >
-          <HandHeart className="w-5 h-5 text-[#c08e00]" />
+          <Heart className="w-5 h-5 text-white" />
           <span 
-            className="text-[#c08e00] text-sm font-semibold tracking-wide"
+            className="text-white text-sm font-semibold tracking-wide"
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
             PRAYERS
