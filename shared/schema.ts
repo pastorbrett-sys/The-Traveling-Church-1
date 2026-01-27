@@ -3,6 +3,7 @@ import { pgTable, text, varchar, timestamp, integer, boolean } from "drizzle-orm
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+import { users } from "./models/auth";
 export * from "./models/auth";
 
 export const locations = pgTable("locations", {
@@ -315,6 +316,68 @@ export type ReferralSignup = typeof referralSignups.$inferSelect;
 
 export type BibleStudy = typeof bibleStudies.$inferSelect;
 export type EmailQueueItem = typeof emailQueue.$inferSelect;
+
+// Prayer Requests - stores user prayer submissions
+export const prayerRequests = pgTable("prayer_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  name: varchar("name"), // Optional name for display (null if anonymous)
+  email: varchar("email"), // For response delivery
+  content: text("content").notNull(),
+  isAnonymous: boolean("is_anonymous").default(false).notNull(),
+  status: varchar("status").default("pending").notNull(), // pending, responded, archived
+  respondedAt: timestamp("responded_at"),
+  responseContent: text("response_content"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Prayer Sessions - tracks prayer timer usage for stats
+export const prayerSessions = pgTable("prayer_sessions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  durationSeconds: integer("duration_seconds").notNull(),
+  completedAt: timestamp("completed_at").defaultNow().notNull(),
+  withMusic: boolean("with_music").default(false),
+});
+
+// Candle Donations - tracks "Light a Candle" donations
+export const candleDonations = pgTable("candle_donations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  prayerRequestId: varchar("prayer_request_id").references(() => prayerRequests.id),
+  amountCents: integer("amount_cents").notNull(),
+  stripePaymentIntentId: varchar("stripe_payment_intent_id"),
+  status: varchar("status").default("pending").notNull(), // pending, completed, failed
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertPrayerRequestSchema = createInsertSchema(prayerRequests).omit({
+  id: true,
+  createdAt: true,
+  respondedAt: true,
+  responseContent: true,
+  status: true,
+});
+
+export const insertPrayerSessionSchema = createInsertSchema(prayerSessions).omit({
+  id: true,
+  completedAt: true,
+});
+
+export const insertCandleDonationSchema = createInsertSchema(candleDonations).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+});
+
+export type InsertPrayerRequest = z.infer<typeof insertPrayerRequestSchema>;
+export type PrayerRequest = typeof prayerRequests.$inferSelect;
+
+export type InsertPrayerSession = z.infer<typeof insertPrayerSessionSchema>;
+export type PrayerSession = typeof prayerSessions.$inferSelect;
+
+export type InsertCandleDonation = z.infer<typeof insertCandleDonationSchema>;
+export type CandleDonation = typeof candleDonations.$inferSelect;
 
 export * from "./models/chat";
 export * from "./models/bible";
