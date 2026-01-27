@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +12,57 @@ import {
   Lock,
   ChevronRight
 } from "lucide-react";
+
+function AnimatedCandle() {
+  return (
+    <div className="relative flex flex-col items-center">
+      <style>{`
+        @keyframes flicker {
+          0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+          25% { transform: scaleY(1.1) scaleX(0.95); opacity: 0.9; }
+          50% { transform: scaleY(0.95) scaleX(1.05); opacity: 1; }
+          75% { transform: scaleY(1.05) scaleX(0.9); opacity: 0.85; }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px 10px rgba(255, 165, 0, 0.4), 0 0 40px 20px rgba(255, 100, 0, 0.2); }
+          50% { box-shadow: 0 0 30px 15px rgba(255, 165, 0, 0.5), 0 0 60px 30px rgba(255, 100, 0, 0.3); }
+        }
+        @keyframes candleGlow {
+          0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 100, 0, 0.4)); }
+          50% { filter: drop-shadow(0 0 12px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 100, 0, 0.5)); }
+        }
+      `}</style>
+      <div className="relative" style={{ animation: "candleGlow 2s ease-in-out infinite" }}>
+        <div 
+          className="absolute -top-6 left-1/2 -translate-x-1/2 w-4 h-8 rounded-full"
+          style={{
+            background: "linear-gradient(to top, #ff6b00, #ffcc00, #fff8e0)",
+            animation: "flicker 0.8s ease-in-out infinite",
+            transformOrigin: "bottom center",
+          }}
+        />
+        <div 
+          className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full opacity-50"
+          style={{
+            background: "radial-gradient(circle, rgba(255,165,0,0.8) 0%, transparent 70%)",
+            animation: "glow 2s ease-in-out infinite",
+          }}
+        />
+        <div 
+          className="w-8 h-16 rounded-t-sm rounded-b-lg"
+          style={{
+            background: "linear-gradient(to bottom, #f5e6d3 0%, #e8d4c0 50%, #d4c4a8 100%)",
+            boxShadow: "inset -2px 0 4px rgba(0,0,0,0.1), inset 2px 0 4px rgba(255,255,255,0.3)",
+          }}
+        />
+        <div 
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-gray-700"
+          style={{ top: "-4px" }}
+        />
+      </div>
+    </div>
+  );
+}
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -105,7 +156,7 @@ export default function PrayerRequests() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white flex flex-col">
       <header 
         className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
         style={getNavStyle()}
@@ -131,59 +182,8 @@ export default function PrayerRequests() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="p-4 pb-8"
+            className="p-4 pb-8 flex-1"
           >
-            {isAuthenticated && stats && (
-              <div className="mb-6">
-                <h2 className="text-sm uppercase tracking-wider text-amber-400/80 mb-4">Your Prayer Journey</h2>
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Flame className="w-4 h-4 text-orange-400" />
-                      <span className="text-xs text-white/60">Streak</span>
-                    </div>
-                    <p className="text-2xl font-bold text-white">{stats.streak}</p>
-                    <p className="text-xs text-white/40">days</p>
-                  </div>
-                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Clock className="w-4 h-4 text-blue-400" />
-                      <span className="text-xs text-white/60">Time</span>
-                    </div>
-                    <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
-                    <p className="text-xs text-white/40">minutes</p>
-                  </div>
-                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                    <div className="flex items-center gap-2 mb-2">
-                      <MessageCircle className="w-4 h-4 text-purple-400" />
-                      <span className="text-xs text-white/60">Prayers</span>
-                    </div>
-                    <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
-                    <p className="text-xs text-white/40">submitted</p>
-                  </div>
-                </div>
-
-                {stats.recentSessions.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-xs text-white/40 mb-2">Recent Sessions</p>
-                    <div className="flex gap-1">
-                      {stats.recentSessions.slice(0, 7).map((session, i) => (
-                        <div
-                          key={session.id}
-                          className="flex-1 h-8 rounded bg-gradient-to-t from-amber-600/40 to-amber-400/60"
-                          style={{ 
-                            height: `${Math.min(32, 8 + (session.durationSeconds / 60) * 2)}px`,
-                            opacity: 1 - (i * 0.1)
-                          }}
-                          title={`${Math.floor(session.durationSeconds / 60)} min`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
             <Button
               onClick={() => setView("form")}
               className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-semibold py-6 rounded-2xl mb-6 shadow-lg shadow-amber-500/20"
@@ -356,6 +356,46 @@ export default function PrayerRequests() {
           />
         )}
       </AnimatePresence>
+
+      {view === "list" && isAuthenticated && stats && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="px-4 pb-4"
+        >
+          <div className="flex flex-col items-center mb-4">
+            <AnimatedCandle />
+          </div>
+          
+          <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+            <h2 className="text-sm uppercase tracking-wider text-amber-400/80 mb-4 text-center">Your Prayer Journey</h2>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  <Flame className="w-4 h-4 text-orange-400" />
+                </div>
+                <p className="text-2xl font-bold text-white">{stats.streak}</p>
+                <p className="text-xs text-white/40">day streak</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  <Clock className="w-4 h-4 text-blue-400" />
+                </div>
+                <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
+                <p className="text-xs text-white/40">minutes</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  <MessageCircle className="w-4 h-4 text-purple-400" />
+                </div>
+                <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
+                <p className="text-xs text-white/40">prayers</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       <NativeTabBarSpacer />
     </div>
