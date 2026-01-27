@@ -9,10 +9,15 @@ import {
   insertTestimonialSchema,
   insertContactSubmissionSchema,
   insertNoteSchema,
+  insertPrayerRequestSchema,
+  insertPrayerSessionSchema,
   FEATURE_LIMITS,
   referralSignups,
   ambassadors,
   users,
+  prayerRequests,
+  prayerSessions,
+  candleDonations,
 } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { getUsageSummary, checkNotesLimit } from "./usageService";
@@ -644,6 +649,153 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting note:", error);
       res.status(500).json({ message: "Failed to delete note" });
+    }
+  });
+
+  // ============================================
+  // PRAYER REQUEST ROUTES
+  // ============================================
+  
+  // Submit a prayer request (works for both authenticated and guest users)
+  app.post("/api/prayer-requests", async (req: any, res) => {
+    try {
+      const userId = req.session?.userId || null;
+      const { name, email, content, isAnonymous } = req.body;
+      
+      if (!content || content.trim().length === 0) {
+        return res.status(400).json({ message: "Prayer content is required" });
+      }
+      
+      // If anonymous, don't store user info or persist to database
+      if (isAnonymous) {
+        // Just acknowledge - no database storage for anonymous prayers
+        console.log("[Prayer] Anonymous prayer submitted (not stored)");
+        return res.json({ 
+          success: true, 
+          isAnonymous: true,
+          message: "Your prayer has been lifted up" 
+        });
+      }
+      
+      // Store non-anonymous prayer requests
+      const [prayerRequest] = await db.insert(prayerRequests).values({
+        userId,
+        name: name || null,
+        email: email || null,
+        content: content.trim(),
+        isAnonymous: false,
+      }).returning();
+      
+      console.log(`[Prayer] Prayer request submitted: ${prayerRequest.id}`);
+      res.json({ success: true, prayerRequest });
+    } catch (error) {
+      console.error("Error submitting prayer request:", error);
+      res.status(500).json({ message: "Failed to submit prayer request" });
+    }
+  });
+  
+  // Get user's prayer requests (authenticated users only)
+  app.get("/api/prayer-requests", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      
+      const userPrayers = await db.select()
+        .from(prayerRequests)
+        .where(eq(prayerRequests.userId, userId))
+        .orderBy(sql`${prayerRequests.createdAt} DESC`);
+      
+      res.json(userPrayers);
+    } catch (error) {
+      console.error("Error fetching prayer requests:", error);
+      res.status(500).json({ message: "Failed to fetch prayer requests" });
+    }
+  });
+  
+  // Record a prayer session (for stats tracking)
+  app.post("/api/prayer-sessions", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      const { durationSeconds, withMusic } = req.body;
+      
+      if (!durationSeconds || durationSeconds < 1) {
+        return res.status(400).json({ message: "Invalid duration" });
+      }
+      
+      const [session] = await db.insert(prayerSessions).values({
+        userId,
+        durationSeconds,
+        withMusic: withMusic || false,
+      }).returning();
+      
+      res.json({ success: true, session });
+    } catch (error) {
+      console.error("Error recording prayer session:", error);
+      res.status(500).json({ message: "Failed to record prayer session" });
+    }
+  });
+  
+  // Get prayer stats for user
+  app.get("/api/prayer-stats", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.session.userId;
+      
+      // Get all sessions
+      const sessions = await db.select()
+        .from(prayerSessions)
+        .where(eq(prayerSessions.userId, userId))
+        .orderBy(sql`${prayerSessions.completedAt} DESC`);
+      
+      // Calculate stats
+      const totalSessions = sessions.length;
+      const totalSeconds = sessions.reduce((sum, s) => sum + s.durationSeconds, 0);
+      const totalMinutes = Math.floor(totalSeconds / 60);
+      
+      // Calculate streak (consecutive days)
+      let streak = 0;
+      if (sessions.length > 0) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const sessionDates = sessions.map(s => {
+          const d = new Date(s.completedAt);
+          d.setHours(0, 0, 0, 0);
+          return d.getTime();
+        });
+        
+        const uniqueDates = Array.from(new Set(sessionDates)).sort((a, b) => b - a);
+        
+        // Check if most recent session is today or yesterday
+        const mostRecent = uniqueDates[0];
+        const diff = Math.floor((today.getTime() - mostRecent) / (1000 * 60 * 60 * 24));
+        
+        if (diff <= 1) {
+          streak = 1;
+          for (let i = 1; i < uniqueDates.length; i++) {
+            const dayDiff = Math.floor((uniqueDates[i - 1] - uniqueDates[i]) / (1000 * 60 * 60 * 24));
+            if (dayDiff === 1) {
+              streak++;
+            } else {
+              break;
+            }
+          }
+        }
+      }
+      
+      // Get prayer request count
+      const prayerRequestCount = await db.select({ count: sql`count(*)` })
+        .from(prayerRequests)
+        .where(eq(prayerRequests.userId, userId));
+      
+      res.json({
+        totalSessions,
+        totalMinutes,
+        streak,
+        prayerRequestCount: Number(prayerRequestCount[0]?.count || 0),
+        recentSessions: sessions.slice(0, 7), // Last 7 sessions
+      });
+    } catch (error) {
+      console.error("Error fetching prayer stats:", error);
+      res.status(500).json({ message: "Failed to fetch prayer stats" });
     }
   });
 
