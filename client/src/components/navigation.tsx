@@ -262,6 +262,15 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   ) : isAuthenticated ? (
                     <div className="flex flex-col gap-2">
                       <Link
+                        href="/prayer-timer"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${location === "/prayer-timer" || location === "/prayer-requests" ? "bg-muted text-primary" : ""}`}
+                        data-testid="link-mobile-prayer"
+                      >
+                        <Timer className="w-4 h-4" />
+                        Prayer
+                      </Link>
+                      <Link
                         href="/ambassador"
                         onClick={() => setMobileMenuOpen(false)}
                         className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${location.startsWith("/ambassador") || location === "/admin" ? "bg-muted text-primary" : ""}`}
