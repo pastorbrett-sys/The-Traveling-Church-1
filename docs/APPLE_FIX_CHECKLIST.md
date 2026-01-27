@@ -152,3 +152,119 @@
 - 2 localization additions
 
 **Total estimated: ~125 lines of changes across 6 files**
+
+---
+
+## K. QA TESTING CHECKLIST
+
+### Platform Legend
+- 📱 iOS Native
+- 🤖 Android Native  
+- 🌐 Mobile Web
+- 💻 Desktop Web
+
+---
+
+### 1. GUEST BIBLE READING (Must Work Without Login)
+
+| # | Test Case | 📱 | 🤖 | 🌐 | 💻 |
+|---|-----------|----|----|----|----|
+| 1.1 | Open app as guest - lands on Bible reader | ☐ | ☐ | ☐ | ☐ |
+| 1.2 | Browse book list (Old/New Testament) | ☐ | ☐ | ☐ | ☐ |
+| 1.3 | Select a book → see chapters | ☐ | ☐ | ☐ | ☐ |
+| 1.4 | Select chapter → read verses | ☐ | ☐ | ☐ | ☐ |
+| 1.5 | Change translation (KJV, ESV, etc.) | ☐ | ☐ | ☐ | ☐ |
+| 1.6 | Compare translations on a verse | ☐ | ☐ | ☐ | ☐ |
+| 1.7 | Copy verse to clipboard | ☐ | ☐ | ☐ | ☐ |
+| 1.8 | Share verse (opens share sheet) | ☐ | ☐ | ☐ | ☐ |
+| 1.9 | Navigate chapters (prev/next) | ☐ | ☐ | ☐ | ☐ |
+| 1.10 | Deep link to specific verse works | ☐ | ☐ | ☐ | ☐ |
+
+---
+
+### 2. AI FEATURES - LOGIN PROMPT (Must Show Login Dialog)
+
+| # | Test Case | Expected | 📱 | 🤖 | 🌐 | 💻 |
+|---|-----------|----------|----|----|----|----|
+| 2.1 | Guest taps Smart Search | Login prompt appears | ☐ | ☐ | ☐ | ☐ |
+| 2.2 | Guest taps "Get Insight" on verse | Login prompt appears | ☐ | ☐ | ☐ | ☐ |
+| 2.3 | Guest taps Book Synopsis | Login prompt appears | ☐ | ☐ | ☐ | ☐ |
+| 2.4 | Guest taps Save Note | Login prompt appears | ☐ | ☐ | ☐ | ☐ |
+| 2.5 | Guest navigates to /notes | GuestPrompt page shown | ☐ | ☐ | ☐ | ☐ |
+| 2.6 | Guest navigates to /pastor-chat | LoginPrompt shown | ☐ | ☐ | ☐ | ☐ |
+| 2.7 | Guest navigates to /bible-buddy | LoginPrompt shown | ☐ | ☐ | ☐ | ☐ |
+| 2.8 | Guest navigates to /profile | GuestPrompt page shown | ☐ | ☐ | ☐ | ☐ |
+
+---
+
+### 3. LOGIN FLOW & REDIRECT
+
+| # | Test Case | 📱 | 🤖 | 🌐 | 💻 |
+|---|-----------|----|----|----|----|
+| 3.1 | Login from Smart Search prompt → returns to Bible | ☐ | ☐ | ☐ | ☐ |
+| 3.2 | Login from Notes page → returns to Notes | ☐ | ☐ | ☐ | ☐ |
+| 3.3 | Login from Pastor Chat → returns to Chat tab | ☐ | ☐ | ☐ | ☐ |
+| 3.4 | Login from Profile page → returns to Profile | ☐ | ☐ | ☐ | ☐ |
+| 3.5 | Login preserves Bible position (book/chapter/verse) | ☐ | ☐ | ☐ | ☐ |
+
+---
+
+### 4. AUTHENTICATED USER FEATURES (Must Work After Login)
+
+| # | Test Case | 📱 | 🤖 | 🌐 | 💻 |
+|---|-----------|----|----|----|----|
+| 4.1 | Smart Search returns results | ☐ | ☐ | ☐ | ☐ |
+| 4.2 | Get Insight shows AI response | ☐ | ☐ | ☐ | ☐ |
+| 4.3 | Book Synopsis loads | ☐ | ☐ | ☐ | ☐ |
+| 4.4 | Save Note works | ☐ | ☐ | ☐ | ☐ |
+| 4.5 | Notes page shows saved notes | ☐ | ☐ | ☐ | ☐ |
+| 4.6 | Pastor Chat loads conversations | ☐ | ☐ | ☐ | ☐ |
+| 4.7 | Send message in chat works | ☐ | ☐ | ☐ | ☐ |
+| 4.8 | Start new chat works | ☐ | ☐ | ☐ | ☐ |
+| 4.9 | Profile shows user info | ☐ | ☐ | ☐ | ☐ |
+
+---
+
+### 5. PLATFORM-SPECIFIC SAFE AREAS
+
+| # | Test Case | Platform |
+|---|-----------|----------|
+| 5.1 | GuestPrompt respects iOS notch (safe-area-inset-top) | 📱 |
+| 5.2 | GuestPrompt respects iOS home indicator (safe-area-inset-bottom) | 📱 |
+| 5.3 | GuestPrompt respects Android status bar | 🤖 |
+| 5.4 | GuestPrompt shows VagabondHeader on web | 🌐 💻 |
+| 5.5 | LoginPromptDialog displays correctly on all screen sizes | All |
+
+---
+
+### 6. EDGE CASES
+
+| # | Test Case | Expected |
+|---|-----------|----------|
+| 6.1 | Logout while on Notes page | Redirected or GuestPrompt shown |
+| 6.2 | Logout while in Pastor Chat | LoginPrompt shown |
+| 6.3 | Session expires during use | Graceful 401 handling, login prompt |
+| 6.4 | Rapid toggle between guest/auth features | No crashes, correct UI state |
+| 6.5 | Amharic language mode shows correct translations | All prompts in Amharic |
+
+---
+
+### 7. REGRESSION CHECKS
+
+| # | Test Case | 📱 | 🤖 | 🌐 | 💻 |
+|---|-----------|----|----|----|----|
+| 7.1 | Prayer timer still works | ☐ | ☐ | ☐ | ☐ |
+| 7.2 | Contact form still works | ☐ | ☐ | ☐ | ☐ |
+| 7.3 | Subscription/upgrade flow works | ☐ | ☐ | ☐ | ☐ |
+| 7.4 | Push notifications still work | ☐ | ☐ | N/A | N/A |
+| 7.5 | Existing users' notes still accessible | ☐ | ☐ | ☐ | ☐ |
+
+---
+
+## L. SIGN-OFF
+
+| Role | Name | Date | Signature |
+|------|------|------|-----------|
+| Developer | | | |
+| QA Tester | | | |
+| Product Owner | | | |
