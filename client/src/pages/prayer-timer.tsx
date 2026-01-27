@@ -549,10 +549,10 @@ export default function PrayerTimer() {
           className="flex items-center gap-2 px-4 py-3"
           data-testid="button-prayer-requests"
         >
-          <Heart className="w-5 h-5 text-white" />
+          <Heart className="w-5 h-5" style={{ color: "#ff4d6d" }} />
           <span 
-            className="text-white text-sm font-semibold tracking-wide"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
+            className="text-sm font-semibold tracking-wide"
+            style={{ fontFamily: "'Poppins', sans-serif", color: "#888" }}
           >
             PRAYERS
           </span>
