@@ -43,7 +43,7 @@ function AnimatedCandle() {
         <img 
           src={litCandleImage} 
           alt="Lit candle" 
-          className="w-24 h-auto"
+          className="w-48 h-auto max-h-[280px] object-contain"
         />
       </div>
     </div>
@@ -342,7 +342,7 @@ export default function PrayerRequests() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="px-4 pb-4"
         >
-          <div className="flex flex-col items-center mb-4">
+          <div className="flex flex-col items-center justify-center flex-1 mb-6 py-8">
             <AnimatedCandle />
           </div>
           
