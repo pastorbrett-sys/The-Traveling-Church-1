@@ -40,7 +40,7 @@ function AnimatedCandle() {
         src={litCandleImage} 
         alt="Lit candle" 
         style={{ 
-          height: '50vh',
+          height: '100vh',
           width: 'auto',
         }}
       />
@@ -320,7 +320,7 @@ export default function PrayerRequests() {
       {view === "list" && (
         <>
           {/* Candle area - fills remaining space */}
-          <div className="flex-1 flex items-center justify-center px-4 min-h-0 overflow-visible">
+          <div className="flex-1 flex items-center justify-center px-4 overflow-visible">
             <AnimatedCandle />
           </div>
           
