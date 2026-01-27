@@ -275,6 +275,7 @@ export default function PrayerRequests() {
                 <Switch
                   checked={isAnonymous}
                   onCheckedChange={setIsAnonymous}
+                  className="data-[state=checked]:bg-[#c08e00] shrink-0"
                   data-testid="switch-anonymous"
                 />
               </div>
@@ -324,7 +325,7 @@ export default function PrayerRequests() {
               <Button
                 onClick={handleSubmit}
                 disabled={!prayerContent.trim() || submitMutation.isPending}
-                className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-semibold py-6 rounded-2xl shadow-lg shadow-amber-500/20"
+                className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold py-6 rounded-2xl shadow-lg shadow-amber-500/20"
                 data-testid="button-send-prayer"
               >
                 {submitMutation.isPending ? (
@@ -332,7 +333,7 @@ export default function PrayerRequests() {
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full"
+                      className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full"
                     />
                     Sending...
                   </span>
