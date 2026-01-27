@@ -347,30 +347,30 @@ export default function PrayerRequests() {
           </div>
           
           {isAuthenticated && stats && (
-            <div className="bg-white/5 rounded-2xl p-4 border border-white/10 mb-4">
-              <h2 className="text-sm uppercase tracking-wider text-amber-400/80 mb-4 text-center">Your Prayer Journey</h2>
-              <div className="grid grid-cols-3 gap-3">
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    <Flame className="w-4 h-4 text-orange-400" />
-                  </div>
-                  <p className="text-2xl font-bold text-white">{stats.streak}</p>
-                  <p className="text-xs text-white/40">day streak</p>
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                <div className="flex items-center gap-2 mb-2">
+                  <Flame className="w-4 h-4 text-orange-400" />
+                  <span className="text-xs text-white/60">Streak</span>
                 </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    <Clock className="w-4 h-4 text-blue-400" />
-                  </div>
-                  <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
-                  <p className="text-xs text-white/40">minutes</p>
+                <p className="text-2xl font-bold text-white">{stats.streak}</p>
+                <p className="text-xs text-white/40">days</p>
+              </div>
+              <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                <div className="flex items-center gap-2 mb-2">
+                  <Clock className="w-4 h-4 text-blue-400" />
+                  <span className="text-xs text-white/60">Time</span>
                 </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    <MessageCircle className="w-4 h-4 text-purple-400" />
-                  </div>
-                  <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
-                  <p className="text-xs text-white/40">prayers</p>
+                <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
+                <p className="text-xs text-white/40">minutes</p>
+              </div>
+              <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                <div className="flex items-center gap-2 mb-2">
+                  <MessageCircle className="w-4 h-4 text-purple-400" />
+                  <span className="text-xs text-white/60">Prayers</span>
                 </div>
+                <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
+                <p className="text-xs text-white/40">submitted</p>
               </div>
             </div>
           )}
