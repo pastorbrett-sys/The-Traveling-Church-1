@@ -18,34 +18,11 @@ import litCandleImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473
 function AnimatedCandle() {
   return (
     <div className="relative flex flex-col items-center">
-      <style>{`
-        @keyframes flameTipGlow {
-          0%, 100% { 
-            opacity: 0.6;
-            box-shadow: 0 0 20px 10px rgba(255, 200, 100, 0.5), 0 0 40px 20px rgba(255, 150, 50, 0.3), 0 0 60px 30px rgba(255, 100, 0, 0.2);
-          }
-          50% { 
-            opacity: 0.9;
-            box-shadow: 0 0 30px 15px rgba(255, 200, 100, 0.7), 0 0 60px 30px rgba(255, 150, 50, 0.5), 0 0 90px 45px rgba(255, 100, 0, 0.3);
-          }
-        }
-      `}</style>
-      <div className="relative">
-        {/* Glow overlay at top of flame only */}
-        <div 
-          className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full pointer-events-none"
-          style={{ 
-            top: "8px",
-            background: "radial-gradient(circle, rgba(255, 220, 150, 0.8) 0%, rgba(255, 150, 50, 0.4) 40%, transparent 70%)",
-            animation: "flameTipGlow 2s ease-in-out infinite",
-          }}
-        />
-        <img 
-          src={litCandleImage} 
-          alt="Lit candle" 
-          className="w-48 h-auto max-h-[280px] object-contain"
-        />
-      </div>
+      <img 
+        src={litCandleImage} 
+        alt="Lit candle" 
+        className="w-48 h-auto max-h-[280px] object-contain"
+      />
     </div>
   );
 }
