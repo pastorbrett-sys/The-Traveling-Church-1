@@ -212,7 +212,7 @@ export default function PrayerRequests() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="p-4 pb-8"
+            className="p-4 pb-8 flex-1 overflow-y-auto"
           >
             <div className="bg-gradient-to-b from-amber-500/10 to-transparent rounded-2xl p-4 mb-6 border border-amber-500/20">
               <p className="text-amber-200 text-sm leading-relaxed">
@@ -235,7 +235,7 @@ export default function PrayerRequests() {
                 <Switch
                   checked={isAnonymous}
                   onCheckedChange={setIsAnonymous}
-                  className="data-[state=checked]:bg-[#c08e00] shrink-0"
+                  className="data-[state=checked]:bg-[#c08e00] data-[state=unchecked]:bg-[#c08e00]/40 shrink-0"
                   data-testid="switch-anonymous"
                 />
               </div>
