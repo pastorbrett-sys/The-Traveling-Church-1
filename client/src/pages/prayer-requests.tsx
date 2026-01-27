@@ -17,11 +17,11 @@ import litCandleImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473
 
 function AnimatedCandle() {
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center w-full h-full">
       <img 
         src={litCandleImage} 
         alt="Lit candle" 
-        className="w-72 h-auto max-h-[360px] object-contain"
+        className="max-w-[288px] w-auto h-full max-h-full object-contain"
       />
     </div>
   );
