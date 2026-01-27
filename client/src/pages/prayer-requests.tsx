@@ -313,49 +313,53 @@ export default function PrayerRequests() {
       </AnimatePresence>
 
       {view === "list" && (
-        <div className="px-4 mt-auto flex flex-col" style={{ gap: "16px", paddingBottom: "16px" }}>
-          <div className="flex flex-col items-center justify-center">
+        <>
+          {/* Candle area - fills remaining space */}
+          <div className="flex-1 flex items-center justify-center px-4">
             <AnimatedCandle />
           </div>
           
-          {isAuthenticated && stats && (
-            <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <Flame className="w-4 h-4 text-orange-400" />
-                  <span className="text-xs text-white/60">Streak</span>
+          {/* Bottom section - fixed height, locked above nav */}
+          <div className="px-4 flex flex-col" style={{ gap: "16px", paddingBottom: "16px" }}>
+            {isAuthenticated && stats && (
+              <div className="grid grid-cols-3 gap-3">
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Flame className="w-4 h-4 text-orange-400" />
+                    <span className="text-xs text-white/60">Streak</span>
+                  </div>
+                  <p className="text-2xl font-bold text-white">{stats.streak}</p>
+                  <p className="text-xs text-white/40">days</p>
                 </div>
-                <p className="text-2xl font-bold text-white">{stats.streak}</p>
-                <p className="text-xs text-white/40">days</p>
-              </div>
-              <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock className="w-4 h-4 text-blue-400" />
-                  <span className="text-xs text-white/60">Time</span>
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Clock className="w-4 h-4 text-blue-400" />
+                    <span className="text-xs text-white/60">Time</span>
+                  </div>
+                  <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
+                  <p className="text-xs text-white/40">minutes</p>
                 </div>
-                <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
-                <p className="text-xs text-white/40">minutes</p>
-              </div>
-              <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <MessageCircle className="w-4 h-4 text-purple-400" />
-                  <span className="text-xs text-white/60">Prayers</span>
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MessageCircle className="w-4 h-4 text-purple-400" />
+                    <span className="text-xs text-white/60">Prayers</span>
+                  </div>
+                  <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
+                  <p className="text-xs text-white/40">submitted</p>
                 </div>
-                <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
-                <p className="text-xs text-white/40">submitted</p>
               </div>
-            </div>
-          )}
-          
-          <Button
-            onClick={() => setView("form")}
-            className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold py-6 rounded-2xl shadow-lg shadow-amber-500/20"
-            data-testid="button-submit-prayer"
-          >
-            <Send className="w-5 h-5 mr-2" />
-            Submit a Prayer Request
-          </Button>
-        </div>
+            )}
+            
+            <Button
+              onClick={() => setView("form")}
+              className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold py-6 rounded-2xl shadow-lg shadow-amber-500/20"
+              data-testid="button-submit-prayer"
+            >
+              <Send className="w-5 h-5 mr-2" />
+              Submit a Prayer Request
+            </Button>
+          </div>
+        </>
       )}
 
       <NativeTabBarSpacer />
