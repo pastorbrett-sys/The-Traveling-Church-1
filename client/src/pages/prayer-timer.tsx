@@ -528,9 +528,12 @@ export default function PrayerTimer() {
             transform: scale(0);
             opacity: 0;
           }
-          60% {
-            transform: scale(1.2);
+          50% {
+            transform: scale(1.3);
             opacity: 1;
+          }
+          75% {
+            transform: scale(0.9);
           }
           100% {
             transform: scale(1);
@@ -538,13 +541,13 @@ export default function PrayerTimer() {
           }
         }
         @keyframes heartJumpSpin {
-          0%, 85% {
+          0%, 80% {
             transform: scale(1) rotateY(0deg) translateY(0);
           }
-          90% {
-            transform: scale(1.3) rotateY(180deg) translateY(-4px);
+          87% {
+            transform: scale(1.3) rotateY(180deg) translateY(-5px);
           }
-          95% {
+          94% {
             transform: scale(1.1) rotateY(360deg) translateY(-2px);
           }
           100% {
@@ -552,7 +555,7 @@ export default function PrayerTimer() {
           }
         }
         .animate-heart-pulse {
-          animation: heartEntrance 0.5s ease-out forwards, heartJumpSpin 7s ease-in-out 0.5s infinite;
+          animation: heartEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, heartJumpSpin 7s ease-in-out 0.6s infinite;
           transform-style: preserve-3d;
         }
       `}</style>
