@@ -13,7 +13,7 @@ import {
   ChevronRight
 } from "lucide-react";
 
-import litCandleImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png";
+import litCandleImage from "@assets/candle_cropped.png";
 
 function AnimatedCandle() {
   return (
@@ -21,13 +21,13 @@ function AnimatedCandle() {
       <motion.div
         className="absolute rounded-full blur-2xl"
         style={{
-          width: '80px',
-          height: '50px',
-          top: '-25px',
-          background: 'radial-gradient(circle, rgba(251,191,36,0.8) 0%, rgba(251,191,36,0) 70%)',
+          width: '120px',
+          height: '80px',
+          top: '-40px',
+          background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
         }}
         animate={{
-          opacity: [0.6, 1, 0.6],
+          opacity: [0.7, 1, 0.7],
           scale: [1, 1.3, 1],
         }}
         transition={{
@@ -40,9 +40,9 @@ function AnimatedCandle() {
         src={litCandleImage} 
         alt="Lit candle" 
         style={{ 
-          height: '45vh',
+          height: '55vh',
           width: 'auto',
-          maxWidth: '60vw',
+          maxWidth: '80vw',
         }}
       />
     </div>
