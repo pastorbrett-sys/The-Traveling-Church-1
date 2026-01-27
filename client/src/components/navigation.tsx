@@ -224,7 +224,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
 
         {/* Mobile Navigation Menu - Overlay */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed left-0 right-0 top-[64px] z-50 bg-background border-b border-border shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
+          <div className="lg:hidden fixed left-0 right-0 top-[64px] z-50 bg-card border-b border-border shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
             <div className="flex flex-col gap-3 p-4">
               {!hideNavLinks && navItems.map((item, index) => (
                 item.type === "link" ? (
