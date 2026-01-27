@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown } from "lucide-react";
+import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown, HandHeart } from "lucide-react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
@@ -528,20 +528,36 @@ export default function PrayerTimer() {
       {/* Header bar */}
       <div className="w-full h-1 bg-[#333]" />
       
-      <button
-        onClick={() => setLocation("/bible-buddy")}
-        className="flex items-center gap-1 px-4 py-3 self-start"
-        style={{ marginTop: "7px" }}
-        data-testid="button-back"
-      >
-        <ChevronLeft className="w-4 h-4 text-white" />
-        <span 
-          className="text-white text-sm font-semibold tracking-wide"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
+      {/* Navigation row */}
+      <div className="w-full flex items-center justify-between" style={{ marginTop: "7px" }}>
+        <button
+          onClick={() => setLocation("/bible-buddy")}
+          className="flex items-center gap-1 px-4 py-3"
+          data-testid="button-back"
         >
-          BACK
-        </span>
-      </button>
+          <ChevronLeft className="w-4 h-4 text-white" />
+          <span 
+            className="text-white text-sm font-semibold tracking-wide"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            BACK
+          </span>
+        </button>
+        
+        <button
+          onClick={() => setLocation("/prayer-requests")}
+          className="flex items-center gap-2 px-4 py-3"
+          data-testid="button-prayer-requests"
+        >
+          <HandHeart className="w-5 h-5 text-[#c08e00]" />
+          <span 
+            className="text-[#c08e00] text-sm font-semibold tracking-wide"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            PRAYERS
+          </span>
+        </button>
+      </div>
 
       {/* Content area - centered vertically */}
       <div 
