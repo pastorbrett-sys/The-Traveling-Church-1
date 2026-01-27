@@ -17,13 +17,13 @@ import litCandleImage from "@assets/candle_cropped.png";
 
 function AnimatedCandle() {
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-center h-full w-full">
       <motion.div
         className="absolute rounded-full blur-2xl"
         style={{
           width: '120px',
           height: '80px',
-          top: '-40px',
+          top: '5%',
           background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
         }}
         animate={{
@@ -39,10 +39,7 @@ function AnimatedCandle() {
       <img 
         src={litCandleImage} 
         alt="Lit candle" 
-        style={{ 
-          height: '70vh',
-          width: 'auto',
-        }}
+        className="h-full w-auto object-contain"
       />
     </div>
   );
@@ -320,7 +317,7 @@ export default function PrayerRequests() {
       {view === "list" && (
         <>
           {/* Candle area - fills remaining space */}
-          <div className="flex-1 flex items-center justify-center px-4 overflow-visible">
+          <div className="flex-1 flex items-center justify-center px-4 min-h-0">
             <AnimatedCandle />
           </div>
           
