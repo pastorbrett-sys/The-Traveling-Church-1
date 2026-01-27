@@ -92,20 +92,6 @@ export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDo
       className="p-4 pb-8 flex flex-col items-center flex-1 overflow-y-auto"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-center mb-8"
-      >
-        <h2 className="text-2xl font-serif text-amber-100 mb-2">
-          Your Prayer Has Been Received
-        </h2>
-        <p className="text-white/60 text-sm">
-          We will respond within 24 hours
-        </p>
-      </motion.div>
-
-      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
