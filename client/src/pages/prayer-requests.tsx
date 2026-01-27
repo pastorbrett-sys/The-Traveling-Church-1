@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,18 +15,15 @@ import {
 
 import litCandleImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png";
 
-function AnimatedCandle({ containerHeight }: { containerHeight: number }) {
-  const candleHeight = containerHeight * 2.0;
-  const candleWidth = Math.min(candleHeight * 0.6, window.innerWidth * 0.6);
-  
+function AnimatedCandle() {
   return (
     <div className="relative flex items-center justify-center">
       <motion.div
         className="absolute rounded-full blur-2xl"
         style={{
-          width: candleHeight * 0.25,
-          height: candleHeight * 0.15,
-          top: candleHeight * -0.05,
+          width: '80px',
+          height: '50px',
+          top: '-25px',
           background: 'radial-gradient(circle, rgba(251,191,36,0.8) 0%, rgba(251,191,36,0) 70%)',
         }}
         animate={{
@@ -43,10 +40,9 @@ function AnimatedCandle({ containerHeight }: { containerHeight: number }) {
         src={litCandleImage} 
         alt="Lit candle" 
         style={{ 
-          height: `${candleHeight}px`, 
+          height: '45vh',
           width: 'auto',
-          maxWidth: `${candleWidth}px`,
-          objectFit: 'contain' 
+          maxWidth: '60vw',
         }}
       />
     </div>
@@ -96,19 +92,6 @@ export default function PrayerRequests() {
   const [email, setEmail] = useState(user?.email || "");
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [submittedPrayerId, setSubmittedPrayerId] = useState<string | null>(null);
-  const [candleContainerHeight, setCandleContainerHeight] = useState(0);
-  const candleContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const measureContainer = () => {
-      if (candleContainerRef.current) {
-        setCandleContainerHeight(candleContainerRef.current.clientHeight);
-      }
-    };
-    measureContainer();
-    window.addEventListener('resize', measureContainer);
-    return () => window.removeEventListener('resize', measureContainer);
-  }, [view]);
 
   const { data: stats, isLoading: statsLoading } = useQuery<PrayerStats>({
     queryKey: ["/api/prayer-stats"],
@@ -338,13 +321,8 @@ export default function PrayerRequests() {
       {view === "list" && (
         <>
           {/* Candle area - fills remaining space */}
-          <div 
-            ref={candleContainerRef}
-            className="flex-1 flex items-center justify-center px-4 min-h-0"
-          >
-            {candleContainerHeight > 0 && (
-              <AnimatedCandle containerHeight={candleContainerHeight} />
-            )}
+          <div className="flex-1 flex items-center justify-center px-4 min-h-0 overflow-visible">
+            <AnimatedCandle />
           </div>
           
           {/* Bottom section - fixed height, locked above nav */}
