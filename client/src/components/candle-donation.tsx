@@ -215,7 +215,7 @@ export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDo
         <Button
           onClick={handleDonate}
           disabled={!selectedAmount || donationMutation.isPending || candleState !== "unlit"}
-          className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-semibold py-6 rounded-2xl mb-3 shadow-lg shadow-amber-500/20 disabled:opacity-50"
+          className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl mb-3 shadow-lg shadow-amber-500/20 disabled:opacity-50"
           data-testid="button-donate"
         >
           {donationMutation.isPending || candleState === "lighting" ? (
@@ -240,7 +240,7 @@ export function CandleDonation({ prayerRequestId, onComplete, onSkip }: CandleDo
           className="w-full py-3 text-white/50 hover:text-white/70 transition-colors text-sm"
           data-testid="button-skip-donation"
         >
-          Not today
+          No, Just Send my Prayer
         </button>
       </motion.div>
     </motion.div>
