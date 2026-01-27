@@ -336,13 +336,8 @@ export default function PrayerRequests() {
       </AnimatePresence>
 
       {view === "list" && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="px-4 pb-4"
-        >
-          <div className="flex flex-col items-center justify-center flex-1 mb-6 py-8">
+        <div className="px-4 pb-4 mt-auto">
+          <div className="flex flex-col items-center justify-center mb-6">
             <AnimatedCandle />
           </div>
           
@@ -383,7 +378,7 @@ export default function PrayerRequests() {
             <Send className="w-5 h-5 mr-2" />
             Submit a Prayer Request
           </Button>
-        </motion.div>
+        </div>
       )}
 
       <NativeTabBarSpacer />
