@@ -40,7 +40,7 @@ function AnimatedCandle() {
         src={litCandleImage} 
         alt="Lit candle" 
         style={{ 
-          height: '40vh',
+          height: '70vh',
           width: 'auto',
         }}
       />
