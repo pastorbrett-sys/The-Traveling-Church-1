@@ -40,9 +40,8 @@ function AnimatedCandle() {
         src={litCandleImage} 
         alt="Lit candle" 
         style={{
-          height: 'calc(100vh - 280px)',
+          height: 'calc(200vh - 560px)',
           width: 'auto',
-          maxHeight: '100%',
         }}
       />
     </div>
@@ -321,8 +320,10 @@ export default function PrayerRequests() {
       {view === "list" && (
         <>
           {/* Candle area - fills remaining space */}
-          <div className="flex-1 flex items-center justify-center px-4 min-h-0">
-            <AnimatedCandle />
+          <div className="flex-1 flex items-center justify-center px-4 min-h-0 relative">
+            <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none">
+              <AnimatedCandle />
+            </div>
           </div>
           
           {/* Bottom section - fixed height, locked above nav */}
