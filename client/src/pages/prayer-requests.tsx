@@ -285,7 +285,7 @@ export default function PrayerRequests() {
               <Button
                 onClick={handleSubmit}
                 disabled={!prayerContent.trim() || submitMutation.isPending}
-                className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold py-6 rounded-2xl shadow-lg shadow-amber-500/20"
+                className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
                 data-testid="button-send-prayer"
               >
                 {submitMutation.isPending ? (
@@ -359,7 +359,7 @@ export default function PrayerRequests() {
             
             <Button
               onClick={() => setView("form")}
-              className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold py-6 rounded-2xl shadow-lg shadow-amber-500/20"
+              className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
               data-testid="button-submit-prayer"
             >
               <Send className="w-5 h-5 mr-2" />
