@@ -523,6 +523,35 @@ export default function PrayerTimer() {
             transform: translateY(0);
           }
         }
+        @keyframes heartPulse {
+          0% {
+            transform: scale(0) rotateY(0deg);
+            opacity: 0;
+          }
+          10% {
+            transform: scale(1.2) rotateY(0deg);
+            opacity: 1;
+          }
+          15% {
+            transform: scale(1) rotateY(0deg);
+          }
+          85.7% {
+            transform: scale(1) rotateY(0deg);
+          }
+          90% {
+            transform: scale(1.3) rotateY(180deg) translateY(-3px);
+          }
+          95% {
+            transform: scale(1.1) rotateY(360deg) translateY(-1px);
+          }
+          100% {
+            transform: scale(1) rotateY(360deg) translateY(0);
+          }
+        }
+        .animate-heart-pulse {
+          animation: heartPulse 7s ease-in-out infinite;
+          transform-style: preserve-3d;
+        }
       `}</style>
 
       {/* Header bar */}
@@ -555,7 +584,10 @@ export default function PrayerTimer() {
           >
             PRAYERS
           </span>
-          <Heart className="w-5 h-5" style={{ color: "#FD0250" }} />
+          <Heart 
+            className="w-5 h-5 animate-heart-pulse" 
+            style={{ color: "#FD0250" }} 
+          />
         </button>
       </div>
 
