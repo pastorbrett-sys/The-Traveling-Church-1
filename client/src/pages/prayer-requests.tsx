@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,12 +15,20 @@ import {
 
 import litCandleImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png";
 
-function AnimatedCandle() {
+function AnimatedCandle({ containerHeight }: { containerHeight: number }) {
+  const candleHeight = containerHeight * 0.7;
+  const candleWidth = Math.min(candleHeight * 0.6, window.innerWidth * 0.6);
+  
   return (
     <img 
       src={litCandleImage} 
       alt="Lit candle" 
-      style={{ width: '60%', height: '70%', objectFit: 'contain' }}
+      style={{ 
+        height: `${candleHeight}px`, 
+        width: 'auto',
+        maxWidth: `${candleWidth}px`,
+        objectFit: 'contain' 
+      }}
     />
   );
 }
@@ -68,6 +76,19 @@ export default function PrayerRequests() {
   const [email, setEmail] = useState(user?.email || "");
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [submittedPrayerId, setSubmittedPrayerId] = useState<string | null>(null);
+  const [candleContainerHeight, setCandleContainerHeight] = useState(0);
+  const candleContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const measureContainer = () => {
+      if (candleContainerRef.current) {
+        setCandleContainerHeight(candleContainerRef.current.clientHeight);
+      }
+    };
+    measureContainer();
+    window.addEventListener('resize', measureContainer);
+    return () => window.removeEventListener('resize', measureContainer);
+  }, [view]);
 
   const { data: stats, isLoading: statsLoading } = useQuery<PrayerStats>({
     queryKey: ["/api/prayer-stats"],
@@ -136,65 +157,49 @@ export default function PrayerRequests() {
       </header>
 
       <AnimatePresence mode="wait">
-        {view === "list" && (
+        {view === "list" && isAuthenticated && prayers && prayers.length > 0 && (
           <motion.div
             key="list"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="p-4 pb-8 flex-1"
+            className="p-4 pb-4 shrink-0 max-h-[30%] overflow-y-auto"
           >
-
-            {isAuthenticated && prayers && prayers.length > 0 && (
-              <div>
-                <h2 className="text-sm uppercase tracking-wider text-white/40 mb-3">Your Previous Prayers</h2>
-                <div className="space-y-3">
-                  {prayers.map((prayer) => (
-                    <motion.div
-                      key={prayer.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="bg-white/5 rounded-xl p-4 border border-white/10"
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <p className="text-white/80 text-sm line-clamp-2 flex-1">
-                          {prayer.content}
-                        </p>
-                        {prayer.status === "responded" && (
-                          <span className="shrink-0 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full">
-                            Responded
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-white/40">
-                        <Calendar className="w-3 h-3" />
-                        {formatDate(prayer.createdAt)}
-                      </div>
-                      {prayer.responseContent && (
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-xs text-amber-400 mb-1">Response from our team:</p>
-                          <p className="text-sm text-white/70">{prayer.responseContent}</p>
-                        </div>
+            <div>
+              <h2 className="text-sm uppercase tracking-wider text-white/40 mb-3">Your Previous Prayers</h2>
+              <div className="space-y-3">
+                {prayers.map((prayer) => (
+                  <motion.div
+                    key={prayer.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-white/80 text-sm line-clamp-2 flex-1">
+                        {prayer.content}
+                      </p>
+                      {prayer.status === "responded" && (
+                        <span className="shrink-0 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full">
+                          Responded
+                        </span>
                       )}
-                    </motion.div>
-                  ))}
-                </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-2 text-xs text-white/40">
+                      <Calendar className="w-3 h-3" />
+                      {formatDate(prayer.createdAt)}
+                    </div>
+                    {prayer.responseContent && (
+                      <div className="mt-3 pt-3 border-t border-white/10">
+                        <p className="text-xs text-amber-400 mb-1">Response from our team:</p>
+                        <p className="text-sm text-white/70">{prayer.responseContent}</p>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
               </div>
-            )}
-
-            {!isAuthenticated && (
-              <div className="text-center py-8">
-                <p className="text-white/60 mb-4">Sign in to view your prayer history and stats</p>
-                <Button
-                  variant="outline"
-                  onClick={() => setLocation("/login?redirect=/prayer-requests")}
-                  className="border-white/20 text-white hover:bg-white/10"
-                >
-                  Sign In
-                </Button>
-              </div>
-            )}
+            </div>
           </motion.div>
         )}
 
@@ -313,8 +318,13 @@ export default function PrayerRequests() {
       {view === "list" && (
         <>
           {/* Candle area - fills remaining space */}
-          <div className="flex-1 flex items-center justify-center px-4 min-h-0">
-            <AnimatedCandle />
+          <div 
+            ref={candleContainerRef}
+            className="flex-1 flex items-center justify-center px-4 min-h-0"
+          >
+            {candleContainerHeight > 0 && (
+              <AnimatedCandle containerHeight={candleContainerHeight} />
+            )}
           </div>
           
           {/* Bottom section - fixed height, locked above nav */}
