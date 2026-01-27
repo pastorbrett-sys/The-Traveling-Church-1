@@ -19,27 +19,27 @@ function AnimatedCandle() {
   return (
     <div className="relative flex flex-col items-center">
       <style>{`
-        @keyframes candleGlow {
+        @keyframes flameTipGlow {
           0%, 100% { 
-            filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.7)) drop-shadow(0 0 30px rgba(255, 100, 0, 0.5)) drop-shadow(0 0 45px rgba(255, 80, 0, 0.3));
+            opacity: 0.6;
+            box-shadow: 0 0 20px 10px rgba(255, 200, 100, 0.5), 0 0 40px 20px rgba(255, 150, 50, 0.3), 0 0 60px 30px rgba(255, 100, 0, 0.2);
           }
           50% { 
-            filter: drop-shadow(0 0 25px rgba(255, 165, 0, 0.9)) drop-shadow(0 0 50px rgba(255, 100, 0, 0.7)) drop-shadow(0 0 70px rgba(255, 80, 0, 0.5));
+            opacity: 0.9;
+            box-shadow: 0 0 30px 15px rgba(255, 200, 100, 0.7), 0 0 60px 30px rgba(255, 150, 50, 0.5), 0 0 90px 45px rgba(255, 100, 0, 0.3);
           }
         }
-        @keyframes flameFlicker {
-          0%, 100% { transform: scale(1) rotate(0deg); }
-          25% { transform: scale(1.02) rotate(0.5deg); }
-          50% { transform: scale(0.98) rotate(-0.5deg); }
-          75% { transform: scale(1.01) rotate(0.3deg); }
-        }
       `}</style>
-      <div 
-        className="relative"
-        style={{ 
-          animation: "candleGlow 2s ease-in-out infinite, flameFlicker 0.5s ease-in-out infinite",
-        }}
-      >
+      <div className="relative">
+        {/* Glow overlay at top of flame only */}
+        <div 
+          className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full pointer-events-none"
+          style={{ 
+            top: "8px",
+            background: "radial-gradient(circle, rgba(255, 220, 150, 0.8) 0%, rgba(255, 150, 50, 0.4) 40%, transparent 70%)",
+            animation: "flameTipGlow 2s ease-in-out infinite",
+          }}
+        />
         <img 
           src={litCandleImage} 
           alt="Lit candle" 
