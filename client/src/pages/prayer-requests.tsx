@@ -315,12 +315,12 @@ export default function PrayerRequests() {
       {view === "list" && (
         <>
           {/* Candle area - fills remaining space */}
-          <div className="flex-1 flex items-center justify-center px-4">
+          <div className="flex-1 flex items-center justify-center px-4 min-h-0">
             <AnimatedCandle />
           </div>
           
           {/* Bottom section - fixed height, locked above nav */}
-          <div className="px-4 flex flex-col" style={{ gap: "16px", paddingBottom: "16px" }}>
+          <div className="shrink-0 px-4 pb-4 space-y-4">
             {isAuthenticated && stats && (
               <div className="grid grid-cols-3 gap-3">
                 <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
