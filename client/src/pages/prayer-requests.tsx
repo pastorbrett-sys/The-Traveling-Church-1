@@ -16,20 +16,39 @@ import {
 import litCandleImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png";
 
 function AnimatedCandle({ containerHeight }: { containerHeight: number }) {
-  const candleHeight = containerHeight * 0.7;
+  const candleHeight = containerHeight * 1.4;
   const candleWidth = Math.min(candleHeight * 0.6, window.innerWidth * 0.6);
   
   return (
-    <img 
-      src={litCandleImage} 
-      alt="Lit candle" 
-      style={{ 
-        height: `${candleHeight}px`, 
-        width: 'auto',
-        maxWidth: `${candleWidth}px`,
-        objectFit: 'contain' 
-      }}
-    />
+    <div className="relative flex items-center justify-center">
+      <motion.div
+        className="absolute rounded-full bg-amber-400/40 blur-xl"
+        style={{
+          width: candleHeight * 0.15,
+          height: candleHeight * 0.1,
+          top: candleHeight * 0.02,
+        }}
+        animate={{
+          opacity: [0.4, 0.7, 0.4],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <img 
+        src={litCandleImage} 
+        alt="Lit candle" 
+        style={{ 
+          height: `${candleHeight}px`, 
+          width: 'auto',
+          maxWidth: `${candleWidth}px`,
+          objectFit: 'contain' 
+        }}
+      />
+    </div>
   );
 }
 import { Button } from "@/components/ui/button";
