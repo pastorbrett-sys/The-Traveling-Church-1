@@ -21,7 +21,7 @@ function AnimatedCandle() {
       <img 
         src={litCandleImage} 
         alt="Lit candle" 
-        className="w-48 h-auto max-h-[280px] object-contain"
+        className="w-72 h-auto max-h-[360px] object-contain"
       />
     </div>
   );
