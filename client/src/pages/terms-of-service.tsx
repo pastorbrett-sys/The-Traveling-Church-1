@@ -74,6 +74,19 @@ export default function TermsOfService() {
             <p className="mb-4">
               For iOS app purchases, refunds are handled by Apple according to their refund policy. For web purchases, please contact us at pastorbrett@thetravelingchurch.com within 7 days of purchase.
             </p>
+            <h3 className="text-lg font-medium text-[hsl(20,10%,25%)] mb-2">Apple Terms of Use (EULA)</h3>
+            <p className="mb-4">
+              For in-app purchases made through the Apple App Store, the{" "}
+              <a 
+                href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="underline text-[hsl(25,60%,45%)] hover:text-[hsl(25,60%,35%)]"
+              >
+                Apple Standard End User License Agreement (EULA)
+              </a>
+              {" "}also applies.
+            </p>
           </section>
 
           <section className="mb-8">
