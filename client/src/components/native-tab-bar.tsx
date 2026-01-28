@@ -173,15 +173,16 @@ export function NativeTabBar() {
               key={tab.id}
               onClick={() => handleTabClick(tab)}
               className="flex flex-col items-center justify-center flex-1 h-full gap-0.5 transition-colors select-none"
-              style={{ color: active ? '#b8860b' : 'rgba(255, 255, 255, 0.7)', touchAction: 'manipulation' }}
+              style={{ color: active ? '#b8860b' : 'rgba(255, 255, 255, 0.7)' }}
               data-testid={`tab-${tab.id}`}
             >
               <motion.div
                 animate={isTapped ? {
-                  scale: [1, 1.15, 1],
-                } : { scale: 1 }}
+                  scale: [1, 1.3, 0.95, 1.1, 1],
+                  y: [0, -4, 1, -2, 0],
+                } : { scale: 1, y: 0 }}
                 transition={{
-                  duration: 0.2,
+                  duration: 0.3,
                   ease: "easeOut",
                 }}
                 className="flex items-center justify-center"
