@@ -98,19 +98,6 @@
     overflow-x: hidden;
     /* Prevent accidental text selection and blinking cursor on touch devices */
     -webkit-tap-highlight-color: transparent;
-    /* Always show scrollbar gutter to prevent layout shift */
-    scrollbar-gutter: stable;
-  }
-  
-  /* Hide scrollbars on native apps to prevent layout shift */
-  .native-app,
-  .native-app * {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .native-app::-webkit-scrollbar,
-  .native-app *::-webkit-scrollbar {
-    display: none;
   }
   
   /* Light background - iOS keyboard area will show light color */

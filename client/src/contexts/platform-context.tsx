@@ -67,18 +67,6 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   const platform = getPlatform();
   const isNative = isNativePlatform() || isSimulating;
   
-  // Add native-app class to body when in native mode (hides scrollbars)
-  useEffect(() => {
-    if (isNative) {
-      document.body.classList.add('native-app');
-    } else {
-      document.body.classList.remove('native-app');
-    }
-    return () => {
-      document.body.classList.remove('native-app');
-    };
-  }, [isNative]);
-  
   const toggleSimulation = () => {
     setSimulateNativeApp(!isSimulating);
   };
