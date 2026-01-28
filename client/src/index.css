@@ -49,6 +49,13 @@
     @apply border-border;
   }
 
+  /* Prevent text cursor from appearing on clickable elements */
+  button, a, [role="button"], [tabindex] {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
   html, body {
     @apply font-sans antialiased;
     background-color: hsl(30, 20%, 97%);
