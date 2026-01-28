@@ -163,7 +163,7 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="p-4 pb-8 flex flex-col items-center flex-1 overflow-y-auto"
+      className="p-4 pb-24 flex flex-col items-center flex-1 overflow-y-auto"
     >
       <motion.div
         initial={{ opacity: 0 }}
