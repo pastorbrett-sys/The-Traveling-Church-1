@@ -1,0 +1,70 @@
+~/workspace$ git merge fix/apple-guest-access
+Updating 0fa1155..779d9b7
+Fast-forward
+ .../628562E5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png  | Bin 0 -> 2127413 bytes
+ .../97EB6137-7CC3-42DE-8006-6F15161A8754_1769473638700.png  | Bin 0 -> 2169217 bytes
+ .../AABFF707-32A9-426E-BF72-07D9127E0207_1769473638701.png  | Bin 0 -> 2075889 bytes
+ .../E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png  | Bin 0 -> 2137205 bytes
+ attached_assets/IMG_3517_1769486917355.png                  | Bin 0 -> 245054 bytes
+ attached_assets/IMG_3524_1769493965774.png                  | Bin 0 -> 709183 bytes
+ attached_assets/IMG_3528_1769495540810.png                  | Bin 0 -> 1591768 bytes
+ attached_assets/IMG_3530_1769496025809.png                  | Bin 0 -> 892218 bytes
+ attached_assets/IMG_3534_1769496664040.jpeg                 | Bin 0 -> 273787 bytes
+ attached_assets/IMG_3537_1769497177436.jpeg                 | Bin 0 -> 229620 bytes
+ attached_assets/IMG_3543_1769538888040.png                  | Bin 0 -> 724504 bytes
+ attached_assets/IMG_3551_1769574127733.png                  | Bin 0 -> 291392 bytes
+ ...IVE-LIST-Retyped-Complete-SCOPE-SUMMAR_1769545814649.txt |  92 +++++++
+ ...IVE-LIST-Retyped-Complete-SCOPE-SUMMAR_1769545931687.txt |  92 +++++++
+ attached_assets/candle_cropped.png                          | Bin 0 -> 1997998 bytes
+ attached_assets/img_3543_1769561954804.jpg                  | Bin 0 -> 613509 bytes
+ ...nnect-apple-apps-6757680520-distributi_1769572953789.png | Bin 0 -> 450205 bytes
+ client/src/App.tsx                                          |  20 +-
+ client/src/components/bible-reader.tsx                      |  91 ++++++-
+ client/src/components/candle-donation.tsx                   | 288 ++++++++++++++++++++
+ client/src/components/guest-prompt.tsx                      | 138 ++++++++++
+ client/src/components/login-sheet.tsx                       | 175 ++++++++++++
+ client/src/components/native-tab-bar.tsx                    |  28 +-
+ client/src/components/navigation.tsx                        |  17 +-
+ client/src/components/notification-settings.tsx             |  12 +-
+ client/src/components/platform-toggle.tsx                   |   8 +-
+ client/src/components/upgrade-dialog.tsx                    |  51 +++-
+ client/src/index.css                                        |  44 +++
+ client/src/pages/login.tsx                                  |  16 +-
+ client/src/pages/notes.tsx                                  |  12 +
+ client/src/pages/pastor-chat.tsx                            |  56 ++--
+ client/src/pages/prayer-requests.tsx                        | 371 ++++++++++++++++++++++++++
+ client/src/pages/prayer-timer.tsx                           |  82 +++++-
+ client/src/pages/profile.tsx                                |  72 ++---
+ client/src/pages/terms-of-service.tsx                       |  13 +
+ client/src/pages/vagabond-bible.tsx                         |  12 -
+ docs/APPLE_FIX_CHECKLIST.md                                 | 270 +++++++++++++++++++
+ server/routes.ts                                            | 214 +++++++++++++++
+ shared/schema.ts                                            |  63 +++++
+ 39 files changed, 2086 insertions(+), 151 deletions(-)
+ create mode 100644 attached_assets/628562E5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png
+ create mode 100644 attached_assets/97EB6137-7CC3-42DE-8006-6F15161A8754_1769473638700.png
+ create mode 100644 attached_assets/AABFF707-32A9-426E-BF72-07D9127E0207_1769473638701.png
+ create mode 100644 attached_assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png
+ create mode 100644 attached_assets/IMG_3517_1769486917355.png
+ create mode 100644 attached_assets/IMG_3524_1769493965774.png
+ create mode 100644 attached_assets/IMG_3528_1769495540810.png
+ create mode 100644 attached_assets/IMG_3530_1769496025809.png
+ create mode 100644 attached_assets/IMG_3534_1769496664040.jpeg
+ create mode 100644 attached_assets/IMG_3537_1769497177436.jpeg
+ create mode 100644 attached_assets/IMG_3543_1769538888040.png
+ create mode 100644 attached_assets/IMG_3551_1769574127733.png
+ create mode 100644 attached_assets/Pasted--FINAL-COMPREHENSIVE-LIST-Retyped-Complete-SCOPE-SUMMAR_1769545814649.txt
+ create mode 100644 attached_assets/Pasted--FINAL-COMPREHENSIVE-LIST-Retyped-Complete-SCOPE-SUMMAR_1769545931687.txt
+ create mode 100644 attached_assets/candle_cropped.png
+ create mode 100644 attached_assets/img_3543_1769561954804.jpg
+ create mode 100644 attached_assets/screencapture-appstoreconnect-apple-apps-6757680520-distributi_1769572953789.png
+ create mode 100644 client/src/components/candle-donation.tsx
+ create mode 100644 client/src/components/guest-prompt.tsx
+ create mode 100644 client/src/components/login-sheet.tsx
+ create mode 100644 client/src/pages/prayer-requests.tsx
+ create mode 100644 docs/APPLE_FIX_CHECKLIST.md
+~/workspace$ git push origin main
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/pastorbrett-sys/The-Traveling-Church-1
+   0fa1155..779d9b7  main -> main
+~/workspace$ 
