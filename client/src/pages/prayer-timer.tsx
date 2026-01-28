@@ -485,11 +485,10 @@ export default function PrayerTimer() {
 
   return (
     <div 
-      className="w-full flex flex-col overflow-hidden"
+      className="w-full flex flex-col"
       style={{ 
         background: "#000000",
-        height: "100vh",
-        maxHeight: "100vh",
+        minHeight: "100vh",
         paddingTop: "env(safe-area-inset-top, 44px)",
         paddingBottom: "100px",
       }}

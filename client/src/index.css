@@ -96,6 +96,9 @@
     background-color: hsl(30, 20%, 97%);
     color: hsl(20, 10%, 25%);
     overflow-x: hidden;
+    /* Hide scrollbar but allow scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
     /* Prevent accidental text selection and blinking cursor on touch devices */
     -webkit-tap-highlight-color: transparent;
   }
@@ -110,6 +113,12 @@
     min-height: 100dvh;
     background-color: hsl(30, 20%, 97%) !important;
     -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
   
   /* iOS Safe Area CSS Variables - use these for consistent spacing */
