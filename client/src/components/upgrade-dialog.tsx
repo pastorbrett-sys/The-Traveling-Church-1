@@ -48,7 +48,10 @@ const uiText = {
     restoring: "Restoring...",
     subscriptionTerms: "Subscription auto-renews monthly. Cancel anytime.",
     // Apple-required subscription disclosure (Schedule 2, Section 3.8b)
-    appleSubscriptionDisclosure: "Payment will be charged to your Apple ID account at confirmation of purchase. Subscription automatically renews unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your App Store account settings after purchase.",
+    appleDisclosure1: "Payment charged to Apple ID at purchase",
+    appleDisclosure2: "Auto-renews unless canceled 24+ hours before period ends",
+    appleDisclosure3: "Account charged for renewal within 24 hours of period end",
+    appleDisclosure4: "Manage subscriptions in App Store Settings",
     bySubscribing: "By subscribing, you agree to our",
     privacyPolicy: "Privacy Policy",
     and: "and",
@@ -82,7 +85,10 @@ const uiText = {
     restorePurchases: "ግዢዎችን መልስ",
     restoring: "በመመለስ ላይ...",
     subscriptionTerms: "ምዝገባ በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ ይሰርዙ።",
-    appleSubscriptionDisclosure: "ክፍያ ግዢን ሲያረጋግጡ ወደ Apple ID መለያዎ ይከፈላል። ምዝገባ ከአሁኑ ጊዜ ማብቂያ ቢያንስ 24 ሰዓታት በፊት ካልተሰረዘ በራስ-ሰር ይታደሳል። መለያዎ ከአሁኑ ጊዜ ማብቂያ 24 ሰዓታት በፊት ለእድሳት ይከፈላል። ግዢ ካደረጉ በኋላ ወደ App Store መለያ ቅንብሮችዎ በመሄድ ምዝገባዎችን ማስተዳደር እና መሰረዝ ይችላሉ።",
+    appleDisclosure1: "ክፍያ በግዢ ጊዜ ወደ Apple ID ይከፈላል",
+    appleDisclosure2: "ከጊዜ ማብቂያ 24+ ሰዓታት በፊት ካልተሰረዘ በራስ-ሰር ይታደሳል",
+    appleDisclosure3: "መለያ ከጊዜ ማብቂያ 24 ሰዓታት ውስጥ ለእድሳት ይከፈላል",
+    appleDisclosure4: "ምዝገባዎችን በ App Store ቅንብሮች ያስተዳድሩ",
     bySubscribing: "በመመዝገብ እርስዎ ተስማምተዋል ከ",
     privacyPolicy: "የግላዊነት ፖሊሲ",
     and: "እና",
@@ -364,9 +370,24 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                 </Button>
                 {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) */}
                 <div className="bg-gray-100/80 rounded-lg p-3 mt-3">
-                  <p className="text-[11px] text-center text-[hsl(20,10%,40%)] leading-snug">
-                    {t.appleSubscriptionDisclosure}
-                  </p>
+                  <ul className="text-[11px] text-left text-[hsl(20,10%,35%)] space-y-1.5">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d79942] mt-0.5">•</span>
+                      <span>{t.appleDisclosure1}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d79942] mt-0.5">•</span>
+                      <span>{t.appleDisclosure2}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d79942] mt-0.5">•</span>
+                      <span>{t.appleDisclosure3}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d79942] mt-0.5">•</span>
+                      <span>{t.appleDisclosure4}</span>
+                    </li>
+                  </ul>
                 </div>
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-3 leading-relaxed">
                   {t.bySubscribing}{" "}
