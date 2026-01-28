@@ -77,7 +77,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
             </div>
             
             {/* Content area - moved up */}
-            <div className="flex-1 overflow-y-auto px-6 pt-2">
+            <div className="flex-1 overflow-y-auto px-6 pt-2 select-none">
               {/* Headline */}
               <h2 className="text-2xl font-bold text-foreground leading-tight">
                 {t.headline}

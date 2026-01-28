@@ -1846,7 +1846,7 @@ Reference: ${verseRef} (${translation})`;
             transition={{ duration: 0.3, ease: "easeOut" }}
             key={`header-${selectedBook?.name}-${selectedChapter}`}
           >
-            <h1 className="text-2xl font-serif font-bold" data-testid="heading-chapter">
+            <h1 className="text-2xl font-serif font-bold select-none" data-testid="heading-chapter">
               {chapter?.book} {selectedChapter}
             </h1>
             {selectedChapter === 1 && selectedBook && (
@@ -1865,7 +1865,7 @@ Reference: ${verseRef} (${translation})`;
               </button>
             )}
           </motion.div>
-          <p className="text-sm text-muted-foreground mb-6">{translation}</p>
+          <p className="text-sm text-muted-foreground mb-6 select-none">{translation}</p>
 
           {isLoadingChapter ? (
             <div className="flex items-center justify-center py-12">
@@ -1874,7 +1874,7 @@ Reference: ${verseRef} (${translation})`;
           ) : (
             <motion.div 
               ref={verseAreaRef}
-              className="space-y-1 pb-20"
+              className="space-y-1 pb-20 select-none"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, ease: "easeOut", delay: 0.1 }}
@@ -1890,7 +1890,7 @@ Reference: ${verseRef} (${translation})`;
                     {heading && (
                       <>
                         {showSpacer && <div className="block w-full h-6" />}
-                        <h3 className={`block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mb-3 ${showSpacer ? 'mt-4' : 'mt-0'}`}>
+                        <h3 className={`block text-sm uppercase tracking-widest font-bold text-[hsl(35,50%,40%)] mb-3 select-none ${showSpacer ? 'mt-4' : 'mt-0'}`}>
                           {heading}
                         </h3>
                       </>
@@ -1912,7 +1912,7 @@ Reference: ${verseRef} (${translation})`;
                           : "rgba(0, 0, 0, 0)"
                       }}
                       transition={{ duration: 0.025 }}
-                      className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 transition-colors"
+                      className="inline cursor-pointer hover:bg-[#c08e00]/10 rounded px-0.5 transition-colors select-none"
                       data-testid={`verse-${verse.verse}`}
                     >
                       <sup className={`text-xs font-medium mr-1 transition-colors ${

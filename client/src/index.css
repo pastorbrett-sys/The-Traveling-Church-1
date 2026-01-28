@@ -49,11 +49,19 @@
     @apply border-border;
   }
 
-  /* Prevent text cursor from appearing on clickable elements */
-  button, a, [role="button"], [tabindex] {
+  /* Prevent text cursor and selection on clickable/interactive elements */
+  button, a, [role="button"], [tabindex], label, nav, header, footer {
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Prevent text selection on all touch-interactive content in native app */
+  .select-none, [data-testid] {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
 
   html, body {
@@ -61,6 +69,8 @@
     background-color: hsl(30, 20%, 97%);
     color: hsl(20, 10%, 25%);
     overflow-x: hidden;
+    /* Prevent accidental text selection and blinking cursor on touch devices */
+    -webkit-tap-highlight-color: transparent;
   }
   
   /* Light background - iOS keyboard area will show light color */
