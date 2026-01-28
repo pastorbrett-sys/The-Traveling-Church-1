@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X, HandHeart } from "lucide-react";
+import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
@@ -65,8 +65,8 @@ export default function VagabondBible() {
                   </Button>
                 </Link>
                 <Link href="/prayer-timer">
-                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying-native">
-                    <HandHeart className="w-5 h-5 mr-2" />
+                  <Button size="lg" variant="outline" className="w-full border border-white text-white hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying-native">
+                    <Heart className="w-5 h-5 mr-2" />
                     Start Praying
                   </Button>
                 </Link>
@@ -180,8 +180,8 @@ export default function VagabondBible() {
                 </Button>
               </Link>
               <Link href="/prayer-timer" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying">
-                  <HandHeart className="w-5 h-5 mr-2" />
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border border-white text-white hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying">
+                  <Heart className="w-5 h-5 mr-2" />
                   Start Praying
                 </Button>
               </Link>
