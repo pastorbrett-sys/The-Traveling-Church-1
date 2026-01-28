@@ -118,9 +118,9 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
 
   if (isCheckingPermission) {
     return (
-      <Card className="bg-[hsl(39,70%,95%)] border-[#d79942]/20">
+      <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-[#d79942]" data-testid="heading-notifications">
+          <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
             <Bell className="w-5 h-5 text-[#d79942]" />
             {labels.notifications}
           </CardTitle>
@@ -137,9 +137,9 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
 
   if (permissionStatus !== 'granted') {
     return (
-      <Card className="bg-[hsl(39,70%,95%)] border-[#d79942]/20">
+      <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-[#d79942]" data-testid="heading-notifications">
+          <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
             <BellOff className="w-5 h-5 text-[#d79942]" />
             {labels.notifications}
           </CardTitle>
@@ -160,9 +160,9 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
   }
 
   return (
-    <Card className="bg-[hsl(39,70%,95%)] border-[#d79942]/20">
+    <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-[#d79942]" data-testid="heading-notifications">
+        <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
           <Bell className="w-5 h-5 text-[#d79942]" />
           {labels.notifications}
         </CardTitle>
