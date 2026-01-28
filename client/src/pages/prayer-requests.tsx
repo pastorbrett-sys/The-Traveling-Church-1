@@ -10,7 +10,10 @@ import {
   Calendar,
   MessageCircle,
   Lock,
-  ChevronRight
+  ChevronRight,
+  CheckCircle2,
+  BookOpen,
+  Timer
 } from "lucide-react";
 
 import litCandleImage from "@assets/candle_cropped.png";
@@ -87,7 +90,7 @@ export default function PrayerRequests() {
   const { isAuthenticated, user } = useAuth();
   const { isNative, platform } = usePlatform();
   
-  const [view, setView] = useState<"list" | "form" | "donation">("list");
+  const [view, setView] = useState<"list" | "form" | "donation" | "confirmation">("list");
   const [prayerContent, setPrayerContent] = useState("");
   const [name, setName] = useState(user?.firstName || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -130,7 +133,7 @@ export default function PrayerRequests() {
     queryClient.invalidateQueries({ queryKey: ["/api/prayer-stats"] });
     setSubmittedPrayerId(prayerId);
     setPrayerContent("");
-    setView("list");
+    setView("confirmation");
   };
 
   const getNavStyle = () => {
@@ -158,6 +161,8 @@ export default function PrayerRequests() {
             <ArrowLeft className="w-6 h-6" />
           </button>
         </div>
+      ) : view === "confirmation" ? (
+        <div style={getNavStyle()} />
       ) : (
         <header 
           className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
@@ -321,6 +326,70 @@ export default function PrayerRequests() {
             onComplete={handlePrayerSubmitted}
             onSkip={handlePrayerSubmitted}
           />
+        )}
+
+        {view === "confirmation" && (
+          <motion.div
+            key="confirmation"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="flex-1 flex flex-col items-center justify-center px-6 text-center"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
+              className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-6"
+            >
+              <CheckCircle2 className="w-10 h-10 text-green-400" />
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-2xl font-semibold text-white mb-3"
+            >
+              Prayer Submitted
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-white/60 text-base leading-relaxed mb-8 max-w-xs"
+            >
+              Your prayer has been received. A real person will read and pray for you.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="w-full max-w-xs space-y-3"
+            >
+              <Button
+                onClick={() => setLocation("/prayer-timer")}
+                className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
+                data-testid="button-continue-prayer"
+              >
+                <Timer className="w-5 h-5 mr-2" />
+                Continue Praying
+              </Button>
+              
+              <Button
+                onClick={() => setLocation("/vagabond-bible")}
+                variant="outline"
+                className="w-full border-white/20 text-white hover:bg-white/10 font-semibold py-6 rounded-2xl"
+                data-testid="button-read-bible"
+              >
+                <BookOpen className="w-5 h-5 mr-2" />
+                Read the Bible
+              </Button>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
