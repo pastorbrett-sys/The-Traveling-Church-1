@@ -107,20 +107,22 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
             }}
           >
             {/* Header with drag handle and close */}
-            <div className="flex items-center justify-between px-4 pt-3 pb-1">
-              <div className="w-16" />
+            <div className="flex items-center justify-between px-6 pt-3">
+              <div className="flex-1" />
               <div className="w-10 h-1 bg-muted-foreground/30 rounded-full" />
-              <button 
-                onClick={onClose}
-                className="w-16 flex justify-end"
-                data-testid="button-close-login-sheet"
-              >
-                <X className="w-5 h-5 text-muted-foreground" />
-              </button>
+              <div className="flex-1 flex justify-end">
+                <button 
+                  onClick={onClose}
+                  className="p-1"
+                  data-testid="button-close-login-sheet"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </div>
             </div>
             
-            {/* Content area - moved up */}
-            <div className="flex-1 overflow-y-auto px-6 pt-2 select-none">
+            {/* Content area - consistent 24px padding on all sides */}
+            <div className="overflow-y-auto px-6 pt-3 select-none">
               {/* Headline */}
               <h2 className="text-2xl font-bold text-foreground leading-tight">
                 {t.headline}
@@ -132,7 +134,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               </p>
               
               {/* Feature list with line checkmarks */}
-              <div className="mt-5 space-y-2.5">
+              <div className="mt-4 space-y-2">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-2.5">
                     <Check className="w-5 h-5 text-[#c08e00] flex-shrink-0" strokeWidth={2.5} />
@@ -142,11 +144,11 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               </div>
             </div>
             
-            {/* Buttons - matching verse-share-sheet exactly */}
+            {/* Buttons - consistent spacing */}
             <div 
-              className="px-4 pt-6 flex flex-col items-center gap-4"
+              className="px-6 pt-5 flex flex-col items-center gap-3"
               style={{
-                paddingBottom: isNative && !isIOS ? "32px" : isNative ? "16px" : "24px"
+                paddingBottom: isNative && !isIOS ? "28px" : isNative ? "16px" : "24px"
               }}
             >
               <Link href={`/login?tab=signin&redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
