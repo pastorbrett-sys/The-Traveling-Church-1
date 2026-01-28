@@ -3,6 +3,7 @@ import { Capacitor } from "@capacitor/core";
 import { CapacitorMusicControls } from "capacitor-music-controls-plugin-v3";
 import { Haptics, NotificationType } from "@capacitor/haptics";
 import { LocalNotifications } from "@capacitor/local-notifications";
+import { queryClient } from "@/lib/queryClient";
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
 const ARTWORK_URL = "https://vagabondbible.com/prayer-artwork.png";
@@ -231,6 +232,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
       
       if (response.ok) {
         console.log('[PrayerAudio] Prayer session recorded:', { durationSeconds, withMusic });
+        queryClient.invalidateQueries({ queryKey: ["/api/prayer-stats"] });
       } else if (response.status === 401) {
         console.log('[PrayerAudio] User not authenticated, session not recorded');
       } else {
