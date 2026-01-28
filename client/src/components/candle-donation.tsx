@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { Haptics, ImpactStyle, NotificationType } from "@capacitor/haptics";
+import { NativeTabBarSpacer } from "@/components/native-tab-bar";
 
 import candleLitImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png";
 import candleUnlitImage from "@assets/628562E5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png";
@@ -325,6 +326,8 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
         >
           {isSubmitting ? "Sending Prayer..." : "No, Just Send my Prayer"}
         </button>
+        
+        <NativeTabBarSpacer />
       </motion.div>
     </motion.div>
   );
