@@ -81,7 +81,7 @@ function VagabondBibleRouter() {
       <Route path="/email-preview" component={EmailPreview} />
       <Route path="/prayer-timer" component={PrayerTimer} />
       <Route path="/prayer-requests" component={PrayerRequests} />
-      <Route path="/vagabond-bible">{() => <Redirect to="/" />}</Route>
+      <Route path="/vagabond-bible" component={VagabondBible} />
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
   );
