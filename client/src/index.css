@@ -57,11 +57,31 @@
     -webkit-tap-highlight-color: transparent;
   }
   
+  /* Prevent text selection on images and media */
+  img, video, svg, canvas, picture {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    pointer-events: auto;
+  }
+  
   /* Prevent text selection on all touch-interactive content in native app */
   .select-none, [data-testid] {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+  }
+  
+  /* Prevent text selection on divs and sections that contain interactive content */
+  section, article, aside, main, div {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Global touch behavior to prevent unwanted selections */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   html, body {
