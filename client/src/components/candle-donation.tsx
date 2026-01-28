@@ -8,24 +8,24 @@ import { usePlatform } from "@/contexts/platform-context";
 import { Haptics, ImpactStyle, NotificationType } from "@capacitor/haptics";
 import { NativeTabBarSpacer } from "@/components/native-tab-bar";
 
-// Warm ambient glow background
+// Massive ambient glow that fills entire screen
 function WarmGlow() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Central warm glow */}
       <motion.div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 rounded-full blur-3xl"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(251,191,36,0.4) 0%, rgba(251,191,36,0) 70%)',
+          width: '200vmax',
+          height: '200vmax',
+          background: 'radial-gradient(circle, rgba(251,191,36,0.25) 0%, rgba(180,120,20,0.15) 30%, rgba(0,0,0,0) 70%)',
+          filter: 'blur(80px)',
         }}
         animate={{
-          opacity: [0.4, 0.6, 0.4],
-          scale: [1, 1.2, 1],
+          opacity: [0.8, 1, 0.8],
+          scale: [1, 1.05, 1],
         }}
         transition={{
-          duration: 3,
+          duration: 4,
           repeat: Infinity,
           ease: "easeInOut",
         }}
