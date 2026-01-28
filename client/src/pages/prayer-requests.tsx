@@ -418,7 +418,8 @@ export default function PrayerRequests() {
             
             <Button
               onClick={() => setView("form")}
-              className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30 pt-[24px] pb-[24px] mt-[4px] mb-[4px]"
+              className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold shadow-lg shadow-[#c08e00]/30 pt-[24px] pb-[24px] mt-[4px] mb-[4px]"
+              size="lg"
               data-testid="button-submit-prayer"
             >
               <Send className="w-5 h-5 mr-2" />

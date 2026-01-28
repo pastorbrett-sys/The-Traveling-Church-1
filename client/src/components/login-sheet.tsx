@@ -160,7 +160,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               <Link href={`/login?tab=signin&redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
                 <Button 
                   variant="outline"
-                  className="w-full hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520] rounded-2xl py-6"
+                  className="w-full hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
                   onClick={onClose}
                   data-testid="button-signin-text"
                 >
@@ -170,7 +170,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               
               <Link href={`/login?tab=signup&redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
                 <Button 
-                  className="w-full bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white rounded-2xl py-6"
+                  className="w-full bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white"
                   size="lg"
                   onClick={onClose}
                   data-testid="button-create-account"
