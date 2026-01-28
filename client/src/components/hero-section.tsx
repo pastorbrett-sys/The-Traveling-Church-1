@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "wouter";
 import heroVideo from "@assets/Man_on_Mountain_Spinning_Fast_1_1766872397132.mp4";
 
 export default function HeroSection() {
@@ -85,6 +86,31 @@ export default function HeroSection() {
         >
           A global, traveling ministry, comprised of people all over the world. We reach out to people where they are to spread the gospel and love of Jesus.
         </p>
+        
+        <div 
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 animate-fade-up opacity-0"
+          style={{
+            animationDelay: '1.3s',
+            animationFillMode: 'forwards'
+          }}
+        >
+          <Link href="/pastor-chat">
+            <button 
+              className="px-8 py-3 bg-[#b8860b] hover:bg-[#9a7209] text-white font-medium rounded-lg transition-colors"
+              data-testid="button-hero-bible"
+            >
+              Read the Bible
+            </button>
+          </Link>
+          <Link href="/prayer-timer">
+            <button 
+              className="px-8 py-3 border-2 border-white text-white hover:bg-white/10 font-medium rounded-lg transition-colors"
+              data-testid="button-hero-pray"
+            >
+              Start Praying
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );
