@@ -11,13 +11,53 @@ interface OnboardingState {
   hasSeenActionBarTooltip: boolean;
 }
 
+const STORAGE_KEY = "vagabond_onboarding_state";
+
+function getLocalOnboardingState(): OnboardingState {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch {}
+  return {
+    hasSeenTranslationTooltip: false,
+    hasSeenVerseTooltip: false,
+    hasSeenActionBarTooltip: false,
+  };
+}
+
+function setLocalOnboardingState(state: OnboardingState) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {}
+}
+
+function markLocalTooltipSeen(type: TooltipType) {
+  const state = getLocalOnboardingState();
+  switch (type) {
+    case "translation":
+      state.hasSeenTranslationTooltip = true;
+      break;
+    case "verse":
+      state.hasSeenVerseTooltip = true;
+      break;
+    case "actionBar":
+      state.hasSeenActionBarTooltip = true;
+      break;
+  }
+  setLocalOnboardingState(state);
+}
+
 export function useOnboardingState(userId: string | undefined) {
   const queryClient = useQueryClient();
+  
+  const [localState, setLocalState] = useState<OnboardingState>(() => getLocalOnboardingState());
   
   const testMode = typeof window !== "undefined" && 
     new URLSearchParams(window.location.search).get("testOnboarding") === "true";
 
-  const { data: onboardingState, isLoading } = useQuery<OnboardingState>({
+  const { data: serverState, isLoading: serverLoading } = useQuery<OnboardingState>({
     queryKey: ["/api/onboarding/status"],
     enabled: !!userId && !testMode,
     staleTime: Infinity,
@@ -33,25 +73,47 @@ export function useOnboardingState(userId: string | undefined) {
   });
 
   const shouldShowTooltip = useCallback((type: TooltipType): boolean => {
-    if (!userId) return false;
     if (testMode) return true;
-    if (isLoading || !onboardingState) return false;
     
-    switch (type) {
-      case "translation":
-        return !onboardingState.hasSeenTranslationTooltip;
-      case "verse":
-        return !onboardingState.hasSeenVerseTooltip;
-      case "actionBar":
-        return !onboardingState.hasSeenActionBarTooltip;
-      default:
-        return false;
+    const hasSeenLocally = (() => {
+      switch (type) {
+        case "translation":
+          return localState.hasSeenTranslationTooltip;
+        case "verse":
+          return localState.hasSeenVerseTooltip;
+        case "actionBar":
+          return localState.hasSeenActionBarTooltip;
+        default:
+          return true;
+      }
+    })();
+    
+    if (hasSeenLocally) return false;
+    
+    if (userId && serverState) {
+      switch (type) {
+        case "translation":
+          return !serverState.hasSeenTranslationTooltip;
+        case "verse":
+          return !serverState.hasSeenVerseTooltip;
+        case "actionBar":
+          return !serverState.hasSeenActionBarTooltip;
+        default:
+          return false;
+      }
     }
-  }, [userId, testMode, isLoading, onboardingState]);
+    
+    return true;
+  }, [localState, serverState, userId, testMode]);
 
   const markSeen = useCallback((type: TooltipType) => {
-    if (!testMode && userId) {
-      markSeenMutation.mutate(type);
+    if (!testMode) {
+      markLocalTooltipSeen(type);
+      setLocalState(getLocalOnboardingState());
+      
+      if (userId) {
+        markSeenMutation.mutate(type);
+      }
     }
   }, [testMode, userId, markSeenMutation]);
 
@@ -68,8 +130,8 @@ export function useOnboardingState(userId: string | undefined) {
     }
   }, []);
 
-  // isReady = data is loaded and we can show tooltips (or in test mode)
-  const isReady = testMode || (!isLoading && !!onboardingState);
+  const isLoading = userId ? serverLoading : false;
+  const isReady = testMode || !isLoading;
 
   return {
     shouldShowTooltip,

@@ -32,6 +32,44 @@ interface OnboardingContextType {
 
 const OnboardingContext = createContext<OnboardingContextType | null>(null);
 
+const STORAGE_KEY = "vagabond_onboarding_state";
+
+function getLocalOnboardingState(): OnboardingState {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch {}
+  return {
+    hasSeenTranslationTooltip: false,
+    hasSeenVerseTooltip: false,
+    hasSeenActionBarTooltip: false,
+  };
+}
+
+function setLocalOnboardingState(state: OnboardingState) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {}
+}
+
+function markLocalTooltipSeen(type: TooltipType) {
+  const state = getLocalOnboardingState();
+  switch (type) {
+    case "translation":
+      state.hasSeenTranslationTooltip = true;
+      break;
+    case "verse":
+      state.hasSeenVerseTooltip = true;
+      break;
+    case "actionBar":
+      state.hasSeenActionBarTooltip = true;
+      break;
+  }
+  setLocalOnboardingState(state);
+}
+
 export function useOnboarding() {
   const context = useContext(OnboardingContext);
   if (!context) {
@@ -56,10 +94,12 @@ export function OnboardingProvider({ children, userId }: OnboardingProviderProps
   const [showVerseTooltip, setShowVerseTooltip] = useState(false);
   const [showActionBarTooltip, setShowActionBarTooltip] = useState(false);
   
+  const [localState, setLocalState] = useState<OnboardingState>(() => getLocalOnboardingState());
+  
   const testMode = typeof window !== "undefined" && 
     new URLSearchParams(window.location.search).get("testOnboarding") === "true";
 
-  const { data: onboardingState, isLoading } = useQuery<OnboardingState>({
+  const { data: serverState, isLoading: serverLoading } = useQuery<OnboardingState>({
     queryKey: ["/api/onboarding/status"],
     enabled: !!userId,
     staleTime: Infinity,
@@ -88,19 +128,37 @@ export function OnboardingProvider({ children, userId }: OnboardingProviderProps
 
   const shouldShow = useCallback((type: TooltipType): boolean => {
     if (testMode) return true;
-    if (!onboardingState) return false;
     
-    switch (type) {
-      case "translation":
-        return !onboardingState.hasSeenTranslationTooltip;
-      case "verse":
-        return !onboardingState.hasSeenVerseTooltip;
-      case "actionBar":
-        return !onboardingState.hasSeenActionBarTooltip;
-      default:
-        return false;
+    const hasSeenLocally = (() => {
+      switch (type) {
+        case "translation":
+          return localState.hasSeenTranslationTooltip;
+        case "verse":
+          return localState.hasSeenVerseTooltip;
+        case "actionBar":
+          return localState.hasSeenActionBarTooltip;
+        default:
+          return true;
+      }
+    })();
+    
+    if (hasSeenLocally) return false;
+    
+    if (userId && serverState) {
+      switch (type) {
+        case "translation":
+          return !serverState.hasSeenTranslationTooltip;
+        case "verse":
+          return !serverState.hasSeenVerseTooltip;
+        case "actionBar":
+          return !serverState.hasSeenActionBarTooltip;
+        default:
+          return false;
+      }
     }
-  }, [onboardingState, testMode]);
+    
+    return true;
+  }, [localState, serverState, userId, testMode]);
 
   const triggerTranslationTooltip = useCallback(() => {
     if (shouldShow("translation") && translationRef?.current) {
@@ -124,22 +182,22 @@ export function OnboardingProvider({ children, userId }: OnboardingProviderProps
     switch (type) {
       case "translation":
         setShowTranslationTooltip(false);
-        if (!testMode && userId) {
-          markSeenMutation.mutate("translation");
-        }
         break;
       case "verse":
         setShowVerseTooltip(false);
-        if (!testMode && userId) {
-          markSeenMutation.mutate("verse");
-        }
         break;
       case "actionBar":
         setShowActionBarTooltip(false);
-        if (!testMode && userId) {
-          markSeenMutation.mutate("actionBar");
-        }
         break;
+    }
+    
+    if (!testMode) {
+      markLocalTooltipSeen(type);
+      setLocalState(getLocalOnboardingState());
+      
+      if (userId) {
+        markSeenMutation.mutate(type);
+      }
     }
   }, [testMode, userId, markSeenMutation]);
 
@@ -155,6 +213,8 @@ export function OnboardingProvider({ children, userId }: OnboardingProviderProps
         return "";
     }
   }, []);
+
+  const isLoading = userId ? serverLoading : false;
 
   return (
     <OnboardingContext.Provider
