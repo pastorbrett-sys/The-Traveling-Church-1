@@ -318,6 +318,14 @@ export default function Profile() {
     };
   }, []);
 
+  // Guest check - redirect to Bible page (guests can't access profile)
+  // The NativeTabBar intercepts the navigation, but this handles direct URL access
+  useEffect(() => {
+    if (!isAuthLoading && !isAuthenticated) {
+      window.location.href = "/pastor-chat?tab=bible";
+    }
+  }, [isAuthLoading, isAuthenticated]);
+
   // Fetch regional pricing
   useEffect(() => {
     if (!isNative) {
@@ -648,16 +656,9 @@ export default function Profile() {
     );
   }
 
-  // Guest check - redirect to Bible page (guests can't access profile)
-  // The NativeTabBar intercepts the navigation, but this handles direct URL access
-  useEffect(() => {
-    if (!isAuthLoading && !isAuthenticated) {
-      window.location.href = "/pastor-chat?tab=bible";
-    }
-  }, [isAuthLoading, isAuthenticated]);
-
   if (!isAuthenticated) {
-    return null; // Will redirect via useEffect
+    // Guests are redirected via the useEffect at the top of the component
+    return null;
   }
 
   const isPro = subscriptionStatus?.isProUser || isRevenueCatPro || false;
@@ -772,7 +773,7 @@ export default function Profile() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Badge variant="default" className="bg-[hsl(25,35%,45%)]" data-testid="badge-pro">
+                        <Badge variant="default" className="bg-[#d79942]" data-testid="badge-pro">
                           <img src={upgradeIcon} alt="" className="w-3 h-3 mr-1" />
                           {t.proPlan}
                         </Badge>
@@ -881,8 +882,8 @@ export default function Profile() {
 
                     <Separator />
 
-                    <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-4 border border-[hsl(25,35%,45%)]/20">
-                      <h3 className="font-semibold flex items-center gap-2 mb-2 text-[hsl(20,10%,20%)]">
+                    <div className="bg-[hsl(39,70%,95%)] rounded-lg p-4 border border-[#d79942]/20">
+                      <h3 className="font-semibold flex items-center gap-2 mb-2 text-[#d79942]">
                         <img src={upgradeIcon} alt="" className="w-5 h-5" />
                         {t.upgradeToPro}
                       </h3>
@@ -971,8 +972,8 @@ export default function Profile() {
                     ].map(({ key, label, icon: Icon, data, description }) => (
                       <div key={key} className="flex items-center justify-between py-2" data-testid={`usage-row-${key}`}>
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center">
-                            <Icon className="w-4 h-4 text-[hsl(25,35%,45%)]" />
+                          <div className="w-8 h-8 rounded-full bg-[hsl(39,70%,95%)] flex items-center justify-center">
+                            <Icon className="w-4 h-4 text-[#d79942]" />
                           </div>
                           <div>
                             <p className="font-medium text-sm">{label}</p>
@@ -981,7 +982,7 @@ export default function Profile() {
                         </div>
                         <div className="text-right">
                           {usageSummary?.isPro ? (
-                            <Badge variant="outline" className="border-[hsl(25,35%,45%)] text-[hsl(25,35%,45%)]" data-testid={`badge-unlimited-${key}`}>
+                            <Badge variant="outline" className="border-[#d79942] text-[#d79942]" data-testid={`badge-unlimited-${key}`}>
                               <Infinity className="w-3 h-3 mr-1" />
                               {t.unlimited}
                             </Badge>
@@ -997,7 +998,7 @@ export default function Profile() {
                     {!usageSummary?.isPro && (
                       <>
                         <Separator className="my-4" />
-                        <div className="bg-[hsl(25,35%,45%)]/5 rounded-lg p-4 border border-[hsl(25,35%,45%)]/20">
+                        <div className="bg-[hsl(39,70%,95%)] rounded-lg p-4 border border-[#d79942]/20">
                           <p className="text-sm text-muted-foreground mb-3">
                             {t.wantUnlimitedAccess}
                           </p>

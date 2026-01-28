@@ -118,17 +118,17 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
 
   if (isCheckingPermission) {
     return (
-      <Card>
+      <Card className="bg-[hsl(39,70%,95%)] border-[#d79942]/20">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
-            <Bell className="w-5 h-5" />
+          <CardTitle className="flex items-center gap-2 text-[#d79942]" data-testid="heading-notifications">
+            <Bell className="w-5 h-5 text-[#d79942]" />
             {labels.notifications}
           </CardTitle>
           <CardDescription>{labels.manageNotifications}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-4">
-            <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+            <Loader2 className="w-5 h-5 animate-spin text-[#d79942]" />
           </div>
         </CardContent>
       </Card>
@@ -137,10 +137,10 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
 
   if (permissionStatus !== 'granted') {
     return (
-      <Card>
+      <Card className="bg-[hsl(39,70%,95%)] border-[#d79942]/20">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
-            <BellOff className="w-5 h-5 text-muted-foreground" />
+          <CardTitle className="flex items-center gap-2 text-[#d79942]" data-testid="heading-notifications">
+            <BellOff className="w-5 h-5 text-[#d79942]" />
             {labels.notifications}
           </CardTitle>
           <CardDescription>{labels.manageNotifications}</CardDescription>
@@ -148,11 +148,11 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
         <CardContent>
           <button
             onClick={requestPermission}
-            className="w-full py-3 px-4 bg-[hsl(25,35%,45%)] text-white rounded-lg hover:bg-[hsl(25,35%,40%)] transition-colors text-sm font-medium"
+            className="w-full py-3 px-4 bg-[#d79942] text-white rounded-lg hover:bg-[#c08932] transition-colors text-sm font-medium"
             data-testid="button-enable-notifications"
           >
             <Bell className="w-4 h-4 inline mr-2" />
-            {labels.enableNotifications}
+            Enable Push Notifications
           </button>
         </CardContent>
       </Card>
@@ -160,10 +160,10 @@ export function NotificationSettings({ userId, t }: NotificationSettingsProps) {
   }
 
   return (
-    <Card>
+    <Card className="bg-[hsl(39,70%,95%)] border-[#d79942]/20">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2" data-testid="heading-notifications">
-          <Bell className="w-5 h-5 text-[hsl(25,35%,45%)]" />
+        <CardTitle className="flex items-center gap-2 text-[#d79942]" data-testid="heading-notifications">
+          <Bell className="w-5 h-5 text-[#d79942]" />
           {labels.notifications}
         </CardTitle>
         <CardDescription>{labels.manageNotifications}</CardDescription>
