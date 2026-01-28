@@ -59,7 +59,7 @@ export default function VagabondBible() {
               </p>
               <div className="flex flex-col gap-3">
                 <Link href="/pastor-chat">
-                  <Button size="lg" className="w-full hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading-native">
+                  <Button size="lg" className="w-full hover:bg-[#a37a00] text-white px-8 rounded-full bg-[#be9009] text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading-native">
                     <BookOpen className="w-5 h-5 mr-2" />
                     {t("landing.cta_start")}
                   </Button>
@@ -174,7 +174,7 @@ export default function VagabondBible() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/pastor-chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
-                <Button size="lg" className="w-full sm:w-auto hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading">
+                <Button size="lg" className="w-full sm:w-auto hover:bg-[#a37a00] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading">
                   <BookOpen className="w-5 h-5 mr-2" />
                   {t("landing.cta_start")}
                 </Button>
