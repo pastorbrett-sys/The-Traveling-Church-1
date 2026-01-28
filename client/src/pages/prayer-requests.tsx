@@ -7,10 +7,8 @@ import {
   Send, 
   Clock, 
   Flame, 
-  Calendar,
   MessageCircle,
   Lock,
-  ChevronRight,
   CheckCircle2,
   BookOpen,
   Timer,
@@ -76,15 +74,6 @@ interface PrayerStats {
   }>;
 }
 
-interface PrayerRequest {
-  id: string;
-  content: string;
-  status: string;
-  createdAt: string;
-  respondedAt: string | null;
-  responseContent: string | null;
-}
-
 export default function PrayerRequests() {
   const [, setLocation] = useLocation();
   const { isAuthenticated, user } = useAuth();
@@ -97,13 +86,8 @@ export default function PrayerRequests() {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [submittedPrayerId, setSubmittedPrayerId] = useState<string | null>(null);
 
-  const { data: stats, isLoading: statsLoading } = useQuery<PrayerStats>({
+  const { data: stats } = useQuery<PrayerStats>({
     queryKey: ["/api/prayer-stats"],
-    enabled: isAuthenticated,
-  });
-
-  const { data: prayers, isLoading: prayersLoading } = useQuery<PrayerRequest[]>({
-    queryKey: ["/api/prayer-requests"],
     enabled: isAuthenticated,
   });
 
@@ -137,11 +121,6 @@ export default function PrayerRequests() {
     return { paddingTop: 'env(safe-area-inset-top, 0px)' };
   };
 
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  };
-
   return (
     <div className="h-screen text-white flex flex-col overflow-hidden" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
       {view === "confirmation" ? (
@@ -166,52 +145,6 @@ export default function PrayerRequests() {
       )}
 
       <AnimatePresence mode="wait">
-        {view === "list" && isAuthenticated && prayers && prayers.length > 0 && (
-          <motion.div
-            key="list"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="p-4 pb-4 shrink-0 max-h-[30%] overflow-y-auto"
-          >
-            <div>
-              <h2 className="text-sm uppercase tracking-wider text-white/40 mb-3">Your Previous Prayers</h2>
-              <div className="space-y-3">
-                {prayers.map((prayer) => (
-                  <motion.div
-                    key={prayer.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <p className="text-white/80 text-sm line-clamp-2 flex-1">
-                        {prayer.content}
-                      </p>
-                      {prayer.status === "responded" && (
-                        <span className="shrink-0 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full">
-                          Responded
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2 mt-2 text-xs text-white/40">
-                      <Calendar className="w-3 h-3" />
-                      {formatDate(prayer.createdAt)}
-                    </div>
-                    {prayer.responseContent && (
-                      <div className="mt-3 pt-3 border-t border-white/10">
-                        <p className="text-xs text-amber-400 mb-1">Response from our team:</p>
-                        <p className="text-sm text-white/70">{prayer.responseContent}</p>
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-
         {view === "form" && (
           <motion.div
             key="form"
