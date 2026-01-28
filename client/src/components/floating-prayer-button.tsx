@@ -45,7 +45,7 @@ function getSafeAreaInsets() {
 function getCornerPosition(corner: Corner, windowWidth: number, windowHeight: number): Position {
   const safeArea = getSafeAreaInsets();
   const safeTop = Math.max(60, safeArea.top + 10);
-  const safeBottom = Math.max(100, safeArea.bottom + 20);
+  const safeBottom = Math.max(120, safeArea.bottom + 40);
   const safeLeft = Math.max(EDGE_PADDING, safeArea.left + EDGE_PADDING);
   const safeRight = Math.max(EDGE_PADDING, safeArea.right + EDGE_PADDING);
   
@@ -220,7 +220,7 @@ export function FloatingPrayerButton() {
       const minX = Math.max(EDGE_PADDING, safeArea.left + EDGE_PADDING);
       const maxX = window.innerWidth - BUTTON_SIZE - Math.max(EDGE_PADDING, safeArea.right + EDGE_PADDING);
       const minY = Math.max(60, safeArea.top + 10);
-      const maxY = window.innerHeight - BUTTON_SIZE - Math.max(100, safeArea.bottom + 20);
+      const maxY = window.innerHeight - BUTTON_SIZE - Math.max(120, safeArea.bottom + 40);
       
       const newX = Math.max(minX, Math.min(maxX, prev.x + dx));
       const newY = Math.max(minY, Math.min(maxY, prev.y + dy));
@@ -249,7 +249,7 @@ export function FloatingPrayerButton() {
         const minX = Math.max(EDGE_PADDING, safeArea.left + EDGE_PADDING);
         const maxX = window.innerWidth - BUTTON_SIZE - Math.max(EDGE_PADDING, safeArea.right + EDGE_PADDING);
         const minY = Math.max(60, safeArea.top + 10);
-        const maxY = window.innerHeight - BUTTON_SIZE - Math.max(100, safeArea.bottom + 20);
+        const maxY = window.innerHeight - BUTTON_SIZE - Math.max(120, safeArea.bottom + 40);
         
         if (newX < minX) { newX = minX; velX = 0; }
         if (newX > maxX) { newX = maxX; velX = 0; }
