@@ -61,7 +61,6 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
             style={{
               bottom: isNative && isIOS ? "80px" : "0px",
               maxHeight: isNative ? "70vh" : "85vh",
-              paddingBottom: isNative && !isIOS ? "24px" : "16px"
             }}
           >
             {/* Drag handle */}
@@ -78,10 +77,10 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               <X className="w-5 h-5 text-muted-foreground" />
             </button>
             
-            {/* Content */}
-            <div className="flex-1 overflow-y-auto px-6 pb-6">
+            {/* Content area */}
+            <div className="flex-1 overflow-y-auto px-6 pt-2">
               {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mt-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
                 {t.headline}
               </h2>
               
@@ -99,30 +98,35 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
                   </div>
                 ))}
               </div>
+            </div>
+            
+            {/* Buttons - anchored to bottom */}
+            <div 
+              className="px-6 pt-4 space-y-3 border-t border-border/50"
+              style={{
+                paddingBottom: isNative && !isIOS ? "32px" : isNative ? "16px" : "24px"
+              }}
+            >
+              <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
+                <Button 
+                  variant="outline"
+                  className="w-full h-12 text-base font-medium bg-background hover:bg-muted border border-border rounded-full"
+                  onClick={onClose}
+                  data-testid="button-signin-text"
+                >
+                  {t.signIn}
+                </Button>
+              </Link>
               
-              {/* Buttons */}
-              <div className="mt-8 space-y-3">
-                <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
-                  <Button 
-                    className="w-full h-14 text-lg font-semibold bg-[#c08e00] hover:bg-[#a07800] text-white rounded-lg"
-                    size="lg"
-                    onClick={onClose}
-                    data-testid="button-create-account"
-                  >
-                    {t.createAccount}
-                  </Button>
-                </Link>
-                
-                <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
-                  <button 
-                    className="w-full py-3 text-center text-foreground font-medium text-base hover:text-[#c08e00] transition-colors"
-                    onClick={onClose}
-                    data-testid="button-signin-text"
-                  >
-                    {t.signIn}
-                  </button>
-                </Link>
-              </div>
+              <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
+                <Button 
+                  className="w-full h-12 text-base font-semibold bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white rounded-full"
+                  onClick={onClose}
+                  data-testid="button-create-account"
+                >
+                  {t.createAccount}
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </>
