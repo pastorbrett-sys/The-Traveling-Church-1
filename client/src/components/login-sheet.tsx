@@ -3,6 +3,7 @@ import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Capacitor } from "@capacitor/core";
+import { createPortal } from "react-dom";
 
 type FeatureType = "chat" | "notes" | "insights" | "search" | "general";
 
@@ -77,21 +78,24 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
     signIn: isAmharic ? "ግባ" : "Sign In"
   };
 
-  return (
+  // Use portal to render outside parent stacking contexts (like NativeTabBar with z-150)
+  // This ensures the sheet and backdrop have proper z-index behavior
+  const sheetContent = (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop - below nav */}
+          {/* Backdrop - high z-index to cover everything */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/60 z-40"
+            className="fixed inset-0 bg-black/60 z-[200]"
             onClick={onClose}
+            data-testid="login-sheet-backdrop"
           />
           
-          {/* Sheet - slides under the nav bar, above backdrop */}
+          {/* Sheet - above backdrop, clickable */}
           <motion.div
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -101,20 +105,26 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               duration: 0.25, 
               ease: [0.32, 0.72, 0, 1]
             }}
-            className="fixed left-0 right-0 bg-background rounded-t-2xl z-[45] flex flex-col"
+            className="fixed left-0 right-0 bg-background rounded-t-2xl z-[201] flex flex-col"
             style={{
               bottom: 0,
               maxHeight: isNative ? "75vh" : "90vh",
               paddingBottom: isNative ? "env(safe-area-inset-bottom, 0px)" : "0px",
             }}
           >
-            {/* Close button - top right */}
+            {/* Close button - top right, higher z-index to ensure clickability */}
             <button 
-              onClick={onClose}
-              className="absolute top-4 right-4 p-1"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onClose();
+              }}
+              className="absolute top-4 right-4 p-2 z-[210] touch-manipulation"
+              style={{ WebkitTapHighlightColor: 'transparent' }}
               data-testid="button-close-login-sheet"
             >
-              <X className="w-5 h-5 text-muted-foreground" />
+              <X className="w-5 h-5 text-muted-foreground pointer-events-none" />
             </button>
             
             {/* Content area - tight top padding to match reference */}
@@ -133,7 +143,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               <div className="mt-4 space-y-2">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-2.5">
-                    <Check className="w-5 h-5 text-[#c08e00] flex-shrink-0" strokeWidth={2.5} />
+                    <Check className="w-5 h-5 text-[#c08e00] flex-shrink-0 pointer-events-none" strokeWidth={2.5} />
                     <span className="text-foreground font-medium">{feature}</span>
                   </div>
                 ))}
@@ -174,4 +184,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
       )}
     </AnimatePresence>
   );
+
+  // Portal to document.body to escape parent stacking contexts
+  return createPortal(sheetContent, document.body);
 }
