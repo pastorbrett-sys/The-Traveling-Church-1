@@ -28,13 +28,11 @@ function AnimatedCandle() {
           }}
         />
         <motion.div
-          className="absolute rounded-full blur-2xl"
+          className="absolute rounded-full blur-2xl left-1/2 -translate-x-1/2"
           style={{
             width: '120px',
             height: '80px',
-            top: '15%',
-            left: '50%',
-            transform: 'translateX(-50%)',
+            top: '12%',
             background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
           }}
           animate={{
