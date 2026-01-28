@@ -106,23 +106,17 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               maxHeight: isNative ? "75vh" : "90vh",
             }}
           >
-            {/* Header with drag handle and close */}
-            <div className="flex items-center justify-between px-6 pt-3">
-              <div className="flex-1" />
-              <div className="w-10 h-1 bg-muted-foreground/30 rounded-full" />
-              <div className="flex-1 flex justify-end">
-                <button 
-                  onClick={onClose}
-                  className="p-1"
-                  data-testid="button-close-login-sheet"
-                >
-                  <X className="w-5 h-5 text-muted-foreground" />
-                </button>
-              </div>
-            </div>
+            {/* Close button - top right */}
+            <button 
+              onClick={onClose}
+              className="absolute top-4 right-4 p-1"
+              data-testid="button-close-login-sheet"
+            >
+              <X className="w-5 h-5 text-muted-foreground" />
+            </button>
             
-            {/* Content area - consistent 24px padding on all sides */}
-            <div className="overflow-y-auto px-6 pt-3 select-none">
+            {/* Content area - tight top padding to match reference */}
+            <div className="overflow-y-auto px-6 pt-5 select-none">
               {/* Headline */}
               <h2 className="text-2xl font-bold text-foreground leading-tight">
                 {t.headline}
