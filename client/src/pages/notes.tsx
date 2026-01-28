@@ -46,7 +46,6 @@ import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";
 import { useAuth } from "@/hooks/use-auth";
-import { LoginSheet } from "@/components/login-sheet";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
@@ -394,8 +393,13 @@ export default function Notes() {
     return d.toLocaleDateString(isAmharic ? "am-ET" : "en-US", { month: "short", day: "numeric", year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined });
   }, [translation, t]);
 
-  // Guest check - show login sheet immediately for unauthenticated users
-  const showGuestLoginSheet = !isAuthLoading && !isAuthenticated;
+  // Guest check - redirect to Bible page (guests can't access notes)
+  // The NativeTabBar intercepts the navigation, but this handles direct URL access
+  useEffect(() => {
+    if (!isAuthLoading && !isAuthenticated) {
+      window.location.href = "/pastor-chat?tab=bible";
+    }
+  }, [isAuthLoading, isAuthenticated]);
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -994,13 +998,6 @@ export default function Notes() {
         translation={translation}
       />
 
-      {/* Login Sheet for guests - auto-opens when not authenticated */}
-      <LoginSheet
-        isOpen={showGuestLoginSheet}
-        onClose={() => {}}
-        redirectUrl="/notes"
-        isAmharic={isAmharicTranslation(translation)}
-      />
     </div>
   );
 }

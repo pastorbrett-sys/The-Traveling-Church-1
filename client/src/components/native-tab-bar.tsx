@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
+import { useAuth } from "@/hooks/use-auth";
 import { Book, MessageCircle, FileText, User, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { getDefaultBibleTranslation } from "@/lib/i18n";
+import { LoginSheet } from "@/components/login-sheet";
 
 // Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
@@ -50,9 +52,11 @@ const tabs: TabItem[] = [
 
 export function NativeTabBar() {
   const { isNative } = usePlatform();
+  const { user, isLoading: isAuthLoading } = useAuth();
   const [location, setLocation] = useLocation();
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
   const [tappedTab, setTappedTab] = useState<string | null>(null);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
   const [translation, setTranslation] = useState(() => {
     return localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
   });
@@ -132,6 +136,14 @@ export function NativeTabBar() {
       // Haptics not available on web, ignore
     }
     
+    // Intercept notes tab for guests - show login sheet instead of navigating
+    if (tab.id === "notes" && !isAuthLoading && !user) {
+      setTappedTab(tab.id);
+      setTimeout(() => setTappedTab(null), 300);
+      setShowLoginSheet(true);
+      return;
+    }
+    
     setTappedTab(tab.id);
     setLocation(tab.href);
     // Immediately update currentUrl to ensure active state changes
@@ -183,6 +195,14 @@ export function NativeTabBar() {
           );
         })}
       </div>
+      
+      {/* Login Sheet for guests trying to access notes */}
+      <LoginSheet
+        isOpen={showLoginSheet}
+        onClose={() => setShowLoginSheet(false)}
+        redirectUrl="/notes"
+        isAmharic={isAmharicTranslation(translation)}
+      />
     </nav>
   );
 }
