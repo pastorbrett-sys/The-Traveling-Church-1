@@ -19,20 +19,20 @@ function AnimatedCandle() {
   // Fixed size candle - glow positioned 32px from top, centered
   return (
     <div className="relative flex items-center justify-center h-full w-full">
-      <div className="relative" style={{ width: '120px', height: '320px' }}>
+      <div className="relative" style={{ width: '480px', height: '1280px' }}>
         <img 
           src={litCandleImage} 
           alt="Lit candle" 
           className="absolute inset-0 w-full h-full object-contain"
         />
         <motion.div
-          className="absolute rounded-full blur-2xl"
+          className="absolute rounded-full blur-3xl"
           style={{
-            width: '100px',
-            height: '60px',
-            top: '82px',
+            width: '400px',
+            height: '240px',
+            top: '328px',
             left: '50%',
-            marginLeft: '-50px',
+            marginLeft: '-200px',
             background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
           }}
           animate={{
