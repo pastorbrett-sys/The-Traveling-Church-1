@@ -509,7 +509,7 @@ export default function Notes() {
                 <div className="flex gap-2">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" className="gap-2" data-testid="button-filter">
+                      <Button variant="outline" className="gap-2 hover:bg-[hsl(45,80%,95%)] hover:border-[#c08e00] hover:text-[#c08e00]" data-testid="button-filter">
                         <Filter className="w-4 h-4" />
                         {t.filters}
                         {hasActiveFilters && (
@@ -573,7 +573,7 @@ export default function Notes() {
 
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" className="gap-2" data-testid="button-sort">
+                      <Button variant="outline" className="gap-2 hover:bg-[hsl(45,80%,95%)] hover:border-[#c08e00] hover:text-[#c08e00]" data-testid="button-sort">
                         {sortBy === "newest" || sortBy === "oldest" ? (
                           <Calendar className="w-4 h-4" />
                         ) : (
