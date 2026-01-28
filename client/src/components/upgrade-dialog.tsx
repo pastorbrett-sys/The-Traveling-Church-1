@@ -372,11 +372,11 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                   {" "}{t.and}{" "}
                   <button 
                     type="button"
-                    onClick={() => openExternalUrl("https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")}
+                    onClick={() => openExternalUrl("/terms-of-service")}
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-terms-of-use"
                   >
-                    {isAmharic ? "የአጠቃቀም ውል" : "Terms of Use (EULA)"}
+                    {isAmharic ? "የአጠቃቀም ውል" : "Terms of Use"}
                   </button>.
                 </p>
               </>
