@@ -362,7 +362,7 @@ export default function PrayerRequests() {
                 transition={{ delay: 0.50, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Button
-                  onClick={() => setLocation("/vagabond-bible")}
+                  onClick={() => setLocation("/pastor-chat")}
                   variant="ghost"
                   className="w-full border border-white/30 bg-transparent text-white hover:bg-white/10 font-semibold py-6 rounded-2xl"
                   data-testid="button-read-bible"
