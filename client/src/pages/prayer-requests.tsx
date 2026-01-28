@@ -148,22 +148,34 @@ export default function PrayerRequests() {
 
   return (
     <div className="h-screen text-white flex flex-col overflow-hidden" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
-      <header 
-        className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
-        style={getNavStyle()}
-      >
-        <div className="flex items-center justify-between p-4">
+      {view === "donation" ? (
+        <div className="absolute top-0 left-0 z-50 p-4" style={getNavStyle()}>
           <button
-            onClick={() => view === "list" ? setLocation("/prayer-timer") : setView("list")}
+            onClick={() => setView("list")}
             className="p-2 -ml-2 text-white/70 hover:text-white transition-colors"
             data-testid="button-back"
           >
             <ArrowLeft className="w-6 h-6" />
           </button>
-          <h1 className="text-lg font-semibold text-white">Prayer Requests</h1>
-          <div className="w-10" />
         </div>
-      </header>
+      ) : (
+        <header 
+          className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
+          style={getNavStyle()}
+        >
+          <div className="flex items-center justify-between p-4">
+            <button
+              onClick={() => view === "list" ? setLocation("/prayer-timer") : setView("list")}
+              className="p-2 -ml-2 text-white/70 hover:text-white transition-colors"
+              data-testid="button-back"
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </button>
+            <h1 className="text-lg font-semibold text-white">Prayer Requests</h1>
+            <div className="w-10" />
+          </div>
+        </header>
+      )}
 
       <AnimatePresence mode="wait">
         {view === "list" && isAuthenticated && prayers && prayers.length > 0 && (
