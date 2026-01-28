@@ -11,26 +11,30 @@ import { NativeTabBarSpacer } from "@/components/native-tab-bar";
 // Massive ambient glow that fills entire screen
 function WarmGlow() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+    <>
+      {/* Base warm ambient fill */}
+      <div 
+        className="fixed inset-0 pointer-events-none"
         style={{
-          width: '200vmax',
-          height: '200vmax',
-          background: 'radial-gradient(circle, rgba(251,191,36,0.25) 0%, rgba(180,120,20,0.15) 30%, rgba(0,0,0,0) 70%)',
-          filter: 'blur(80px)',
+          background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(251,191,36,0.35) 0%, rgba(180,120,20,0.2) 40%, rgba(0,0,0,0) 70%)',
+        }}
+      />
+      {/* Animated pulse layer */}
+      <motion.div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 60% 40% at 50% 35%, rgba(255,200,50,0.3) 0%, transparent 60%)',
         }}
         animate={{
-          opacity: [0.8, 1, 0.8],
-          scale: [1, 1.05, 1],
+          opacity: [0.6, 1, 0.6],
         }}
         transition={{
-          duration: 4,
+          duration: 3,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
-    </div>
+    </>
   );
 }
 
@@ -151,8 +155,7 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="absolute inset-0 flex flex-col items-center justify-center px-4"
-      style={{ paddingBottom: '105px' }}
+      className="fixed inset-0 flex items-center justify-center px-4 pb-28"
     >
       {/* Warm ambient glow */}
       <WarmGlow />
