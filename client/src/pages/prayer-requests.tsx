@@ -331,34 +331,34 @@ export default function PrayerRequests() {
         {view === "confirmation" && (
           <motion.div
             key="confirmation"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             className="flex-1 flex flex-col items-center justify-center px-6 text-center"
           >
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-6"
             >
               <CheckCircle2 className="w-10 h-10 text-green-400" />
             </motion.div>
             
             <motion.h2
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.18, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="text-2xl font-semibold text-white mb-3"
             >
               Prayer Submitted
             </motion.h2>
             
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.26, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="text-white/60 text-base leading-relaxed mb-8 max-w-xs"
             >
               Your prayer has been received. A real person will read and pray for you.
@@ -367,27 +367,39 @@ export default function PrayerRequests() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.34, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="w-full max-w-xs space-y-3"
             >
-              <Button
-                onClick={() => setLocation("/prayer-timer")}
-                className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
-                data-testid="button-continue-prayer"
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.42, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Timer className="w-5 h-5 mr-2" />
-                Continue Praying
-              </Button>
+                <Button
+                  onClick={() => setLocation("/prayer-timer")}
+                  className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
+                  data-testid="button-continue-prayer"
+                >
+                  <Timer className="w-5 h-5 mr-2" />
+                  Continue Praying
+                </Button>
+              </motion.div>
               
-              <Button
-                onClick={() => setLocation("/vagabond-bible")}
-                variant="ghost"
-                className="w-full border border-white/30 bg-transparent text-white hover:bg-white/10 font-semibold py-6 rounded-2xl"
-                data-testid="button-read-bible"
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.50, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <BookOpen className="w-5 h-5 mr-2" />
-                Read the Bible
-              </Button>
+                <Button
+                  onClick={() => setLocation("/vagabond-bible")}
+                  variant="ghost"
+                  className="w-full border border-white/30 bg-transparent text-white hover:bg-white/10 font-semibold py-6 rounded-2xl"
+                  data-testid="button-read-bible"
+                >
+                  <BookOpen className="w-5 h-5 mr-2" />
+                  Read the Bible
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
