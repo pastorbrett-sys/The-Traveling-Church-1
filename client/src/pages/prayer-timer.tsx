@@ -488,9 +488,8 @@ export default function PrayerTimer() {
       className="w-full flex flex-col"
       style={{ 
         background: "#000000",
-        minHeight: "100vh",
-        paddingTop: "env(safe-area-inset-top, 44px)",
-        paddingBottom: "100px",
+        height: "calc(100vh - 64px - env(safe-area-inset-bottom, 0px))",
+        paddingTop: "env(safe-area-inset-top, 0px)",
       }}
       data-testid="prayer-timer-screen"
     >
@@ -559,9 +558,6 @@ export default function PrayerTimer() {
           transform-style: preserve-3d;
         }
       `}</style>
-
-      {/* Header bar */}
-      <div className="w-full h-1 bg-[#333]" />
       
       {/* Navigation row */}
       <div className="w-full flex items-center justify-between" style={{ marginTop: "7px" }}>
