@@ -847,10 +847,9 @@ export default function Profile() {
                         <>
                           <Button
                             type="button"
-                            variant="outline"
                             onClick={handleManageSubscription}
                             disabled={isOpeningPortal}
-                            className="w-full sm:w-auto border-[#c08e00] text-[#c08e00] hover:bg-[hsl(45,80%,95%)] hover:border-[#c08e00] hover:text-[#c08e00]"
+                            className="w-full sm:w-auto bg-[#c08e00] text-white hover:bg-[#a87c00] rounded-xl"
                             data-testid="button-manage-subscription"
                           >
                             {isOpeningPortal ? (
