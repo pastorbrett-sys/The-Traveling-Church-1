@@ -699,7 +699,13 @@ export default function PastorChat() {
                 </span>
               </button>
               <button
-                onClick={() => setActiveTab("chat")}
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    setShowLoginPrompt(true);
+                  } else {
+                    setActiveTab("chat");
+                  }
+                }}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   activeTab === "chat"
                     ? "text-foreground"
