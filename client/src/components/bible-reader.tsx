@@ -1647,7 +1647,7 @@ Reference: ${verseRef} (${translation})`;
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: testamentIndex * 0.1 }}
                   >
-                    <h3 className="text-sm font-medium text-muted-foreground mb-3">{testament}</h3>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-3 select-none">{testament}</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                       {bookList.map((book, bookIndex) => (
                         <motion.button
@@ -1656,11 +1656,11 @@ Reference: ${verseRef} (${translation})`;
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.2, delay: testamentIndex * 0.1 + Math.min(bookIndex * 0.015, 0.3) }}
                           onClick={() => handleBookSelect(book)}
-                          className="p-3 text-left rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 active:bg-[#c08e00]/20 transition-colors"
+                          className="p-3 text-left rounded-lg border hover:bg-[#c08e00]/10 hover:border-[#c08e00]/30 active:bg-[#c08e00]/20 transition-colors select-none"
                           data-testid={`book-${book.bookid}`}
                         >
-                          <p className="font-medium text-sm">{book.name}</p>
-                          <p className="text-xs text-muted-foreground">{book.chapters} {t.chapters}</p>
+                          <p className="font-medium text-sm select-none">{book.name}</p>
+                          <p className="text-xs text-muted-foreground select-none">{book.chapters} {t.chapters}</p>
                         </motion.button>
                       ))}
                     </div>

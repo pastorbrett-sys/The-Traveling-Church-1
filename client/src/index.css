@@ -81,7 +81,18 @@
   /* Global touch behavior to prevent unwanted selections */
   * {
     -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
+  }
+  
+  /* Prevent text selection on headings and paragraphs in interactive areas */
+  h1, h2, h3, h4, h5, h6, p, span {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Allow text selection only in specific input areas */
+  input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
   }
 
   html, body {
