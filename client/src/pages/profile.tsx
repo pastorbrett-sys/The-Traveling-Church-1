@@ -648,55 +648,16 @@ export default function Profile() {
     );
   }
 
-  if (!isAuthenticated) {
-    return (
-      <div className={`bg-[hsl(40,30%,96%)] text-foreground antialiased flex flex-col ${
-        isNative ? "h-screen overflow-hidden" : "min-h-screen"
-      }`}>
-        {!isNative && <VagabondHeader />}
-        <main 
-          className="flex-1 overflow-y-auto"
-          style={getMainStyle()}
-        >
-          <div className="max-w-2xl mx-auto px-4 md:px-8">
-            {!isNative && (
-              <button
-                onClick={() => window.history.back()}
-                className="inline-flex items-center text-[hsl(20,10%,40%)] hover:text-[hsl(20,10%,20%)] mb-6 transition-colors"
-                data-testid="link-back-home"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                {t.back}
-              </button>
-            )}
+  // Guest check - redirect to Bible page (guests can't access profile)
+  // The NativeTabBar intercepts the navigation, but this handles direct URL access
+  useEffect(() => {
+    if (!isAuthLoading && !isAuthenticated) {
+      window.location.href = "/pastor-chat?tab=bible";
+    }
+  }, [isAuthLoading, isAuthenticated]);
 
-            <Card className="border-[hsl(30,20%,88%)]">
-              <CardHeader className="text-center">
-                <div className="mx-auto w-16 h-16 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center mb-4">
-                  <User className="w-8 h-8 text-[hsl(25,35%,45%)]" />
-                </div>
-                <CardTitle data-testid="heading-login-required">{t.signInRequired}</CardTitle>
-                <CardDescription>
-                  {t.signInDescription}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex justify-center">
-                <Link href="/login?redirect=/profile">
-                  <Button className="bg-[hsl(25,35%,45%)] hover:bg-[hsl(25,35%,38%)]" data-testid="button-login">
-                    {t.signInToContinue}
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </main>
-        {!isNative && (
-          <footer className="py-6 text-center text-sm text-[hsl(20,10%,40%)]">
-            <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
-          </footer>
-        )}
-      </div>
-    );
+  if (!isAuthenticated) {
+    return null; // Will redirect via useEffect
   }
 
   const isPro = subscriptionStatus?.isProUser || isRevenueCatPro || false;

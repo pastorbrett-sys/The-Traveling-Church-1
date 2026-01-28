@@ -136,8 +136,8 @@ export function NativeTabBar() {
       // Haptics not available on web, ignore
     }
     
-    // Intercept notes tab for guests - show login sheet instead of navigating
-    if (tab.id === "notes" && !isAuthLoading && !user) {
+    // Intercept notes and profile tabs for guests - show login sheet instead of navigating
+    if ((tab.id === "notes" || tab.id === "profile") && !isAuthLoading && !user) {
       setTappedTab(tab.id);
       setTimeout(() => setTappedTab(null), 300);
       setShowLoginSheet(true);
