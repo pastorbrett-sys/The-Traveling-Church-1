@@ -34,7 +34,7 @@ const uiText = {
   en: {
     upgradeTitle: "Upgrade to Pro",
     description: "Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.",
-    descriptionNativeSuffix: " Subscription auto-renews monthly. Cancel anytime in Settings.",
+    descriptionNativeSuffix: "",
     descriptionWebSuffix: " Cancel anytime.",
     upgradeFor: "Upgrade to Pro for:",
     unlimitedSmartSearch: "Unlimited Smart Searches",
@@ -47,10 +47,12 @@ const uiText = {
     restorePurchases: "Restore Purchases",
     restoring: "Restoring...",
     subscriptionTerms: "Subscription auto-renews monthly. Cancel anytime.",
+    // Apple-required subscription disclosure (Schedule 2, Section 3.8b)
+    appleSubscriptionDisclosure: "Payment will be charged to your Apple ID account at confirmation of purchase. Subscription automatically renews unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period. You can manage and cancel your subscriptions by going to your App Store account settings after purchase.",
     bySubscribing: "By subscribing, you agree to our",
     privacyPolicy: "Privacy Policy",
     and: "and",
-    termsOfService: "Terms of Service",
+    termsOfUse: "Terms of Use",
     comingSoon: "Coming Soon",
     comingSoonDesc: "In-app purchases will be available once the app is live on the App Store.",
     welcomePro: "Welcome to Pro!",
@@ -67,7 +69,7 @@ const uiText = {
   am: {
     upgradeTitle: "ወደ ፕሮ አሻሽል",
     description: "Vagabond Bible በነጻ በማንኛውም ጊዜ ይደሰቱ። ለጥልቅ ጥናትና ግንዛቤ የላቀ የAI ባህሪያትን ለመክፈት ወደ ፕሮ ያሻሽሉ።",
-    descriptionNativeSuffix: " ምዝገባ በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ በቅንብሮች ውስጥ ይሰርዙ።",
+    descriptionNativeSuffix: "",
     descriptionWebSuffix: " በማንኛውም ጊዜ ይሰርዙ።",
     upgradeFor: "ወደ ፕሮ ያሻሽሉ ለ፡",
     unlimitedSmartSearch: "ያልተገደበ ብልጥ ፍለጋዎች",
@@ -80,10 +82,11 @@ const uiText = {
     restorePurchases: "ግዢዎችን መልስ",
     restoring: "በመመለስ ላይ...",
     subscriptionTerms: "ምዝገባ በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ ይሰርዙ።",
+    appleSubscriptionDisclosure: "ክፍያ ግዢን ሲያረጋግጡ ወደ Apple ID መለያዎ ይከፈላል። ምዝገባ ከአሁኑ ጊዜ ማብቂያ ቢያንስ 24 ሰዓታት በፊት ካልተሰረዘ በራስ-ሰር ይታደሳል። መለያዎ ከአሁኑ ጊዜ ማብቂያ 24 ሰዓታት በፊት ለእድሳት ይከፈላል። ግዢ ካደረጉ በኋላ ወደ App Store መለያ ቅንብሮችዎ በመሄድ ምዝገባዎችን ማስተዳደር እና መሰረዝ ይችላሉ።",
     bySubscribing: "በመመዝገብ እርስዎ ተስማምተዋል ከ",
     privacyPolicy: "የግላዊነት ፖሊሲ",
     and: "እና",
-    termsOfService: "የአገልግሎት ውል",
+    termsOfUse: "የአጠቃቀም ውል",
     comingSoon: "በቅርቡ ይመጣል",
     comingSoonDesc: "የመተግበሪያ ውስጥ ግዢዎች መተግበሪያው በApp Store ላይ ሲገኝ ይገኛሉ።",
     welcomePro: "እንኳን ወደ ፕሮ በደህና መጡ!",
@@ -359,7 +362,11 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                     </>
                   ) : t.restorePurchases}
                 </Button>
-                <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-1 leading-relaxed">
+                {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) */}
+                <p className="text-[10px] text-center text-[hsl(20,10%,55%)] mt-3 leading-relaxed px-2">
+                  {t.appleSubscriptionDisclosure}
+                </p>
+                <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
                   {t.bySubscribing}{" "}
                   <button 
                     type="button"
@@ -376,7 +383,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-terms-of-use"
                   >
-                    {isAmharic ? "የአጠቃቀም ውል" : "Terms of Use"}
+                    {t.termsOfUse}
                   </button>.
                 </p>
               </>
@@ -420,7 +427,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                     className="underline hover:text-[hsl(20,10%,35%)]"
                     data-testid="link-terms-of-service-web"
                   >
-                    {t.termsOfService}
+                    {t.termsOfUse}
                   </button>.
                 </p>
               </>
