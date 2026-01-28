@@ -4,11 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Capacitor } from "@capacitor/core";
 
+type FeatureType = "chat" | "notes" | "insights" | "search" | "general";
+
 interface LoginSheetProps {
   isOpen: boolean;
   onClose: () => void;
   redirectUrl?: string;
   isAmharic?: boolean;
+  feature?: FeatureType;
 }
 
 const FEATURES_EN = [
@@ -25,15 +28,51 @@ const FEATURES_AM = [
   "የፓስተር ውይይት"
 ];
 
-export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = false }: LoginSheetProps) {
+const FEATURE_HEADLINES = {
+  en: {
+    chat: "Chat with Pastor Brett",
+    notes: "Save Your Notes",
+    insights: "Get AI Insights",
+    search: "Use Smart Search",
+    general: "Create an Account"
+  },
+  am: {
+    chat: "ከፓስተር ብሬት ጋር ውይይት",
+    notes: "ማስታወሻዎችዎን ያስቀምጡ",
+    insights: "AI ግንዛቤ ያግኙ",
+    search: "ብልጥ ፍለጋ ይጠቀሙ",
+    general: "መለያ ይፍጠሩ"
+  }
+};
+
+const FEATURE_SUBTITLES = {
+  en: {
+    chat: "Sign in to start chatting with your AI Bible companion",
+    notes: "Create an account to save and access your notes",
+    insights: "Sign in to get AI-powered verse insights",
+    search: "Create an account to use smart Bible search",
+    general: "Sign up to unlock these features"
+  },
+  am: {
+    chat: "ከ AI መጽሐፍ ቅዱስ ጓደኛዎ ጋር ውይይት ለመጀመር ይግቡ",
+    notes: "ማስታወሻዎችዎን ለማስቀመጥና ለማግኘት መለያ ይፍጠሩ",
+    insights: "AI የቃላት ግንዛቤ ለማግኘት ይግቡ",
+    search: "ብልጥ መጽሐፍ ቅዱስ ፍለጋ ለመጠቀም መለያ ይፍጠሩ",
+    general: "የሚከተሉትን ለመጠቀም ይመዝገቡ"
+  }
+};
+
+export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = false, feature = "general" }: LoginSheetProps) {
   const isNative = Capacitor.isNativePlatform();
   const isIOS = Capacitor.getPlatform() === "ios";
+  const lang = isAmharic ? "am" : "en";
   
   const features = isAmharic ? FEATURES_AM : FEATURES_EN;
+  const showFeatureList = feature === "general";
   
   const t = {
-    headline: isAmharic ? "መለያ ይፍጠሩ" : "Create an Account",
-    subtitle: isAmharic ? "የሚከተሉትን ለመጠቀም ይመዝገቡ" : "Sign up to unlock these features",
+    headline: FEATURE_HEADLINES[lang][feature],
+    subtitle: FEATURE_SUBTITLES[lang][feature],
     createAccount: isAmharic ? "መለያ ፍጠር" : "Create Account",
     signIn: isAmharic ? "ግባ" : "Sign In"
   };
