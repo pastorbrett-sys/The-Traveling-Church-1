@@ -347,7 +347,7 @@ export default function PrayerRequests() {
                 transition={{ delay: 0.42, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Button
-                  onClick={() => setView("list")}
+                  onClick={() => setLocation("/prayer-timer")}
                   className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
                   data-testid="button-continue-prayer"
                 >
