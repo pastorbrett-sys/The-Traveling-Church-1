@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
+import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X, HandHeart } from "lucide-react";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
@@ -57,11 +57,17 @@ export default function VagabondBible() {
               <p className="text-[15px] text-white/90 mb-10 leading-relaxed">
                 {t("landing.hero_subtitle")}
               </p>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 <Link href="/pastor-chat">
                   <Button size="lg" className="w-full hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading-native">
                     <BookOpen className="w-5 h-5 mr-2" />
                     {t("landing.cta_start")}
+                  </Button>
+                </Link>
+                <Link href="/prayer-timer">
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying-native">
+                    <HandHeart className="w-5 h-5 mr-2" />
+                    Start Praying
                   </Button>
                 </Link>
               </div>
@@ -166,11 +172,17 @@ export default function VagabondBible() {
             <p className="text-[14px] sm:text-xl lg:text-[18px] text-white/90 mb-8 leading-relaxed">
               {t("landing.hero_subtitle")}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/pastor-chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
                 <Button size="lg" className="w-full sm:w-auto hover:bg-[hsl(25,35%,38%)] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading">
                   <BookOpen className="w-5 h-5 mr-2" />
                   {t("landing.cta_start")}
+                </Button>
+              </Link>
+              <Link href="/prayer-timer" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying">
+                  <HandHeart className="w-5 h-5 mr-2" />
+                  Start Praying
                 </Button>
               </Link>
             </div>
