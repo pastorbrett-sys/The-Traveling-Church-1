@@ -303,8 +303,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
                       <Button
                         type="button"
-                        variant="default"
-                        className="w-full"
+                        className="w-full bg-[#b8860b] hover:bg-[#9a7209] text-white"
                         data-testid="button-mobile-login"
                       >
                         <LogIn className="w-4 h-4 mr-2" />
