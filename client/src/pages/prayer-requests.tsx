@@ -33,7 +33,7 @@ function AnimatedCandle() {
             width: '120px',
             height: '80px',
             top: 'calc(12% + 100px)',
-            left: 'calc(50% - 50px)',
+            left: 'calc(50% - 65px)',
             transform: 'translateX(-50%)',
             background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
           }}
