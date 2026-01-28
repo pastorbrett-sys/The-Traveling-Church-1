@@ -493,7 +493,7 @@ export default function Notes() {
                     placeholder={t.searchNotes}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-9 focus:border-[#c08e00] focus:ring-[#c08e00] focus-visible:ring-[#c08e00]"
+                    className="pl-9 focus-visible:ring-[#c08e00]"
                     data-testid="input-search-notes"
                   />
                   {searchQuery && (
