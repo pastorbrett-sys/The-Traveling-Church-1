@@ -219,12 +219,9 @@ export default function PrayerRequests() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="p-4 pb-8 flex-1 overflow-y-auto"
           >
-            <div className="bg-gradient-to-b from-amber-500/10 to-transparent rounded-2xl p-4 mb-6 border border-amber-500/20">
-              <p className="text-amber-200 text-sm leading-relaxed">
-                Every prayer submitted will be read and responded to personally within 24 hours. 
-                Your request is sacred to us.
-              </p>
-            </div>
+            <p className="text-white/70 text-sm leading-relaxed mb-6">
+              Every prayer will be read and you will be prayed for by a real person.
+            </p>
 
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/10">
@@ -250,26 +247,26 @@ export default function PrayerRequests() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="space-y-3"
+                  className="space-y-4"
                 >
                   <div>
-                    <Label className="text-white/60 text-sm">Your Name</Label>
+                    <Label className="text-white/60 text-sm mb-1.5 block">Your Name</Label>
                     <Input
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="First name"
-                      className="mt-1 bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                      className="bg-transparent border border-white/20 text-white placeholder:text-white/40 h-12 rounded-xl px-4"
                       data-testid="input-name"
                     />
                   </div>
                   <div>
-                    <Label className="text-white/60 text-sm">Email (for response)</Label>
+                    <Label className="text-white/60 text-sm mb-1.5 block">Email (for response)</Label>
                     <Input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your@email.com"
-                      className="mt-1 bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                      className="bg-transparent border border-white/20 text-white placeholder:text-white/40 h-12 rounded-xl px-4"
                       data-testid="input-email"
                     />
                   </div>
@@ -277,12 +274,12 @@ export default function PrayerRequests() {
               )}
 
               <div>
-                <Label className="text-white/60 text-sm">Your Prayer Request</Label>
+                <Label className="text-white/60 text-sm mb-1.5 block">Your Prayer Request</Label>
                 <Textarea
                   value={prayerContent}
                   onChange={(e) => setPrayerContent(e.target.value)}
                   placeholder="Share what's on your heart..."
-                  className="mt-1 bg-white/5 border-white/10 text-white placeholder:text-white/30 min-h-[150px] resize-none"
+                  className="bg-transparent border border-white/20 text-white placeholder:text-white/40 min-h-[150px] resize-none rounded-xl px-4 py-3"
                   data-testid="textarea-prayer"
                 />
               </div>
