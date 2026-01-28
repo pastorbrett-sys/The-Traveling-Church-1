@@ -377,12 +377,7 @@ export default function PrayerRequests() {
       </AnimatePresence>
 
       {view === "list" && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.15, delay: 0.05 }}
-          className="contents"
-        >
+        <>
           {/* Candle area - fills remaining space */}
           <div className="flex-1 flex items-center justify-center px-4 min-h-0 relative pointer-events-none">
             <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none">
@@ -431,7 +426,7 @@ export default function PrayerRequests() {
               Submit a Prayer Request
             </Button>
           </div>
-        </motion.div>
+        </>
       )}
 
       <NativeTabBarSpacer />
