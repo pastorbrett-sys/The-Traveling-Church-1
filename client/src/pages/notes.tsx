@@ -242,16 +242,6 @@ export default function Notes() {
     enabled: isAuthenticated,
   });
   
-  if (!isAuthLoading && !isAuthenticated) {
-    return (
-      <GuestPrompt
-        featureDescription="Sign in to save and view your notes"
-        featureDescriptionAmharic="ማስታወሻዎችን ለማስቀመጥ እና ለማየት ይግቡ"
-        redirectUrl="/notes"
-      />
-    );
-  }
-  
   const notes = notesData?.notes || [];
 
   const updateNoteMutation = useMutation({
@@ -403,6 +393,17 @@ export default function Notes() {
     if (diffDays < 7) return `${diffDays} ${t.daysAgo}`;
     return d.toLocaleDateString(isAmharic ? "am-ET" : "en-US", { month: "short", day: "numeric", year: d.getFullYear() !== now.getFullYear() ? "numeric" : undefined });
   }, [translation, t]);
+
+  // Guest check - must be after all hooks
+  if (!isAuthLoading && !isAuthenticated) {
+    return (
+      <GuestPrompt
+        featureDescription="Sign in to save and view your notes"
+        featureDescriptionAmharic="ማስታወሻዎችን ለማስቀመጥ እና ለማየት ይግቡ"
+        redirectUrl="/notes"
+      />
+    );
+  }
 
   const clearFilters = () => {
     setSearchQuery("");
