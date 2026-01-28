@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
+import { LoginSheet } from "@/components/login-sheet";
 import {
   Select,
   SelectContent,
@@ -886,31 +887,13 @@ export default function PastorChat() {
 
       <UpgradeDialog open={showPaywall} onClose={() => setShowPaywall(false)} feature="chat_message" translation={bibleTranslation} />
 
-      {/* Login Required Modal */}
-      <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <LogIn className="w-5 h-5 text-primary" />
-              {t.signInRequired}
-            </DialogTitle>
-            <DialogDescription>
-              {t.signInToChat}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <Link href={`/login?redirect=${encodeURIComponent('/pastor-chat?tab=chat')}`}>
-              <Button 
-                className="w-full"
-                data-testid="button-signin-modal"
-              >
-                <LogIn className="w-4 h-4 mr-2" />
-                {t.signIn}
-              </Button>
-            </Link>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Login Sheet */}
+      <LoginSheet
+        isOpen={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+        redirectUrl="/pastor-chat?tab=chat"
+        isAmharic={isAmharicTranslation(bibleTranslation)}
+      />
     </div>
   );
 }

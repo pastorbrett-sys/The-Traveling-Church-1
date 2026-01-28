@@ -1,7 +1,6 @@
 import { Link } from "wouter";
-import { User, LogIn } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";
 import vagabondLogo from "@/assets/vagabond-logo.png";
@@ -16,6 +15,21 @@ function isAmharic(): boolean {
   const lang = navigator.language || (navigator as any).userLanguage || "en";
   return lang.startsWith("am");
 }
+
+// Feature list with checkmarks
+const FEATURES_EN = [
+  "Smart Search",
+  "AI Verse Insights", 
+  "Save Notes",
+  "Pastor Chat"
+];
+
+const FEATURES_AM = [
+  "ብልጥ ፍለጋ",
+  "AI የቁጥር ግንዛቤ",
+  "ማስታወሻ አስቀምጥ",
+  "የፓስተር ውይይት"
+];
 
 const VagabondHeader = () => (
   <nav className="bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
@@ -33,10 +47,13 @@ export function GuestPrompt({ featureDescription, featureDescriptionAmharic, red
   const { isNative, platform } = usePlatform();
   const isAm = isAmharic();
   
-  const text = {
-    signInRequired: isAm ? "መግባት ያስፈልጋል" : "Sign In Required",
-    description: isAm ? featureDescriptionAmharic : featureDescription,
-    signIn: isAm ? "ግባ" : "Sign In",
+  const features = isAm ? FEATURES_AM : FEATURES_EN;
+  
+  const t = {
+    headline: isAm ? "የ AI ባህሪያትን ያግኙ።\n100% ነፃ!" : "Access AI Features.\n100% Free!",
+    subtitle: isAm ? "ክሬዲት ካርድ አያስፈልግም" : "No credit card required",
+    createAccount: isAm ? "ነፃ መለያ ፍጠር" : "Create a free account",
+    signIn: isAm ? "ግባ" : "Sign In"
   };
 
   const getMainStyle = () => {
@@ -70,26 +87,53 @@ export function GuestPrompt({ featureDescription, featureDescriptionAmharic, red
         className="flex-1 flex items-center justify-center overflow-y-auto"
         style={getMainStyle()}
       >
-        <div className="max-w-md mx-auto px-4">
-          <Card className="border-[hsl(30,20%,88%)]">
-            <CardHeader className="text-center">
-              <div className="mx-auto w-16 h-16 rounded-full bg-[hsl(25,35%,45%)]/10 flex items-center justify-center mb-4">
-                <User className="w-8 h-8 text-[hsl(25,35%,45%)]" />
+        <div className="max-w-md mx-auto px-6">
+          {/* Headline */}
+          <h1 
+            className="text-4xl sm:text-5xl font-bold text-foreground leading-tight whitespace-pre-line"
+            data-testid="heading-login-required"
+          >
+            {t.headline}
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-muted-foreground mt-3 text-lg">
+            {t.subtitle}
+          </p>
+          
+          {/* Feature list with checkmarks */}
+          <div className="mt-8 space-y-4">
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 flex items-center justify-center">
+                  <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                </div>
+                <span className="text-foreground font-semibold text-xl">{feature}</span>
               </div>
-              <CardTitle data-testid="heading-login-required">{text.signInRequired}</CardTitle>
-              <CardDescription>
-                {text.description}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex justify-center">
-              <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
-                <Button className="bg-[#c08e00] hover:bg-[#a07800] gap-2" data-testid="button-guest-signin">
-                  <LogIn className="w-4 h-4" />
-                  {text.signIn}
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+            ))}
+          </div>
+          
+          {/* Buttons */}
+          <div className="mt-10 space-y-3">
+            <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
+              <Button 
+                className="w-full h-14 text-lg font-semibold bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white rounded-full"
+                size="lg"
+                data-testid="button-guest-create-account"
+              >
+                {t.createAccount}
+              </Button>
+            </Link>
+            
+            <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
+              <button 
+                className="w-full py-3 text-center text-foreground font-medium text-base hover:text-[#c08e00] transition-colors"
+                data-testid="button-guest-signin"
+              >
+                {t.signIn}
+              </button>
+            </Link>
+          </div>
         </div>
       </main>
     </div>
