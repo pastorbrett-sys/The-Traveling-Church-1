@@ -103,8 +103,9 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
             }}
             className="fixed left-0 right-0 bg-background rounded-t-2xl z-[45] flex flex-col"
             style={{
-              bottom: isNative && isIOS ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0px",
+              bottom: 0,
               maxHeight: isNative ? "75vh" : "90vh",
+              paddingBottom: isNative ? "env(safe-area-inset-bottom, 0px)" : "0px",
             }}
           >
             {/* Close button - top right */}
