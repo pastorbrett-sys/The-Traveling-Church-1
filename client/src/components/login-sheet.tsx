@@ -95,10 +95,14 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
-            transition={{ type: "tween", duration: 0.25, ease: "easeInOut" }}
-            className="fixed left-0 right-0 bg-background rounded-t-3xl z-[201] flex flex-col"
+            transition={{ 
+              type: "tween", 
+              duration: 0.25, 
+              ease: [0.32, 0.72, 0, 1]
+            }}
+            className="fixed left-0 right-0 bg-background rounded-t-2xl z-[201] flex flex-col"
             style={{
-              bottom: isNative && isIOS ? "80px" : "0px",
+              bottom: isNative && isIOS ? "calc(64px + env(safe-area-inset-bottom, 0px))" : "0px",
               maxHeight: isNative ? "75vh" : "90vh",
             }}
           >
