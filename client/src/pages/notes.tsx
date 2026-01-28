@@ -45,6 +45,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";
+import { useAuth } from "@/hooks/use-auth";
+import { GuestPrompt } from "@/components/guest-prompt";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
@@ -192,6 +194,7 @@ type SortOption = "newest" | "oldest" | "book";
 export default function Notes() {
   const { toast } = useToast();
   const { isNative, platform } = usePlatform();
+  const { isAuthenticated, isLoading: isAuthLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
@@ -236,7 +239,18 @@ export default function Notes() {
 
   const { data: notesData, isLoading } = useQuery<NotesResponse>({
     queryKey: ["/api/notes"],
+    enabled: isAuthenticated,
   });
+  
+  if (!isAuthLoading && !isAuthenticated) {
+    return (
+      <GuestPrompt
+        featureDescription="Sign in to save and view your notes"
+        featureDescriptionAmharic="ማስታወሻዎችን ለማስቀመጥ እና ለማየት ይግቡ"
+        redirectUrl="/notes"
+      />
+    );
+  }
   
   const notes = notesData?.notes || [];
 

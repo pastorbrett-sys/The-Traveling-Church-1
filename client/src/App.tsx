@@ -4,7 +4,6 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { AuthGate } from "@/components/auth-gate";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 import { DynamicHead } from "@/components/dynamic-head";
 import { PlatformProvider } from "@/contexts/platform-context";
@@ -63,10 +62,10 @@ function VagabondBibleRouter() {
   return (
     <Switch>
       <Route path="/" component={VagabondBible} />
-      <Route path="/pastor-chat">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
-      <Route path="/bible-buddy">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
-      <Route path="/notes">{() => <AuthGate><Notes /></AuthGate>}</Route>
-      <Route path="/profile">{() => <AuthGate><Profile /></AuthGate>}</Route>
+      <Route path="/pastor-chat" component={PastorChat} />
+      <Route path="/bible-buddy" component={PastorChat} />
+      <Route path="/notes" component={Notes} />
+      <Route path="/profile" component={Profile} />
       <Route path="/login" component={Login} />
       <Route path="/native-auth-callback" component={NativeAuthCallback} />
       <Route path="/checkout/success" component={CheckoutSuccess} />
@@ -103,10 +102,10 @@ function ChurchRouter() {
       <Route path="/missions/thailand" component={MissionThailand} />
       <Route path="/missions/jordan" component={MissionJordan} />
       <Route path="/missions" component={Missions} />
-      <Route path="/pastor-chat">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
-      <Route path="/bible-buddy">{() => <AuthGate><PastorChat /></AuthGate>}</Route>
-      <Route path="/notes">{() => <AuthGate><Notes /></AuthGate>}</Route>
-      <Route path="/profile">{() => <AuthGate><Profile /></AuthGate>}</Route>
+      <Route path="/pastor-chat" component={PastorChat} />
+      <Route path="/bible-buddy" component={PastorChat} />
+      <Route path="/notes" component={Notes} />
+      <Route path="/profile" component={Profile} />
       <Route path="/login" component={Login} />
       <Route path="/native-auth-callback" component={NativeAuthCallback} />
       <Route path="/checkout/success" component={CheckoutSuccess} />

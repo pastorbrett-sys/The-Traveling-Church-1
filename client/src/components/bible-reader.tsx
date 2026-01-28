@@ -27,7 +27,8 @@ import {
   User,
   BookOpen,
   Languages,
-  ArrowRight
+  ArrowRight,
+  LogIn
 } from "lucide-react";
 import type { 
   SmartSearchResponse, 
@@ -51,6 +52,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -374,6 +376,7 @@ export default function BibleReader({
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
   const [upgradeFeature, setUpgradeFeature] = useState<string>("smart_search");
   const [upgradeResetAt, setUpgradeResetAt] = useState<string | null>(null);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const verseRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -469,6 +472,12 @@ export default function BibleReader({
   }, [selectedBook, showBookPicker]);
 
   const performSmartSearch = async (query: string) => {
+    // Check if user is authenticated
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     // If limit is already reached, don't make another request
     if (searchLimitReached) {
       return;
@@ -506,6 +515,12 @@ export default function BibleReader({
   };
 
   const handleSmartSearchResult = async (result: SmartSearchResult) => {
+    // Check if user is authenticated
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     // Check and use credit before navigating to result
     try {
       const res = await apiFetch("/api/bible/smart-search/use-credit", {
@@ -577,6 +592,12 @@ export default function BibleReader({
   };
 
   const handleTopicVerseClick = async (verse: { bookId: number; chapter: number; verse: number }) => {
+    // Check if user is authenticated
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     // Check and use credit before navigating to verse
     try {
       const res = await apiFetch("/api/bible/smart-search/use-credit", {
@@ -954,6 +975,12 @@ export default function BibleReader({
   const handleGetInsight = async () => {
     if (!selectedVerse || !selectedBook) return;
     
+    // Check if user is authenticated
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     const verseRef = `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`;
     setInsightVerseRef(verseRef);
     setInsightVerseText(selectedVerse.text);
@@ -1216,6 +1243,12 @@ Reference: ${verseRef} (${translation})`;
   const handleSaveNote = () => {
     if (!selectedVerse || !selectedBook || !noteText.trim()) return;
     
+    // Check if user is authenticated
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     saveNoteMutation.mutate({
       verseRef: `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`,
       verseText: selectedVerse.text,
@@ -1246,6 +1279,12 @@ Reference: ${verseRef} (${translation})`;
 
   const handleBookSynopsis = async () => {
     if (!selectedBook) return;
+    
+    // Check if user is authenticated
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
     
     // Light haptic feedback on synopsis tap
     try { Haptics.impact({ style: ImpactStyle.Light }); } catch (e) {}
@@ -2458,6 +2497,38 @@ Reference: ${verseRef} (${translation})`;
         verseText={selectedVerse?.text || ""}
         verseReference={selectedVerse && selectedBook ? `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}` : ""}
       />
+
+      {/* Login Required Modal for AI Features */}
+      <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <LogIn className="w-5 h-5 text-[#c08e00]" />
+              {isAmharicTranslation(translation) ? "መግባት ያስፈልጋል" : "Sign In Required"}
+            </DialogTitle>
+            <DialogDescription>
+              {isAmharicTranslation(translation) 
+                ? "የ AI ባህሪያትን ለመጠቀም ይግቡ" 
+                : "Sign in to use AI features"}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <Link href={`/login?redirect=${encodeURIComponent(
+              selectedBook && selectedChapter 
+                ? `/?book=${selectedBook.bookid}&chapter=${selectedChapter}${selectedVerse ? `&verse=${selectedVerse.verse}` : ''}`
+                : '/'
+            )}`}>
+              <Button 
+                className="w-full bg-[#c08e00] hover:bg-[#a07800]"
+                data-testid="button-signin-modal"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                {isAmharicTranslation(translation) ? "ግባ" : "Sign In"}
+              </Button>
+            </Link>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -283,6 +283,7 @@ export default function PastorChat() {
   // Fetch all conversations to restore the most recent one
   const { data: conversations } = useQuery<Array<{ id: number; title: string; createdAt: string }>>({
     queryKey: ["/api/conversations"],
+    enabled: isAuthenticated,
     refetchOnWindowFocus: false,
   });
 
@@ -293,6 +294,7 @@ export default function PastorChat() {
 
   // Load the most recent conversation's messages on mount (but not if user started a new chat or we have seed params)
   useEffect(() => {
+    if (!isAuthenticated) return; // Skip if not logged in
     if (seedQuestion && seedAnswer) return; // Skip restoration if we're seeding
     if (conversations && conversations.length > 0 && !currentConversationId && !isNewChatMode) {
       const mostRecent = conversations[0]; // Already sorted by createdAt desc
@@ -318,6 +320,7 @@ export default function PastorChat() {
 
   // Handle seeding conversation from Smart Search "Continue discussion"
   useEffect(() => {
+    if (!isAuthenticated) return; // Skip if not logged in
     if (!seedQuestion || !seedAnswer || hasSeeded || isSeeding) return;
     
     const seedConversation = async () => {
@@ -468,6 +471,12 @@ export default function PastorChat() {
   const sendMessage = async () => {
     if (!input.trim() || isStreaming) return;
 
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     // Check if limit reached
     if (isLimitReached) {
       setShowPaywall(true);
@@ -605,6 +614,12 @@ export default function PastorChat() {
   };
 
   const startNewChat = async () => {
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     // Delete the current conversation from the server if one exists
     if (currentConversationId) {
       try {
@@ -884,7 +899,7 @@ export default function PastorChat() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <Link href="/login?redirect=/pastor-chat">
+            <Link href={`/login?redirect=${encodeURIComponent('/pastor-chat?tab=chat')}`}>
               <Button 
                 className="w-full"
                 data-testid="button-signin-modal"
