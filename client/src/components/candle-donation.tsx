@@ -163,36 +163,37 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="absolute inset-0"
+      className="absolute inset-0 flex flex-col"
+      style={{ paddingBottom: '105px' }}
     >
-      {/* Content fixed above nav */}
-      <div className="absolute inset-x-0 bottom-[105px] flex flex-col items-center p-4">
-        {/* Card with candle behind it */}
-        <div className="relative w-full max-w-sm">
-          {/* Candle positioned so bottom aligns with middle of card */}
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-[50%] pointer-events-none">
-            <LockedCandleGlow />
-          </div>
-          
-          {/* Content layer */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="relative z-10"
-          >
-            {/* Black card with dark grey border */}
-            <div className="bg-black rounded-2xl p-5 border border-white/20 mb-6">
-          <div className="flex items-center gap-2 mb-3">
-            <Flame className="w-5 h-5 text-amber-400" />
-            <h3 className="text-lg font-medium text-amber-100">
-              Want to Light a Candle?
-            </h3>
-          </div>
-          <p className="text-white/60 text-sm leading-relaxed">
-            All proceeds go to The Traveling Church to help us respond personally to every prayer request.
-          </p>
+      {/* Candle area - takes up top portion */}
+      <div className="flex-1 relative overflow-hidden flex items-end justify-center">
+        {/* Candle centered, flame at top */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-0">
+          <LockedCandleGlow />
         </div>
+      </div>
+      
+      {/* Bottom content area - card overlaps candle */}
+      <div className="relative z-10 px-4 -mt-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="w-full max-w-sm mx-auto"
+        >
+          {/* Black card with dark grey border */}
+          <div className="bg-black rounded-2xl p-5 border border-white/20 mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <Flame className="w-5 h-5 text-amber-400" />
+              <h3 className="text-lg font-medium text-amber-100">
+                Want to Light a Candle?
+              </h3>
+            </div>
+            <p className="text-white/60 text-sm leading-relaxed">
+              All proceeds go to The Traveling Church to help us respond personally to every prayer request.
+            </p>
+          </div>
 
         <div className="grid grid-cols-4 gap-2 mb-4">
           {DONATION_AMOUNTS.map((amount) => (
@@ -244,8 +245,7 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
         </button>
         
         <NativeTabBarSpacer />
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
