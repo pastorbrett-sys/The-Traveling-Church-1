@@ -166,7 +166,7 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       className="absolute inset-x-0 top-0 bottom-[105px] flex flex-col items-center justify-end p-4 overflow-hidden"
     >
       {/* Big candle with glow behind everything - positioned from top */}
-      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none" style={{ top: '-100px' }}>
+      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none" style={{ top: '-750px' }}>
         <LockedCandleGlow />
       </div>
 
