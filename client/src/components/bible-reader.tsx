@@ -1669,6 +1669,34 @@ Reference: ${verseRef} (${translation})`;
             )}
           </div>
         </ScrollArea>
+
+        {/* Login Required Modal for AI Features (Book Picker View) */}
+        <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <LogIn className="w-5 h-5 text-[#c08e00]" />
+                {isAmharicTranslation(translation) ? "መግባት ያስፈልጋል" : "Sign In Required"}
+              </DialogTitle>
+              <DialogDescription>
+                {isAmharicTranslation(translation) 
+                  ? "የ AI ባህሪያትን ለመጠቀም ይግቡ" 
+                  : "Sign in to use AI features like Smart Search"}
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <Link href="/login?redirect=/">
+                <Button 
+                  className="w-full bg-[#c08e00] hover:bg-[#a07800]"
+                  data-testid="button-signin-modal-bookpicker"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  {isAmharicTranslation(translation) ? "ግባ" : "Sign In"}
+                </Button>
+              </Link>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
