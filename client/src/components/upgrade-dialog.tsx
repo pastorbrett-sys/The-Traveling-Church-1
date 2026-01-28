@@ -48,6 +48,7 @@ const uiText = {
     restoring: "Restoring...",
     subscriptionTerms: "Subscription auto-renews monthly. Cancel anytime.",
     // Apple-required subscription disclosure (Schedule 2, Section 3.8b)
+    aboutYourSubscription: "About Your Subscription",
     appleDisclosure1: "Payment charged to Apple ID at purchase",
     appleDisclosure2: "Auto-renews unless canceled 24+ hours before period ends",
     appleDisclosure3: "Account charged for renewal within 24 hours of period end",
@@ -85,6 +86,7 @@ const uiText = {
     restorePurchases: "ግዢዎችን መልስ",
     restoring: "በመመለስ ላይ...",
     subscriptionTerms: "ምዝገባ በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ ይሰርዙ።",
+    aboutYourSubscription: "ስለ ምዝገባዎ",
     appleDisclosure1: "ክፍያ በግዢ ጊዜ ወደ Apple ID ይከፈላል",
     appleDisclosure2: "ከጊዜ ማብቂያ 24+ ሰዓታት በፊት ካልተሰረዘ በራስ-ሰር ይታደሳል",
     appleDisclosure3: "መለያ ከጊዜ ማብቂያ 24 ሰዓታት ውስጥ ለእድሳት ይከፈላል",
@@ -369,22 +371,25 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                   ) : t.restorePurchases}
                 </Button>
                 {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) */}
-                <div className="bg-gray-100/80 rounded-lg p-3 mt-3">
-                  <ul className="text-[11px] text-left text-[hsl(20,10%,35%)] space-y-1.5">
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d79942] mt-0.5">•</span>
+                <div className="bg-[hsl(39,70%,96%)] border border-[hsl(39,50%,85%)] rounded-xl p-4 mt-4">
+                  <h4 className="text-[13px] font-semibold text-[hsl(20,10%,30%)] mb-3 text-center">
+                    {t.aboutYourSubscription}
+                  </h4>
+                  <ul className="text-[12px] text-left text-[hsl(20,10%,35%)] space-y-2">
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
                       <span>{t.appleDisclosure1}</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d79942] mt-0.5">•</span>
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
                       <span>{t.appleDisclosure2}</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d79942] mt-0.5">•</span>
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
                       <span>{t.appleDisclosure3}</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d79942] mt-0.5">•</span>
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
                       <span>{t.appleDisclosure4}</span>
                     </li>
                   </ul>
