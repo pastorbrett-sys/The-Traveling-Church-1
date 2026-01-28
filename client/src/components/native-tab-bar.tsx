@@ -197,11 +197,11 @@ export function NativeTabBar() {
         })}
       </div>
       
-      {/* Login Sheet for guests trying to access notes */}
+      {/* Login Sheet for guests trying to access protected tabs */}
       <LoginSheet
         isOpen={showLoginSheet}
         onClose={() => setShowLoginSheet(false)}
-        redirectUrl="/notes"
+        redirectUrl="/pastor-chat?tab=bible"
         isAmharic={isAmharicTranslation(translation)}
       />
     </nav>
