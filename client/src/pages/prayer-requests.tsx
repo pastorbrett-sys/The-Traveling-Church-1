@@ -36,7 +36,7 @@ function AnimatedCandle() {
             background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
           }}
           animate={{
-            opacity: [0.7, 1, 0.7],
+            opacity: [0.49, 0.7, 0.49],
             scale: [1, 1.3, 1],
           }}
           transition={{
