@@ -193,6 +193,8 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   const [timerDuration, setTimerDuration] = useState(0);
   const timerIntervalRef = useRef<number | null>(null);
   const timerStartTimeRef = useRef<number | null>(null);
+  const timerDurationRef = useRef<number>(0);
+  const wasPlayingMusicRef = useRef<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const nextAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -211,6 +213,32 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
+  };
+
+  const recordPrayerSession = async () => {
+    const durationSeconds = timerDurationRef.current;
+    const withMusic = wasPlayingMusicRef.current;
+    
+    if (durationSeconds < 1) return;
+    
+    try {
+      const response = await fetch('/api/prayer-sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ durationSeconds, withMusic }),
+      });
+      
+      if (response.ok) {
+        console.log('[PrayerAudio] Prayer session recorded:', { durationSeconds, withMusic });
+      } else if (response.status === 401) {
+        console.log('[PrayerAudio] User not authenticated, session not recorded');
+      } else {
+        console.log('[PrayerAudio] Failed to record session:', response.status);
+      }
+    } catch (error) {
+      console.log('[PrayerAudio] Error recording session:', error);
+    }
   };
 
   const getTrackUrl = (trackName: string): string => {
@@ -569,6 +597,8 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     }
     
     const totalSeconds = durationMinutes * 60;
+    timerDurationRef.current = totalSeconds;
+    wasPlayingMusicRef.current = isPlaying;
     setTimerDuration(totalSeconds);
     setTimerTimeRemaining(totalSeconds);
     setIsTimerRunning(true);
@@ -583,12 +613,13 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
           }
           setIsTimerRunning(false);
           playCompletionChime();
+          recordPrayerSession();
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
-  }, []);
+  }, [isPlaying]);
 
   const pauseGlobalTimer = useCallback(() => {
     if (timerIntervalRef.current) {
@@ -612,6 +643,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
           }
           setIsTimerRunning(false);
           playCompletionChime();
+          recordPrayerSession();
           return 0;
         }
         return prev - 1;
