@@ -267,6 +267,14 @@ export default function PastorChat() {
     }
   }, [upgradeParam, isAuthenticated, isAuthLoading]);
 
+  // Guest check - redirect to Bible tab if trying to access Chat tab directly
+  // The NativeTabBar intercepts the navigation, but this handles direct URL access
+  useEffect(() => {
+    if (!isAuthLoading && !isAuthenticated && activeTab === "chat") {
+      window.location.href = "/pastor-chat?tab=bible";
+    }
+  }, [isAuthLoading, isAuthenticated, activeTab]);
+
   // Fetch session stats from server (only for authenticated users)
   const { data: sessionStats, refetch: refetchSessionStats } = useQuery<SessionStats>({
     queryKey: ["/api/chat/session-stats"],
