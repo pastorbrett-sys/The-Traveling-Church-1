@@ -488,7 +488,8 @@ export default function PrayerTimer() {
       className="w-full flex flex-col overflow-hidden"
       style={{ 
         background: "#000000",
-        minHeight: "100vh",
+        height: "100vh",
+        maxHeight: "100vh",
         paddingTop: "env(safe-area-inset-top, 44px)",
         paddingBottom: "100px",
       }}
