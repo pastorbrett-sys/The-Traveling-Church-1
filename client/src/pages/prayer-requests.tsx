@@ -381,8 +381,8 @@ export default function PrayerRequests() {
               
               <Button
                 onClick={() => setLocation("/vagabond-bible")}
-                variant="outline"
-                className="w-full border-white/20 text-white hover:bg-white/10 font-semibold py-6 rounded-2xl"
+                variant="ghost"
+                className="w-full border border-white/30 bg-transparent text-white hover:bg-white/10 font-semibold py-6 rounded-2xl"
                 data-testid="button-read-bible"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
