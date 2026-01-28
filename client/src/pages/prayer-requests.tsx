@@ -18,22 +18,19 @@ import litCandleImage from "@assets/candle_cropped.png";
 function AnimatedCandle() {
   return (
     <div className="relative flex items-center justify-center h-full w-full">
-      <div className="relative">
+      <div className="relative h-full flex items-center justify-center">
         <img 
           src={litCandleImage} 
           alt="Lit candle" 
-          style={{
-            height: 'calc(160vh - 448px)',
-            width: 'auto',
-          }}
+          className="h-full max-h-[400px] w-auto object-contain"
         />
         <motion.div
           className="absolute rounded-full blur-2xl"
           style={{
             width: '120px',
             height: '80px',
-            top: 'calc(12% + 100px)',
-            left: 'calc(50% - 65px)',
+            top: '8%',
+            left: '50%',
             transform: 'translateX(-50%)',
             background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
           }}
