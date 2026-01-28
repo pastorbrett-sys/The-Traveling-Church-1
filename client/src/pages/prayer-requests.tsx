@@ -145,7 +145,7 @@ export default function PrayerRequests() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-b from-black via-zinc-900 to-black text-white flex flex-col overflow-hidden">
+    <div className="h-screen text-white flex flex-col overflow-hidden" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
       <header 
         className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
         style={getNavStyle()}
