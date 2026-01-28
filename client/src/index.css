@@ -78,9 +78,10 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Global touch behavior to prevent unwanted selections */
+  /* Global touch behavior to prevent unwanted selections and delays */
   * {
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   
   /* Prevent text selection on headings and paragraphs in interactive areas */
