@@ -78,24 +78,17 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Global tap highlight removal and prevent text cursor everywhere except inputs */
-  * {
-    -webkit-tap-highlight-color: transparent;
-    cursor: default;
+  /* Prevent text cursor on non-interactive content */
+  body {
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
   
   /* Only allow text cursor and selection in actual text inputs */
   input, textarea, [contenteditable="true"] {
-    cursor: text;
-    -webkit-user-select: text;
-    user-select: text;
-  }
-  
-  /* Restore pointer cursor for interactive elements */
-  button, a, [role="button"], [tabindex], label, select {
-    cursor: pointer;
+    -webkit-user-select: text !important;
+    user-select: text !important;
   }
 
   html, body {
