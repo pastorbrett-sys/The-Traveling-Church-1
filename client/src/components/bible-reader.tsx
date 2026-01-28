@@ -1339,6 +1339,11 @@ Reference: ${verseRef} (${translation})`;
 
   const handleSearchToggle = () => {
     if (!showSearch) {
+      // Check if user is authenticated before opening Smart Search
+      if (!user) {
+        setShowLoginPrompt(true);
+        return;
+      }
       setShowSearch(true);
       setTimeout(() => {
         searchInputRef.current?.focus();
