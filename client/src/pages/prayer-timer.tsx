@@ -488,8 +488,9 @@ export default function PrayerTimer() {
       className="w-full flex flex-col"
       style={{ 
         background: "#000000",
-        height: "calc(100vh - 64px - env(safe-area-inset-bottom, 0px))",
+        minHeight: "100vh",
         paddingTop: "env(safe-area-inset-top, 0px)",
+        paddingBottom: "100px",
       }}
       data-testid="prayer-timer-screen"
     >
