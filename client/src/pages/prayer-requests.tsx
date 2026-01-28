@@ -292,7 +292,7 @@ export default function PrayerRequests() {
                 className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
                 data-testid="button-send-prayer"
               >
-                <Heart className="w-5 h-5 mr-2" />
+                <Send className="w-5 h-5 mr-2" />
                 Submit Prayer
               </Button>
             </div>
@@ -427,7 +427,7 @@ export default function PrayerRequests() {
                 size="lg"
                 data-testid="button-submit-prayer"
               >
-                <Send className="w-5 h-5 mr-2" />
+                <Heart className="w-5 h-5 mr-2" />
                 Submit a Prayer Request
               </Button>
             </div>
