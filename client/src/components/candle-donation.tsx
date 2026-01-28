@@ -163,14 +163,14 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="absolute inset-x-0 top-0 bottom-[105px] flex flex-col items-center justify-end p-4"
+      className="absolute inset-x-0 top-0 bottom-[105px] flex flex-col items-center justify-end p-4 overflow-hidden"
     >
-      {/* Big candle with glow behind everything */}
-      <div className="absolute inset-x-0 top-0 flex justify-center pointer-events-none">
+      {/* Big candle with glow behind everything - positioned from top */}
+      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none" style={{ top: '-100px' }}>
         <LockedCandleGlow />
       </div>
 
-      {/* Content that sits over the candle */}
+      {/* Content that sits over the candle at bottom */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
