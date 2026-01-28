@@ -374,60 +374,66 @@ export default function PrayerRequests() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
 
-      {view === "list" && (
-        <>
-          {/* Candle area - fills remaining space */}
-          <div className="flex-1 flex items-center justify-center px-4 min-h-0 relative pointer-events-none">
-            <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none">
-              <AnimatedCandle />
-            </div>
-          </div>
-          
-          {/* Bottom section - fixed height, locked above nav */}
-          <div className="shrink-0 px-4 pb-4 space-y-4 relative z-10">
-            {isAuthenticated && stats && (
-              <div className="grid grid-cols-3 gap-3">
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Flame className="w-4 h-4 text-orange-400" />
-                    <span className="text-xs text-white/60">Streak</span>
-                  </div>
-                  <p className="text-2xl font-bold text-white">{stats.streak}</p>
-                  <p className="text-xs text-white/40">days</p>
-                </div>
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Clock className="w-4 h-4 text-blue-400" />
-                    <span className="text-xs text-white/60">Time</span>
-                  </div>
-                  <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
-                  <p className="text-xs text-white/40">minutes</p>
-                </div>
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                  <div className="flex items-center gap-2 mb-2">
-                    <MessageCircle className="w-4 h-4 text-purple-400" />
-                    <span className="text-xs text-white/60">Prayers</span>
-                  </div>
-                  <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
-                  <p className="text-xs text-white/40">submitted</p>
-                </div>
+        {view === "list" && (
+          <motion.div
+            key="candle-section"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex-1 flex flex-col min-h-0"
+          >
+            {/* Candle area - fills remaining space */}
+            <div className="flex-1 flex items-center justify-center px-4 min-h-0 relative pointer-events-none">
+              <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none">
+                <AnimatedCandle />
               </div>
-            )}
+            </div>
             
-            <Button
-              onClick={() => setView("form")}
-              className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold shadow-lg shadow-[#c08e00]/30 pt-[24px] pb-[24px] mt-[4px] mb-[4px]"
-              size="lg"
-              data-testid="button-submit-prayer"
-            >
-              <Send className="w-5 h-5 mr-2" />
-              Submit a Prayer Request
-            </Button>
-          </div>
-        </>
-      )}
+            {/* Bottom section - fixed height, locked above nav */}
+            <div className="shrink-0 px-4 pb-4 space-y-4 relative z-10">
+              {isAuthenticated && stats && (
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Flame className="w-4 h-4 text-orange-400" />
+                      <span className="text-xs text-white/60">Streak</span>
+                    </div>
+                    <p className="text-2xl font-bold text-white">{stats.streak}</p>
+                    <p className="text-xs text-white/40">days</p>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Clock className="w-4 h-4 text-blue-400" />
+                      <span className="text-xs text-white/60">Time</span>
+                    </div>
+                    <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
+                    <p className="text-xs text-white/40">minutes</p>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MessageCircle className="w-4 h-4 text-purple-400" />
+                      <span className="text-xs text-white/60">Prayers</span>
+                    </div>
+                    <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
+                    <p className="text-xs text-white/40">submitted</p>
+                  </div>
+                </div>
+              )}
+              
+              <Button
+                onClick={() => setView("form")}
+                className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold shadow-lg shadow-[#c08e00]/30 pt-[24px] pb-[24px] mt-[4px] mb-[4px]"
+                size="lg"
+                data-testid="button-submit-prayer"
+              >
+                <Send className="w-5 h-5 mr-2" />
+                Submit a Prayer Request
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <NativeTabBarSpacer />
     </div>
