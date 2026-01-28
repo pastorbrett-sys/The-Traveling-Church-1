@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearch, useLocation } from "wouter";
-import { Mail, Loader2, Eye, EyeOff, User } from "lucide-react";
+import { Mail, Loader2, Eye, EyeOff, User, ArrowLeft } from "lucide-react";
 import { SiGoogle, SiApple } from "react-icons/si";
 import { Capacitor } from "@capacitor/core";
 import { Button } from "@/components/ui/button";
@@ -409,6 +409,17 @@ export default function Login() {
 
   return (
     <div className="antialiased min-h-[100dvh] flex flex-col text-white" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
+      {/* Back button */}
+      <div className="absolute top-0 left-0 z-10" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top, 16px))', paddingLeft: '1rem' }}>
+        <button
+          onClick={() => window.history.back()}
+          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+          data-testid="button-back"
+        >
+          <ArrowLeft className="w-5 h-5 text-white/70" />
+        </button>
+      </div>
+      
       <main className="flex-1 flex items-center justify-center px-5" style={{ paddingTop: 'max(3rem, env(safe-area-inset-top, 48px))', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))' }}>
         <div className="max-w-md mx-auto w-full">
           <Card className="border-0 shadow-none bg-transparent animate-fade-up" style={{ animationDuration: '0.4s' }}>
