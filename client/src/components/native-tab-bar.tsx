@@ -158,7 +158,8 @@ export function NativeTabBar() {
       className="fixed bottom-0 left-0 right-0 z-[150]"
       style={{ 
         background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)',
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)'
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+        borderTop: '1px solid #1a1a1a'
       }}
       data-testid="native-tab-bar"
     >
