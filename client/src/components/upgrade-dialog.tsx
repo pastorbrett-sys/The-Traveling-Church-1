@@ -363,10 +363,12 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                   ) : t.restorePurchases}
                 </Button>
                 {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) */}
-                <p className="text-[10px] text-center text-[hsl(20,10%,55%)] mt-3 leading-relaxed px-2">
-                  {t.appleSubscriptionDisclosure}
-                </p>
-                <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">
+                <div className="bg-gray-100/80 rounded-lg p-3 mt-3">
+                  <p className="text-[11px] text-center text-[hsl(20,10%,40%)] leading-snug">
+                    {t.appleSubscriptionDisclosure}
+                  </p>
+                </div>
+                <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-3 leading-relaxed">
                   {t.bySubscribing}{" "}
                   <button 
                     type="button"
