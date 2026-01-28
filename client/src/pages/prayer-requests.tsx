@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -13,7 +13,8 @@ import {
   ChevronRight,
   CheckCircle2,
   BookOpen,
-  Timer
+  Timer,
+  Heart
 } from "lucide-react";
 
 import litCandleImage from "@assets/candle_cropped.png";
@@ -61,7 +62,6 @@ import { useAuth } from "@/hooks/use-auth";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { NativeTabBarSpacer } from "@/components/native-tab-bar";
-import { CandleDonation } from "@/components/candle-donation";
 
 interface PrayerStats {
   totalSessions: number;
@@ -90,7 +90,7 @@ export default function PrayerRequests() {
   const { isAuthenticated, user } = useAuth();
   const { isNative, platform } = usePlatform();
   
-  const [view, setView] = useState<"list" | "form" | "donation" | "confirmation">("list");
+  const [view, setView] = useState<"list" | "form" | "confirmation">("list");
   const [prayerContent, setPrayerContent] = useState("");
   const [name, setName] = useState(user?.firstName || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -107,33 +107,26 @@ export default function PrayerRequests() {
     enabled: isAuthenticated,
   });
 
-  const submitMutation = useMutation({
-    mutationFn: async (data: { name?: string; email?: string; content: string; isAnonymous: boolean }) => {
-      const res = await apiRequest("POST", "/api/prayer-requests", data);
-      return res.json();
-    },
-    onSuccess: (data) => {
+  const handleSubmitPrayer = async () => {
+    if (!prayerContent.trim()) return;
+    
+    try {
+      const res = await apiRequest("POST", "/api/prayer-requests", {
+        name: isAnonymous ? undefined : name,
+        email: isAnonymous ? undefined : email,
+        content: prayerContent,
+        isAnonymous,
+      });
+      const data = await res.json();
+      
       queryClient.invalidateQueries({ queryKey: ["/api/prayer-requests"] });
       queryClient.invalidateQueries({ queryKey: ["/api/prayer-stats"] });
       setSubmittedPrayerId(data.prayerRequest?.id || null);
-      setView("donation");
       setPrayerContent("");
-    },
-  });
-
-  const handleContinue = () => {
-    if (!prayerContent.trim()) return;
-    // Don't submit yet - just go to donation page
-    // Prayer will be submitted when they skip or complete donation
-    setView("donation");
-  };
-
-  const handlePrayerSubmitted = (prayerId: string | null) => {
-    queryClient.invalidateQueries({ queryKey: ["/api/prayer-requests"] });
-    queryClient.invalidateQueries({ queryKey: ["/api/prayer-stats"] });
-    setSubmittedPrayerId(prayerId);
-    setPrayerContent("");
-    setView("confirmation");
+      setView("confirmation");
+    } catch (e) {
+      console.error("Failed to submit prayer:", e);
+    }
   };
 
   const getNavStyle = () => {
@@ -151,17 +144,7 @@ export default function PrayerRequests() {
 
   return (
     <div className="h-screen text-white flex flex-col overflow-hidden" style={{ background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)' }}>
-      {view === "donation" ? (
-        <div className="absolute top-0 left-0 z-50 p-4" style={getNavStyle()}>
-          <button
-            onClick={() => setView("list")}
-            className="p-2 -ml-2 text-white/70 hover:text-white transition-colors"
-            data-testid="button-back"
-          >
-            <ArrowLeft className="w-6 h-6" />
-          </button>
-        </div>
-      ) : view === "confirmation" ? (
+      {view === "confirmation" ? (
         <div style={getNavStyle()} />
       ) : (
         <header 
@@ -304,28 +287,16 @@ export default function PrayerRequests() {
               </div>
 
               <Button
-                onClick={handleContinue}
+                onClick={handleSubmitPrayer}
                 disabled={!prayerContent.trim()}
                 className="w-full bg-[#c08e00] hover:bg-[#d4a000] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-[#c08e00]/30"
                 data-testid="button-send-prayer"
               >
-                Continue
+                <Heart className="w-5 h-5 mr-2" />
+                Submit Prayer
               </Button>
             </div>
           </motion.div>
-        )}
-
-        {view === "donation" && (
-          <CandleDonation
-            prayerData={{
-              name: isAnonymous ? undefined : name,
-              email: isAnonymous ? undefined : email,
-              content: prayerContent,
-              isAnonymous,
-            }}
-            onComplete={handlePrayerSubmitted}
-            onSkip={handlePrayerSubmitted}
-          />
         )}
 
         {view === "confirmation" && (
