@@ -163,22 +163,26 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="absolute inset-x-0 top-0 bottom-[105px] flex flex-col items-center justify-end p-4 overflow-hidden"
+      className="absolute inset-0"
     >
-      {/* Big candle with glow behind everything - positioned from top */}
-      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none" style={{ top: '-750px' }}>
-        <LockedCandleGlow />
-      </div>
-
-      {/* Content that sits over the candle at bottom */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="w-full max-w-sm relative z-10"
-      >
-        {/* Black card with dark grey border */}
-        <div className="bg-black rounded-2xl p-5 border border-white/20 mb-6">
+      {/* Content fixed above nav */}
+      <div className="absolute inset-x-0 bottom-[105px] flex flex-col items-center p-4">
+        {/* Card with candle behind it */}
+        <div className="relative w-full max-w-sm">
+          {/* Candle positioned so bottom aligns with middle of card */}
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-[50%] pointer-events-none">
+            <LockedCandleGlow />
+          </div>
+          
+          {/* Content layer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="relative z-10"
+          >
+            {/* Black card with dark grey border */}
+            <div className="bg-black rounded-2xl p-5 border border-white/20 mb-6">
           <div className="flex items-center gap-2 mb-3">
             <Flame className="w-5 h-5 text-amber-400" />
             <h3 className="text-lg font-medium text-amber-100">
@@ -240,7 +244,9 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
         </button>
         
         <NativeTabBarSpacer />
-      </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   );
 }
