@@ -163,119 +163,31 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="absolute inset-x-0 top-0 bottom-[105px] flex flex-col items-center justify-center p-4"
+      className="absolute inset-x-0 top-0 bottom-[105px] flex flex-col items-center justify-end p-4"
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="relative w-48 h-64 mb-6"
-      >
-        <AnimatePresence mode="wait">
-          {candleState === "unlit" && (
-            <motion.img
-              key="unlit"
-              src={candleUnlitImage}
-              alt="Unlit candle"
-              className="w-full h-full object-contain"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          )}
-          {candleState === "lighting" && (
-            <motion.div
-              key="lighting"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full h-full"
-            >
-              <motion.img
-                src={matchLightingImage}
-                alt="Lighting candle"
-                className="w-full h-full object-contain"
-                initial={{ x: 50, rotate: -15 }}
-                animate={{ x: 0, rotate: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              />
-            </motion.div>
-          )}
-          {(candleState === "lit" || candleState === "success") && (
-            <motion.div
-              key="lit"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="relative w-full h-full"
-            >
-              <motion.img
-                src={candleLitImage}
-                alt="Lit candle"
-                className="w-full h-full object-contain"
-              />
-              <motion.div
-                className="absolute top-8 left-1/2 -translate-x-1/2 w-8 h-12"
-                animate={{
-                  scale: [1, 1.1, 0.95, 1.05, 1],
-                  opacity: [0.8, 1, 0.9, 1, 0.85],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <div className="w-full h-full bg-gradient-to-t from-amber-500 via-orange-400 to-yellow-200 rounded-full blur-sm" />
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* Big candle with glow behind everything */}
+      <div className="absolute inset-x-0 top-0 flex justify-center pointer-events-none">
+        <LockedCandleGlow />
+      </div>
 
-        {showSuccess && (
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-              }}
-              transition={{ duration: 0.6, repeat: 2 }}
-              className="absolute inset-0 rounded-full bg-amber-400/20 blur-xl"
-            />
-          </motion.div>
-        )}
-      </motion.div>
-
+      {/* Content that sits over the candle */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
-        className="w-full max-w-sm"
+        className="w-full max-w-sm relative z-10"
       >
-        {/* Card with candle behind it - locked together */}
-        <div className="relative mb-6">
-          {/* Candle positioned behind, showing top 1/3 */}
-          <div className="absolute left-1/2 -translate-x-1/2 overflow-hidden" style={{ top: '-200px', height: '280px', width: '480px' }}>
-            <LockedCandleGlow />
+        {/* Black card with dark grey border */}
+        <div className="bg-black rounded-2xl p-5 border border-white/20 mb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <Flame className="w-5 h-5 text-amber-400" />
+            <h3 className="text-lg font-medium text-amber-100">
+              Want to Light a Candle?
+            </h3>
           </div>
-          
-          {/* Black card with dark grey border */}
-          <div className="relative bg-black rounded-2xl p-5 border border-white/20">
-            <div className="flex items-center gap-2 mb-3">
-              <Flame className="w-5 h-5 text-amber-400" />
-              <h3 className="text-lg font-medium text-amber-100">
-                Want to Light a Candle?
-              </h3>
-            </div>
-            <p className="text-white/60 text-sm leading-relaxed">
-              All proceeds go to The Traveling Church to help us respond personally to every prayer request.
-            </p>
-          </div>
+          <p className="text-white/60 text-sm leading-relaxed">
+            All proceeds go to The Traveling Church to help us respond personally to every prayer request.
+          </p>
         </div>
 
         <div className="grid grid-cols-4 gap-2 mb-4">
