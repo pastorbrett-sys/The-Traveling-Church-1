@@ -1,14 +1,19 @@
 import { usePlatform } from "@/contexts/platform-context";
 import { Smartphone, Globe } from "lucide-react";
+import { useLocation } from "wouter";
 
 export function PlatformToggle() {
   const { isNative, isSimulating, toggleSimulation } = usePlatform();
+  const [location] = useLocation();
 
   // Only show in development mode on web (hide on actual native devices and production)
   if (import.meta.env.PROD) return null;
   
   // Hide on actual native devices (only show web simulation toggle)
   if (isNative && !isSimulating) return null;
+  
+  // Hide on login page to not overlap with back button
+  if (location === "/login") return null;
 
   const handleWebClick = () => {
     if (isSimulating) {
