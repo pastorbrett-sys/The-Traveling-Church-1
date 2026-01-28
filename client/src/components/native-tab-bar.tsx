@@ -177,8 +177,14 @@ export function NativeTabBar() {
               data-testid={`tab-${tab.id}`}
             >
               <motion.div
-                animate={isTapped ? { scale: [1, 1.15, 1] } : { scale: 1 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                animate={isTapped ? {
+                  scale: [1, 1.3, 0.95, 1.1, 1],
+                  y: [0, -4, 1, -2, 0],
+                } : { scale: 1, y: 0 }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut",
+                }}
                 className="flex items-center justify-center"
               >
                 <Icon className={`w-5 h-5 ${active ? "stroke-[2.5px]" : ""}`} />
