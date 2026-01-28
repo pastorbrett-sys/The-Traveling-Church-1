@@ -10,6 +10,40 @@ import { Haptics, ImpactStyle, NotificationType } from "@capacitor/haptics";
 import candleLitImage from "@assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png";
 import candleUnlitImage from "@assets/628562E5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png";
 import matchLightingImage from "@assets/97EB6137-7CC3-42DE-8006-6F15161A8754_1769473638700.png";
+import litCandleImage from "@assets/candle_cropped.png";
+
+// Locked candle + glow component (same ratios as prayer-requests page)
+function LockedCandleGlow() {
+  return (
+    <div className="relative" style={{ width: '480px', height: '1280px' }}>
+      <img 
+        src={litCandleImage} 
+        alt="Lit candle" 
+        className="absolute inset-0 w-full h-full object-contain"
+      />
+      <motion.div
+        className="absolute rounded-full blur-3xl"
+        style={{
+          width: '400px',
+          height: '240px',
+          top: '428px',
+          left: '50%',
+          marginLeft: '-200px',
+          background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
+        }}
+        animate={{
+          opacity: [0.49, 0.7, 0.49],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 1.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    </div>
+  );
+}
 
 interface PrayerData {
   name?: string;
@@ -222,16 +256,25 @@ export function CandleDonation({ prayerData, onComplete, onSkip }: CandleDonatio
         transition={{ delay: 0.6, duration: 0.5 }}
         className="w-full max-w-sm"
       >
-        <div className="bg-gradient-to-b from-amber-900/20 to-transparent rounded-2xl p-5 border border-amber-500/20 mb-6">
-          <div className="flex items-center gap-2 mb-3">
-            <Flame className="w-5 h-5 text-amber-400" />
-            <h3 className="text-lg font-medium text-amber-100">
-              Want to Light a Candle?
-            </h3>
+        {/* Card with candle behind it - locked together */}
+        <div className="relative mb-6">
+          {/* Candle positioned behind, showing top 1/3 */}
+          <div className="absolute left-1/2 -translate-x-1/2 overflow-hidden" style={{ top: '-200px', height: '280px', width: '480px' }}>
+            <LockedCandleGlow />
           </div>
-          <p className="text-white/60 text-sm leading-relaxed">
-            All proceeds go to The Traveling Church to help us respond personally to every prayer request.
-          </p>
+          
+          {/* Black card with dark grey border */}
+          <div className="relative bg-black rounded-2xl p-5 border border-white/20">
+            <div className="flex items-center gap-2 mb-3">
+              <Flame className="w-5 h-5 text-amber-400" />
+              <h3 className="text-lg font-medium text-amber-100">
+                Want to Light a Candle?
+              </h3>
+            </div>
+            <p className="text-white/60 text-sm leading-relaxed">
+              All proceeds go to The Traveling Church to help us respond personally to every prayer request.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-4 gap-2 mb-4">
