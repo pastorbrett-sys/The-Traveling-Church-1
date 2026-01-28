@@ -1,0 +1,427 @@
+Last login: Sat Jan 24 14:53:32 on ttys001
+brettlindstrom@Bretts-MacBook-Pro ~ % cd ~/The-Traveling-Church-1
+brettlindstrom@Bretts-MacBook-Pro The-Traveling-Church-1 % git pull origin main
+remote: Enumerating objects: 1223, done.
+remote: Counting objects: 100% (1223/1223), done.
+remote: Compressing objects: 100% (126/126), done.
+remote: Total 1175 (delta 1070), reused 1152 (delta 1047), pack-reused 0 (from 0)
+Receiving objects: 100% (1175/1175), 27.65 MiB | 23.99 MiB/s, done.
+Resolving deltas: 100% (1070/1070), completed with 43 local objects.
+From https://github.com/pastorbrett-sys/The-Traveling-Church-1
+ * branch            main       -> FETCH_HEAD
+   832c4cb..765883a  main       -> origin/main
+Updating 832c4cb..765883a
+Fast-forward
+ Screencapture                                      |    0
+ android/app/src/main/res/raw/timer_chime.wav       |  Bin 0 -> 670852 bytes
+ ...5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png |  Bin 0 -> 2127413 bytes
+ ...7-7CC3-42DE-8006-6F15161A8754_1769473638700.png |  Bin 0 -> 2169217 bytes
+ ...7-32A9-426E-BF72-07D9127E0207_1769473638701.png |  Bin 0 -> 2075889 bytes
+ ...6-450C-4805-819C-819ACE781EAA_1769473638700.png |  Bin 0 -> 2137205 bytes
+ attached_assets/Group_33_1769390867777.png         |  Bin 0 -> 273857 bytes
+ attached_assets/IMG_3133_1767202932374.png         |  Bin 448676 -> 0 bytes
+ attached_assets/IMG_3134_1767203181428.png         |  Bin 249839 -> 0 bytes
+ attached_assets/IMG_3150_1767481461665.jpeg        |  Bin 403466 -> 0 bytes
+ attached_assets/IMG_3150_1767483019124.jpeg        |  Bin 403466 -> 0 bytes
+ attached_assets/IMG_3151_1767481696780.jpeg        |  Bin 369809 -> 0 bytes
+ attached_assets/IMG_3152_1767482280134.jpeg        |  Bin 262825 -> 0 bytes
+ attached_assets/IMG_3153_1767483551212.jpeg        |  Bin 863889 -> 0 bytes
+ attached_assets/IMG_3155_1767494146595.png         |  Bin 355628 -> 0 bytes
+ attached_assets/IMG_3158_1767494146595.png         |  Bin 266049 -> 0 bytes
+ attached_assets/IMG_3198_1767918840097.jpeg        |  Bin 5056421 -> 0 bytes
+ attached_assets/IMG_3203_1768031869220.png         |  Bin 164527 -> 0 bytes
+ attached_assets/IMG_3204_1768031869219.png         |  Bin 203330 -> 0 bytes
+ attached_assets/IMG_3205_1768031869219.jpeg        |  Bin 650693 -> 0 bytes
+ attached_assets/IMG_3206_1768031869219.jpeg        |  Bin 692861 -> 0 bytes
+ attached_assets/IMG_3207_1768031869219.jpeg        |  Bin 682620 -> 0 bytes
+ attached_assets/IMG_3208_1768031869219.jpeg        |  Bin 527342 -> 0 bytes
+ attached_assets/IMG_3209_1768031869219.jpeg        |  Bin 347101 -> 0 bytes
+ attached_assets/IMG_3210_1768031869219.jpeg        |  Bin 1270184 -> 0 bytes
+ attached_assets/IMG_3216_1768070562282.png         |  Bin 185245 -> 0 bytes
+ attached_assets/IMG_3217_1768070562282.png         |  Bin 288822 -> 0 bytes
+ attached_assets/IMG_3219_1768083321893.jpeg        |  Bin 352618 -> 0 bytes
+ attached_assets/IMG_3220_1768083321893.jpeg        |  Bin 335760 -> 0 bytes
+ attached_assets/IMG_3222_1768083321893.jpeg        |  Bin 802017 -> 0 bytes
+ attached_assets/IMG_3223_1768083321893.jpeg        |  Bin 634074 -> 0 bytes
+ attached_assets/IMG_3224_1768083321893.jpeg        |  Bin 671832 -> 0 bytes
+ attached_assets/IMG_3225_1768083321893.jpeg        |  Bin 957017 -> 0 bytes
+ attached_assets/IMG_3226_1768083321893.png         |  Bin 454325 -> 0 bytes
+ attached_assets/IMG_3227_1768083321893.png         |  Bin 452864 -> 0 bytes
+ attached_assets/IMG_3228_1768083321893.jpeg        |  Bin 563955 -> 0 bytes
+ attached_assets/IMG_3229_1768083321893.png         |  Bin 487904 -> 0 bytes
+ attached_assets/IMG_3230_1768083321893.png         |  Bin 441461 -> 0 bytes
+ attached_assets/IMG_3231_1768087475787.jpeg        |  Bin 1346142 -> 0 bytes
+ attached_assets/IMG_3235_1768087794215.jpeg        |  Bin 269743 -> 0 bytes
+ attached_assets/IMG_3237_1768091542631.jpeg        |  Bin 484632 -> 0 bytes
+ attached_assets/IMG_3238_1768091758236.jpeg        |  Bin 896040 -> 0 bytes
+ attached_assets/IMG_3239_1768091758236.jpeg        |  Bin 1265972 -> 0 bytes
+ attached_assets/IMG_3240_1768093882239.jpeg        |  Bin 235713 -> 0 bytes
+ attached_assets/IMG_3241_1768098107871.png         |  Bin 85045 -> 0 bytes
+ attached_assets/IMG_3243_1768099341516.png         |  Bin 458058 -> 0 bytes
+ attached_assets/IMG_3248_1768100549438.jpeg        |  Bin 1332732 -> 0 bytes
+ attached_assets/IMG_3249_1768100549438.jpeg        |  Bin 1412463 -> 0 bytes
+ attached_assets/IMG_3250_1768100549438.jpeg        |  Bin 598035 -> 0 bytes
+ attached_assets/IMG_3251_1768100739845.png         |  Bin 50805 -> 0 bytes
+ attached_assets/IMG_3254_1768102591916.png         |  Bin 159733 -> 0 bytes
+ attached_assets/IMG_3256_1768105767483.png         |  Bin 446736 -> 0 bytes
+ attached_assets/IMG_3259_1768109398729.jpeg        |  Bin 1009642 -> 0 bytes
+ attached_assets/IMG_3260_1768110794921.png         |  Bin 598584 -> 0 bytes
+ attached_assets/IMG_3261_1768111010648.png         |  Bin 711248 -> 0 bytes
+ attached_assets/IMG_3262_1768111010648.png         |  Bin 321840 -> 0 bytes
+ attached_assets/IMG_3263_1768112731015.png         |  Bin 712747 -> 0 bytes
+ attached_assets/IMG_3264_1768114954376.png         |  Bin 356407 -> 0 bytes
+ attached_assets/IMG_3265_1768114954376.jpeg        |  Bin 607503 -> 0 bytes
+ attached_assets/IMG_3266_1768115069869.jpeg        |  Bin 638425 -> 0 bytes
+ attached_assets/IMG_3268_1768151901681.jpeg        |  Bin 605785 -> 0 bytes
+ attached_assets/IMG_3269_1768151901681.jpeg        |  Bin 602481 -> 0 bytes
+ attached_assets/IMG_3270_1768152854025.png         |  Bin 1119310 -> 0 bytes
+ attached_assets/IMG_3275_1768173197210.png         |  Bin 294484 -> 0 bytes
+ attached_assets/IMG_3290_1768197135318.png         |  Bin 652450 -> 0 bytes
+ attached_assets/IMG_3291_1768198959135.png         |  Bin 295284 -> 0 bytes
+ attached_assets/IMG_3292_1768200417714.png         |  Bin 646722 -> 0 bytes
+ attached_assets/IMG_3293_1768200490008.png         |  Bin 308902 -> 0 bytes
+ attached_assets/IMG_3294_1768200522439.png         |  Bin 308003 -> 0 bytes
+ attached_assets/IMG_3295_1768200700750.png         |  Bin 654263 -> 0 bytes
+ attached_assets/IMG_3296_1768204085473.jpeg        |  Bin 659967 -> 0 bytes
+ attached_assets/IMG_3300_1768237722450.jpeg        |  Bin 574282 -> 0 bytes
+ attached_assets/IMG_3304_1768243435175.png         |  Bin 322487 -> 0 bytes
+ attached_assets/IMG_3306_1768245659060.png         |  Bin 302134 -> 0 bytes
+ attached_assets/IMG_3428_1769026585729.png         |  Bin 426810 -> 0 bytes
+ attached_assets/IMG_3431_1769034119854.PNG         |  Bin 497895 -> 0 bytes
+ attached_assets/IMG_3434_1769055959687.png         |  Bin 636027 -> 0 bytes
+ attached_assets/IMG_3471_1769153106152.png         |  Bin 2039790 -> 0 bytes
+ attached_assets/IMG_3474_1769154123920.png         |  Bin 1509737 -> 0 bytes
+ attached_assets/IMG_3476_1769156256260.png         |  Bin 5068975 -> 0 bytes
+ attached_assets/IMG_3477_1769156256260.png         |  Bin 2291420 -> 0 bytes
+ attached_assets/IMG_3480_1769198046136.png         |  Bin 503523 -> 0 bytes
+ attached_assets/IMG_3481_1769200507608.png         |  Bin 290719 -> 0 bytes
+ attached_assets/IMG_3490_1769324396507.png         |  Bin 0 -> 434778 bytes
+ attached_assets/IMG_3491_1769324482862.png         |  Bin 0 -> 368703 bytes
+ attached_assets/IMG_3493_1769367209987.png         |  Bin 0 -> 321209 bytes
+ attached_assets/IMG_3496_1769389323085.png         |  Bin 0 -> 1422333 bytes
+ attached_assets/IMG_3502_1769409622658.png         |  Bin 0 -> 157171 bytes
+ attached_assets/IMG_3508_1769457520647.png         |  Bin 0 -> 145925 bytes
+ attached_assets/IMG_3517_1769486917355.png         |  Bin 0 -> 245054 bytes
+ attached_assets/IMG_3524_1769493965774.png         |  Bin 0 -> 709183 bytes
+ attached_assets/IMG_3528_1769495540810.png         |  Bin 0 -> 1591768 bytes
+ attached_assets/IMG_3530_1769496025809.png         |  Bin 0 -> 892218 bytes
+ attached_assets/IMG_3534_1769496664040.jpeg        |  Bin 0 -> 273787 bytes
+ attached_assets/IMG_3537_1769497177436.jpeg        |  Bin 0 -> 229620 bytes
+ attached_assets/IMG_3543_1769538888040.png         |  Bin 0 -> 724504 bytes
+ attached_assets/IMG_3551_1769574127733.png         |  Bin 0 -> 291392 bytes
+ ...Retyped-Complete-SCOPE-SUMMAR_1769545814649.txt |   92 +
+ ...Retyped-Complete-SCOPE-SUMMAR_1769545931687.txt |   92 +
+ ...of-the-Week-A-comprehensive-g_1769071974943.txt |  327 --
+ ...THIS-CAREFULLY--1766879809149_1766879809149.txt |  149 -
+ ...or-Strategy-Complete-business_1768888484939.txt |  280 --
+ ...on-be-required-Failure-to-ado_1767929056193.txt |   31 -
+ ...on-be-required-Failure-to-ado_1767931683543.txt |   22 -
+ ...on-be-required-Failure-to-ado_1767933483824.txt |   82 -
+ ...on-be-required-Failure-to-ado_1767940436534.txt |   76 -
+ ...on-be-required-Failure-to-ado_1767942979630.txt |   89 -
+ ...on-be-required-Failure-to-ado_1767944549211.txt |   89 -
+ ...on-be-required-Failure-to-ado_1767945420102.txt |   94 -
+ ...on-be-required-Failure-to-ado_1767983919795.txt |   66 -
+ ...on-be-required-Failure-to-ado_1768009160697.txt |  167 -
+ ...on-be-required-Failure-to-ado_1768018913711.txt |  188 -
+ ...on-be-required-Failure-to-ado_1768034234933.txt |   55 -
+ ...on-be-required-Failure-to-ado_1768077059663.txt |   64 -
+ ...on-be-required-Failure-to-ado_1769200481624.txt |  113 -
+ ...on-be-required-Failure-to-ado_1769201025873.txt |  118 -
+ ...on-be-required-Failure-to-ado_1769201523336.txt |  105 -
+ ...on-be-required-Failure-to-ado_1769201780918.txt |  102 -
+ ...on-be-required-Failure-to-ado_1769202235875.txt |  121 -
+ ...on-be-required-Failure-to-ado_1769203189762.txt |  135 -
+ ...ing-of-system-beginning-of-ma_1768455184048.txt |  753 ----
+ ...-15-00-55-57-652-12745-12957-_1768456762046.txt |  747 ----
+ ...in-git-merge-Notifications-Sw_1769152380968.txt |   79 -
+ ...pple-guest-access-Updating-0f_1769574597871.txt |   70 +
+ ...99-1761-SatelliteAppTracker-c_1768439952778.txt | 1035 -----
+ ...99-1761-SatelliteAppTracker-c_1768446312687.txt |  668 ----
+ ...99-1761-SatelliteAppTracker-c_1768446586482.txt |  556 ---
+ ...26-6385-Finsky-com-android-ve_1768441594191.txt |  560 ---
+ ...773-15773-Capacitor-Plugin-co_1768446634732.txt |   41 -
+ ...557-387-Finsky-com-android-ve_1768945842301.txt |   18 -
+ ...on-Care-Program-Program-Overv_1767114035379.txt |   56 -
+ ...PDATE-This-process-does-not-a_1768104090712.txt |  495 ---
+ ...PDATE-This-process-does-not-a_1768105858407.txt |  497 ---
+ ...PDATE-This-process-does-not-a_1768107243600.txt |  467 ---
+ ...PDATE-This-process-does-not-a_1768109570042.txt |  481 ---
+ ...PDATE-This-process-does-not-a_1768109789639.txt |  386 --
+ ...PDATE-This-process-does-not-a_1768112760027.txt |  464 ---
+ ...mulator-for-token-E1651B74-ty_1767988168425.txt |   21 -
+ ...HAN-EXACTLY-WHAT-IS-WRITTEN-B_1766883695313.txt |  112 -
+ ...Desktop-The-Traveling-Church-_1768950020946.txt |   35 -
+ ...Desktop-The-Traveling-Church-_1768950136349.txt |   42 -
+ ...rs-brett-OneDrive-Desktop-Dir_1768427374832.txt |   76 -
+ ...Global-Itinerant-Ministry-Pre_1766860680031.txt |  107 -
+ ...n-be-required-Failure-to-adop_1767932919289.txt |   80 -
+ ...n-be-required-Failure-to-adop_1767987945472.txt |   66 -
+ ...ht-C-Microsoft-Corporation-Al_1768945520500.txt |   86 -
+ ...ht-C-Microsoft-Corporation-Al_1768949404914.txt | 1202 ------
+ ...ook-Pro-App-sudo-gem-install-_1767927856334.txt |   64 -
+ ...ook-Pro-The-Traveling-Church-_1768448100589.txt |   49 -
+ ...ook-Pro-The-Traveling-Church-_1769032856145.txt |  190 -
+ ...ook-Pro-VagabondBible-npm-run_1767926275251.txt |  164 -
+ attached_assets/candle_cropped.png                 |  Bin 0 -> 1997998 bytes
+ attached_assets/image_1767600463979.png            |  Bin 531024 -> 0 bytes
+ attached_assets/image_1769314892719.jpg            |  Bin 0 -> 3434393 bytes
+ attached_assets/image_1769314949402.jpg            |  Bin 0 -> 2753380 bytes
+ attached_assets/image_from_ios_1769066127774.jpg   |  Bin 93528 -> 0 bytes
+ attached_assets/img_3376_720_1768758736779.png     |  Bin 211199 -> 0 bytes
+ attached_assets/img_3425_1768980008905.jpg         |  Bin 154151 -> 0 bytes
+ attached_assets/img_3433_1769055989141.png         |  Bin 739999 -> 0 bytes
+ attached_assets/img_3437_1769057518021.png         |  Bin 266101 -> 0 bytes
+ attached_assets/img_3440_1769057420368.png         |  Bin 391096 -> 0 bytes
+ attached_assets/img_3440_1769057428983.png         |  Bin 391096 -> 0 bytes
+ attached_assets/img_3443_1769061138770.png         |  Bin 369811 -> 0 bytes
+ attached_assets/img_3445_1769062123354.png         |  Bin 378213 -> 0 bytes
+ attached_assets/img_3446_1769062117249.png         |  Bin 367988 -> 0 bytes
+ attached_assets/img_3447_1769062322414.png         |  Bin 877944 -> 0 bytes
+ attached_assets/img_3448_1769062313948.png         |  Bin 845344 -> 0 bytes
+ attached_assets/img_3466_1769112036108.png         |  Bin 282326 -> 0 bytes
+ attached_assets/img_3543_1769561954804.jpg         |  Bin 0 -> 613509 bytes
+ ...ects-1ae39dfb-product-catalog_1768959399624.png |  Bin 661233 -> 0 bytes
+ ...le-apps-6757680520-distributi_1769572953789.png |  Bin 0 -> 450205 bytes
+ ...e-apis-api-fcm-googleapis-com_1769204044225.png |  Bin 219486 -> 0 bytes
+ ...e-apis-library-fcm-googleapis_1769204684289.png |  Bin 285940 -> 0 bytes
+ ...e-iam-admin-iam-2026-01-23-16_1769204856505.png |  Bin 318895 -> 0 bytes
+ ...e-welcome-2026-01-23-16_42_51_1769204575457.png |  Bin 161356 -> 0 bytes
+ ...ogle-u-3-project-travelingchu_1769190793336.png |  Bin 281902 -> 0 bytes
+ ...ogle-u-3-project-travelingchu_1769205429827.png |  Bin 251067 -> 0 bytes
+ ...ogle-u-3-project-travelingchu_1769206110186.png |  Bin 230368 -> 0 bytes
+ ...ogle-u-3-project-travelingchu_1769206264721.png |  Bin 226427 -> 0 bytes
+ ...ogle-u-3-project-travelingchu_1769206345964.png |  Bin 230143 -> 0 bytes
+ ...ount-resources-authkeys-add-2_1769205605044.png |  Bin 235810 -> 0 bytes
+ capacitor.config.ts                                |    5 +
+ client/public/prayer-artwork.png                   |  Bin 0 -> 273857 bytes
+ client/src/App.tsx                                 |   49 +-
+ client/src/components/bible-reader.tsx             |   91 +-
+ client/src/components/candle-donation.tsx          |  288 ++
+ client/src/components/floating-prayer-button.tsx   |  326 ++
+ client/src/components/guest-prompt.tsx             |  138 +
+ client/src/components/login-sheet.tsx              |  175 +
+ client/src/components/native-tab-bar.tsx           |   28 +-
+ client/src/components/navigation.tsx               |   17 +-
+ client/src/components/notification-settings.tsx    |   12 +-
+ client/src/components/platform-toggle.tsx          |    5 +
+ client/src/components/upgrade-dialog.tsx           |   51 +-
+ client/src/contexts/prayer-audio-context.tsx       |  664 ++++
+ client/src/hooks/usePrayerAudio.ts                 |  395 ++
+ client/src/hooks/usePushNotifications.ts           |    4 +-
+ client/src/index.css                               |   77 +
+ client/src/pages/login.tsx                         |   16 +-
+ client/src/pages/notes.tsx                         |   12 +
+ client/src/pages/pastor-chat.tsx                   |   56 +-
+ client/src/pages/prayer-requests.tsx               |  371 ++
+ client/src/pages/prayer-timer.tsx                  |  798 +++-
+ client/src/pages/profile.tsx                       |   72 +-
+ client/src/pages/terms-of-service.tsx              |   13 +
+ client/src/pages/vagabond-bible.tsx                |   12 -
+ docs/APPLE_FIX_CHECKLIST.md                        |  270 ++
+ docs/DAILY_VERSES.md                               | 3007 +++++++++++++++
+ ios/App/App/timer_chime.wav                        |  Bin 0 -> 670852 bytes
+ package-lock.json                                  |   29 +
+ package.json                                       |    2 +
+ replit.md                                          |   19 +-
+ server/dailyVerseData.ts                           | 4052 ++++++++++++++++++++
+ server/firebaseAdmin.ts                            |   16 +-
+ server/notificationCron.ts                         |  128 +-
+ server/notificationRoutes.ts                       |   76 +
+ server/routes.ts                                   |  214 ++
+ shared/schema.ts                                   |   66 +-
+ 218 files changed, 11545 insertions(+), 12333 deletions(-)
+ create mode 100644 Screencapture
+ create mode 100644 android/app/src/main/res/raw/timer_chime.wav
+ create mode 100644 attached_assets/628562E5-A608-46BF-815A-C1ABF3D15D12_1769473638700.png
+ create mode 100644 attached_assets/97EB6137-7CC3-42DE-8006-6F15161A8754_1769473638700.png
+ create mode 100644 attached_assets/AABFF707-32A9-426E-BF72-07D9127E0207_1769473638701.png
+ create mode 100644 attached_assets/E97050D6-450C-4805-819C-819ACE781EAA_1769473638700.png
+ create mode 100644 attached_assets/Group_33_1769390867777.png
+ delete mode 100644 attached_assets/IMG_3133_1767202932374.png
+ delete mode 100644 attached_assets/IMG_3134_1767203181428.png
+ delete mode 100644 attached_assets/IMG_3150_1767481461665.jpeg
+ delete mode 100644 attached_assets/IMG_3150_1767483019124.jpeg
+ delete mode 100644 attached_assets/IMG_3151_1767481696780.jpeg
+ delete mode 100644 attached_assets/IMG_3152_1767482280134.jpeg
+ delete mode 100644 attached_assets/IMG_3153_1767483551212.jpeg
+ delete mode 100644 attached_assets/IMG_3155_1767494146595.png
+ delete mode 100644 attached_assets/IMG_3158_1767494146595.png
+ delete mode 100644 attached_assets/IMG_3198_1767918840097.jpeg
+ delete mode 100644 attached_assets/IMG_3203_1768031869220.png
+ delete mode 100644 attached_assets/IMG_3204_1768031869219.png
+ delete mode 100644 attached_assets/IMG_3205_1768031869219.jpeg
+ delete mode 100644 attached_assets/IMG_3206_1768031869219.jpeg
+ delete mode 100644 attached_assets/IMG_3207_1768031869219.jpeg
+ delete mode 100644 attached_assets/IMG_3208_1768031869219.jpeg
+ delete mode 100644 attached_assets/IMG_3209_1768031869219.jpeg
+ delete mode 100644 attached_assets/IMG_3210_1768031869219.jpeg
+ delete mode 100644 attached_assets/IMG_3216_1768070562282.png
+ delete mode 100644 attached_assets/IMG_3217_1768070562282.png
+ delete mode 100644 attached_assets/IMG_3219_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3220_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3222_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3223_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3224_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3225_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3226_1768083321893.png
+ delete mode 100644 attached_assets/IMG_3227_1768083321893.png
+ delete mode 100644 attached_assets/IMG_3228_1768083321893.jpeg
+ delete mode 100644 attached_assets/IMG_3229_1768083321893.png
+ delete mode 100644 attached_assets/IMG_3230_1768083321893.png
+ delete mode 100644 attached_assets/IMG_3231_1768087475787.jpeg
+ delete mode 100644 attached_assets/IMG_3235_1768087794215.jpeg
+ delete mode 100644 attached_assets/IMG_3237_1768091542631.jpeg
+ delete mode 100644 attached_assets/IMG_3238_1768091758236.jpeg
+ delete mode 100644 attached_assets/IMG_3239_1768091758236.jpeg
+ delete mode 100644 attached_assets/IMG_3240_1768093882239.jpeg
+ delete mode 100644 attached_assets/IMG_3241_1768098107871.png
+ delete mode 100644 attached_assets/IMG_3243_1768099341516.png
+ delete mode 100644 attached_assets/IMG_3248_1768100549438.jpeg
+ delete mode 100644 attached_assets/IMG_3249_1768100549438.jpeg
+ delete mode 100644 attached_assets/IMG_3250_1768100549438.jpeg
+ delete mode 100644 attached_assets/IMG_3251_1768100739845.png
+ delete mode 100644 attached_assets/IMG_3254_1768102591916.png
+ delete mode 100644 attached_assets/IMG_3256_1768105767483.png
+ delete mode 100644 attached_assets/IMG_3259_1768109398729.jpeg
+ delete mode 100644 attached_assets/IMG_3260_1768110794921.png
+ delete mode 100644 attached_assets/IMG_3261_1768111010648.png
+ delete mode 100644 attached_assets/IMG_3262_1768111010648.png
+ delete mode 100644 attached_assets/IMG_3263_1768112731015.png
+ delete mode 100644 attached_assets/IMG_3264_1768114954376.png
+ delete mode 100644 attached_assets/IMG_3265_1768114954376.jpeg
+ delete mode 100644 attached_assets/IMG_3266_1768115069869.jpeg
+ delete mode 100644 attached_assets/IMG_3268_1768151901681.jpeg
+ delete mode 100644 attached_assets/IMG_3269_1768151901681.jpeg
+ delete mode 100644 attached_assets/IMG_3270_1768152854025.png
+ delete mode 100644 attached_assets/IMG_3275_1768173197210.png
+ delete mode 100644 attached_assets/IMG_3290_1768197135318.png
+ delete mode 100644 attached_assets/IMG_3291_1768198959135.png
+ delete mode 100644 attached_assets/IMG_3292_1768200417714.png
+ delete mode 100644 attached_assets/IMG_3293_1768200490008.png
+ delete mode 100644 attached_assets/IMG_3294_1768200522439.png
+ delete mode 100644 attached_assets/IMG_3295_1768200700750.png
+ delete mode 100644 attached_assets/IMG_3296_1768204085473.jpeg
+ delete mode 100644 attached_assets/IMG_3300_1768237722450.jpeg
+ delete mode 100644 attached_assets/IMG_3304_1768243435175.png
+ delete mode 100644 attached_assets/IMG_3306_1768245659060.png
+ delete mode 100644 attached_assets/IMG_3428_1769026585729.png
+ delete mode 100644 attached_assets/IMG_3431_1769034119854.PNG
+ delete mode 100644 attached_assets/IMG_3434_1769055959687.png
+ delete mode 100644 attached_assets/IMG_3471_1769153106152.png
+ delete mode 100644 attached_assets/IMG_3474_1769154123920.png
+ delete mode 100644 attached_assets/IMG_3476_1769156256260.png
+ delete mode 100644 attached_assets/IMG_3477_1769156256260.png
+ delete mode 100644 attached_assets/IMG_3480_1769198046136.png
+ delete mode 100644 attached_assets/IMG_3481_1769200507608.png
+ create mode 100644 attached_assets/IMG_3490_1769324396507.png
+ create mode 100644 attached_assets/IMG_3491_1769324482862.png
+ create mode 100644 attached_assets/IMG_3493_1769367209987.png
+ create mode 100644 attached_assets/IMG_3496_1769389323085.png
+ create mode 100644 attached_assets/IMG_3502_1769409622658.png
+ create mode 100644 attached_assets/IMG_3508_1769457520647.png
+ create mode 100644 attached_assets/IMG_3517_1769486917355.png
+ create mode 100644 attached_assets/IMG_3524_1769493965774.png
+ create mode 100644 attached_assets/IMG_3528_1769495540810.png
+ create mode 100644 attached_assets/IMG_3530_1769496025809.png
+ create mode 100644 attached_assets/IMG_3534_1769496664040.jpeg
+ create mode 100644 attached_assets/IMG_3537_1769497177436.jpeg
+ create mode 100644 attached_assets/IMG_3543_1769538888040.png
+ create mode 100644 attached_assets/IMG_3551_1769574127733.png
+ create mode 100644 attached_assets/Pasted--FINAL-COMPREHENSIVE-LIST-Retyped-Complete-SCOPE-SUMMAR_1769545814649.txt
+ create mode 100644 attached_assets/Pasted--FINAL-COMPREHENSIVE-LIST-Retyped-Complete-SCOPE-SUMMAR_1769545931687.txt
+ delete mode 100644 attached_assets/Pasted--Push-Notifications-Verse-of-the-Week-A-comprehensive-g_1769071974943.txt
+ delete mode 100644 attached_assets/Pasted--READ-THIS-CAREFULLY--1766879809149_1766879809149.txt
+ delete mode 100644 attached_assets/Pasted--Regional-Pricing-Ambassador-Strategy-Complete-business_1768888484939.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767929056193.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767931683543.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767933483824.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767940436534.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767942979630.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767944549211.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767945420102.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1767983919795.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1768009160697.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1768018913711.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1768034234933.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1768077059663.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1769200481624.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1769201025873.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1769201523336.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1769201780918.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1769202235875.txt
+ delete mode 100644 attached_assets/Pasted--UIScene-lifecycle-will-soon-be-required-Failure-to-ado_1769203189762.txt
+ delete mode 100644 attached_assets/Pasted--beginning-of-crash-beginning-of-system-beginning-of-ma_1768455184048.txt
+ delete mode 100644 attached_assets/Pasted--beginning-of-main-2026-01-15-00-55-57-652-12745-12957-_1768456762046.txt
+ delete mode 100644 attached_assets/Pasted--workspace-git-checkout-main-git-merge-Notifications-Sw_1769152380968.txt
+ create mode 100644 attached_assets/Pasted--workspace-git-merge-fix-apple-guest-access-Updating-0f_1769574597871.txt
+ delete mode 100644 attached_assets/Pasted-2026-01-14-17-19-01-016-1599-1761-SatelliteAppTracker-c_1768439952778.txt
+ delete mode 100644 attached_assets/Pasted-2026-01-14-17-19-01-016-1599-1761-SatelliteAppTracker-c_1768446312687.txt
+ delete mode 100644 attached_assets/Pasted-2026-01-14-17-19-01-016-1599-1761-SatelliteAppTracker-c_1768446586482.txt
+ delete mode 100644 attached_assets/Pasted-2026-01-14-20-15-49-013-6326-6385-Finsky-com-android-ve_1768441594191.txt
+ delete mode 100644 attached_assets/Pasted-2026-01-14-22-09-32-001-15773-15773-Capacitor-Plugin-co_1768446634732.txt
+ delete mode 100644 attached_assets/Pasted-2026-01-20-16-50-21-029-32557-387-Finsky-com-android-ve_1768945842301.txt
+ delete mode 100644 attached_assets/Pasted-Animal-Conservation-Creation-Care-Program-Program-Overv_1767114035379.txt
+ delete mode 100644 attached_assets/Pasted-CLIENT-OF-UIKIT-REQUIRES-UPDATE-This-process-does-not-a_1768104090712.txt
+ delete mode 100644 attached_assets/Pasted-CLIENT-OF-UIKIT-REQUIRES-UPDATE-This-process-does-not-a_1768105858407.txt
+ delete mode 100644 attached_assets/Pasted-CLIENT-OF-UIKIT-REQUIRES-UPDATE-This-process-does-not-a_1768107243600.txt
+ delete mode 100644 attached_assets/Pasted-CLIENT-OF-UIKIT-REQUIRES-UPDATE-This-process-does-not-a_1768109570042.txt
+ delete mode 100644 attached_assets/Pasted-CLIENT-OF-UIKIT-REQUIRES-UPDATE-This-process-does-not-a_1768109789639.txt
+ delete mode 100644 attached_assets/Pasted-CLIENT-OF-UIKIT-REQUIRES-UPDATE-This-process-does-not-a_1768112760027.txt
+ delete mode 100644 attached_assets/Pasted-Could-not-find-cached-accumulator-for-token-E1651B74-ty_1767988168425.txt
+ delete mode 100644 attached_assets/Pasted-DO-NOT-DO-ANYTHING-OTHER-THAN-EXACTLY-WHAT-IS-WRITTEN-B_1766883695313.txt
+ delete mode 100644 attached_assets/Pasted-PS-C-Users-brett-OneDrive-Desktop-The-Traveling-Church-_1768950020946.txt
+ delete mode 100644 attached_assets/Pasted-PS-C-Users-brett-OneDrive-Desktop-The-Traveling-Church-_1768950136349.txt
+ delete mode 100644 attached_assets/Pasted-PS-C-Users-brett-dir-C-Users-brett-OneDrive-Desktop-Dir_1768427374832.txt
+ delete mode 100644 attached_assets/Pasted-TRAVELING-CHURCH-PROGRAMS-Global-Itinerant-Ministry-Pre_1766860680031.txt
+ delete mode 100644 attached_assets/Pasted-UIScene-lifecycle-will-soon-be-required-Failure-to-adop_1767932919289.txt
+ delete mode 100644 attached_assets/Pasted-UIScene-lifecycle-will-soon-be-required-Failure-to-adop_1767987945472.txt
+ delete mode 100644 attached_assets/Pasted-Windows-PowerShell-Copyright-C-Microsoft-Corporation-Al_1768945520500.txt
+ delete mode 100644 attached_assets/Pasted-Windows-PowerShell-Copyright-C-Microsoft-Corporation-Al_1768949404914.txt
+ delete mode 100644 attached_assets/Pasted-brettlindstrom-Bretts-MacBook-Pro-App-sudo-gem-install-_1767927856334.txt
+ delete mode 100644 attached_assets/Pasted-brettlindstrom-Bretts-MacBook-Pro-The-Traveling-Church-_1768448100589.txt
+ delete mode 100644 attached_assets/Pasted-brettlindstrom-Bretts-MacBook-Pro-The-Traveling-Church-_1769032856145.txt
+ delete mode 100644 attached_assets/Pasted-brettlindstrom-Bretts-MacBook-Pro-VagabondBible-npm-run_1767926275251.txt
+ create mode 100644 attached_assets/candle_cropped.png
+ delete mode 100644 attached_assets/image_1767600463979.png
+ create mode 100644 attached_assets/image_1769314892719.jpg
+ create mode 100644 attached_assets/image_1769314949402.jpg
+ delete mode 100644 attached_assets/image_from_ios_1769066127774.jpg
+ delete mode 100644 attached_assets/img_3376_720_1768758736779.png
+ delete mode 100644 attached_assets/img_3425_1768980008905.jpg
+ delete mode 100644 attached_assets/img_3433_1769055989141.png
+ delete mode 100644 attached_assets/img_3437_1769057518021.png
+ delete mode 100644 attached_assets/img_3440_1769057420368.png
+ delete mode 100644 attached_assets/img_3440_1769057428983.png
+ delete mode 100644 attached_assets/img_3443_1769061138770.png
+ delete mode 100644 attached_assets/img_3445_1769062123354.png
+ delete mode 100644 attached_assets/img_3446_1769062117249.png
+ delete mode 100644 attached_assets/img_3447_1769062322414.png
+ delete mode 100644 attached_assets/img_3448_1769062313948.png
+ delete mode 100644 attached_assets/img_3466_1769112036108.png
+ create mode 100644 attached_assets/img_3543_1769561954804.jpg
+ delete mode 100644 attached_assets/screencapture-app-revenuecat-projects-1ae39dfb-product-catalog_1768959399624.png
+ create mode 100644 attached_assets/screencapture-appstoreconnect-apple-apps-6757680520-distributi_1769572953789.png
+ delete mode 100644 attached_assets/screencapture-console-cloud-google-apis-api-fcm-googleapis-com_1769204044225.png
+ delete mode 100644 attached_assets/screencapture-console-cloud-google-apis-library-fcm-googleapis_1769204684289.png
+ delete mode 100644 attached_assets/screencapture-console-cloud-google-iam-admin-iam-2026-01-23-16_1769204856505.png
+ delete mode 100644 attached_assets/screencapture-console-cloud-google-welcome-2026-01-23-16_42_51_1769204575457.png
+ delete mode 100644 attached_assets/screencapture-console-firebase-google-u-3-project-travelingchu_1769190793336.png
+ delete mode 100644 attached_assets/screencapture-console-firebase-google-u-3-project-travelingchu_1769205429827.png
+ delete mode 100644 attached_assets/screencapture-console-firebase-google-u-3-project-travelingchu_1769206110186.png
+ delete mode 100644 attached_assets/screencapture-console-firebase-google-u-3-project-travelingchu_1769206264721.png
+ delete mode 100644 attached_assets/screencapture-console-firebase-google-u-3-project-travelingchu_1769206345964.png
+ delete mode 100644 attached_assets/screencapture-developer-apple-account-resources-authkeys-add-2_1769205605044.png
+ create mode 100644 client/public/prayer-artwork.png
+ create mode 100644 client/src/components/candle-donation.tsx
+ create mode 100644 client/src/components/floating-prayer-button.tsx
+ create mode 100644 client/src/components/guest-prompt.tsx
+ create mode 100644 client/src/components/login-sheet.tsx
+ create mode 100644 client/src/contexts/prayer-audio-context.tsx
+ create mode 100644 client/src/hooks/usePrayerAudio.ts
+ create mode 100644 client/src/pages/prayer-requests.tsx
+ create mode 100644 docs/APPLE_FIX_CHECKLIST.md
+ create mode 100644 docs/DAILY_VERSES.md
+ create mode 100644 ios/App/App/timer_chime.wav
+ create mode 100644 server/dailyVerseData.ts
+brettlindstrom@Bretts-MacBook-Pro The-Traveling-Church-1 % 
