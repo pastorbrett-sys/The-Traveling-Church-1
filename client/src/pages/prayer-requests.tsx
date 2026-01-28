@@ -30,7 +30,7 @@ function AnimatedCandle() {
           style={{
             width: '400px',
             height: '240px',
-            top: '398px',
+            top: '428px',
             left: '50%',
             marginLeft: '-200px',
             background: 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(251,191,36,0) 70%)',
