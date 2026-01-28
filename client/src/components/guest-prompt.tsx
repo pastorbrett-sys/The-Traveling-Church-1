@@ -16,7 +16,6 @@ function isAmharic(): boolean {
   return lang.startsWith("am");
 }
 
-// Feature list with checkmarks
 const FEATURES_EN = [
   "Smart Search",
   "AI Verse Insights", 
@@ -50,9 +49,9 @@ export function GuestPrompt({ featureDescription, featureDescriptionAmharic, red
   const features = isAm ? FEATURES_AM : FEATURES_EN;
   
   const t = {
-    headline: isAm ? "የ AI ባህሪያትን ያግኙ።\n100% ነፃ!" : "Access AI Features.\n100% Free!",
-    subtitle: isAm ? "ክሬዲት ካርድ አያስፈልግም" : "No credit card required",
-    createAccount: isAm ? "ነፃ መለያ ፍጠር" : "Create a free account",
+    headline: isAm ? "መለያ ይፍጠሩ" : "Create an Account",
+    subtitle: isAm ? "የሚከተሉትን ለመጠቀም ይመዝገቡ" : "Sign up to unlock these features",
+    createAccount: isAm ? "መለያ ፍጠር" : "Create Account",
     signIn: isAm ? "ግባ" : "Sign In"
   };
 
@@ -90,7 +89,7 @@ export function GuestPrompt({ featureDescription, featureDescriptionAmharic, red
         <div className="max-w-md mx-auto px-6">
           {/* Headline */}
           <h1 
-            className="text-4xl sm:text-5xl font-bold text-foreground leading-tight whitespace-pre-line"
+            className="text-4xl sm:text-5xl font-bold text-foreground leading-tight"
             data-testid="heading-login-required"
           >
             {t.headline}
@@ -101,13 +100,11 @@ export function GuestPrompt({ featureDescription, featureDescriptionAmharic, red
             {t.subtitle}
           </p>
           
-          {/* Feature list with checkmarks */}
+          {/* Feature list with line checkmarks */}
           <div className="mt-8 space-y-4">
             {features.map((feature, index) => (
               <div key={index} className="flex items-center gap-3">
-                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 flex items-center justify-center">
-                  <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                </div>
+                <Check className="w-6 h-6 text-[#c08e00] flex-shrink-0" strokeWidth={2.5} />
                 <span className="text-foreground font-semibold text-xl">{feature}</span>
               </div>
             ))}
@@ -117,7 +114,7 @@ export function GuestPrompt({ featureDescription, featureDescriptionAmharic, red
           <div className="mt-10 space-y-3">
             <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
               <Button 
-                className="w-full h-14 text-lg font-semibold bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white rounded-full"
+                className="w-full h-14 text-lg font-semibold bg-[#c08e00] hover:bg-[#a07800] text-white rounded-lg"
                 size="lg"
                 data-testid="button-guest-create-account"
               >

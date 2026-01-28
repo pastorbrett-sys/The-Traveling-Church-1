@@ -11,7 +11,6 @@ interface LoginSheetProps {
   isAmharic?: boolean;
 }
 
-// Feature list with checkmarks
 const FEATURES_EN = [
   "Smart Search",
   "AI Verse Insights", 
@@ -33,9 +32,9 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
   const features = isAmharic ? FEATURES_AM : FEATURES_EN;
   
   const t = {
-    headline: isAmharic ? "የ AI ባህሪያትን ያግኙ።\n100% ነፃ!" : "Access AI Features.\n100% Free!",
-    subtitle: isAmharic ? "ክሬዲት ካርድ አያስፈልግም" : "No credit card required",
-    createAccount: isAmharic ? "ነፃ መለያ ፍጠር" : "Create a free account",
+    headline: isAmharic ? "መለያ ይፍጠሩ" : "Create an Account",
+    subtitle: isAmharic ? "የሚከተሉትን ለመጠቀም ይመዝገቡ" : "Sign up to unlock these features",
+    createAccount: isAmharic ? "መለያ ፍጠር" : "Create Account",
     signIn: isAmharic ? "ግባ" : "Sign In"
   };
 
@@ -70,7 +69,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               <div className="w-10 h-1 bg-muted-foreground/30 rounded-full" />
             </div>
             
-            {/* Close button (optional, top right) */}
+            {/* Close button */}
             <button 
               onClick={onClose}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted transition-colors"
@@ -82,7 +81,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
             {/* Content */}
             <div className="flex-1 overflow-y-auto px-6 pb-6">
               {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mt-4 whitespace-pre-line">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mt-4">
                 {t.headline}
               </h2>
               
@@ -91,13 +90,11 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
                 {t.subtitle}
               </p>
               
-              {/* Feature list with checkmarks */}
+              {/* Feature list with line checkmarks */}
               <div className="mt-6 space-y-3">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                    </div>
+                    <Check className="w-5 h-5 text-[#c08e00] flex-shrink-0" strokeWidth={2.5} />
                     <span className="text-foreground font-medium text-lg">{feature}</span>
                   </div>
                 ))}
@@ -107,7 +104,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
               <div className="mt-8 space-y-3">
                 <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}>
                   <Button 
-                    className="w-full h-14 text-lg font-semibold bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white rounded-full"
+                    className="w-full h-14 text-lg font-semibold bg-[#c08e00] hover:bg-[#a07800] text-white rounded-lg"
                     size="lg"
                     onClick={onClose}
                     data-testid="button-create-account"
