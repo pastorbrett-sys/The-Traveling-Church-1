@@ -106,7 +106,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
                 paddingBottom: isNative && !isIOS ? "32px" : isNative ? "16px" : "24px"
               }}
             >
-              <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
+              <Link href={`/login?tab=signin&redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
                 <Button 
                   variant="outline"
                   className="w-full hover:bg-[#daa520]/20 hover:text-[#daa520] hover:border-[#daa520]"
@@ -117,7 +117,7 @@ export function LoginSheet({ isOpen, onClose, redirectUrl = "/", isAmharic = fal
                 </Button>
               </Link>
               
-              <Link href={`/login?redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
+              <Link href={`/login?tab=signup&redirect=${encodeURIComponent(redirectUrl)}`} className="w-full max-w-md">
                 <Button 
                   className="w-full bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white"
                   size="lg"

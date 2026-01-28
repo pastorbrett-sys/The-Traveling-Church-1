@@ -30,6 +30,7 @@ export default function Login() {
   const params = new URLSearchParams(searchString);
   const redirectTo = params.get("redirect") || "/pastor-chat";
   const isNativeFlow = params.get("native") === "true";
+  const initialTab = params.get("tab") === "signup" ? "signup" : "signin";
   
   // Distinguish between Safari View Controller (web) and native app WebView
   // Safari View Controller: isNativeFlow=true but NOT running in Capacitor native platform
@@ -37,7 +38,7 @@ export default function Login() {
   const isInSafariSheet = isNativeFlow && !Capacitor.isNativePlatform();
   const isInNativeApp = Capacitor.isNativePlatform();
   
-  const [activeTab, setActiveTab] = useState<string>("signin");
+  const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [isEmailSubmitting, setIsEmailSubmitting] = useState(false);
   const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
   const [isAppleSubmitting, setIsAppleSubmitting] = useState(false);
