@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
 import { Capacitor } from "@capacitor/core";
-import { CapacitorMusicControls } from "capacitor-music-controls-plugin-v3";
+import { CapacitorMusicControls } from "capacitor-music-controls-plugin";
 import { Haptics, NotificationType } from "@capacitor/haptics";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { queryClient } from "@/lib/queryClient";

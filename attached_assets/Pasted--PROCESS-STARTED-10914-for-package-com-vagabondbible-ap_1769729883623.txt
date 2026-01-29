@@ -1,0 +1,765 @@
+---------------------------- PROCESS STARTED (10914) for package com.vagabondbible.app ----------------------------
+2026-01-29 18:37:16.298 10914-10914 nativeloader            com.vagabondbible.app                D  Configuring clns-4 for other apk /data/app/~~-zKd7HPiZWU-D680LJIhuA==/com.vagabondbible.app-mmdYtVHg8cRQJnY5QPK8jA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~-zKd7HPiZWU-D680LJIhuA==/com.vagabondbible.app-mmdYtVHg8cRQJnY5QPK8jA==/lib/arm64:/data/app/~~-zKd7HPiZWU-D680LJIhuA==/com.vagabondbible.app-mmdYtVHg8cRQJnY5QPK8jA==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.vagabondbible.app
+2026-01-29 18:37:16.302 10914-10914 nativeloader            com.vagabondbible.app                D  Load libframework-connectivity-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity.jar: ok
+2026-01-29 18:37:16.302 10914-10914 Perf                    com.vagabondbible.app                I  Connecting to perf service.
+2026-01-29 18:37:16.304 10914-10914 GraphicsEnvironment     com.vagabondbible.app                V  Currently set values for:
+2026-01-29 18:37:16.304 10914-10914 GraphicsEnvironment     com.vagabondbible.app                V    angle_gl_driver_selection_pkgs=[]
+2026-01-29 18:37:16.304 10914-10914 GraphicsEnvironment     com.vagabondbible.app                V    angle_gl_driver_selection_values=[]
+2026-01-29 18:37:16.305 10914-10914 GraphicsEnvironment     com.vagabondbible.app                V  ANGLE GameManagerService for com.vagabondbible.app: false
+2026-01-29 18:37:16.305 10914-10914 GraphicsEnvironment     com.vagabondbible.app                V  com.vagabondbible.app is not listed in per-application setting
+2026-01-29 18:37:16.305 10914-10914 GraphicsEnvironment     com.vagabondbible.app                V  Neither updatable production driver nor prerelease driver is supported.
+2026-01-29 18:37:16.311 10914-10914 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 183155436; UID 10334; state: ENABLED
+2026-01-29 18:37:16.316 10914-10914 FirebaseApp             com.vagabondbible.app                I  Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+2026-01-29 18:37:16.322 10914-10914 FirebaseInitProvider    com.vagabondbible.app                I  FirebaseApp initialization successful
+2026-01-29 18:37:16.326 10914-10914 WM-WrkMgrInitializer    com.vagabondbible.app                D  Initializing WorkManager with default configuration.
+2026-01-29 18:37:16.347 10914-10914 AppCompatDelegate       com.vagabondbible.app                D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-01-29 18:37:16.352 10914-10946 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 160794467; UID 10334; state: ENABLED
+2026-01-29 18:37:16.368 10914-10914 gabondbible.app         com.vagabondbible.app                I  hiddenapi: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/appcompat/widget/ViewUtils; (domain=app) using reflection: allowed
+2026-01-29 18:37:16.373 10914-10914 WebViewFactory          com.vagabondbible.app                I  Loading com.google.android.webview version 144.0.7559.59 (code 755905933)
+2026-01-29 18:37:16.375 10914-10914 gabondbible.app         com.vagabondbible.app                W  Failed to find entry 'classes.dex': Entry not found
+2026-01-29 18:37:16.375 10914-10914 nativeloader            com.vagabondbible.app                D  Configuring clns-5 for other apk /data/app/~~3f09SjSoBJLeEgH0uBiJog==/com.google.android.trichromelibrary_755905933-ZX4U0K_O6QRy-hwG4s8F_g==/base.apk. target_sdk_version=36, uses_libraries=ALL, library_path=/data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/lib/arm64:/data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/base.apk!/lib/arm64-v8a:/data/app/~~3f09SjSoBJLeEgH0uBiJog==/com.google.android.trichromelibrary_755905933-ZX4U0K_O6QRy-hwG4s8F_g==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand
+2026-01-29 18:37:16.375 10914-10914 nativeloader            com.vagabondbible.app                D  Extending system_exposed_libraries: libupdateprof.qti.so:libthermalclient.qti.so:libQOC.qti.so:libdiag_system.qti.so:libqape.qti.so:libqesdk_ndk_platform.qti.so:liblistenjni.qti.so
+2026-01-29 18:37:16.376 10914-10914 gabondbible.app         com.vagabondbible.app                W  Loading /data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/oat/arm64/base.odex non-executable as it requires an image which we failed to load
+2026-01-29 18:37:16.376 10914-10914 nativeloader            com.vagabondbible.app                D  Configuring clns-6 for other apk /data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/lib/arm64:/data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/base.apk!/lib/arm64-v8a:/data/app/~~3f09SjSoBJLeEgH0uBiJog==/com.google.android.trichromelibrary_755905933-ZX4U0K_O6QRy-hwG4s8F_g==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand
+2026-01-29 18:37:16.395 10914-10914 cr_WVCFactoryProvider   com.vagabondbible.app                I  version=144.0.7559.59 (755905933) minSdkVersion=29 multiprocess=true packageId=127 splits=<none>
+2026-01-29 18:37:16.417 10914-10914 nativeloader            com.vagabondbible.app                D  Load /data/app/~~3f09SjSoBJLeEgH0uBiJog==/com.google.android.trichromelibrary_755905933-ZX4U0K_O6QRy-hwG4s8F_g==/base.apk!/lib/arm64-v8a/libmonochrome_64.so using class loader ns clns-6 (caller=/data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/base.apk): ok
+2026-01-29 18:37:16.418 10914-10914 nativeloader            com.vagabondbible.app                D  Load /system/lib64/libwebviewchromium_plat_support.so using class loader ns clns-6 (caller=/data/app/~~csBDVP9bMjDCX-FxFIAghQ==/com.google.android.webview-nk20ZgEuPBafXYLLSHRPPQ==/base.apk): ok
+2026-01-29 18:37:16.420 10914-10960 chromium                com.vagabondbible.app                I  [0129/183716.419745:INFO:android_webview/browser/variations/variations_seed_loader.cc:67] Failed to open file for reading.: No such file or directory (2)
+2026-01-29 18:37:16.426 10914-10914 cr_LibraryLoader        com.vagabondbible.app                I  Successfully loaded native library
+2026-01-29 18:37:16.427 10914-10914 cr_CachingUmaRecorder   com.vagabondbible.app                I  Flushed 18 samples from 18 histograms, 0 samples were dropped.
+2026-01-29 18:37:16.428 10914-10914 cr_CombinedPProvider    com.vagabondbible.app                I  #registerProvider() provider:WV.rk@a0316af isPolicyCacheEnabled:false policyProvidersSize:0
+2026-01-29 18:37:16.430 10914-10914 cr_PolicyProvider       com.vagabondbible.app                I  #setManagerAndSource() 0
+2026-01-29 18:37:16.431 10914-10914 cr_DisplayManager       com.vagabondbible.app                I  Is Display Topology available: false
+2026-01-29 18:37:16.440 10914-10914 cr_CombinedPProvider    com.vagabondbible.app                I  #linkNativeInternal() 1
+2026-01-29 18:37:16.440 10914-10914 cr_AppResProvider       com.vagabondbible.app                I  #getApplicationRestrictionsFromUserManager() Bundle[EMPTY_PARCEL]
+2026-01-29 18:37:16.441 10914-10914 cr_PolicyProvider       com.vagabondbible.app                I  #notifySettingsAvailable() 0
+2026-01-29 18:37:16.441 10914-10914 cr_CombinedPProvider    com.vagabondbible.app                I  #onSettingsAvailable() 0
+2026-01-29 18:37:16.441 10914-10914 cr_CombinedPProvider    com.vagabondbible.app                I  #flushPolicies()
+2026-01-29 18:37:16.458 10914-10914 chromium                com.vagabondbible.app                W  [WARNING:android_webview/browser/network_service/net_helpers.cc:137] HTTP Cache size is: 20971520
+2026-01-29 18:37:16.465 10914-10914 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 214741472; UID 10334; state: ENABLED
+2026-01-29 18:37:16.468 10914-10914 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 171228096; UID 10334; state: ENABLED
+2026-01-29 18:37:16.495 10914-10914 Capacitor               com.vagabondbible.app                D  Starting BridgeActivity
+2026-01-29 18:37:16.503 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: CapacitorCookies
+2026-01-29 18:37:16.504 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: WebView
+2026-01-29 18:37:16.505 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: CapacitorHttp
+2026-01-29 18:37:16.507 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: SystemBars
+2026-01-29 18:37:16.508 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: SafeArea
+2026-01-29 18:37:16.509 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: FirebaseAuthentication
+2026-01-29 18:37:16.519 10914-10914 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 3400644; UID 10334; state: ENABLED
+2026-01-29 18:37:16.548 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: App
+2026-01-29 18:37:16.550 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Browser
+2026-01-29 18:37:16.551 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Filesystem
+2026-01-29 18:37:16.552 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Haptics
+2026-01-29 18:37:16.554 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: LocalNotifications
+2026-01-29 18:37:16.556 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: PushNotifications
+2026-01-29 18:37:16.558 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Share
+2026-01-29 18:37:16.560 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: SplashScreen
+2026-01-29 18:37:16.562 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: StatusBar
+2026-01-29 18:37:16.564 10914-10914 Capacitor/...sBarPlugin com.vagabondbible.app                V  Notifying listeners for event statusBarOverlayChanged
+2026-01-29 18:37:16.564 10914-10914 Capacitor/...sBarPlugin com.vagabondbible.app                D  No listeners found for event statusBarOverlayChanged
+2026-01-29 18:37:16.565 10914-10914 Capacitor/...sBarPlugin com.vagabondbible.app                V  Notifying listeners for event statusBarOverlayChanged
+2026-01-29 18:37:16.565 10914-10914 Capacitor/...sBarPlugin com.vagabondbible.app                D  No listeners found for event statusBarOverlayChanged
+2026-01-29 18:37:16.565 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: Purchases
+2026-01-29 18:37:16.568 10914-10914 Capacitor               com.vagabondbible.app                D  Registering plugin instance: CapacitorMusicControls
+2026-01-29 18:37:16.602 10914-10914 Capacitor               com.vagabondbible.app                W  Unable to read file at path public/plugins
+2026-01-29 18:37:16.604 10914-10914 Capacitor               com.vagabondbible.app                D  Loading app at https://localhost
+2026-01-29 18:37:16.611 10914-10980 cr_media                com.vagabondbible.app                W  BLUETOOTH_CONNECT permission is missing.
+2026-01-29 18:37:16.612 10914-10980 cr_media                com.vagabondbible.app                W  getBluetoothAdapter() requires BLUETOOTH permission
+2026-01-29 18:37:16.612 10914-10980 cr_media                com.vagabondbible.app                W  registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+2026-01-29 18:37:16.616 10914-10914 Capacitor/LN            com.vagabondbible.app                D  LocalNotification received: null
+2026-01-29 18:37:16.616 10914-10914 Capacitor/LN            com.vagabondbible.app                D  Activity started without notification attached
+2026-01-29 18:37:16.617 10914-11005 vulkan                  com.vagabondbible.app                D  searching for layers in '/data/app/~~-zKd7HPiZWU-D680LJIhuA==/com.vagabondbible.app-mmdYtVHg8cRQJnY5QPK8jA==/lib/arm64'
+2026-01-29 18:37:16.617 10914-11005 vulkan                  com.vagabondbible.app                D  searching for layers in '/data/app/~~-zKd7HPiZWU-D680LJIhuA==/com.vagabondbible.app-mmdYtVHg8cRQJnY5QPK8jA==/base.apk!/lib/arm64-v8a'
+2026-01-29 18:37:16.618 10914-10971 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/
+2026-01-29 18:37:16.620 10914-10914 Capacitor               com.vagabondbible.app                D  App started
+2026-01-29 18:37:16.622 10914-10914 WindowOnBackDispatcher  com.vagabondbible.app                W  OnBackInvokedCallback is not enabled for the application.
+                                                                                                    Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+2026-01-29 18:37:16.623 10914-10914 Capacitor/AppPlugin     com.vagabondbible.app                D  Firing change: true
+2026-01-29 18:37:16.623 10914-10914 Capacitor/AppPlugin     com.vagabondbible.app                V  Notifying listeners for event appStateChange
+2026-01-29 18:37:16.623 10914-10914 Capacitor/AppPlugin     com.vagabondbible.app                D  No listeners found for event appStateChange
+2026-01-29 18:37:16.623 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  ===== BEGIN DUMP OF OVERRIDDEN SETTINGS =====
+2026-01-29 18:37:16.623 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  ===== END DUMP OF OVERRIDDEN SETTINGS =====
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  QUALCOMM build          : 72d8b177be, I020fdb6434
+                                                                                                    Build Date              : 02/27/24
+                                                                                                    Shader Compiler Version : EV031.36.08.28
+                                                                                                    Local Branch            : 
+                                                                                                    Remote Branch           : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.1.0.11.00.00.770.073
+                                                                                                    Remote Branch           : NONE
+                                                                                                    Reconstruct Branch      : NOTHING
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  Build Config            : S P 12.1.1 AArch64
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  Driver Path             : /vendor/lib64/hw/vulkan.adreno.so
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  Driver Version          : 0615.84
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  PFP                     : 0x01730158
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  ME                      : 0x00000000
+2026-01-29 18:37:16.625 10914-11005 AdrenoVK-0              com.vagabondbible.app                I  Application Name    : 
+                                                                                                    Application Version : 0x00000001
+                                                                                                    Engine Name         : 
+                                                                                                    Engine Version      : 0x00000001
+                                                                                                    Api Version         : 0x00403000
+2026-01-29 18:37:16.625 10914-11005 AdrenoGLES-0            com.vagabondbible.app                I  QUALCOMM build                   : 72d8b177be, I020fdb6434
+                                                                                                    Build Date                       : 02/27/24
+                                                                                                    OpenGL ES Shader Compiler Version: EV031.36.08.28
+                                                                                                    Local Branch                     : 
+                                                                                                    Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.1.0.11.00.00.770.073
+                                                                                                    Remote Branch                    : NONE
+                                                                                                    Reconstruct Branch               : NOTHING
+2026-01-29 18:37:16.625 10914-11005 AdrenoGLES-0            com.vagabondbible.app                I  Build Config                     : S P 12.1.1 AArch64
+2026-01-29 18:37:16.625 10914-11005 AdrenoGLES-0            com.vagabondbible.app                I  Driver Path                      : /vendor/lib64/egl/libGLESv2_adreno.so
+2026-01-29 18:37:16.625 10914-11005 AdrenoGLES-0            com.vagabondbible.app                I  Driver Version                   : 0615.84
+2026-01-29 18:37:16.626 10914-10914 Capacitor/BrowserPlugin com.vagabondbible.app                V  Notifying listeners for event browserFinished
+2026-01-29 18:37:16.626 10914-10914 Capacitor/BrowserPlugin com.vagabondbible.app                D  No listeners found for event browserFinished
+2026-01-29 18:37:16.626 10914-10914 Capacitor               com.vagabondbible.app                D  App resumed
+2026-01-29 18:37:16.626 10914-11005 AdrenoGLES-0            com.vagabondbible.app                I  PFP: 0x01730158, ME: 0x00000000
+2026-01-29 18:37:16.629 10914-10914 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 237531167; UID 10334; state: DISABLED
+2026-01-29 18:37:16.640 10914-10914 Choreographer           com.vagabondbible.app                I  Skipped 36 frames!  The application may be doing too much work on its main thread.
+2026-01-29 18:37:16.643 10914-10914 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 193247900; UID 10334; state: ENABLED
+2026-01-29 18:37:16.644 10914-11014 CameraManagerGlobal     com.vagabondbible.app                I  Connecting to camera service
+2026-01-29 18:37:16.651 10914-11014 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.651 10914-11014 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.651 10914-11014 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.651 10914-11014 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.652 10914-10929 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.652 10914-10929 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.652 10914-10929 CameraManagerGlobal     com.vagabondbible.app                W  ignore the torch status update of camera: 2
+2026-01-29 18:37:16.652 10914-10929 libc                    com.vagabondbible.app                W  Access denied finding property "vendor.camera.aux.packagelist"
+2026-01-29 18:37:16.652 10914-10929 CameraManagerGlobal     com.vagabondbible.app                W  ignore the torch status update of camera: 3
+2026-01-29 18:37:16.657 10914-10948 OpenGLRenderer          com.vagabondbible.app                E  Unable to match the desired swap behavior.
+2026-01-29 18:37:16.660 10914-10914 Capacitor/...tionPlugin com.vagabondbible.app                V  Notifying listeners for event authStateChange
+2026-01-29 18:37:16.660 10914-10914 Capacitor/...tionPlugin com.vagabondbible.app                D  No listeners found for event authStateChange
+2026-01-29 18:37:16.661 10914-10914 FirebaseAuthentication  com.vagabondbible.app                E  No user is signed in.
+                                                                                                    java.lang.Exception: No user is signed in.
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.getIdToken(FirebaseAuthentication.java:175)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthenticationPlugin.handleIdTokenChange(FirebaseAuthenticationPlugin.java:1037)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.lambda$new$1(FirebaseAuthentication.java:80)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.$r8$lambda$3cIeZ-HtwDcmC2SfeKpGPL5cdos(Unknown Source:0)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication$$ExternalSyntheticLambda8.onIdTokenChanged(D8$$SyntheticClass:0)
+                                                                                                    	at com.google.firebase.auth.zzh.run(com.google.firebase:firebase-auth@@24.0.1:2)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205)
+                                                                                                    	at android.os.Looper.loop(Looper.java:294)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8223)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:977)
+2026-01-29 18:37:16.689 10914-10914 gabondbible.app         com.vagabondbible.app                I  hiddenapi: Accessing hidden field Landroid/content/pm/ApplicationInfo;->primaryCpuAbi:Ljava/lang/String; (runtime_flags=0, domain=platform, api=unsupported) from Lorg/chromium/android_webview/SystemStateUtil; (domain=app) using reflection: allowed
+2026-01-29 18:37:16.698 10914-10981 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-MN6pbso_.js
+2026-01-29 18:37:16.698 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-gE0OXWW1.css
+2026-01-29 18:37:16.699 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/alac
+2026-01-29 18:37:16.699 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/x-ape
+2026-01-29 18:37:16.699 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/evrc
+2026-01-29 18:37:16.700 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/qcelp
+2026-01-29 18:37:16.700 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/dsd
+2026-01-29 18:37:16.701 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/amr-wb-plus
+2026-01-29 18:37:16.702 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/x-ms-wma
+2026-01-29 18:37:16.703 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/evrc
+2026-01-29 18:37:16.704 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/qcelp
+2026-01-29 18:37:16.704 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/alac
+2026-01-29 18:37:16.704 10914-10992 AudioCapabilities       com.vagabondbible.app                W  Unsupported mime audio/x-ape
+2026-01-29 18:37:16.727 10914-10992 VideoCapabilities       com.vagabondbible.app                W  Unsupported mime image/vnd.android.heic
+2026-01-29 18:37:16.727 10914-10992 VideoCapabilities       com.vagabondbible.app                W  Unsupported mime image/vnd.android.heic
+2026-01-29 18:37:16.832 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [Firebase Config] Native platform detected
+2026-01-29 18:37:16.832 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [Firebase Config] API Key present: true
+2026-01-29 18:37:16.832 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [Firebase Config] Project ID: travelingchurch-1b4ab
+2026-01-29 18:37:16.832 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [Firebase Config] App ID present: true
+2026-01-29 18:37:16.833 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [Firebase] App initialized successfully
+2026-01-29 18:37:16.833 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [Firebase] Using getAuth for native platform
+2026-01-29 18:37:16.859 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/Pastor_Brett_Chat_Icon_1767476985840-ChGfprkT.png
+2026-01-29 18:37:16.878 10914-10920 gabondbible.app         com.vagabondbible.app                I  Compiler allocated 4418KB to compile void android.view.ViewRootImpl.performTraversals()
+2026-01-29 18:37:16.884 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2345 - Msg: [Referral] Checking for ref code in URL: null
+2026-01-29 18:37:16.884 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2345 - Msg: [Referral] Current stored ref code: null
+2026-01-29 18:37:16.884 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: [Platform] isNative: true platform: android
+2026-01-29 18:37:16.886 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/Bigger_White_Logo_1767824644015-yoZIbkGk.png
+2026-01-29 18:37:16.886 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.887 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-DFkAkHn3.js
+2026-01-29 18:37:16.887 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-DvYXNsh2.js
+2026-01-29 18:37:16.888 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/index-BiNqAlfn.js
+2026-01-29 18:37:16.894 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110922, pluginId: StatusBar, methodName: getInfo
+2026-01-29 18:37:16.895 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110922, pluginId: StatusBar, methodName: getInfo, methodData: {}
+2026-01-29 18:37:16.898 10914-10971 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/text-to-video-28b9692b_1767558425367-Dr7kuZnw.mp4
+2026-01-29 18:37:16.901 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"visible":true,"style":"DARK","color":"#000000","overlays":true,"height":44}
+2026-01-29 18:37:16.902 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: [Android] Updated status bar height from device: 44
+2026-01-29 18:37:16.902 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.904 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.904 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.904 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.904 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.904 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.905 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.910 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110923, pluginId: StatusBar, methodName: setOverlaysWebView
+2026-01-29 18:37:16.910 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110923, pluginId: StatusBar, methodName: setOverlaysWebView, methodData: {"overlay":true}
+2026-01-29 18:37:16.910 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110924, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-29 18:37:16.910 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110924, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-29 18:37:16.910 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110925, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-29 18:37:16.910 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110925, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-29 18:37:16.910 10914-11000 Capacitor/...tionPlugin com.vagabondbible.app                V  Notifying listeners for event authStateChange
+2026-01-29 18:37:16.910 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110926, pluginId: App, methodName: addListener
+2026-01-29 18:37:16.910 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110926, pluginId: App, methodName: addListener, methodData: {"eventName":"appUrlOpen"}
+2026-01-29 18:37:16.910 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: -1, pluginId: Purchases, methodName: setLogLevel
+2026-01-29 18:37:16.910 10914-10914 Capacitor               com.vagabondbible.app                V  callback: -1, pluginId: Purchases, methodName: setLogLevel, methodData: {"level":"DEBUG"}
+2026-01-29 18:37:16.911 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: -1, pluginId: Purchases, methodName: configure
+2026-01-29 18:37:16.911 10914-10914 Capacitor               com.vagabondbible.app                V  callback: -1, pluginId: Purchases, methodName: configure, methodData: {"apiKey":"appl_IHuuguwDzrFpaSziwpBDtyAdmqg"}
+2026-01-29 18:37:16.911 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110927, pluginId: Purchases, methodName: getCustomerInfo
+2026-01-29 18:37:16.911 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110927, pluginId: Purchases, methodName: getCustomerInfo, methodData: {}
+2026-01-29 18:37:16.916 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"user":null}
+2026-01-29 18:37:16.916 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 1922 - Msg: [NATIVE AUTH] Auth state changed: null
+2026-01-29 18:37:16.927 10914-10914 Capacitor/...sBarPlugin com.vagabondbible.app                V  Notifying listeners for event statusBarOverlayChanged
+2026-01-29 18:37:16.927 10914-10914 Capacitor/...sBarPlugin com.vagabondbible.app                D  No listeners found for event statusBarOverlayChanged
+2026-01-29 18:37:16.928 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:16.928 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:16.931 10914-11000 [Purchases] - ERROR     com.vagabondbible.app                E  The specified API Key is not recognized.
+                                                                                                    Ensure that you are using the public app-specific API key, which should look like 'goog_1a2b3c4d5e6f7h' or 'amzn_1a2b3c4d5e6f7h'.
+                                                                                                    See https://rev.cat/auth for more details.
+2026-01-29 18:37:16.942 10914-10971 cr_MediaCodecBridge     com.vagabondbible.app                I  create MediaCodec video decoder, mime video/avc, decoder name c2.qti.avc.decoder, block_model=false
+2026-01-29 18:37:16.943 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110928, pluginId: StatusBar, methodName: setBackgroundColor
+2026-01-29 18:37:16.943 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110928, pluginId: StatusBar, methodName: setBackgroundColor, methodData: {"color":"#00000000"}
+2026-01-29 18:37:16.947 10914-11046 CCodec                  com.vagabondbible.app                D  allocate(c2.qti.avc.decoder)
+2026-01-29 18:37:16.949 10914-11046 Codec2Client            com.vagabondbible.app                I  Available Codec2 services: "default" "default2" "software"
+2026-01-29 18:37:16.951 10914-11046 CCodec                  com.vagabondbible.app                I  setting up 'default' as default (vendor) store
+2026-01-29 18:37:16.956 10914-11046 CCodec                  com.vagabondbible.app                I  Created component [c2.qti.avc.decoder]
+2026-01-29 18:37:16.956 10914-11046 CCodecConfig            com.vagabondbible.app                D  read media type: video/avc
+2026-01-29 18:37:16.957 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-vpp-extradata.extradata-types
+2026-01-29 18:37:16.959 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: output.buffers.pool-ids.values
+2026-01-29 18:37:16.960 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Debug logging enabled
+2026-01-29 18:37:16.961 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ SDK Version - 9.18.0
+2026-01-29 18:37:16.961 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Package name - com.vagabondbible.app
+2026-01-29 18:37:16.961 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  👤 Initial App User ID - null
+2026-01-29 18:37:16.961 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Purchases configured with response verification: INFORMATIONAL
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_first_field.misr_dpb_luma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_first_field.misr_dpb_chroma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_first_field.misr_opb_luma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_first_field.misr_opb_chroma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_second_field.misr_dpb_luma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_second_field.misr_dpb_chroma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_second_field.misr_opb_luma
+2026-01-29 18:37:16.961 10914-11046 ReflectedParamUpdater   com.vagabondbible.app                D  extent() != 1 for single value type: vendor.qti-ext-dec-info-misr.misr_info_second_field.misr_opb_chroma
+2026-01-29 18:37:16.962 10914-11046 CCodecConfig            com.vagabondbible.app                D  ignoring local param raw.size (0xd2001800) as it is already supported
+2026-01-29 18:37:16.962 10914-11046 CCodecConfig            com.vagabondbible.app                D  ignoring local param default.color (0x5200180b) as it is already supported
+2026-01-29 18:37:16.962 10914-11046 CCodecConfig            com.vagabondbible.app                D  ignoring local param raw.hdr-static-info (0xd200180a) as it is already supported
+2026-01-29 18:37:16.962 10914-11046 CCodecConfig            com.vagabondbible.app                I  query failed after returning 17 values (BAD_INDEX)
+2026-01-29 18:37:16.962 10914-11046 CCodecConfig            com.vagabondbible.app                D  c2 config diff is Dict {
+                                                                                                      c2::i32 algo.priority.value = 0
+                                                                                                      c2::float algo.rate.value = 30
+                                                                                                      c2::u32 algo.secure-mode.value = 0
+                                                                                                      c2::float coded.frame-rate.value = 30
+                                                                                                      c2::u32 coded.pl.level = 0
+                                                                                                      c2::u32 coded.pl.profile = 20484
+                                                                                                      c2::u32 coded.vui.color.matrix = 255
+                                                                                                      c2::u32 coded.vui.color.primaries = 0
+                                                                                                      c2::u32 coded.vui.color.range = 0
+                                                                                                      c2::u32 coded.vui.color.transfer = 255
+                                                                                                      c2::u32 default.color.matrix = 0
+                                                                                                      c2::u32 default.color.primaries = 0
+                                                                                                      c2::u32 default.color.range = 0
+                                                                                                      c2::u32 default.color.transfer = 0
+                                                                                                      c2::u32 input.buffers.max-size.value = 7077888
+                                                                                                      c2::u32 input.delay.value = 0
+                                                                                                      string input.media-type.value = "video/avc"
+                                                                                                      c2::u32 output.delay.value = 7
+                                                                                                      string output.media-type.value = "video/raw"
+                                                                                                      c2::u32 raw.color.matrix = 255
+                                                                                                      c2::u32 raw.color.primaries = 0
+                                                                                                      c2::u32 raw.color.range = 0
+                                                                                                      c2::u32 raw.color.transfer = 255
+                                                                                                      c2::float raw.hdr-static-info.mastering.blue.x = 0
+                                                                                                      c2::float raw.hdr-static-info.mastering.blue.y = 0
+                                                                                                      c2::float raw.hdr-static-info.mastering.gre
+2026-01-29 18:37:16.962 10914-11046 ColorUtils              com.vagabondbible.app                W  expected specified color aspects (0:0:255:255)
+2026-01-29 18:37:16.966 10914-11045 MediaCodec              com.vagabondbible.app                I  MediaCodec will operate in async mode
+2026-01-29 18:37:16.968 10914-11045 MediaCodec              com.vagabondbible.app                D  flushMediametrics
+2026-01-29 18:37:16.968 10914-11045 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0xb400007d8f33d0a0, reason connectToSurface
+2026-01-29 18:37:16.968 10914-11045 MediaCodec              com.vagabondbible.app                I  [c2.qti.avc.decoder] setting surface generation to 11175937
+2026-01-29 18:37:16.968 10914-11045 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0xb400007d8f33d0a0, reason connectToSurface(reconnect)
+2026-01-29 18:37:16.968 10914-11045 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0xb400007d8f33d0a0, reason connectToSurface(reconnect)
+2026-01-29 18:37:16.968 10914-11046 CCodec                  com.vagabondbible.app                D  [c2.qti.avc.decoder] buffers are bound to CCodec for this session
+2026-01-29 18:37:16.968 10914-11046 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for csd-1
+2026-01-29 18:37:16.969 10914-11046 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for native-window
+2026-01-29 18:37:16.969 10914-11046 CCodecConfig            com.vagabondbible.app                D  no c2 equivalents for flags
+2026-01-29 18:37:16.969 10914-11046 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 input.buffers.max-size.value = 3133440
+                                                                                                      c2::u32 raw.max-size.height = 1080
+                                                                                                      c2::u32 raw.max-size.width = 1920
+                                                                                                      c2::u32 raw.size.height = 1080
+                                                                                                      c2::u32 raw.size.width = 1920
+2026-01-29 18:37:16.969 10914-11046 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1107298332.
+2026-01-29 18:37:16.969 10914-11046 CCodec                  com.vagabondbible.app                D  client requested max input size 1566720, which is smaller than what component recommended (3133440); overriding with component recommendation.
+2026-01-29 18:37:16.969 10914-11046 CCodec                  com.vagabondbible.app                W  This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+2026-01-29 18:37:16.969 10914-11046 CCodec                  com.vagabondbible.app                D  encoding statistics level = 0
+2026-01-29 18:37:16.969 10914-11046 CCodec                  com.vagabondbible.app                D  setup formats input: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t feature-secure-playback = 0
+                                                                                                      int32_t frame-rate = 30
+                                                                                                      int32_t height = 1080
+                                                                                                      int32_t max-input-size = 3133440
+                                                                                                      string mime = "video/avc"
+                                                                                                      int32_t priority = 0
+                                                                                                      int32_t profile = 8
+                                                                                                      int32_t width = 1920
+                                                                                                      Rect crop(0, 0, 1919, 1079)
+                                                                                                    }
+2026-01-29 18:37:16.969 10914-11046 CCodec                  com.vagabondbible.app                D  setup formats output: AMessage(what = 0x00000000) = {
+                                                                                                      int32_t android._color-format = 0
+                                                                                                      int32_t android._video-scaling = 1
+                                                                                                      int32_t android._dataspace = 260
+                                                                                                      int32_t color-standard = 130817
+                                                                                                      int32_t color-range = 2
+                                                                                                      int32_t color-transfer = 65791
+                                                                                                      int32_t sar-height = 1
+                                                                                                      int32_t rotation-degrees = 0
+                                                                                                      Buffer hdr-static-info = {
+                                                                                                        00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+                                                                                                        00000010:  00 00 00 00 00 00 00 00  00                       .........
+                                                                                                      }
+                                                                                                      int32_t sar-width = 1
+                                                                                                      Rect crop(0, 0, 1919, 1079)
+                                                                                                      int32_t width = 1920
+                                                                                                      int32_t feature-secure-playback = 0
+                                                                                                      int32_t frame-rate = 30
+                                                                                                      int32_t height = 1080
+                                                                                                      int32_t max-height = 1080
+                                                                                                      int32_t max-width = 1920
+                                                                                                      string mime = "video/raw"
+                                                                                                      int32_t priority = 0
+                                                                                                      int32_t color-format = 2130708361
+                                                                                                    }
+2026-01-29 18:37:16.969 10914-11046 CCodecConfig            com.vagabondbible.app                I  query failed after returning 17 values (BAD_INDEX)
+2026-01-29 18:37:16.970 10914-10971 MediaCodec              com.vagabondbible.app                D  keep callback message for reclaim
+2026-01-29 18:37:16.972 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  👤 Identifying App User ID: $RCAnonymousID:7d9ec0e018074517887e776964436192
+2026-01-29 18:37:16.972 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Deleting old synced subscriber attributes that don't belong to $RCAnonymousID:7d9ec0e018074517887e776964436192
+2026-01-29 18:37:16.977 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Listener set
+2026-01-29 18:37:16.977 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Sending latest CustomerInfo to listener.
+2026-01-29 18:37:16.978 10914-11000 Capacitor/AppPlugin     com.vagabondbible.app                D  Firing restored result
+2026-01-29 18:37:16.978 10914-11000 Capacitor/AppPlugin     com.vagabondbible.app                V  Notifying listeners for event appRestoredResult
+2026-01-29 18:37:16.978 10914-11000 Capacitor/AppPlugin     com.vagabondbible.app                D  No listeners found for event appRestoredResult
+2026-01-29 18:37:16.978 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  Retrieving customer info with policy: CACHED_OR_FETCHED
+2026-01-29 18:37:16.979 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Vending CustomerInfo from cache.
+2026-01-29 18:37:16.979 10914-11000 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Checking if cache is stale AppInBackground true
+2026-01-29 18:37:16.980 10914-11046 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1342179345.
+2026-01-29 18:37:16.980 10914-11046 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 2415921170.
+2026-01-29 18:37:16.980 10914-11046 Codec2Client            com.vagabondbible.app                W  query -- param skipped: index = 1610614798.
+2026-01-29 18:37:16.980 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] Query input allocators returned 0 params => BAD_INDEX (6)
+2026-01-29 18:37:16.980 10914-11046 C2Store                 com.vagabondbible.app                D  debug.c2.use_dmabufheaps set, forcing DMABUF Heaps
+2026-01-29 18:37:16.980 10914-11046 C2Store                 com.vagabondbible.app                D  Using DMABUF Heaps
+2026-01-29 18:37:16.981 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+2026-01-29 18:37:16.981 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] start: max output delay 18
+2026-01-29 18:37:16.981 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] Query output allocators returned 0 params => BAD_INDEX (6)
+2026-01-29 18:37:16.981 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] Query output surface allocator returned 0 params => BAD_INDEX (6)
+2026-01-29 18:37:16.981 10914-11046 CCodecBufferChannel     com.vagabondbible.app                I  [c2.qti.avc.decoder#352] Created output block pool with allocatorID 18 => poolID 166 - OK
+2026-01-29 18:37:16.981 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] Configured output block pool ids 166 => OK
+2026-01-29 18:37:16.981 10914-11046 Codec2-Out...ufferQueue com.vagabondbible.app                D  remote graphic buffer migration 0/0
+2026-01-29 18:37:16.982 10914-11046 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+2026-01-29 18:37:16.982 10914-11046 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- generation=11175937 consumer usage=0x900
+2026-01-29 18:37:16.982 10914-11046 qdgralloc               com.vagabondbible.app                D  Falling back to default YUV format - no camera/video specific format defined, usage 0x100
+2026-01-29 18:37:16.984 10914-11046 Codec2Client            com.vagabondbible.app                D  Surface configure completed
+2026-01-29 18:37:16.984 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] start: updating output delay 7
+2026-01-29 18:37:16.985 10914-11046 DMABUFHEAPS             com.vagabondbible.app                I  Using DMA-BUF heap named: system
+2026-01-29 18:37:17.002 10914-10914 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Starting connection for com.android.billingclient.api.BillingClientImpl@e9d5e79
+2026-01-29 18:37:17.005 10914-10914 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ App foregrounded
+2026-01-29 18:37:17.006 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+2026-01-29 18:37:17.006 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  Retrieving customer info with policy: FETCH_CURRENT
+2026-01-29 18:37:17.006 10914-11057 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 194532703; UID 10334; state: ENABLED
+2026-01-29 18:37:17.006 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Updating pending purchase queue
+2026-01-29 18:37:17.006 10914-11057 Compatibil...geReporter com.vagabondbible.app                D  Compat change id reported: 253665015; UID 10334; state: ENABLED
+2026-01-29 18:37:17.006 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Offerings cache is stale, updating from network in foreground
+2026-01-29 18:37:17.006 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  😻 Start Offerings update from network.
+2026-01-29 18:37:17.007 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:17.007 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:17.009 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Querying purchases
+2026-01-29 18:37:17.010 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  Request already scheduled with jitter delay, adding existing callbacks to unjittered request with key: BackgroundAwareCallbackCacheKey(cacheKey=[/v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192/offerings], appInBackground=false)
+2026-01-29 18:37:17.011 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Updating pending purchase queue
+2026-01-29 18:37:17.011 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110929, pluginId: StatusBar, methodName: setStyle
+2026-01-29 18:37:17.011 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110929, pluginId: StatusBar, methodName: setStyle, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:17.012 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ No subscriber attributes to synchronize.
+2026-01-29 18:37:17.015 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"customerInfo":{"entitlements":{"all":{},"active":{},"verification":"VERIFIED"},"activeSubscriptions":[],"allPurchasedProductIdentifiers":[],"latestExpirationDate":null,"latestExpirationDateMillis":null,"firstSeen":"2026-01-29T23:27:10.000Z","firstSeenMillis":1769729230000,"originalAppUserId":"$RCAnonymousID:7d9ec0e018074517887e776964436192","requestDate":"2026-01-29T23:28:40.461Z","requestDateMillis":1769729320461,"allExpirationDates":{},"allExpirationDatesMillis":{},"allPurchaseDates":{},"allPurchaseDatesMillis":{},"originalApplicationVersion":null,"managementURL":null,"originalPurchaseDate":null,"originalPurchaseDateMillis":null,"nonSubscriptionTransactions":[],"subscriptionsByProductIdentifier":{}}}
+2026-01-29 18:37:17.017 10914-11046 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 output.delay.value = 10
+2026-01-29 18:37:17.017 10914-11046 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] onWorkDone: updating output delay 10
+2026-01-29 18:37:17.017 10914-11046 CCodecBufferChannel     com.vagabondbible.app                I  [c2.qti.avc.decoder#352] onWorkDone: updating max output delay 17
+2026-01-29 18:37:17.017 10914-11046 Codec2-Out...ufferQueue com.vagabondbible.app                D  set max dequeue count 17 from update
+2026-01-29 18:37:17.022 10914-11058 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://api.revenuecat.com/v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192/offerings'
+2026-01-29 18:37:17.028 10914-11046 CCodecConfig            com.vagabondbible.app                D  c2 config diff is   c2::u32 raw.color.matrix = 1
+                                                                                                      c2::u32 raw.color.primaries = 1
+                                                                                                      c2::u32 raw.color.range = 2
+                                                                                                      c2::u32 raw.color.transfer = 3
+                                                                                                      c2::u32 raw.crop.height = 1080
+                                                                                                      c2::u32 raw.crop.left = 0
+                                                                                                      c2::u32 raw.crop.top = 0
+                                                                                                      c2::u32 raw.crop.width = 1920
+                                                                                                      c2::u32 raw.size.height = 1088
+2026-01-29 18:37:17.028 10914-11046 CCodecBuffers           com.vagabondbible.app                D  [c2.qti.avc.decoder#352:2D-Output] popFromStashAndRegister: at 0us, output format changed to AMessage(what = 0x00000000) = {
+                                                                                                      int32_t android._color-format = 0
+                                                                                                      int32_t android._video-scaling = 1
+                                                                                                      int32_t android._dataspace = 260
+                                                                                                      int32_t color-standard = 1
+                                                                                                      int32_t color-range = 2
+                                                                                                      int32_t color-transfer = 3
+                                                                                                      int32_t sar-height = 1
+                                                                                                      int32_t rotation-degrees = 0
+                                                                                                      Buffer hdr-static-info = {
+                                                                                                        00000000:  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+                                                                                                        00000010:  00 00 00 00 00 00 00 00  00                       .........
+                                                                                                      }
+                                                                                                      int32_t sar-width = 1
+                                                                                                      Rect crop(0, 0, 1919, 1079)
+                                                                                                      int32_t width = 1920
+                                                                                                      int32_t feature-secure-playback = 0
+                                                                                                      int32_t frame-rate = 30
+                                                                                                      int32_t height = 1088
+                                                                                                      int32_t max-height = 1080
+                                                                                                      int32_t max-width = 1920
+                                                                                                      string mime = "video/raw"
+                                                                                                      int32_t priority = 0
+                                                                                                      int32_t color-format = 2130708361
+                                                                                                    }
+2026-01-29 18:37:17.035 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:17.035 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: [Android] Status bar configured: transparent, overlay mode
+2026-01-29 18:37:17.053 10914-10914 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Billing Service Setup finished for com.android.billingclient.api.BillingClientImpl@e9d5e79
+2026-01-29 18:37:17.053 10914-10914 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Updating pending purchase queue
+2026-01-29 18:37:17.076 10914-11069 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Cleaning previously sent tokens
+2026-01-29 18:37:17.077 10914-11069 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Tokens already posted: []
+2026-01-29 18:37:17.077 10914-11069 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Saving tokens []
+2026-01-29 18:37:17.077 10914-11069 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Tokens already posted: []
+2026-01-29 18:37:17.077 10914-11069 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ No pending purchases to sync
+2026-01-29 18:37:17.078 10914-11069 [Purchases] - DEBUG     com.vagabondbible.app                D  Request already scheduled with jitter delay, adding existing callbacks to unjittered request with key: BackgroundAwareCallbackCacheKey(cacheKey=[/v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192], appInBackground=false)
+2026-01-29 18:37:17.171 10914-10925 [Purchases] - DEBUG     com.vagabondbible.app                D  Billing connected with country code: US
+2026-01-29 18:37:17.204 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  API request started: GET /v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192/offerings
+2026-01-29 18:37:17.205 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  API request completed with status: GET /v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192/offerings 304
+2026-01-29 18:37:17.304 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Requesting products from the store with identifiers: vagabond_bible_pro_monthly, pro_monthly_emerging
+2026-01-29 18:37:17.305 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Querying purchases
+2026-01-29 18:37:17.305 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Querying purchases
+2026-01-29 18:37:17.306 10914-11058 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://api.revenuecat.com/v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192'
+2026-01-29 18:37:17.312 10914-11074 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Products request finished for vagabond_bible_pro_monthly, pro_monthly_emerging
+2026-01-29 18:37:17.312 10914-11074 [Purchases] - DEBUG     com.vagabondbible.app                D  💰 Retrieved productDetailsList: 
+2026-01-29 18:37:17.312 10914-11074 [Purchases] - INFO      com.vagabondbible.app                I  ℹ️ Missing productDetails: UnfetchedProduct{productId='pro_monthly_emerging', productType='subs', statusCode=3}, UnfetchedProduct{productId='vagabond_bible_pro_monthly', productType='subs', statusCode=3}
+2026-01-29 18:37:17.312 10914-11074 [Purchases] - INFO      com.vagabondbible.app                I  ℹ️ Product not found: pro_monthly_emerging - Product Type: subs, Reason: PRODUCT_NOT_FOUND, Serialized doc ID: 
+2026-01-29 18:37:17.312 10914-11074 [Purchases] - INFO      com.vagabondbible.app                I  ℹ️ Product not found: vagabond_bible_pro_monthly - Product Type: subs, Reason: PRODUCT_NOT_FOUND, Serialized doc ID: 
+2026-01-29 18:37:17.312 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Requesting products from the store with identifiers: vagabond_bible_pro_monthly, pro_monthly_emerging
+2026-01-29 18:37:17.327 10914-11078 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Products request finished for vagabond_bible_pro_monthly, pro_monthly_emerging
+2026-01-29 18:37:17.327 10914-11078 [Purchases] - DEBUG     com.vagabondbible.app                D  💰 Retrieved productDetailsList: 
+2026-01-29 18:37:17.327 10914-11078 [Purchases] - INFO      com.vagabondbible.app                I  ℹ️ Missing productDetails: UnfetchedProduct{productId='pro_monthly_emerging', productType='inapp', statusCode=3}, UnfetchedProduct{productId='vagabond_bible_pro_monthly', productType='inapp', statusCode=3}
+2026-01-29 18:37:17.327 10914-11078 [Purchases] - INFO      com.vagabondbible.app                I  ℹ️ Product not found: pro_monthly_emerging - Product Type: inapp, Reason: PRODUCT_NOT_FOUND, Serialized doc ID: 
+2026-01-29 18:37:17.327 10914-11078 [Purchases] - INFO      com.vagabondbible.app                I  ℹ️ Product not found: vagabond_bible_pro_monthly - Product Type: inapp, Reason: PRODUCT_NOT_FOUND, Serialized doc ID: 
+2026-01-29 18:37:17.327 10914-11054 [Purchases] - WARN      com.vagabondbible.app                W  🤖‼️ Could not find ProductDetails for vagabond_bible_pro_monthly, pro_monthly_emerging 
+                                                                                                    There is a problem with your configuration in Play Store Developer Console. More info here: https://errors.rev.cat/configuring-products
+2026-01-29 18:37:17.327 10914-11054 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Building offerings response with 0 products
+2026-01-29 18:37:17.328 10914-11054 [Purchases] - ERROR     com.vagabondbible.app                E  😿‼️ Error fetching offerings - PurchasesError(code=ConfigurationError, underlyingErrorMessage=There's a problem with your configuration. None of the products registered in the RevenueCat dashboard could be fetched from the Play Store.
+                                                                                                    More information: https://rev.cat/why-are-offerings-empty, message='There is an issue with your configuration. Check the underlying error for more details.')
+2026-01-29 18:37:17.342 10914-11065 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Cleaning previously sent tokens
+2026-01-29 18:37:17.342 10914-11065 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Tokens already posted: []
+2026-01-29 18:37:17.343 10914-11065 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Saving tokens []
+2026-01-29 18:37:17.343 10914-11065 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Tokens already posted: []
+2026-01-29 18:37:17.343 10914-11065 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ No pending purchases to sync
+2026-01-29 18:37:17.343 10914-11060 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Cleaning previously sent tokens
+2026-01-29 18:37:17.343 10914-11060 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Tokens already posted: []
+2026-01-29 18:37:17.343 10914-11060 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Saving tokens []
+2026-01-29 18:37:17.343 10914-11060 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ Tokens already posted: []
+2026-01-29 18:37:17.343 10914-11060 [Purchases] - DEBUG     com.vagabondbible.app                D  ℹ️ No pending purchases to sync
+2026-01-29 18:37:17.359 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  API request started: GET /v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192
+2026-01-29 18:37:17.359 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  API request completed with status: GET /v1/subscribers/%24RCAnonymousID%3A7d9ec0e018074517887e776964436192 304
+2026-01-29 18:37:17.395 10914-11058 [Purchases] - DEBUG     com.vagabondbible.app                D  😻 CustomerInfo updated from network.
+2026-01-29 18:37:17.410 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-29 18:37:17.410 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-29 18:37:17.410 10914-10981 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-29 18:37:17.411 10914-10971 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-29 18:37:18.383 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: Firebase auth timeout - falling back to session check
+2026-01-29 18:37:19.971 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/vagabond-logo-C9q_FyPk.png
+2026-01-29 18:37:19.971 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/Pastor_Brett_Chat_Icon_1767476985840-ChGfprkT.png
+2026-01-29 18:37:19.980 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-29 18:37:19.983 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:19.984 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:19.984 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:19.984 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:19.984 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:19.987 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-29 18:37:19.987 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-29 18:37:19.987 10914-10971 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-29 18:37:19.996 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110930, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-29 18:37:19.996 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110930, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-29 18:37:19.996 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110931, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-29 18:37:19.997 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110931, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-29 18:37:19.997 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110932, pluginId: FirebaseAuthentication, methodName: getIdToken
+2026-01-29 18:37:19.997 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110932, pluginId: FirebaseAuthentication, methodName: getIdToken, methodData: {}
+2026-01-29 18:37:19.997 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110933, pluginId: FirebaseAuthentication, methodName: getIdToken
+2026-01-29 18:37:19.997 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110933, pluginId: FirebaseAuthentication, methodName: getIdToken, methodData: {}
+2026-01-29 18:37:19.997 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110934, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-29 18:37:19.997 10914-11000 FirebaseAuthentication  com.vagabondbible.app                E  No user is signed in.
+                                                                                                    java.lang.Exception: No user is signed in.
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.getIdToken(FirebaseAuthentication.java:175)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthenticationPlugin.getIdToken(FirebaseAuthenticationPlugin.java:242)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138)
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841)
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0)
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205)
+                                                                                                    	at android.os.Looper.loop(Looper.java:294)
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
+2026-01-29 18:37:19.997 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110934, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-29 18:37:19.997 10914-11000 Capacitor               com.vagabondbible.app                D  Sending plugin error: {"save":false,"callbackId":"115110932","pluginId":"FirebaseAuthentication","methodName":"getIdToken","success":false,"error":{"message":"No user is signed in."}}
+2026-01-29 18:37:19.998 10914-11000 FirebaseAuthentication  com.vagabondbible.app                E  No user is signed in.
+                                                                                                    java.lang.Exception: No user is signed in.
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.getIdToken(FirebaseAuthentication.java:175)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthenticationPlugin.getIdToken(FirebaseAuthenticationPlugin.java:242)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138)
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841)
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0)
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205)
+                                                                                                    	at android.os.Looper.loop(Looper.java:294)
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
+2026-01-29 18:37:19.998 10914-11000 Capacitor               com.vagabondbible.app                D  Sending plugin error: {"save":false,"callbackId":"115110933","pluginId":"FirebaseAuthentication","methodName":"getIdToken","success":false,"error":{"message":"No user is signed in."}}
+2026-01-29 18:37:20.000 10914-10914 Capacitor/Console       com.vagabondbible.app                E  File:  - Line 330 - Msg: [object Object]
+2026-01-29 18:37:20.001 10914-10914 Capacitor/Console       com.vagabondbible.app                E  File:  - Line 330 - Msg: [object Object]
+2026-01-29 18:37:20.002 10914-10969 Capacitor               com.vagabondbible.app                D  Handling CapacitorHttp request: https://localhost/_capacitor_http_interceptor_?u=https%3A%2F%2Fvagabondbible.com%2Fapi%2Fbible%2Ftranslations
+2026-01-29 18:37:20.002 10914-10970 Capacitor               com.vagabondbible.app                D  Handling CapacitorHttp request: https://localhost/_capacitor_http_interceptor_?u=https%3A%2F%2Fvagabondbible.com%2Fapi%2Fbible%2Fbooks%2FKJV
+2026-01-29 18:37:20.004 10914-10970 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://vagabondbible.com/api/bible/books/KJV'
+2026-01-29 18:37:20.005 10914-10969 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://vagabondbible.com/api/bible/translations'
+2026-01-29 18:37:21.467 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: Firebase auth timeout - falling back to session check
+2026-01-29 18:37:21.467 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: Firebase auth timeout - falling back to session check
+2026-01-29 18:37:21.473 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: Firebase auth timeout - falling back to session check
+2026-01-29 18:37:21.492 10914-10969 cr_MediaCodecBridge     com.vagabondbible.app                W  Releasing: c2.qti.avc.decoder
+2026-01-29 18:37:21.493 10914-11045 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0xb400007d8f35f1a0, reason connectToSurface
+2026-01-29 18:37:21.493 10914-11045 MediaCodec              com.vagabondbible.app                I  [c2.qti.avc.decoder] setting surface generation to 11175938
+2026-01-29 18:37:21.493 10914-11045 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0xb400007d8f35f1a0, reason connectToSurface(reconnect)
+2026-01-29 18:37:21.493 10914-11045 SurfaceUtils            com.vagabondbible.app                D  connecting to surface 0xb400007d8f35f1a0, reason connectToSurface(reconnect)
+2026-01-29 18:37:21.493 10914-11045 Codec2-Out...ufferQueue com.vagabondbible.app                D  remote graphic buffer migration 0/0
+2026-01-29 18:37:21.493 10914-11045 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+2026-01-29 18:37:21.493 10914-11045 Codec2Client            com.vagabondbible.app                D  setOutputSurface -- generation=11175938 consumer usage=0x900
+2026-01-29 18:37:21.493 10914-11045 qdgralloc               com.vagabondbible.app                D  Falling back to default YUV format - no camera/video specific format defined, usage 0x100
+2026-01-29 18:37:21.494 10914-11045 Codec2Client            com.vagabondbible.app                D  Surface configure completed
+2026-01-29 18:37:21.494 10914-11045 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0xb400007d8f33d0a0, reason disconnectFromSurface
+2026-01-29 18:37:21.495 10914-11045 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] MediaCodec discarded an unknown buffer
+2026-01-29 18:37:21.495 10914-11045 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] MediaCodec discarded an unknown buffer
+2026-01-29 18:37:21.495 10914-11045 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] MediaCodec discarded an unknown buffer
+2026-01-29 18:37:21.495 10914-11045 CCodecBufferChannel     com.vagabondbible.app                D  [c2.qti.avc.decoder#352] MediaCodec discarded an unknown buffer
+2026-01-29 18:37:21.495 10914-10969 cr_MediaCodecBridge     com.vagabondbible.app                W  Codec released
+2026-01-29 18:37:21.503 10914-11045 SurfaceUtils            com.vagabondbible.app                D  disconnecting from surface 0xb400007d8f35f1a0, reason disconnectFromSurface
+2026-01-29 18:37:21.503 10914-11108 hw-BpHwBinder           com.vagabondbible.app                I  onLastStrongRef automatically unlinking death recipients
+2026-01-29 18:37:21.503 10914-11045 MediaCodec              com.vagabondbible.app                D  flushMediametrics
+2026-01-29 18:37:21.504 10914-11045 MediaCodec              com.vagabondbible.app                D  flushMediametrics
+2026-01-29 18:37:21.504 10914-11045 MediaCodec              com.vagabondbible.app                W  no metrics handle found
+2026-01-29 18:37:22.077 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/vagabond-share-logo-JU2kDkhv.png
+2026-01-29 18:37:22.079 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:22.079 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110935, pluginId: FirebaseAuthentication, methodName: getIdToken
+2026-01-29 18:37:22.079 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110935, pluginId: FirebaseAuthentication, methodName: getIdToken, methodData: {}
+2026-01-29 18:37:22.080 10914-11000 FirebaseAuthentication  com.vagabondbible.app                E  No user is signed in.
+                                                                                                    java.lang.Exception: No user is signed in.
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthentication.getIdToken(FirebaseAuthentication.java:175)
+                                                                                                    	at io.capawesome.capacitorjs.plugins.firebase.authentication.FirebaseAuthenticationPlugin.getIdToken(FirebaseAuthenticationPlugin.java:242)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138)
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841)
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0)
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205)
+                                                                                                    	at android.os.Looper.loop(Looper.java:294)
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
+2026-01-29 18:37:22.080 10914-11000 Capacitor               com.vagabondbible.app                D  Sending plugin error: {"save":false,"callbackId":"115110935","pluginId":"FirebaseAuthentication","methodName":"getIdToken","success":false,"error":{"message":"No user is signed in."}}
+2026-01-29 18:37:22.091 10914-10914 Capacitor/Console       com.vagabondbible.app                E  File:  - Line 330 - Msg: [object Object]
+2026-01-29 18:37:22.092 10914-10969 Capacitor               com.vagabondbible.app                D  Handling CapacitorHttp request: https://localhost/_capacitor_http_interceptor_?u=https%3A%2F%2Fvagabondbible.com%2Fapi%2Fbible%2Fchapter%2FKJV%2F14%2F1
+2026-01-29 18:37:22.093 10914-10969 CapacitorCookies        com.vagabondbible.app                I  Getting cookies at: 'https://vagabondbible.com/api/bible/chapter/KJV/14/1'
+2026-01-29 18:37:22.300 10914-11114 ProfileInstaller        com.vagabondbible.app                D  Installing profile for com.vagabondbible.app
+2026-01-29 18:37:25.252 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:25.253 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110936, pluginId: Haptics, methodName: impact
+2026-01-29 18:37:25.253 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110936, pluginId: Haptics, methodName: impact, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:25.270 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:26.707 10914-10921 gabondbible.app         com.vagabondbible.app                W  Cleared Reference was only reachable from finalizer (only reported once)
+2026-01-29 18:37:26.765 10914-10923 System                  com.vagabondbible.app                W  A resource failed to call release. 
+2026-01-29 18:37:26.982 10914-11050 BufferPoolAccessor2.0   com.vagabondbible.app                D  bufferpool2 0xb400007d2f32e308 : 0(0 size) total buffers - 0(0 size) used buffers - 79/84 (recycle/alloc) - 5/81 (fetch/transfer)
+2026-01-29 18:37:26.982 10914-11050 BufferPoolAccessor2.0   com.vagabondbible.app                D  evictor expired: 1, evicted: 1
+2026-01-29 18:37:30.308 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:30.309 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110937, pluginId: Haptics, methodName: impact
+2026-01-29 18:37:30.309 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110937, pluginId: Haptics, methodName: impact, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:30.319 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:31.732 10914-11118 gabondbible.app         com.vagabondbible.app                I  hiddenapi: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (runtime_flags=0, domain=core-platform, api=unsupported) from LWV/p7; (domain=app) using reflection: allowed
+2026-01-29 18:37:31.740 10914-11118 FilePhenotypeFlags      com.vagabondbible.app                E  Config package com.google.android.gms.clearcut_client#com.vagabondbible.app cannot use FILE backing without declarative registration. See go/phenotype-android-integration#phenotype for more information. This will lead to stale flags.
+2026-01-29 18:37:31.774 10914-11118 FilePhenotypeFlags      com.vagabondbible.app                E  Config package com.google.android.gms.clearcut_client#com.vagabondbible.app cannot use FILE backing without declarative registration. See go/phenotype-android-integration#phenotype for more information. This will lead to stale flags.
+2026-01-29 18:37:31.775 10914-11118 FilePhenotypeFlags      com.vagabondbible.app                E  Config package com.google.android.gms.clearcut_client#com.vagabondbible.app cannot use FILE backing without declarative registration. See go/phenotype-android-integration#phenotype for more information. This will lead to stale flags.
+2026-01-29 18:37:32.699 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:32.701 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110938, pluginId: Haptics, methodName: impact
+2026-01-29 18:37:32.701 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110938, pluginId: Haptics, methodName: impact, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:32.704 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:32.718 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/Mary_1769243057081-B9ae-Aaa.png
+2026-01-29 18:37:32.719 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-29 18:37:32.728 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-29 18:37:32.728 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-29 18:37:32.728 10914-10971 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-29 18:37:32.734 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:32.734 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:32.734 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:32.734 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110939, pluginId: FirebaseAuthentication, methodName: removeAllListeners
+2026-01-29 18:37:32.735 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110939, pluginId: FirebaseAuthentication, methodName: removeAllListeners, methodData: {}
+2026-01-29 18:37:32.735 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110940, pluginId: FirebaseAuthentication, methodName: removeAllListeners
+2026-01-29 18:37:32.735 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110940, pluginId: FirebaseAuthentication, methodName: removeAllListeners, methodData: {}
+2026-01-29 18:37:32.736 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110941, pluginId: FirebaseAuthentication, methodName: removeAllListeners
+2026-01-29 18:37:32.736 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110941, pluginId: FirebaseAuthentication, methodName: removeAllListeners, methodData: {}
+2026-01-29 18:37:32.738 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:32.738 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:32.738 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:33.520 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:33.521 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110942, pluginId: Haptics, methodName: impact
+2026-01-29 18:37:33.521 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110942, pluginId: Haptics, methodName: impact, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:33.525 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:33.992 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: [PrayerAudio] Preloading chime...
+2026-01-29 18:37:33.992 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: [PrayerAudio] Chime audio element created: https://cdn.freesound.org/previews/411/411089_5121236-lq.mp3
+2026-01-29 18:37:33.992 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:33.992 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:33.993 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110943, pluginId: LocalNotifications, methodName: requestPermissions
+2026-01-29 18:37:33.993 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110943, pluginId: LocalNotifications, methodName: requestPermissions, methodData: {}
+2026-01-29 18:37:33.993 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110944, pluginId: LocalNotifications, methodName: createChannel
+2026-01-29 18:37:33.993 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110944, pluginId: LocalNotifications, methodName: createChannel, methodData: {"id":"timer_complete","name":"Timer Complete","description":"Prayer timer completion alerts","sound":"timer_chime.wav","importance":4,"vibration":true}
+2026-01-29 18:37:34.005 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: {"display":"granted"}
+2026-01-29 18:37:34.006 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:34.012 10914-10980 AAudio                  com.vagabondbible.app                I  AAudioStreamBuilder_openStream() called ----------------------------------------
+2026-01-29 18:37:34.012 10914-10980 AudioStreamBuilder      com.vagabondbible.app                I  rate   =  24000, channels  = 2, channelMask = 0x3, format   = 5, sharing = SH, dir = OUTPUT
+2026-01-29 18:37:34.012 10914-10980 AudioStreamBuilder      com.vagabondbible.app                I  device =      0, sessionId = -1, perfMode = 11, callback: ON with frames = 512
+2026-01-29 18:37:34.012 10914-10980 AudioStreamBuilder      com.vagabondbible.app                I  usage  =      1, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+2026-01-29 18:37:34.012 10914-10980 AudioStreamBuilder      com.vagabondbible.app                I  privacy sensitive = false, opPackageName = (null), attributionTag = (null)
+2026-01-29 18:37:34.013 10914-10980 AudioStreamBuilder      com.vagabondbible.app                D  build() MMAP not used because AAUDIO_PERFORMANCE_MODE_LOW_LATENCY not requested.
+2026-01-29 18:37:34.013 10914-10980 gabondbible.app         com.vagabondbible.app                D  PlayerBase::PlayerBase()
+2026-01-29 18:37:34.013 10914-10980 AudioStreamTrack        com.vagabondbible.app                D  open(), request notificationFrames = 0, frameCount = 0
+2026-01-29 18:37:34.022 10914-10980 AAudioStream            com.vagabondbible.app                D  setState(s#1) from 0 to 2
+2026-01-29 18:37:34.024 10914-10980 AAudio                  com.vagabondbible.app                I  AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#1 ----------------
+2026-01-29 18:37:34.028 10914-10980 AAudio                  com.vagabondbible.app                D  AAudioStream_requestStart(s#1) called --------------
+2026-01-29 18:37:34.028 10914-10980 AAudioStream            com.vagabondbible.app                D  setState(s#1) from 2 to 3
+2026-01-29 18:37:34.039 10914-10980 AAudio                  com.vagabondbible.app                D  AAudioStream_requestStart(s#1) returned 0 ---------
+2026-01-29 18:37:34.040 10914-10926 AudioStreamLegacy       com.vagabondbible.app                D  onAudioDeviceUpdate(deviceId = 3)
+2026-01-29 18:37:34.164 10914-11121 AAudioStream            com.vagabondbible.app                D  setState(s#1) from 3 to 4
+2026-01-29 18:37:35.558 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:35.560 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110945, pluginId: Haptics, methodName: impact
+2026-01-29 18:37:35.560 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110945, pluginId: Haptics, methodName: impact, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:35.562 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:36.898 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2421 - Msg: [LOGIN] Auth state changed - isLoading: true isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+2026-01-29 18:37:36.901 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:36.902 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-29 18:37:36.902 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-29 18:37:36.902 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110946, pluginId: FirebaseAuthentication, methodName: addListener
+2026-01-29 18:37:36.903 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110946, pluginId: FirebaseAuthentication, methodName: addListener, methodData: {"eventName":"authStateChange"}
+2026-01-29 18:37:36.903 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-29 18:37:36.903 10914-10971 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-29 18:37:38.398 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2337 - Msg: Firebase auth timeout - falling back to session check
+2026-01-29 18:37:38.411 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/assets/White_Logo_Big_1767755759050-lc-FDA9Z.png
+2026-01-29 18:37:38.418 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2421 - Msg: [LOGIN] Auth state changed - isLoading: false isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+2026-01-29 18:37:38.661 10914-10914 AssistStructure         com.vagabondbible.app                I  Flattened final assist data: 2992 bytes, containing 1 windows, 6 views
+2026-01-29 18:37:40.445 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File: https://localhost/assets/index-MN6pbso_.js - Line 2421 - Msg: [LOGIN] Auth state changed - isLoading: false isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+2026-01-29 18:37:40.459 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-512x512.png
+2026-01-29 18:37:40.460 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:40.460 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110947, pluginId: FirebaseAuthentication, methodName: removeAllListeners
+2026-01-29 18:37:40.460 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110947, pluginId: FirebaseAuthentication, methodName: removeAllListeners, methodData: {}
+2026-01-29 18:37:40.463 10914-10969 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/android-chrome-192x192.png
+2026-01-29 18:37:40.464 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:40.464 10914-10970 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-16x16.png
+2026-01-29 18:37:40.465 10914-10981 Capacitor               com.vagabondbible.app                D  Handling local request: https://localhost/favicon-32x32.png
+2026-01-29 18:37:42.191 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:42.193 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110948, pluginId: Haptics, methodName: impact
+2026-01-29 18:37:42.193 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110948, pluginId: Haptics, methodName: impact, methodData: {"style":"LIGHT"}
+2026-01-29 18:37:42.196 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 333 - Msg: undefined
+2026-01-29 18:37:44.045 10914-10980 AAudio                  com.vagabondbible.app                D  AAudioStream_requestStop(s#1) called
+2026-01-29 18:37:44.045 10914-10980 AAudioStream            com.vagabondbible.app                D  setState(s#1) from 4 to 9
+2026-01-29 18:37:44.045 10914-10980 AudioTrack              com.vagabondbible.app                D  stop(263): called with 241964 frames delivered
+2026-01-29 18:37:44.045 10914-10980 AAudioStream            com.vagabondbible.app                D  setState(s#1) from 9 to 10
+2026-01-29 18:37:47.670 10914-10980 AAudio                  com.vagabondbible.app                D  AAudioStream_requestStart(s#1) called --------------
+2026-01-29 18:37:47.670 10914-10980 AAudioStream            com.vagabondbible.app                D  setState(s#1) from 10 to 3
+2026-01-29 18:37:47.672 10914-10914 Capacitor/Console       com.vagabondbible.app                I  File:  - Line 349 - Msg: [object Object]
+2026-01-29 18:37:47.677 10914-10914 Capacitor/Plugin        com.vagabondbible.app                V  To native (Capacitor plugin): callbackId: 115110949, pluginId: CapacitorMusicControls, methodName: create
+2026-01-29 18:37:47.677 10914-10914 Capacitor               com.vagabondbible.app                V  callback: 115110949, pluginId: CapacitorMusicControls, methodName: create, methodData: {"track":"Breath Like Quiet Water","artist":"Pastor Brett","album":"Vagabond Bible","cover":"https:\/\/vagabondbible.com\/prayer-artwork.png","hasPrev":false,"hasNext":true,"hasClose":true,"isPlaying":true,"playIcon":"media_play","pauseIcon":"media_pause","prevIcon":"media_prev","nextIcon":"media_next","closeIcon":"media_close","notificationIcon":"notification"}
+2026-01-29 18:37:47.680 10914-11000 Capacitor               com.vagabondbible.app                E  Serious error executing plugin
+                                                                                                    java.lang.reflect.InvocationTargetException
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138)
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841)
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0)
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205)
+                                                                                                    	at android.os.Looper.loop(Looper.java:294)
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
+                                                                                                    Caused by: java.lang.SecurityException: com.vagabondbible.app: One of RECEIVER_EXPORTED or RECEIVER_NOT_EXPORTED should be specified when a receiver isn't being registered exclusively for system broadcasts
+                                                                                                    	at android.os.Parcel.createExceptionOrNull(Parcel.java:3057)
+                                                                                                    	at android.os.Parcel.createException(Parcel.java:3041)
+                                                                                                    	at android.os.Parcel.readException(Parcel.java:3024)
+                                                                                                    	at android.os.Parcel.readException(Parcel.java:2966)
+                                                                                                    	at android.app.IActivityManager$Stub$Proxy.registerReceiverWithFeature(IActivityManager.java:5684)
+                                                                                                    	at android.app.ContextImpl.registerReceiverInternal(ContextImpl.java:1852)
+                                                                                                    	at android.app.ContextImpl.registerReceiver(ContextImpl.java:1792)
+                                                                                                    	at android.app.ContextImpl.registerReceiver(ContextImpl.java:1780)
+                                                                                                    	at android.content.ContextWrapper.registerReceiver(ContextWrapper.java:755)
+                                                                                                    	at com.ingageco.capacitormusiccontrols.CapacitorMusicControls.registerBroadcaster(CapacitorMusicControls.java:118)
+                                                                                                    	at com.ingageco.capacitormusiccontrols.CapacitorMusicControls.initialize(CapacitorMusicControls.java:189)
+                                                                                                    	at com.ingageco.capacitormusiccontrols.CapacitorMusicControls.create(CapacitorMusicControls.java:74)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138) 
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841) 
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0) 
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0) 
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:294) 
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67) 
+                                                                                                    Caused by: android.os.RemoteException: Remote stack trace:
+                                                                                                    	at com.android.server.am.ActivityManagerService.registerReceiverWithFeature(ActivityManagerService.java:14057)
+                                                                                                    	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2570)
+                                                                                                    	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2743)
+                                                                                                    	at android.os.Binder.execTransactInternal(Binder.java:1339)
+                                                                                                    	at android.os.Binder.execTransact(Binder.java:1275)
+2026-01-29 18:37:47.680 10914-11000 AndroidRuntime          com.vagabondbible.app                E  FATAL EXCEPTION: CapacitorPlugins
+                                                                                                    Process: com.vagabondbible.app, PID: 10914
+                                                                                                    java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:850)
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0)
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205)
+                                                                                                    	at android.os.Looper.loop(Looper.java:294)
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67)
+                                                                                                    Caused by: java.lang.reflect.InvocationTargetException
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138)
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841)
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0) 
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0) 
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:294) 
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67) 
+                                                                                                    Caused by: java.lang.SecurityException: com.vagabondbible.app: One of RECEIVER_EXPORTED or RECEIVER_NOT_EXPORTED should be specified when a receiver isn't being registered exclusively for system broadcasts
+                                                                                                    	at android.os.Parcel.createExceptionOrNull(Parcel.java:3057)
+                                                                                                    	at android.os.Parcel.createException(Parcel.java:3041)
+                                                                                                    	at android.os.Parcel.readException(Parcel.java:3024)
+                                                                                                    	at android.os.Parcel.readException(Parcel.java:2966)
+                                                                                                    	at android.app.IActivityManager$Stub$Proxy.registerReceiverWithFeature(IActivityManager.java:5684)
+                                                                                                    	at android.app.ContextImpl.registerReceiverInternal(ContextImpl.java:1852)
+                                                                                                    	at android.app.ContextImpl.registerReceiver(ContextImpl.java:1792)
+                                                                                                    	at android.app.ContextImpl.registerReceiver(ContextImpl.java:1780)
+                                                                                                    	at android.content.ContextWrapper.registerReceiver(ContextWrapper.java:755)
+                                                                                                    	at com.ingageco.capacitormusiccontrols.CapacitorMusicControls.registerBroadcaster(CapacitorMusicControls.java:118)
+                                                                                                    	at com.ingageco.capacitormusiccontrols.CapacitorMusicControls.initialize(CapacitorMusicControls.java:189)
+                                                                                                    	at com.ingageco.capacitormusiccontrols.CapacitorMusicControls.create(CapacitorMusicControls.java:74)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.getcapacitor.PluginHandle.invoke(PluginHandle.java:138) 
+                                                                                                    	at com.getcapacitor.Bridge.lambda$callPluginMethod$0(Bridge.java:841) 
+                                                                                                    	at com.getcapacitor.Bridge.$r8$lambda$FNYM7cvgeBk0k8YXQH7M96Mrf-c(Unknown Source:0) 
+                                                                                                    	at com.getcapacitor.Bridge$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0) 
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:205) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:294) 
+                                                                                                    	at android.os.HandlerThread.run(HandlerThread.java:67) 
+                                                                                                    Caused by: android.os.RemoteException: Remote stack trace:
+                                                                                                    	at com.android.server.am.ActivityManagerService.registerReceiverWithFeature(ActivityManagerService.java:14057)
+                                                                                                    	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2570)
+                                                                                                    	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2743)
+                                                                                                    	at android.os.Binder.execTransactInternal(Binder.java:1339)
+                                                                                                    	at android.os.Binder.execTransact(Binder.java:1275)
+2026-01-29 18:37:47.688 10914-10980 AAudio                  com.vagabondbible.app                D  AAudioStream_requestStart(s#1) returned 0 ---------
+2026-01-29 18:37:47.688 10914-11122 AudioStreamLegacy       com.vagabondbible.app                D  onAudioDeviceUpdate(deviceId = 3)
+2026-01-29 18:37:47.691 10914-11000 Process                 com.vagabondbible.app                I  Sending signal. PID: 10914 SIG: 9
+---------------------------- PROCESS ENDED (10914) for package com.vagabondbible.app ----------------------------
