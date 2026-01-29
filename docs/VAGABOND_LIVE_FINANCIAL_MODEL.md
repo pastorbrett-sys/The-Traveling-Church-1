@@ -202,26 +202,152 @@
 - Custom branding, dedicated support
 - *15% margin on overage*
 
-### Additional Revenue Streams
+### White-Label Enterprise (Megachurches)
+
+Custom-branded platform sold to megachurches (2,000+ members).
+
+| Contract Size | Annual Price | What's Included | Target Count |
+|---------------|--------------|-----------------|--------------|
+| Mid-size (2K-5K members) | $8,000/yr | White-label, 10 hosts, basic support | Y1: 0, Y2: 1 |
+| Large (5K-15K members) | $18,000/yr | Full branding, 25 hosts, priority support | Y1: 1, Y2: 2 |
+| Mega (15K+ members) | $36,000/yr | Unlimited hosts, integrations, dedicated CSM | Y1: 0, Y2: 1 |
+
+**White-Label Revenue Projection:**
+- Year 1: 1 large church = **$18,000**
+- Year 2: 1 mid + 2 large + 1 mega = **$80,000**
+
+*Cost to serve: ~30% (infrastructure, support) → 70% gross margin*
+
+---
+
+### Donation Processing (Rev Share)
+
+Stripe Connect integration allows donations during/after Bible studies. Churches get convenience, we take a platform fee.
+
+| Donation Volume | Our Fee | Church Keeps | Notes |
+|-----------------|---------|--------------|-------|
+| $0-$10K/mo | 3% | 97% - Stripe fees | Competitive with Tithe.ly |
+| $10K-$50K/mo | 2.5% | 97.5% - Stripe fees | Volume discount |
+| $50K+/mo | 2% | 98% - Stripe fees | Enterprise negotiated |
+
+**Donation Revenue Projection:**
+
+Assumptions:
+- 20% of paid subscribers enable donations
+- Average $50/session donated per active study (highly engaged groups)
+- 4 sessions/month average
+
+| Year | Active Donation Groups | Donations Processed | Platform Fee (2.5%) |
+|------|------------------------|--------------------|--------------------|
+| Y1 | 50 groups | $120,000 | **$3,000** |
+| Y2 | 200 groups | $480,000 | **$12,000** |
+| Y3 | 500 groups | $1,200,000 | **$30,000** |
+
+*Near 100% margin - Stripe handles all processing*
+
+---
+
+### Data & Analytics Revenue
+
+Anonymized, aggregate insights sold to Christian organizations. **Privacy-first**: no individual data, only trends.
+
+| Product | Buyer | Price | Frequency |
+|---------|-------|-------|-----------|
+| **Trending Topics Report** | Publishers, seminaries | $500-2,000/report | Quarterly |
+| **Engagement Benchmarks** | Denominations | $5,000-15,000/yr | Annual subscription |
+| **Research Partnerships** | Seminaries, Barna Group | $10,000-25,000 | Per study |
+
+**Data Revenue Projection:**
+
+| Year | Products Sold | Revenue |
+|------|---------------|---------|
+| Y1 | 2 quarterly reports | **$2,000** |
+| Y2 | 4 reports + 1 benchmark sub | **$12,000** |
+| Y3 | 8 reports + 3 subs + 1 research | **$45,000** |
+
+*90%+ margin - data already collected, minimal incremental cost*
+
+---
+
+### Combined Revenue Streams Summary
+
+| Revenue Stream | Y1 | Y2 | Y3 | Margin |
+|----------------|----|----|----|----|
+| **Subscriptions** (Personal/Ministry/Church) | $62,000 | $180,000 | $400,000 | 53% |
+| **White-Label Enterprise** | $18,000 | $80,000 | $150,000 | 70% |
+| **Donation Processing** | $3,000 | $12,000 | $30,000 | 95% |
+| **Data & Analytics** | $2,000 | $12,000 | $45,000 | 90% |
+| **TOTAL** | **$85,000** | **$284,000** | **$625,000** | ~60% blended |
+
+### Additional Revenue Streams (Minor)
 
 | Stream | Rate | Projected % of Revenue |
 |--------|------|------------------------|
-| Donation Processing Fee | 2% of donations | 10-15% |
-| Recording Add-on (Personal/Ministry) | $0.50/session | 5-8% |
-| Storage Overage | $0.10/GB over limit | 2-5% |
+| Recording Add-on (Personal/Ministry) | $0.50/session | 3-5% |
+| Storage Overage | $0.10/GB over limit | 1-2% |
 | Pay-per-session (future) | $1.99/session | 5-10% |
 
 ---
 
 ## Scenario Projections {#scenario-projections}
 
-### Year 1 Projections (Using Final Recommended Pricing)
+### Diversified Revenue Model (Recommended)
 
-**Pricing Used:**
-- Personal: $9.99/mo
-- Ministry: $29.99/mo  
-- Church: $99.99/mo
-- Enterprise: Usage-based
+This model combines all four revenue streams for realistic projections.
+
+#### Year 1 - Launch & Validate
+
+| Revenue Stream | Q1 | Q2 | Q3 | Q4 | Y1 Total |
+|----------------|----|----|----|----|----------|
+| **Subscriptions** | $2,000 | $8,000 | $20,000 | $32,000 | $62,000 |
+| **White-Label** (1 large church Q3) | $0 | $0 | $9,000 | $9,000 | $18,000 |
+| **Donation Fees** | $200 | $500 | $1,000 | $1,300 | $3,000 |
+| **Data Sales** | $0 | $500 | $500 | $1,000 | $2,000 |
+| **TOTAL** | $2,200 | $9,000 | $30,500 | $43,300 | **$85,000** |
+
+**Y1 Costs & Profit:**
+| Category | Amount | Notes |
+|----------|--------|-------|
+| Variable Costs | $33,000 | 53% of subscriptions, 30% of white-label |
+| Fixed Costs | $6,000 | Infrastructure, support tools |
+| **Gross Profit** | $46,000 | 54% margin |
+| Marketing/Sales | $10,000 | Church conferences, ads |
+| **Net Profit** | **$36,000** | 42% net margin |
+
+#### Year 2 - Scale & Enterprise Focus
+
+| Revenue Stream | Q1 | Q2 | Q3 | Q4 | Y2 Total |
+|----------------|----|----|----|----|----------|
+| **Subscriptions** | $38,000 | $42,000 | $48,000 | $52,000 | $180,000 |
+| **White-Label** (4 churches) | $15,000 | $20,000 | $22,000 | $23,000 | $80,000 |
+| **Donation Fees** | $2,000 | $3,000 | $3,500 | $3,500 | $12,000 |
+| **Data Sales** | $2,000 | $3,000 | $3,500 | $3,500 | $12,000 |
+| **TOTAL** | $57,000 | $68,000 | $77,000 | $82,000 | **$284,000** |
+
+**Y2 Costs & Profit:**
+| Category | Amount | Notes |
+|----------|--------|-------|
+| Variable Costs | $119,000 | Scales with usage |
+| Fixed Costs | $15,000 | Team growth |
+| **Gross Profit** | $150,000 | 53% margin |
+| Marketing/Sales | $30,000 | Dedicated sales for enterprise |
+| **Net Profit** | **$120,000** | 42% net margin |
+
+#### Year 3 - Market Leadership
+
+| Revenue Stream | Y3 Total | Notes |
+|----------------|----------|-------|
+| **Subscriptions** | $400,000 | ~2,000 paid subscribers |
+| **White-Label** | $150,000 | 8-10 megachurches |
+| **Donation Fees** | $30,000 | $1.2M processed |
+| **Data Sales** | $45,000 | Research partnerships |
+| **TOTAL** | **$625,000** | |
+
+**Y3 Net Profit: ~$250,000** (40% net margin)
+
+---
+
+### Subscription-Only Projections (For Reference)
 
 #### Scenario A: Conservative (Slow Growth)
 
@@ -232,9 +358,9 @@
 | 6 | 400 | 40 | 20 | 5 | $1,500 |
 | 12 | 1,000 | 100 | 60 | 15 | $4,300 |
 
-**Year 1 Summary (Conservative):**
-- Total Revenue: ~$25,000
-- Variable Costs (~47% of revenue): ~$12,000
+**Year 1 Summary (Conservative, Subs Only):**
+- Subscription Revenue: ~$25,000
+- Variable Costs (~47%): ~$12,000
 - Fixed Costs: ~$4,000
 - **Net Profit: ~$9,000**
 
@@ -249,11 +375,11 @@
 
 *MRR check Month 1: 8×$9.99 + 4×$29.99 + 1×$99.99 = $80 + $120 + $100 = $300*
 
-**Year 1 Summary (Moderate):**
-- Total Revenue: ~$85,000
-- Variable Costs (~47% of revenue): ~$40,000
+**Year 1 Summary (Moderate, Subs Only):**
+- Subscription Revenue: ~$62,000
+- Variable Costs (~47%): ~$29,000
 - Fixed Costs: ~$6,000
-- **Net Profit: ~$39,000**
+- **Net Profit: ~$27,000**
 
 #### Scenario C: Aggressive Growth (Viral/Partnership)
 
@@ -442,31 +568,62 @@ This gives healthy CAC budget for paid acquisition if needed, but organic/referr
 
 ## Recommendations
 
-### Pricing Summary (Final)
-- **Personal**: $9.99/mo - 8 sessions, 8 max participants, video only
-- **Ministry**: $29.99/mo - 12 sessions, 12 max participants, +AI summaries
-- **Church**: $99.99/mo - 20 sessions, 20 max participants, +recording
-- **Enterprise**: $199+ usage-based - unlimited, captions, 100+ participants
+### Business Model Summary
 
-### Cost Optimization
-1. **Cap participant counts** - keeps video costs predictable
-2. **Recording as add-on** for Ministry tier ($0.50/session) - reduces base cost
-3. **Captions only for Enterprise** - expensive per-minute, justified at scale
-4. **Limit recording storage** to 30-90 days - reduces ongoing storage costs
-5. **Negotiate volume discounts** with Daily.co at 100K+ minutes/month
+**4-Stream Revenue Diversification:**
 
-### Growth Strategy
-1. **Free tier** as acquisition channel with strict limits (2 sessions, 5 ppl)
-2. **Annual discounts** (17% off) to improve cash flow and reduce churn
-3. **Referral program** - free month per referred paid subscriber
-4. **Partnership with denominations** for Enterprise deals
-5. **Cross-sell to Vagabond Bible Pro** users - warm leads
+| Stream | Y1 | Y2 | Y3 | Margin |
+|--------|----|----|----|----|
+| Subscriptions | $62K | $180K | $400K | 53% |
+| White-Label Enterprise | $18K | $80K | $150K | 70% |
+| Donation Processing | $3K | $12K | $30K | 95% |
+| Data & Analytics | $2K | $12K | $45K | 90% |
+| **TOTAL** | **$85K** | **$284K** | **$625K** | ~60% |
+
+### Go-To-Market Strategy
+
+**Phase 1: MVP with Small Groups (Months 1-6)**
+1. Test with existing Vagabond Bible Pro users
+2. Focus on Personal & Ministry tiers
+3. Gather testimonials, usage data, case studies
+4. Iterate on Bible integration and AI features
+
+**Phase 2: Enterprise Sales (Months 6-12)**
+1. Land first megachurch white-label deal (Q3 target)
+2. Build case study from successful small groups
+3. Attend church tech conferences (e.g., SALT, Insiders)
+4. Partner with church tech consultants
+
+**Phase 3: Scale All Streams (Year 2+)**
+1. Expand white-label to 4+ megachurches
+2. Launch donation processing for all paid tiers
+3. Sell first data/analytics reports
+4. Build denomination partnerships
+
+### Pricing Summary
+
+| Tier | Price | Target Customer |
+|------|-------|-----------------|
+| **Free** | $0 | Leads, evaluation |
+| **Personal** | $9.99/mo | Individual leaders |
+| **Ministry** | $29.99/mo | Home churches |
+| **Church** | $99.99/mo | Growing churches |
+| **White-Label** | $8K-36K/yr | Megachurches (2K+ members) |
 
 ### Key Success Metrics
-1. **50+ paid subscribers** by Month 3 (validates product-market fit)
-2. **100 paid subscribers** by Month 6 (sustainable growth)
-3. **<10% monthly churn** (healthy retention)
-4. **>50% gross margin** on all tiers (profitable unit economics)
+
+**Year 1 Targets:**
+- 200+ paid subscribers by Month 6
+- 500+ paid subscribers by Month 12
+- 1 white-label enterprise deal by Q3
+- <10% monthly churn
+- >50% blended gross margin
+
+**Year 2 Targets:**
+- 1,000+ paid subscribers
+- 4 white-label deals totaling $80K ARR
+- $1M+ in donation volume processed
+- First data partnership ($10K+)
 
 ---
 
