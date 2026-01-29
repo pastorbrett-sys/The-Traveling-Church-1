@@ -166,6 +166,37 @@ Vagabond Live transforms online Bible study by natively integrating scripture, A
 | Tablet | 640-1024px | Split view optional, floating controls |
 | Desktop | >1024px | Side-by-side video + Bible, persistent panels |
 
+### Picture-in-Picture Video
+
+When the Bible reader is open full-screen, a mini video window shows the host/active speaker:
+
+| Feature | Implementation |
+|---------|----------------|
+| **Mini video size** | 120x90px (draggable to any corner) |
+| **Shows** | Active speaker or host (user choice) |
+| **Position** | Defaults to top-right, remembers last position |
+| **Tap to expand** | Returns to full video view |
+| **Drag anywhere** | Same physics as floating prayer button |
+| **Auto-hide option** | User can dismiss, audio continues |
+
+**Layout when Bible panel open:**
+```
+┌─────────────────────────┐
+│  ┌──────┐               │
+│  │ Host │  (draggable)  │
+│  │ PiP  │               │
+│  └──────┘               │
+│                         │
+│   John 3:16             │
+│   For God so loved...   │
+│                         │
+│   [verse content]       │
+│                         │
+│  ─────────────────────  │
+│  [mute] [cam] [react]   │
+└─────────────────────────┘
+```
+
 ### Touch-Optimized Features
 
 1. **Swipe gestures**
