@@ -269,15 +269,23 @@ Anonymized, aggregate insights sold to Christian organizations. **Privacy-first*
 
 ---
 
-### Combined Revenue Streams Summary
+### Combined Revenue & Profit Summary
 
-| Revenue Stream | Y1 | Y2 | Y3 | Margin |
-|----------------|----|----|----|----|
-| **Subscriptions** (Personal/Ministry/Church) | $62,000 | $180,000 | $400,000 | 53% |
-| **White-Label Enterprise** | $18,000 | $80,000 | $150,000 | 70% |
-| **Donation Processing** | $3,000 | $12,000 | $30,000 | 95% |
-| **Data & Analytics** | $2,000 | $12,000 | $45,000 | 90% |
-| **TOTAL** | **$85,000** | **$284,000** | **$625,000** | ~60% blended |
+| Revenue Stream | Y1 Rev | Y1 Profit | Y2 Rev | Y2 Profit | Y3 Rev | Y3 Profit | Margin |
+|----------------|--------|-----------|--------|-----------|--------|-----------|--------|
+| **Subscriptions** | $62,000 | $33,000 | $180,000 | $95,000 | $400,000 | $212,000 | 53% |
+| **White-Label** | $18,000 | $12,600 | $80,000 | $56,000 | $150,000 | $105,000 | 70% |
+| **Donation Fees** | $3,000 | $2,850 | $12,000 | $11,400 | $30,000 | $28,500 | 95% |
+| **Data Sales** | $2,000 | $1,800 | $12,000 | $10,800 | $45,000 | $40,500 | 90% |
+| **GROSS PROFIT** | $85,000 | **$50,250** | $284,000 | **$173,200** | $625,000 | **$386,000** | ~60% |
+
+### Net Profit After Operating Costs
+
+| Year | Gross Profit | Fixed Costs | Marketing/Sales | **Net Profit** | Net Margin |
+|------|--------------|-------------|-----------------|----------------|------------|
+| **Y1** | $50,250 | $6,000 | $10,000 | **$34,250** | 40% |
+| **Y2** | $173,200 | $15,000 | $30,000 | **$128,200** | 45% |
+| **Y3** | $386,000 | $25,000 | $60,000 | **$301,000** | 48% |
 
 ### Additional Revenue Streams (Minor)
 
@@ -570,15 +578,20 @@ This gives healthy CAC budget for paid acquisition if needed, but organic/referr
 
 ### Business Model Summary
 
-**4-Stream Revenue Diversification:**
+**4-Stream Revenue & Profit:**
 
-| Stream | Y1 | Y2 | Y3 | Margin |
-|--------|----|----|----|----|
-| Subscriptions | $62K | $180K | $400K | 53% |
-| White-Label Enterprise | $18K | $80K | $150K | 70% |
-| Donation Processing | $3K | $12K | $30K | 95% |
-| Data & Analytics | $2K | $12K | $45K | 90% |
-| **TOTAL** | **$85K** | **$284K** | **$625K** | ~60% |
+| Stream | Y1 Rev | Y1 Profit | Y2 Rev | Y2 Profit | Y3 Rev | Y3 Profit |
+|--------|--------|-----------|--------|-----------|--------|-----------|
+| Subscriptions | $62K | $33K | $180K | $95K | $400K | $212K |
+| White-Label | $18K | $13K | $80K | $56K | $150K | $105K |
+| Donations | $3K | $3K | $12K | $11K | $30K | $29K |
+| Data | $2K | $2K | $12K | $11K | $45K | $41K |
+| **TOTAL** | **$85K** | **$51K** | **$284K** | **$173K** | **$625K** | **$387K** |
+
+**Net Profit (after fixed + marketing):**
+- **Y1: $34K** (40% net margin)
+- **Y2: $128K** (45% net margin)
+- **Y3: $301K** (48% net margin)
 
 ### Go-To-Market Strategy
 
