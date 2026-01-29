@@ -144,6 +144,74 @@ Vagabond Live transforms online Bible study by natively integrating scripture, A
 
 ---
 
+## Mobile-First Architecture
+
+**Critical requirement**: Most Bible study participants join from phones. Mobile must be first-class from day 1.
+
+### Mobile UI Principles
+
+| Element | Mobile Approach |
+|---------|-----------------|
+| **Video Layout** | Stack view (speaker on top, participants below) vs desktop grid |
+| **Controls** | Large touch targets (48px+), thumb-reachable bottom placement |
+| **Bible Panel** | Full-screen slide-up sheet, not side panel |
+| **Chat** | Collapsible overlay, swipe to dismiss |
+| **Reactions** | Floating button bar, haptic feedback |
+
+### Responsive Breakpoints
+
+| Device | Width | Layout |
+|--------|-------|--------|
+| Mobile | <640px | Stack layout, bottom controls, sheet-based panels |
+| Tablet | 640-1024px | Split view optional, floating controls |
+| Desktop | >1024px | Side-by-side video + Bible, persistent panels |
+
+### Touch-Optimized Features
+
+1. **Swipe gestures**
+   - Swipe up: Open Bible panel
+   - Swipe down: Minimize to audio-only
+   - Swipe left/right: Navigate Bible chapters
+
+2. **One-hand operation**
+   - All primary controls within thumb reach
+   - Mute/unmute, camera toggle, reactions at bottom
+   - "Raise hand" accessible without scrolling
+
+3. **Safe area handling**
+   - Respect notch/Dynamic Island on iOS
+   - Handle Android navigation gestures
+   - Same approach as Vagabond Bible (already solved)
+
+### Video Performance on Mobile
+
+| Optimization | Implementation |
+|--------------|----------------|
+| **Adaptive bitrate** | Daily.co handles automatically |
+| **Audio-only mode** | Save data when video not needed |
+| **Background audio** | Continue listening when app backgrounded |
+| **Low-power mode** | Reduce video quality on low battery |
+
+### Native App Strategy (Capacitor)
+
+Same approach as Vagabond Bible:
+- **Shared codebase** - React web app wrapped with Capacitor
+- **Platform detection** - `Capacitor.isNativePlatform()` for native features
+- **Native video** - Daily.co has iOS/Android SDKs if web performance insufficient
+- **Push notifications** - Session reminders via existing Firebase setup
+
+### Mobile-Specific Testing Checklist
+
+- [ ] Portrait and landscape orientation
+- [ ] Soft keyboard doesn't cover chat input
+- [ ] Video continues when switching apps briefly
+- [ ] Audio routing (speaker, earpiece, Bluetooth)
+- [ ] Screen sharing from mobile (host feature)
+- [ ] Works on slow 3G/4G connections
+- [ ] Battery usage acceptable for 1-hour session
+
+---
+
 ## Financial Analysis
 
 ### Service Pricing Research (January 2025)
