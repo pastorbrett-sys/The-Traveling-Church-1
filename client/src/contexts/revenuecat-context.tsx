@@ -14,7 +14,16 @@ interface RevenueCatContextType {
 
 const RevenueCatContext = createContext<RevenueCatContextType | null>(null);
 
-const REVENUECAT_SDK_KEY = 'appl_IHuuguwDzrFpaSziwpBDtyAdmqg';
+const REVENUECAT_IOS_API_KEY = 'appl_IHuuguwDzrFpaSziwpBDtyAdmqg';
+const REVENUECAT_ANDROID_API_KEY = 'goog_ZKYPzTyUWBvTPYIVHpgXcllVDzx';
+
+function getRevenueCatApiKey(): string {
+  const platform = Capacitor.getPlatform();
+  if (platform === 'android') {
+    return REVENUECAT_ANDROID_API_KEY;
+  }
+  return REVENUECAT_IOS_API_KEY;
+}
 
 export function RevenueCatProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -44,7 +53,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
         await PurchasesModule.setLogLevel({ level: LOG_LEVEL.DEBUG });
         
         await PurchasesModule.configure({
-          apiKey: REVENUECAT_SDK_KEY,
+          apiKey: getRevenueCatApiKey(),
         });
 
         setIsInitialized(true);

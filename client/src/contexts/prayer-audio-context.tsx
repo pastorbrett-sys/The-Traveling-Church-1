@@ -275,8 +275,10 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
       } else {
         await CapacitorMusicControls.destroy();
       }
-    } catch (error) {
-      console.log("[PrayerAudio] Music controls error:", error);
+    } catch (error: any) {
+      // Android 14+ requires RECEIVER_EXPORTED flag which the plugin may not support
+      // Log but don't crash - audio will still play, just no lock screen controls
+      console.log("[PrayerAudio] Music controls unavailable (may be Android 14+ compatibility):", error?.message || error);
     }
   }, []);
 
