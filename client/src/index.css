@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* SCHABO Condensed font for Prayer Timer - local file for Android compatibility */
+/* SCHABO Condensed font for Prayer Timer */
 @font-face {
   font-family: 'SCHABO Condensed';
-  src: url('/fonts/SCHABO-Condensed.woff2') format('woff2');
+  src: url('/fonts/SCHABO-Condensed.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
