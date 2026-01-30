@@ -796,9 +796,9 @@ export default function PastorChat() {
                       data-testid={`message-${message.role}-${index}`}
                     >
                       {message.role === "user" ? (
-                        <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                        <p className="text-sm whitespace-pre-wrap selectable-text">{message.content}</p>
                       ) : (
-                        <div className="text-sm prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0.5 [&_strong]:font-serif [&_strong]:text-foreground">
+                        <div className="text-sm prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0.5 [&_strong]:font-serif [&_strong]:text-foreground selectable-text">
                           <ReactMarkdown>{message.content}</ReactMarkdown>
                         </div>
                       )}
