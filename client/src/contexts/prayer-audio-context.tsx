@@ -1,8 +1,30 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
 import { Capacitor } from "@capacitor/core";
-import { CapacitorMusicControls } from "capacitor-music-controls-plugin";
-import { Haptics, NotificationType } from "@capacitor/haptics";
-import { LocalNotifications } from "@capacitor/local-notifications";
+
+// Dynamic imports for native-only plugins to avoid Rollup bundling issues
+const getMusicControls = async () => {
+  if (Capacitor.isNativePlatform()) {
+    const module = await import("capacitor-music-controls-plugin");
+    return module.CapacitorMusicControls;
+  }
+  return null;
+};
+
+const getHaptics = async () => {
+  if (Capacitor.isNativePlatform()) {
+    const module = await import("@capacitor/haptics");
+    return { Haptics: module.Haptics, NotificationType: module.NotificationType };
+  }
+  return null;
+};
+
+const getLocalNotifications = async () => {
+  if (Capacitor.isNativePlatform()) {
+    const module = await import("@capacitor/local-notifications");
+    return module.LocalNotifications;
+  }
+  return null;
+};
 import { queryClient } from "@/lib/queryClient";
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
@@ -32,6 +54,9 @@ const setupAndroidChannel = async () => {
   if (androidChannelCreated || Capacitor.getPlatform() !== 'android') return;
   
   try {
+    const LocalNotifications = await getLocalNotifications();
+    if (!LocalNotifications) return;
+    
     await LocalNotifications.createChannel({
       id: 'timer_complete',
       name: 'Timer Complete',
@@ -46,11 +71,14 @@ const setupAndroidChannel = async () => {
   }
 };
 
-const preloadChime = () => {
+const preloadChime = async () => {
   console.log("[PrayerAudio] Preloading chime...");
   
   if (Capacitor.isNativePlatform()) {
-    LocalNotifications.requestPermissions().catch(() => {});
+    const LocalNotifications = await getLocalNotifications();
+    if (LocalNotifications) {
+      LocalNotifications.requestPermissions().catch(() => {});
+    }
     setupAndroidChannel();
   }
   
@@ -67,9 +95,18 @@ const playCompletionChime = async () => {
   console.log("[PrayerAudio] Timer complete! Playing chime. isNative:", Capacitor.isNativePlatform());
   
   if (Capacitor.isNativePlatform()) {
-    Haptics.notification({ type: NotificationType.Success }).catch(() => {});
+    const haptics = await getHaptics();
+    if (haptics) {
+      haptics.Haptics.notification({ type: haptics.NotificationType.Success }).catch(() => {});
+    }
     
     try {
+      const LocalNotifications = await getLocalNotifications();
+      if (!LocalNotifications) {
+        playWebAudioChime();
+        return;
+      }
+      
       const permission = await LocalNotifications.checkPermissions();
       
       if (permission.display === 'granted') {
@@ -255,8 +292,11 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     if (!Capacitor.isNativePlatform()) return;
     
     try {
+      const MusicControls = await getMusicControls();
+      if (!MusicControls) return;
+      
       if (playing) {
-        await CapacitorMusicControls.create({
+        await MusicControls.create({
           track: getDisplayName(trackName),
           artist: "Pastor Brett",
           album: "Vagabond Bible",
@@ -273,7 +313,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
           notificationIcon: "notification",
         });
       } else {
-        await CapacitorMusicControls.destroy();
+        await MusicControls.destroy();
       }
     } catch (error) {
       console.log("[PrayerAudio] Music controls error:", error);
