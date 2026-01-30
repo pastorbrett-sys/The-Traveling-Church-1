@@ -154,6 +154,15 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                 ) : isAuthenticated ? (
                   <div className="flex items-center gap-3 ml-2">
                     <Link
+                      href="/prayer-timer"
+                      className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors ${location === "/prayer-timer" ? "text-primary" : ""}`}
+                      data-testid="link-prayer"
+                    >
+                      <Timer className="w-4 h-4" />
+                      Prayer
+                    </Link>
+                    <div className="h-4 border-l border-border" />
+                    <Link
                       href="/ambassador"
                       className={`text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors ${location.startsWith("/ambassador") || location === "/admin" ? "text-primary" : ""}`}
                       data-testid="link-ambassador"
