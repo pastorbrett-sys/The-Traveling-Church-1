@@ -2,46 +2,45 @@ import { createContext, useContext, useState, useRef, useCallback, useEffect, ty
 import { Capacitor } from "@capacitor/core";
 import { queryClient } from "@/lib/queryClient";
 
-// Dynamic imports for native-only plugins to avoid Rollup/Vite bundling issues
-// These plugins only work on native platforms and would cause build errors if statically imported
-// Using /* @vite-ignore */ to prevent Vite from trying to resolve these at build/dev time
-const getMusicControls = async () => {
-  if (Capacitor.isNativePlatform()) {
-    try {
-      const module = await import(/* @vite-ignore */ "capacitor-music-controls-plugin-v3");
-      return module.CapacitorMusicControls;
-    } catch (e) {
-      console.log("[PrayerAudio] Music controls not available:", e);
-      return null;
-    }
+// Native-only plugin helpers - these are no-ops on web
+// The actual imports happen at runtime only on native platforms via Capacitor's native bridge
+const getMusicControls = async (): Promise<any> => {
+  if (!Capacitor.isNativePlatform()) return null;
+  try {
+    // Construct module name at runtime to prevent Vite static analysis
+    const moduleName = ['capacitor', 'music', 'controls', 'plugin', 'v3'].join('-');
+    const module = await (Function('m', 'return import(m)')(moduleName));
+    return module.CapacitorMusicControls;
+  } catch (e) {
+    console.log("[PrayerAudio] Music controls not available:", e);
+    return null;
   }
-  return null;
 };
 
-const getHaptics = async () => {
-  if (Capacitor.isNativePlatform()) {
-    try {
-      const module = await import(/* @vite-ignore */ "@capacitor/haptics");
-      return { Haptics: module.Haptics, NotificationType: module.NotificationType };
-    } catch (e) {
-      console.log("[PrayerAudio] Haptics not available:", e);
-      return null;
-    }
+const getHaptics = async (): Promise<any> => {
+  if (!Capacitor.isNativePlatform()) return null;
+  try {
+    // Construct module name at runtime to prevent Vite static analysis
+    const moduleName = '@capacitor/haptics';
+    const module = await (Function('m', 'return import(m)')(moduleName));
+    return { Haptics: module.Haptics, NotificationType: module.NotificationType };
+  } catch (e) {
+    console.log("[PrayerAudio] Haptics not available:", e);
+    return null;
   }
-  return null;
 };
 
-const getLocalNotifications = async () => {
-  if (Capacitor.isNativePlatform()) {
-    try {
-      const module = await import(/* @vite-ignore */ "@capacitor/local-notifications");
-      return module.LocalNotifications;
-    } catch (e) {
-      console.log("[PrayerAudio] Local notifications not available:", e);
-      return null;
-    }
+const getLocalNotifications = async (): Promise<any> => {
+  if (!Capacitor.isNativePlatform()) return null;
+  try {
+    // Construct module name at runtime to prevent Vite static analysis
+    const moduleName = '@capacitor/local-notifications';
+    const module = await (Function('m', 'return import(m)')(moduleName));
+    return module.LocalNotifications;
+  } catch (e) {
+    console.log("[PrayerAudio] Local notifications not available:", e);
+    return null;
   }
-  return null;
 };
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
