@@ -233,7 +233,17 @@ export default function Login() {
         return;
       }
       console.error("Apple sign in error:", err);
-      setError(getFirebaseErrorMessage(err.code));
+      
+      // Check for specific Apple sign-in errors
+      if (err.message?.includes("timed out")) {
+        setError("Apple sign-in timed out. Please try again.");
+      } else if (err.code === 'auth/operation-not-allowed') {
+        setError("Apple sign-in is not configured. Please use another sign-in method.");
+      } else if (err.message?.includes("Sign in with Apple")) {
+        setError("Apple sign-in failed. Please ensure Sign in with Apple is enabled in your device settings.");
+      } else {
+        setError(getFirebaseErrorMessage(err.code) || err.message || "Apple sign-in failed. Please try again.");
+      }
     } finally {
       setIsAppleSubmitting(false);
     }

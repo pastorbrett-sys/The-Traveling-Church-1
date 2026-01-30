@@ -138,8 +138,13 @@ export async function signInWithApple(): Promise<FirebaseUser | null> {
       
       const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
       
-      // Use the native Apple Sign-In flow
-      const result = await FirebaseAuthentication.signInWithApple();
+      // Use the native Apple Sign-In flow with timeout to prevent infinite spinner
+      const signInPromise = FirebaseAuthentication.signInWithApple();
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error("Apple sign-in timed out. Please check your internet connection and try again.")), 30000);
+      });
+      
+      const result = await Promise.race([signInPromise, timeoutPromise]);
       
       console.log("[NATIVE AUTH] Native Apple sign-in result:", result.user?.email);
       
