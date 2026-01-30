@@ -72,6 +72,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
+    { id: "prayer-timer", label: "Prayer", type: "link", href: "/prayer-timer" },
     { id: "contact", label: "Contact", type: "scroll" },
   ];
 
