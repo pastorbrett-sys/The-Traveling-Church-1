@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* SCHABO Condensed font for Prayer Timer */
+@font-face {
+  font-family: 'SCHABO Condensed';
+  src: url('/fonts/SCHABO-Condensed.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: hsl(30, 20%, 97%);
   --foreground: hsl(20, 10%, 25%);
