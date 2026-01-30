@@ -1,5 +1,5 @@
 import { Switch, Route, useLocation, Redirect } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -7,7 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 import { DynamicHead } from "@/components/dynamic-head";
 import { PlatformProvider } from "@/contexts/platform-context";
-import { RevenueCatProvider } from "@/contexts/revenuecat-context";
+import { RevenueCatProvider, useRevenueCat } from "@/contexts/revenuecat-context";
 import { PrayerAudioProvider } from "@/contexts/prayer-audio-context";
 import { FloatingPrayerButton } from "@/components/floating-prayer-button";
 import { PlatformToggle } from "@/components/platform-toggle";
@@ -148,6 +148,21 @@ function PushNotificationsHandler() {
   return null;
 }
 
+function RevenueCatUserSync() {
+  const { user } = useAuth();
+  const { isInitialized, loginUser } = useRevenueCat();
+  const hasLoggedInRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (user?.id && isInitialized && hasLoggedInRef.current !== user.id) {
+      hasLoggedInRef.current = user.id;
+      loginUser(user.id);
+    }
+  }, [user?.id, isInitialized, loginUser]);
+
+  return null;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -160,6 +175,7 @@ function App() {
               <DeepLinkHandler />
               <ReferralHandler />
               <PushNotificationsHandler />
+              <RevenueCatUserSync />
               <Toaster />
               <OfflineBanner />
               <Router />

@@ -286,5 +286,42 @@ export function registerRevenueCatWebhook(app: Express): void {
     }
   });
   
+  app.post("/api/revenuecat/sync-entitlement", async (req: Request, res: Response) => {
+    try {
+      const user = (req as any).user;
+      if (!user) {
+        return res.status(401).json({ error: "Not authenticated" });
+      }
+      
+      const { revenueCatUserId, entitlement, expiresAt } = req.body;
+      
+      if (!revenueCatUserId || typeof revenueCatUserId !== "string") {
+        return res.status(400).json({ error: "revenueCatUserId is required" });
+      }
+      
+      if (!entitlement || typeof entitlement !== "string") {
+        return res.status(400).json({ error: "entitlement is required" });
+      }
+      
+      const expiresAtDate = expiresAt ? new Date(expiresAt) : null;
+      
+      await db.update(users)
+        .set({
+          revenueCatUserId,
+          revenueCatEntitlement: entitlement,
+          revenueCatExpiresAt: expiresAtDate,
+          updatedAt: new Date(),
+        })
+        .where(eq(users.id, user.id));
+      
+      console.log(`[RevenueCat] Synced entitlement "${entitlement}" for user ${user.id} (expires: ${expiresAtDate})`);
+      
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error("Error syncing RevenueCat entitlement:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+  
   console.log("RevenueCat webhook endpoint registered at /api/revenuecat/webhook");
 }

@@ -238,6 +238,20 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       const result = await Purchases.purchasePackage({ aPackage: monthlyPackage });
       
       if (result.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
+        const expiration = result.customerInfo.entitlements.active["Vagabond Bible Pro"]?.expirationDate;
+        const revenueCatUserId = result.customerInfo.originalAppUserId;
+        
+        try {
+          await apiRequest("POST", "/api/revenuecat/sync-entitlement", {
+            revenueCatUserId,
+            entitlement: "Vagabond Bible Pro",
+            expiresAt: expiration,
+          });
+          console.log("[Purchase] Synced Pro entitlement to server");
+        } catch (syncErr) {
+          console.error("[Purchase] Failed to sync entitlement (non-critical):", syncErr);
+        }
+        
         toast({
           title: t.welcomePro,
           description: t.welcomeProDesc,
@@ -274,6 +288,20 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       const customerInfo = await Purchases.restorePurchases();
       
       if (customerInfo.customerInfo.entitlements.active["Vagabond Bible Pro"]) {
+        const expiration = customerInfo.customerInfo.entitlements.active["Vagabond Bible Pro"]?.expirationDate;
+        const revenueCatUserId = customerInfo.customerInfo.originalAppUserId;
+        
+        try {
+          await apiRequest("POST", "/api/revenuecat/sync-entitlement", {
+            revenueCatUserId,
+            entitlement: "Vagabond Bible Pro",
+            expiresAt: expiration,
+          });
+          console.log("[Restore] Synced Pro entitlement to server");
+        } catch (syncErr) {
+          console.error("[Restore] Failed to sync entitlement (non-critical):", syncErr);
+        }
+        
         toast({
           title: t.purchasesRestored,
           description: t.purchasesRestoredDesc,

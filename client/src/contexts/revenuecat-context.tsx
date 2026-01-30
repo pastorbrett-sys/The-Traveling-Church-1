@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import { Capacitor } from '@capacitor/core';
+import { apiRequest } from '@/lib/queryClient';
 
 interface RevenueCatContextType {
   isInitialized: boolean;
@@ -10,6 +11,7 @@ interface RevenueCatContextType {
   purchaseProduct: (productId: string) => Promise<boolean>;
   restorePurchases: () => Promise<boolean>;
   refreshEntitlements: () => Promise<void>;
+  loginUser: (appUserId: string) => Promise<void>;
 }
 
 const RevenueCatContext = createContext<RevenueCatContextType | null>(null);
@@ -149,6 +151,36 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
     }
   }, [Purchases, isInitialized]);
 
+  const loginUser = useCallback(async (appUserId: string): Promise<void> => {
+    if (!Purchases || !isInitialized) {
+      console.log('[RevenueCat] Not initialized yet, skipping login');
+      return;
+    }
+
+    try {
+      console.log(`[RevenueCat] Logging in user: ${appUserId}`);
+      
+      const result = await Purchases.logIn({ appUserID: appUserId });
+      console.log('[RevenueCat] Login successful, RevenueCat user ID:', result.customerInfo.originalAppUserId);
+      
+      const revenueCatUserId = result.customerInfo.originalAppUserId;
+      
+      try {
+        await apiRequest('POST', '/api/revenuecat/link', { revenueCatUserId });
+        console.log('[RevenueCat] Linked RevenueCat ID to server');
+      } catch (linkErr) {
+        console.error('[RevenueCat] Failed to link ID to server (non-critical):', linkErr);
+      }
+      
+      const hasProEntitlement = result.customerInfo.entitlements.active['Vagabond Bible Pro'] !== undefined;
+      setIsProUser(hasProEntitlement);
+      console.log('[RevenueCat] Pro status after login:', hasProEntitlement);
+      
+    } catch (err) {
+      console.error('[RevenueCat] Login error:', err);
+    }
+  }, [Purchases, isInitialized]);
+
   return (
     <RevenueCatContext.Provider value={{
       isInitialized,
@@ -159,6 +191,7 @@ export function RevenueCatProvider({ children }: { children: ReactNode }) {
       purchaseProduct,
       restorePurchases,
       refreshEntitlements,
+      loginUser,
     }}>
       {children}
     </RevenueCatContext.Provider>

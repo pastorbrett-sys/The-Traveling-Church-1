@@ -29,6 +29,7 @@ import BibleReader from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
+import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";
 import { getDefaultBibleTranslation } from "@/lib/i18n";
 
@@ -146,6 +147,7 @@ preloadedPastorImage.src = pastorBrettIcon;
 
 export default function PastorChat() {
   const { isNative } = usePlatform();
+  const { isProUser: revenueCatIsPro, isInitialized: revenueCatInitialized } = useRevenueCat();
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const tabParam = urlParams.get("tab");
@@ -425,8 +427,9 @@ export default function PastorChat() {
     seedConversation();
   }, [seedQuestion, seedAnswer, hasSeeded, isSeeding, queryClient]);
 
-  // Determine if user is pro - check both session stats (server-side check) and subscription status
-  const isPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
+  // Determine if user is pro - check server-side (session stats, Stripe), and RevenueCat (native only)
+  const serverIsPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
+  const isPro = isNative && revenueCatInitialized ? (revenueCatIsPro || serverIsPro) : serverIsPro;
   const messageCount = sessionStats?.messageCount ?? 0;
   const isLimitReached = !isPro && messageCount >= FREE_MESSAGE_LIMIT;
 
