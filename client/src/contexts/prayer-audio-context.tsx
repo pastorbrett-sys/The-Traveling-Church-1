@@ -1,31 +1,48 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
 import { Capacitor } from "@capacitor/core";
+import { queryClient } from "@/lib/queryClient";
 
-// Dynamic imports for native-only plugins to avoid Rollup bundling issues
+// Dynamic imports for native-only plugins to avoid Rollup/Vite bundling issues
+// These plugins only work on native platforms and would cause build errors if statically imported
+// Using /* @vite-ignore */ to prevent Vite from trying to resolve these at build/dev time
 const getMusicControls = async () => {
   if (Capacitor.isNativePlatform()) {
-    const module = await import("capacitor-music-controls-plugin");
-    return module.CapacitorMusicControls;
+    try {
+      const module = await import(/* @vite-ignore */ "capacitor-music-controls-plugin-v3");
+      return module.CapacitorMusicControls;
+    } catch (e) {
+      console.log("[PrayerAudio] Music controls not available:", e);
+      return null;
+    }
   }
   return null;
 };
 
 const getHaptics = async () => {
   if (Capacitor.isNativePlatform()) {
-    const module = await import("@capacitor/haptics");
-    return { Haptics: module.Haptics, NotificationType: module.NotificationType };
+    try {
+      const module = await import(/* @vite-ignore */ "@capacitor/haptics");
+      return { Haptics: module.Haptics, NotificationType: module.NotificationType };
+    } catch (e) {
+      console.log("[PrayerAudio] Haptics not available:", e);
+      return null;
+    }
   }
   return null;
 };
 
 const getLocalNotifications = async () => {
   if (Capacitor.isNativePlatform()) {
-    const module = await import("@capacitor/local-notifications");
-    return module.LocalNotifications;
+    try {
+      const module = await import(/* @vite-ignore */ "@capacitor/local-notifications");
+      return module.LocalNotifications;
+    } catch (e) {
+      console.log("[PrayerAudio] Local notifications not available:", e);
+      return null;
+    }
   }
   return null;
 };
-import { queryClient } from "@/lib/queryClient";
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
 const ARTWORK_URL = "https://vagabondbible.com/prayer-artwork.png";
