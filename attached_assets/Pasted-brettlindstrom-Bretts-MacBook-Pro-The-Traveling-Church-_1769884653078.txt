@@ -1,0 +1,57 @@
+brettlindstrom@Bretts-MacBook-Pro The-Traveling-Church-1 % cd ~/The-Traveling-Church-1
+git stash
+git pull origin main
+git stash pop
+sed -i '' 's/objectVersion = 70/objectVersion = 56/g' ios/App/App.xcodeproj/project.pbxproj
+cd ios/App && pod install && cd ../..
+npx cap open ios
+Saved working directory and index state WIP on main: 49ead82 Update project configuration files to resolve compatibility issues
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 9 (delta 6), reused 9 (delta 6), pack-reused 0 (from 0)
+Unpacking objects: 100% (9/9), 3.78 KiB | 351.00 KiB/s, done.
+From https://github.com/pastorbrett-sys/The-Traveling-Church-1
+ * branch            main       -> FETCH_HEAD
+   49ead82..a24bff4  main       -> origin/main
+Updating 49ead82..a24bff4
+Fast-forward
+ ...ook-Pro-App-cd-The-Traveling-_1769884134340.txt | 172 +++++++++++++++++++++
+ ios/App/Podfile                                    |   1 +
+ 2 files changed, 173 insertions(+)
+ create mode 100644 attached_assets/Pasted-brettlindstrom-Bretts-MacBook-Pro-App-cd-The-Traveling-_1769884134340.txt
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   ios/App/NotificationService/Info.plist
+	new file:   ios/App/NotificationService/NotificationService.swift
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ios/App/App.xcodeproj/project.pbxproj
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	ios/App/App.xcodeproj/xcshareddata/
+	ios/App/App.xcworkspace/contents.xcworkspacedata
+	ios/App/Podfile.lock
+
+Dropped refs/stash@{0} (c1d0c6965cc29b71441f5c4accb944f0da808b85)
+Analyzing dependencies
+[!] CocoaPods could not find compatible versions for pod "CapacitorFirebaseAuthentication/Apple":
+  In Podfile:
+    CapacitorFirebaseAuthentication/Apple (from `../../node_modules/@capacitor-firebase/authentication`)
+
+None of your spec sources contain a spec satisfying the dependency: `CapacitorFirebaseAuthentication/Apple (from `../../node_modules/@capacitor-firebase/authentication`)`.
+
+You have either:
+ * out-of-date source repos which you can update with `pod repo update` or with `pod install --repo-update`.
+ * mistyped the name or version.
+ * not added the source repo that hosts the Podspec to your Podfile.
+[error] ios platform has not been added yet.
+        See the docs for adding the ios platform:
+        https://capacitorjs.com/docs/ios#adding-the-ios-platform
+brettlindstrom@Bretts-MacBook-Pro App % 
