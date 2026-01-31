@@ -1,0 +1,860 @@
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+12.7.0 - [GoogleUtilities/AppDelegateSwizzler][I-SWZ001011] App Delegate Proxy is disabled.
+[AppDelegate] Firebase configured, MessagingDelegate set
+Could not create a sandbox extension for '/var/containers/Bundle/Application/777C4EA2-16A4-4C02-9113-3F6F8C5F8494/App.app'
+⚡️  Loading app at capacitor://localhost...
+[AppDelegate] MessagingDelegate received FCM token: cqVwrSSsV0xgsicjFhyw...
+[AppDelegate] MessagingDelegate posting token to Capacitor
+WebContent[5270] Unable to hide query parameters from script (missing data)
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  To Native ->  App addListener 34127374
+⚡️  To Native ->  FirebaseAuthentication addListener 34127375
+⚡️  To Native ->  FirebaseAuthentication addListener 34127376
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 34127377
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  TO JS {"user":{"metadata":{"lastSignInTime":1769835023587,"creationTime":1767201285281},"tenantId":null,"providerData":[{"phoneNumber":null,"providerId":"google.com","email":"lindstrom.brett@gmail.com","displayName":"Brett Lindstrom","uid":"110187212133747590600
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127378
+⚡️  TO JS undefined
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2.1 (Build 23C71)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  [log] - [NATIVE AUTH] Auth state changed: lindstrom.brett@gmail.com
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+⚡️  TO JS {"customerInfo":{"firstSeenMillis":1769797284000,"originalPurchaseDate":null,"firstSeen":"2026-01-30T18:21:24Z","allPurchaseDates":{},"nonSubscriptionTransactions":[],"subscriptionsByProductIdentifier":{},"activeSubscriptions":[],"entitlements":{"all":{},"
+DEBUG: ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability'
+⚡️  To Native ->  CapacitorHttp request 34127379
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["pro_monthly_emerging", "vagabond_bible_pro_monthly"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report'
+DEBUG: ℹ️ Network operation 'GetCustomerInfoOperation' found with the same cache key 'GetCustomerInfo…'. Skipping request.
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127380
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  To Native ->  CapacitorHttp request 34127381
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b, 0 requests left in the queue
+⚡️  TO JS {"status":200,"headers":{"content-encoding":"gzip","strict-transport-security":"max-age=63072000; includeSubdomains; preload","x-content-type-options":"nosniff","x-cloud-trace-context":"e1d74898f1fc652efb118609f6d8c291","content-type":"text\/html; charset=
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127382
+SplashScreen.hideSplash: SplashScreen was automatically hidden after default timeout. You should call `SplashScreen.hide()` as soon as your web app is loaded (or increase the timeout). Read more at https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"status":200,"url":"https:\/\/vagabondbible.com\/api\/auth\/firebase","headers":{"x-powered-by":"Express","strict-transport-security":"max-age=63072000; includeSubDomains","x-cloud-trace-context":"0cc42ee1ab2070dfe4cbddf24ce69266;o=1","content-type":"appl
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127383
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127384
+⚡️  To Native ->  CapacitorHttp request 34127385
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  To Native ->  PushNotifications checkPermissions 34127386
+⚡️  [log] - [Push] ====== STARTING PUSH NOTIFICATION SETUP ======
+⚡️  [log] - [Push] Step 1: Checking permissions...
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127387
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127388
+⚡️  TO JS ⚡️  To Native ->  FirebaseAuthentication addListener 34127389
+undefined
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication addListener 34127390
+⚡️  To Native ->  CapacitorHttp request 34127391
+⚡️  TO JS {"receive":"granted"}
+⚡️  [log] - [Push] Permission status: granted
+⚡️  [log] - [Push] Step 2: Removing any stale listeners...
+⚡️  To Native ->  PushNotifications removeAllListeners 34127392
+⚡️  TO JS undefined
+⚡️  To Native ->  PushNotifications addListener 34127393
+⚡️  [log] - [Push] Step 3: Adding notification listeners...
+⚡️  To Native ->  PushNotifications addListener 34127394
+⚡️  To Native ->  PushNotifications addListener 34127395
+⚡️  To Native ->  PushNotifications addListener 34127396
+⚡️  [log] - [Push] All 4 listeners added successfully
+⚡️  [log] - [Push] Step 4: Waiting for listeners to be ready...
+⚡️  To Native ->  PushNotifications register 34127397
+⚡️  [log] - [Push] Step 5: Calling register()...
+⚡️  TO JS undefined
+⚡️  [log] - [Push] ====== SETUP COMPLETE - WAITING FOR REGISTRATION EVENT ======
+[AppDelegate] APNs token received: f0e64f8fe4fad80eb535...
+⚡️  TO JS {"status":200,"headers":{"strict-transport-security":"max-age=63072000; includeSubDomains","x-powered-by":"Express","via":"1.1 google","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","date":"Sat, 31 Jan 2026 17:53:16 GMT","content-type":"app
+⚡️  TO JS {"url":"https:\/\/vagabondbible.com\/api\/auth\/language","headers":{"x-cloud-trace-context":"abaaacac8dfa8abee4cbddf24ce69992","strict-transport-security":"max-age=63072000; includeSubDomains","content-type":"application\/json; charset=utf-8","x-powered-b
+⚡️  [log] - [Auth] Synced user language: en
+⚡️  [log] - [Auth] Synced user language: en
+[AppDelegate] FCM token obtained: cqVwrSSsV0xgsicjFhyw...
+[AppDelegate] Posting FCM token to Capacitor
+⚡️  TO JS {"value":"cqVwrSSsV0xgsicjFhywI5:APA91bHowkjcRGW6WohMP1giVYX102aSA9VtezpzgkQZDS6y7HBuHoKAP_RakXHWzFjEIiuFJTKIf4SDgj_Gf4rXuAyyL6T_3Gq1ib2P7Z8e-aqUY8WcX5Q"}
+⚡️  [log] - [Push] >>> REGISTRATION EVENT RECEIVED <<<
+⚡️  [log] - [Push] Token: cqVwrSSsV0xgsicjFhywI5:APA91bH...
+⚡️  [log] - [Push] Registering token with backend for user: ZAEAu3m3ajMShKSlP1qhshXXcfE3
+⚡️  To Native ->  CapacitorHttp request 34127398
+⚡️  TO JS {"url":"https:\/\/vagabondbible.com\/api\/notifications\/register-token","data":{"success":true},"status":200,"headers":{"strict-transport-security":"max-age=63072000; includeSubDomains","x-powered-by":"Express","via":"1.1 google","server":"Google Frontend
+⚡️  [log] - [Push] Token registered successfully with backend
+⚡️  To Native ->  FirebaseAuthentication addListener 34127399
+⚡️  To Native ->  FirebaseAuthentication addListener 34127400
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127401
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127402
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127403
+⚡️  To Native ->  FirebaseAuthentication addListener 34127404
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127405
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127406
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127407
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127408
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  To Native ->  Haptics impact 34127409
+⚡️  TO JS undefined
+⚡️  To Native ->  PushNotifications checkPermissions 34127410
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127411
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127412
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127413
+⚡️  To Native ->  FirebaseAuthentication addListener 34127414
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127415
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127416
+⚡️  [log] - [Profile] platform: ios isNative: true
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  TO JS {"receive":"granted"}
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127417
+⚡️  [log] - [Notifications] Fetching preferences for userId: ZAEAu3m3ajMShKSlP1qhshXXcfE3
+⚡️  TO JS {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY3NThlNTYzYzBiNjRhNzVmN2UzZGFlNDk0ZDM5NTk1YzE0MGVmOTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJldHQgTGluZHN0cm9tIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0lWd3V0SFQwRlNnTW1nTEhab2tVSUlkNXF5akJ
+⚡️  [log] - [Notifications] Received preferences: [{"id":"verse_of_week","name":"Verse of the Week","description":"Receive a weekly inspiring verse every Tuesday morning","enabled":true},{"id":"announcement","name":"Announcements","description":"Special announcements, donation campaigns, and event reminders from The Traveling Church","enabled":true},{"id":"verse_of_day","name":"Daily Verse","description":"Receive a daily uplifting Bible verse every morning","enabled":true}]
+⚡️  To Native ->  FirebaseAuthentication signOut 34127418
+⚡️  TO JS {"user":null}
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123164da0>
+⚡️  To Native ->  PushNotifications removeAllListeners 34127419
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127420
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127421
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 34127422
+⚡️  To Native ->  FirebaseAuthentication addListener 34127423
+⚡️  To Native ->  FirebaseAuthentication addListener 34127424
+⚡️  To Native ->  FirebaseAuthentication addListener 34127425
+⚡️  TO JS undefined
+⚡️  [log] - [NATIVE AUTH] Auth state changed: null
+⚡️  [log] - [Push] Cleaning up listeners on unmount
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication getIdToken 34127426
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123166de0>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 15907103
+⚡️  To Native ->  FirebaseAuthentication addListener 15907104
+⚡️  To Native ->  FirebaseAuthentication addListener 15907105
+⚡️  To Native ->  FirebaseAuthentication addListener 15907106
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907107
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907108
+⚡️  To Native ->  FirebaseAuthentication addListener 15907109
+⚡️  To Native ->  FirebaseAuthentication addListener 15907110
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x1231666a0>
+ERROR MESSAGE:  [ FirebaseAuthentication {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123165320>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  TO JS undefined
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 15907111
+INFO: ℹ️ Purchases instance already set. Did you mean to configure two Purchases objects?
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2.1 (Build 23C71)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  TO JS {"customerInfo":{"latestExpirationDateMillis":null,"firstSeen":"2026-01-30T18:21:24Z","firstSeenMillis":1769797284000,"originalApplicationVersion":null,"requestDateMillis":1769881995000,"allExpirationDatesMillis":{},"nonSubscriptionTransactions":[],"origin
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings'
+⚡️  To Native ->  CapacitorHttp request 15907112
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["pro_monthly_emerging", "vagabond_bible_pro_monthly"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report, 0 requests left in the queue
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+⚡️  TO JS {"data":"\n\n\n\n\n\n\n\n\n<!doctype html>\n<html \n      lang=\"en\"\n      dir=\"ltr\">\n  <head>\n    <meta name=\"google-signin-client-id\" content=\"721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com\"><meta name=\"google-signin-
+⚡️  To Native ->  Haptics impact 15907113
+⚡️  TO JS undefined
+⚡️  [log] - [Profile] platform: ios isNative: true
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907114
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907115
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907116
+⚡️  TO JS ⚡️  To Native ->  FirebaseAuthentication undefined
+addListener 15907117
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907118
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123208120>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907119
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x1232089c0>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [log] - [Push] ====== STARTING PUSH NOTIFICATION SETUP ======
+⚡️  [log] - [Push] Step 1: Checking permissions...
+⚡️  To Native ->  PushNotifications checkPermissions 15907120
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907121
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907122
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907123
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication addListener 15907124
+⚡️  To Native ->  FirebaseAuthentication addListener 15907125
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907126
+[ FirebaseAuthentication ]  ⚡️  To Native ->  FirebaseAuthentication getIdToken <CapacitorFirebaseAuthentication.RuntimeError: 0x123208960>
+15907127
+⚡️  To Native ->  FirebaseAuthentication addListener 15907128
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123208920>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  TO JS {"receive":"granted"}
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  ⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+CapacitorHttp request 15907129
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [log] - [Push] Permission status: granted
+⚡️  To Native ->  PushNotifications removeAllListeners 15907130
+⚡️  [log] - [Push] Step 2: Removing any stale listeners...
+⚡️  TO JS undefined
+⚡️  [log] - [Push] Step 3: Adding notification listeners...
+⚡️  To Native ->  PushNotifications addListener 15907131
+⚡️  To Native ->  PushNotifications addListener 15907132
+⚡️  To Native ->  PushNotifications addListener 15907133
+⚡️  To Native ->  PushNotifications addListener 15907134
+⚡️  [log] - [Push] All 4 listeners added successfully
+⚡️  [log] - [Push] Step 4: Waiting for listeners to be ready...
+⚡️  To Native ->  PushNotifications register 15907135
+⚡️  [log] - [Push] Step 5: Calling register()...
+⚡️  TO JS undefined
+[AppDelegate] APNs token received: f0e64f8fe4fad80eb535...
+⚡️  [log] - [Push] ====== SETUP COMPLETE - WAITING FOR REGISTRATION EVENT ======
+[AppDelegate] FCM token obtained: cqVwrSSsV0xgsicjFhyw...
+[AppDelegate] Posting FCM token to Capacitor
+⚡️  TO JS {"value":"cqVwrSSsV0xgsicjFhywI5:APA91bHowkjcRGW6WohMP1giVYX102aSA9VtezpzgkQZDS6y7HBuHoKAP_RakXHWzFjEIiuFJTKIf4SDgj_Gf4rXuAyyL6T_3Gq1ib2P7Z8e-aqUY8WcX5Q"}
+⚡️  [log] - [Push] >>> REGISTRATION EVENT RECEIVED <<<
+⚡️  [log] - [Push] Token: cqVwrSSsV0xgsicjFhywI5:APA91bH...
+⚡️  [log] - [Push] Registering token with backend for user: ZAEAu3m3ajMShKSlP1qhshXXcfE3
+⚡️  To Native ->  CapacitorHttp request 15907136
+⚡️  TO JS {"headers":{"etag":"W\/\"20-hMn53EMmkodjvGi1nqRqRjzwzfo\"","server":"Google Frontend","x-powered-by":"Express","x-cloud-trace-context":"b64b5cf729a68d4a1a1d0d1a8c0091d6","content-length":"32","content-type":"application\/json; charset=utf-8","alt-svc":"h3=
+⚡️  [log] - [Auth] Synced user language: en
+⚡️  TO JS {"headers":{"etag":"W\/\"10-oV4hJxRVSENxc\/wX8+mA4\/Pe4tA\"","server":"Google Frontend","x-powered-by":"Express","x-cloud-trace-context":"cd389bc743452b091a1d0d1a8c00961a","content-length":"16","content-type":"application\/json; charset=utf-8","alt-svc":"h
+⚡️  [log] - [Push] Token registered successfully with backend
+⚡️  To Native ->  Haptics impact 15907137
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907138
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication addListener 15907139
+⚡️  To Native ->  FirebaseAuthentication addListener 15907140
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907141
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320aca0>
+⚡️  To Native ->  FirebaseAuthentication addListener 15907142
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907143
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907144
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907145
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320a980>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320bc40>
+[ ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320bb60>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907146
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320af40>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Haptics impact 15907147
+⚡️  TO JS undefined
+⚡️  To Native ->  Haptics impact 15907148
+⚡️  TO JS undefined
+⚡️  To Native ->  Haptics impact 15907149
+⚡️  TO JS undefined
+⚡️  To Native ->  PushNotifications checkPermissions 15907150
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907151
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907152
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907153
+⚡️  [log] - [Profile] platform: ios isNative: true
+⚡️  To Native ->  FirebaseAuthentication addListener 15907154
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS {"receive":"granted"}
+⚡️  [log] - [Notifications] Fetching preferences for userId: ZAEAu3m3ajMShKSlP1qhshXXcfE3
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907155
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123165ba0>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [log] - [Notifications] Received preferences: [{"id":"verse_of_week","name":"Verse of the Week","description":"Receive a weekly inspiring verse every Tuesday morning","enabled":true},{"id":"announcement","name":"Announcements","description":"Special announcements, donation campaigns, and event reminders from The Traveling Church","enabled":true},{"id":"verse_of_day","name":"Daily Verse","description":"Receive a daily uplifting Bible verse every morning","enabled":true}]
+⚡️  To Native ->  FirebaseAuthentication signOut 15907156
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907157
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x1231666c0>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [log] - [Push] Cleaning up listeners on unmount
+⚡️  To Native ->  PushNotifications removeAllListeners 15907158
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907159
+⚡️  To Native ->  FirebaseAuthentication ⚡️  TO JS removeAllListeners 15907160
+undefined
+⚡️  To Native ->  ⚡️  TO JS FirebaseAuthentication removeAllListeners 15907161
+⚡️  To Native ->  FirebaseAuthentication getIdToken 15907162
+undefined
+⚡️  To Native ->  FirebaseAuthentication addListener 15907163
+⚡️  TO JS ⚡️  To Native ->  undefined
+FirebaseAuthentication addListener 15907164
+⚡️  To Native ->  FirebaseAuthentication addListener 15907165
+⚡️  TO JS undefined
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123167e80>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - Logout error: {}
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 15907166
+⚡️  To Native ->  FirebaseAuthentication addListener 15907167
+⚡️  [log] - [LOGIN] Auth state changed - isLoading: true isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+⚡️  TO JS undefined
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 82083675
+⚡️  To Native ->  FirebaseAuthentication addListener 82083676
+⚡️  To Native ->  FirebaseAuthentication addListener 82083677
+⚡️  To Native ->  FirebaseAuthentication addListener 82083678
+⚡️  To Native ->  FirebaseAuthentication getIdToken 82083679
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123165720>
+⚡️  To Native ->  FirebaseAuthentication getIdToken 82083680
+⚡️  To Native ->  FirebaseAuthentication addListener 82083681
+⚡️  To Native ->  FirebaseAuthentication addListener 82083682
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123165380>
+⚡️  To Native ->  Purchases setLogLevel -1
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  TO JS undefined
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 82083683
+INFO: ℹ️ Purchases instance already set. Did you mean to configure two Purchases objects?
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2.1 (Build 23C71)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  TO JS {"customerInfo":{"latestExpirationDateMillis":null,"firstSeen":"2026-01-30T18:21:24Z","firstSeenMillis":1769797284000,"originalApplicationVersion":null,"requestDateMillis":1769882009000,"allExpirationDatesMillis":{},"nonSubscriptionTransactions":[],"origin
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings'
+⚡️  To Native ->  CapacitorHttp request 82083684
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["pro_monthly_emerging", "vagabond_bible_pro_monthly"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report, 0 requests left in the queue
+⚡️  TO JS {"headers":{"cache-control":"no-cache, must-revalidate","pragma":"no-cache","content-encoding":"gzip","content-security-policy":"base-uri 'self'; object-src 'none'; script-src 'strict-dynamic' 'unsafe-inline' https: http: 'nonce-5g\/oDma\/N5WCopEBlepMlumCW
+⚡️  To Native ->  Haptics impact 82083685
+⚡️  TO JS undefined
+⚡️  [log] - [Profile] platform: ios isNative: true
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 82083686
+⚡️  TO JS ⚡️  To Native ->  FirebaseAuthentication removeAllListeners 82083687
+undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 82083688
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication addListener 82083689
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  To Native ->  FirebaseAuthentication getIdToken 82083690
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123164c80>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Haptics impact 82083691
+⚡️  TO JS undefined
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 128331244
+⚡️  To Native ->  FirebaseAuthentication addListener 128331245
+⚡️  To Native ->  FirebaseAuthentication addListener 128331246
+⚡️  To Native ->  FirebaseAuthentication addListener 128331247
+⚡️  To Native ->  FirebaseAuthentication getIdToken 128331248
+⚡️  To Native ->  FirebaseAuthentication getIdToken 128331249
+[ ⚡️  To Native ->  FirebaseAuthentication addListener FirebaseAuthentication 128331250
+⚡️  To Native ->  FirebaseAuthentication addListener 128331251
+]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123167e60>
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+[ ⚡️  To Native ->  Purchases setLogLevel -1
+FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123167e60>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 128331252
+⚡️  TO JS undefined
+INFO: ℹ️ Purchases instance already set. Did you mean to configure two Purchases objects?
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2.1 (Build 23C71)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  TO JS {"customerInfo":{"originalApplicationVersion":null,"subscriptionsByProductIdentifier":{},"latestExpirationDateMillis":null,"allPurchaseDates":{},"originalPurchaseDateMillis":null,"allPurchaseDatesMillis":{},"allPurchasedProductIdentifiers":[],"entitlements
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings'
+⚡️  To Native ->  CapacitorHttp request 128331253
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["pro_monthly_emerging", "vagabond_bible_pro_monthly"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report, 0 requests left in the queue
+⚡️  TO JS {"headers":{"x-xss-protection":"0","date":"Sat, 31 Jan 2026 17:53:38 GMT","content-length":"31295","x-content-type-options":"nosniff","vary":"Cookie, Accept-Encoding","pragma":"no-cache","content-type":"text\/html; charset=utf-8","last-modified":"Tue, 27 J
+⚡️  To Native ->  Haptics impact 128331254
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 128331255
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 128331256
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 128331257
+⚡️  To Native ->  FirebaseAuthentication addListener 128331258
+⚡️  To Native ->  FirebaseAuthentication addListener 128331259
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  To Native ->  Haptics impact 128331260
+⚡️  TO JS undefined
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  To Native ->  FirebaseAuthentication getIdToken 128331261
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320ab00>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Haptics impact 128331262
+⚡️  TO JS undefined
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 83799358
+⚡️  To Native ->  FirebaseAuthentication addListener 83799359
+⚡️  To Native ->  FirebaseAuthentication addListener 83799360
+⚡️  To Native ->  FirebaseAuthentication addListener 83799361
+⚡️  To Native ->  FirebaseAuthentication getIdToken 83799362
+⚡️  To Native ->  FirebaseAuthentication getIdToken 83799363
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320acc0>
+⚡️  To Native ->  FirebaseAuthentication addListener 83799364
+⚡️  To Native ->  FirebaseAuthentication addListener 83799365
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 83799366
+ERROR MESSAGE:  [ {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x12320ab00>
+⚡️  TO JS undefined
+INFO: ℹ️ Purchases instance already set. Did you mean to configure two Purchases objects?
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2.1 (Build 23C71)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings'
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  TO JS {"customerInfo":{"latestExpirationDateMillis":null,"firstSeen":"2026-01-30T18:21:24Z","firstSeenMillis":1769797284000,"originalApplicationVersion":null,"requestDateMillis":1769882018000,"allExpirationDatesMillis":{},"nonSubscriptionTransactions":[],"origin
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  CapacitorHttp request 83799367
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["pro_monthly_emerging", "vagabond_bible_pro_monthly"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report, 0 requests left in the queue
+⚡️  TO JS {"url":"https:\/\/developers.google.com\/","status":200,"headers":{"cache-control":"no-cache, must-revalidate","pragma":"no-cache","content-encoding":"gzip","last-modified":"Tue, 27 Jan 2026 22:45:52 GMT","content-security-policy":"base-uri 'self'; object-
+⚡️  To Native ->  Haptics impact 83799368
+⚡️  TO JS undefined
+⚡️  [log] - [Profile] platform: ios isNative: true
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 83799369
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 83799370
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 83799371
+⚡️  To Native ->  FirebaseAuthentication addListener 83799372
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  To Native ->  FirebaseAuthentication getIdToken 83799373
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x11b74ad00>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Haptics impact 83799374
+⚡️  TO JS undefined
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  WebView loaded
+⚡️  [log] - [Firebase Config] Native platform detected
+⚡️  [log] - [Firebase Config] API Key present: true
+⚡️  [log] - [Firebase Config] Project ID: travelingchurch-1b4ab
+⚡️  [log] - [Firebase Config] App ID present: true
+⚡️  [log] - [Firebase] App initialized successfully
+⚡️  [log] - [Firebase] Using getAuth for native platform
+⚡️  [log] - [Referral] Checking for ref code in URL: null
+⚡️  [log] - [Referral] Current stored ref code: null
+⚡️  [log] - [Platform] isNative: true platform: ios
+⚡️  To Native ->  App addListener 6837713
+⚡️  To Native ->  FirebaseAuthentication addListener 6837714
+⚡️  To Native ->  FirebaseAuthentication addListener 6837715
+⚡️  To Native ->  FirebaseAuthentication addListener 6837716
+⚡️  To Native ->  FirebaseAuthentication getIdToken 6837717
+⚡️  To Native ->  FirebaseAuthentication getIdToken 6837718
+⚡️  To Native ->  FirebaseAuthentication addListener 6837719
+⚡️  To Native ->  FirebaseAuthentication addListener 6837720
+⚡️  To Native ->  Purchases setLogLevel -1
+⚡️  To Native ->  Purchases configure -1
+⚡️  To Native ->  Purchases getCustomerInfo 6837721
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x11b74be60>
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x11b74b1c0>
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+ERROR MESSAGE:  {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  TO JS undefined
+INFO: ℹ️ Purchases instance already set. Did you mean to configure two Purchases objects?
+DEBUG: ℹ️ Configuring SDK using RevenueCat's UserDefaults suite.
+DEBUG: 👤 Identifying App User ID
+DEBUG: ℹ️ Observing StoreKit.Transaction.updates
+DEBUG: ℹ️ Debug logging enabled
+DEBUG: ℹ️ SDK Version - 5.52.0
+DEBUG: ℹ️ Bundle ID - com.vagabondbible.app
+DEBUG: ℹ️ System Version - Version 26.2.1 (Build 23C71)
+DEBUG: ℹ️ Not using a simulator.
+DEBUG: 👤 No initial App User ID
+DEBUG: ℹ️ Purchases is configured with informational response verification
+DEBUG: ℹ️ Purchases is configured with StoreKit version 2
+DEBUG: ℹ️ Observing StoreKit.PurchaseIntent.intents
+DEBUG: ℹ️ Offerings cache is stale, updating from network in foreground
+DEBUG: ℹ️ GetOfferingsOperation: Started
+DEBUG: ℹ️ Delegate set
+⚡️  TO JS undefined
+DEBUG: ℹ️ Vending CustomerInfo from cache.
+⚡️  TO JS {"customerInfo":{"originalApplicationVersion":null,"subscriptionsByProductIdentifier":{},"latestExpirationDateMillis":null,"allPurchaseDates":{},"originalPurchaseDateMillis":null,"allPurchaseDatesMillis":{},"allPurchasedProductIdentifiers":[],"entitlements
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings'
+⚡️  To Native ->  CapacitorHttp request 6837722
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings' (304)
+DEBUG: ℹ️ No existing products cached, starting store products request for: ["vagabond_bible_pro_monthly", "pro_monthly_emerging"]
+DEBUG: ℹ️ GetOfferingsOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/offerings, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability'
+DEBUG: 😻 Store products request received response
+DEBUG: ℹ️ Store products request finished
+DEBUG: 😻 Offerings updated from network.
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability' (200)
+DEBUG: ℹ️ HealthReportAvailabilityOperation: Finished
+DEBUG: ℹ️ GetCustomerInfoOperation: Started
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report_availability, 0 requests left in the queue
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b' (304)
+DEBUG: 😻 CustomerInfo updated from network.
+DEBUG: ℹ️ GetCustomerInfoOperation: Finished
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b, 0 requests left in the queue
+DEBUG: ℹ️ HealthReportOperation: Started
+DEBUG: ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report
+DEBUG: ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report'
+DEBUG: ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report' (304)
+DEBUG: ℹ️ HealthReportOperation: Finished
+WARN: ⚠️ We could not validate your SDK's configuration and check your product statuses in App Store Connect.
+
+Error: Missing App Store Connect API credentials
+
+If you want to check if your SDK is configured correctly, please check your App Store Connect credentials in RevenueCat, make sure your App Store Connect App exists and try again:
+
+https://app.revenuecat.com/projects/1ae39dfb/apps/appdef5be1fcf#scroll=app-store-connect-api
+DEBUG: ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3A89e8ef2b67474602adb4a8a08105131b/health_report, 0 requests left in the queue
+⚡️  TO JS {"url":"https:\/\/developers.google.com\/","headers":{"x-xss-protection":"0","date":"Sat, 31 Jan 2026 17:53:42 GMT","content-length":"31285","x-content-type-options":"nosniff","vary":"Cookie, Accept-Encoding","pragma":"no-cache","content-type":"text\/html;
+⚡️  To Native ->  Haptics impact 6837723
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 6837724
+⚡️  TO JS ⚡️  To Native ->  FirebaseAuthentication removeAllListeners 6837725
+undefined
+⚡️  To Native ->  FirebaseAuthentication ⚡️  TO JS removeAllListeners undefined
+6837726
+⚡️  TO JS ⚡️  To Native ->  undefined
+FirebaseAuthentication addListener 6837727
+⚡️  To Native ->  FirebaseAuthentication addListener 6837728
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  To Native ->  FirebaseAuthentication getIdToken 6837729
+[ FirebaseAuthentication ]  <CapacitorFirebaseAuthentication.RuntimeError: 0x123209260>
+⚡️  [log] - Firebase auth timeout - falling back to session check
+ERROR MESSAGE:  {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  [error] - {"message":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)","errorMessage":"The operation couldn’t be completed. (CapacitorFirebaseAuthentication.RuntimeError error 1.)"}
+⚡️  To Native ->  Haptics impact 6837730
+⚡️  TO JS undefined
+⚡️  To Native ->  Haptics impact 6837731
+⚡️  TO JS undefined
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 6837732
+⚡️  To Native ->  FirebaseAuthentication removeAllListeners 6837733
+⚡️  TO JS undefined
+⚡️  TO JS undefined
+⚡️  To Native ->  Haptics impact 6837734
+⚡️  TO JS undefined
+⚡️  [log] - [PrayerAudio] Preloading chime...
+⚡️  [log] - [PrayerAudio] Chime audio element created: https://cdn.freesound.org/previews/411/411089_5121236-lq.mp3
+⚡️  To Native ->  LocalNotifications requestPermissions 6837735
+⚡️  TO JS {"display":"granted"}
+⚡️  [log] - [LOGIN] Auth state changed - isLoading: true isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+⚡️  To Native ->  FirebaseAuthentication addListener 6837736
+⚡️  [log] - Firebase auth timeout - falling back to session check
+⚡️  [log] - [LOGIN] Auth state changed - isLoading: false isAuthenticated: false isInSafariSheet: false isInNativeApp: true
+⚡️  [log] - [NATIVE AUTH] Starting native Apple sign-in...
+⚡️  To Native ->  FirebaseAuthentication signInWithApple 6837737
+DEBUG: ℹ️ Background task started: com.revenuecat.flushAllEvents
