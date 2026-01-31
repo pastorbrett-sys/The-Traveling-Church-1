@@ -722,7 +722,7 @@ export default function PrayerTimer() {
 
           <div 
             className="absolute inset-0 flex items-center justify-center"
-            style={{ fontFamily: "'SCHABO Condensed', 'Impact', sans-serif" }}
+            style={{ fontFamily: "'SCHABO Condensed', 'Anton', 'Impact', sans-serif" }}
           >
             <span 
               className="text-white text-5xl sm:text-8xl tracking-wider"
