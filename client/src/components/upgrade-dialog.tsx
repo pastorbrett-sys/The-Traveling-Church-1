@@ -371,6 +371,30 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
           <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
             {isNative ? (
               <>
+                {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) - MOVED TO TOP */}
+                <div className="bg-[hsl(39,70%,96%)] border border-[hsl(39,50%,85%)] rounded-xl p-4 mb-2">
+                  <h4 className="text-[13px] font-semibold text-[hsl(20,10%,30%)] mb-3 text-center">
+                    {t.aboutYourSubscription}
+                  </h4>
+                  <ul className="text-[12px] text-left text-[hsl(20,10%,35%)] space-y-2">
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
+                      <span>{t.appleDisclosure1}</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
+                      <span>{t.appleDisclosure2}</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
+                      <span>{t.appleDisclosure3}</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="text-[#d79942] text-lg leading-none">•</span>
+                      <span>{t.appleDisclosure4}</span>
+                    </li>
+                  </ul>
+                </div>
                 <Button 
                   onClick={handleNativePurchase}
                   disabled={isPurchasing}
@@ -400,30 +424,6 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                     </>
                   ) : t.restorePurchases}
                 </Button>
-                {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) */}
-                <div className="bg-[hsl(39,70%,96%)] border border-[hsl(39,50%,85%)] rounded-xl p-4 mt-4">
-                  <h4 className="text-[13px] font-semibold text-[hsl(20,10%,30%)] mb-3 text-center">
-                    {t.aboutYourSubscription}
-                  </h4>
-                  <ul className="text-[12px] text-left text-[hsl(20,10%,35%)] space-y-2">
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure1}</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure2}</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure3}</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure4}</span>
-                    </li>
-                  </ul>
-                </div>
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-3 leading-relaxed">
                   {t.bySubscribing}{" "}
                   <button 
