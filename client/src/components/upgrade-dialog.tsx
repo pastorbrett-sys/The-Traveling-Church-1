@@ -116,10 +116,11 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const [isRestoring, setIsRestoring] = useState(false);
   const [pricing, setPricing] = useState<PricingTierResponse | null>(null);
   const [isPricingLoading, setIsPricingLoading] = useState(true);
-  const [nativePrice, setNativePrice] = useState<string | null>(null);
+  // TEMP: Force $1.99 for emerging market App Store screenshot
+  const [nativePrice, setNativePrice] = useState<string | null>("$1.99");
   const { isNative: actualIsNative, platform } = usePlatform();
-  // TEMP: Force web mode for screenshot
-  const isNative = false;
+  // TEMP: Force native mode for App Store screenshot
+  const isNative = true;
   const { toast } = useToast();
   
   // Check both Bible translation AND device language for Amharic
