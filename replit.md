@@ -64,6 +64,20 @@ The application uses a component-based frontend architecture and an Express.js b
   - **User preferences**: Toggle on/off per notification type in Profile settings.
   - **Firebase setup**: APNs key S48F6S762Z (Sandbox & Production), Team ID FBD94PWXT2. Service account key in FIREBASE_SERVICE_ACCOUNT_KEY secret.
   - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `server/verseSelection.ts`, `server/dailyVerseData.ts`, `client/src/hooks/usePushNotifications.ts`.
+- **Apple Sign-In Configuration** (for native iOS):
+  - **Required in Apple Developer Console**:
+    1. App ID (`com.vagabondbible.app`) must have "Sign in with Apple" capability enabled
+    2. Services ID (e.g., `com.vagabondbible.app.service`) with Firebase callback URL: `https://travelingchurch-1b4ab.firebaseapp.com/__/auth/handler`
+    3. Private Key (.p8 file) for OAuth code flow - download Key ID and save securely
+  - **Required in Firebase Console** (Authentication → Sign-in method → Apple):
+    - Services ID (from step 2 above)
+    - Apple Team ID: FBD94PWXT2
+    - Key ID (from step 3 above)
+    - Private Key contents (paste from .p8 file)
+  - **Required in Xcode**:
+    - "Sign in with Apple" capability in Signing & Capabilities
+    - URL Type with REVERSED_CLIENT_ID: `com.googleusercontent.apps.120766949732-5fu6t0hegaaaf8fdqenn2gu0mplghh5e`
+  - **Troubleshooting**: See `docs/APPLE_SIGNIN_TROUBLESHOOTING.md`
 
 ## External Dependencies
 
