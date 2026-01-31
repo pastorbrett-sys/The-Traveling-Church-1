@@ -149,9 +149,8 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       };
       
       const deviceCountry = getDeviceCountry();
-      const url = deviceCountry 
-        ? `/api/pricing/tier?deviceCountry=${deviceCountry}`
-        : "/api/pricing/tier";
+      // TEMP: Force emerging market for screenshot
+      const url = `/api/pricing/tier?deviceCountry=ET`;
       
       apiFetch(url)
         .then(res => res.json())
