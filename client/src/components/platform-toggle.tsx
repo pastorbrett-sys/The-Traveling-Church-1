@@ -9,6 +9,9 @@ export function PlatformToggle() {
   // Only show in development mode on web (hide on actual native devices and production)
   if (import.meta.env.PROD) return null;
   
+  // TEMP: Hide for App Store screenshot
+  return null;
+  
   // Hide on actual native devices (only show web simulation toggle)
   if (isNative && !isSimulating) return null;
   
