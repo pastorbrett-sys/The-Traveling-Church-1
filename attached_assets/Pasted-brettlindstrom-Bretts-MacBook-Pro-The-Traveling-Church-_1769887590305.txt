@@ -1,0 +1,60 @@
+brettlindstrom@Bretts-MacBook-Pro The-Traveling-Church-1 % cd The-Traveling-Church-1
+git pull origin main
+cd ios/App
+rm -rf Pods Podfile.lock
+pod install
+cd: no such file or directory: The-Traveling-Church-1
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 5 (delta 3), reused 3 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (5/5), 765 bytes | 382.00 KiB/s, done.
+From https://github.com/pastorbrett-sys/The-Traveling-Church-1
+ * branch            main       -> FETCH_HEAD
+   e01bb44..d05095e  main       -> origin/main
+Updating e01bb44..d05095e
+Fast-forward
+ ios/App/Podfile | 1 -
+ 1 file changed, 1 deletion(-)
+Analyzing dependencies
+Downloading dependencies
+Installing AppAuth (2.0.0)
+Installing AppCheckCore (11.2.0)
+Installing Capacitor (8.0.0)
+Installing CapacitorApp (8.0.0)
+Installing CapacitorBrowser (8.0.0)
+Installing CapacitorCommunitySafeArea (8.0.1)
+Installing CapacitorCordova (8.0.0)
+Installing CapacitorFilesystem (8.1.0)
+Installing CapacitorFirebaseAuthentication (8.0.1)
+Installing CapacitorHaptics (8.0.0)
+Installing CapacitorLocalNotifications (8.0.0)
+Installing CapacitorMusicControlsPluginV3 (2.0.0)
+Installing CapacitorPushNotifications (8.0.0)
+Installing CapacitorShare (8.0.0)
+Installing CapacitorSplashScreen (8.0.0)
+Installing CapacitorStatusBar (8.0.0)
+Installing FirebaseAppCheckInterop (12.7.0)
+Installing FirebaseAuth (12.7.0)
+Installing FirebaseAuthInterop (12.7.0)
+Installing FirebaseCore (12.7.0)
+Installing FirebaseCoreExtension (12.7.0)
+Installing FirebaseCoreInternal (12.7.0)
+Installing FirebaseInstallations (12.7.0)
+Installing FirebaseMessaging (12.7.0)
+Installing GTMAppAuth (5.0.0)
+Installing GTMSessionFetcher (3.5.0)
+Installing GoogleDataTransport (10.1.0)
+Installing GoogleSignIn (9.0.0)
+Installing GoogleUtilities (8.1.0)
+Installing IONFilesystemLib (1.1.0)
+Installing PromisesObjC (2.4.0)
+Installing PurchasesHybridCommon (17.26.0)
+Installing RecaptchaInterop (101.0.0)
+Installing RevenueCat (5.52.0)
+Installing RevenuecatPurchasesCapacitor (12.0.1)
+Installing nanopb (3.30910.0)
+Generating Pods project
+Integrating client project
+Pod installation complete! There are 17 dependencies from the Podfile and 36 total pods installed.
+brettlindstrom@Bretts-MacBook-Pro App % 
