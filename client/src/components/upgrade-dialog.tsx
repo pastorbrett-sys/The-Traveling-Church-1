@@ -117,7 +117,9 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const [pricing, setPricing] = useState<PricingTierResponse | null>(null);
   const [isPricingLoading, setIsPricingLoading] = useState(true);
   const [nativePrice, setNativePrice] = useState<string | null>(null);
-  const { isNative, platform } = usePlatform();
+  const { isNative: actualIsNative, platform } = usePlatform();
+  // TEMP: Force web mode for screenshot
+  const isNative = false;
   const { toast } = useToast();
   
   // Check both Bible translation AND device language for Amharic
