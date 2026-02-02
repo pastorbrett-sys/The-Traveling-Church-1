@@ -27,14 +27,14 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
     <div className="border-b border-border last:border-b-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-4 flex items-center justify-between text-left"
+        className="w-full py-4 px-4 flex items-center justify-between text-left"
         data-testid={`faq-toggle-${question.slice(0, 20).replace(/\s+/g, '-').toLowerCase()}`}
       >
         <span className="font-medium text-foreground">{question}</span>
-        <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform flex-shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       {isOpen && (
-        <div className="pb-4 text-muted-foreground">
+        <div className="pb-4 px-4 text-muted-foreground">
           {answer}
         </div>
       )}
@@ -169,7 +169,7 @@ export default function KeepUsAlive() {
             <p className="text-muted-foreground italic max-w-lg mx-auto">
               If this ministry has ever encouraged you, helped you, or mattered to you — thank you for being here. And if you can help keep it alive, I'm deeply grateful.
               <br />
-              <span className="block mt-2 not-italic font-medium text-foreground">— Brett</span>
+              <span className="block mt-2 not-italic font-medium text-foreground">— Pastor Brett</span>
             </p>
           </div>
         </section>
