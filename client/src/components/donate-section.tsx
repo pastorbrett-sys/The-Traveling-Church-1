@@ -27,6 +27,16 @@ export default function DonateSection() {
           <Heart className="w-5 h-5" />
           Give Now
         </Link>
+        
+        <div className="mt-6">
+          <Link
+            href="/keep-us-alive"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            data-testid="link-keep-us-alive"
+          >
+            Need help keeping this ministry alive? Learn more →
+          </Link>
+        </div>
       </div>
     </section>
   );

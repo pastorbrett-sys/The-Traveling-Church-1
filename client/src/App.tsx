@@ -47,6 +47,7 @@ import AmbassadorPage from "@/pages/ambassador/index";
 import AdminPanel from "@/pages/admin/index";
 import PrayerTimer from "@/pages/prayer-timer";
 import PrayerRequests from "@/pages/prayer-requests";
+import KeepUsAlive from "@/pages/keep-us-alive";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -122,6 +123,7 @@ function ChurchRouter() {
       <Route path="/prayer-timer" component={PrayerTimer} />
       <Route path="/prayer-requests" component={PrayerRequests} />
       <Route path="/vagabond-bible" component={VagabondBible} />
+      <Route path="/keep-us-alive" component={KeepUsAlive} />
       <Route component={NotFound} />
     </Switch>
   );

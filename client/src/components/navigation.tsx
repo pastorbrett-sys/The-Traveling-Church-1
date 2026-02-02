@@ -73,6 +73,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
     { id: "contact", label: "Contact", type: "scroll" },
+    { id: "support", label: "Support", type: "link", href: "/keep-us-alive" },
   ];
 
   const getNavStyle = () => {
@@ -123,7 +124,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   key={item.id}
                   href={item.href!}
                   className={`nav-link text-muted-foreground font-medium hover:text-primary transition-colors ${
-                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy") || location === "/vagabond-bible") && item.id === "pastor-chat") || (location === "/prayer-timer" && item.id === "prayer-timer") ? "text-primary" : ""
+                    (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy") || location === "/vagabond-bible") && item.id === "pastor-chat") || (location === "/prayer-timer" && item.id === "prayer-timer") || (location === "/keep-us-alive" && item.id === "support") ? "text-primary" : ""
                   }`}
                   data-testid={`link-${item.id}`}
                 >
@@ -241,7 +242,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     href={item.href!}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-fade-in-up ${
-                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy") || location === "/vagabond-bible") && item.id === "pastor-chat") || (location === "/prayer-timer" && item.id === "prayer-timer") ? "bg-muted text-primary" : ""
+                      (location === "/" && item.id === "home") || (location.startsWith("/programs") && item.id === "programs") || (location.startsWith("/missions") && item.id === "missions") || ((location === "/pastor-chat" || location.startsWith("/bible-buddy") || location === "/vagabond-bible") && item.id === "pastor-chat") || (location === "/prayer-timer" && item.id === "prayer-timer") || (location === "/keep-us-alive" && item.id === "support") ? "bg-muted text-primary" : ""
                     }`}
                     style={{ animationDelay: `${index * 50}ms` }}
                     data-testid={`link-${item.id}`}
