@@ -3,7 +3,7 @@ import Footer from "@/components/footer";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { DONATE_LINK } from "@/data/programs";
-import pastorBrettImage from "@assets/image_1770059041125.png";
+import pastorBrettImage from "@assets/Mask_group_1770059326771.png";
 
 const faqItems = [
   {
@@ -56,7 +56,7 @@ export default function KeepUsAlive() {
               <img 
                 src={pastorBrettImage} 
                 alt="Pastor Brett" 
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover object-[center_25%] mx-auto border-4 border-primary/20 shadow-lg"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-primary/20 shadow-lg"
                 data-testid="img-pastor-brett"
               />
             </div>
@@ -66,7 +66,7 @@ export default function KeepUsAlive() {
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
-              The Traveling Church is fully digital — no building, no staff, no budget cushion. I'm building this ministry and the Vagabond AI Bible app solo, while funding real mission work out of my own pocket.
+              The Traveling Church is fully digital — no building, no staff, no budget cushion. I'm building this mission solo, while funding real mission work out of my own pocket.
             </p>
             
             {/* CTA Buttons - Above the fold */}
