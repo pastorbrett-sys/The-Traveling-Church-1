@@ -3,7 +3,7 @@ import Footer from "@/components/footer";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { DONATE_LINK } from "@/data/programs";
-import pastorBrettImage from "@assets/Pastor Brett_1760674999817.png";
+import pastorBrettImage from "@assets/image_1770059041125.png";
 
 const faqItems = [
   {
@@ -56,7 +56,7 @@ export default function KeepUsAlive() {
               <img 
                 src={pastorBrettImage} 
                 alt="Pastor Brett" 
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-primary/20 shadow-lg"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover object-[center_25%] mx-auto border-4 border-primary/20 shadow-lg"
                 data-testid="img-pastor-brett"
               />
             </div>
