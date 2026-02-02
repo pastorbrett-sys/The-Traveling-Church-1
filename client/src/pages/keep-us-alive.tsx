@@ -1,8 +1,9 @@
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import { Heart, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { DONATE_LINK } from "@/data/programs";
+import pastorBrettImage from "@assets/asfdasfa_1767129664290.jpeg";
 
 const faqItems = [
   {
@@ -50,9 +51,14 @@ export default function KeepUsAlive() {
         {/* Hero Section */}
         <section className="py-16 md:py-24 px-6">
           <div className="max-w-2xl mx-auto text-center">
-            {/* Simple cross/brand mark */}
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-8">
-              <Heart className="w-8 h-8 text-primary" />
+            {/* Pastor Brett image */}
+            <div className="mb-8">
+              <img 
+                src={pastorBrettImage} 
+                alt="Pastor Brett in the Jordan River" 
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-primary/20 shadow-lg"
+                data-testid="img-pastor-brett"
+              />
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="heading-keep-us-alive">
