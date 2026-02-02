@@ -1,0 +1,118 @@
+🚨🚨🚨 REPLIT LISTEN CAREFULLY: DO EXACTLY WHAT I WRITE. DO NOT ADD EXTRA FEATURES. DO NOT IMPROVISE. DO NOT CHANGE COPY. DO NOT “HELP” BY EXPANDING SCOPE. 🚨🚨🚨
+🚨 DO EXACTLY WHAT IS WRITTEN. DO EXACTLY WHAT IS WRITTEN. DO EXACTLY WHAT IS WRITTEN. 🚨
+
+GOAL
+Create a NEW standalone “Keep Us Alive” support page on thetravelingchurch.com that lives on OUR SITE (NOT inside Givebutter). This page is SHORT, personal, and conversion-focused. Its buttons send users to our EXISTING Givebutter donation flow.
+
+IMPORTANT CLARIFICATION
+- The “Keep Us Alive” copy goes on a NEW PAGE on the site (thetravelingchurch.com), not on Givebutter.
+- Givebutter remains the checkout/payment UI.
+- Our page is the persuasive landing page; Givebutter is the payment step.
+
+WHERE IT GOES (ROUTING + NAV)
+1) Add a new route/page:
+   - URL slug: /keep-us-alive
+   - Page title: “Keep the Church Alive”
+2) Add a subtle nav link (NOT huge, do not disrupt the header):
+   - Top nav item: “Support” (or “Keep Us Alive”)
+   - Position: last nav item, right side near Contact.
+3) Do NOT remove the existing floating “Give Now” button. Keep it.
+4) Add one small secondary link near the floating CTA area OR inside the donation section:
+   - Text: “Need help keeping this ministry alive? Learn more →”
+   - Link to: /keep-us-alive
+   - Keep it small and understated.
+
+FLOATING CTA BEHAVIOR (KEEP AS-IS + MINOR IMPROVEMENT)
+- The floating “Give Now” button continues to go directly to the Givebutter general donation page (as it does now).
+- Do NOT change its destination.
+- Do NOT replace it with /keep-us-alive.
+Reason: “Give Now” is for broad/institutional giving. “Keep Us Alive” is for warm personal outreach.
+
+IMAGERY ON /keep-us-alive
+- Hero image should be MORE PERSONAL than the generic travel group image.
+- Use either:
+  a) a photo of Pastor Brett (ideal), or
+  b) a mission photo (Brett serving/feeding/helping), or
+  c) a simple, honest graphic if photos aren’t available.
+- If we don’t have an image asset available in repo, create a clean hero with:
+  - neutral background
+  - small cross mark / brand logo
+  - no stock photos
+
+PAGE DESIGN REQUIREMENTS
+- Keep it short. This page must not feel like a blog post.
+- Use scannable sections, lots of whitespace, max width comfortable for reading.
+- Include 2 CTAs (Monthly + One-Time) above the fold AND again near bottom.
+- Add a small FAQ accordion at the bottom (2–3 questions max).
+- Must be mobile perfect.
+
+BUTTONS / LINKING TO GIVEBUTTER
+We already have a Givebutter page. Create two CTA buttons that go to Givebutter:
+1) “Become a Monthly Supporter” → Givebutter link with monthly preselected if possible
+2) “Give a One-Time Gift” → Givebutter link with one-time preselected if possible
+
+If Givebutter supports URL params to default monthly/one-time or amount, use them. If not, just link to the same Givebutter page and label the buttons accordingly.
+
+COPY FOR /keep-us-alive (SHORT VERSION)
+Use EXACTLY this copy:
+
+H1:
+Keep This Church Alive
+
+Subheadline:
+The Traveling Church is fully digital — no building, no staff, no budget cushion. I’m building this ministry and the Vagabond AI Bible app solo, while funding real mission work out of my own pocket.
+
+Section Title:
+Why I’m Asking
+
+Body:
+I don’t have an organization backing this. If a small group of people steps in with monthly support, this survives. If not, it eventually shuts down. I’m keeping this simple and honest because it matters.
+
+Section Title:
+What Your Support Covers
+
+Bullets:
+- Core tools & infrastructure (website, platform, AI costs)
+- Direct aid & mission expenses (food, transport, urgent help)
+- Time to pastor, build, and keep the ministry moving
+
+Section Title:
+The Goal
+
+Body (bold the numbers):
+I’m aiming for **25 monthly supporters** at **$40/month** (or whatever you can do). That’s enough to keep everything alive and growing.
+
+CTA Buttons (display side-by-side on desktop, stacked on mobile):
+[Become a Monthly Supporter]
+[Give a One-Time Gift]
+
+Small “Thank you” line:
+If this ministry has ever encouraged you, helped you, or mattered to you — thank you for being here. And if you can help keep it alive, I’m deeply grateful.
+— Brett
+
+OPTIONAL SMALL FAQ (Accordion)
+Q: “Is my gift tax-deductible?”
+A: “Yes. The Traveling Church Global is organized as a nonprofit. You’ll receive a receipt for your records.”
+(Only include if accurate for your org setup.)
+
+Q: “Where does the money go?”
+A: “Direct ministry costs: platform + tools + mission expenses + direct aid.”
+
+Q: “Can I give once instead of monthly?”
+A: “Absolutely — one-time gifts help a lot.”
+
+DON’T DO THESE THINGS
+- Do not add long paragraphs.
+- Do not add extra programs content (programs already exist elsewhere).
+- Do not add video embeds unless provided.
+- Do not add fake testimonials.
+- Do not add mock numbers or claims.
+
+DELIVERABLES CHECKLIST
+✅ New page /keep-us-alive implemented
+✅ Nav link added (“Support” or “Keep Us Alive”)
+✅ Two CTA buttons linking to Givebutter
+✅ Small “Learn more →” link near donation CTA pointing to /keep-us-alive
+✅ Mobile responsive, clean typography, fast load
+
+END. DO NOT ADD ANYTHING ELSE.
