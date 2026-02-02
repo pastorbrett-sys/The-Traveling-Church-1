@@ -92,7 +92,7 @@ export default function KeepUsAlive() {
             </div>
             
             {/* The Goal - inline under CTA */}
-            <p className="text-base text-muted-foreground leading-relaxed mt-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mt-6">
               I'm aiming for <strong className="text-foreground">25 monthly supporters</strong> at <strong className="text-foreground">$40/month</strong> (or whatever you can do). That's enough to keep everything alive and growing.
             </p>
           </div>
