@@ -3,7 +3,7 @@ import Footer from "@/components/footer";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { DONATE_LINK } from "@/data/programs";
-import pastorBrettImage from "@assets/asfdasfa_1767129664290.jpeg";
+import pastorBrettImage from "@assets/Pastor Brett_1760674999817.png";
 
 const faqItems = [
   {
@@ -55,7 +55,7 @@ export default function KeepUsAlive() {
             <div className="mb-8">
               <img 
                 src={pastorBrettImage} 
-                alt="Pastor Brett in the Jordan River" 
+                alt="Pastor Brett" 
                 className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-primary/20 shadow-lg"
                 data-testid="img-pastor-brett"
               />
