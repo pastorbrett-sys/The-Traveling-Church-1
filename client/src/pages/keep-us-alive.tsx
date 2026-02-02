@@ -90,6 +90,11 @@ export default function KeepUsAlive() {
                 Give a One-Time Gift
               </a>
             </div>
+            
+            {/* The Goal - inline under CTA */}
+            <p className="text-lg text-muted-foreground leading-relaxed mt-6">
+              I'm aiming for <strong className="text-foreground">25 monthly supporters</strong> at <strong className="text-foreground">$40/month</strong> (or whatever you can do). That's enough to keep everything alive and growing.
+            </p>
           </div>
         </section>
         
@@ -125,18 +130,6 @@ export default function KeepUsAlive() {
                 <span>Time to pastor, build, and keep the ministry moving</span>
               </li>
             </ul>
-          </div>
-        </section>
-        
-        {/* The Goal */}
-        <section className="py-12 px-6 bg-muted/30">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6" data-testid="heading-goal">
-              The Goal
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm aiming for <strong className="text-foreground">25 monthly supporters</strong> at <strong className="text-foreground">$40/month</strong> (or whatever you can do). That's enough to keep everything alive and growing.
-            </p>
           </div>
         </section>
         
