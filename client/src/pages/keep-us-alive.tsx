@@ -62,7 +62,7 @@ export default function KeepUsAlive() {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="heading-keep-us-alive">
-              Keep This Church Alive
+              Keep This Ministry Alive
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
