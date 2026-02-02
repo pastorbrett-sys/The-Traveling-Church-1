@@ -49,7 +49,7 @@ export default function KeepUsAlive() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 px-6">
+        <section className="pt-16 md:pt-24 pb-6 md:pb-10 px-6">
           <div className="max-w-2xl mx-auto text-center">
             {/* Pastor Brett image */}
             <div className="mb-8">
