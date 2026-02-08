@@ -120,11 +120,13 @@ export async function* geminiStreamContent(
   }
 
   const url = `${GEMINI_BASE_URL}/models/${model}:streamGenerateContent?alt=sse`;
+  const fetchStart = Date.now();
   const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+  console.log(`[Gemini Stream] HTTP response: ${Date.now() - fetchStart}ms`);
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -136,6 +138,7 @@ export async function* geminiStreamContent(
 
   const decoder = new TextDecoder();
   let buffer = "";
+  let firstYield = true;
 
   while (true) {
     const { done, value } = await reader.read();
@@ -150,11 +153,18 @@ export async function* geminiStreamContent(
         try {
           const data = JSON.parse(line.slice(6));
           const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-          if (text) yield text;
+          if (text) {
+            if (firstYield) {
+              console.log(`[Gemini Stream] First token: ${Date.now() - fetchStart}ms`);
+              firstYield = false;
+            }
+            yield text;
+          }
         } catch {}
       }
     }
   }
+  console.log(`[Gemini Stream] Complete: ${Date.now() - fetchStart}ms`);
 }
 
 export { openaiClient };
