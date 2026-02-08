@@ -38,7 +38,7 @@ export function getMultilingualInstruction(translation: string): string {
 
   const languageName = LANGUAGE_NAMES[translation] || "the user's language";
 
-  return `\n\nCRITICAL LANGUAGE INSTRUCTION: The user speaks ${languageName}. You MUST reason and think through your response internally in English for maximum accuracy, but your ENTIRE final response MUST be written in ${languageName}. Do NOT output any English text in your response. Your ${languageName} output must be natural, fluent, and idiomatic — not a mechanical translation. Keep only proper nouns, Bible book names, verse references, and numbers in their standard English/international format.`;
+  return `\n\nCRITICAL LANGUAGE INSTRUCTION: The user speaks ${languageName}. You MUST respond ENTIRELY in ${languageName} using proper Ge'ez script (ፊደል). Your response must be natural, fluent, and idiomatic ${languageName} — as a native speaker would write it. Do NOT translate word-by-word from English. Use proper ${languageName} grammar, sentence structure, and vocabulary. Keep only proper nouns, Bible book names, verse references, and numbers in their standard English/international format.`;
 }
 
 export function getSearchMultilingualInstruction(translation: string): string {
@@ -46,7 +46,7 @@ export function getSearchMultilingualInstruction(translation: string): string {
 
   const languageName = LANGUAGE_NAMES[translation] || "the user's language";
 
-  return `\n\nCRITICAL LANGUAGE INSTRUCTION: The user speaks ${languageName}. Translate ONLY the human-readable text values in the JSON (such as "interpretation", "description", "preview", "briefAnswer", "meaning", "context", "suggestedPrompt"). Keep the JSON structure, keys, "type" values, "reference" values, book names, verse numbers, and all other structural fields in English. Your translated text must be natural and fluent ${languageName}, not mechanical. You MUST still respond with valid JSON only — no markdown, no extra text.`;
+  return `\n\nCRITICAL LANGUAGE INSTRUCTION: The user speaks ${languageName}. Translate ONLY the human-readable text values in the JSON (such as "interpretation", "description", "preview", "briefAnswer", "meaning", "context", "suggestedPrompt") into natural, fluent ${languageName} using Ge'ez script (ፊደል). Do NOT translate word-by-word from English — use proper ${languageName} grammar and vocabulary. Keep the JSON structure, keys, "type" values, "reference" values, book names, verse numbers, and all other structural fields in English. You MUST still respond with valid JSON only — no markdown, no extra text.`;
 }
 
 export { openaiClient, geminiClient };

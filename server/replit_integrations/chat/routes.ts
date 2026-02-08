@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
-import { getAIClient, getChatModel, getMultilingualInstruction } from "../../aiRouter";
+import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish } from "../../aiRouter";
 import { verifyFirebaseToken } from "../../firebaseAdmin";
 
 const FREE_MESSAGE_LIMIT = 10;
@@ -305,6 +305,7 @@ export function registerChatRoutes(app: Express): void {
 
       const aiClient = getAIClient(translation);
       const aiModel = getChatModel(translation);
+      console.log(`[Chat AI] Translation: ${translation}, Model: ${aiModel}, NonEnglish: ${isNonEnglish(translation)}`);
 
       const stream = await aiClient.chat.completions.create({
         model: aiModel,

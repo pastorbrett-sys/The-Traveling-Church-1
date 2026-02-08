@@ -1027,7 +1027,7 @@ Reference: ${verseRef} (${translation})`;
       const msgResponse = await apiFetch(`/api/conversations/${conversation.id}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "user", content: prompt }),
+        body: JSON.stringify({ role: "user", content: prompt, translation }),
       });
 
       const reader = msgResponse.body?.getReader();
@@ -1073,7 +1073,7 @@ Reference: ${verseRef} (${translation})`;
       const msgResponse = await apiFetch(`/api/conversations/${insightConversationId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "user", content: userMessage }),
+        body: JSON.stringify({ role: "user", content: userMessage, translation }),
       });
 
       const reader = msgResponse.body?.getReader();
@@ -1191,7 +1191,7 @@ Reference: ${verseRef} (${translation})`;
       const msgResponse = await apiFetch(`/api/conversations/${discussionConversationId}/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "user", content: userMessage }),
+        body: JSON.stringify({ role: "user", content: userMessage, translation }),
       });
 
       const reader = msgResponse.body?.getReader();
