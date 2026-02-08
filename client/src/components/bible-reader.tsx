@@ -1014,12 +1014,10 @@ export default function BibleReader({
       setInsightConversationId(conversation.id);
 
       const isAmharic = isAmharicTranslation(translation);
-      const languageInstruction = isAmharic 
-        ? "IMPORTANT: Please respond entirely in Amharic (አማርኛ). Do not use English."
-        : "";
       
-      const prompt = `${languageInstruction}
-Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
+      const prompt = isAmharic
+        ? `በአጭሩ ይህን ጥቅስ አብራራ፡ "${selectedVerse.text}" (${verseRef})`
+        : `Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
 
 Verse: "${selectedVerse.text}"
 Reference: ${verseRef} (${translation})`;

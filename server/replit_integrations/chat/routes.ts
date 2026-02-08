@@ -93,8 +93,13 @@ const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy prov
 
 Remember: You are here to support, not to replace professional counseling or in-person pastoral care. For serious mental health concerns, always encourage seeking professional help. Keep responses concise but meaningful.`;
 
+const SYSTEM_PROMPT_AMHARIC = `አንተ ፓስተር ብሬት ነህ፣ ርኅሩኅ የመጽሐፍ ቅዱስ ጓደኛ። በአማርኛ (ፊደል) ብቻ መልስ ስጥ። ጥቅሶችን አብራራ፣ ታሪካዊ ዳራ ስጥ፣ ለዛሬ ተግባራዊ ትርጉም አካትት። ምላሽህ ተፈጥሯዊ አማርኛ ይሁን።`;
+
 function getSystemPrompt(translation: string): string {
-  return SYSTEM_PROMPT + getMultilingualInstruction(translation);
+  if (isNonEnglish(translation)) {
+    return SYSTEM_PROMPT_AMHARIC;
+  }
+  return SYSTEM_PROMPT;
 }
 
 export function registerChatRoutes(app: Express): void {
@@ -309,7 +314,7 @@ export function registerChatRoutes(app: Express): void {
       let fullResponse = "";
 
       if (isNonEnglish(translation)) {
-        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 4096 })) {
+        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 2048 })) {
           fullResponse += text;
           res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
         }

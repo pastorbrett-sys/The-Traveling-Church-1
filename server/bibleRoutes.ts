@@ -217,7 +217,7 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       responseText = (await geminiGenerateContent(aiModel, [
         { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
-      ], { temperature: 0.7, maxTokens: 4096 })).trim() || "{}";
+      ], { temperature: 0.7, maxTokens: 2048 })).trim() || "{}";
     } else {
       const aiClient = getAIClient(trans);
       const completion = await aiClient.chat.completions.create({
