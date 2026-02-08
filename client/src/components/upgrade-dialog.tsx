@@ -116,11 +116,8 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const [isRestoring, setIsRestoring] = useState(false);
   const [pricing, setPricing] = useState<PricingTierResponse | null>(null);
   const [isPricingLoading, setIsPricingLoading] = useState(true);
-  // TEMP: Force $1.99 for emerging market App Store screenshot
-  const [nativePrice, setNativePrice] = useState<string | null>("$1.99");
-  const { isNative: actualIsNative, platform } = usePlatform();
-  // TEMP: Force native mode for App Store screenshot
-  const isNative = true;
+  const [nativePrice, setNativePrice] = useState<string | null>(null);
+  const { isNative, platform } = usePlatform();
   const { toast } = useToast();
   
   // Check both Bible translation AND device language for Amharic
@@ -152,8 +149,9 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       };
       
       const deviceCountry = getDeviceCountry();
-      // TEMP: Force emerging market for screenshot
-      const url = `/api/pricing/tier?deviceCountry=ET`;
+      const url = deviceCountry 
+        ? `/api/pricing/tier?deviceCountry=${deviceCountry}`
+        : `/api/pricing/tier`;
       
       apiFetch(url)
         .then(res => res.json())
