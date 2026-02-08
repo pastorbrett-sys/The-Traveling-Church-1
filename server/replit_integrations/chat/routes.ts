@@ -5,6 +5,7 @@ import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
 import { getAIClient, getChatModel, getMultilingualInstruction } from "../../aiRouter";
+import { verifyFirebaseToken } from "../../firebaseAdmin";
 
 const FREE_MESSAGE_LIMIT = 10;
 const proSessions = new Set<string>();
@@ -31,7 +32,7 @@ export function markSessionAsPro(sessionId: string): void {
   proSessions.add(sessionId);
 }
 
-function getAuthenticatedUserId(req: any): string | null {
+async function getAuthenticatedUserId(req: any): Promise<string | null> {
   // Check for Firebase Bearer token auth (set by isAuthenticated middleware)
   if (req.user?.uid) {
     return req.user.uid;
@@ -44,11 +45,25 @@ function getAuthenticatedUserId(req: any): string | null {
   if (req.isAuthenticated && req.isAuthenticated() && req.user?.claims?.sub) {
     return req.user.claims.sub;
   }
+  // Direct Bearer token verification (for routes without isAuthenticated middleware)
+  const authHeader = req.headers?.authorization;
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    try {
+      const idToken = authHeader.split("Bearer ")[1];
+      const decodedToken = await verifyFirebaseToken(idToken);
+      if (decodedToken) {
+        req.user = { uid: decodedToken.uid, email: decodedToken.email };
+        return decodedToken.uid;
+      }
+    } catch (error) {
+      // Token verification failed
+    }
+  }
   return null;
 }
 
 async function checkUserProStatus(req: any): Promise<boolean> {
-  const userId = getAuthenticatedUserId(req);
+  const userId = await getAuthenticatedUserId(req);
   if (userId) {
     try {
       const user = await storage.getUser(userId);
@@ -90,7 +105,7 @@ export function registerChatRoutes(app: Express): void {
     const isPro = isUserPro || isSessionPro;
     
     // Get database-backed usage count for authenticated users
-    const authUserId = getAuthenticatedUserId(req);
+    const authUserId = await getAuthenticatedUserId(req);
     if (!authUserId) {
       // Return 401 for unauthenticated users - chat requires login
       return res.status(401).json({
@@ -163,7 +178,7 @@ export function registerChatRoutes(app: Express): void {
       
       if (isVerseInsight) {
         // Get authenticated user for usage tracking
-        const authUserId = getAuthenticatedUserId(req);
+        const authUserId = await getAuthenticatedUserId(req);
         if (!authUserId) {
           return res.status(401).json({ error: "Authentication required for verse insights" });
         }
@@ -237,7 +252,7 @@ export function registerChatRoutes(app: Express): void {
       const isPro = isUserPro || isSessionPro;
       
       // Get authenticated user for database-backed usage tracking
-      const authUserId = getAuthenticatedUserId(req);
+      const authUserId = await getAuthenticatedUserId(req);
       
       // Require authentication for regular chat (feature conversations have their own auth check)
       if (!isFeatureConversation && !authUserId) {
