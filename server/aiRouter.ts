@@ -68,7 +68,7 @@ export async function geminiGenerateContent(
     contents,
     generationConfig: {
       temperature: options.temperature ?? 0.7,
-      maxOutputTokens: options.maxTokens ?? 2048,
+      maxOutputTokens: options.maxTokens ?? 4096,
     },
   };
 

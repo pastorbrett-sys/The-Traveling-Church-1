@@ -217,7 +217,7 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       responseText = (await geminiGenerateContent(aiModel, [
         { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
-      ], { temperature: 0.7, maxTokens: 1500 })).trim() || "{}";
+      ], { temperature: 0.7, maxTokens: 4096 })).trim() || "{}";
     } else {
       const aiClient = getAIClient(trans);
       const completion = await aiClient.chat.completions.create({
@@ -515,11 +515,11 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
         geminiGenerateContent(aiModel, [
           { role: "system", content: synopsisSystemPrompt },
           { role: "user", content: question }
-        ], { maxTokens: 300, temperature: 0.7 }),
+        ], { maxTokens: 1200, temperature: 0.7 }),
         geminiGenerateContent(aiModel, [
           { role: "system", content: followUpSystemPrompt },
           { role: "user", content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.` }
-        ], { maxTokens: 100, temperature: 0.7 }),
+        ], { maxTokens: 400, temperature: 0.7 }),
       ]);
       synopsis = synopsisResult || "Unable to generate synopsis at this time.";
       followUp = followUpResult || "What would you like to explore about this book?";

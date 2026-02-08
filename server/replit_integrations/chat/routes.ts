@@ -309,7 +309,7 @@ export function registerChatRoutes(app: Express): void {
       let fullResponse = "";
 
       if (isNonEnglish(translation)) {
-        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 2048 })) {
+        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 4096 })) {
           fullResponse += text;
           res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
         }
@@ -411,7 +411,7 @@ Generate ONLY the follow-up question/invitation, nothing else.${langInstruction}
       let fullResponse = "";
 
       if (isNonEnglish(translation)) {
-        for await (const text of geminiStreamContent(aiModel, [{ role: "user", content: followUpPrompt }], { maxTokens: 150 })) {
+        for await (const text of geminiStreamContent(aiModel, [{ role: "user", content: followUpPrompt }], { maxTokens: 500 })) {
           fullResponse += text;
           res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
         }
