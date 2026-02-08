@@ -10,6 +10,16 @@ import { verifyFirebaseToken } from "../../firebaseAdmin";
 const FREE_MESSAGE_LIMIT = 10;
 const proSessions = new Set<string>();
 
+const verseInsightCache = new Map<string, string>();
+
+function getInsightCacheKey(content: string, translation: string): string | null {
+  const insightMatch = content.match(/(?:በአጭሩ ይህን ጥቅስ አብራራ|Please explain this Bible verse).*?"(.+?)"\s*\((.+?)\)/s);
+  if (insightMatch) {
+    return `insight:${translation}:${insightMatch[2]}`;
+  }
+  return null;
+}
+
 function getSessionId(req: Request, res: Response): string {
   let sessionId = req.cookies?.pastor_session;
   if (!sessionId) {
@@ -295,6 +305,22 @@ export function registerChatRoutes(app: Express): void {
 
       await chatStorage.createMessage(conversationId, "user", content.trim());
 
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+
+      const cacheKey = isVerseInsight ? getInsightCacheKey(content, translation) : null;
+      const cachedResponse = cacheKey ? verseInsightCache.get(cacheKey) : null;
+
+      if (cachedResponse) {
+        console.log(`[Chat AI] Cache HIT for ${cacheKey}`);
+        res.write(`data: ${JSON.stringify({ content: cachedResponse })}\n\n`);
+        await chatStorage.createMessage(conversationId, "assistant", cachedResponse);
+        res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+        res.end();
+        return;
+      }
+
       const messages = await chatStorage.getMessagesByConversation(conversationId);
       const chatMessages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
         { role: "system", content: getSystemPrompt(translation) },
@@ -303,10 +329,6 @@ export function registerChatRoutes(app: Express): void {
           content: m.content,
         }))
       ];
-
-      res.setHeader("Content-Type", "text/event-stream");
-      res.setHeader("Cache-Control", "no-cache");
-      res.setHeader("Connection", "keep-alive");
 
       const aiModel = getChatModel(translation);
       console.log(`[Chat AI] Translation: ${translation}, Model: ${aiModel}, NonEnglish: ${isNonEnglish(translation)}`);
@@ -334,6 +356,11 @@ export function registerChatRoutes(app: Express): void {
             res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
           }
         }
+      }
+
+      if (cacheKey && fullResponse) {
+        verseInsightCache.set(cacheKey, fullResponse);
+        console.log(`[Chat AI] Cached response for ${cacheKey} (cache size: ${verseInsightCache.size})`);
       }
 
       await chatStorage.createMessage(conversationId, "assistant", fullResponse);
