@@ -5,19 +5,14 @@ import { eq, and, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import * as helloaoBibleService from "./helloaoBibleService";
 import * as amharicBibleService from "./amharicBibleService";
-import OpenAI from "openai";
 import type { SmartSearchResponse, SmartSearchResult } from "@shared/models/bible";
 import { isAuthenticated } from "./replit_integrations/auth";
 import { storage } from "./storage";
 import { checkUsageLimit, incrementUsage } from "./usageService";
 import { isUserPro } from "./proStatusService";
+import { getAIClient, getSearchModel, getChatModel, getMultilingualInstruction, getSearchMultilingualInstruction } from "./aiRouter";
 
 const router = Router();
-
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
 
 const BIBLE_BOOKS_MAP: Record<string, { bookId: number; chapters: number }> = {
   "genesis": { bookId: 1, chapters: 50 },
@@ -212,13 +207,12 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       });
     }
 
-    const isAmharic = translation === "ETH" || translation === "AMPROT";
-    const languageInstruction = isAmharic 
-      ? "\n\nIMPORTANT: Respond entirely in Amharic (አማርኛ). All text fields including interpretation, summaries, meanings, and context should be in Amharic. Keep only book names, references, and verse numbers in their standard format."
-      : "";
+    const languageInstruction = getSearchMultilingualInstruction(translation || "KJV");
+    const aiClient = getAIClient(translation || "KJV");
+    const aiModel = getSearchModel(translation || "KJV");
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+    const completion = await aiClient.chat.completions.create({
+      model: aiModel,
       messages: [
         { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
@@ -231,7 +225,14 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
     
     let parsed: { interpretation?: string; results?: SmartSearchResult[] };
     try {
-      const cleanedResponse = responseText.replace(/```json\n?|```\n?/g, "").trim();
+      let cleanedResponse = responseText.replace(/```json\n?|```\n?/g, "").trim();
+      if (!cleanedResponse.startsWith("{")) {
+        const jsonStart = cleanedResponse.indexOf("{");
+        const jsonEnd = cleanedResponse.lastIndexOf("}");
+        if (jsonStart !== -1 && jsonEnd !== -1) {
+          cleanedResponse = cleanedResponse.substring(jsonStart, jsonEnd + 1);
+        }
+      }
       parsed = JSON.parse(cleanedResponse);
     } catch (parseError) {
       console.error("Failed to parse AI response:", responseText);
@@ -475,34 +476,25 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
       });
     }
 
-    const isAmharic = translation === "ETH" || translation === "AMPROT";
-    const question = isAmharic 
-      ? `ስለ መጽሐፍ ቅዱስ ${bookName} አጭር ማጠቃለያ ስጠኝ።`
-      : `Give me a short synopsis of the book of ${bookName} in the Bible.`;
+    const langInstruction = getMultilingualInstruction(translation || "KJV");
+    const question = `Give me a short synopsis of the book of ${bookName} in the Bible.`;
     
-    const synopsisSystemPrompt = isAmharic
-      ? `አንተ ጥበበኛና ወዳጃዊ የመጽሐፍ ቅዱስ ጥናት ረዳት ነህ። ስለ መጽሐፍ ቅዱስ መጽሐፍ ሲጠየቅ በአጭር አንቀጽ (3-5 ዓረፍተ ነገሮች) አጭር ግን ሁሉን አቀፍ ማጠቃለያ ስጥ። ይህንን ያካትት፦
-1. ጸሐፊውና ግምታዊ የጊዜ ዘመን
-2. ዋናው ጭብጥ ወይም ዓላማ
-3. ዋና ዋና ክስተቶች ወይም ትምህርቶች
-4. ለጠቅላላው የመጽሐፍ ቅዱስ ትረካ ያለው ጠቀሜታ
-
-በአማርኛ ብቻ መልስ ስጥ። ተቀባይነት ያለውና ለሁሉም ተደራሽ ያድርገው። የማጠቃለያ አንቀጹን ብቻ ስጥ፣ ሌላ ነገር አይደለም።`
-      : `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
+    const synopsisSystemPrompt = `You are a knowledgeable and warm Bible study assistant. When asked about a book of the Bible, provide a concise yet comprehensive synopsis in one short paragraph (3-5 sentences). Include:
 1. The author and approximate time period
 2. The main theme or purpose
 3. Key events or teachings
 4. Its significance to the overall biblical narrative
 
-Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers. Only provide the synopsis paragraph, nothing else.`;
+Be engaging and accessible, avoiding overly academic language. Make it interesting for both new and experienced Bible readers. Only provide the synopsis paragraph, nothing else.${langInstruction}`;
 
-    const followUpSystemPrompt = isAmharic
-      ? `አንተ ወዳጃዊ የመጽሐፍ ቅዱስ ጥናት ረዳት ነህ። ውይይትን ለማበረታታት ስለ ${bookName} መጽሐፍ አንድ አሳታፊ ተከታይ ጥያቄ ፍጠር። ጥያቄው ተጠቃሚው ከዚህ መጽሐፍ ውስጥ የተወሰነ ጭብጥ፣ ገጸ ባህሪ፣ ምዕራፍ ወይም ትምህርት እንዲያስስ መጋበዝ አለበት። በአማርኛ ብቻ፣ ጥያቄውን ብቻ አውጣ፣ ሌላ ነገር አይደለም።`
-      : `You are a warm Bible study assistant. Generate a single engaging follow-up question about the book of ${bookName} to encourage continued conversation. The question should invite the user to explore a specific theme, character, chapter, or teaching from this book. Only output the question, nothing else.`;
+    const followUpSystemPrompt = `You are a warm Bible study assistant. Generate a single engaging follow-up question about the book of ${bookName} to encourage continued conversation. The question should invite the user to explore a specific theme, character, chapter, or teaching from this book. Only output the question, nothing else.${langInstruction}`;
     
+    const aiClient = getAIClient(translation || "KJV");
+    const aiModel = getChatModel(translation || "KJV");
+
     const [synopsisCompletion, followUpCompletion] = await Promise.all([
-      openai.chat.completions.create({
-        model: "gpt-4o-mini",
+      aiClient.chat.completions.create({
+        model: aiModel,
         messages: [
           {
             role: "system",
@@ -516,8 +508,8 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
         max_tokens: 300,
         temperature: 0.7,
       }),
-      openai.chat.completions.create({
-        model: "gpt-4o-mini",
+      aiClient.chat.completions.create({
+        model: aiModel,
         messages: [
           {
             role: "system",
@@ -525,9 +517,7 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
           },
           {
             role: "user",
-            content: isAmharic 
-              ? `ስለ ${bookName} ማጠቃለያ ላነበበ ሰው ተከታይ ጥያቄ ፍጠር።`
-              : `Generate a follow-up question for someone who just read a synopsis of ${bookName}.`
+            content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.`
           }
         ],
         max_tokens: 100,

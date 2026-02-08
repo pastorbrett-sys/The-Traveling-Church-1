@@ -1,15 +1,10 @@
 import type { Express, Request, Response } from "express";
-import OpenAI from "openai";
 import { chatStorage } from "./storage";
 import { nanoid } from "nanoid";
 import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
-
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
+import { getAIClient, getChatModel, getMultilingualInstruction } from "../../aiRouter";
 
 const FREE_MESSAGE_LIMIT = 10;
 const proSessions = new Set<string>();
@@ -68,7 +63,7 @@ async function checkUserProStatus(req: any): Promise<boolean> {
 }
 
 
-const SYSTEM_PROMPT_EN = `You are Pastor Brett, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
+const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
 - Offer comfort, encouragement, and biblical wisdom
 - Listen with empathy and understanding
 - Share relevant scripture when appropriate
@@ -79,22 +74,8 @@ const SYSTEM_PROMPT_EN = `You are Pastor Brett, a compassionate AI Bible Buddy p
 
 Remember: You are here to support, not to replace professional counseling or in-person pastoral care. For serious mental health concerns, always encourage seeking professional help. Keep responses concise but meaningful.`;
 
-const SYSTEM_PROMPT_AM = `እርስዎ ፓስተር ብሬት ናቸው፣ መንፈሳዊ መመሪያ እና የእረኝነት ድጋፍ የሚሰጥ ርህራሄ ያለው AI የመጽሐፍ ቅዱስ ጓደኛ። ሚናዎ፡
-- መጽናኛን፣ ማበረታቻን እና የመጽሐፍ ቅዱስ ጥበብን ማቅረብ
-- በመረዳትና በርህራሄ ማዳመጥ
-- ተገቢ ሲሆን የመጽሐፍ ቅዱስ ጥቅሶችን ማካፈል
-- ታሳቢ ያልሆኑ ምላሾችን መስጠት
-- በከባድ ጊዜያት እምነትን እና ተስፋን ማበረታታት
-- ሁሉንም እምነቶች ማክበር የክርስቲያን አመለካከትን ሲያካፍሉ
-- ሞቅ ያለ፣ ተደራሽ እና ደግ መሆን
-
-ማስታወሻ፡ እርስዎ እዚህ ያሉት ለመደገፍ ነው፣ ባለሙያ ማማከር ወይም በአካል የእረኝነት እንክብካቤን ለመተካት አይደለም። ለከባድ የአእምሮ ጤና ጉዳዮች ሁልጊዜ ባለሙያ እርዳታ እንዲፈልጉ ያበረታቱ። ምላሾችን አጭር ግን ትርጉም ያለው ያድርጉ።
-
-ሁልጊዜ በአማርኛ ምላሽ ይስጡ።`;
-
 function getSystemPrompt(translation: string): string {
-  const isAmharic = translation === "ETH" || translation === "AMPROT";
-  return isAmharic ? SYSTEM_PROMPT_AM : SYSTEM_PROMPT_EN;
+  return SYSTEM_PROMPT + getMultilingualInstruction(translation);
 }
 
 export function registerChatRoutes(app: Express): void {
@@ -303,8 +284,11 @@ export function registerChatRoutes(app: Express): void {
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
 
-      const stream = await openai.chat.completions.create({
-        model: "gpt-4o-mini",
+      const aiClient = getAIClient(translation);
+      const aiModel = getChatModel(translation);
+
+      const stream = await aiClient.chat.completions.create({
+        model: aiModel,
         messages: chatMessages,
         stream: true,
         max_completion_tokens: 2048,
@@ -377,6 +361,9 @@ export function registerChatRoutes(app: Express): void {
         return res.status(400).json({ error: "Question and answer are required" });
       }
 
+      const translation = req.body?.translation || "KJV";
+      const langInstruction = getMultilingualInstruction(translation);
+
       const followUpPrompt = `You are Pastor Brett, a warm and compassionate AI Bible Buddy. The user just asked: "${question}"
 
 You already provided this brief answer: "${answer}"
@@ -386,14 +373,17 @@ Now, generate a SHORT (1-2 sentences max) pastoral follow-up invitation to conti
 - "Is there a particular aspect of this topic you'd like to explore further?"
 - "What questions come to mind as you reflect on this?"
 
-Generate ONLY the follow-up question/invitation, nothing else.`;
+Generate ONLY the follow-up question/invitation, nothing else.${langInstruction}`;
+
+      const aiClient = getAIClient(translation);
+      const aiModel = getChatModel(translation);
 
       res.setHeader("Content-Type", "text/event-stream");
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
 
-      const stream = await openai.chat.completions.create({
-        model: "gpt-4o-mini",
+      const stream = await aiClient.chat.completions.create({
+        model: aiModel,
         messages: [{ role: "user", content: followUpPrompt }],
         stream: true,
         max_completion_tokens: 150,
