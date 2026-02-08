@@ -191,8 +191,8 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
     }
 
     // Check if user has credits available (but don't consume yet - consumed on click-through)
-    const userId = req.session.userId;
-    const user = await storage.getUser(userId);
+    const userId = req.user?.uid || req.session?.userId;
+    const user = userId ? await storage.getUser(userId) : null;
     const isPro = isUserPro(user);
     
     const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
@@ -255,7 +255,10 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
 // Use a smart search credit when clicking through to a result
 router.post("/smart-search/use-credit", isAuthenticated, async (req: any, res) => {
   try {
-    const userId = req.session.userId;
+    const userId = req.user?.uid || req.session?.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "Authentication required" });
+    }
     const user = await storage.getUser(userId);
     const isPro = isUserPro(user);
     
@@ -460,7 +463,10 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
       return res.status(400).json({ message: "Book name is required" });
     }
 
-    const userId = req.session.userId;
+    const userId = req.user?.uid || req.session?.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "Authentication required" });
+    }
     const user = await storage.getUser(userId);
     const isPro = isUserPro(user);
     
