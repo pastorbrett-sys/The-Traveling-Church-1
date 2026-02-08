@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
-import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish, geminiStreamContent } from "../../aiRouter";
+import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish, geminiStreamContent, geminiGenerateContent } from "../../aiRouter";
 import { verifyFirebaseToken } from "../../firebaseAdmin";
 
 const FREE_MESSAGE_LIMIT = 10;
@@ -13,7 +13,7 @@ const proSessions = new Set<string>();
 const verseInsightCache = new Map<string, string>();
 
 function getInsightCacheKey(content: string, translation: string): string | null {
-  const insightMatch = content.match(/(?:በአጭሩ ይህን ጥቅስ አብራራ|Please explain this Bible verse).*?"(.+?)"\s*\((.+?)\)/s);
+  const insightMatch = content.match(/(?:በአጭሩ ይህን ጥቅስ አብራራ|Please explain this Bible verse)[\s\S]*?"(.+?)"\s*\((.+?)\)/);
   if (insightMatch) {
     return `insight:${translation}:${insightMatch[2]}`;
   }
@@ -336,7 +336,26 @@ export function registerChatRoutes(app: Express): void {
       let fullResponse = "";
 
       if (isNonEnglish(translation)) {
-        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 2048 })) {
+        const userContent = content.trim();
+        const quickSummaryPrompt = `በ1-2 ዓረፍተ ነገር ብቻ አጭር መልስ ስጥ፡ ${userContent}`;
+        const quickMessages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
+          { role: "system", content: "በአማርኛ ብቻ መልስ ስጥ። አጭር ምላሽ ብቻ።" },
+          { role: "user", content: quickSummaryPrompt },
+        ];
+
+        console.log(`[Chat AI] Progressive: sending quick Amharic summary first...`);
+        try {
+          const quickSummary = await geminiGenerateContent(aiModel, quickMessages, { temperature: 0, maxTokens: 256 });
+          if (quickSummary) {
+            fullResponse = quickSummary + "\n\n---\n\n";
+            res.write(`data: ${JSON.stringify({ content: fullResponse })}\n\n`);
+            console.log(`[Chat AI] Quick summary sent, now streaming full explanation...`);
+          }
+        } catch (e) {
+          console.error(`[Chat AI] Quick summary failed, falling back to stream only:`, e);
+        }
+
+        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 2048, temperature: 0.3 })) {
           fullResponse += text;
           res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
         }

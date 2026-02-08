@@ -1,0 +1,68 @@
+You’ve already hit the “obvious knobs.” Getting TTFT < 2s through a proxy is mostly about eliminating non-model delays (proxy buffering, TLS handshakes, connection reuse, region hops) and then forcing the model into its absolute fastest path.
+
+Here are the highest-leverage things left to try, in the order I’d test them.
+
+1) Confirm Replit is truly streaming (many proxies “stream” but buffer)
+
+Even if you call streamGenerateContent?alt=sse, a proxy can still buffer upstream and only flush chunks later. This shows up exactly like what you’re seeing: TTFT ~4s even when the model itself could have started sooner.
+
+How to detect (quick):
+	•	Add a timestamp the moment you open the HTTP connection.
+	•	Log when you receive the first SSE event bytes (not first “text token”).
+	•	If you get nothing for ~4s, that delay is likely before token generation or buffering at the proxy.
+
+If Replit is buffering, no prompt trick will consistently beat it—your only real fixes are:
+	•	move off the proxy for this feature (direct Google AI Studio/Vertex), or
+	•	put a thin edge service (Cloudflare Workers/Fly.io/Render) closer to Google and call that from Replit.
+
+Replit’s AI Integrations are explicitly a proxy layer (“Replit handles everything”), which often adds routing + overhead.  ￼
+
+2) If you try Gemini 3 Flash Preview, set thinkingLevel = MINIMAL (not thinkingBudget)
+
+For Gemini 2.5 Flash, thinkingBudget: 0 is the right “fastest” setting.  ￼
+For Gemini 3 models, Google’s guidance is to use thinkingLevel, and to map “budget 0” to MINIMAL for similar latency/cost.  ￼
+
+If you’re currently sending thinkingBudget: 0 to gemini-3-flash-preview, you may not be getting the lowest-latency behavior.
+
+3) Force the absolute minimal generation path
+
+These don’t usually halve TTFT, but they can shave real milliseconds to ~1s depending on infra and load:
+	•	candidateCount: 1 (if you aren’t explicitly setting it)
+	•	temperature low (0–0.3) to reduce branching
+	•	topK modest (or omit) and topP not too high (but don’t chase magic numbers)
+	•	maxOutputTokens smaller than 2048 if you can (TTFT is mostly before output, but long outputs can change internal planning)
+	•	Add stopSequences so the model can stop early (and you can request “Part 1/Part 2” progressively)
+
+4) “Progressive response” UX hack (often the only way to feel <2s)
+
+If your product requirement is “user sees something in under 2 seconds,” do a 2-step pattern:
+	1.	Fast micro-response (very short):
+“1–2 sentence Amharic summary + 3 bullet points” (cap tokens at ~120–200)
+	2.	Immediately follow with the full explanation (your current ~1750 chars)
+
+This often drops perceived TTFT drastically because the first call can be much simpler and shorter, and you can stream that quickly even under load.
+
+5) Reduce “work per request” by caching at the app layer (big win for Bible apps)
+
+Bible verse explanations are highly cacheable:
+	•	Cache by (verse_id, translation_id, “explanation_style”, model_version) for hours/days.
+	•	Pre-generate for “top N” verses (John 3:16, Psalm 23:1, etc.) in Amharic.
+	•	If you support multiple tones, precompute 2–3 “styles.”
+
+This can make TTFT effectively 0ms for a meaningful fraction of traffic.
+
+6) Connection + network tuning (proxy-sensitive)
+
+If you’re doing server-to-server calls from Replit:
+	•	Ensure HTTP keep-alive is enabled (reuse connections).
+	•	Prefer HTTP/2 if supported by the endpoint.
+	•	Avoid DNS re-resolution on every call (client defaults vary).
+	•	If Replit is in a region far from Google’s serving region, you’ll pay that RTT every time.
+
+These optimizations matter more than prompt tweaks once you’re already short.
+
+7) If you can, benchmark direct Google API once to isolate the bottleneck
+
+Even if you can’t ship it yet, do a one-off benchmark directly against Google’s Gemini endpoint:
+	•	If direct TTFT is ~1–2s but proxy TTFT is ~4s → it’s proxy/routing/buffering.
+	•	If direct is also ~4s → it’s likely model load / regional capacity / safety pipeline (then caching + progressive response become your best levers).
