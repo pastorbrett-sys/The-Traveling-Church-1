@@ -355,7 +355,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Notes Routes (requires authentication)
   app.get("/api/notes", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const notes = await storage.getNotesByUser(userId);
       const count = notes.length;
       
@@ -368,7 +368,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/notes/search", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const query = req.query.q as string;
       if (!query || query.length < 2) {
         return res.json({ notes: [] });
@@ -383,7 +383,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/notes/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const note = await storage.getNoteById(req.params.id, userId);
       if (!note) {
         return res.status(404).json({ message: "Note not found" });
@@ -397,7 +397,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/notes", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const user = await storage.getUser(userId);
       const isPro = isUserPro(user);
       
@@ -424,7 +424,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/notes/general", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const { content, tags } = req.body;
       
       if (!content || !content.trim()) {
@@ -468,7 +468,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Usage Summary endpoint for Profile page
   app.get("/api/usage/summary", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const user = await storage.getUser(userId);
       const isPro = isUserPro(user);
       
@@ -523,7 +523,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Delete Account
   app.delete("/api/account", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       
       if (!userId) {
         return res.status(401).json({ message: "Not authenticated" });
@@ -624,7 +624,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.patch("/api/notes/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const { content, tags } = req.body;
       
       const note = await storage.updateNote(req.params.id, userId, { content, tags });
@@ -640,7 +640,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete("/api/notes/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const deleted = await storage.deleteNote(req.params.id, userId);
       if (!deleted) {
         return res.status(404).json({ message: "Note not found" });
@@ -659,7 +659,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Submit a prayer request (works for both authenticated and guest users)
   app.post("/api/prayer-requests", async (req: any, res) => {
     try {
-      const userId = req.session?.userId || null;
+      const userId = req.user?.uid || req.session?.userId || null;
       const { name, email, content, isAnonymous } = req.body;
       
       if (!content || content.trim().length === 0) {
@@ -697,7 +697,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get user's prayer requests (authenticated users only)
   app.get("/api/prayer-requests", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       
       const userPrayers = await db.select()
         .from(prayerRequests)
@@ -714,7 +714,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Record a prayer session (for stats tracking)
   app.post("/api/prayer-sessions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       const { durationSeconds, withMusic } = req.body;
       
       if (!durationSeconds || durationSeconds < 1) {
@@ -737,7 +737,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get prayer stats for user
   app.get("/api/prayer-stats", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.session.userId;
+      const userId = req.user?.uid || req.session?.userId;
       
       // Get all sessions
       const sessions = await db.select()
@@ -803,7 +803,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/candle-donation/create-checkout", async (req: any, res) => {
     try {
       const { amountCents, prayerRequestId } = req.body;
-      const userId = req.session?.userId || null;
+      const userId = req.user?.uid || req.session?.userId || null;
       
       if (!amountCents || amountCents < 100) {
         return res.status(400).json({ message: "Invalid donation amount" });

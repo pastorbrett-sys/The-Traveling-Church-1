@@ -32,6 +32,10 @@ export function markSessionAsPro(sessionId: string): void {
 }
 
 function getAuthenticatedUserId(req: any): string | null {
+  // Check for Firebase Bearer token auth (set by isAuthenticated middleware)
+  if (req.user?.uid) {
+    return req.user.uid;
+  }
   // Check for Firebase auth (stored in session)
   if (req.session?.userId) {
     return req.session.userId;
