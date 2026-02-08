@@ -10,7 +10,7 @@ import { isAuthenticated } from "./replit_integrations/auth";
 import { storage } from "./storage";
 import { checkUsageLimit, incrementUsage } from "./usageService";
 import { isUserPro } from "./proStatusService";
-import { getAIClient, getSearchModel, getChatModel, getMultilingualInstruction, getSearchMultilingualInstruction } from "./aiRouter";
+import { getAIClient, getSearchModel, getChatModel, getMultilingualInstruction, getSearchMultilingualInstruction, isNonEnglish, geminiGenerateContent } from "./aiRouter";
 
 const router = Router();
 
@@ -208,20 +208,29 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
     }
 
     const languageInstruction = getSearchMultilingualInstruction(translation || "KJV");
-    const aiClient = getAIClient(translation || "KJV");
     const aiModel = getSearchModel(translation || "KJV");
+    const trans = translation || "KJV";
 
-    const completion = await aiClient.chat.completions.create({
-      model: aiModel,
-      messages: [
+    let responseText: string;
+
+    if (isNonEnglish(trans)) {
+      responseText = (await geminiGenerateContent(aiModel, [
         { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
         { role: "user", content: query.trim() }
-      ],
-      temperature: 0.7,
-      max_tokens: 1500,
-    });
-
-    const responseText = completion.choices[0]?.message?.content?.trim() || "{}";
+      ], { temperature: 0.7, maxTokens: 1500 })).trim() || "{}";
+    } else {
+      const aiClient = getAIClient(trans);
+      const completion = await aiClient.chat.completions.create({
+        model: aiModel,
+        messages: [
+          { role: "system", content: SMART_SEARCH_PROMPT + languageInstruction },
+          { role: "user", content: query.trim() }
+        ],
+        temperature: 0.7,
+        max_tokens: 1500,
+      });
+      responseText = completion.choices[0]?.message?.content?.trim() || "{}";
+    }
     
     let parsed: { interpretation?: string; results?: SmartSearchResult[] };
     try {
@@ -495,46 +504,52 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
 
     const followUpSystemPrompt = `You are a warm Bible study assistant. Generate a single engaging follow-up question about the book of ${bookName} to encourage continued conversation. The question should invite the user to explore a specific theme, character, chapter, or teaching from this book. Only output the question, nothing else.${langInstruction}`;
     
-    const aiClient = getAIClient(translation || "KJV");
     const aiModel = getChatModel(translation || "KJV");
+    const trans = translation || "KJV";
 
-    const [synopsisCompletion, followUpCompletion] = await Promise.all([
-      aiClient.chat.completions.create({
-        model: aiModel,
-        messages: [
-          {
-            role: "system",
-            content: synopsisSystemPrompt
-          },
-          {
-            role: "user",
-            content: question
-          }
-        ],
-        max_tokens: 300,
-        temperature: 0.7,
-      }),
-      aiClient.chat.completions.create({
-        model: aiModel,
-        messages: [
-          {
-            role: "system",
-            content: followUpSystemPrompt
-          },
-          {
-            role: "user",
-            content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.`
-          }
-        ],
-        max_tokens: 100,
-        temperature: 0.7,
-      })
-    ]);
+    let synopsis: string;
+    let followUp: string;
 
-    const synopsis = synopsisCompletion.choices[0]?.message?.content || "Unable to generate synopsis at this time.";
-    const followUpQuestion = followUpCompletion.choices[0]?.message?.content || "Would you like to explore a specific theme or character from this book?";
+    if (isNonEnglish(trans)) {
+      const [synopsisResult, followUpResult] = await Promise.all([
+        geminiGenerateContent(aiModel, [
+          { role: "system", content: synopsisSystemPrompt },
+          { role: "user", content: question }
+        ], { maxTokens: 300, temperature: 0.7 }),
+        geminiGenerateContent(aiModel, [
+          { role: "system", content: followUpSystemPrompt },
+          { role: "user", content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.` }
+        ], { maxTokens: 100, temperature: 0.7 }),
+      ]);
+      synopsis = synopsisResult || "Unable to generate synopsis at this time.";
+      followUp = followUpResult || "What would you like to explore about this book?";
+    } else {
+      const aiClient = getAIClient(trans);
+      const [synopsisCompletion, followUpCompletion] = await Promise.all([
+        aiClient.chat.completions.create({
+          model: aiModel,
+          messages: [
+            { role: "system", content: synopsisSystemPrompt },
+            { role: "user", content: question }
+          ],
+          max_tokens: 300,
+          temperature: 0.7,
+        }),
+        aiClient.chat.completions.create({
+          model: aiModel,
+          messages: [
+            { role: "system", content: followUpSystemPrompt },
+            { role: "user", content: `Generate a follow-up question for someone who just read a synopsis of ${bookName}.` }
+          ],
+          max_tokens: 100,
+          temperature: 0.7,
+        })
+      ]);
+      synopsis = synopsisCompletion.choices[0]?.message?.content || "Unable to generate synopsis at this time.";
+      followUp = followUpCompletion.choices[0]?.message?.content || "What would you like to explore about this book?";
+    }
     
-    const followUpMessage = `Synopsis Above ☝️\n\n${followUpQuestion}`;
+    const followUpMessage = `Synopsis Above ☝️\n\n${followUp}`;
 
     await incrementUsage(userId, "book_synopsis", isPro);
     res.json({

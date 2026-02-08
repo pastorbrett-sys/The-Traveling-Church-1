@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
-import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish } from "../../aiRouter";
+import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish, geminiStreamContent } from "../../aiRouter";
 import { verifyFirebaseToken } from "../../firebaseAdmin";
 
 const FREE_MESSAGE_LIMIT = 10;
@@ -303,24 +303,31 @@ export function registerChatRoutes(app: Express): void {
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
 
-      const aiClient = getAIClient(translation);
       const aiModel = getChatModel(translation);
       console.log(`[Chat AI] Translation: ${translation}, Model: ${aiModel}, NonEnglish: ${isNonEnglish(translation)}`);
 
-      const stream = await aiClient.chat.completions.create({
-        model: aiModel,
-        messages: chatMessages,
-        stream: true,
-        max_completion_tokens: 2048,
-      });
-
       let fullResponse = "";
 
-      for await (const chunk of stream) {
-        const text = chunk.choices[0]?.delta?.content || "";
-        if (text) {
+      if (isNonEnglish(translation)) {
+        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 2048 })) {
           fullResponse += text;
           res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+        }
+      } else {
+        const aiClient = getAIClient(translation);
+        const stream = await aiClient.chat.completions.create({
+          model: aiModel,
+          messages: chatMessages,
+          stream: true,
+          max_completion_tokens: 2048,
+        });
+
+        for await (const chunk of stream) {
+          const text = chunk.choices[0]?.delta?.content || "";
+          if (text) {
+            fullResponse += text;
+            res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+          }
         }
       }
 
@@ -395,27 +402,34 @@ Now, generate a SHORT (1-2 sentences max) pastoral follow-up invitation to conti
 
 Generate ONLY the follow-up question/invitation, nothing else.${langInstruction}`;
 
-      const aiClient = getAIClient(translation);
       const aiModel = getChatModel(translation);
 
       res.setHeader("Content-Type", "text/event-stream");
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
 
-      const stream = await aiClient.chat.completions.create({
-        model: aiModel,
-        messages: [{ role: "user", content: followUpPrompt }],
-        stream: true,
-        max_completion_tokens: 150,
-      });
-
       let fullResponse = "";
 
-      for await (const chunk of stream) {
-        const text = chunk.choices[0]?.delta?.content || "";
-        if (text) {
+      if (isNonEnglish(translation)) {
+        for await (const text of geminiStreamContent(aiModel, [{ role: "user", content: followUpPrompt }], { maxTokens: 150 })) {
           fullResponse += text;
           res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+        }
+      } else {
+        const aiClient = getAIClient(translation);
+        const stream = await aiClient.chat.completions.create({
+          model: aiModel,
+          messages: [{ role: "user", content: followUpPrompt }],
+          stream: true,
+          max_completion_tokens: 150,
+        });
+
+        for await (const chunk of stream) {
+          const text = chunk.choices[0]?.delta?.content || "";
+          if (text) {
+            fullResponse += text;
+            res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+          }
         }
       }
 
