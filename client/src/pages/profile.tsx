@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity, MessagesSquare, LogOut, RefreshCw, Trash2, Award, ChevronRight } from "lucide-react";
+import { ArrowLeft, User, Mail, CreditCard, Calendar, AlertCircle, Loader2, Search, BookOpen, MessageSquare, StickyNote, Infinity as InfinityIcon, MessagesSquare, LogOut, RefreshCw, Trash2, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -273,6 +273,9 @@ interface UsageSummary {
   chat_message: UsageItem;
   resetAt: string;
   isPro: boolean;
+  pricingTier?: 'premium' | 'emerging';
+  credits?: number;
+  resetType?: 'daily' | 'monthly';
 }
 
 interface ProfileData {
@@ -920,7 +923,9 @@ export default function Profile() {
                 </CardTitle>
                 <CardDescription>
                   {usageSummary?.isPro 
-                    ? t.unlimitedAccess
+                    ? (usageSummary?.resetType === 'daily' 
+                      ? `${usageSummary?.pricingTier === 'emerging' ? 'Emerging' : 'Premium'} Plan - Resets daily at midnight UTC`
+                      : t.unlimitedAccess)
                     : `${t.usageResets} ${usageSummary?.resetAt ? new Date(usageSummary.resetAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : ''}`
                   }
                 </CardDescription>
@@ -980,14 +985,14 @@ export default function Profile() {
                           </div>
                         </div>
                         <div className="text-right">
-                          {usageSummary?.isPro ? (
+                          {usageSummary?.isPro && (data?.limit === Number.POSITIVE_INFINITY || !Number.isFinite(data?.limit ?? 0)) ? (
                             <Badge variant="outline" className="border-[#d79942] text-[#d79942]" data-testid={`badge-unlimited-${key}`}>
-                              <Infinity className="w-3 h-3 mr-1" />
+                              <InfinityIcon className="w-3 h-3 mr-1" />
                               {t.unlimited}
                             </Badge>
                           ) : (
-                            <span className="text-sm font-medium" data-testid={`text-usage-${key}`}>
-                              {data?.remaining ?? 0} of {data?.limit ?? 0}
+                            <span className={`text-sm font-medium ${data?.remaining === 0 ? 'text-red-500' : ''}`} data-testid={`text-usage-${key}`}>
+                              {data?.remaining ?? 0} / {data?.limit ?? 0}
                             </span>
                           )}
                         </div>

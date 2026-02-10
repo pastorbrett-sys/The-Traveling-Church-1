@@ -127,6 +127,8 @@ interface SessionStats {
   messageCount: number;
   isPro: boolean;
   limit: number;
+  pricingTier?: 'premium' | 'emerging';
+  resetType?: 'daily' | 'monthly';
 }
 
 interface SubscriptionStatus {
@@ -431,7 +433,9 @@ export default function PastorChat() {
   const serverIsPro = sessionStats?.isPro || subscriptionStatus?.isProUser || false;
   const isPro = isNative && revenueCatInitialized ? (revenueCatIsPro || serverIsPro) : serverIsPro;
   const messageCount = sessionStats?.messageCount ?? 0;
-  const isLimitReached = !isPro && messageCount >= FREE_MESSAGE_LIMIT;
+  const messageLimit = sessionStats?.limit ?? FREE_MESSAGE_LIMIT;
+  const isLimitReached = messageCount >= messageLimit;
+  const resetType = sessionStats?.resetType ?? (isPro ? 'daily' : 'monthly');
 
   const systemPrompt: ChatMessage = {
     role: "assistant",
@@ -849,12 +853,27 @@ export default function PastorChat() {
                 <Lock className="w-5 h-5" />
                 <span>{t.messageLimitReached}</span>
               </div>
-              <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
-                {t.upgrade}
-              </Button>
+              {isPro ? (
+                <p className="text-sm text-muted-foreground" data-testid="text-daily-reset-message">
+                  {resetType === 'daily' ? "Your daily limit resets at midnight UTC." : "Your limit resets next month."}
+                </p>
+              ) : (
+                <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
+                  {t.upgrade}
+                </Button>
+              )}
             </div>
           ) : (
             <div className="space-y-3">
+              {messageLimit > 0 && messageCount >= Math.floor(messageLimit * 0.8) && !isLimitReached && (
+                <div className={`text-xs text-center py-1 px-2 rounded ${
+                  messageCount >= Math.floor(messageLimit * 0.9)
+                    ? 'text-red-500 bg-red-500/10'
+                    : 'text-amber-500 bg-amber-500/10'
+                }`} data-testid="text-usage-warning">
+                  {messageLimit - messageCount} {t.messagesRemaining} ({resetType === 'daily' ? 'resets daily' : 'resets monthly'})
+                </div>
+              )}
               <Textarea
                 ref={inputRef}
                 value={input}
