@@ -64,9 +64,60 @@ The AAB file will be at: `android\app\release\app-release.aab`
 Update version in `android/app/build.gradle`:
 
 ```gradle
-versionCode 2        // Increment by 1 each release
-versionName "1.1"    // Update version string
+versionCode 4        // Increment by 1 each release
+versionName "1.0.4"  // Update version string
 ```
+
+---
+
+## Google Sign-In Setup for Release Builds
+
+Google Sign-In uses SHA-1 certificate fingerprints to verify your app. Debug and release builds use **different** signing keys, so you need BOTH SHA-1 fingerprints registered in Firebase.
+
+### Why Google Sign-In Fails in AAB/Internal Testing
+
+- Android Studio debug builds use the **debug keystore** (auto-generated)
+- AAB release builds use your **upload keystore** (`vagabond-bible-keystore.jks`)
+- If only the debug SHA-1 is in Firebase, release builds can't authenticate
+
+### Step 1: Get Your Release SHA-1
+
+Open PowerShell and run:
+
+```
+keytool -list -v -keystore "C:\Users\brett\OneDrive\Desktop\vagabond-bible-keystore.jks" -alias vagabond-bible
+```
+
+Enter your keystore password. Copy the **SHA1** fingerprint (looks like `AB:CD:EF:12:34:...`).
+
+### Step 2: Check Play App Signing SHA-1
+
+If you've enrolled in Google Play App Signing:
+
+1. Go to [Google Play Console](https://play.google.com/console)
+2. Select **Vagabond Bible** → **Setup** → **App signing**
+3. Copy the **SHA-1 certificate fingerprint** under "App signing key certificate"
+4. This is the fingerprint that matters for apps installed from the Play Store
+
+### Step 3: Add SHA-1 Fingerprints to Firebase
+
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select **travelingchurch-1b4ab** project
+3. Go to **Project settings** (gear icon)
+4. Scroll to **Your apps** → find the **Android app** (com.vagabondbible.app)
+5. Click **Add fingerprint**
+6. Paste the release/upload SHA-1 fingerprint → **Save**
+7. If you have Play App Signing, also add that SHA-1 fingerprint
+8. Click **Download google-services.json** to get the updated file
+9. Replace `android/app/google-services.json` with the new file
+
+### Current SHA-1 Fingerprints
+
+| Source | SHA-1 | Status |
+|--------|-------|--------|
+| Debug keystore | `ca:9c:dd:ae:cc:21:47:b2:34:32:e8:d8:87:9d:47:d0:f0:c1:70:3b` | In Firebase |
+| Upload keystore | ??? | **NEEDS TO BE ADDED** |
+| Play App Signing | ??? | **CHECK AND ADD IF DIFFERENT** |
 
 ---
 
@@ -77,6 +128,12 @@ In Android Studio: **File** → **Sync Project with Gradle Files**
 
 **App bundle still too large?**
 Run `node scripts/prepare-native-build.js` again
+
+**Google Sign-In fails in release but works in debug?**
+Follow the "Google Sign-In Setup for Release Builds" section above. You need to add your release/upload keystore SHA-1 to Firebase.
+
+**Prayer tab or other features missing in AAB but work in Android Studio?**
+This means the web assets in the Android project are stale. Make sure you run `npm run build` and `npx cap sync android` before building the AAB. The Quick Deploy script handles this automatically.
 
 ---
 
