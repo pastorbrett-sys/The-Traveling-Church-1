@@ -233,13 +233,19 @@ export class WebhookHandlers {
       return;
     }
 
+    // Determine pricing tier from session metadata
+    const pricingTier = (session.metadata?.pricingTier as 'premium' | 'emerging') || 'premium';
+
     // Update the user's Stripe info
     console.log(`Linking Stripe customer ${customerId} to user ${userId}`);
     await storage.updateUserStripeInfo(userId, {
       stripeCustomerId: customerId,
       stripeSubscriptionId: subscriptionId || undefined,
     });
-    console.log(`Successfully linked Stripe info for user ${userId}`);
+    
+    // Store the pricing tier on the user record for daily usage cap calculations
+    await storage.updateUserPricingTier(userId, pricingTier);
+    console.log(`Successfully linked Stripe info and set pricing tier '${pricingTier}' for user ${userId}`);
     
     // Track ambassador conversion and send confirmation email
     // NOTE: For checkout.session.completed, we don't re-check subscription status because:
@@ -253,9 +259,7 @@ export class WebhookHandlers {
       // Send subscription confirmation email (fire and forget)
       if (email) {
         const user = await storage.getUser(userId);
-        // Determine pricing tier from session metadata or subscription
-        const pricingTier = session.metadata?.pricingTier as 'premium' | 'emerging' | undefined;
-        const planType = pricingTier || 'premium';
+        const planType = pricingTier;
         
         // Get user's language preference for localized email
         const userLanguage = userId ? await getUserLanguage(userId) : 'en';
@@ -312,6 +316,9 @@ export class WebhookHandlers {
       return;
     }
 
+    // Extract pricing tier from subscription metadata
+    const pricingTier = (subscription.metadata?.pricingTier as 'premium' | 'emerging') || 'premium';
+
     // Only update if subscription is active or trialing
     if (subscription.status === 'active' || subscription.status === 'trialing') {
       // Check if user already has this info
@@ -324,6 +331,10 @@ export class WebhookHandlers {
         });
       }
       
+      // Update pricing tier on active subscription
+      await storage.updateUserPricingTier(userId, pricingTier);
+      console.log(`[Subscription] Updated pricing tier to '${pricingTier}' for user ${userId}`);
+      
       // Track ambassador conversion whenever subscription is active/trialing
       await trackAmbassadorConversion(userId, `Stripe subscription.${subscription.status}`, referralCode, email);
     } else if (subscription.status === 'canceled' || subscription.status === 'unpaid' || subscription.status === 'past_due') {
@@ -332,7 +343,7 @@ export class WebhookHandlers {
       if (user && user.stripeSubscriptionId === subscriptionId) {
         console.log(`Clearing inactive subscription ${subscriptionId} for user ${userId} (status: ${subscription.status})`);
         await storage.updateUserStripeInfo(userId, {
-          stripeCustomerId: customerId, // Keep customer ID for potential re-subscription
+          stripeCustomerId: customerId,
           stripeSubscriptionId: null,
         });
       }

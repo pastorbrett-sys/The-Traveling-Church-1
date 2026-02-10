@@ -128,6 +128,20 @@ async function handleRevenueCatEvent(event: RevenueCatEvent["event"]): Promise<v
           const store = (event as any).store || 'unknown';
           const productId = (event as any).product_id || '';
           
+          // Determine pricing tier from product ID
+          // iOS: vagabond_bible_pro_monthly = premium, pro_monthly_emerging = emerging
+          // Android: Uses regional pricing from Google Play
+          let planType: 'premium' | 'emerging' = 'premium';
+          if (productId.includes('emerging')) {
+            planType = 'emerging';
+          }
+          
+          // Store the pricing tier on the user record for daily usage cap calculations
+          await db.update(users)
+            .set({ pricingTier: planType, updatedAt: new Date() })
+            .where(eq(users.id, user.id));
+          console.log(`[RevenueCat] Updated pricing tier to '${planType}' for user ${user.id}`);
+          
           // Get user's referral signup info if exists
           const referralInfo = await db.select().from(referralSignups)
             .where(eq(referralSignups.userId, user.id)).limit(1);
@@ -142,29 +156,17 @@ async function handleRevenueCatEvent(event: RevenueCatEvent["event"]): Promise<v
           );
           
           // Send subscription confirmation email for INITIAL_PURCHASE only
-          // (Don't spam on renewals)
           if (type === "INITIAL_PURCHASE" && user.email) {
-            // Determine pricing tier from product ID
-            // iOS: vagabond_bible_pro_monthly = premium, pro_monthly_emerging = emerging
-            // Android: Uses regional pricing from Google Play
-            let planType: 'premium' | 'emerging' = 'premium';
-            if (productId.includes('emerging')) {
-              planType = 'emerging';
-            }
-            
-            // Get user's language preference for localized email
             const userLanguage = await getUserLanguage(user.id);
             
-            console.log(`[RevenueCat] 📧 Sending subscription confirmation email to ${user.email} (plan: ${planType}, store: ${store}, language: ${userLanguage})`);
-            const timestamp = new Date().toISOString();
-            console.log(`[RevenueCat] Email send initiated at: ${timestamp}`);
+            console.log(`[RevenueCat] Sending subscription confirmation email to ${user.email} (plan: ${planType}, store: ${store}, language: ${userLanguage})`);
             
             sendSubscriptionConfirmationEmail(user.email, user.firstName || undefined, planType, userLanguage).catch(error => {
-              console.error('[RevenueCat] ❌ Failed to send subscription confirmation email:', error);
+              console.error('[RevenueCat] Failed to send subscription confirmation email:', error);
             });
           }
         } else {
-          console.log(`[Ambassador] ⚠️ Cannot track conversion - no user found with RevenueCat ID: ${app_user_id}`);
+          console.log(`[Ambassador] Cannot track conversion - no user found with RevenueCat ID: ${app_user_id}`);
         }
       }
       break;

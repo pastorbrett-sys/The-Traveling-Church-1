@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { db } from "./db";
-import { bibleNotes, readingProgress, FEATURE_LIMITS } from "@shared/schema";
+import { bibleNotes, readingProgress } from "@shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import * as helloaoBibleService from "./helloaoBibleService";
@@ -10,6 +10,12 @@ import { isAuthenticated } from "./replit_integrations/auth";
 import { storage } from "./storage";
 import { checkUsageLimit, incrementUsage } from "./usageService";
 import { isUserPro } from "./proStatusService";
+import type { PricingTier } from "@shared/regionalPricing";
+
+function getUserPricingTier(user: any): PricingTier | undefined {
+  if (!user) return undefined;
+  return (user.pricingTier as PricingTier) || 'premium';
+}
 import { getAIClient, getSearchModel, getChatModel, getMultilingualInstruction, getSearchMultilingualInstruction, isNonEnglish, geminiGenerateContent } from "./aiRouter";
 
 const router = Router();
@@ -190,20 +196,24 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
       return res.status(400).json({ message: "Search query required (minimum 2 characters)" });
     }
 
-    // Check if user has credits available (but don't consume yet - consumed on click-through)
     const userId = req.user?.uid || req.session?.userId;
     const user = userId ? await storage.getUser(userId) : null;
     const isPro = isUserPro(user);
+    const pricingTier = getUserPricingTier(user);
     
-    const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
+    const limitResult = await checkUsageLimit(userId, "smart_search", isPro, pricingTier);
     if (!limitResult.allowed) {
       return res.status(429).json({
         code: "USAGE_LIMIT_REACHED",
         feature: "smart_search",
         remaining: 0,
-        limit: FEATURE_LIMITS.smart_search,
+        limit: limitResult.limit,
         resetAt: limitResult.resetAt?.toISOString(),
-        message: "You've reached your Smart Search limit this month. Upgrade to Pro for unlimited access.",
+        creditsRemaining: limitResult.creditsRemaining,
+        resetType: isPro ? 'daily' : 'monthly',
+        message: isPro 
+          ? "You've reached your daily Smart Search limit. Resets at midnight UTC."
+          : "You've reached your Smart Search limit this month. Upgrade to Pro for more access.",
       });
     }
 
@@ -270,20 +280,25 @@ router.post("/smart-search/use-credit", isAuthenticated, async (req: any, res) =
     }
     const user = await storage.getUser(userId);
     const isPro = isUserPro(user);
+    const pricingTier = getUserPricingTier(user);
     
-    const limitResult = await checkUsageLimit(userId, "smart_search", isPro);
+    const limitResult = await checkUsageLimit(userId, "smart_search", isPro, pricingTier);
     if (!limitResult.allowed) {
       return res.status(429).json({
         code: "USAGE_LIMIT_REACHED",
         feature: "smart_search",
         remaining: 0,
-        limit: FEATURE_LIMITS.smart_search,
+        limit: limitResult.limit,
         resetAt: limitResult.resetAt?.toISOString(),
-        message: "You've reached your Smart Search limit this month. Upgrade to Pro for unlimited access.",
+        creditsRemaining: limitResult.creditsRemaining,
+        resetType: isPro ? 'daily' : 'monthly',
+        message: isPro 
+          ? "You've reached your daily Smart Search limit. Resets at midnight UTC."
+          : "You've reached your Smart Search limit this month. Upgrade to Pro for more access.",
       });
     }
 
-    await incrementUsage(userId, "smart_search", isPro);
+    await incrementUsage(userId, "smart_search", isPro, pricingTier);
     res.json({ 
       success: true, 
       remaining: limitResult.remaining - 1,
@@ -478,16 +493,21 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
     }
     const user = await storage.getUser(userId);
     const isPro = isUserPro(user);
+    const pricingTier = getUserPricingTier(user);
     
-    const limitResult = await checkUsageLimit(userId, "book_synopsis", isPro);
+    const limitResult = await checkUsageLimit(userId, "book_synopsis", isPro, pricingTier);
     if (!limitResult.allowed) {
       return res.status(429).json({
         code: "USAGE_LIMIT_REACHED",
         feature: "book_synopsis",
         remaining: 0,
-        limit: FEATURE_LIMITS.book_synopsis,
+        limit: limitResult.limit,
         resetAt: limitResult.resetAt?.toISOString(),
-        message: "You've reached your Book Synopsis limit this month. Upgrade to Pro for unlimited access.",
+        creditsRemaining: limitResult.creditsRemaining,
+        resetType: isPro ? 'daily' : 'monthly',
+        message: isPro
+          ? "You've reached your daily Book Synopsis limit. Resets at midnight UTC."
+          : "You've reached your Book Synopsis limit this month. Upgrade to Pro for more access.",
       });
     }
 
@@ -551,7 +571,7 @@ Be engaging and accessible, avoiding overly academic language. Make it interesti
     
     const followUpMessage = `Synopsis Above ☝️\n\n${followUp}`;
 
-    await incrementUsage(userId, "book_synopsis", isPro);
+    await incrementUsage(userId, "book_synopsis", isPro, pricingTier);
     res.json({
       question,
       answer: synopsis,

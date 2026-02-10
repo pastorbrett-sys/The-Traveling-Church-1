@@ -19,6 +19,9 @@ import type {
   InsertNote,
   FeatureUsage,
   FeatureUsageType,
+  DailyUsage,
+  ProFeatureType,
+  UserCredits,
 } from "@shared/schema";
 
 neonConfig.webSocketConstructor = ws;
@@ -66,10 +69,23 @@ export interface IStorage {
   countNotesByUser(userId: string): Promise<number>;
   searchNotes(userId: string, query: string): Promise<Note[]>;
 
-  // Feature Usage
+  // Feature Usage (Free tier - monthly)
   getFeatureUsage(userId: string, feature: FeatureUsageType): Promise<number>;
   incrementFeatureUsage(userId: string, feature: FeatureUsageType): Promise<number>;
   getAllFeatureUsage(userId: string): Promise<Record<FeatureUsageType, number>>;
+
+  // Daily Usage (Pro tier - daily)
+  getDailyUsage(userId: string, date: string): Promise<DailyUsage | undefined>;
+  incrementDailyUsage(userId: string, date: string, feature: ProFeatureType): Promise<DailyUsage>;
+  getAllDailyUsage(userId: string, date: string): Promise<{ chat_message: number; smart_search: number; book_synopsis: number; verse_insight: number }>;
+
+  // User Credits
+  getUserCredits(userId: string): Promise<number>;
+  addCredits(userId: string, amount: number): Promise<number>;
+  deductCredit(userId: string): Promise<number>;
+
+  // Pricing tier
+  updateUserPricingTier(userId: string, tier: string): Promise<void>;
 }
 
 export class DbStorage implements IStorage {
@@ -337,6 +353,122 @@ export class DbStorage implements IStorage {
     }
 
     return usage;
+  }
+
+  // Daily Usage (Pro tier)
+  async getDailyUsage(userId: string, date: string): Promise<DailyUsage | undefined> {
+    const result = await db
+      .select()
+      .from(schema.dailyUsage)
+      .where(
+        and(
+          eq(schema.dailyUsage.userId, userId),
+          eq(schema.dailyUsage.date, date)
+        )
+      )
+      .limit(1);
+    return result[0];
+  }
+
+  async incrementDailyUsage(userId: string, date: string, feature: ProFeatureType): Promise<DailyUsage> {
+    const existing = await this.getDailyUsage(userId, date);
+
+    const columnMap: Record<ProFeatureType, 'chatCount' | 'searchCount' | 'synopsisCount' | 'insightCount'> = {
+      chat_message: 'chatCount',
+      smart_search: 'searchCount',
+      book_synopsis: 'synopsisCount',
+      verse_insight: 'insightCount',
+    };
+
+    const column = columnMap[feature];
+
+    if (existing) {
+      const updated = await db
+        .update(schema.dailyUsage)
+        .set({ [column]: (existing[column] as number) + 1 })
+        .where(eq(schema.dailyUsage.id, existing.id))
+        .returning();
+      return updated[0];
+    } else {
+      const inserted = await db
+        .insert(schema.dailyUsage)
+        .values({
+          userId,
+          date,
+          [column]: 1,
+        })
+        .returning();
+      return inserted[0];
+    }
+  }
+
+  async getAllDailyUsage(userId: string, date: string): Promise<{ chat_message: number; smart_search: number; book_synopsis: number; verse_insight: number }> {
+    const record = await this.getDailyUsage(userId, date);
+    return {
+      chat_message: record?.chatCount ?? 0,
+      smart_search: record?.searchCount ?? 0,
+      book_synopsis: record?.synopsisCount ?? 0,
+      verse_insight: record?.insightCount ?? 0,
+    };
+  }
+
+  // User Credits
+  async getUserCredits(userId: string): Promise<number> {
+    const result = await db
+      .select()
+      .from(schema.userCredits)
+      .where(eq(schema.userCredits.userId, userId))
+      .limit(1);
+    return result[0]?.credits ?? 0;
+  }
+
+  async addCredits(userId: string, amount: number): Promise<number> {
+    const existing = await db
+      .select()
+      .from(schema.userCredits)
+      .where(eq(schema.userCredits.userId, userId))
+      .limit(1);
+
+    if (existing[0]) {
+      const newCredits = existing[0].credits + amount;
+      await db
+        .update(schema.userCredits)
+        .set({ credits: newCredits, purchasedAt: new Date() })
+        .where(eq(schema.userCredits.id, existing[0].id));
+      return newCredits;
+    } else {
+      await db
+        .insert(schema.userCredits)
+        .values({ userId, credits: amount });
+      return amount;
+    }
+  }
+
+  async deductCredit(userId: string): Promise<number> {
+    const existing = await db
+      .select()
+      .from(schema.userCredits)
+      .where(eq(schema.userCredits.userId, userId))
+      .limit(1);
+
+    if (!existing[0] || existing[0].credits <= 0) {
+      return 0;
+    }
+
+    const newCredits = existing[0].credits - 1;
+    await db
+      .update(schema.userCredits)
+      .set({ credits: newCredits })
+      .where(eq(schema.userCredits.id, existing[0].id));
+    return newCredits;
+  }
+
+  // Pricing tier
+  async updateUserPricingTier(userId: string, tier: string): Promise<void> {
+    await db
+      .update(schema.users)
+      .set({ pricingTier: tier })
+      .where(eq(schema.users.id, userId));
   }
 }
 

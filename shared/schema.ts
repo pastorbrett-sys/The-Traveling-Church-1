@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, integer, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer, boolean, date } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -134,7 +134,7 @@ export const insertFeatureUsageSchema = createInsertSchema(featureUsage).omit({
 export type InsertFeatureUsage = z.infer<typeof insertFeatureUsageSchema>;
 export type FeatureUsage = typeof featureUsage.$inferSelect;
 
-// Feature limits constants
+// Feature limits constants (Free tier - MONTHLY)
 export const FEATURE_LIMITS = {
   smart_search: 5,
   book_synopsis: 2,
@@ -142,6 +142,50 @@ export const FEATURE_LIMITS = {
   notes: 3,
   chat_message: 10,
 } as const;
+
+// Pro tier daily limits by pricing tier
+export const PRO_LIMITS_PREMIUM = {
+  chat_message: 50,
+  smart_search: 15,
+  book_synopsis: 8,
+  verse_insight: 25,
+} as const;
+
+export const PRO_LIMITS_EMERGING = {
+  chat_message: 25,
+  smart_search: 8,
+  book_synopsis: 4,
+  verse_insight: 12,
+} as const;
+
+export type ProFeatureType = keyof typeof PRO_LIMITS_PREMIUM;
+
+// Daily usage tracking for Pro users
+export const dailyUsage = pgTable("daily_usage", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull(),
+  date: date("date").notNull(),
+  chatCount: integer("chat_count").notNull().default(0),
+  searchCount: integer("search_count").notNull().default(0),
+  synopsisCount: integer("synopsis_count").notNull().default(0),
+  insightCount: integer("insight_count").notNull().default(0),
+});
+
+export const insertDailyUsageSchema = createInsertSchema(dailyUsage).omit({ id: true });
+export type InsertDailyUsage = z.infer<typeof insertDailyUsageSchema>;
+export type DailyUsage = typeof dailyUsage.$inferSelect;
+
+// User credits for power users who exceed daily limits
+export const userCredits = pgTable("user_credits", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: text("user_id").notNull(),
+  credits: integer("credits").notNull().default(0),
+  purchasedAt: timestamp("purchased_at").defaultNow(),
+});
+
+export const insertUserCreditsSchema = createInsertSchema(userCredits).omit({ id: true });
+export type InsertUserCredits = z.infer<typeof insertUserCreditsSchema>;
+export type UserCredits = typeof userCredits.$inferSelect;
 
 // ============================================
 // AMBASSADOR PROGRAM TABLES

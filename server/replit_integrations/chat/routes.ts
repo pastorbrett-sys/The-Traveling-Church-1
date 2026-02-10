@@ -72,7 +72,7 @@ async function getAuthenticatedUserId(req: any): Promise<string | null> {
   return null;
 }
 
-async function checkUserProStatus(req: any): Promise<boolean> {
+async function checkUserProStatusWithTier(req: any): Promise<{ isPro: boolean; pricingTier?: 'premium' | 'emerging' }> {
   const userId = await getAuthenticatedUserId(req);
   if (userId) {
     try {
@@ -81,14 +81,26 @@ async function checkUserProStatus(req: any): Promise<boolean> {
         const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId) as any;
         if ((subscription?.status === 'active' || subscription?.status === 'trialing') 
             && !subscription?.cancel_at_period_end) {
-          return true;
+          return { isPro: true, pricingTier: (user.pricingTier as 'premium' | 'emerging') || 'premium' };
+        }
+      }
+      if (user?.revenueCatEntitlement) {
+        const now = new Date();
+        const expiresAt = user.revenueCatExpiresAt;
+        if (!expiresAt || expiresAt > now) {
+          return { isPro: true, pricingTier: (user.pricingTier as 'premium' | 'emerging') || 'premium' };
         }
       }
     } catch (error) {
       console.error("Error checking user pro status:", error);
     }
   }
-  return false;
+  return { isPro: false };
+}
+
+async function checkUserProStatus(req: any): Promise<boolean> {
+  const result = await checkUserProStatusWithTier(req);
+  return result.isPro;
 }
 
 
@@ -115,14 +127,12 @@ function getSystemPrompt(translation: string): string {
 export function registerChatRoutes(app: Express): void {
   app.get("/api/chat/session-stats", async (req: Request, res: Response) => {
     const sessionId = getSessionId(req, res);
-    const isUserPro = await checkUserProStatus(req);
+    const proStatus = await checkUserProStatusWithTier(req);
     const isSessionPro = isProSession(sessionId);
-    const isPro = isUserPro || isSessionPro;
+    const isPro = proStatus.isPro || isSessionPro;
     
-    // Get database-backed usage count for authenticated users
     const authUserId = await getAuthenticatedUserId(req);
     if (!authUserId) {
-      // Return 401 for unauthenticated users - chat requires login
       return res.status(401).json({
         error: "Authentication required",
         messageCount: 0,
@@ -134,14 +144,16 @@ export function registerChatRoutes(app: Express): void {
     let messageCount = 0;
     const user = await storage.getUser(authUserId);
     if (user) {
-      const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
+      const usageResult = await checkUsageLimit(user.id, "chat_message", isPro, proStatus.pricingTier);
       messageCount = usageResult.currentUsage;
     }
     
     res.json({
       messageCount,
       isPro,
-      limit: FREE_MESSAGE_LIMIT,
+      limit: isPro ? (proStatus.pricingTier === 'emerging' ? 25 : 50) : FREE_MESSAGE_LIMIT,
+      pricingTier: proStatus.pricingTier,
+      resetType: isPro ? 'daily' : 'monthly',
     });
   });
 
@@ -203,21 +215,22 @@ export function registerChatRoutes(app: Express): void {
           return res.status(401).json({ error: "User not found" });
         }
         
-        const isPro = await checkUserProStatus(req);
+        const proStatus = await checkUserProStatusWithTier(req);
+        const isPro = proStatus.isPro;
         
-        // Check usage limit
-        const usageResult = await checkUsageLimit(user.id, "verse_insight", isPro);
+        const usageResult = await checkUsageLimit(user.id, "verse_insight", isPro, proStatus.pricingTier);
         if (!usageResult.allowed) {
           return res.status(429).json({ 
             error: "Verse insight limit reached",
             code: "USAGE_LIMIT_EXCEEDED",
             feature: "verse_insight",
-            resetAt: usageResult.resetAt
+            resetAt: usageResult.resetAt,
+            creditsRemaining: usageResult.creditsRemaining,
+            resetType: isPro ? 'daily' : 'monthly',
           });
         }
         
-        // Increment usage
-        await incrementUsage(user.id, "verse_insight", isPro);
+        await incrementUsage(user.id, "verse_insight", isPro, proStatus.pricingTier);
       }
       
       const conversation = await chatStorage.createConversation(title, sessionId);
@@ -262,14 +275,12 @@ export function registerChatRoutes(app: Express): void {
       const isContinueDiscussion = conversation?.title?.startsWith("Discussion:");
       const isFeatureConversation = isVerseInsight || isBookSynopsis || isContinueDiscussion;
       
-      const isUserPro = await checkUserProStatus(req);
+      const proStatus = await checkUserProStatusWithTier(req);
       const isSessionPro = isProSession(sessionId);
-      const isPro = isUserPro || isSessionPro;
+      const isPro = proStatus.isPro || isSessionPro;
       
-      // Get authenticated user for database-backed usage tracking
       const authUserId = await getAuthenticatedUserId(req);
       
-      // Require authentication for regular chat (feature conversations have their own auth check)
       if (!isFeatureConversation && !authUserId) {
         return res.status(401).json({ 
           error: "Authentication required",
@@ -277,11 +288,10 @@ export function registerChatRoutes(app: Express): void {
         });
       }
       
-      // Only enforce chat message limit for regular chat, not feature conversations
-      if (!isPro && !isFeatureConversation && authUserId) {
+      if (!isFeatureConversation && authUserId) {
         const user = await storage.getUser(authUserId);
         if (user) {
-          const usageResult = await checkUsageLimit(user.id, "chat_message", isPro);
+          const usageResult = await checkUsageLimit(user.id, "chat_message", isPro, proStatus.pricingTier);
           if (!usageResult.allowed) {
             return res.status(429).json({ 
               error: "Message limit reached", 
@@ -290,16 +300,17 @@ export function registerChatRoutes(app: Express): void {
               messageCount: usageResult.currentUsage,
               limit: usageResult.limit,
               resetAt: usageResult.resetAt,
+              creditsRemaining: usageResult.creditsRemaining,
+              resetType: isPro ? 'daily' : 'monthly',
             });
           }
         }
       }
 
-      // Only increment chat count for regular chat conversations (database-backed)
-      if (!isPro && !isFeatureConversation && authUserId) {
+      if (!isFeatureConversation && authUserId) {
         const user = await storage.getUser(authUserId);
         if (user) {
-          await incrementUsage(user.id, "chat_message", isPro);
+          await incrementUsage(user.id, "chat_message", isPro, proStatus.pricingTier);
         }
       }
 

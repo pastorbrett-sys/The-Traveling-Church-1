@@ -471,8 +471,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const userId = req.user?.uid || req.session?.userId;
       const user = await storage.getUser(userId);
       const isPro = isUserPro(user);
+      const pricingTier = user?.pricingTier as 'premium' | 'emerging' | undefined;
       
-      const summary = await getUsageSummary(userId, isPro);
+      const summary = await getUsageSummary(userId, isPro, pricingTier);
       res.json(summary);
     } catch (error) {
       console.error("Error fetching usage summary:", error);
@@ -491,13 +492,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const isPro = isUserPro(user);
+      const pricingTier = user?.pricingTier as 'premium' | 'emerging' | undefined;
 
       // Fetch subscription and usage in parallel
       const [subscription, usageSummary] = await Promise.all([
         user.stripeCustomerId 
           ? stripeStorage.getCustomerSubscription(user.stripeCustomerId)
           : Promise.resolve(null),
-        getUsageSummary(userId, isPro),
+        getUsageSummary(userId, isPro, pricingTier),
       ]);
 
       // Determine Pro status from subscription

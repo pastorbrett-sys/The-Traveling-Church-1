@@ -26,10 +26,11 @@ export const users = pgTable("users", {
   revenueCatUserId: varchar("revenuecat_user_id"),
   revenueCatEntitlement: varchar("revenuecat_entitlement"),
   revenueCatExpiresAt: timestamp("revenuecat_expires_at"),
+  pricingTier: varchar("pricing_tier"),
   hasSeenTranslationTooltip: boolean("has_seen_translation_tooltip").default(false),
   hasSeenVerseTooltip: boolean("has_seen_verse_tooltip").default(false),
   hasSeenActionBarTooltip: boolean("has_seen_action_bar_tooltip").default(false),
-  language: varchar("language").default("en"), // User's preferred language: "en" or "am"
+  language: varchar("language").default("en"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
