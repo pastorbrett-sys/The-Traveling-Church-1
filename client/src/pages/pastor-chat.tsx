@@ -52,10 +52,15 @@ const chatUiText = {
     signInToChat: "Sign in to chat with Pastor Brett",
     signIn: "Sign In",
     messageLimitReached: "Message Limit Reached",
-    messageLimitDesc: "You've reached your free message limit. Upgrade to Pro for unlimited access.",
+    messageLimitDesc: "You've reached your daily message limit.",
     upgrade: "Upgrade to Pro",
-    messagesRemaining: "messages remaining",
+    upgradeToPremium: "Upgrade to Premium",
+    messagesRemaining: "messages remaining today",
     unlimited: "Unlimited",
+    buyCredits: "Buy Credits",
+    dailyResetMessage: "Your daily limit resets at midnight UTC.",
+    monthlyResetMessage: "Your limit resets next month.",
+    creditsAvailable: "Or buy credits to continue now",
     consultingBigGuy: "Consulting THE Big Guy 👆...",
     bibleVersion: "Bible Version",
   },
@@ -71,9 +76,14 @@ const chatUiText = {
     signInToChat: "ከፓስተር ብሬት ጋር ለመወያየት ይግቡ",
     signIn: "ግባ",
     messageLimitReached: "የመልዕክት ገደብ ደርሷል",
-    messageLimitDesc: "ነፃ የመልዕክት ገደብዎን ደርሰዋል። ላልተገደበ መዳረሻ ወደ ፕሮ ያሻሽሉ።",
+    messageLimitDesc: "የዕለት የመልዕክት ገደብዎን ደርሰዋል።",
     upgrade: "ወደ ፕሮ አሻሽል",
-    messagesRemaining: "መልዕክቶች ቀርተዋል",
+    upgradeToPremium: "ወደ ፕሪሚየም አሻሽል",
+    messagesRemaining: "መልዕክቶች ዛሬ ቀርተዋል",
+    buyCredits: "ክሬዲት ግዛ",
+    dailyResetMessage: "የዕለት ገደብዎ በሌሊት 12 ሰዓት UTC ይታደሳል።",
+    monthlyResetMessage: "ገደብዎ በቀጣይ ወር ይታደሳል።",
+    creditsAvailable: "ወይም አሁን ለመቀጠል ክሬዲት ይግዙ",
     unlimited: "ያልተገደበ",
     consultingBigGuy: "እግዚአብሔርን በመጠየቅ ላይ 👆...",
     bibleVersion: "የመጽሐፍ ቅዱስ ትርጉም",
@@ -853,10 +863,21 @@ export default function PastorChat() {
                 <Lock className="w-5 h-5" />
                 <span>{t.messageLimitReached}</span>
               </div>
+              <p className="text-sm text-muted-foreground mb-3" data-testid="text-daily-reset-message">
+                {resetType === 'daily' ? t.dailyResetMessage : t.monthlyResetMessage}
+              </p>
               {isPro ? (
-                <p className="text-sm text-muted-foreground" data-testid="text-daily-reset-message">
-                  {resetType === 'daily' ? "Your daily limit resets at midnight UTC." : "Your limit resets next month."}
-                </p>
+                <div className="flex flex-col gap-2 items-center">
+                  <p className="text-xs text-muted-foreground">{t.creditsAvailable}</p>
+                  <Button size="sm" variant="outline" className="border-[#d79942] text-[#d79942]" data-testid="button-buy-credits" onClick={() => setShowPaywall(true)}>
+                    {t.buyCredits}
+                  </Button>
+                  {sessionStats?.pricingTier === 'emerging' && (
+                    <Button size="sm" variant="ghost" className="text-xs text-muted-foreground" data-testid="button-upgrade-to-premium" onClick={() => setShowPaywall(true)}>
+                      {t.upgradeToPremium}
+                    </Button>
+                  )}
+                </div>
               ) : (
                 <Button onClick={() => setShowPaywall(true)} className="btn-upgrade" data-testid="button-upgrade">
                   {t.upgrade}
@@ -871,7 +892,10 @@ export default function PastorChat() {
                     ? 'text-red-500 bg-red-500/10'
                     : 'text-amber-500 bg-amber-500/10'
                 }`} data-testid="text-usage-warning">
-                  {messageLimit - messageCount} {t.messagesRemaining} ({resetType === 'daily' ? 'resets daily' : 'resets monthly'})
+                  {messageCount >= Math.floor(messageLimit * 0.9)
+                    ? (resetType === 'daily' ? t.dailyResetMessage : t.monthlyResetMessage)
+                    : `${messageLimit - messageCount} ${t.messagesRemaining}`
+                  }
                 </div>
               )}
               <Textarea

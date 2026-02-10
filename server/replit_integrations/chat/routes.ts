@@ -6,8 +6,9 @@ import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
 import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish, geminiStreamContent } from "../../aiRouter";
 import { verifyFirebaseToken } from "../../firebaseAdmin";
+import { FEATURE_LIMITS, PRO_LIMITS_PREMIUM, PRO_LIMITS_EMERGING } from "@shared/schema";
 
-const FREE_MESSAGE_LIMIT = 10;
+const FREE_MESSAGE_LIMIT = FEATURE_LIMITS.chat_message;
 const proSessions = new Set<string>();
 
 const verseInsightCache = new Map<string, string>();
@@ -151,7 +152,7 @@ export function registerChatRoutes(app: Express): void {
     res.json({
       messageCount,
       isPro,
-      limit: isPro ? (proStatus.pricingTier === 'emerging' ? 25 : 50) : FREE_MESSAGE_LIMIT,
+      limit: isPro ? (proStatus.pricingTier === 'emerging' ? PRO_LIMITS_EMERGING.chat_message : PRO_LIMITS_PREMIUM.chat_message) : FREE_MESSAGE_LIMIT,
       pricingTier: proStatus.pricingTier,
       resetType: isPro ? 'daily' : 'monthly',
     });
