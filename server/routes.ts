@@ -928,15 +928,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/pricing/tier", async (req, res) => {
     try {
-      // Prefer device locale country (from query param) over IP-based detection
-      // Device locale better matches where user's card is likely from
-      const deviceCountry = req.query.deviceCountry as string | undefined;
       const ipCountry = req.headers['cf-ipcountry'] as string || 
                         req.headers['x-vercel-ip-country'] as string ||
+                        req.headers['x-real-ip-country'] as string ||
                         null;
       
-      // Use device country if provided, otherwise fall back to IP
-      const countryToUse = deviceCountry || ipCountry;
+      const countryToUse = ipCountry;
       const pricing = getPricingForCountry(countryToUse);
       
       res.json({
@@ -944,7 +941,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         price: pricing.price,
         priceDisplay: pricing.priceDisplay,
         detectedCountry: countryToUse || 'unknown',
-        source: deviceCountry ? 'device' : (ipCountry ? 'ip' : 'default'),
+        source: ipCountry ? 'ip' : 'default',
       });
     } catch (error) {
       console.error("Pricing tier error:", error);
@@ -960,7 +957,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/stripe/regional-checkout", async (req: any, res) => {
     try {
-      const { referralCode } = req.body as { referralCode?: string };
+      const { referralCode, displayedTier } = req.body as { referralCode?: string; displayedTier?: string };
       
       let customerId: string;
       let userId: string | undefined;
@@ -984,11 +981,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
         
         const cardCountry = await stripeService.getCustomerCountry(customerId);
-        pricingTier = getTierForCountry(cardCountry);
         
-        console.log(`[Regional Checkout] User ${userId}, cardCountry: ${cardCountry || 'unknown'}, tier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
+        if (cardCountry) {
+          pricingTier = getTierForCountry(cardCountry);
+        } else {
+          const ipCountry = req.headers['cf-ipcountry'] as string || 
+                            req.headers['x-vercel-ip-country'] as string ||
+                            req.headers['x-real-ip-country'] as string ||
+                            null;
+          if (ipCountry) {
+            pricingTier = getTierForCountry(ipCountry);
+          } else if (displayedTier === 'premium' || displayedTier === 'emerging') {
+            pricingTier = displayedTier;
+          }
+        }
+        
+        console.log(`[Regional Checkout] User ${userId}, cardCountry: ${cardCountry || 'unknown'}, ipCountry: ${req.headers['cf-ipcountry'] || 'unknown'}, displayedTier: ${displayedTier || 'none'}, finalTier: ${pricingTier}, referralCode: ${referralCode || 'none'}`);
       } else {
-        console.log(`[Regional Checkout] ⚠️ Guest checkout (no card yet, defaulting to premium) - referralCode: ${referralCode || 'none'}`);
+        console.log(`[Regional Checkout] Guest checkout (no card yet, defaulting to premium) - referralCode: ${referralCode || 'none'}`);
         const customer = await stripeService.createCustomer('', 'guest', referralCode || undefined);
         customerId = customer.id;
       }

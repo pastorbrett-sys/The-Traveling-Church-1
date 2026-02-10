@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Loader2, X } from "lucide-react";
+import { Capacitor } from "@capacitor/core";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -119,56 +120,33 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
   const [nativePrice, setNativePrice] = useState<string | null>(null);
   const { isNative, platform } = usePlatform();
   const { toast } = useToast();
+
+  const isActuallyNative = Capacitor.isNativePlatform();
   
-  // Check both Bible translation AND device language for Amharic
   const isAmharicBible = translation === "ETH" || translation === "AMPROT";
   const isAmharicDevice = detectLanguage() === "am";
   const isAmharic = isAmharicBible || isAmharicDevice;
   const t = isAmharic ? uiText.am : uiText.en;
 
   useEffect(() => {
-    if (open && !isNative) {
+    if (open && !isActuallyNative) {
       setIsPricingLoading(true);
       
-      // Get country from device locale (e.g., "en-US" -> "US", "am-ET" -> "ET")
-      const getDeviceCountry = (): string | null => {
-        try {
-          const locale = navigator.language || (navigator as any).userLanguage;
-          if (locale && locale.includes('-')) {
-            return locale.split('-')[1].toUpperCase();
-          }
-          // Try Intl API as fallback
-          const resolved = Intl.DateTimeFormat().resolvedOptions();
-          if (resolved.locale && resolved.locale.includes('-')) {
-            return resolved.locale.split('-')[1].toUpperCase();
-          }
-        } catch (e) {
-          console.error("Failed to detect device locale:", e);
-        }
-        return null;
-      };
-      
-      const deviceCountry = getDeviceCountry();
-      const url = deviceCountry 
-        ? `/api/pricing/tier?deviceCountry=${deviceCountry}`
-        : `/api/pricing/tier`;
-      
-      apiFetch(url)
+      apiFetch('/api/pricing/tier')
         .then(res => res.json())
         .then((data: PricingTierResponse) => {
           setPricing(data);
         })
         .catch(err => {
           console.error("Failed to fetch pricing tier:", err);
-          setPricing({ tier: 'premium', price: 7.99, priceDisplay: '$7.99/month', detectedCountry: 'unknown' });
+          setPricing({ tier: 'premium', price: 7.99, priceDisplay: '$7.99', detectedCountry: 'unknown' });
         })
         .finally(() => setIsPricingLoading(false));
     }
-  }, [open, isNative]);
+  }, [open, isActuallyNative]);
 
-  // Fetch native pricing from RevenueCat
   useEffect(() => {
-    if (open && isNative) {
+    if (open && isActuallyNative) {
       const fetchNativePrice = async () => {
         try {
           const { Purchases } = await import("@revenuecat/purchases-capacitor");
@@ -179,7 +157,6 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
               (pkg: any) => pkg.packageType === "MONTHLY"
             ) || offerings.current.availablePackages[0];
             
-            // Get localized price string from RevenueCat
             const priceString = monthlyPackage.product?.priceString || monthlyPackage.product?.price?.toString();
             if (priceString) {
               setNativePrice(priceString);
@@ -191,7 +168,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       };
       fetchNativePrice();
     }
-  }, [open, isNative]);
+  }, [open, isActuallyNative]);
 
   const handleUpgrade = async () => {
     setIsCheckingOut(true);
@@ -201,6 +178,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       
       const checkoutRes = await apiRequest("POST", "/api/stripe/regional-checkout", {
         referralCode: referralCode || undefined,
+        displayedTier: pricing?.tier || undefined,
       });
       const checkoutData = await checkoutRes.json();
       
@@ -211,7 +189,11 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
       }
     } catch (error: any) {
       console.error("Checkout error:", error);
-      alert("Unable to start checkout. Please try again.");
+      toast({
+        title: t.purchaseFailed,
+        description: t.purchaseFailedDesc,
+        variant: "destructive",
+      });
     } finally {
       setIsCheckingOut(false);
     }
@@ -367,32 +349,53 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
           </div>
 
           <div className="flex flex-col gap-3 sm:gap-2 mt-8 sm:mt-4">
-            {isNative ? (
+            {isActuallyNative ? (
               <>
-                {/* Apple-required subscription disclosure (Schedule 2, Section 3.8b) - MOVED TO TOP */}
-                <div className="bg-[hsl(39,70%,96%)] border border-[hsl(39,50%,85%)] rounded-xl p-4 mb-2">
-                  <h4 className="text-[13px] font-semibold text-[hsl(20,10%,30%)] mb-3 text-center">
-                    {t.aboutYourSubscription}
-                  </h4>
-                  <ul className="text-[12px] text-left text-[hsl(20,10%,35%)] space-y-2">
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure1}</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure2}</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure3}</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <span className="text-[#d79942] text-lg leading-none">•</span>
-                      <span>{t.appleDisclosure4}</span>
-                    </li>
-                  </ul>
-                </div>
+                {platform === 'ios' ? (
+                  <div className="bg-[hsl(39,70%,96%)] border border-[hsl(39,50%,85%)] rounded-xl p-4 mb-2">
+                    <h4 className="text-[13px] font-semibold text-[hsl(20,10%,30%)] mb-3 text-center">
+                      {t.aboutYourSubscription}
+                    </h4>
+                    <ul className="text-[12px] text-left text-[hsl(20,10%,35%)] space-y-2">
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{t.appleDisclosure1}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{t.appleDisclosure2}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{t.appleDisclosure3}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{t.appleDisclosure4}</span>
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="bg-[hsl(39,70%,96%)] border border-[hsl(39,50%,85%)] rounded-xl p-4 mb-2">
+                    <h4 className="text-[13px] font-semibold text-[hsl(20,10%,30%)] mb-3 text-center">
+                      {t.aboutYourSubscription}
+                    </h4>
+                    <ul className="text-[12px] text-left text-[hsl(20,10%,35%)] space-y-2">
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{isAmharic ? 'ክፍያ በGoogle Play በኩል ይሰራል' : 'Payment processed through Google Play'}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{t.appleDisclosure2}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="text-[#d79942] text-lg leading-none">•</span>
+                        <span>{isAmharic ? 'ምዝገባዎችን በGoogle Play ቅንብሮች ያስተዳድሩ' : 'Manage subscriptions in Google Play Settings'}</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
                 <Button 
                   onClick={handleNativePurchase}
                   disabled={isPurchasing}
@@ -462,7 +465,7 @@ export function UpgradeDialog({ open, onClose, translation }: UpgradeDialogProps
                       {t.loading}
                     </>
                   ) : (
-                    `${t.subscribeNow} - ${pricing?.priceDisplay || '$7.99/month'}`
+                    `${t.subscribeNow} - ${pricing?.priceDisplay || '$7.99'}/${isAmharic ? 'ወር' : 'month'}`
                   )}
                 </Button>
                 <p className="text-xs text-center text-[hsl(20,10%,50%)] mt-2 leading-relaxed">

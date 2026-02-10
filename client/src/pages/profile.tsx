@@ -329,31 +329,9 @@ export default function Profile() {
     }
   }, [isAuthLoading, isAuthenticated]);
 
-  // Fetch regional pricing
   useEffect(() => {
     if (!isNative) {
-      const getDeviceCountry = (): string | null => {
-        try {
-          const locale = navigator.language || (navigator as any).userLanguage;
-          if (locale && locale.includes('-')) {
-            return locale.split('-')[1].toUpperCase();
-          }
-          const resolved = Intl.DateTimeFormat().resolvedOptions();
-          if (resolved.locale && resolved.locale.includes('-')) {
-            return resolved.locale.split('-')[1].toUpperCase();
-          }
-        } catch (e) {
-          console.error("Failed to detect device locale:", e);
-        }
-        return null;
-      };
-
-      const deviceCountry = getDeviceCountry();
-      const url = deviceCountry 
-        ? `/api/pricing/tier?deviceCountry=${deviceCountry}`
-        : "/api/pricing/tier";
-
-      apiFetch(url)
+      apiFetch('/api/pricing/tier')
         .then(res => res.json())
         .then((data: PricingTierResponse) => {
           setPricing(data);
