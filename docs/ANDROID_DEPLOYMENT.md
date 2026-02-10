@@ -85,10 +85,10 @@ Google Sign-In uses SHA-1 certificate fingerprints to verify your app. Debug and
 Open PowerShell and run:
 
 ```
-keytool -list -v -keystore "C:\Users\brett\OneDrive\Desktop\vagabond-bible-keystore.jks" -alias vagabond-bible
+& "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -list -v -keystore "C:\Users\brett\OneDrive\Desktop\vagabond-bible-keystore.jks" -alias vagabond-bible
 ```
 
-Enter your keystore password. Copy the **SHA1** fingerprint (looks like `AB:CD:EF:12:34:...`).
+Enter your keystore password. Copy the **SHA1** fingerprint (just the hex value, not the "SHA1:" label).
 
 ### Step 2: Check Play App Signing SHA-1
 
@@ -115,9 +115,9 @@ If you've enrolled in Google Play App Signing:
 
 | Source | SHA-1 | Status |
 |--------|-------|--------|
-| Debug keystore | `ca:9c:dd:ae:cc:21:47:b2:34:32:e8:d8:87:9d:47:d0:f0:c1:70:3b` | In Firebase |
-| Upload keystore | ??? | **NEEDS TO BE ADDED** |
-| Play App Signing | ??? | **CHECK AND ADD IF DIFFERENT** |
+| Debug keystore | `CA:9C:DD:AE:CC:21:47:B2:34:32:E8:D8:87:9D:47:D0:F0:C1:70:3B` | In Firebase |
+| Upload keystore | `E9:93:91:19:8F:23:9B:9C:CE:40:D8:F4:4F:68:A1:D2:35:22:47:CF` | **NEEDS TO BE ADDED** |
+| Play App Signing | Check Play Console → Setup → App signing | **CHECK AND ADD IF DIFFERENT** |
 
 ---
 
