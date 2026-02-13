@@ -66,8 +66,8 @@
     pointer-events: auto;
   }
   
-  /* Prevent text selection on all touch-interactive content in native app */
-  .select-none, [data-testid] {
+  /* Prevent text selection on explicitly marked elements */
+  .select-none {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
@@ -78,15 +78,13 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Prevent text cursor on non-interactive content */
+  /* Allow text selection on body by default for web users */
   body {
-    -webkit-user-select: none;
-    user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Only allow text cursor and selection in actual text inputs */
-  input, textarea, [contenteditable="true"] {
+  /* Allow text selection in text content areas */
+  p, span, h1, h2, h3, h4, h5, h6, li, td, th, blockquote, pre, code, input, textarea, [contenteditable="true"] {
     -webkit-user-select: text !important;
     user-select: text !important;
   }
