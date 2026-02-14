@@ -15,8 +15,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Heart } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
+import { Link } from "wouter";
 import footerLogo from "@assets/TC_Logo_All_white_1766882068583.png";
+
+const JOIN_URL = "https://vagabondbible.com/join";
 
 export default function JoinChurch() {
   const { toast } = useToast();
@@ -68,96 +72,122 @@ export default function JoinChurch() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a1a1a] to-[#2a2a2a] flex items-center justify-center p-4">
-      <Card className="max-w-md w-full bg-[#2a2a2a] border-[#bf8e00]/30" data-testid="card-join">
-        <CardHeader className="text-center">
-          <img
-            src={footerLogo}
-            alt="The Traveling Church"
-            className="h-14 mx-auto mb-4"
-            data-testid="img-join-logo"
-          />
-          <CardTitle className="text-2xl text-white" data-testid="text-join-title">
-            Join The Traveling Church
-          </CardTitle>
-          <CardDescription className="text-gray-400" data-testid="text-join-description">
-            Become part of our global family. Sign up below to stay connected.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
-              className="space-y-4"
-              data-testid="form-join"
-            >
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-300">Full Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Your full name"
-                        className="bg-[#1a1a1a] border-gray-600 text-white placeholder:text-gray-500"
-                        data-testid="input-name"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-300">Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="your@email.com"
-                        className="bg-[#1a1a1a] border-gray-600 text-white placeholder:text-gray-500"
-                        data-testid="input-email"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="whatsapp"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-300">WhatsApp Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="tel"
-                        placeholder="+1 234 567 8900"
-                        className="bg-[#1a1a1a] border-gray-600 text-white placeholder:text-gray-500"
-                        data-testid="input-whatsapp"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="submit"
-                className="w-full bg-[#bf8e00] hover:bg-[#a67b00] text-white font-semibold"
-                disabled={mutation.isPending}
-                data-testid="button-submit"
+      <div className="max-w-md w-full space-y-6">
+        <Card className="w-full bg-[#2a2a2a] border-[#bf8e00]/30" data-testid="card-join">
+          <CardHeader className="text-center">
+            <img
+              src={footerLogo}
+              alt="The Traveling Church"
+              className="h-14 mx-auto mb-4"
+              data-testid="img-join-logo"
+            />
+            <CardTitle className="text-2xl text-white" data-testid="text-join-title">
+              Join The Traveling Church
+            </CardTitle>
+            <CardDescription className="text-gray-400" data-testid="text-join-description">
+              Become part of our global family. Sign up below to stay connected.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                className="space-y-4"
+                data-testid="form-join"
               >
-                {mutation.isPending ? "Signing Up..." : "Join Now"}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Full Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Your full name"
+                          className="bg-[#1a1a1a] border-gray-600 text-white placeholder:text-gray-500"
+                          data-testid="input-name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="your@email.com"
+                          className="bg-[#1a1a1a] border-gray-600 text-white placeholder:text-gray-500"
+                          data-testid="input-email"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="whatsapp"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">WhatsApp Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="tel"
+                          placeholder="+1 234 567 8900"
+                          className="bg-[#1a1a1a] border-gray-600 text-white placeholder:text-gray-500"
+                          data-testid="input-whatsapp"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="submit"
+                  className="w-full bg-[#bf8e00] hover:bg-[#a67b00] text-white font-semibold"
+                  disabled={mutation.isPending}
+                  data-testid="button-submit"
+                >
+                  {mutation.isPending ? "Signing Up..." : "Join Now"}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+
+        <div className="flex flex-col items-center gap-4" data-testid="section-qr-donate">
+          <div className="bg-white p-3 rounded-xl" data-testid="container-qr">
+            <QRCodeSVG
+              value={JOIN_URL}
+              size={140}
+              bgColor="#ffffff"
+              fgColor="#1a1a1a"
+              level="M"
+            />
+          </div>
+          <p className="text-gray-500 text-xs" data-testid="text-qr-label">
+            Scan to share this page
+          </p>
+
+          <Link
+            href="/keep-us-alive"
+            className="flex items-center gap-2 text-[#bf8e00] hover:text-[#a67b00] transition-colors text-sm font-medium mt-2"
+            data-testid="link-donate"
+          >
+            <Heart className="w-4 h-4" />
+            Support The Traveling Church
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
