@@ -91,6 +91,22 @@ export type Testimonial = typeof testimonials.$inferSelect;
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 
+export const churchMembers = pgTable("church_members", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  whatsapp: text("whatsapp").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const insertChurchMemberSchema = createInsertSchema(churchMembers).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertChurchMember = z.infer<typeof insertChurchMemberSchema>;
+export type ChurchMember = typeof churchMembers.$inferSelect;
+
 // User Notes for Bible study
 export const notes = pgTable("notes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),

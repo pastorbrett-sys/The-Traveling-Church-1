@@ -8,6 +8,7 @@ import {
   insertEventSchema,
   insertTestimonialSchema,
   insertContactSubmissionSchema,
+  insertChurchMemberSchema,
   insertNoteSchema,
   insertPrayerRequestSchema,
   insertPrayerSessionSchema,
@@ -349,6 +350,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(submissions);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch contact submissions" });
+    }
+  });
+
+  // Church Members
+  app.post("/api/church-members", async (req, res) => {
+    try {
+      const validatedData = insertChurchMemberSchema.parse(req.body);
+      const member = await storage.createChurchMember(validatedData);
+      res.status(201).json(member);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid member data" });
     }
   });
 

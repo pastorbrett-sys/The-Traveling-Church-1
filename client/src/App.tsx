@@ -49,6 +49,7 @@ import PrayerTimer from "@/pages/prayer-timer";
 import PrayerRequests from "@/pages/prayer-requests";
 import KeepUsAlive from "@/pages/keep-us-alive";
 import DeleteAccount from "@/pages/delete-account";
+import JoinChurch from "@/pages/join-church";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -76,6 +77,7 @@ function VagabondBibleRouter() {
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/support" component={Support} />
       <Route path="/delete-account" component={DeleteAccount} />
+      <Route path="/join" component={JoinChurch} />
       <Route path="/admin/ethiopian-bible" component={AdminEthiopianBible} />
       <Route path="/ambassador" component={AmbassadorPage} />
       <Route path="/ambassador/pending">{() => <Redirect to="/ambassador" />}</Route>
@@ -117,6 +119,7 @@ function ChurchRouter() {
       <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/support" component={Support} />
       <Route path="/delete-account" component={DeleteAccount} />
+      <Route path="/join" component={JoinChurch} />
       <Route path="/admin/ethiopian-bible" component={AdminEthiopianBible} />
       <Route path="/ambassador" component={AmbassadorPage} />
       <Route path="/ambassador/pending">{() => <Redirect to="/ambassador" />}</Route>

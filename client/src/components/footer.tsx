@@ -1,5 +1,6 @@
-import { Facebook, Instagram } from "lucide-react";
+import { Facebook, Instagram, UserPlus } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
+import { Link } from "wouter";
 import footerLogo from "@assets/TC_Logo_All_white_1766882068583.png";
 
 export default function Footer() {
@@ -57,6 +58,14 @@ export default function Footer() {
           >
             <Instagram className="w-6 h-6" />
           </a>
+          <Link
+            href="/join"
+            className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+            data-testid="link-join-church"
+            aria-label="Join The Traveling Church"
+          >
+            <UserPlus className="w-6 h-6" />
+          </Link>
         </div>
         <p 
           className="text-primary-foreground/60 text-xs"

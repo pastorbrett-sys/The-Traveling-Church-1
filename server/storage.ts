@@ -15,6 +15,8 @@ import type {
   InsertTestimonial,
   ContactSubmission,
   InsertContactSubmission,
+  ChurchMember,
+  InsertChurchMember,
   Note,
   InsertNote,
   FeatureUsage,
@@ -59,6 +61,10 @@ export interface IStorage {
   // Contact Submissions
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getAllContactSubmissions(): Promise<ContactSubmission[]>;
+
+  // Church Members
+  createChurchMember(member: InsertChurchMember): Promise<ChurchMember>;
+  getAllChurchMembers(): Promise<ChurchMember[]>;
 
   // Notes
   getNotesByUser(userId: string): Promise<Note[]>;
@@ -206,6 +212,16 @@ export class DbStorage implements IStorage {
 
   async getAllContactSubmissions(): Promise<ContactSubmission[]> {
     return await db.select().from(schema.contactSubmissions).orderBy(schema.contactSubmissions.createdAt);
+  }
+
+  // Church Members
+  async createChurchMember(member: InsertChurchMember): Promise<ChurchMember> {
+    const result = await db.insert(schema.churchMembers).values(member).returning();
+    return result[0];
+  }
+
+  async getAllChurchMembers(): Promise<ChurchMember[]> {
+    return await db.select().from(schema.churchMembers).orderBy(desc(schema.churchMembers.createdAt));
   }
 
   // Notes
