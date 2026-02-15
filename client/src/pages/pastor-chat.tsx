@@ -715,7 +715,7 @@ export default function PastorChat() {
   return (
     <div 
       className="bg-background text-foreground antialiased flex flex-col overflow-hidden"
-      style={{ height: isNative ? "calc(100vh - 64px)" : "100vh" }}
+      style={{ height: "100vh", paddingBottom: isNative ? "64px" : "0px" }}
     >
       <Navigation 
         customLogo={vagabondLogo} 
@@ -815,9 +815,9 @@ export default function PastorChat() {
       )}
 
       {/* Scrollable content area */}
-      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto bg-background">
         <div 
-          className={`w-full max-w-3xl mx-auto px-4 h-full ${activeTab === "bible" ? "" : "hidden"}`}
+          className={`w-full max-w-3xl mx-auto px-4 min-h-full ${activeTab === "bible" ? "" : "hidden"}`}
         >
           <BibleReader 
             ref={bibleReaderRef}
