@@ -816,26 +816,30 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
           };
           
           if (isVisible) {
-            // Already visible - trigger burst immediately
             applyBurstAndPersist(scrollToVerse);
           } else {
-            // Need to scroll - trigger burst after scroll completes
-            verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            const scrollParent = verseElement.closest('.overflow-y-auto') || verseElement.parentElement;
+            if (scrollParent) {
+              const parentRect = scrollParent.getBoundingClientRect();
+              const elRect = verseElement.getBoundingClientRect();
+              const scrollTop = scrollParent.scrollTop + (elRect.top - parentRect.top) - (parentRect.height / 2) + (elRect.height / 2);
+              scrollParent.scrollTo({ top: Math.max(0, scrollTop), behavior: "smooth" });
+            } else {
+              verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
             
-            // Wait for scroll to complete before triggering burst
             let scrollTimeout: NodeJS.Timeout;
             const checkScrollEnd = () => {
               clearTimeout(scrollTimeout);
               scrollTimeout = setTimeout(() => {
                 applyBurstAndPersist(scrollToVerse);
-                window.removeEventListener("scroll", checkScrollEnd, true);
+                (scrollParent || window).removeEventListener("scroll", checkScrollEnd, true);
               }, 150);
             };
             
-            window.addEventListener("scroll", checkScrollEnd, true);
-            // Fallback in case scroll event doesn't fire
+            (scrollParent || window).addEventListener("scroll", checkScrollEnd, true);
             setTimeout(() => {
-              window.removeEventListener("scroll", checkScrollEnd, true);
+              (scrollParent || window).removeEventListener("scroll", checkScrollEnd, true);
               if (!verseElement.classList.contains("verse-burst-highlight")) {
                 applyBurstAndPersist(scrollToVerse);
               }
