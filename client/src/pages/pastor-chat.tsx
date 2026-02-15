@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, forwardRef } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo, forwardRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Send, MessageCircle, Lock, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
 import { Link, useSearch } from "wouter";
@@ -23,9 +23,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
+import { renderTextWithVerseLinks, type VerseRef } from "@/lib/verse-linker";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
-import BibleReader from "@/components/bible-reader";
+import BibleReader, { type BibleReaderHandle } from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
 import vagabondLogo from "@/assets/vagabond-logo.png";
 import { usePlatform } from "@/contexts/platform-context";
@@ -157,6 +158,22 @@ interface Translation {
 const preloadedPastorImage = new Image();
 preloadedPastorImage.src = pastorBrettIcon;
 
+function processChildren(children: any, onVerseClick: (ref: VerseRef) => void): any {
+  if (typeof children === "string") {
+    return renderTextWithVerseLinks(children, onVerseClick);
+  }
+  if (Array.isArray(children)) {
+    return children.map((child, i) => {
+      if (typeof child === "string") {
+        const parts = renderTextWithVerseLinks(child, onVerseClick);
+        return parts.length === 1 && typeof parts[0] === "string" ? child : <span key={i}>{parts}</span>;
+      }
+      return child;
+    });
+  }
+  return children;
+}
+
 export default function PastorChat() {
   const { isNative } = usePlatform();
   const { isProUser: revenueCatIsPro, isInitialized: revenueCatInitialized } = useRevenueCat();
@@ -192,7 +209,30 @@ export default function PastorChat() {
   }
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
-  
+  const bibleReaderRef = useRef<BibleReaderHandle>(null);
+
+  const handleVerseClick = useCallback((ref: VerseRef) => {
+    setActiveTab("bible");
+    setTimeout(() => {
+      bibleReaderRef.current?.navigateToVerse(ref.bookName, ref.chapter, ref.verse);
+    }, 100);
+  }, []);
+
+  const markdownComponents = useMemo(() => ({
+    p: ({ children, ...props }: any) => {
+      return <p {...props}>{processChildren(children, handleVerseClick)}</p>;
+    },
+    li: ({ children, ...props }: any) => {
+      return <li {...props}>{processChildren(children, handleVerseClick)}</li>;
+    },
+    strong: ({ children, ...props }: any) => {
+      return <strong {...props}>{processChildren(children, handleVerseClick)}</strong>;
+    },
+    em: ({ children, ...props }: any) => {
+      return <em {...props}>{processChildren(children, handleVerseClick)}</em>;
+    },
+  }), [handleVerseClick]);
+
   // Sync activeTab with URL param changes (for native tab bar navigation)
   useEffect(() => {
     const newTab = tabParam === "chat" ? "chat" : "bible";
@@ -772,6 +812,7 @@ export default function PastorChat() {
           className={`w-full max-w-3xl mx-auto px-4 h-full ${activeTab === "bible" ? "" : "hidden"}`}
         >
           <BibleReader 
+            ref={bibleReaderRef}
             translation={bibleTranslation} 
             onTranslationChange={setBibleTranslation}
             initialBookId={initialBookId}
@@ -816,7 +857,7 @@ export default function PastorChat() {
                         <p className="text-sm whitespace-pre-wrap selectable-text">{message.content}</p>
                       ) : (
                         <div className="text-sm prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0.5 [&_strong]:font-serif [&_strong]:text-foreground selectable-text">
-                          <ReactMarkdown>{message.content}</ReactMarkdown>
+                          <ReactMarkdown components={markdownComponents}>{message.content}</ReactMarkdown>
                         </div>
                       )}
                     </div>

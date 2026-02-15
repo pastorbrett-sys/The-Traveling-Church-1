@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -108,11 +108,15 @@ interface DiscussionMessage {
   isInitialAnswer?: boolean;
 }
 
+export interface BibleReaderHandle {
+  navigateToVerse: (bookName: string, chapter: number, verse?: number) => void;
+}
+
 interface BibleReaderProps {
   translation: string;
   onTranslationChange: (translation: string) => void;
   initialBookId?: number;
-  initialBookName?: string; // Book name for reliable lookup (e.g., "Psalms")
+  initialBookName?: string;
   initialChapter?: number;
   initialVerse?: number;
   triggerHighlight?: boolean;
@@ -319,7 +323,7 @@ function BookHeaderImage({ src, bookName, isNative }: { src: string; bookName: s
   );
 }
 
-export default function BibleReader({ 
+const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function BibleReader({ 
   translation, 
   onTranslationChange,
   initialBookId,
@@ -328,7 +332,7 @@ export default function BibleReader({
   initialVerse,
   triggerHighlight,
   showActionMenuOnDeepLink 
-}: BibleReaderProps) {
+}, ref) {
   const { isNative, platform } = usePlatform();
   const [, navigate] = useLocation();
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
@@ -650,6 +654,27 @@ export default function BibleReader({
       });
     },
   });
+
+  useImperativeHandle(ref, () => ({
+    navigateToVerse(bookName: string, chapter: number, verse?: number) {
+      if (!books) return;
+      const targetBook = books.find(
+        b => b.name.toLowerCase() === bookName.toLowerCase() ||
+             b.name.toLowerCase().startsWith(bookName.toLowerCase().replace(/s$/, ''))
+      );
+      if (targetBook) {
+        setSelectedBook(targetBook);
+        setSelectedChapter(chapter);
+        setShowBookPicker(false);
+        if (verse) {
+          setTimeout(() => {
+            isDeepLinkScrollRef.current = false;
+            setScrollToVerse(verse);
+          }, 300);
+        }
+      }
+    }
+  }), [books]);
 
   // Handle initial navigation from push notifications (deep links)
   useEffect(() => {
@@ -2527,4 +2552,6 @@ Reference: ${verseRef} (${translation})`;
       />
     </div>
   );
-}
+});
+
+export default BibleReader;
