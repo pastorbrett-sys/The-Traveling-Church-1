@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo, forwardRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Send, MessageCircle, Lock, LogIn, MoreVertical, RefreshCw, Book, Loader2 } from "lucide-react";
-import { Link, useSearch } from "wouter";
+import { Link, useSearch, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
@@ -210,13 +210,15 @@ export default function PastorChat() {
   
   const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
   const bibleReaderRef = useRef<BibleReaderHandle>(null);
+  const [, setLocation] = useLocation();
 
   const handleVerseClick = useCallback((ref: VerseRef) => {
     setActiveTab("bible");
+    setLocation("/pastor-chat?tab=bible");
     setTimeout(() => {
       bibleReaderRef.current?.navigateToVerse(ref.bookName, ref.chapter, ref.verse);
     }, 100);
-  }, []);
+  }, [setLocation]);
 
   const markdownComponents = useMemo(() => ({
     p: ({ children, ...props }: any) => {
