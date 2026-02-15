@@ -1,0 +1,75 @@
+~/workspace$ git merge Gemini-2.5-flash-update
+Updating 887025f..9d5f179
+Fast-forward
+ android/app/build.gradle                                               |   4 +-
+ android/app/src/main/res/mipmap-hdpi/ic_launcher.png                   | Bin 2786 -> 4804 bytes
+ android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png        | Bin 60016 -> 8462 bytes
+ android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png             | Bin 4341 -> 4804 bytes
+ android/app/src/main/res/mipmap-mdpi/ic_launcher.png                   | Bin 1869 -> 2857 bytes
+ android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png        | Bin 60016 -> 5101 bytes
+ android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png             | Bin 2725 -> 2857 bytes
+ android/app/src/main/res/mipmap-xhdpi/ic_launcher.png                  | Bin 3981 -> 6883 bytes
+ android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png       | Bin 60016 -> 12650 bytes
+ android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png            | Bin 6593 -> 6883 bytes
+ android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png                 | Bin 6644 -> 11877 bytes
+ android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png      | Bin 60016 -> 23156 bytes
+ android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png           | Bin 10455 -> 11877 bytes
+ android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png                | Bin 9441 -> 17997 bytes
+ android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png     | Bin 60016 -> 36749 bytes
+ android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png          | Bin 15916 -> 17997 bytes
+ android/app/src/main/res/values/ic_launcher_background.xml             |   2 +-
+ ...ng-Model-Implementation-This-one-is-for-Replit-wh_1770745898260.txt | 687 ++++++++++++++++++++++++++++++++
+ ...ing-tasks-app-bundleRelease-in-project-C-Users-br_1770753871025.txt | 690 +++++++++++++++++++++++++++++++++
+ ...sers-brett-cd-C-Users-brett-OneDrive-Desktop-The-_1770752443676.txt | 365 +++++++++++++++++
+ ...-already-hit-the-obvious-knobs-Getting-TTFT-2s-th_1770588211608.txt |  68 ++++
+ attached_assets/Vagabond_App_Play_Icon_1770825483486.png               | Bin 0 -> 92423 bytes
+ attached_assets/img_3685_1770746872201.png                             | Bin 0 -> 884860 bytes
+ attached_assets/img_3686_1770746878915.png                             | Bin 0 -> 413889 bytes
+ ...-console-firebase-google-u-1-project-travelingchu_1770751758613.png | Bin 0 -> 594593 bytes
+ ...-play-google-console-u-0-developers-6695399204691_1770754417547.png | Bin 0 -> 246647 bytes
+ ...-play-google-console-u-0-developers-6695399204691_1770757382510.png | Bin 0 -> 465755 bytes
+ ...-play-google-console-u-0-developers-6695399204691_1770773269879.png | Bin 0 -> 215758 bytes
+ client/src/App.tsx                                                     |   6 +
+ client/src/components/bible-reader.tsx                                 |  71 +++-
+ client/src/components/footer.tsx                                       |  11 +-
+ client/src/components/native-tab-bar.tsx                               |  97 +++--
+ client/src/components/upgrade-dialog.tsx                               | 121 +++---
+ client/src/index.css                                                   |  12 +-
+ client/src/lib/active-tab-store.ts                                     |  18 +
+ client/src/lib/verse-linker.tsx                                        | 197 ++++++++++
+ client/src/pages/delete-account.tsx                                    | 131 +++++++
+ client/src/pages/join-church.tsx                                       | 193 +++++++++
+ client/src/pages/pastor-chat.tsx                                       | 134 ++++++-
+ client/src/pages/profile.tsx                                           |  41 +-
+ docs/ANDROID_DEPLOYMENT.md                                             |  61 ++-
+ package-lock.json                                                      | 208 ++++++++++
+ package.json                                                           |   2 +
+ replit.md                                                              |   5 +-
+ server/aiRouter.ts                                                     | 170 ++++++++
+ server/bibleRoutes.ts                                                  | 215 +++++-----
+ server/replit_integrations/chat/routes.ts                              | 220 +++++++----
+ server/revenueCatWebhook.ts                                            |  32 +-
+ server/routes.ts                                                       |  76 ++--
+ server/storage.ts                                                      | 150 ++++++-
+ server/usageService.ts                                                 | 165 +++++++-
+ server/webhookHandlers.ts                                              |  21 +-
+ shared/models/auth.ts                                                  |   3 +-
+ shared/schema.ts                                                       |  64 ++-
+ 54 files changed, 3815 insertions(+), 425 deletions(-)
+ create mode 100644 attached_assets/Pasted--Pricing-Model-Implementation-This-one-is-for-Replit-wh_1770745898260.txt
+ create mode 100644 attached_assets/Pasted-Executing-tasks-app-bundleRelease-in-project-C-Users-br_1770753871025.txt
+ create mode 100644 attached_assets/Pasted-PS-C-Users-brett-cd-C-Users-brett-OneDrive-Desktop-The-_1770752443676.txt
+ create mode 100644 attached_assets/Pasted-You-ve-already-hit-the-obvious-knobs-Getting-TTFT-2s-th_1770588211608.txt
+ create mode 100644 attached_assets/Vagabond_App_Play_Icon_1770825483486.png
+ create mode 100644 attached_assets/img_3685_1770746872201.png
+ create mode 100644 attached_assets/img_3686_1770746878915.png
+ create mode 100644 attached_assets/screencapture-console-firebase-google-u-1-project-travelingchu_1770751758613.png
+ create mode 100644 attached_assets/screencapture-play-google-console-u-0-developers-6695399204691_1770754417547.png
+ create mode 100644 attached_assets/screencapture-play-google-console-u-0-developers-6695399204691_1770757382510.png
+ create mode 100644 attached_assets/screencapture-play-google-console-u-0-developers-6695399204691_1770773269879.png
+ create mode 100644 client/src/lib/active-tab-store.ts
+ create mode 100644 client/src/lib/verse-linker.tsx
+ create mode 100644 client/src/pages/delete-account.tsx
+ create mode 100644 client/src/pages/join-church.tsx
+ create mode 100644 server/aiRouter.ts
+~/workspace$ 
