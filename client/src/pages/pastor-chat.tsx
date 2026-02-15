@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
 import { renderTextWithVerseLinks, type VerseRef } from "@/lib/verse-linker";
+import { setGlobalActiveTab } from "@/lib/active-tab-store";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import BibleReader, { type BibleReaderHandle } from "@/components/bible-reader";
@@ -214,11 +215,11 @@ export default function PastorChat() {
 
   const handleVerseClick = useCallback((ref: VerseRef) => {
     setActiveTab("bible");
-    setLocation("/pastor-chat?tab=bible");
+    setGlobalActiveTab("bible");
     setTimeout(() => {
       bibleReaderRef.current?.navigateToVerse(ref.bookName, ref.chapter, ref.verse);
     }, 100);
-  }, [setLocation]);
+  }, []);
 
   const markdownComponents = useMemo(() => ({
     p: ({ children, ...props }: any) => {
@@ -242,6 +243,11 @@ export default function PastorChat() {
       setActiveTab(newTab);
     }
   }, [tabParam]);
+
+  // Keep global active tab store in sync for the native tab bar
+  useEffect(() => {
+    setGlobalActiveTab(activeTab);
+  }, [activeTab]);
   
   const [bibleTranslation, setBibleTranslation] = useState(() => {
     // Load from localStorage or use locale-aware default (ETHE for Amharic, KJV otherwise)

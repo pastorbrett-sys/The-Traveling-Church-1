@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "wouter";
 import { usePlatform } from "@/contexts/platform-context";
 import { useAuth } from "@/hooks/use-auth";
@@ -7,13 +7,12 @@ import { motion } from "framer-motion";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { getDefaultBibleTranslation } from "@/lib/i18n";
 import { LoginSheet } from "@/components/login-sheet";
+import { getGlobalActiveTab, subscribeToActiveTab } from "@/lib/active-tab-store";
 
-// Check if translation is Amharic-based
 function isAmharicTranslation(translation: string): boolean {
   return translation === "ETH" || translation === "AMPROT";
 }
 
-// Localized tab labels
 const tabLabels = {
   en: {
     bible: "Bible",
@@ -54,21 +53,19 @@ export function NativeTabBar() {
   const { isNative } = usePlatform();
   const { user, isLoading: isAuthLoading } = useAuth();
   const [location, setLocation] = useLocation();
-  const [currentUrl, setCurrentUrl] = useState(window.location.pathname + window.location.search);
   const [tappedTab, setTappedTab] = useState<string | null>(null);
   const [showLoginSheet, setShowLoginSheet] = useState(false);
+  const [globalTab, setGlobalTab] = useState(getGlobalActiveTab);
   const [translation, setTranslation] = useState(() => {
     return localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
   });
   
-  // Listen for translation changes (storage for cross-tab, custom event for same-tab)
   useEffect(() => {
     const handleStorageChange = () => {
       const newTranslation = localStorage.getItem("bibleTranslation") || getDefaultBibleTranslation();
       setTranslation(newTranslation);
     };
     
-    // Custom event for same-tab updates
     const handleTranslationChange = (e: CustomEvent) => {
       setTranslation(e.detail || getDefaultBibleTranslation());
     };
@@ -77,7 +74,6 @@ export function NativeTabBar() {
     window.addEventListener("focus", handleStorageChange);
     window.addEventListener("translationChanged", handleTranslationChange as EventListener);
     
-    // Check on mount in case it changed
     handleStorageChange();
     
     return () => {
@@ -86,57 +82,58 @@ export function NativeTabBar() {
       window.removeEventListener("translationChanged", handleTranslationChange as EventListener);
     };
   }, []);
+
+  useEffect(() => {
+    return subscribeToActiveTab(() => {
+      setGlobalTab(getGlobalActiveTab());
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isNative) return;
+    document.documentElement.style.setProperty("background-color", "#000000", "important");
+    document.body.style.setProperty("background-color", "#000000", "important");
+    return () => {
+      document.documentElement.style.removeProperty("background-color");
+      document.body.style.removeProperty("background-color");
+    };
+  }, [isNative]);
   
   const labels = getLocalizedLabels(translation);
   
-  // Track URL changes including query params
-  useEffect(() => {
-    const updateUrl = () => {
-      setCurrentUrl(window.location.pathname + window.location.search);
-    };
-    
-    // Update on popstate (browser back/forward)
-    window.addEventListener("popstate", updateUrl);
-    
-    // Also update when location changes
-    updateUrl();
-    
-    return () => window.removeEventListener("popstate", updateUrl);
-  }, [location]);
-  
   if (!isNative) return null;
   
-  // Hide on video landing page, login, and ambassador pages
   const pathOnly = location.split("?")[0];
   if (pathOnly === "/" || pathOnly === "/login" || pathOnly === "/vagabond-bible" || pathOnly.startsWith("/ambassador")) return null;
   
-  const isActive = (href: string) => {
-    const [hrefPath, hrefQuery] = href.split("?");
-    const [currentPath, currentQuery] = currentUrl.split("?");
+  const getActiveTabId = (): string => {
+    const currentPath = window.location.pathname;
     
-    // For pastor-chat tabs, check both path and query param
-    if (hrefPath === "/pastor-chat" && currentPath === "/pastor-chat") {
-      const currentParams = new URLSearchParams(currentQuery || "");
-      const hrefParams = new URLSearchParams(hrefQuery || "");
-      const currentTab = currentParams.get("tab") || "bible";
-      const targetTab = hrefParams.get("tab") || "bible";
-      return currentTab === targetTab;
+    if (currentPath === "/pastor-chat") {
+      if (globalTab === "chat" || globalTab === "bible") {
+        return globalTab;
+      }
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      if (tab === "chat") return "chat";
+      return "bible";
     }
     
-    // For other routes, simple path matching
-    if (hrefPath === currentPath) return true;
-    return currentPath.startsWith(hrefPath + "/");
+    if (currentPath === "/prayer-timer") return "prayer";
+    if (currentPath === "/notes" || currentPath.startsWith("/notes/")) return "notes";
+    if (currentPath === "/profile" || currentPath.startsWith("/profile/")) return "profile";
+    
+    return "";
   };
   
+  const activeTabId = getActiveTabId();
+  
   const handleTabClick = async (tab: TabItem) => {
-    // Trigger haptic feedback on native
     try {
       await Haptics.impact({ style: ImpactStyle.Light });
     } catch (e) {
-      // Haptics not available on web, ignore
     }
     
-    // Intercept chat, notes and profile tabs for guests - show login sheet instead of navigating
     if ((tab.id === "chat" || tab.id === "notes" || tab.id === "profile") && !isAuthLoading && !user) {
       setTappedTab(tab.id);
       setTimeout(() => setTappedTab(null), 300);
@@ -146,36 +143,24 @@ export function NativeTabBar() {
     
     setTappedTab(tab.id);
     setLocation(tab.href);
-    // Immediately update currentUrl to ensure active state changes
-    setCurrentUrl(tab.href);
-    // Reset tapped state after animation completes
     setTimeout(() => setTappedTab(null), 300);
   };
   
-  // @capacitor-community/safe-area plugin handles Android insets automatically
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 z-[150]"
+      className="fixed left-0 right-0 z-[150]"
       style={{ 
+        bottom: 0,
         background: '#000000',
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         borderTop: '1px solid #1a1a1a'
       }}
       data-testid="native-tab-bar"
     >
-      {/* Extend black background below safe area to prevent gap on overscroll */}
-      <div 
-        className="absolute left-0 right-0" 
-        style={{ 
-          bottom: '-100px', 
-          height: '100px', 
-          background: '#000000' 
-        }} 
-      />
       <div className="flex items-center justify-around h-16 px-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
-          const active = isActive(tab.href);
+          const active = activeTabId === tab.id;
           const isTapped = tappedTab === tab.id;
           
           return (
@@ -207,7 +192,6 @@ export function NativeTabBar() {
         })}
       </div>
       
-      {/* Login Sheet for guests trying to access protected tabs */}
       <LoginSheet
         isOpen={showLoginSheet}
         onClose={() => setShowLoginSheet(false)}
@@ -223,6 +207,5 @@ export function NativeTabBarSpacer() {
   
   if (!isNative) return null;
   
-  // @capacitor-community/safe-area plugin handles Android insets automatically
   return <div style={{ height: 'calc(64px + env(safe-area-inset-bottom, 0px))' }} />;
 }
