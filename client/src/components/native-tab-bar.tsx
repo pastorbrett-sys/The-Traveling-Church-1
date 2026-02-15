@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { getDefaultBibleTranslation } from "@/lib/i18n";
 import { LoginSheet } from "@/components/login-sheet";
-import { getGlobalActiveTab, subscribeToActiveTab } from "@/lib/active-tab-store";
+import { getGlobalActiveTab, setGlobalActiveTab, subscribeToActiveTab } from "@/lib/active-tab-store";
 
 function isAmharicTranslation(translation: string): boolean {
   return translation === "ETH" || translation === "AMPROT";
@@ -142,6 +142,9 @@ export function NativeTabBar() {
     }
     
     setTappedTab(tab.id);
+    if (tab.id === "chat" || tab.id === "bible") {
+      setGlobalActiveTab(tab.id);
+    }
     setLocation(tab.href);
     setTimeout(() => setTappedTab(null), 300);
   };

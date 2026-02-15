@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
 import { renderTextWithVerseLinks, type VerseRef } from "@/lib/verse-linker";
-import { setGlobalActiveTab } from "@/lib/active-tab-store";
+import { setGlobalActiveTab, getGlobalActiveTab, subscribeToActiveTab } from "@/lib/active-tab-store";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import BibleReader, { type BibleReaderHandle } from "@/components/bible-reader";
@@ -243,6 +243,16 @@ export default function PastorChat() {
       setActiveTab(newTab);
     }
   }, [tabParam]);
+
+  // Listen for global tab changes (e.g. native tab bar clicks when URL doesn't change)
+  useEffect(() => {
+    return subscribeToActiveTab(() => {
+      const globalTab = getGlobalActiveTab();
+      if (globalTab === "chat" || globalTab === "bible") {
+        setActiveTab(globalTab as "chat" | "bible");
+      }
+    });
+  }, []);
 
   // Keep global active tab store in sync for the native tab bar
   useEffect(() => {
