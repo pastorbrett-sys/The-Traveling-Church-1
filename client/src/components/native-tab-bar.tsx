@@ -157,12 +157,21 @@ export function NativeTabBar() {
     <nav 
       className="fixed bottom-0 left-0 right-0 z-[150]"
       style={{ 
-        background: 'linear-gradient(to bottom, #1a1a1a 0%, #000000 100%)',
+        background: '#000000',
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         borderTop: '1px solid #1a1a1a'
       }}
       data-testid="native-tab-bar"
     >
+      {/* Extend black background below safe area to prevent gap on overscroll */}
+      <div 
+        className="absolute left-0 right-0" 
+        style={{ 
+          bottom: '-100px', 
+          height: '100px', 
+          background: '#000000' 
+        }} 
+      />
       <div className="flex items-center justify-around h-16 px-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
