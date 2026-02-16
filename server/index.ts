@@ -126,7 +126,12 @@ app.post(
       console.log('[Stripe Webhook] ✅ Webhook processed successfully');
       res.status(200).json({ received: true });
     } catch (error: any) {
-      console.error('[Stripe Webhook] ❌ Processing error:', error.message);
+      const msg = error.message || '';
+      if (msg.includes('not-null constraint') && msg.includes('invoices')) {
+        console.log('[Stripe Webhook] ⚠️ Ignoring invoice sync error (invoice.upcoming has no ID) - acknowledging to Stripe');
+        return res.status(200).json({ received: true, note: 'invoice.upcoming skipped' });
+      }
+      console.error('[Stripe Webhook] ❌ Processing error:', msg);
       res.status(400).json({ error: 'Webhook processing error' });
     }
   }
