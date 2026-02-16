@@ -25,48 +25,36 @@ router.post("/register-token", async (req: Request, res: Response) => {
       return res.status(400).json({ error: "userId is required" });
     }
 
-    // Upsert the token (update if exists, insert if new)
-    const existing = await db
-      .select()
-      .from(pushTokens)
-      .where(eq(pushTokens.deviceToken, deviceToken))
-      .limit(1);
-
-    if (existing.length > 0) {
-      // Update existing token
-      await db
-        .update(pushTokens)
-        .set({
-          userId,
-          platform,
-          timezone,
-          utcOffset,
-          updatedAt: new Date(),
-        })
-        .where(eq(pushTokens.deviceToken, deviceToken));
-    } else {
-      // Insert new token
-      await db.insert(pushTokens).values({
+    // Atomic upsert using onConflictDoUpdate to avoid race conditions
+    const result = await db.insert(pushTokens).values({
+      userId,
+      deviceToken,
+      platform,
+      timezone,
+      utcOffset,
+    }).onConflictDoUpdate({
+      target: pushTokens.deviceToken,
+      set: {
         userId,
-        deviceToken,
         platform,
         timezone,
         utcOffset,
-      });
+        updatedAt: new Date(),
+      },
+    }).returning();
 
-      // Create default preferences for all active notification types
-      const activeTypes = await db
-        .select()
-        .from(notificationTypes)
-        .where(eq(notificationTypes.isActive, true));
+    // Create default preferences for all active notification types (idempotent)
+    const activeTypes = await db
+      .select()
+      .from(notificationTypes)
+      .where(eq(notificationTypes.isActive, true));
 
-      for (const type of activeTypes) {
-        await db.insert(userNotificationPreferences).values({
-          userId,
-          notificationTypeId: type.id,
-          enabled: type.defaultEnabled,
-        }).onConflictDoNothing();
-      }
+    for (const type of activeTypes) {
+      await db.insert(userNotificationPreferences).values({
+        userId,
+        notificationTypeId: type.id,
+        enabled: type.defaultEnabled,
+      }).onConflictDoNothing();
     }
 
     res.json({ success: true });
