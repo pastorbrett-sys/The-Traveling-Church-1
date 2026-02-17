@@ -67,7 +67,7 @@ export default function VagabondBible() {
                 <Link href="/prayer-timer">
                   <Button size="lg" variant="outline" className="w-full border border-white text-white hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying-native">
                     <Heart className="w-5 h-5 mr-2" />
-                    Start Praying
+                    {t("landing.cta_pray")}
                   </Button>
                 </Link>
               </div>
@@ -182,7 +182,7 @@ export default function VagabondBible() {
               <Link href="/prayer-timer" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto border border-white text-white hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying">
                   <Heart className="w-5 h-5 mr-2" />
-                  Start Praying
+                  {t("landing.cta_pray")}
                 </Button>
               </Link>
             </div>
