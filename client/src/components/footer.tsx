@@ -20,14 +20,18 @@ export default function Footer() {
           A global ministry reaching hearts worldwide
         </p>
         <div className="flex justify-center gap-4 mb-4 text-sm">
-          <a
-            href="/donor-advised-funds"
-            className="text-primary-foreground/80 hover:text-primary-foreground transition-colors flex items-center gap-2"
-            data-testid="link-daf-giving"
-          >
-            <span className="w-2 h-2 bg-primary-foreground rounded-full animate-pulse" />
-            DAF Giving
-          </a>
+          <div className="flex items-center text-primary-foreground/80">
+            <span className="font-medium mr-2">EIN: 41-3093491</span>
+            <span className="inline-block w-[1px] h-[1em] bg-primary-foreground/40 mx-2" />
+            <a
+              href="/donor-advised-funds"
+              className="hover:text-primary-foreground transition-colors flex items-center gap-2"
+              data-testid="link-daf-giving"
+            >
+              <span className="w-2 h-2 bg-primary-foreground rounded-full animate-pulse" />
+              DAF Giving
+            </a>
+          </div>
         </div>
         <div className="flex justify-center gap-6 mb-6">
           <a
