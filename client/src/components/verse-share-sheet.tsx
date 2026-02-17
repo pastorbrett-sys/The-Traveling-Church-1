@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Capacitor } from "@capacitor/core";
 import { Share } from "@capacitor/share";
 import { Filesystem, Directory } from "@capacitor/filesystem";
+import { useTranslation } from "@/lib/i18n";
 
 import sunsetOcean from "@/assets/share-backgrounds/sunset-ocean.jpg";
 import mountainMist from "@/assets/share-backgrounds/mountain-mist.jpg";

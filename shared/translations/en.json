@@ -188,5 +188,14 @@
     "prayer_received": "Your prayer has been received. A real person will read and pray for you.",
     "continue_praying": "Continue Praying",
     "read_the_bible": "Read the Bible"
+  },
+  "verse_share": {
+    "cancel": "Cancel",
+    "choose_image": "Choose Image",
+    "choose_background": "Choose Your Background",
+    "image_saved": "Image Saved",
+    "change": "Change",
+    "share": "Share",
+    "share_verse": "Share Verse"
   }
 }

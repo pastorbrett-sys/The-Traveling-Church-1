@@ -188,5 +188,14 @@
     "prayer_received": "ጸሎትዎ ተቀብሏል። እውነተኛ ሰው ያነባል እና ይጸልይልዎታል።",
     "continue_praying": "ጸሎትን ቀጥል",
     "read_the_bible": "መጽሐፍ ቅዱስ አንብብ"
+  },
+  "verse_share": {
+    "cancel": "ይቅር",
+    "choose_image": "ምስል ይምረጡ",
+    "choose_background": "ዳራዎን ይምረጡ",
+    "image_saved": "ምስል ተቀምጧል",
+    "change": "ቀይር",
+    "share": "አጋራ",
+    "share_verse": "ጥቅስ አጋራ"
   }
 }
