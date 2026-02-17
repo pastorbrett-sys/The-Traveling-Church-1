@@ -64,7 +64,8 @@ The application uses a component-based frontend architecture and an Express.js b
   - **Configurable types**: Each notification type has separate day/time settings in database. Schedule changes via DB auto-adapt collision logic.
   - **User preferences**: Toggle on/off per notification type in Profile settings.
   - **Firebase setup**: APNs key S48F6S762Z (Sandbox & Production), Team ID FBD94PWXT2. Service account key in FIREBASE_SERVICE_ACCOUNT_KEY secret.
-  - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `server/verseSelection.ts`, `server/dailyVerseData.ts`, `client/src/hooks/usePushNotifications.ts`.
+  - **Localized notifications**: Notifications are translated per user's language preference. English users get English; Amharic (or any other language) users get AI-translated verses via Gemini at send time with in-memory cache. Falls back to English if translation fails. Scalable to any language — just add user's language code. Translation logic: `server/notificationTranslation.ts`. Notification titles pre-translated for known languages (e.g., "የዕለት ጥቅስ" for Amharic daily verse).
+  - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `server/verseSelection.ts`, `server/dailyVerseData.ts`, `server/notificationTranslation.ts`, `client/src/hooks/usePushNotifications.ts`.
 - **Apple Sign-In Configuration** (for native iOS):
   - **Required in Apple Developer Console**:
     1. App ID (`com.vagabondbible.app`) must have "Sign in with Apple" capability enabled

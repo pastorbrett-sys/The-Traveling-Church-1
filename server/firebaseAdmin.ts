@@ -1,6 +1,7 @@
 import admin from "firebase-admin";
 import type { RequestHandler } from "express";
 import { authStorage } from "./replit_integrations/auth/storage";
+import { getNotificationTitle } from "./notificationTranslation";
 
 let firebaseApp: admin.app.App | null = null;
 
@@ -248,17 +249,17 @@ export function buildVerseNotificationPayload(
   chapter: number,
   verse: number,
   bookName?: string,
-  notificationType: 'verse_of_week' | 'verse_of_day' = 'verse_of_week'
+  notificationType: 'verse_of_week' | 'verse_of_day' = 'verse_of_week',
+  language: string = 'en'
 ): NotificationPayload {
   const shortText = verseText.length > 100 ? verseText.substring(0, 97) + '...' : verseText;
   
-  const isDaily = notificationType === 'verse_of_day';
-  const title = isDaily ? '🌅 Verse of the Day' : '✨ Verse of the Week';
+  const title = getNotificationTitle(language, notificationType);
   
   return {
     title,
     body: `${shortText} - ${verseRef}`,
-    imageUrl: isDaily ? undefined : VERSE_OF_WEEK_IMAGE_IOS, // Only weekly has graphic
+    imageUrl: isDaily ? undefined : VERSE_OF_WEEK_IMAGE_IOS,
     data: {
       type: notificationType,
       bookId: String(bookId),
