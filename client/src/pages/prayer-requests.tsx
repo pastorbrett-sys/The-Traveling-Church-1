@@ -60,7 +60,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { NativeTabBarSpacer } from "@/components/native-tab-bar";
-import { t } from "@/lib/i18n";
+import { useTranslation } from "@/lib/i18n";
 
 interface PrayerStats {
   totalSessions: number;
@@ -76,6 +76,7 @@ interface PrayerStats {
 }
 
 export default function PrayerRequests() {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const { isAuthenticated, user } = useAuth();
   const { isNative, platform } = usePlatform();

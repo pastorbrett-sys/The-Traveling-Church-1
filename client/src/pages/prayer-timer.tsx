@@ -4,7 +4,7 @@ import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown, Heart } from "lucide
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
-import { t } from "@/lib/i18n";
+import { useTranslation } from "@/lib/i18n";
 
 function SoundWaveIcon({ isActive }: { isActive: boolean }) {
   return (
@@ -59,15 +59,16 @@ const TRACK_NAME_KEYS: Record<string, string> = {
   "Stillness Between Heartbeats": "prayer_timer.track_stillness_between_heartbeats",
 };
 
-function getTranslatedTrackName(trackName: string): string {
-  const key = TRACK_NAME_KEYS[trackName];
-  return key ? t(key) : trackName;
-}
-
 export default function PrayerTimer() {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [timeRemaining, setTimeRemaining] = useState(5 * 60);
+
+  function getTranslatedTrackName(trackName: string): string {
+    const key = TRACK_NAME_KEYS[trackName];
+    return key ? t(key) : trackName;
+  }
   const [isRunning, setIsRunning] = useState(false);
   const [isIntroAnimating, setIsIntroAnimating] = useState(false);
   const [swoopHead, setSwoopHead] = useState(0);
