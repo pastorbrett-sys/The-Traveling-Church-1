@@ -4,6 +4,7 @@ import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown, Heart } from "lucide
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
+import { t } from "@/lib/i18n";
 
 function SoundWaveIcon({ isActive }: { isActive: boolean }) {
   return (
@@ -30,20 +31,38 @@ const BUTTON_POSITIONS = {
 };
 
 const DURATION_OPTIONS = [
-  { label: "5 MIN", minutes: 5 },
-  { label: "10 MIN", minutes: 10 },
-  { label: "30 MIN", minutes: 30 },
+  { labelKey: "prayer_timer.5_min", minutes: 5 },
+  { labelKey: "prayer_timer.10_min", minutes: 10 },
+  { labelKey: "prayer_timer.30_min", minutes: 30 },
 ];
 
-const INSPIRATIONAL_PHRASES = [
-  "PRAYER TIMER",
-  "BREATHE SPIRIT",
-  "EXHALE STRESS",
-  "I'M BLESSED",
-  "IT'S MY TIME",
-  "HE'S WITH ME",
-  "I AM ENOUGH",
+const PHRASE_KEYS = [
+  "prayer_timer.phrase_prayer_timer",
+  "prayer_timer.phrase_breathe_spirit",
+  "prayer_timer.phrase_exhale_stress",
+  "prayer_timer.phrase_im_blessed",
+  "prayer_timer.phrase_its_my_time",
+  "prayer_timer.phrase_hes_with_me",
+  "prayer_timer.phrase_i_am_enough",
 ];
+
+const TRACK_NAME_KEYS: Record<string, string> = {
+  "Breath Like Quiet Water": "prayer_timer.track_breath_like_quiet_water",
+  "Floating Above The Morning": "prayer_timer.track_floating_above_the_morning",
+  "Sky Slowly Opens": "prayer_timer.track_sky_slowly_opens",
+  "Soft Cloud Prayer": "prayer_timer.track_soft_cloud_prayer",
+  "Soft River of Prayer": "prayer_timer.track_soft_river_of_prayer",
+  "Soft Sky Breathing": "prayer_timer.track_soft_sky_breathing",
+  "Soft Sky, Slow Heart": "prayer_timer.track_soft_sky_slow_heart",
+  "Soft Still Waters": "prayer_timer.track_soft_still_waters",
+  "Stillness Between Breaths": "prayer_timer.track_stillness_between_breaths",
+  "Stillness Between Heartbeats": "prayer_timer.track_stillness_between_heartbeats",
+};
+
+function getTranslatedTrackName(trackName: string): string {
+  const key = TRACK_NAME_KEYS[trackName];
+  return key ? t(key) : trackName;
+}
 
 export default function PrayerTimer() {
   const [, setLocation] = useLocation();
@@ -129,7 +148,7 @@ export default function PrayerTimer() {
       
       // After fade out, change phrase and fade in
       fadeTimeoutRef.current = setTimeout(() => {
-        setCurrentPhraseIndex((prev) => (prev + 1) % INSPIRATIONAL_PHRASES.length);
+        setCurrentPhraseIndex((prev) => (prev + 1) % PHRASE_KEYS.length);
         setPhraseVisible(true);
         fadeTimeoutRef.current = null;
       }, fadeDuration);
@@ -572,7 +591,7 @@ export default function PrayerTimer() {
             className="text-white text-sm font-semibold tracking-wide"
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            BACK
+            {t("prayer_timer.back")}
           </span>
         </button>
         
@@ -585,7 +604,7 @@ export default function PrayerTimer() {
             className="text-sm font-semibold tracking-wide"
             style={{ fontFamily: "'Poppins', sans-serif", color: "#666" }}
           >
-            PRAYERS
+            {t("prayer_timer.prayers")}
           </span>
           <Heart 
             className="w-5 h-5 animate-heart-pulse" 
@@ -609,7 +628,7 @@ export default function PrayerTimer() {
             minHeight: "36px",
           }}
         >
-          {(isRunning || isIntroAnimating) ? INSPIRATIONAL_PHRASES[currentPhraseIndex] : "PRAYER TIMER"}
+          {(isRunning || isIntroAnimating) ? t(PHRASE_KEYS[currentPhraseIndex]) : t("prayer_timer.title")}
         </h1>
 
         {/* Timer Circle */}
@@ -767,7 +786,7 @@ export default function PrayerTimer() {
               }}
               data-testid={`button-duration-${option.minutes}`}
             >
-              {option.label}
+              {t(option.labelKey)}
             </button>
           ))}
         </div>
@@ -790,7 +809,7 @@ export default function PrayerTimer() {
             }}
             data-testid="button-start-stop"
           >
-            {(isRunning || isIntroAnimating) ? "STOP" : "START"}
+            {(isRunning || isIntroAnimating) ? t("prayer_timer.stop") : t("prayer_timer.start")}
           </button>
 
           <button
@@ -831,7 +850,7 @@ export default function PrayerTimer() {
             style={{ fontFamily: "'Poppins', sans-serif" }}
             data-testid="text-now-playing"
           >
-            {audioPlaying && currentTrack ? currentTrack : "Tap to pick music"}
+            {audioPlaying && currentTrack ? getTranslatedTrackName(currentTrack) : t("prayer_timer.tap_to_pick_music")}
           </span>
           <ChevronDown className="w-4 h-4 text-white/50" style={{ marginTop: "1px" }} />
         </button>
@@ -880,7 +899,7 @@ export default function PrayerTimer() {
                 className="text-white text-lg font-semibold"
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
-                Select Track
+                {t("prayer_timer.select_track")}
               </h3>
               <button 
                 onClick={closeTrackSelector}
@@ -914,7 +933,7 @@ export default function PrayerTimer() {
                       color: currentTrack === track ? "#FFBE00" : "white",
                     }}
                   >
-                    {track}
+                    {getTranslatedTrackName(track)}
                   </span>
                 </button>
               ))}

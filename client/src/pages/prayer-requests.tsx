@@ -60,6 +60,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { usePlatform } from "@/contexts/platform-context";
 import { NativeTabBarSpacer } from "@/components/native-tab-bar";
+import { t } from "@/lib/i18n";
 
 interface PrayerStats {
   totalSessions: number;
@@ -138,7 +139,7 @@ export default function PrayerRequests() {
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
-            <h1 className="text-lg font-semibold text-white">Prayer Requests</h1>
+            <h1 className="text-lg font-semibold text-white">{t("prayer_requests.title")}</h1>
             <div className="w-10" />
           </div>
         </header>
@@ -155,7 +156,7 @@ export default function PrayerRequests() {
             className="p-4 pb-8 flex-1 overflow-y-auto"
           >
             <p className="text-white/70 text-sm leading-relaxed mb-6">
-              Every prayer will be read and you will be prayed for by a real person.
+              {t("prayer_requests.every_prayer_read")}
             </p>
 
             <div className="space-y-4">
@@ -163,9 +164,9 @@ export default function PrayerRequests() {
                 <div className="flex items-center gap-3">
                   <Lock className="w-5 h-5 text-white/40" />
                   <div>
-                    <Label className="text-white font-medium">Submit Anonymously</Label>
+                    <Label className="text-white font-medium">{t("prayer_requests.submit_anonymously")}</Label>
                     <p className="text-xs text-white/40 mt-0.5">
-                      Not stored, not shared with anyone
+                      {t("prayer_requests.not_stored")}
                     </p>
                   </div>
                 </div>
@@ -185,22 +186,22 @@ export default function PrayerRequests() {
                   className="space-y-4"
                 >
                   <div>
-                    <Label className="text-white/60 text-sm mb-1.5 block">Your Name</Label>
+                    <Label className="text-white/60 text-sm mb-1.5 block">{t("prayer_requests.your_name")}</Label>
                     <Input
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="First name"
+                      placeholder={t("prayer_requests.first_name")}
                       className="bg-transparent border border-white/20 text-white placeholder:text-white/40 h-12 rounded-xl px-4"
                       data-testid="input-name"
                     />
                   </div>
                   <div>
-                    <Label className="text-white/60 text-sm mb-1.5 block">Email (for response)</Label>
+                    <Label className="text-white/60 text-sm mb-1.5 block">{t("prayer_requests.email_for_response")}</Label>
                     <Input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
+                      placeholder={t("prayer_requests.email_placeholder")}
                       className="bg-transparent border border-white/20 text-white placeholder:text-white/40 h-12 rounded-xl px-4"
                       data-testid="input-email"
                     />
@@ -209,11 +210,11 @@ export default function PrayerRequests() {
               )}
 
               <div>
-                <Label className="text-white/60 text-sm mb-1.5 block">Your Prayer Request</Label>
+                <Label className="text-white/60 text-sm mb-1.5 block">{t("prayer_requests.your_prayer_request")}</Label>
                 <Textarea
                   value={prayerContent}
                   onChange={(e) => setPrayerContent(e.target.value)}
-                  placeholder="Share what's on your heart..."
+                  placeholder={t("prayer_requests.share_whats_on_heart")}
                   className="bg-transparent border border-white/20 text-white placeholder:text-white/40 min-h-[150px] resize-none rounded-xl px-4 py-3"
                   data-testid="textarea-prayer"
                 />
@@ -226,7 +227,7 @@ export default function PrayerRequests() {
                 data-testid="button-send-prayer"
               >
                 <Send className="w-5 h-5 mr-2" />
-                Submit Prayer
+                {t("prayer_requests.submit_prayer")}
               </Button>
             </div>
           </motion.div>
@@ -256,7 +257,7 @@ export default function PrayerRequests() {
               transition={{ delay: 0.18, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="text-2xl font-semibold text-white mb-3"
             >
-              Prayer Submitted
+              {t("prayer_requests.prayer_submitted")}
             </motion.h2>
             
             <motion.p
@@ -265,7 +266,7 @@ export default function PrayerRequests() {
               transition={{ delay: 0.26, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="text-white/60 text-base leading-relaxed mb-8 max-w-xs"
             >
-              Your prayer has been received. A real person will read and pray for you.
+              {t("prayer_requests.prayer_received")}
             </motion.p>
 
             <motion.div
@@ -285,7 +286,7 @@ export default function PrayerRequests() {
                   data-testid="button-continue-prayer"
                 >
                   <Timer className="w-5 h-5 mr-2" />
-                  Continue Praying
+                  {t("prayer_requests.continue_praying")}
                 </Button>
               </motion.div>
               
@@ -301,7 +302,7 @@ export default function PrayerRequests() {
                   data-testid="button-read-bible"
                 >
                   <BookOpen className="w-5 h-5 mr-2" />
-                  Read the Bible
+                  {t("prayer_requests.read_the_bible")}
                 </Button>
               </motion.div>
             </motion.div>
@@ -330,26 +331,26 @@ export default function PrayerRequests() {
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
                     <div className="flex items-center gap-2 mb-2">
                       <Flame className="w-4 h-4 text-orange-400" />
-                      <span className="text-xs text-white/60">Streak</span>
+                      <span className="text-xs text-white/60">{t("prayer_requests.streak")}</span>
                     </div>
                     <p className="text-2xl font-bold text-white">{stats.streak}</p>
-                    <p className="text-xs text-white/40">days</p>
+                    <p className="text-xs text-white/40">{t("prayer_requests.days")}</p>
                   </div>
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
                     <div className="flex items-center gap-2 mb-2">
                       <Clock className="w-4 h-4 text-blue-400" />
-                      <span className="text-xs text-white/60">Time</span>
+                      <span className="text-xs text-white/60">{t("prayer_requests.time")}</span>
                     </div>
                     <p className="text-2xl font-bold text-white">{stats.totalMinutes}</p>
-                    <p className="text-xs text-white/40">minutes</p>
+                    <p className="text-xs text-white/40">{t("prayer_requests.minutes")}</p>
                   </div>
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
                     <div className="flex items-center gap-2 mb-2">
                       <MessageCircle className="w-4 h-4 text-purple-400" />
-                      <span className="text-xs text-white/60">Prayers</span>
+                      <span className="text-xs text-white/60">{t("prayer_requests.prayers")}</span>
                     </div>
                     <p className="text-2xl font-bold text-white">{stats.prayerRequestCount}</p>
-                    <p className="text-xs text-white/40">submitted</p>
+                    <p className="text-xs text-white/40">{t("prayer_requests.submitted")}</p>
                   </div>
                 </div>
               )}
@@ -361,7 +362,7 @@ export default function PrayerRequests() {
                 data-testid="button-submit-prayer"
               >
                 <Heart className="w-5 h-5 mr-2" />
-                Submit a Prayer Request
+                {t("prayer_requests.submit_prayer_request")}
               </Button>
             </div>
           </motion.div>

@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
 import { Capacitor } from "@capacitor/core";
 import { queryClient } from "@/lib/queryClient";
+import { t } from "@/lib/i18n";
 
 // Native-only plugin helpers - these are no-ops on web
 // The actual imports happen at runtime only on native platforms via Capacitor's native bridge
@@ -75,8 +76,8 @@ const setupAndroidChannel = async () => {
     
     await LocalNotifications.createChannel({
       id: 'timer_complete',
-      name: 'Timer Complete',
-      description: 'Prayer timer completion alerts',
+      name: t("prayer_timer.notification_channel_name"),
+      description: t("prayer_timer.notification_channel_desc"),
       sound: 'timer_chime.wav',
       importance: 4,
       vibration: true,
@@ -130,8 +131,8 @@ const playCompletionChime = async () => {
         await LocalNotifications.schedule({
           notifications: [{
             id: Date.now(),
-            title: "Prayer Complete",
-            body: "Your prayer time has ended. Peace be with you.",
+            title: t("prayer_timer.notification_title"),
+            body: t("prayer_timer.notification_body"),
             sound: 'timer_chime.wav',
             channelId: 'timer_complete',
             schedule: { at: new Date(Date.now() + 100) },
