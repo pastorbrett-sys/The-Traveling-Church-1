@@ -62,6 +62,7 @@ interface VerseShareSheetProps {
 }
 
 export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: VerseShareSheetProps) {
+  const { t, isAmharic } = useTranslation();
   const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -156,7 +157,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       
       let cleanText = verseText.replace(/["\u201C\u201D]/g, '"').replace(/['\u2018\u2019]/g, "'");
       cleanText = cleanText.replace(/§[^§]+§\s*/g, '').trim();
-      const displayText = `"${cleanText.toUpperCase()}"`;
+      const displayText = isAmharic ? `"${cleanText}"` : `"${cleanText.toUpperCase()}"`;
       
       const lineHeight = fontSize * 1.4;
       const maxWidth = canvas.width - 140;
@@ -199,7 +200,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
       ctx.font = "400 38px Poppins, sans-serif";
       ctx.textAlign = "right";
       
-      const refText = verseReference.toUpperCase();
+      const refText = isAmharic ? verseReference : verseReference.toUpperCase();
       const letterSpacing = 6;
       let totalWidth = 0;
       for (let i = 0; i < refText.length; i++) {
@@ -258,7 +259,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
           title: verseReference,
           text: `📖 ${verseReference}\nvagabondbible.com`,
           url: fileUri.uri,
-          dialogTitle: "Share Verse",
+          dialogTitle: t("verse_share.share_verse"),
         });
       } else {
         const response = await fetch(generatedImage);
@@ -322,16 +323,16 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
               className="flex items-center justify-between p-4 border-b"
             >
               <Button variant="ghost" size="sm" onClick={onClose} data-testid="button-share-cancel" className="hover:bg-[#daa520]/20 hover:text-[#daa520]">
-                Cancel
+                {t("verse_share.cancel")}
               </Button>
-              <span className="font-semibold">Choose Image</span>
+              <span className="font-semibold">{t("verse_share.choose_image")}</span>
               <div className="w-16" />
             </div>
             
             <div className="flex-1 overflow-y-auto p-4">
               {!generatedImage ? (
                 <>
-                  <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide">Choose Your Background</p>
+                  <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide">{t("verse_share.choose_background")}</p>
                   <div className="grid grid-cols-3 gap-2">
                     {BACKGROUNDS.map((bg) => (
                       <button
@@ -359,7 +360,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                   {isSaved && (
                     <div className="flex items-center gap-2 text-green-600">
                       <Check className="w-5 h-5" />
-                      <span>Image Saved</span>
+                      <span>{t("verse_share.image_saved")}</span>
                     </div>
                   )}
                   
@@ -387,7 +388,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                     }}
                     data-testid="button-change-background"
                   >
-                    Change
+                    {t("verse_share.change")}
                   </Button>
                   
                   <Button
@@ -396,7 +397,7 @@ export function VerseShareSheet({ isOpen, onClose, verseText, verseReference }: 
                     onClick={handleShare}
                     data-testid="button-share-image"
                   >
-                    Share
+                    {t("verse_share.share")}
                   </Button>
                 </div>
               )}
