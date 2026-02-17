@@ -16,7 +16,7 @@ export default function LeadershipSection() {
       name: "Robbie Thiessen",
       title: "Western Regional Ministry Leader",
       image: robbieImage,
-      description: "Overseeing western regional outreach, dedicated to expanding our mission and supporting local congregations.",
+      description: "Overseeing western regional outreach, dedicated to teaching the Gospel and growing faith in the West.",
     },
     {
       name: "Daniel Stockdale",
