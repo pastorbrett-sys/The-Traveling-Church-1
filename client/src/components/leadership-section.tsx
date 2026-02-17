@@ -1,7 +1,7 @@
-import danielImage from "@assets/Daniel_1760680915194.jpg";
-import joshImage from "@assets/Josh_1760681040173.jpg";
-import edenImage from "@assets/Eden_1771354464709.png";
-import robbieImage from "@assets/Robbie_1771354535845.png";
+import danielImage from "../assets/Daniel_1760680915194.jpg";
+import joshImage from "../assets/Josh_1760681040173.jpg";
+import edenImage from "../assets/Eden_1771354464709.png";
+import robbieImage from "../assets/Robbie_1771354535845.png";
 
 export default function LeadershipSection() {
   
