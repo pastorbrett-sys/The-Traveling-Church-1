@@ -74,7 +74,7 @@ export default function Footer() {
         <p 
           className="text-primary-foreground/60 text-xs"
           data-testid="text-copyright"
-        >© 2026 The Traveling Church. Spreading love and faith across the globe.</p>
+        >© 2026 The Traveling Church. A 501(c)(3) Nonprofit Organization.</p>
       </div>
     </footer>
   );
