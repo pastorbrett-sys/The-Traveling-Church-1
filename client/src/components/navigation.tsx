@@ -117,7 +117,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
           )}
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-4 text-sm">
+          <div className="hidden lg:flex items-center gap-6 text-sm">
             {!hideNavLinks && navItems.map((item) => (
               item.type === "link" ? (
                 <Link
