@@ -137,8 +137,8 @@ export default function FindAService() {
 
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div className="text-center md:text-left">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
+            <div className="order-2 md:order-1 text-center md:text-left">
               <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3" data-testid="text-hero-eyebrow">
                 Online Services
               </p>
@@ -164,7 +164,7 @@ export default function FindAService() {
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-8 md:mt-0">
+            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 mt-8 md:mt-0">
               <div className="space-y-4">
                 <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
                   <img src={edenImage} alt="Eden Gulilat" className="w-full h-full object-cover" loading="eager" />
