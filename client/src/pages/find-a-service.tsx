@@ -164,8 +164,8 @@ export default function FindAService() {
               </a>
             </div>
 
-            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 mt-8 md:-mt-16 md:scale-90 transform-gpu md:origin-right">
-              <div className="space-y-4">
+            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-8 md:-mt-16 md:scale-[0.8] transform-gpu md:origin-right">
+              <div className="space-y-4 md:space-y-5">
                 <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
                   <img src={edenImage} alt="Eden Gulilat" className="w-full h-full object-cover" loading="eager" />
                 </div>
@@ -173,7 +173,7 @@ export default function FindAService() {
                   <img src={danielImage} alt="Daniel Stockdale" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
-              <div className="space-y-4 pt-8">
+              <div className="space-y-4 md:space-y-5 pt-8">
                 <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
                   <img src={robbieImage} alt="Robbie Thiessen" className="w-full h-full object-cover" loading="eager" />
                 </div>
