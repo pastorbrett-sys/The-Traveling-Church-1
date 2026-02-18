@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
 import danielImage from "../assets/Daniel_1760680915194.jpg";
 import joshImage from "../assets/Josh_1760681040173.jpg";
 import edenImage from "../assets/Eden_1771354464709.png";
 import robbieImage from "../assets/Robbie_1771354535845.png";
 
 export default function LeadershipSection() {
-  const initialLeaders = [
+  
+  const leaders = [
     {
       name: "Eden Gulilat",
       title: "Central Regional Ministry Leader",
@@ -32,65 +32,31 @@ export default function LeadershipSection() {
     },
   ];
 
-  const [leaders, setLeaders] = useState(initialLeaders);
-  const [isShuffling, setIsShuffling] = useState(false);
-
-  useEffect(() => {
-    // Shuffle animation effect starts after a short delay
-    const timer = setTimeout(() => {
-      setIsShuffling(true);
-      let count = 0;
-      const maxShuffles = 8;
-      const interval = setInterval(() => {
-        setLeaders(prev => [...prev].sort(() => Math.random() - 0.5));
-        count++;
-        
-        if (count >= maxShuffles) {
-          clearInterval(interval);
-          // Land in original order
-          setTimeout(() => {
-            setLeaders(initialLeaders);
-            setIsShuffling(false);
-          }, 150);
-        }
-      }, 150);
-
-      return () => clearInterval(interval);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const createSlug = (name: string) => {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   };
 
   return (
-    <section id="leadership" className="py-16 md:py-24 bg-background overflow-hidden">
+    <section id="leadership" className="py-16 md:py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12" data-testid="heading-leadership">
           Church Leadership
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 transition-all duration-500">
-          {leaders.map((leader, index) => {
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+          {leaders.map((leader) => {
             const slug = createSlug(leader.name);
             return (
               <div
                 key={leader.name}
-                className={`flex flex-col items-center text-center transition-all duration-500 ease-in-out ${
-                  isShuffling ? "scale-95 opacity-80 blur-[1px]" : "scale-100 opacity-100 blur-0"
-                }`}
-                style={{
-                  transitionDelay: `${index * 50}ms`
-                }}
+                className="flex flex-col items-center text-center"
                 data-testid={`card-leader-${slug}`}
               >
-                <div className="w-48 h-48 md:w-56 md:h-56 mb-6 rounded-full overflow-hidden ring-4 ring-primary/10 hover:ring-primary/30 transition-all duration-300">
+                <div className="w-48 h-48 md:w-56 md:h-56 mb-6 rounded-full overflow-hidden">
                   <img
                     src={leader.image}
                     alt={leader.name}
-                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover"
                     data-testid={`img-leader-${slug}`}
                     loading="lazy"
                   />
