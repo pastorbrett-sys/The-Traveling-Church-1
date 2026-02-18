@@ -186,46 +186,6 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-6"
-            data-testid="heading-why-join"
-          >
-            Why Join Us Online?
-          </h2>
-          <div className="grid sm:grid-cols-3 gap-8 mt-10">
-            <div className="flex flex-col items-center" data-testid="card-why-timezone">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Globe className="w-7 h-7 text-primary" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">Your Timezone</h3>
-              <p className="text-muted-foreground text-sm">
-                Service times automatically adjust to wherever you are in the world.
-              </p>
-            </div>
-            <div className="flex flex-col items-center" data-testid="card-why-community">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Users className="w-7 h-7 text-primary" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">Real Community</h3>
-              <p className="text-muted-foreground text-sm">
-                Not just a stream — real connection with believers across 6 continents.
-              </p>
-            </div>
-            <div className="flex flex-col items-center" data-testid="card-why-bible">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Video className="w-7 h-7 text-primary" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">On-Demand Access</h3>
-              <p className="text-muted-foreground text-sm">
-                Can't make it live? Recordings are available so you never miss a message.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
@@ -297,6 +257,46 @@ export default function FindAService() {
         </div>
       </section>
 
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-6"
+            data-testid="heading-why-join"
+          >
+            Why Join Us Online?
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-8 mt-10">
+            <div className="flex flex-col items-center" data-testid="card-why-timezone">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <Globe className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Your Timezone</h3>
+              <p className="text-muted-foreground text-sm">
+                Service times automatically adjust to wherever you are in the world.
+              </p>
+            </div>
+            <div className="flex flex-col items-center" data-testid="card-why-community">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <Users className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Real Community</h3>
+              <p className="text-muted-foreground text-sm">
+                Not just a stream — real connection with believers across 6 continents.
+              </p>
+            </div>
+            <div className="flex flex-col items-center" data-testid="card-why-bible">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <Video className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">On-Demand Access</h3>
+              <p className="text-muted-foreground text-sm">
+                Can't make it live? Recordings are available so you never miss a message.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3" data-testid="heading-meet-leadership">
@@ -320,7 +320,7 @@ export default function FindAService() {
 
       <Footer />
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border p-3 md:p-4 md:hidden" data-testid="sticky-footer-cta">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border p-3 md:p-4" data-testid="sticky-footer-cta">
         <div className="flex items-center gap-3 max-w-lg mx-auto">
           <a
             href={whatsappLink}
