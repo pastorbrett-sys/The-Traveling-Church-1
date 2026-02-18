@@ -164,20 +164,20 @@ export default function FindAService() {
               </a>
             </div>
 
-            <div className="hidden md:grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 mt-8 md:mt-0">
               <div className="space-y-4">
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
                   <img src={edenImage} alt="Eden Gulilat" className="w-full h-full object-cover" loading="eager" />
                 </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
                   <img src={danielImage} alt="Daniel Stockdale" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
               <div className="space-y-4 pt-8">
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
                   <img src={robbieImage} alt="Robbie Thiessen" className="w-full h-full object-cover" loading="eager" />
                 </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
                   <img src={joshImage} alt="Joshua Castillo" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
