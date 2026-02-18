@@ -135,7 +135,7 @@ export default function FindAService() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-4 md:py-10">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-4 md:py-24">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
             <div className="order-2 md:order-1 text-center md:text-left">
@@ -166,18 +166,18 @@ export default function FindAService() {
 
             <div className="order-1 md:order-2 grid grid-cols-2 gap-4 mt-8 md:mt-0">
               <div className="space-y-4">
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
                   <img src={edenImage} alt="Eden Gulilat" className="w-full h-full object-cover" loading="eager" />
                 </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
                   <img src={danielImage} alt="Daniel Stockdale" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
               <div className="space-y-4 pt-8">
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
                   <img src={robbieImage} alt="Robbie Thiessen" className="w-full h-full object-cover" loading="eager" />
                 </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
+                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
                   <img src={joshImage} alt="Joshua Castillo" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-[160px] md:-mt-[160px] relative z-10">
+      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-[160px] md:mt-0 relative z-10">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2
