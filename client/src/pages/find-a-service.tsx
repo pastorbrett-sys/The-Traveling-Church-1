@@ -322,7 +322,7 @@ export default function FindAService() {
             data-testid="button-sticky-whatsapp"
           >
             <MessageCircle className="w-4 h-4" />
-            WhatsApp Group
+            Checkout the WhatsApp Group
           </a>
         </div>
       </div>
