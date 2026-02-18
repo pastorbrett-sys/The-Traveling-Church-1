@@ -32,7 +32,7 @@ const SERVICES: ServiceInfo[] = [
     minuteUTC: 0,
     dayOfWeekUTC: 0,
     icon: Users,
-    platform: "Zoom",
+    platform: "Google Meet",
   },
   {
     id: "wednesday-bible-study",
@@ -44,7 +44,7 @@ const SERVICES: ServiceInfo[] = [
     minuteUTC: 0,
     dayOfWeekUTC: 3,
     icon: Globe,
-    platform: "Zoom",
+    platform: "Google Meet",
   },
   {
     id: "friday-prayer",
@@ -56,7 +56,7 @@ const SERVICES: ServiceInfo[] = [
     minuteUTC: 0,
     dayOfWeekUTC: 5,
     icon: Clock,
-    platform: "Zoom",
+    platform: "Google Meet",
   },
   {
     id: "monthly-worship-night",
@@ -68,7 +68,7 @@ const SERVICES: ServiceInfo[] = [
     minuteUTC: 0,
     dayOfWeekUTC: 6,
     icon: Video,
-    platform: "YouTube Live",
+    platform: "Google Meet",
   },
 ];
 
