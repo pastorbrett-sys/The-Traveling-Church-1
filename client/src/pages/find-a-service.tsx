@@ -137,34 +137,8 @@ export default function FindAService() {
 
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3" data-testid="text-hero-eyebrow">
-                Online Services
-              </p>
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5"
-                data-testid="heading-find-service-hero"
-              >
-                A Global Community for the Digital Nomad.
-              </h1>
-              <p
-                className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg"
-                data-testid="text-find-service-subhead"
-              >
-                Bible-centered worship and community, no matter where you are in the world.
-              </p>
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
-                data-testid="button-view-services"
-              >
-                View Service Times
-                <ChevronRight className="w-5 h-5" />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 mt-8 md:mt-0">
+          <div className="flex flex-col gap-10 items-center">
+            <div className="grid grid-cols-2 gap-4 w-full max-w-2xl">
               <div className="space-y-4">
                 <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20">
                   <img src={edenImage} alt="Eden Gulilat" className="w-full h-full object-cover" loading="eager" />
@@ -181,6 +155,32 @@ export default function FindAService() {
                   <img src={joshImage} alt="Joshua Castillo" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3" data-testid="text-hero-eyebrow">
+                Online Services
+              </p>
+              <h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5"
+                data-testid="heading-find-service-hero"
+              >
+                A Global Community for the Digital Nomad.
+              </h1>
+              <p
+                className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+                data-testid="text-find-service-subhead"
+              >
+                Bible-centered worship and community, no matter where you are in the world.
+              </p>
+              <a
+                href="#services"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
+                data-testid="button-view-services"
+              >
+                View Service Times
+                <ChevronRight className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
