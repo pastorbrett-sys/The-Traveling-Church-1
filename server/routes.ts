@@ -203,6 +203,74 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/calendar/event.ics", (req, res) => {
+    try {
+      const { title, description, location, hourUTC, minuteUTC, dayOfWeekUTC, durationMinutes } = req.query;
+      if (!title || !hourUTC || !minuteUTC || !dayOfWeekUTC || !durationMinutes) {
+        return res.status(400).json({ error: "Missing required parameters" });
+      }
+
+      const h = parseInt(hourUTC as string, 10);
+      const m = parseInt(minuteUTC as string, 10);
+      const dow = parseInt(dayOfWeekUTC as string, 10);
+      const dur = parseInt(durationMinutes as string, 10);
+
+      const now = new Date();
+      const currentDay = now.getUTCDay();
+      let daysUntil = dow - currentDay;
+      if (daysUntil < 0) {
+        daysUntil += 7;
+      } else if (daysUntil === 0) {
+        const eventTimeToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h, m, 0));
+        if (now >= eventTimeToday) daysUntil = 7;
+      }
+
+      const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + daysUntil, h, m, 0));
+      const end = new Date(start.getTime() + dur * 60 * 1000);
+
+      const fmt = (d: Date): string => {
+        return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z/, "Z");
+      };
+
+      const eventTitle = decodeURIComponent(title as string);
+      const eventDesc = decodeURIComponent((description as string) || "");
+      const eventLoc = decodeURIComponent((location as string) || "");
+
+      const lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//The Traveling Church//Service Calendar//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        `DTSTART:${fmt(start)}`,
+        `DTEND:${fmt(end)}`,
+        `DTSTAMP:${fmt(now)}`,
+        `UID:${eventTitle.replace(/\s/g, "-").toLowerCase()}-${start.getTime()}@thetravelingchurch.com`,
+        `SUMMARY:${eventTitle}`,
+        `DESCRIPTION:${eventDesc.replace(/\n/g, "\\n")}`,
+        `LOCATION:${eventLoc}`,
+        "BEGIN:VALARM",
+        "TRIGGER:-PT15M",
+        "ACTION:DISPLAY",
+        "DESCRIPTION:Reminder: Service starts in 15 minutes",
+        "END:VALARM",
+        "END:VEVENT",
+        "END:VCALENDAR",
+      ];
+
+      const icsContent = lines.join("\r\n");
+      const filename = `${eventTitle.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase()}.ics`;
+
+      res.setHeader("Content-Type", "text/calendar; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+      res.send(icsContent);
+    } catch (error) {
+      console.error("Error generating calendar event:", error);
+      res.status(500).json({ error: "Failed to generate calendar event" });
+    }
+  });
+
   // Locations
   app.get("/api/locations", async (_req, res) => {
     try {

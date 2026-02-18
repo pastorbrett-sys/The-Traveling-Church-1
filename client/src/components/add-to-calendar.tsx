@@ -58,48 +58,17 @@ function generateOutlookUrl(event: CalendarEvent): string {
   return `https://outlook.live.com/calendar/0/action/compose?subject=${encodeURIComponent(event.title)}&startdt=${formatDateForOutlook(start)}&enddt=${formatDateForOutlook(end)}&body=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
 }
 
-function generateICSContent(event: CalendarEvent): string {
-  const start = getNextEventDate(event.dayOfWeekUTC, event.hourUTC, event.minuteUTC);
-  const end = new Date(start.getTime() + event.durationMinutes * 60 * 1000);
-  const now = new Date();
-
-  const lines = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//The Traveling Church//Service Calendar//EN",
-    "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
-    "BEGIN:VEVENT",
-    `DTSTART:${formatUTCTimestamp(start)}`,
-    `DTEND:${formatUTCTimestamp(end)}`,
-    `DTSTAMP:${formatUTCTimestamp(now)}`,
-    `UID:${event.title.replace(/\s/g, "-").toLowerCase()}-${start.getTime()}@thetravelingchurch.com`,
-    `SUMMARY:${event.title}`,
-    `DESCRIPTION:${event.description.replace(/\n/g, "\\n")}`,
-    `LOCATION:${event.location}`,
-    "BEGIN:VALARM",
-    "TRIGGER:-PT15M",
-    "ACTION:DISPLAY",
-    "DESCRIPTION:Reminder: Service starts in 15 minutes",
-    "END:VALARM",
-    "END:VEVENT",
-    "END:VCALENDAR",
-  ];
-
-  return lines.join("\r\n");
-}
-
-function downloadICSFile(event: CalendarEvent, filename: string) {
-  const content = generateICSContent(event);
-  const blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+function getICSUrl(event: CalendarEvent): string {
+  const params = new URLSearchParams({
+    title: event.title,
+    description: event.description,
+    location: event.location,
+    hourUTC: String(event.hourUTC),
+    minuteUTC: String(event.minuteUTC),
+    dayOfWeekUTC: String(event.dayOfWeekUTC),
+    durationMinutes: String(event.durationMinutes),
+  });
+  return `/api/calendar/event.ics?${params.toString()}`;
 }
 
 interface AddToCalendarProps {
@@ -121,15 +90,13 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const filename = `${event.title.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase()}.ics`;
-
   const handleGoogleCalendar = () => {
     window.open(generateGoogleCalendarUrl(event), "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
   const handleAppleCalendar = () => {
-    downloadICSFile(event, filename);
+    window.location.href = getICSUrl(event);
     setIsOpen(false);
   };
 
@@ -139,7 +106,7 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
   };
 
   const handleOtherCalendar = () => {
-    downloadICSFile(event, filename);
+    window.location.href = getICSUrl(event);
     setIsOpen(false);
   };
 
