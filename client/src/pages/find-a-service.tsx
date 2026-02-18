@@ -157,13 +157,13 @@ function useImageShuffle() {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setShowTransition(true);
-          const t1 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 150);
-          const t2 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 350);
-          const t3 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 550);
+          const t1 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 200);
+          const t2 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 450);
+          const t3 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 700);
           const t4 = setTimeout(() => {
             setTransforms(["none", "none", "none", "none"]);
-          }, 750);
-          const t5 = setTimeout(() => setShowTransition(false), 1050);
+          }, 950);
+          const t5 = setTimeout(() => setShowTransition(false), 1300);
           return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5); };
         });
       });
@@ -231,7 +231,7 @@ export default function FindAService() {
                     className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none"
                     style={{
                       transform: transforms[i],
-                      transition: showTransition ? "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+                      transition: showTransition ? "transform 0.22s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
                       opacity: visible ? 1 : 0,
                       zIndex: showTransition ? 10 : "auto",
                     }}
@@ -248,7 +248,7 @@ export default function FindAService() {
                     className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none"
                     style={{
                       transform: transforms[i],
-                      transition: showTransition ? "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+                      transition: showTransition ? "transform 0.22s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
                       opacity: visible ? 1 : 0,
                       zIndex: showTransition ? 10 : "auto",
                     }}
