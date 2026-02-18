@@ -33,27 +33,32 @@ export default function LeadershipSection() {
   ];
 
   const [leaders, setLeaders] = useState(initialLeaders);
-  const [isShuffling, setIsShuffling] = useState(true);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   useEffect(() => {
-    // Shuffle animation effect
-    let count = 0;
-    const maxShuffles = 8;
-    const interval = setInterval(() => {
-      setLeaders(prev => [...prev].sort(() => Math.random() - 0.5));
-      count++;
-      
-      if (count >= maxShuffles) {
-        clearInterval(interval);
-        // Land in original order
-        setTimeout(() => {
-          setLeaders(initialLeaders);
-          setIsShuffling(false);
-        }, 150);
-      }
-    }, 150);
+    // Shuffle animation effect starts after a short delay
+    const timer = setTimeout(() => {
+      setIsShuffling(true);
+      let count = 0;
+      const maxShuffles = 8;
+      const interval = setInterval(() => {
+        setLeaders(prev => [...prev].sort(() => Math.random() - 0.5));
+        count++;
+        
+        if (count >= maxShuffles) {
+          clearInterval(interval);
+          // Land in original order
+          setTimeout(() => {
+            setLeaders(initialLeaders);
+            setIsShuffling(false);
+          }, 150);
+        }
+      }, 150);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const createSlug = (name: string) => {
