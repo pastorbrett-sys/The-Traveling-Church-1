@@ -320,13 +320,13 @@ export default function FindAService() {
 
       <Footer />
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border p-3 md:p-4" data-testid="sticky-footer-cta">
-        <div className="flex items-center justify-center max-w-lg mx-auto">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border p-3 md:p-4 md:bg-transparent md:border-0 md:bottom-6 md:right-6 md:left-auto md:w-auto" data-testid="sticky-footer-cta">
+        <div className="flex items-center justify-center md:justify-end">
           <a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-3 rounded-full font-medium text-sm transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-3 rounded-full font-medium text-sm transition-colors md:shadow-lg"
             data-testid="button-sticky-whatsapp"
           >
             <MessageCircle className="w-4 h-4" />
