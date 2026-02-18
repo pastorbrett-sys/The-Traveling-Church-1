@@ -153,7 +153,7 @@ export default function FindAService() {
               </p>
               <a
                 href="#services"
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
+                className="donateSectionBtn inline-flex items-center justify-center gap-2 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg w-full sm:w-fit animate-bounce-rotate"
                 data-testid="button-view-services"
               >
                 View Service Times
