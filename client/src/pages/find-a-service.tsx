@@ -134,7 +134,7 @@ export default function FindAService() {
   return (
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
-      <section className="relative overflow-visible bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-0 md:py-24 z-20">
+      <section className="relative overflow-visible bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-0 md:pt-[124px] md:pb-24 z-20">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
             <div className="order-2 md:order-1 text-center md:text-left">
