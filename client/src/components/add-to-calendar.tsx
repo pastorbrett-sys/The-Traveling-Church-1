@@ -204,7 +204,7 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
             data-testid={`button-other-calendar-${serviceId}`}
           >
             <Calendar className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
-            Download .ics File
+            Other Calendar
           </button>
         </div>
       )}
