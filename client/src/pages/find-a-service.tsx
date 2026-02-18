@@ -186,7 +186,7 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 md:-mt-[100px] relative z-10">
+      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-1 md:-mt-[100px] relative z-10">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2
