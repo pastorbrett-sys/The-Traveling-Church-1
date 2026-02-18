@@ -257,7 +257,7 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background -mt-[50px] md:mt-0">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
           <h2
             className="text-3xl md:text-4xl font-bold mb-6"
