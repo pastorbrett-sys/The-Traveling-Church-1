@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Clock, Globe, Calendar, MessageCircle, Video, Users, ChevronRight } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import AddToCalendar from "@/components/add-to-calendar";
 import edenImage from "../assets/Eden_1771354464709.png";
 import robbieImage from "../assets/Robbie_1771354535845.png";
 import danielImage from "../assets/Daniel_1760680915194.jpg";
@@ -94,23 +95,6 @@ function getShortTimezone(): string {
   } catch {
     return "your timezone";
   }
-}
-
-function generateCalendarUrl(service: ServiceInfo): string {
-  const now = new Date();
-  const nextDate = new Date(now);
-  const currentDay = now.getUTCDay();
-  let daysUntil = service.dayOfWeekUTC - currentDay;
-  if (daysUntil <= 0) daysUntil += 7;
-  nextDate.setUTCDate(now.getUTCDate() + daysUntil);
-  nextDate.setUTCHours(service.hourUTC, service.minuteUTC, 0, 0);
-
-  const endDate = new Date(nextDate.getTime() + 90 * 60 * 1000);
-
-  const formatGCal = (d: Date) =>
-    d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(service.name + " — The Traveling Church")}&dates=${formatGCal(nextDate)}/${formatGCal(endDate)}&details=${encodeURIComponent(service.description)}&location=Online`;
 }
 
 const whatsappLink = "https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc";
@@ -234,16 +218,18 @@ export default function FindAService() {
                       </div>
                     </div>
                     <div className="flex-shrink-0">
-                      <a
-                        href={generateCalendarUrl(service)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full font-medium text-sm transition-colors whitespace-nowrap"
-                        data-testid={`button-rsvp-${service.id}`}
-                      >
-                        <Calendar className="w-4 h-4" />
-                        Add to Calendar
-                      </a>
+                      <AddToCalendar
+                        serviceId={service.id}
+                        event={{
+                          title: `${service.name} — The Traveling Church`,
+                          description: service.description,
+                          location: "Online",
+                          hourUTC: service.hourUTC,
+                          minuteUTC: service.minuteUTC,
+                          dayOfWeekUTC: service.dayOfWeekUTC,
+                          durationMinutes: 90,
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
