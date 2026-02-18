@@ -186,7 +186,7 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-[100px] relative z-10">
+      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-[80px] relative z-10">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2
@@ -320,25 +320,17 @@ export default function FindAService() {
 
       <Footer />
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-t border-border p-3 md:p-4" data-testid="sticky-footer-cta">
-        <div className="flex items-center gap-3 max-w-lg mx-auto">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border p-3 md:p-4" data-testid="sticky-footer-cta">
+        <div className="flex items-center justify-center max-w-lg mx-auto">
           <a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-4 py-3 rounded-full font-medium text-sm transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-3 rounded-full font-medium text-sm transition-colors"
             data-testid="button-sticky-whatsapp"
           >
             <MessageCircle className="w-4 h-4" />
-            Join WhatsApp Group
-          </a>
-          <a
-            href="#services"
-            className="flex-shrink-0 inline-flex items-center justify-center gap-2 border border-primary text-primary hover:bg-primary/10 px-4 py-3 rounded-full font-medium text-sm transition-colors"
-            data-testid="button-sticky-recordings"
-          >
-            <Video className="w-4 h-4" />
-            Get Recordings
+            WhatsApp Group
           </a>
         </div>
       </div>
