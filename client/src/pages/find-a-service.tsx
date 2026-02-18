@@ -134,7 +134,6 @@ export default function FindAService() {
   return (
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
-
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-0 md:py-24">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
@@ -145,9 +144,7 @@ export default function FindAService() {
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5"
                 data-testid="heading-find-service-hero"
-              >
-                A Global Community for the Digital Nomad.
-              </h1>
+              >A Global Community for Anyone Anywhere</h1>
               <p
                 className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0"
                 data-testid="text-find-service-subhead"
@@ -185,7 +182,6 @@ export default function FindAService() {
           </div>
         </div>
       </section>
-
       <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 md:-mt-[100px] relative z-10">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
@@ -256,7 +252,6 @@ export default function FindAService() {
           </div>
         </div>
       </section>
-
       <section className="py-16 md:py-24 bg-background -mt-[50px] md:mt-0">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
           <h2
@@ -296,7 +291,6 @@ export default function FindAService() {
           </div>
         </div>
       </section>
-
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3" data-testid="heading-meet-leadership">
@@ -317,9 +311,7 @@ export default function FindAService() {
           </div>
         </div>
       </section>
-
       <Footer />
-
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border p-3 md:p-4 md:bg-transparent md:border-0 md:bottom-6 md:right-6 md:left-auto md:w-auto" data-testid="sticky-footer-cta">
         <div className="flex items-center justify-center md:justify-end">
           <a
