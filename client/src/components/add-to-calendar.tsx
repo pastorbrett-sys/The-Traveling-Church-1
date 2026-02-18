@@ -184,7 +184,7 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
                 {new Date().getDate()}
               </text>
             </svg>
-            Apple Calendar
+            Apple Calendar (iOS)
           </button>
           <button
             onClick={handleOutlook}
@@ -204,7 +204,7 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
             data-testid={`button-other-calendar-${serviceId}`}
           >
             <Calendar className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
-            Other Calendar
+            Download .ics File
           </button>
         </div>
       )}
