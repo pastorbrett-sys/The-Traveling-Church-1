@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { Link } from "wouter";
 import { Clock, Globe, Calendar, MessageCircle, Video, Users, ChevronRight } from "lucide-react";
 import Navigation from "@/components/navigation";
@@ -99,8 +99,85 @@ function getShortTimezone(): string {
 
 const whatsappLink = "https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc";
 
+const IMAGES = [
+  { src: edenImage, alt: "Eden Gulilat" },
+  { src: danielImage, alt: "Daniel Stockdale" },
+  { src: robbieImage, alt: "Robbie Thiessen" },
+  { src: joshImage, alt: "Joshua Castillo" },
+];
+
+function fisherYatesShuffle(arr: number[]): number[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  if (shuffled.every((v, i) => v === i)) {
+    [shuffled[0], shuffled[1]] = [shuffled[1], shuffled[0]];
+  }
+  return shuffled;
+}
+
+function useImageShuffle() {
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const [transforms, setTransforms] = useState<string[]>(["none", "none", "none", "none"]);
+  const [showTransition, setShowTransition] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const hasRun = useRef(false);
+
+  const setRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
+    imageRefs.current[index] = el;
+  }, []);
+
+  useEffect(() => {
+    if (hasRun.current) return;
+    hasRun.current = true;
+
+    const startTimer = setTimeout(() => {
+      const rects = imageRefs.current.map(el => el?.getBoundingClientRect());
+      if (rects.some(r => !r)) {
+        setVisible(true);
+        return;
+      }
+
+      const origins = rects.map(r => ({ x: r!.left, y: r!.top }));
+
+      function calcTransforms(order: number[]): string[] {
+        return [0, 1, 2, 3].map(currentIdx => {
+          const targetIdx = order[currentIdx];
+          const dx = origins[targetIdx].x - origins[currentIdx].x;
+          const dy = origins[targetIdx].y - origins[currentIdx].y;
+          return `translate(${dx}px, ${dy}px)`;
+        });
+      }
+
+      setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3])));
+      setVisible(true);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setShowTransition(true);
+          const t1 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 150);
+          const t2 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 350);
+          const t3 = setTimeout(() => setTransforms(calcTransforms(fisherYatesShuffle([0, 1, 2, 3]))), 550);
+          const t4 = setTimeout(() => {
+            setTransforms(["none", "none", "none", "none"]);
+          }, 750);
+          const t5 = setTimeout(() => setShowTransition(false), 1050);
+          return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5); };
+        });
+      });
+    }, 150);
+
+    return () => clearTimeout(startTimer);
+  }, []);
+
+  return { setRef, transforms, showTransition, visible };
+}
+
 export default function FindAService() {
   const [detectedTimezone, setDetectedTimezone] = useState("");
+  const { setRef, transforms, showTransition, visible } = useImageShuffle();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -147,20 +224,38 @@ export default function FindAService() {
 
             <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-8 md:-mt-16 md:scale-[0.85] transform-gpu md:origin-right">
               <div className="space-y-4 md:space-y-5">
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
-                  <img src={edenImage} alt="Eden Gulilat" className="w-full h-full object-cover" loading="eager" />
-                </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
-                  <img src={danielImage} alt="Daniel Stockdale" className="w-full h-full object-cover" loading="lazy" />
-                </div>
+                {[0, 1].map(i => (
+                  <div
+                    key={i}
+                    ref={setRef(i)}
+                    className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none"
+                    style={{
+                      transform: transforms[i],
+                      transition: showTransition ? "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+                      opacity: visible ? 1 : 0,
+                      zIndex: showTransition ? 10 : "auto",
+                    }}
+                  >
+                    <img src={IMAGES[i].src} alt={IMAGES[i].alt} className="w-full h-full object-cover" loading="eager" />
+                  </div>
+                ))}
               </div>
               <div className="space-y-4 md:space-y-5 pt-8">
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
-                  <img src={robbieImage} alt="Robbie Thiessen" className="w-full h-full object-cover" loading="eager" />
-                </div>
-                <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none">
-                  <img src={joshImage} alt="Joshua Castillo" className="w-full h-full object-cover" loading="lazy" />
-                </div>
+                {[2, 3].map(i => (
+                  <div
+                    key={i}
+                    ref={setRef(i)}
+                    className="w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 md:border-0 md:shadow-none"
+                    style={{
+                      transform: transforms[i],
+                      transition: showTransition ? "transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+                      opacity: visible ? 1 : 0,
+                      zIndex: showTransition ? 10 : "auto",
+                    }}
+                  >
+                    <img src={IMAGES[i].src} alt={IMAGES[i].alt} className="w-full h-full object-cover" loading={i === 2 ? "eager" : "lazy"} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
