@@ -135,7 +135,7 @@ export default function FindAService() {
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20 md:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-10 md:py-16">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
             <div className="order-2 md:order-1 text-center md:text-left">
@@ -186,7 +186,7 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-[80px] relative z-10">
+      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 -mt-[120px] relative z-10">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2
