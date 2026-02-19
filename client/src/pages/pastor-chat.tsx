@@ -69,7 +69,7 @@ const chatUiText = {
     quickStudy: "Study a specific passage",
     quickConfused: "I'm confused about a verse",
     quickStruggling: "I'm struggling with something",
-    quickAnything: "Ask anything",
+    quickAnything: "How can I support you today?",
   },
   am: {
     welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI ፓስተር። እንዴት ልረዳዎት?",
@@ -98,7 +98,7 @@ const chatUiText = {
     quickStudy: "የተወሰነ ክፍል አጥና",
     quickConfused: "ስለ አንድ ጥቅስ ግራ ተጋብቻለሁ",
     quickStruggling: "በአንድ ነገር እየታገልኩ ነው",
-    quickAnything: "ማንኛውንም ነገር ጠይቅ",
+    quickAnything: "ዛሬ እንዴት ልረዳዎት?",
   }
 };
 
