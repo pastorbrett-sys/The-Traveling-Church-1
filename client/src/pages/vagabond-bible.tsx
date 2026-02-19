@@ -169,7 +169,7 @@ export default function VagabondBible() {
             <h1 className={`font-heading mb-6 text-white font-extrabold leading-[1.12] sm:leading-[1.06] ${isAmharic ? 'text-[32px] sm:text-4xl lg:text-[52px]' : 'text-[40px] sm:text-5xl lg:text-[68px]'}`}>
               {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
             </h1>
-            <p className="text-[14px] sm:text-xl lg:text-[18px] text-white/90 mb-8 leading-relaxed">
+            <p className="sm:text-xl lg:text-[18px] text-white/90 mb-8 text-[16px]">
               {t("landing.hero_subtitle_1")} <br className="hidden lg:inline" />{t("landing.hero_subtitle_2")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
