@@ -55,7 +55,7 @@ export default function VagabondBible() {
                 {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
               </h1>
               <p className="text-[15px] text-white/90 mb-10 leading-relaxed">
-                {t("landing.hero_subtitle")}
+                {t("landing.hero_subtitle_1")} {t("landing.hero_subtitle_2")}
               </p>
               <div className="flex flex-col gap-3">
                 <Link href="/pastor-chat">
@@ -170,7 +170,7 @@ export default function VagabondBible() {
               {t("landing.hero_title_1")} <span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span><br />{t("landing.hero_title_3")}
             </h1>
             <p className="text-[14px] sm:text-xl lg:text-[18px] text-white/90 mb-8 leading-relaxed">
-              {t("landing.hero_subtitle")}
+              {t("landing.hero_subtitle_1")} <br className="hidden lg:inline" />{t("landing.hero_subtitle_2")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/pastor-chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
