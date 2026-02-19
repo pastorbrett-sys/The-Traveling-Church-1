@@ -181,6 +181,10 @@ WelcomeMessage.displayName = "WelcomeMessage";
 const GUEST_FREE_MESSAGES = 2;
 const GUEST_MSG_COUNT_KEY = "vagabondGuestMsgCount";
 
+if (import.meta.env.DEV) {
+  try { localStorage.removeItem(GUEST_MSG_COUNT_KEY); } catch {}
+}
+
 function getGuestMessageCount(): number {
   try {
     return parseInt(localStorage.getItem(GUEST_MSG_COUNT_KEY) || "0", 10);
