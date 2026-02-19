@@ -43,7 +43,7 @@ function isAmharicTranslation(translation: string): boolean {
 // Localized UI text for Pastor Chat
 const chatUiText = {
   en: {
-    welcomeMessage: "Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!",
+    welcomeMessage: "Hey there! I'm Pastor Brett, your AI Bible Buddy. I've built the best AI Bible tools ever for you. Ask me anything about faith, scripture, or life!",
     pastorBrett: "Pastor Brett",
     askAnything: "Ask Pastor Brett anything...",
     send: "Send",
@@ -549,7 +549,7 @@ export default function PastorChat() {
   }, [activeTab]);
 
   useEffect(() => {
-    document.title = "AI Bible Buddy | The Traveling Church";
+    document.title = "The Best AI Bible Tools Ever Built | The Traveling Church";
   }, []);
 
   const sendMessage = async () => {

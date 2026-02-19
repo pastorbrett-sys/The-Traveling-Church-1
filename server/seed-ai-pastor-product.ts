@@ -3,11 +3,11 @@ import { getUncachableStripeClient } from './stripeClient';
 async function createAIPastorProduct() {
   const stripe = await getUncachableStripeClient();
 
-  console.log('Creating AI Bible Buddy Pro product...');
+  console.log('Creating The Best AI Bible Tools Ever Built Pro product...');
 
   const product = await stripe.products.create({
-    name: 'AI Bible Buddy Pro',
-    description: 'Unlimited AI Bible Buddy conversations with personalized spiritual guidance, prayer support, and biblical wisdom available 24/7.',
+    name: 'The Best AI Bible Tools Ever Built Pro',
+    description: 'Unlimited access to the best AI Bible tools ever built, featuring personalized spiritual guidance, prayer support, and biblical wisdom 24/7.',
     metadata: {
       feature_unlimited_chat: 'true',
       feature_priority_support: 'true',
