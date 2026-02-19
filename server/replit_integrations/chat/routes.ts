@@ -390,6 +390,82 @@ export function registerChatRoutes(app: Express): void {
     }
   });
 
+  const guestMessageCounts = new Map<string, { count: number; firstSeen: number }>();
+
+  app.post("/api/chat/guest", async (req: Request, res: Response) => {
+    try {
+      const content = req.body?.content;
+      const translation = req.body?.translation || "KJV";
+      if (typeof content !== "string" || !content.trim()) {
+        return res.status(400).json({ error: "Message content is required" });
+      }
+
+      const sessionId = getSessionId(req, res);
+      const now = Date.now();
+      const entry = guestMessageCounts.get(sessionId);
+      const GUEST_LIMIT = 5;
+      const WINDOW_MS = 24 * 60 * 60 * 1000;
+
+      if (entry) {
+        if (now - entry.firstSeen > WINDOW_MS) {
+          guestMessageCounts.set(sessionId, { count: 1, firstSeen: now });
+        } else if (entry.count >= GUEST_LIMIT) {
+          return res.status(429).json({ error: "Guest message limit reached", code: "GUEST_LIMIT" });
+        } else {
+          entry.count++;
+        }
+      } else {
+        guestMessageCounts.set(sessionId, { count: 1, firstSeen: now });
+      }
+
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+
+      const chatMessages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
+        { role: "system", content: getSystemPrompt(translation) },
+        { role: "user", content: content.trim() },
+      ];
+
+      const aiModel = getChatModel(translation);
+      let fullResponse = "";
+
+      if (isNonEnglish(translation)) {
+        for await (const text of geminiStreamContent(aiModel, chatMessages, { maxTokens: 1024, temperature: 0 })) {
+          fullResponse += text;
+          res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+        }
+      } else {
+        const aiClient = getAIClient(translation);
+        const stream = await aiClient.chat.completions.create({
+          model: aiModel,
+          messages: chatMessages,
+          stream: true,
+          max_completion_tokens: 2048,
+        });
+
+        for await (const chunk of stream) {
+          const text = chunk.choices[0]?.delta?.content || "";
+          if (text) {
+            fullResponse += text;
+            res.write(`data: ${JSON.stringify({ content: text })}\n\n`);
+          }
+        }
+      }
+
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+    } catch (error) {
+      console.error("Error in guest chat:", error);
+      if (res.headersSent) {
+        res.write(`data: ${JSON.stringify({ error: "Failed to send message" })}\n\n`);
+        res.end();
+      } else {
+        res.status(500).json({ error: "Failed to send message" });
+      }
+    }
+  });
+
   // Seed a conversation with initial question and answer from Smart Search
   app.post("/api/conversations/:id/seed", async (req: Request, res: Response) => {
     try {
