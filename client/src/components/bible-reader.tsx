@@ -338,7 +338,7 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [hasAppliedInitialNav, setHasAppliedInitialNav] = useState(false);
-  const [selectedVerse, setSelectedVerse] = useState<BibleVerse | null>(null);
+  const [selectedVerses, setSelectedVerses] = useState<BibleVerse[]>([]);
   const [showBookPicker, setShowBookPicker] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -408,6 +408,42 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
   // Get localized UI text based on current translation
   const t = getLocalizedText(translation);
 
+  const selectedVerse = selectedVerses.length === 1 ? selectedVerses[0] : null;
+  const hasSelection = selectedVerses.length > 0;
+
+  const getMultiVerseRef = useCallback(() => {
+    if (!selectedBook || selectedVerses.length === 0) return "";
+    const sorted = [...selectedVerses].sort((a, b) => a.verse - b.verse);
+    const ranges: string[] = [];
+    let start = sorted[0].verse;
+    let end = start;
+    for (let i = 1; i < sorted.length; i++) {
+      if (sorted[i].verse === end + 1) {
+        end = sorted[i].verse;
+      } else {
+        ranges.push(start === end ? `${start}` : `${start}-${end}`);
+        start = sorted[i].verse;
+        end = start;
+      }
+    }
+    ranges.push(start === end ? `${start}` : `${start}-${end}`);
+    return `${selectedBook.name} ${selectedChapter}:${ranges.join(",")}`;
+  }, [selectedBook, selectedChapter, selectedVerses]);
+
+  const getMultiVerseText = useCallback(() => {
+    return [...selectedVerses]
+      .sort((a, b) => a.verse - b.verse)
+      .map(v => {
+        const { content } = parseVerseText(v.text);
+        return content;
+      })
+      .join(" ");
+  }, [selectedVerses]);
+
+  const getMultiVerseNumbers = useCallback(() => {
+    return [...selectedVerses].sort((a, b) => a.verse - b.verse).map(v => v.verse);
+  }, [selectedVerses]);
+
   // Store translation in localStorage for other pages to access
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -417,11 +453,11 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
 
   // When translation changes and there's a selected verse, scroll to it
   useEffect(() => {
-    if (prevTranslationRef.current !== translation && selectedVerse) {
-      setScrollToVerse(selectedVerse.verse);
+    if (prevTranslationRef.current !== translation && selectedVerses.length > 0) {
+      setScrollToVerse(selectedVerses[0].verse);
     }
     prevTranslationRef.current = translation;
-  }, [translation, selectedVerse]);
+  }, [translation, selectedVerses]);
 
   // Lock body scroll when portal modals are open (prevents iOS background scrolling)
   // Only touch document.body - never documentElement as it breaks env(safe-area-inset-*) values
@@ -748,7 +784,7 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
   useEffect(() => {
     if (
       isReady &&
-      selectedVerse &&
+      hasSelection &&
       !hasTriggeredActionBarTooltip.current &&
       shouldShowTooltip("actionBar")
     ) {
@@ -760,22 +796,22 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
       }, 400);
       return () => clearTimeout(timer);
     }
-  }, [isReady, selectedVerse, shouldShowTooltip]);
+  }, [isReady, hasSelection, shouldShowTooltip]);
 
   const { data: comparisonData, isLoading: isLoadingComparison } = useQuery<{ translation: string; verses: BibleVerse[] }[]>({
-    queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, selectedVerse?.verse, compareTranslations],
+    queryKey: ["/api/bible/compare", selectedBook?.bookid, selectedChapter, getMultiVerseNumbers(), compareTranslations],
     queryFn: async () => {
-      if (!selectedVerse || !selectedBook) return [];
+      if (!hasSelection || !selectedBook) return [];
       const allTranslations = Array.from(new Set(compareTranslations));
       const res = await apiRequest("POST", "/api/bible/compare", {
         translations: allTranslations,
         bookId: selectedBook.bookid,
         chapter: selectedChapter,
-        verses: [selectedVerse.verse],
+        verses: getMultiVerseNumbers(),
       });
       return res.json();
     },
-    enabled: showCompare && !!selectedVerse && !!selectedBook,
+    enabled: showCompare && hasSelection && !!selectedBook,
   });
 
   // Scroll to specific verse when chapter loads
@@ -803,7 +839,7 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
           // Open action bar immediately if this is a deep link with showActionMenu
           if (isDeepLinkScrollRef.current && verseData) {
             console.log('[BibleReader] Deep link - opening action bar immediately for verse:', scrollToVerse);
-            setSelectedVerse(verseData);
+            setSelectedVerses(verseData ? [verseData] : []);
             isDeepLinkScrollRef.current = false;
           }
           
@@ -988,22 +1024,24 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
     // Clear any persistent highlight from smart search when user interacts
     setPersistentHighlightVerse(null);
     
-    // If clicking the same verse that's already selected, deselect it
-    if (selectedVerse?.verse === verse.verse) {
-      setSelectedVerse(null);
+    const isAlreadySelected = selectedVerses.some(v => v.verse === verse.verse);
+    
+    if (isAlreadySelected) {
+      const updated = selectedVerses.filter(v => v.verse !== verse.verse);
+      setSelectedVerses(updated);
       return;
     }
     
-    const isFooterCurrentlyOpen = selectedVerse !== null;
+    const isFooterCurrentlyOpen = selectedVerses.length > 0;
     if (!isFooterCurrentlyOpen) {
       setFooterKey(prev => prev + 1);
     }
     setWasFooterOpen(isFooterCurrentlyOpen);
-    setSelectedVerse(verse);
+    setSelectedVerses(prev => [...prev, verse]);
   };
 
   const handleGetInsight = async () => {
-    if (!selectedVerse || !selectedBook) return;
+    if (!hasSelection || !selectedBook) return;
     
     // Check if user is authenticated
     if (!user) {
@@ -1011,9 +1049,10 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
       return;
     }
     
-    const verseRef = `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`;
+    const verseRef = getMultiVerseRef();
+    const verseText = getMultiVerseText();
     setInsightVerseRef(verseRef);
-    setInsightVerseText(selectedVerse.text);
+    setInsightVerseText(verseText);
     setShowInsight(true);
     setIsLoadingInsight(true);
     setInsightMessages([]);
@@ -1045,10 +1084,10 @@ const BibleReader = forwardRef<BibleReaderHandle, BibleReaderProps>(function Bib
       const isAmharic = isAmharicTranslation(translation);
       
       const prompt = isAmharic
-        ? `በአጭሩ ይህን ጥቅስ አብራራ፡ "${selectedVerse.text}" (${verseRef})`
-        : `Please explain this Bible verse in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
+        ? `በአጭሩ ይህን ጥቅስ አብራራ፡ "${verseText}" (${verseRef})`
+        : `Please explain ${selectedVerses.length > 1 ? "these Bible verses" : "this Bible verse"} in plain, accessible language. Include historical context, cultural background, and practical application for today. Keep it concise but insightful.
 
-Verse: "${selectedVerse.text}"
+${selectedVerses.length > 1 ? "Verses" : "Verse"}: "${verseText}"
 Reference: ${verseRef} (${translation})`;
 
       const msgResponse = await apiFetch(`/api/conversations/${conversation.id}/messages`, {
@@ -1269,7 +1308,7 @@ Reference: ${verseRef} (${translation})`;
   }, [discussionMessages]);
 
   const handleSaveNote = () => {
-    if (!selectedVerse || !selectedBook || !noteText.trim()) return;
+    if (!hasSelection || !selectedBook || !noteText.trim()) return;
     
     // Check if user is authenticated
     if (!user) {
@@ -1277,14 +1316,15 @@ Reference: ${verseRef} (${translation})`;
       return;
     }
     
+    const sorted = [...selectedVerses].sort((a, b) => a.verse - b.verse);
     saveNoteMutation.mutate({
-      verseRef: `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}`,
-      verseText: selectedVerse.text,
+      verseRef: getMultiVerseRef(),
+      verseText: getMultiVerseText(),
       content: noteText,
       tags: noteTags,
       bookId: selectedBook.bookid,
       chapter: selectedChapter,
-      verse: selectedVerse.verse,
+      verse: sorted[0].verse,
     });
   };
 
@@ -1299,8 +1339,8 @@ Reference: ${verseRef} (${translation})`;
   };
 
   const handleCopyVerse = () => {
-    if (!selectedVerse || !selectedBook) return;
-    const text = `"${selectedVerse.text}" - ${selectedBook.name} ${selectedChapter}:${selectedVerse.verse} (${translation})`;
+    if (!hasSelection || !selectedBook) return;
+    const text = `"${getMultiVerseText()}" - ${getMultiVerseRef()} (${translation})`;
     navigator.clipboard.writeText(text);
     toast({ title: t.verseCopied });
   };
@@ -1926,7 +1966,6 @@ Reference: ${verseRef} (${translation})`;
                       ref={(el) => {
                         if (el) {
                           verseRefs.current.set(verse.verse, el as unknown as HTMLDivElement);
-                          // Also set firstVerseRef for onboarding tooltip
                           if (isFirstVerse) {
                             (firstVerseRef as React.MutableRefObject<HTMLSpanElement | null>).current = el as unknown as HTMLSpanElement;
                           }
@@ -1934,7 +1973,7 @@ Reference: ${verseRef} (${translation})`;
                       }}
                       onClick={() => handleVerseClick(verse)}
                       animate={{
-                        backgroundColor: selectedVerse?.verse === verse.verse || persistentHighlightVerse === verse.verse
+                        backgroundColor: selectedVerses.some(v => v.verse === verse.verse) || persistentHighlightVerse === verse.verse
                           ? "rgba(192, 142, 0, 0.15)" 
                           : "rgba(0, 0, 0, 0)"
                       }}
@@ -1943,7 +1982,7 @@ Reference: ${verseRef} (${translation})`;
                       data-testid={`verse-${verse.verse}`}
                     >
                       <sup className={`text-xs font-medium mr-1 transition-colors ${
-                        selectedVerse?.verse === verse.verse ? "text-[#c08e00]" : "text-primary"
+                        selectedVerses.some(v => v.verse === verse.verse) ? "text-[#c08e00]" : "text-primary"
                       }`}>{verse.verse}</sup>
                       <span className="text-base leading-relaxed">{content} </span>
                     </motion.span>
@@ -1956,7 +1995,7 @@ Reference: ${verseRef} (${translation})`;
       </ScrollArea>
 
       <AnimatePresence>
-        {selectedVerse && (
+        {hasSelection && (
           <motion.div
             key={footerKey}
             initial={{ y: 100, opacity: 0 }}
@@ -1972,14 +2011,17 @@ Reference: ${verseRef} (${translation})`;
             <div className="flex items-center justify-between gap-2 max-w-2xl mx-auto">
               <AnimatePresence mode="wait">
                 <motion.p
-                  key={`${selectedBook?.name}-${selectedChapter}-${selectedVerse.verse}`}
+                  key={getMultiVerseRef()}
                   initial={{ x: wasFooterOpen ? 30 : 0, opacity: wasFooterOpen ? 0 : 1 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -30, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   className="text-sm font-medium truncate"
                 >
-                  {selectedBook?.name} {selectedChapter}:{selectedVerse.verse}
+                  {getMultiVerseRef()}
+                  {selectedVerses.length > 1 && (
+                    <span className="ml-1 text-xs text-[#c08e00]">({selectedVerses.length})</span>
+                  )}
                 </motion.p>
               </AnimatePresence>
               <div className="flex items-center gap-1">
@@ -2025,7 +2067,7 @@ Reference: ${verseRef} (${translation})`;
                   }, testId: "button-add-note" },
                   { icon: Share2, label: t.share, onClick: () => setShowShareSheet(true), testId: "button-share-verse" },
                   { icon: Copy, label: null, onClick: handleCopyVerse, testId: "button-copy-verse" },
-                  { icon: X, label: null, onClick: () => setSelectedVerse(null), testId: "button-deselect-verse" },
+                  { icon: X, label: null, onClick: () => setSelectedVerses([]), testId: "button-deselect-verse" },
                 ].map((item, index) => {
                   const wrappedOnClick = () => {
                     if (showActionBarTooltip) {
@@ -2344,8 +2386,8 @@ Reference: ${verseRef} (${translation})`;
           </DialogHeader>
           
           <div className="border-l-2 border-[#c08e00] pl-3 py-1">
-            <p className="font-medium text-foreground">{selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}</p>
-            <p className="text-sm text-muted-foreground italic line-clamp-2">"{selectedVerse?.text}"</p>
+            <p className="font-medium text-foreground">{getMultiVerseRef()}</p>
+            <p className="text-sm text-muted-foreground italic line-clamp-3">"{getMultiVerseText()}"</p>
           </div>
 
           <div className="space-y-3">
@@ -2444,7 +2486,7 @@ Reference: ${verseRef} (${translation})`;
             </DialogClose>
           </DialogHeader>
           <div className="text-sm text-muted-foreground px-4 sm:px-0 mb-2">
-            {selectedBook?.name} {selectedChapter}:{selectedVerse?.verse}
+            {getMultiVerseRef()}
           </div>
           <div className="flex-1 overflow-y-auto px-4 sm:px-0 pb-4 sm:pb-0">
             {isLoadingComparison ? (
@@ -2473,9 +2515,8 @@ Reference: ${verseRef} (${translation})`;
                         }`}
                         onClick={() => {
                           onTranslationChange(item.translation);
-                          // Trigger scroll to the same verse with highlight animation
-                          if (selectedVerse) {
-                            setScrollToVerse(selectedVerse.verse);
+                          if (selectedVerses.length > 0) {
+                            setScrollToVerse(selectedVerses[0].verse);
                           }
                           setShowCompare(false);
                         }}
@@ -2541,8 +2582,8 @@ Reference: ${verseRef} (${translation})`;
       <VerseShareSheet
         isOpen={showShareSheet}
         onClose={() => setShowShareSheet(false)}
-        verseText={selectedVerse?.text || ""}
-        verseReference={selectedVerse && selectedBook ? `${selectedBook.name} ${selectedChapter}:${selectedVerse.verse}` : ""}
+        verseText={getMultiVerseText()}
+        verseReference={getMultiVerseRef()}
       />
 
       {/* Login Sheet for AI Features (Reader View) */}
@@ -2550,7 +2591,7 @@ Reference: ${verseRef} (${translation})`;
         isOpen={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}
         redirectUrl={selectedBook && selectedChapter 
-          ? `/?book=${selectedBook.bookid}&chapter=${selectedChapter}${selectedVerse ? `&verse=${selectedVerse.verse}` : ''}`
+          ? `/?book=${selectedBook.bookid}&chapter=${selectedChapter}${selectedVerses.length > 0 ? `&verse=${selectedVerses[0].verse}` : ''}`
           : '/'}
         isAmharic={isAmharicTranslation(translation)}
       />
