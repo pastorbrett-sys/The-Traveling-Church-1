@@ -43,7 +43,7 @@ function isAmharicTranslation(translation: string): boolean {
 // Localized UI text for Pastor Chat
 const chatUiText = {
   en: {
-    welcomeMessage: "Hey there! I'm Pastor Brett, your AI Bible Buddy. Ask me anything about faith, scripture, or life!",
+    welcomeMessage: "Hey I'm Pastor Brett your AI Pastor. How can I help you?",
     pastorBrett: "Pastor Brett",
     askAnything: "Ask Pastor Brett anything...",
     send: "Send",
@@ -72,7 +72,7 @@ const chatUiText = {
     quickAnything: "Ask anything",
   },
   am: {
-    welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI መጽሐፍ ቅዱስ ጓደኛ። ስለ እምነት፣ ቅዱሳን ጽሑፎች ወይም ሕይወት ማንኛውንም ነገር ይጠይቁኝ!",
+    welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI ፓስተር። እንዴት ልረዳዎት?",
     pastorBrett: "ፓስተር ብሬት",
     askAnything: "ፓስተር ብሬትን ማንኛውንም ነገር ይጠይቁ...",
     send: "ላክ",
@@ -147,17 +147,6 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
 
       {showQuickSelects && (
         <>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
-            className="flex justify-start"
-          >
-            <div className="bg-muted rounded-2xl px-4 py-2 max-w-[80%]">
-              <p className="text-sm font-medium text-foreground">{t.quickGreeting}</p>
-            </div>
-          </motion.div>
-
           <div className="flex flex-wrap gap-2 justify-start">
             {quickOptions.map((opt, i) => {
               const Icon = opt.icon;
