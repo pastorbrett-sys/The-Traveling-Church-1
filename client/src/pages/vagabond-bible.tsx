@@ -189,7 +189,7 @@ export default function VagabondBible() {
           </div>
         </div>
       </section>
-      <section className="pt-10 pb-0 bg-white" style={{ marginBottom: '-30px' }}>
+      <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[hsl(20,10%,30%)] font-heading text-lg font-semibold mb-5">Download the App!</p>
           <div className="flex flex-row gap-4 justify-center">
