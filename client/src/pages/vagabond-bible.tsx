@@ -186,26 +186,31 @@ export default function VagabondBible() {
                 </Button>
               </Link>
             </div>
-            <div className="flex flex-row gap-4 justify-center mt-8">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-app-store">
-                <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-                </svg>
-                <div className="flex flex-col leading-none">
-                  <span className="text-[10px] font-normal">Download on the</span>
-                  <span className="text-[16px] font-semibold -mt-0.5">App Store</span>
-                </div>
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-google-play">
-                <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/>
-                </svg>
-                <div className="flex flex-col leading-none">
-                  <span className="text-[10px] font-normal">Get it on</span>
-                  <span className="text-[16px] font-semibold -mt-0.5">Google Play</span>
-                </div>
-              </a>
-            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-10 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-[hsl(20,10%,30%)] font-heading text-lg font-semibold mb-5">Download the App!</p>
+          <div className="flex flex-row gap-4 justify-center">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-app-store">
+              <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+              </svg>
+              <div className="flex flex-col leading-none">
+                <span className="text-[10px] font-normal">Download on the</span>
+                <span className="text-[16px] font-semibold -mt-0.5">App Store</span>
+              </div>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-google-play">
+              <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/>
+              </svg>
+              <div className="flex flex-col leading-none">
+                <span className="text-[10px] font-normal">Get it on</span>
+                <span className="text-[16px] font-semibold -mt-0.5">Google Play</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
