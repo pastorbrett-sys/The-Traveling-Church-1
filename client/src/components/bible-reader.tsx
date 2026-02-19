@@ -1427,7 +1427,7 @@ Reference: ${verseRef} (${translation})`;
       <div className="flex flex-col h-full bg-background">
         <div 
           className={`flex items-center justify-between pb-4 px-4 border-b overflow-hidden ${!showSearch ? "cursor-pointer hover:bg-muted/50 active:bg-muted transition-colors" : ""}`}
-          style={{ paddingTop: '2px' }}
+          style={{ paddingTop: '8px' }}
           onClick={() => !showSearch && handleSearchToggle()}
         >
           <AnimatePresence mode="popLayout">
