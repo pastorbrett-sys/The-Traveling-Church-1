@@ -819,7 +819,7 @@ export default function PastorChat() {
 
       {/* Tab Toggle - only shown in web mode (native uses bottom tab bar) */}
       {!isNative && (
-        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 py-3 relative z-0">
+        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 pt-5 pb-1 relative z-0">
           <div className="flex items-center justify-between">
             <div className="inline-flex p-1 rounded-lg bg-muted">
               <button
@@ -909,7 +909,7 @@ export default function PastorChat() {
         <div className={activeTab === "chat" ? "" : "hidden"}>
           <div className="w-full max-w-3xl mx-auto px-4" style={{ paddingBottom: isNative ? `${footerHeight + 64}px` : `${footerHeight}px` }}>
             {/* Messages area */}
-            <div ref={scrollAreaRef} className="space-y-4 pt-4">
+            <div ref={scrollAreaRef} className={`space-y-4 ${isNative ? 'pt-6' : 'pt-2'}`}>
             <AnimatePresence mode="popLayout">
               {displayMessages.map((message, index) => {
                 const isWelcomeMessage = index === 0 && messages.length === 0 && message.role === "assistant";
