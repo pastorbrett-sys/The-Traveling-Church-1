@@ -339,11 +339,12 @@ export default function PastorChat() {
     }
   }, [upgradeParam, isAuthenticated, isAuthLoading]);
 
-  // Guest check - redirect to Bible tab if trying to access Chat tab directly
-  // The NativeTabBar intercepts the navigation, but this handles direct URL access
+  // Guest check - switch to Bible tab and show login prompt if trying to access Chat while unauthenticated
   useEffect(() => {
     if (!isAuthLoading && !isAuthenticated && activeTab === "chat") {
-      window.location.href = "/pastor-chat?tab=bible";
+      setActiveTab("bible");
+      setGlobalActiveTab("bible");
+      setShowLoginPrompt(true);
     }
   }, [isAuthLoading, isAuthenticated, activeTab]);
 
