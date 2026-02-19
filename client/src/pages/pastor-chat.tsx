@@ -209,7 +209,7 @@ export default function PastorChat() {
     });
   }
   
-  const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "chat" ? "chat" : "bible");
+  const [activeTab, setActiveTab] = useState<"chat" | "bible">(tabParam === "bible" ? "bible" : "chat");
   const bibleReaderRef = useRef<BibleReaderHandle>(null);
   const [, setLocation] = useLocation();
 
@@ -238,7 +238,7 @@ export default function PastorChat() {
 
   // Sync activeTab with URL param changes (for native tab bar navigation)
   useEffect(() => {
-    const newTab = tabParam === "chat" ? "chat" : "bible";
+    const newTab = tabParam === "bible" ? "bible" : "chat";
     if (newTab !== activeTab) {
       setActiveTab(newTab);
     }
@@ -753,27 +753,6 @@ export default function PastorChat() {
           <div className="flex items-center justify-between">
             <div className="inline-flex p-1 rounded-lg bg-muted">
               <button
-                onClick={() => setActiveTab("bible")}
-                className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  activeTab === "bible"
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-                data-testid="tab-bible"
-              >
-                {activeTab === "bible" && (
-                  <motion.div
-                    layoutId="tabHighlight"
-                    className="absolute inset-0 bg-background rounded-md shadow-sm"
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                  />
-                )}
-                <span className="relative flex items-center gap-2">
-                  <Book className="w-4 h-4" />
-                  {t.bibleTab}
-                </span>
-              </button>
-              <button
                 onClick={() => {
                   if (!isAuthenticated) {
                     setShowLoginPrompt(true);
@@ -798,6 +777,27 @@ export default function PastorChat() {
                 <span className="relative flex items-center gap-2">
                   <MessageCircle className="w-4 h-4" />
                   {t.chatTab}
+                </span>
+              </button>
+              <button
+                onClick={() => setActiveTab("bible")}
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeTab === "bible"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                data-testid="tab-bible"
+              >
+                {activeTab === "bible" && (
+                  <motion.div
+                    layoutId="tabHighlight"
+                    className="absolute inset-0 bg-background rounded-md shadow-sm"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className="relative flex items-center gap-2">
+                  <Book className="w-4 h-4" />
+                  {t.bibleTab}
                 </span>
               </button>
             </div>
