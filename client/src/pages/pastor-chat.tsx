@@ -831,7 +831,7 @@ export default function PastorChat() {
 
       {/* Tab Toggle - only shown in web mode (native uses bottom tab bar) */}
       {!isNative && (
-        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 pt-5 pb-1 relative z-0">
+        <div className="flex-shrink-0 bg-background w-full max-w-3xl mx-auto px-4 pt-3 pb-0 relative z-0">
           <div className="flex items-center justify-between">
             <div className="inline-flex p-1 rounded-lg bg-muted">
               <button
@@ -903,7 +903,7 @@ export default function PastorChat() {
       {/* Scrollable content area */}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto bg-background" style={{ overscrollBehavior: "none" }}>
         <div 
-          className={`w-full max-w-3xl mx-auto px-4 pt-1 min-h-full ${activeTab === "bible" ? "" : "hidden"}`}
+          className={`w-full max-w-3xl mx-auto px-4 pt-0 min-h-full ${activeTab === "bible" ? "" : "hidden"}`}
         >
           <BibleReader 
             ref={bibleReaderRef}
