@@ -69,7 +69,7 @@ const chatUiText = {
     quickStudy: "Study a specific passage",
     quickConfused: "I'm confused about a verse",
     quickStruggling: "I'm struggling with something",
-    quickAnything: "Ask anything",
+    quickAnything: "Something else",
   },
   am: {
     welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI ፓስተር። እንዴት ልረዳዎት?",
@@ -98,7 +98,7 @@ const chatUiText = {
     quickStudy: "የተወሰነ ክፍል አጥና",
     quickConfused: "ስለ አንድ ጥቅስ ግራ ተጋብቻለሁ",
     quickStruggling: "በአንድ ነገር እየታገልኩ ነው",
-    quickAnything: "ማንኛውንም ነገር ጠይቅ",
+    quickAnything: "ሌላ ነገር",
   }
 };
 
@@ -117,9 +117,9 @@ const quickSelectIcons = [BookOpenText, HelpCircle, Heart, Sparkles];
 const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation, onQuickSelect, showQuickSelects = true }, ref) => {
   const t = getChatLocalizedText(translation);
   const quickOptions = [
+    { label: t.quickStruggling, icon: quickSelectIcons[2] },
     { label: t.quickStudy, icon: quickSelectIcons[0] },
     { label: t.quickConfused, icon: quickSelectIcons[1] },
-    { label: t.quickStruggling, icon: quickSelectIcons[2] },
     { label: t.quickAnything, icon: quickSelectIcons[3] },
   ];
   return (
