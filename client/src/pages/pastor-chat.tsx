@@ -903,7 +903,7 @@ export default function PastorChat() {
       {/* Scrollable content area */}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto bg-background" style={{ overscrollBehavior: "none" }}>
         <div 
-          className={`w-full max-w-3xl mx-auto px-4 pt-4 min-h-full ${activeTab === "bible" ? "" : "hidden"}`}
+          className={`w-full max-w-3xl mx-auto px-4 pt-2 min-h-full ${activeTab === "bible" ? "" : "hidden"}`}
         >
           <BibleReader 
             ref={bibleReaderRef}
