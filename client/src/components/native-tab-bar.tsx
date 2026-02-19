@@ -115,8 +115,8 @@ export function NativeTabBar() {
       }
       const params = new URLSearchParams(window.location.search);
       const tab = params.get("tab");
-      if (tab === "chat") return "chat";
-      return "bible";
+      if (tab === "bible") return "bible";
+      return "chat";
     }
     
     if (currentPath === "/prayer-timer") return "prayer";
@@ -134,7 +134,7 @@ export function NativeTabBar() {
     } catch (e) {
     }
     
-    if ((tab.id === "chat" || tab.id === "notes" || tab.id === "profile") && !isAuthLoading && !user) {
+    if ((tab.id === "notes" || tab.id === "profile") && !isAuthLoading && !user) {
       setTappedTab(tab.id);
       setTimeout(() => setTappedTab(null), 300);
       setShowLoginSheet(true);

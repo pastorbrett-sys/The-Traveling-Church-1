@@ -339,14 +339,6 @@ export default function PastorChat() {
     }
   }, [upgradeParam, isAuthenticated, isAuthLoading]);
 
-  // Guest check - switch to Bible tab and show login prompt if trying to access Chat while unauthenticated
-  useEffect(() => {
-    if (!isAuthLoading && !isAuthenticated && activeTab === "chat") {
-      setActiveTab("bible");
-      setGlobalActiveTab("bible");
-      setShowLoginPrompt(true);
-    }
-  }, [isAuthLoading, isAuthenticated, activeTab]);
 
   // Fetch session stats from server (only for authenticated users)
   const { data: sessionStats, refetch: refetchSessionStats } = useQuery<SessionStats>({
@@ -754,13 +746,7 @@ export default function PastorChat() {
           <div className="flex items-center justify-between">
             <div className="inline-flex p-1 rounded-lg bg-muted">
               <button
-                onClick={() => {
-                  if (!isAuthenticated) {
-                    setShowLoginPrompt(true);
-                  } else {
-                    setActiveTab("chat");
-                  }
-                }}
+                onClick={() => setActiveTab("chat")}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   activeTab === "chat"
                     ? "text-foreground"
