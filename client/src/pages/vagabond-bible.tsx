@@ -202,7 +202,14 @@ export default function VagabondBible() {
                 <span className="text-[16px] font-semibold -mt-0.5">App Store</span>
               </div>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-google-play">
+            <button 
+              onClick={() => {
+                const isAmharic = detectLanguage() === "am";
+                alert(isAmharic ? "በቅርቡ ይጠብቁ!" : "Coming Soon!");
+              }}
+              className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu text-left" 
+              data-testid="link-google-play"
+            >
               <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/>
               </svg>
@@ -210,7 +217,7 @@ export default function VagabondBible() {
                 <span className="text-[10px] font-normal">Get it on</span>
                 <span className="text-[16px] font-semibold -mt-0.5">Google Play</span>
               </div>
-            </a>
+            </button>
           </div>
         </div>
       </section>
