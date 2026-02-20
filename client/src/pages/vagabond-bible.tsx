@@ -190,7 +190,7 @@ export default function VagabondBible() {
         </div>
       </section>
       <section className="py-10 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ marginTop: '7px' }}>
           <p className="text-[hsl(20,10%,30%)] font-heading text-lg font-semibold mb-5">Download the App!</p>
           <div className="flex flex-row gap-4 justify-center">
             <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-app-store">
