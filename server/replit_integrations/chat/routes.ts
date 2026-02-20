@@ -161,11 +161,14 @@ export function registerChatRoutes(app: Express): void {
   app.get("/api/conversations", async (req: Request, res: Response) => {
     try {
       const sessionId = getSessionId(req, res);
-      const allConversations = await chatStorage.getConversationsBySession(sessionId);
+      const authUserId = await getAuthenticatedUserId(req);
       
-      // Filter out feature-specific temporary conversations so they don't appear in Pastor Chat
-      // These are: Verse Insights ("Insight:"), Book Synopsis ("Give me a short synopsis"), 
-      // and Continue Discussion ("Discussion:") - all bypass chat limits and should be invisible
+      if (authUserId) {
+        await chatStorage.migrateSessionToUser(sessionId, authUserId);
+      }
+      
+      const allConversations = await chatStorage.getConversationsBySession(sessionId, authUserId);
+      
       const pastorChatConversations = allConversations.filter(conv => {
         const title = conv.title || "";
         return !title.startsWith("Insight:") && 
@@ -184,7 +187,8 @@ export function registerChatRoutes(app: Express): void {
     try {
       const id = parseInt(req.params.id);
       const sessionId = getSessionId(req, res);
-      const conversation = await chatStorage.getConversation(id, sessionId);
+      const authUserId = await getAuthenticatedUserId(req);
+      const conversation = await chatStorage.getConversation(id, sessionId, authUserId);
       if (!conversation) {
         return res.status(404).json({ error: "Conversation not found" });
       }
@@ -199,14 +203,12 @@ export function registerChatRoutes(app: Express): void {
   app.post("/api/conversations", async (req: Request, res: Response) => {
     try {
       const sessionId = getSessionId(req, res);
+      const authUserId = await getAuthenticatedUserId(req);
       const title = typeof req.body?.title === "string" ? req.body.title.slice(0, 100) : "New Chat";
       
-      // Check if this is a verse insight conversation
       const isVerseInsight = title.startsWith("Insight:");
       
       if (isVerseInsight) {
-        // Get authenticated user for usage tracking
-        const authUserId = await getAuthenticatedUserId(req);
         if (!authUserId) {
           return res.status(401).json({ error: "Authentication required for verse insights" });
         }
@@ -234,7 +236,7 @@ export function registerChatRoutes(app: Express): void {
         await incrementUsage(user.id, "verse_insight", isPro, proStatus.pricingTier);
       }
       
-      const conversation = await chatStorage.createConversation(title, sessionId);
+      const conversation = await chatStorage.createConversation(title, sessionId, authUserId);
       res.status(201).json(conversation);
     } catch (error) {
       console.error("Error creating conversation:", error);
@@ -246,7 +248,8 @@ export function registerChatRoutes(app: Express): void {
     try {
       const id = parseInt(req.params.id);
       const sessionId = getSessionId(req, res);
-      await chatStorage.deleteConversation(id, sessionId);
+      const authUserId = await getAuthenticatedUserId(req);
+      await chatStorage.deleteConversation(id, sessionId, authUserId);
       res.status(204).send();
     } catch (error) {
       console.error("Error deleting conversation:", error);
@@ -268,9 +271,10 @@ export function registerChatRoutes(app: Express): void {
       }
 
       const sessionId = getSessionId(req, res);
+      const authUserId = await getAuthenticatedUserId(req);
       
       // Check if this is a feature-specific conversation (bypass chat limit for these)
-      const conversation = await chatStorage.getConversation(conversationId, sessionId);
+      const conversation = await chatStorage.getConversation(conversationId, sessionId, authUserId);
       const isVerseInsight = conversation?.title?.startsWith("Insight:");
       const isBookSynopsis = conversation?.title?.startsWith("Give me a short synopsis");
       const isContinueDiscussion = conversation?.title?.startsWith("Discussion:");
@@ -279,8 +283,6 @@ export function registerChatRoutes(app: Express): void {
       const proStatus = await checkUserProStatusWithTier(req);
       const isSessionPro = isProSession(sessionId);
       const isPro = proStatus.isPro || isSessionPro;
-      
-      const authUserId = await getAuthenticatedUserId(req);
       
       if (!isFeatureConversation && !authUserId) {
         return res.status(401).json({ 
@@ -466,7 +468,6 @@ export function registerChatRoutes(app: Express): void {
     }
   });
 
-  // Seed a conversation with initial question and answer from Smart Search
   app.post("/api/conversations/:id/seed", async (req: Request, res: Response) => {
     try {
       const conversationId = parseInt(req.params.id);
@@ -474,16 +475,21 @@ export function registerChatRoutes(app: Express): void {
         return res.status(400).json({ error: "Invalid conversation ID" });
       }
 
+      const sessionId = getSessionId(req, res);
+      const authUserId = await getAuthenticatedUserId(req);
+      const conversation = await chatStorage.getConversation(conversationId, sessionId, authUserId);
+      if (!conversation) {
+        return res.status(404).json({ error: "Conversation not found" });
+      }
+
       const { question, answer, followUp } = req.body;
       if (typeof question !== "string" || typeof answer !== "string") {
         return res.status(400).json({ error: "Question and answer are required" });
       }
 
-      // Save both messages to the database
       await chatStorage.createMessage(conversationId, "user", question.trim());
       await chatStorage.createMessage(conversationId, "assistant", answer.trim());
       
-      // Save follow-up message if provided (for book synopsis feature)
       if (typeof followUp === "string" && followUp.trim()) {
         await chatStorage.createMessage(conversationId, "assistant", followUp.trim());
       }
@@ -495,12 +501,18 @@ export function registerChatRoutes(app: Express): void {
     }
   });
 
-  // Generate a contextual follow-up prompt from Pastor Brett
   app.post("/api/conversations/:id/follow-up", async (req: Request, res: Response) => {
     try {
       const conversationId = parseInt(req.params.id);
       if (isNaN(conversationId)) {
         return res.status(400).json({ error: "Invalid conversation ID" });
+      }
+
+      const sessionId = getSessionId(req, res);
+      const authUserId = await getAuthenticatedUserId(req);
+      const conversation = await chatStorage.getConversation(conversationId, sessionId, authUserId);
+      if (!conversation) {
+        return res.status(404).json({ error: "Conversation not found" });
       }
 
       const { question, answer } = req.body;
