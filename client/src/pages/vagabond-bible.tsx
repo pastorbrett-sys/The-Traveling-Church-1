@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -59,13 +65,13 @@ export default function VagabondBible() {
               </p>
               <div className="flex flex-col gap-3">
                 <Link href="/pastor-chat?tab=chat">
-                  <Button size="lg" className="w-full hover:bg-[#a37a00] text-white px-8 rounded-full bg-[#be9009] text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading-native">
+                  <Button size="lg" className="w-full hover:bg-[#a37a00] text-white px-8 rounded-full bg-[#be9009] text-[16px] active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-studying-native" onClick={() => { window.gtag?.('event', 'start_studying'); }}>
                     <Users className="w-5 h-5 mr-2" />
                     {t("landing.cta_start")}
                   </Button>
                 </Link>
                 <Link href="/pastor-chat?tab=bible">
-                  <Button size="lg" variant="outline" className="w-full border border-white text-white hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying-native">
+                  <Button size="lg" variant="outline" className="w-full border border-white text-white hover:bg-white/10 px-8 rounded-full text-[16px] active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-reading-native" onClick={() => { window.gtag?.('event', 'start_reading'); }}>
                     <BookOpen className="w-5 h-5 mr-2" />
                     {t("landing.cta_pray")}
                   </Button>
@@ -174,13 +180,13 @@ export default function VagabondBible() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/pastor-chat?tab=chat" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
-                <Button size="lg" className="w-full sm:w-auto hover:bg-[#a37a00] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-reading">
+                <Button size="lg" className="w-full sm:w-auto hover:bg-[#a37a00] text-white px-8 rounded-full bg-[#be9009] pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-start-studying" onClick={() => { window.gtag?.('event', 'start_studying'); }}>
                   <Users className="w-5 h-5 mr-2" />
                   {t("landing.cta_start")}
                 </Button>
               </Link>
               <Link href="/pastor-chat?tab=bible" className="w-[75%] sm:w-auto mx-auto sm:mx-0">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border border-white text-white hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-praying">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border border-white text-white hover:bg-white/10 px-8 rounded-full pl-[20px] pr-[20px] text-[16px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu bg-transparent" data-testid="button-start-reading" onClick={() => { window.gtag?.('event', 'start_reading'); }}>
                   <BookOpen className="w-5 h-5 mr-2" />
                   {t("landing.cta_pray")}
                 </Button>
