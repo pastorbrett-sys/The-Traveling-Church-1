@@ -111,12 +111,12 @@ export default function VagabondBible() {
               data-testid="img-vagabond-logo" 
             />
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features">{t("landing.nav_features")}</a>
-              <a href="#about" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about">{t("landing.nav_about")}</a>
-              <a href="#community" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community">{t("landing.nav_community")}</a>
-              <a href="#contact" className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact">{t("landing.nav_contact")}</a>
+              <a href="#features" onClick={() => { window.gtag?.('event', 'nav_click_features'); }} className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-features">{t("landing.nav_features")}</a>
+              <a href="#about" onClick={() => { window.gtag?.('event', 'nav_click_about'); }} className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-about">{t("landing.nav_about")}</a>
+              <a href="#community" onClick={() => { window.gtag?.('event', 'nav_click_community'); }} className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-community">{t("landing.nav_community")}</a>
+              <a href="#contact" onClick={() => { window.gtag?.('event', 'nav_click_contact'); }} className={`text-[14px] transition-colors font-medium ${isScrolled ? 'text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)]' : 'text-white/90 hover:text-white'}`} data-testid="link-contact">{t("landing.nav_contact")}</a>
               <Link href="/login">
-                <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-login">
+                <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium px-5 py-2 rounded-full text-[14px] md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-login" onClick={() => { window.gtag?.('event', 'click_login_signup'); }}>
                   {t("landing.nav_login")}
                 </Button>
               </Link>
@@ -139,12 +139,12 @@ export default function VagabondBible() {
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-[hsl(30,20%,88%)] py-4 pb-[21px]">
               <div className="flex flex-col gap-4">
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '0ms' }} data-testid="link-features-mobile">{t("landing.nav_features")}</a>
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '50ms' }} data-testid="link-about-mobile">{t("landing.nav_about")}</a>
-                <a href="#community" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '100ms' }} data-testid="link-community-mobile">{t("landing.nav_community")}</a>
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '150ms' }} data-testid="link-contact-mobile">{t("landing.nav_contact")}</a>
+                <a href="#features" onClick={() => { setMobileMenuOpen(false); window.gtag?.('event', 'nav_click_features'); }} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '0ms' }} data-testid="link-features-mobile">{t("landing.nav_features")}</a>
+                <a href="#about" onClick={() => { setMobileMenuOpen(false); window.gtag?.('event', 'nav_click_about'); }} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '50ms' }} data-testid="link-about-mobile">{t("landing.nav_about")}</a>
+                <a href="#community" onClick={() => { setMobileMenuOpen(false); window.gtag?.('event', 'nav_click_community'); }} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '100ms' }} data-testid="link-community-mobile">{t("landing.nav_community")}</a>
+                <a href="#contact" onClick={() => { setMobileMenuOpen(false); window.gtag?.('event', 'nav_click_contact'); }} className="text-[14px] text-[hsl(20,10%,40%)] hover:text-[hsl(25,35%,45%)] transition-colors font-medium px-2 animate-fade-in-up" style={{ animationDelay: '150ms' }} data-testid="link-contact-mobile">{t("landing.nav_contact")}</a>
                 <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="mt-[5px]">
-                  <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px] animate-fade-in-up" style={{ animationDelay: '200ms' }} data-testid="button-login-mobile">
+                  <Button className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white font-medium w-full rounded-full text-[14px] animate-fade-in-up" style={{ animationDelay: '200ms' }} data-testid="button-login-mobile" onClick={() => { window.gtag?.('event', 'click_login_signup'); }}>
                     {t("landing.nav_login")}
                   </Button>
                 </Link>
@@ -199,7 +199,7 @@ export default function VagabondBible() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[hsl(20,10%,30%)] font-heading text-lg font-semibold mb-5">Download the App!</p>
           <div className="flex flex-row gap-4 justify-center">
-            <a href="https://apps.apple.com/us/app/vagabond-bible/id6757680520" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-app-store">
+            <a href="https://apps.apple.com/us/app/vagabond-bible/id6757680520" target="_blank" rel="noopener noreferrer" onClick={() => { window.gtag?.('event', 'click_app_store'); }} className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu" data-testid="link-app-store">
               <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
               </svg>
@@ -210,6 +210,7 @@ export default function VagabondBible() {
             </a>
             <button 
               onClick={() => {
+                window.gtag?.('event', 'click_google_play');
                 const isAmharic = detectLanguage() === "am";
                 alert(isAmharic ? "በቅርቡ ይጠብቁ!" : "Coming Soon!");
               }}
@@ -385,7 +386,7 @@ export default function VagabondBible() {
                 {t("landing.community_desc")}
               </p>
               <a href="https://thetravelingchurch.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white rounded-full px-8 md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-join-community">
+                <Button size="lg" className="bg-[hsl(35,65%,55%)] hover:bg-[hsl(35,65%,45%)] text-white rounded-full px-8 md:hover:scale-105 active:scale-95 transition-transform duration-200 transform-gpu" data-testid="button-join-community" onClick={() => { window.gtag?.('event', 'click_join_church'); }}>
                   <Users className="w-5 h-5 mr-2" />
                   {t("landing.community_button")}
                 </Button>
@@ -401,7 +402,7 @@ export default function VagabondBible() {
             {t("landing.cta_section_desc")}
           </p>
           <Link href="/pastor-chat">
-            <Button size="lg" className="bg-white text-[hsl(25,35%,45%)] hover:bg-white/90 hover:scale-105 transition-all duration-200 text-lg px-12 rounded-full" data-testid="button-try-free">
+            <Button size="lg" className="bg-white text-[hsl(25,35%,45%)] hover:bg-white/90 hover:scale-105 transition-all duration-200 text-lg px-12 rounded-full" data-testid="button-try-free" onClick={() => { window.gtag?.('event', 'click_try_free_bottom'); }}>
               <Sparkles className="w-5 h-5 mr-2" />
               {t("landing.cta_try_free")}
             </Button>
@@ -420,16 +421,16 @@ export default function VagabondBible() {
             <div>
               <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">{t("landing.footer_quick_links")}</h3>
               <ul className="space-y-3 text-[hsl(20,10%,40%)]">
-                <li><a href="#features" className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_features")}</a></li>
-                <li><a href="#about" className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_about")}</a></li>
-                <li><a href="#community" className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_community")}</a></li>
+                <li><a href="#features" onClick={() => { window.gtag?.('event', 'footer_click_features'); }} className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_features")}</a></li>
+                <li><a href="#about" onClick={() => { window.gtag?.('event', 'footer_click_about'); }} className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_about")}</a></li>
+                <li><a href="#community" onClick={() => { window.gtag?.('event', 'footer_click_community'); }} className="hover:text-[hsl(25,35%,45%)] transition-colors">{t("landing.nav_community")}</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-heading text-lg font-semibold mb-4 text-[hsl(20,10%,20%)]">{t("landing.footer_contact")}</h3>
               <div className="flex items-center gap-2 text-[hsl(20,10%,40%)] mb-3">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:Pastorbrett@thetravelingchurch.com" className="hover:text-[hsl(25,35%,45%)] transition-colors" data-testid="link-email">
+                <a href="mailto:Pastorbrett@thetravelingchurch.com" onClick={() => { window.gtag?.('event', 'click_contact_footer'); }} className="hover:text-[hsl(25,35%,45%)] transition-colors" data-testid="link-email">
                   Pastorbrett@thetravelingchurch.com
                 </a>
               </div>
