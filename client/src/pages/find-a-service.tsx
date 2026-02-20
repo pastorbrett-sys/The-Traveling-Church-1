@@ -214,6 +214,7 @@ export default function FindAService() {
               </p>
               <a
                 href="#services"
+                onClick={() => { window.gtag?.('event', 'click_view_services'); }}
                 className="donateSectionBtn inline-flex items-center justify-center gap-2 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg w-full sm:w-fit animate-bounce-rotate relative z-[60]"
                 data-testid="button-view-services"
               >
@@ -399,6 +400,7 @@ export default function FindAService() {
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => { window.gtag?.('event', 'click_whatsapp_join'); }}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-3 rounded-full font-medium text-sm transition-colors md:shadow-lg"
             data-testid="button-sticky-whatsapp"
           >

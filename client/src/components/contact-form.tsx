@@ -51,6 +51,7 @@ export default function ContactForm() {
   });
 
   const onSubmit = (data: InsertContactSubmission) => {
+    window.gtag?.('event', 'submit_contact_form');
     mutation.mutate(data);
   };
 

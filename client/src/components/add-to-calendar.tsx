@@ -91,21 +91,25 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
   }, []);
 
   const handleGoogleCalendar = () => {
+    window.gtag?.('event', 'click_add_calendar');
     window.open(generateGoogleCalendarUrl(event), "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
   const handleAppleCalendar = () => {
+    window.gtag?.('event', 'click_add_calendar');
     window.location.href = getICSUrl(event);
     setIsOpen(false);
   };
 
   const handleOutlook = () => {
+    window.gtag?.('event', 'click_add_calendar');
     window.open(generateOutlookUrl(event), "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
   const handleOtherCalendar = () => {
+    window.gtag?.('event', 'click_add_calendar');
     window.location.href = getICSUrl(event);
     setIsOpen(false);
   };

@@ -1,9 +1,3 @@
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
-
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";

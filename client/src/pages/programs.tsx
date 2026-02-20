@@ -70,6 +70,7 @@ export default function Programs() {
                 <Link
                   key={program.id}
                   href={`/programs/${program.slug}`}
+                  onClick={() => { window.gtag?.('event', 'click_program_learn_more'); }}
                   className="group block bg-card rounded-lg shadow-md border border-border p-6 hover:shadow-lg transition-shadow"
                   data-testid={`card-program-${program.slug}`}
                 >
@@ -116,6 +117,7 @@ export default function Programs() {
                 </p>
                 <Link
                   href="/donor-advised-funds"
+                  onClick={() => { window.gtag?.('event', 'click_daf_giving'); }}
                   className="dafBtn inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-medium"
                   data-testid="button-daf-instructions"
                 >

@@ -91,7 +91,7 @@ export default function JoinChurch() {
           <CardContent>
             <Form {...form}>
               <form
-                onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                onSubmit={form.handleSubmit((data) => { window.gtag?.('event', 'submit_join_church_form'); mutation.mutate(data); })}
                 className="space-y-4"
                 data-testid="form-join"
               >
@@ -180,6 +180,7 @@ export default function JoinChurch() {
 
           <Link
             href="/keep-us-alive"
+            onClick={() => { window.gtag?.('event', 'click_support_link_join_page'); }}
             className="flex items-center gap-2 text-[#bf8e00] hover:text-[#a67b00] transition-colors text-sm font-medium mt-2"
             data-testid="link-donate"
           >

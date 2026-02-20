@@ -110,6 +110,7 @@ export default function Missions() {
                 <Link
                   key={index}
                   href={mission.href}
+                  onClick={() => { window.gtag?.('event', 'click_mission_explore'); }}
                   className="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-lg shadow-lg"
                   data-testid={`link-mission-${index}`}
                 >

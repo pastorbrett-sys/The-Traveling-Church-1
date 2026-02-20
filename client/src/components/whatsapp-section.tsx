@@ -23,6 +23,7 @@ export default function WhatsAppSection() {
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => { window.gtag?.('event', 'click_whatsapp_join'); }}
           className="inline-flex items-center gap-3 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors animate-bounce-rotate"
           data-testid="button-whatsapp-join"
         >

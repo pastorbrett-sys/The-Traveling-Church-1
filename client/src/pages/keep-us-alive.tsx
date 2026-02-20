@@ -77,6 +77,7 @@ export default function KeepUsAlive() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#b8860b] hover:bg-[#9a7209] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-monthly-supporter-top"
+                onClick={() => { window.gtag?.('event', 'click_give_monthly'); }}
               >
                 Become a Monthly Supporter
               </a>
@@ -86,6 +87,7 @@ export default function KeepUsAlive() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#b8860b] text-[#b8860b] hover:bg-[#b8860b]/10 px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-one-time-gift-top"
+                onClick={() => { window.gtag?.('event', 'click_give_onetime'); }}
               >
                 Give a One-Time Gift
               </a>
@@ -151,6 +153,7 @@ export default function KeepUsAlive() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#b8860b] hover:bg-[#9a7209] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-monthly-supporter-bottom"
+                onClick={() => { window.gtag?.('event', 'click_give_monthly'); }}
               >
                 Become a Monthly Supporter
               </a>
@@ -160,6 +163,7 @@ export default function KeepUsAlive() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#b8860b] text-[#b8860b] hover:bg-[#b8860b]/10 px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-one-time-gift-bottom"
+                onClick={() => { window.gtag?.('event', 'click_give_onetime'); }}
               >
                 Give a One-Time Gift
               </a>
