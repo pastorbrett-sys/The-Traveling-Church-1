@@ -1,0 +1,65 @@
+"Hey Replit, I have uploaded screenshots of the main Traveling Church website (Home, Missions, Programs, Services, Support, and the Join page). We need to implement GA4 tracking across these pages using the exact same window.gtag?.('event', ...) optional chaining method we used for the Vagabond site to ensure nothing breaks.
+
+Please find the following elements and attach these specific onClick or onSubmit events:
+
+CORE CONVERSIONS (These will be our Key Events):
+
+Join Form Submit ('Join Now' button on the /join page):
+
+Add: gtag('event', 'submit_join_church_form');
+
+WhatsApp Buttons (e.g., 'Join Whatsapp', 'Checkout the WhatsApp Group' on Home/Services):
+
+Add: gtag('event', 'click_whatsapp_join');
+
+One-Time Donation Buttons (e.g., 'Give Now', 'Give a One-Time Gift'):
+
+Add: gtag('event', 'click_give_onetime');
+
+Monthly Donation Buttons ('Become a Monthly Supporter'):
+
+Add: gtag('event', 'click_give_monthly');
+
+Contact Form Submit ('Send Message' at the bottom of the Home page):
+
+Add: gtag('event', 'submit_contact_form');
+
+ENGAGEMENT TRACKING (Regular Events):
+6. Missions Page ('Explore' links under Jordan River, Israel, etc.):
+
+Add: gtag('event', 'click_mission_explore');
+
+Programs Page ('Learn More' links under the various programs):
+
+Add: gtag('event', 'click_program_learn_more');
+
+Programs Page ('DAF Giving Instructions' button):
+
+Add: gtag('event', 'click_daf_giving');
+
+Services Page ('View Service Times' button):
+
+Add: gtag('event', 'click_view_services');
+
+Services Page ('Add to Calendar' dropdowns):
+
+Add: gtag('event', 'click_add_calendar');
+
+Join Page Footer Link ('Support The Traveling Church' at the bottom of the /join page):
+
+Add: gtag('event', 'click_support_link_join_page');
+
+TASK 2: CREATE DOCUMENTATION
+Once you have implemented the code, please create a new Markdown file in the project root called ga4_events_documentation.md.
+
+In this file, please create a clean, organized table that lists EVERY single event we currently track across BOTH the Traveling Church site and the Vagabond site. The table should include:
+
+The exact Event Name
+
+Where it is located on the site
+
+What user action triggers it
+
+Whether it is a 'Key Event' (High Intent) or a 'Regular Event' (Engagement) based on the instructions I've given you today.
+
+Let me know when the code is updated and the documentation file is ready!"
