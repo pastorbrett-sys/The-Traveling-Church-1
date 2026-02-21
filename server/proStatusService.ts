@@ -50,20 +50,7 @@ export async function checkUserProStatusById(userId: string): Promise<ProStatus>
   return checkUserProStatus(user);
 }
 
-export function isUserPro(user: User | null | undefined): boolean {
-  if (!user) return false;
-  
-  if (user.stripeSubscriptionId) {
-    return true;
-  }
-  
-  if (user.revenueCatEntitlement) {
-    const now = new Date();
-    const expiresAt = user.revenueCatExpiresAt;
-    if (!expiresAt || expiresAt > now) {
-      return true;
-    }
-  }
-  
-  return false;
+export async function isUserPro(user: User | null | undefined): Promise<boolean> {
+  const status = await checkUserProStatus(user);
+  return status.isPro;
 }

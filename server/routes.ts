@@ -479,7 +479,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.user?.uid || req.session?.userId;
       const user = await storage.getUser(userId);
-      const isPro = isUserPro(user);
+      const isPro = await isUserPro(user);
       
       const limitResult = await checkNotesLimit(userId, isPro);
       if (!limitResult.allowed) {
@@ -512,7 +512,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const user = await storage.getUser(userId);
-      const isPro = isUserPro(user);
+      const isPro = await isUserPro(user);
       
       const limitResult = await checkNotesLimit(userId, isPro);
       if (!limitResult.allowed) {
@@ -550,7 +550,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.user?.uid || req.session?.userId;
       const user = await storage.getUser(userId);
-      const isPro = isUserPro(user);
+      const isPro = await isUserPro(user);
       const pricingTier = user?.pricingTier as 'premium' | 'emerging' | undefined;
       
       const summary = await getUsageSummary(userId, isPro, pricingTier);
@@ -571,7 +571,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const isPro = isUserPro(user);
+      const isPro = await isUserPro(user);
       const pricingTier = user?.pricingTier as 'premium' | 'emerging' | undefined;
 
       // Fetch subscription and usage in parallel

@@ -198,7 +198,7 @@ router.post("/smart-search", isAuthenticated, async (req: any, res) => {
 
     const userId = req.user?.uid || req.session?.userId;
     const user = userId ? await storage.getUser(userId) : null;
-    const isPro = isUserPro(user);
+    const isPro = await isUserPro(user);
     const pricingTier = getUserPricingTier(user);
     
     const limitResult = await checkUsageLimit(userId, "smart_search", isPro, pricingTier);
@@ -279,7 +279,7 @@ router.post("/smart-search/use-credit", isAuthenticated, async (req: any, res) =
       return res.status(401).json({ message: "Authentication required" });
     }
     const user = await storage.getUser(userId);
-    const isPro = isUserPro(user);
+    const isPro = await isUserPro(user);
     const pricingTier = getUserPricingTier(user);
     
     const limitResult = await checkUsageLimit(userId, "smart_search", isPro, pricingTier);
@@ -492,7 +492,7 @@ router.post("/book-synopsis", isAuthenticated, async (req: any, res) => {
       return res.status(401).json({ message: "Authentication required" });
     }
     const user = await storage.getUser(userId);
-    const isPro = isUserPro(user);
+    const isPro = await isUserPro(user);
     const pricingTier = getUserPricingTier(user);
     
     const limitResult = await checkUsageLimit(userId, "book_synopsis", isPro, pricingTier);
