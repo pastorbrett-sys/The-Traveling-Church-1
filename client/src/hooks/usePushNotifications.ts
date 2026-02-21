@@ -2,7 +2,27 @@ import { useEffect, useCallback, useState, useRef } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications, Token, PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications';
 import { Browser } from '@capacitor/browser';
+import { App } from '@capacitor/app';
 import { useLocation } from 'wouter';
+
+async function clearBadgeAndNotifications() {
+  if (!Capacitor.isNativePlatform()) return;
+  try {
+    await PushNotifications.removeAllDeliveredNotifications();
+    const platform = Capacitor.getPlatform();
+    if (platform === 'ios') {
+      try {
+        const { Badge } = await Function('m', 'return import(m)')('@capawesome/capacitor-badge');
+        await Badge.set({ count: 0 });
+      } catch {
+        console.log('[Push] Badge plugin not available, using fallback');
+      }
+    }
+    console.log('[Push] Cleared badge and delivered notifications');
+  } catch (error) {
+    console.error('[Push] Error clearing badge:', error);
+  }
+}
 
 // Production server URL for native apps
 const PRODUCTION_URL = 'https://vagabondbible.com';
@@ -190,8 +210,9 @@ export function usePushNotifications(userId: string | null | undefined) {
             console.log('[Push] Notification received in foreground:', notification.title);
           }),
           
-          PushNotifications.addListener('pushNotificationActionPerformed', (action: ActionPerformed) => {
+          PushNotifications.addListener('pushNotificationActionPerformed', async (action: ActionPerformed) => {
             console.log('[Push] Notification tapped:', action.notification.title);
+            await clearBadgeAndNotifications();
             const data = action.notification.data as DeepLinkData;
             if (data) {
               handleDeepLink(data);
@@ -210,6 +231,19 @@ export function usePushNotifications(userId: string | null | undefined) {
         await PushNotifications.register();
         console.log('[Push] ====== SETUP COMPLETE - WAITING FOR REGISTRATION EVENT ======');
 
+        // Step 6: Clear badge on app launch
+        console.log('[Push] Step 6: Clearing badge on launch...');
+        await clearBadgeAndNotifications();
+
+        // Step 7: Listen for app resume (returning from background) to clear badge
+        console.log('[Push] Step 7: Adding app resume listener for badge clearing...');
+        await App.addListener('appStateChange', async ({ isActive }) => {
+          if (isActive) {
+            console.log('[Push] App resumed - clearing badge');
+            await clearBadgeAndNotifications();
+          }
+        });
+
       } catch (error) {
         console.error('[Push] Setup error:', error);
         isInitializedRef.current = false;
@@ -222,6 +256,7 @@ export function usePushNotifications(userId: string | null | undefined) {
     return () => {
       console.log('[Push] Cleaning up listeners on unmount');
       PushNotifications.removeAllListeners();
+      App.removeAllListeners();
       isInitializedRef.current = false;
     };
   }, [userId, handleDeepLink, registerTokenWithBackend]);
