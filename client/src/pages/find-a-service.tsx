@@ -20,56 +20,52 @@ interface ServiceInfo {
   dayOfWeekUTC: number;
   icon: typeof Clock;
   platform: string;
+  meetLink?: string;
+  dialIn?: string;
 }
 
 const SERVICES: ServiceInfo[] = [
   {
-    id: "sunday-worship",
-    name: "Sunday Worship Service",
-    description: "Our main weekly gathering with worship, teaching, and community prayer.",
-    day: "Sundays",
-    timeUTC: "15:00",
-    hourUTC: 15,
+    id: "bible-study-east",
+    name: "Bible Study (East)",
+    description: "Weekly Bible study for the East Coast. Join us for deep dives into scripture, fellowship, and spiritual growth together.",
+    day: "Thursdays",
+    timeUTC: "13:00",
+    hourUTC: 13,
     minuteUTC: 0,
-    dayOfWeekUTC: 0,
+    dayOfWeekUTC: 4,
     icon: Users,
     platform: "Google Meet",
+    meetLink: "https://meet.google.com/mya-phhf-qag",
+    dialIn: "+1 424-265-1291 PIN: 106812980",
   },
   {
-    id: "wednesday-bible-study",
-    name: "Wednesday Bible Study",
-    description: "Midweek deep-dive into Scripture with group discussion and Q&A.",
-    day: "Wednesdays",
-    timeUTC: "0:00",
-    hourUTC: 0,
+    id: "bible-study-central",
+    name: "Bible Study (Central)",
+    description: "Weekly Bible study for the Central timezone. Connect with fellow believers for scripture study, conversation, and community.",
+    day: "Thursdays",
+    timeUTC: "17:00",
+    hourUTC: 17,
     minuteUTC: 0,
-    dayOfWeekUTC: 3,
+    dayOfWeekUTC: 4,
     icon: Globe,
     platform: "Google Meet",
+    meetLink: "https://meet.google.com/yhn-fbgs-ibw",
+    dialIn: "+1 502-498-8797 PIN: 615065026",
   },
   {
-    id: "friday-prayer",
-    name: "Friday Night Prayer",
-    description: "End the week in focused prayer for our global community and personal needs.",
-    day: "Fridays",
-    timeUTC: "1:00",
-    hourUTC: 1,
+    id: "bible-study-west",
+    name: "Bible Study (West)",
+    description: "Weekly Bible study for the West Coast. Explore God's word together in fellowship, discussion, and prayer.",
+    day: "Thursdays",
+    timeUTC: "18:00",
+    hourUTC: 18,
     minuteUTC: 0,
-    dayOfWeekUTC: 5,
+    dayOfWeekUTC: 4,
     icon: Clock,
     platform: "Google Meet",
-  },
-  {
-    id: "monthly-worship-night",
-    name: "Monthly Worship Night",
-    description: "A special evening of extended worship and testimony — first Saturday of every month.",
-    day: "1st Saturday",
-    timeUTC: "23:00",
-    hourUTC: 23,
-    minuteUTC: 0,
-    dayOfWeekUTC: 6,
-    icon: Video,
-    platform: "Google Meet",
+    meetLink: "https://meet.google.com/gmm-skpt-xri",
+    dialIn: "+1 720-500-3075 PIN: 158815756",
   },
 ];
 
@@ -313,17 +309,29 @@ export default function FindAService() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 flex flex-col gap-2">
+                      {service.meetLink && (
+                        <a
+                          href={service.meetLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 bg-[#c08e00] hover:bg-[#a67a00] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
+                          data-testid={`link-join-${service.id}`}
+                        >
+                          <Video className="w-4 h-4" />
+                          Join Meeting
+                        </a>
+                      )}
                       <AddToCalendar
                         serviceId={service.id}
                         event={{
                           title: `${service.name} — The Traveling Church`,
                           description: service.description,
-                          location: "Online",
+                          location: service.meetLink || "Online",
                           hourUTC: service.hourUTC,
                           minuteUTC: service.minuteUTC,
                           dayOfWeekUTC: service.dayOfWeekUTC,
-                          durationMinutes: 90,
+                          durationMinutes: 60,
                         }}
                       />
                     </div>
