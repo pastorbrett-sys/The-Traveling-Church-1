@@ -799,7 +799,7 @@ export default function Profile() {
                     )}
 
                     <div className="pt-2">
-                      {isNative && isRevenueCatPro && !subscription ? (
+                      {isNative && isRevenueCatPro && !subscription && !subscriptionStatus?.stripeCustomerId ? (
                         <>
                           <p className="text-sm text-muted-foreground">
                             To manage your subscription, go to your device Settings → Subscriptions.

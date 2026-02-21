@@ -80,8 +80,7 @@ async function checkUserProStatusWithTier(req: any): Promise<{ isPro: boolean; p
       const user = await storage.getUser(userId);
       if (user?.stripeCustomerId) {
         const subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId) as any;
-        if ((subscription?.status === 'active' || subscription?.status === 'trialing') 
-            && !subscription?.cancel_at_period_end) {
+        if (subscription?.status === 'active' || subscription?.status === 'trialing') {
           return { isPro: true, pricingTier: (user.pricingTier as 'premium' | 'emerging') || 'premium' };
         }
       }

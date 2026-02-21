@@ -17,15 +17,12 @@ export async function checkUserProStatus(user: User | null | undefined): Promise
     try {
       const subscription = await stripeStorage.getSubscription(user.stripeSubscriptionId) as any;
       if (subscription && (subscription.status === "active" || subscription.status === "trialing")) {
-        const cancelAtPeriodEnd = subscription.cancel_at_period_end;
-        if (!cancelAtPeriodEnd) {
-          const periodEnd = subscription.current_period_end;
-          return {
-            isPro: true,
-            source: "stripe",
-            expiresAt: periodEnd ? new Date(Number(periodEnd) * 1000) : null,
-          };
-        }
+        const periodEnd = subscription.current_period_end;
+        return {
+          isPro: true,
+          source: "stripe",
+          expiresAt: periodEnd ? new Date(Number(periodEnd) * 1000) : null,
+        };
       }
     } catch (error) {
       console.error("Error checking Stripe subscription:", error);

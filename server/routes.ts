@@ -582,10 +582,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         getUsageSummary(userId, isPro, pricingTier),
       ]);
 
-      // Determine Pro status from subscription
       const isStripeProUser = subscription 
-        ? ((subscription as any).status === 'active' || (subscription as any).status === 'trialing') 
-          && !(subscription as any).cancel_at_period_end
+        ? ((subscription as any).status === 'active' || (subscription as any).status === 'trialing')
         : false;
 
       res.json({
@@ -1227,10 +1225,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (user.stripeCustomerId) {
         subscription = await stripeStorage.getCustomerSubscription(user.stripeCustomerId) as any;
-        // User is Pro only if subscription is active AND not set to cancel
-        // This ensures immediate revocation when user cancels
-        isProUser = (subscription?.status === 'active' || subscription?.status === 'trialing') 
-                    && !subscription?.cancel_at_period_end;
+        isProUser = (subscription?.status === 'active' || subscription?.status === 'trialing');
       }
 
       res.json({ 
@@ -1419,13 +1414,11 @@ async function syncStripeCustomersToUsers() {
           continue;
         }
         
-        // Find any active subscription for this customer (not pending cancellation)
         const subResult = await db.execute(sql`
           SELECT id FROM stripe.subscriptions 
           WHERE customer = ${customerId} 
             AND status IN ('active', 'trialing')
-            AND (cancel_at_period_end = false OR cancel_at_period_end IS NULL)
-          ORDER BY created DESC 
+          ORDER BY cancel_at_period_end ASC, created DESC 
           LIMIT 1
         `);
         
