@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { Link } from "wouter";
-import { Clock, Globe, Calendar, MessageCircle, Video, Users, ChevronRight } from "lucide-react";
+import { Clock, Globe, Calendar, MessageCircle, Video, Users, ChevronRight, Radio } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import AddToCalendar from "@/components/add-to-calendar";
@@ -93,6 +93,22 @@ function getShortTimezone(): string {
   }
 }
 
+function getLiveService(): ServiceInfo | null {
+  const now = new Date();
+  const dayUTC = now.getUTCDay();
+  const hourUTC = now.getUTCHours();
+  const minuteUTC = now.getUTCMinutes();
+  const nowMinutes = hourUTC * 60 + minuteUTC;
+
+  for (const s of SERVICES) {
+    if (s.dayOfWeekUTC !== dayUTC) continue;
+    const startMin = s.hourUTC * 60 + s.minuteUTC;
+    const endMin = startMin + 60;
+    if (nowMinutes >= startMin && nowMinutes < endMin) return s;
+  }
+  return null;
+}
+
 const whatsappLink = "https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc";
 
 const IMAGES = [
@@ -173,12 +189,16 @@ function useImageShuffle() {
 
 export default function FindAService() {
   const [detectedTimezone, setDetectedTimezone] = useState("");
+  const [liveService, setLiveService] = useState<ServiceInfo | null>(null);
   const { setRef, transforms, showTransition, visible } = useImageShuffle();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Find an Online Service | The Traveling Church";
     setDetectedTimezone(getShortTimezone());
+    setLiveService(getLiveService());
+    const interval = setInterval(() => setLiveService(getLiveService()), 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const localizedServices = useMemo(() => {
@@ -191,6 +211,33 @@ export default function FindAService() {
   return (
     <div className="bg-background text-foreground antialiased min-h-screen">
       <Navigation />
+
+      {liveService && liveService.meetLink && (
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-[#1a1a1a] shadow-lg" data-testid="banner-live-session">
+          <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+              </span>
+              <span className="text-white text-sm font-medium truncate">
+                {liveService.name}
+              </span>
+            </div>
+            <a
+              href={liveService.meetLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 inline-flex items-center gap-1.5 bg-[#c08e00] hover:bg-[#a67a00] text-white px-4 py-1.5 rounded-full text-sm font-semibold transition-colors whitespace-nowrap"
+              data-testid="btn-join-live"
+            >
+              <Radio className="w-3.5 h-3.5" />
+              Join Live
+            </a>
+          </div>
+        </div>
+      )}
+
       <section className="relative overflow-visible bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-0 md:pt-[154px] md:pb-24 z-20">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
@@ -309,19 +356,7 @@ export default function FindAService() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex-shrink-0 flex flex-col gap-2">
-                      {service.meetLink && (
-                        <a
-                          href={service.meetLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 bg-[#c08e00] hover:bg-[#a67a00] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
-                          data-testid={`link-join-${service.id}`}
-                        >
-                          <Video className="w-4 h-4" />
-                          Join Meeting
-                        </a>
-                      )}
+                    <div className="flex-shrink-0">
                       <AddToCalendar
                         serviceId={service.id}
                         event={{
