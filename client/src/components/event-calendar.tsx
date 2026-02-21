@@ -1,25 +1,40 @@
-import { Calendar, MapPin, Clock, Globe } from "lucide-react";
+import { Calendar, MapPin, Clock, Globe, Video } from "lucide-react";
 
 export function EventCalendar() {
   const events = [
     {
-      id: "mens-group",
-      title: "Mens Group",
-      description: "Weekly gathering every Friday for men to connect, share openly, and build strength together. A safe space for honest conversation and spiritual growth.",
+      id: "bible-study-east",
+      title: "Bible Study (East)",
+      description: "Weekly Bible study for the East Coast. Join us for deep dives into scripture, fellowship, and spiritual growth together.",
       type: "online",
-      scheduleLabel: "Every Friday",
-      timeLabel: "8-9pm EDT",
-      location: "Remote"
+      scheduleLabel: "Every Thursday",
+      timeLabel: "8–9 AM EST",
+      location: "Google Meet",
+      meetLink: "https://meet.google.com/mya-phhf-qag",
+      dialIn: "+1 424-265-1291 PIN: 106812980",
     },
     {
-      id: "international-vibe",
-      title: "International Vibe Service",
-      description: "Join us for an informal worship experience filled with fellowship, conversation, education and a deep dive into the word. Lets celebrate faith and community together from all over the Globe.",
+      id: "bible-study-central",
+      title: "Bible Study (Central)",
+      description: "Weekly Bible study for the Central timezone. Connect with fellow believers for scripture study, conversation, and community.",
       type: "online",
-      scheduleLabel: "Every Week Sunday",
-      timeLabel: "Noon-1:30PM EDT",
-      location: "Remote"
-    }
+      scheduleLabel: "Every Thursday",
+      timeLabel: "12–1 PM EST",
+      location: "Google Meet",
+      meetLink: "https://meet.google.com/yhn-fbgs-ibw",
+      dialIn: "+1 502-498-8797 PIN: 615065026",
+    },
+    {
+      id: "bible-study-west",
+      title: "Bible Study (West)",
+      description: "Weekly Bible study for the West Coast. Explore God's word together in fellowship, discussion, and prayer.",
+      type: "online",
+      scheduleLabel: "Every Thursday",
+      timeLabel: "1–2 PM EST",
+      location: "Google Meet",
+      meetLink: "https://meet.google.com/gmm-skpt-xri",
+      dialIn: "+1 720-500-3075 PIN: 158815756",
+    },
   ];
 
   return (
@@ -40,7 +55,7 @@ export function EventCalendar() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {events.map((event) => (
             <article
               key={event.id}
@@ -94,6 +109,26 @@ export function EventCalendar() {
                     </span>
                   </div>
                 </div>
+
+                {event.meetLink && (
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <a
+                      href={event.meetLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-[#c08e00] hover:bg-[#a67a00] text-white px-4 py-2 rounded-md text-sm font-medium transition-colors w-full justify-center"
+                      data-testid={`link-join-${event.id}`}
+                    >
+                      <Video className="w-4 h-4" />
+                      Join Meeting
+                    </a>
+                    {event.dialIn && (
+                      <p className="text-xs text-muted-foreground mt-2 text-center" data-testid={`text-dialin-${event.id}`}>
+                        Or dial: {event.dialIn}
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
             </article>
           ))}
