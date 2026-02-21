@@ -196,8 +196,8 @@ export default function FindAService() {
     window.scrollTo(0, 0);
     document.title = "Find an Online Service | The Traveling Church";
     setDetectedTimezone(getShortTimezone());
-    setLiveService(SERVICES[0]);
-    const interval = setInterval(() => setLiveService(SERVICES[0]), 30000);
+    setLiveService(getLiveService());
+    const interval = setInterval(() => setLiveService(getLiveService()), 30000);
     return () => clearInterval(interval);
   }, []);
 
