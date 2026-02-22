@@ -42,7 +42,6 @@ export default function Home() {
       <JourneyGallery />
       <LeadershipSection />
       <MusicMinistrySection />
-      <EventCalendar />
       <ContactForm />
       <Footer />
       <FloatingDonateButton />
