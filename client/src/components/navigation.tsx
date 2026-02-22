@@ -205,19 +205,6 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                       Login
                     </Button>
                   </Link>
-                ) : (
-                  <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
-                    <Button
-                      type="button"
-                      variant="default"
-                      size="sm"
-                      className="ml-2"
-                      data-testid="button-login"
-                    >
-                      <LogIn className="w-4 h-4 mr-1" />
-                      Login
-                    </Button>
-                  </Link>
                 )}
               </>
             )}
@@ -344,7 +331,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       </div>
     </nav>
     <div 
-      className="h-[64px]" 
+      className="h-[64px] lg:h-[70px]" 
       aria-hidden="true" 
       style={getNavStyle()}
     />
