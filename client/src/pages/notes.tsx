@@ -452,7 +452,7 @@ export default function Notes() {
           paddingBottom: `calc(${getBottomNavOffset()} + 16px)` 
         } : undefined}
       >
-        <div className="max-w-4xl mx-auto px-4 pt-[14px] pb-6">
+        <div className="max-w-4xl mx-auto px-4 pt-6 pb-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               {!isNative && (
