@@ -904,7 +904,10 @@ export default function PastorChat() {
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto bg-background" style={{ overscrollBehavior: "none" }}>
         <div 
           className={`w-full max-w-3xl mx-auto px-4 min-h-full ${activeTab === "bible" ? "" : "hidden"}`}
-          style={{ paddingTop: isNative ? '24px' : '17px' }}
+          style={{ 
+            paddingTop: isNative ? '24px' : '17px',
+            paddingBottom: isNative ? `calc(${getBottomNavOffset()} + 16px)` : undefined
+          }}
         >
           <BibleReader 
             ref={bibleReaderRef}
