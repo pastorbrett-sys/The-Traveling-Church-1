@@ -330,11 +330,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
         )}
       </div>
     </nav>
-    <div 
-      className="h-[64px] lg:h-[70px]" 
-      aria-hidden="true" 
-      style={getNavStyle()}
-    />
+    <div className="h-[64px]" aria-hidden="true" />
     </>
   );
 }

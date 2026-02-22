@@ -42,7 +42,6 @@ const VagabondHeader = () => {
   };
 
   return (
-    <>
     <nav 
       className="bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]"
       style={getHeaderStyle()}
@@ -55,12 +54,6 @@ const VagabondHeader = () => {
         </div>
       </div>
     </nav>
-    <div 
-      className="h-16" 
-      aria-hidden="true" 
-      style={getHeaderStyle()}
-    />
-    </>
   );
 };
 
