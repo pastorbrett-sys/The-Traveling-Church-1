@@ -53,7 +53,12 @@ const VagabondHeader = () => {
           </Link>
         </div>
       </div>
-    </nav>
+    <div 
+      className="h-[64px]" 
+      aria-hidden="true" 
+      style={getHeaderStyle()}
+    />
+    </>
   );
 };
 
