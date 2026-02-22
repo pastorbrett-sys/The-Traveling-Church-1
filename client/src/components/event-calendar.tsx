@@ -162,6 +162,19 @@ function AddToCalendarDropdown({ event }: { event: EventData }) {
             </svg>
             Outlook
           </a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              downloadICS(event);
+              setOpen(false);
+            }}
+            className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors text-sm text-foreground border-t border-border"
+            data-testid={`link-other-cal-${event.id}`}
+          >
+            <Calendar className="w-5 h-5 text-muted-foreground" />
+            Other Calendar
+          </a>
         </div>
       )}
     </div>
@@ -237,7 +250,7 @@ export function EventCalendar() {
           {events.map((event) => (
             <article
               key={event.id}
-              className="bg-card rounded-lg overflow-hidden shadow-md border border-border hover:border-primary transition-colors"
+              className="bg-card rounded-lg shadow-md border border-border hover:border-primary transition-colors"
               data-testid={`card-event-${event.id}`}
             >
               <div className="p-6">
