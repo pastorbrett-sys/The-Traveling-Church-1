@@ -330,7 +330,18 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
         )}
       </div>
     </nav>
-    <div className="h-[64px]" aria-hidden="true" />
+    {isNative ? (
+      <div 
+        aria-hidden="true"
+        style={{ 
+          height: platform === 'android' 
+            ? 'calc(64px + var(--android-status-bar-height, 44px))' 
+            : 'calc(64px + env(safe-area-inset-top, 0px))' 
+        }} 
+      />
+    ) : (
+      <div className="h-[64px]" aria-hidden="true" />
+    )}
     </>
   );
 }
