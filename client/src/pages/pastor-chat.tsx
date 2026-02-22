@@ -604,10 +604,16 @@ export default function PastorChat() {
     scrollToBottom();
   }, [messages]);
 
-  // Also scroll to bottom when switching to chat tab
+  // Reset scroll position when switching tabs
   useEffect(() => {
     if (activeTab === "chat") {
       setTimeout(scrollToBottom, 50);
+    } else if (activeTab === "bible") {
+      requestAnimationFrame(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTop = 0;
+        }
+      });
     }
   }, [activeTab]);
 
