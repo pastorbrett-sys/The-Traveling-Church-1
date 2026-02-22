@@ -30,17 +30,32 @@ const FEATURES_AM = [
   "የፓስተር ውይይት"
 ];
 
-const VagabondHeader = () => (
-  <nav className="bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between h-16">
-        <Link href="/">
-          <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10" data-testid="img-vagabond-logo" />
-        </Link>
+const VagabondHeader = () => {
+  const { isNative, platform } = usePlatform();
+  
+  const getHeaderStyle = () => {
+    if (!isNative) return undefined;
+    if (platform === 'android') {
+      return { paddingTop: 'var(--android-status-bar-height, 44px)' };
+    }
+    return { paddingTop: 'env(safe-area-inset-top, 0px)' };
+  };
+
+  return (
+    <nav 
+      className="bg-white/95 backdrop-blur-sm border-b border-[hsl(30,20%,88%)]"
+      style={getHeaderStyle()}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/">
+            <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10" data-testid="img-vagabond-logo" />
+          </Link>
+        </div>
       </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
 
 export function GuestPrompt({ featureDescription, featureDescriptionAmharic, redirectUrl }: GuestPromptProps) {
   const { isNative, platform } = usePlatform();
