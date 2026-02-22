@@ -5,6 +5,8 @@ import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
 import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
 import { useTranslation } from "@/lib/i18n";
+import { usePlatform } from "@/contexts/platform-context";
+import { getBottomNavOffset } from "@/lib/native-spacing";
 
 function SoundWaveIcon({ isActive }: { isActive: boolean }) {
   return (
@@ -61,6 +63,7 @@ const TRACK_NAME_KEYS: Record<string, string> = {
 
 export default function PrayerTimer() {
   const { t } = useTranslation();
+  const { isNative } = usePlatform();
   const [, setLocation] = useLocation();
   const [selectedDuration, setSelectedDuration] = useState(5);
   const [timeRemaining, setTimeRemaining] = useState(5 * 60);
@@ -890,7 +893,7 @@ export default function PrayerTimer() {
             className="w-full max-w-md rounded-t-3xl pb-8"
             style={{ 
               background: "#1a1a1a",
-              paddingBottom: "calc(env(safe-area-inset-bottom, 20px) + 20px)",
+              paddingBottom: isNative ? `calc(${getBottomNavOffset()} + 20px)` : "calc(env(safe-area-inset-bottom, 20px) + 20px)",
               animation: isClosingTrackSelector ? "slideDown 0.2s ease-out forwards" : "slideUp 0.25s ease-out",
             }}
             onClick={(e) => e.stopPropagation()}
