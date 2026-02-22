@@ -923,7 +923,7 @@ export default function PastorChat() {
         </div>
 
         <div className={activeTab === "chat" ? "" : "hidden"}>
-          <div className="w-full max-w-3xl mx-auto px-4" style={{ paddingBottom: isNative ? `${footerHeight + 64}px` : `${footerHeight}px` }}>
+          <div className="w-full max-w-3xl mx-auto px-4" style={{ paddingBottom: isNative ? `calc(${footerHeight + 64}px + env(safe-area-inset-bottom, 0px))` : `${footerHeight}px` }}>
             {/* Messages area */}
             <div ref={scrollAreaRef} className={`space-y-4 ${isNative ? 'pt-6' : 'pt-2'}`}>
             <AnimatePresence mode="popLayout">
