@@ -70,7 +70,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const navItems = [
     { id: "home", label: "Home", type: "link", href: "/" },
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
-    { id: "secret-bible", label: "Secret Bible", type: "external", href: "https://secretbible.org" },
+    { id: "secret-bible", label: "Secret Bible", type: "link", href: "/secretbible" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
     { id: "find-a-service", label: "Find a Bible Study", type: "link", href: "/find-a-service" },
