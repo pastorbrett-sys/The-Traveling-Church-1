@@ -70,6 +70,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const navItems = [
     { id: "home", label: "Home", type: "link", href: "/" },
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
+    { id: "secret-bible", label: "Secret Bible", type: "external", href: "https://secretbible.org" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
     { id: "find-a-service", label: "Find a Bible Study", type: "link", href: "/find-a-service" },
@@ -132,6 +133,17 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                 >
                   {item.label}
                 </Link>
+              ) : item.type === "external" ? (
+                <a
+                  key={item.id}
+                  href={item.href!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link text-muted-foreground font-medium hover:text-primary transition-colors"
+                  data-testid={`link-${item.id}`}
+                >
+                  {item.label}
+                </a>
               ) : (
                 <button
                   key={item.id}
@@ -251,6 +263,19 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   >
                     {item.label}
                   </Link>
+                ) : item.type === "external" ? (
+                  <a
+                    key={item.id}
+                    href={item.href!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-left py-2 px-3 rounded-md text-muted-foreground font-medium hover:bg-muted transition-colors animate-fade-in-up"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    data-testid={`link-${item.id}`}
+                  >
+                    {item.label}
+                  </a>
                 ) : (
                   <button
                     key={item.id}
