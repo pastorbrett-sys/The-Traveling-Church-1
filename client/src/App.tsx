@@ -51,6 +51,7 @@ import KeepUsAlive from "@/pages/keep-us-alive";
 import DeleteAccount from "@/pages/delete-account";
 import JoinChurch from "@/pages/join-church";
 import FindAService from "@/pages/find-a-service";
+import SecretBible from "@/pages/secret-bible";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -89,6 +90,7 @@ function VagabondBibleRouter() {
       <Route path="/prayer-requests" component={PrayerRequests} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route path="/find-a-service" component={FindAService} />
+      <Route path="/secretbible" component={SecretBible} />
       <Route>{() => <Redirect to="/" />}</Route>
     </Switch>
   );
@@ -133,6 +135,7 @@ function ChurchRouter() {
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route path="/keep-us-alive" component={KeepUsAlive} />
       <Route path="/find-a-service" component={FindAService} />
+      <Route path="/secretbible" component={SecretBible} />
       <Route component={NotFound} />
     </Switch>
   );
