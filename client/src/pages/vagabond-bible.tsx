@@ -13,12 +13,14 @@ import vagaburstIcon from "@assets/Vagaburst_1767599907611.png";
 import burstIcon from "@assets/Burst_1767600505667.png";
 import { usePlatform } from "@/contexts/platform-context";
 import { t, detectLanguage } from "@/lib/i18n";
+import { usePWAInstall } from "@/hooks/usePWAInstall";
 
 export default function VagabondBible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { isNative, platform } = usePlatform();
   const isAmharic = detectLanguage() === "am";
+  const { canInstall, promptInstall, isInstalled, isChromium } = usePWAInstall();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -203,20 +205,35 @@ export default function VagabondBible() {
               </div>
             </a>
             <button 
-              onClick={() => {
-                window.gtag?.('event', 'click_google_play');
-                const isAmharic = detectLanguage() === "am";
-                alert(isAmharic ? "በቅርቡ ይጠብቁ!" : "Coming Soon!");
+              onClick={async () => {
+                window.gtag?.('event', 'click_pwa_install', { method: canInstall ? 'prompt' : isInstalled ? 'already_installed' : 'unsupported' });
+                if (isInstalled) {
+                  alert(isAmharic ? "ቀድሞ ተጭኗል!" : "Already installed!");
+                  return;
+                }
+                if (canInstall) {
+                  await promptInstall();
+                  return;
+                }
+                if (isChromium) {
+                  alert(isAmharic 
+                    ? "ለመጫን፣ ከብራውዘሩ ምናሌ 'Install app' ወይም 'Add to Home screen' ን ይምረጡ።" 
+                    : "To install, tap the browser menu (⋮) and select 'Install app' or 'Add to Home screen'.");
+                  return;
+                }
+                alert(isAmharic 
+                  ? "Vagabond Bible ን ለመጫን፣ ይህን ገጽ በ Google Chrome ይክፈቱ።" 
+                  : "To install Vagabond Bible, open this page in Google Chrome.");
               }}
               className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu text-left" 
               data-testid="link-google-play"
             >
               <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/>
+                <path d="M17.523 15.341a1.003 1.003 0 0 0 0-2.005 1.003 1.003 0 0 0 0 2.005zm-11.046 0a1.003 1.003 0 0 0 0-2.005 1.003 1.003 0 0 0 0 2.005zm11.405-6.02l1.997-3.46a.416.416 0 0 0-.152-.567.416.416 0 0 0-.568.152L17.12 8.95C15.51 8.148 13.698 7.69 12 7.69c-1.698 0-3.51.458-5.12 1.26L4.841 5.446a.416.416 0 0 0-.568-.152.416.416 0 0 0-.152.567l1.997 3.46C2.688 11.196.343 14.857 0 19h24c-.344-4.143-2.688-7.804-6.118-9.679z"/>
               </svg>
               <div className="flex flex-col leading-none">
-                <span className="text-[10px] font-normal">Get it on</span>
-                <span className="text-[16px] font-semibold -mt-0.5">Google Play</span>
+                <span className="text-[10px] font-normal">{isAmharic ? "በ" : "Get it on"}</span>
+                <span className="text-[16px] font-semibold -mt-0.5">Android</span>
               </div>
             </button>
           </div>
