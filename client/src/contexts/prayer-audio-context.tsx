@@ -610,10 +610,9 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     const audio = new Audio(getTrackUrl(trackName));
     audio.volume = volume;
-    
-    audio.addEventListener("canplaythrough", () => {
+
+    audio.addEventListener("playing", () => {
       setIsLoading(false);
-      audio.play().catch(console.error);
       setIsPlaying(true);
       setCurrentTrack(getDisplayName(trackName));
       updateNowPlaying(trackName, true);
@@ -627,6 +626,13 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
     }, { once: true });
     
     audioRef.current = audio;
+
+    // Play immediately — must stay in synchronous call chain of a user gesture.
+    // Waiting for "canplaythrough" loses the browser's autoplay trust on web/PWA.
+    audio.play().catch((err) => {
+      console.error("[PrayerAudio] selectTrack play failed:", err);
+      setIsLoading(false);
+    });
   }, [clearAllTimeouts, volume, preloadNextTrack, scheduleNextCrossfade, updateNowPlaying]);
 
   useEffect(() => {
