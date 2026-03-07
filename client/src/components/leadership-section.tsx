@@ -1,7 +1,7 @@
-import danielImage from "../assets/Daniel_1760680915194.jpg";
 import joshImage from "../assets/Josh_1760681040173.jpg";
 import edenImage from "../assets/Eden_1771354464709.png";
 import robbieImage from "../assets/Robbie_1771354535845.png";
+import nadeemImage from "@assets/Nadeem_1772856855581.jpg";
 
 export default function LeadershipSection() {
   
@@ -19,10 +19,10 @@ export default function LeadershipSection() {
       description: "Overseeing western regional outreach, dedicated to teaching the Gospel and growing faith in the West.",
     },
     {
-      name: "Daniel Stockdale",
-      title: "Treasurer",
-      image: danielImage,
-      description: "Dedicated to spreading faith and building community through servant leadership and compassion.",
+      name: "Pastor Nadeem",
+      title: "Middle East Leader",
+      image: nadeemImage,
+      description: "Building the Middle Eastern region into a hub of Christian strength, fellowship, and spiritual growth.",
     },
     {
       name: "Joshua Castillo",
