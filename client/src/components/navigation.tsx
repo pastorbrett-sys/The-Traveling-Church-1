@@ -224,8 +224,9 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     </Link>
                     <Button
                       type="button"
-                      variant="default"
+                      variant="outline"
                       size="sm"
+                      className="border-black text-black hover:bg-black hover:text-white"
                       onClick={handleGetApp}
                       data-testid="button-get-app"
                     >
@@ -247,8 +248,9 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                   <div className="flex items-center gap-2 ml-2">
                     <Button
                       type="button"
-                      variant="default"
+                      variant="outline"
                       size="sm"
+                      className="border-black text-black hover:bg-black hover:text-white"
                       onClick={handleGetApp}
                       data-testid="button-get-app"
                     >
@@ -258,8 +260,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
                       <Button
                         type="button"
-                        variant="default"
                         size="sm"
+                        className="bg-[#c08e00] hover:bg-[#a67a00] text-white"
                         data-testid="button-login"
                       >
                         <LogIn className="w-4 h-4 mr-1" />
@@ -377,8 +379,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                       </Link>
                       <Button
                         type="button"
-                        variant="default"
-                        className="w-full justify-start"
+                        variant="outline"
+                        className="w-full justify-start border-black text-black hover:bg-black hover:text-white"
                         onClick={() => { handleGetApp(); setMobileMenuOpen(false); }}
                         data-testid="button-mobile-get-app"
                       >
@@ -400,7 +402,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     <div className="flex flex-col gap-2">
                       <Button
                         type="button"
-                        className="w-full bg-[#b8860b] hover:bg-[#9a7209] text-white"
+                        variant="outline"
+                        className="w-full border-black text-black hover:bg-black hover:text-white"
                         onClick={() => { handleGetApp(); setMobileMenuOpen(false); }}
                         data-testid="button-mobile-get-app"
                       >
@@ -410,7 +413,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                       <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
                         <Button
                           type="button"
-                          className="w-full bg-[#b8860b] hover:bg-[#9a7209] text-white"
+                          className="w-full bg-[#c08e00] hover:bg-[#a67a00] text-white"
                           data-testid="button-mobile-login"
                         >
                           <LogIn className="w-4 h-4 mr-2" />
