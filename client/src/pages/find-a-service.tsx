@@ -6,7 +6,7 @@ import Footer from "@/components/footer";
 import AddToCalendar from "@/components/add-to-calendar";
 import edenImage from "../assets/Eden_1771354464709.png";
 import robbieImage from "../assets/Robbie_1771354535845.png";
-import danielImage from "../assets/Daniel_1760680915194.jpg";
+import danielImage from "@assets/Nadeem_1772856855581.jpg";
 import joshImage from "../assets/Josh_1760681040173.jpg";
 
 interface ServiceInfo {
@@ -113,7 +113,7 @@ const whatsappLink = "https://chat.whatsapp.com/DrytNuW5LSxEHlNQdszJP0?mode=wwc"
 
 const IMAGES = [
   { src: edenImage, alt: "Eden Gulilat" },
-  { src: danielImage, alt: "Daniel Stockdale" },
+  { src: danielImage, alt: "Pastor Nadeem" },
   { src: robbieImage, alt: "Robbie Thiessen" },
   { src: joshImage, alt: "Joshua Castillo" },
 ];
