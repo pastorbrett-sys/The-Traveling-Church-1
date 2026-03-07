@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Traveling Church is a full-stack web application designed for a global, traveling ministry. Its core purpose is to showcase the ministry's worldwide reach and foster community engagement through features like an interactive map of travel locations, an event calendar, contact forms, and leadership profiles. A key offering is the "AI Bible Buddy," a comprehensive Bible study tool powered by AI, featuring chat, a reader, smart search, and verse insights. The project aims for a SaaS model, integrating Stripe for subscriptions and RevenueCat for native in-app purchases to offer Free and Pro tiers, enabling expanded access and features for users across web and mobile platforms. The overall vision is to create a dynamic, accessible platform that supports the ministry's mission and connects with its global audience.
+The Traveling Church is a full-stack web application for a global, traveling ministry, aiming to showcase its worldwide reach and foster community engagement. Key features include an interactive map, event calendar, contact forms, leadership profiles, and an "AI Bible Buddy" for comprehensive Bible study. The project is designed for a SaaS model, incorporating Free and Pro subscription tiers via Stripe for web and RevenueCat for native in-app purchases, expanding access and features across web and mobile platforms. The overarching goal is to provide a dynamic, accessible platform supporting the ministry's mission and connecting with its global audience.
 
 ## User Preferences
 
@@ -17,79 +17,27 @@ Git/GitHub: NEVER commit chat screenshots to git. Screenshots shared during conv
 - **Database**: PostgreSQL (Neon serverless) with Drizzle ORM
 
 ### Application Architecture
-The application uses a component-based frontend architecture and an Express.js backend with `/api` prefixed endpoints. Data persistence is handled by PostgreSQL via Drizzle ORM, with an interface-based storage abstraction allowing for flexible database integration. UUID primary keys and Zod validation ensure data integrity across `Users`, `Locations`, `Events`, and `Contact Submissions` tables. TanStack Query manages data flow and caching between the frontend and API.
+The application uses a component-based frontend and an Express.js backend with `/api` prefixed endpoints. Data is persisted in PostgreSQL via Drizzle ORM, utilizing an interface-based storage abstraction for flexibility. Data integrity is maintained with UUID primary keys and Zod validation across core entities. TanStack Query manages frontend data flow, caching, and synchronization with the API. The application supports native iOS and Android via Capacitor, with platform-specific adaptations and secure API handling.
 
-### Key Design Decisions
-- **UI/UX**: Utilizes Shadcn/ui and Radix UI for accessible, customizable components, styled with Tailwind CSS and a custom theme. Features include custom branding, animated hero sections, smooth-scrolling navigation, and mobile responsiveness.
-- **State Management**: TanStack Query is central for server state management, caching, and background refetching.
-- **Storage Abstraction**: An `IStorage` interface enables easy switching between in-memory and database storage.
-- **Routing**: Wouter provides a lightweight, hook-based routing solution.
+### UI/UX Decisions
+The UI/UX prioritizes accessibility and customization, leveraging Shadcn/ui and Radix UI with Tailwind CSS for styling and a custom theme. Design elements include custom branding, animated hero sections, smooth-scrolling navigation, and full mobile responsiveness. Native platforms benefit from adaptations like tab bars and safe area handling.
 
-### Feature Specifications
-- **Contact Form**: Zod-validated forms with submission storage and notifications.
-- **Event Calendar**: Displays upcoming events with type indicators.
-- **WhatsApp Community**: Direct call-to-action link.
-- **Ministry Information**: Dedicated sections for leadership profiles, resources, and specific global journey locations.
-- **AI Bible Buddy**: AI-powered pastoral chat (Pastor Brett), multi-translation Bible reader, smart search, conversational verse insights, and note-taking. Uses dual AI routing: English → OpenAI (GPT-4o-mini for chat, GPT-4o for search); non-English (Amharic) → Google Gemini 2.5 Flash for both chat and search. Routing logic in `server/aiRouter.ts`. Non-English prompts instruct Amharic output (written in Ge'ez script/ፊደል). Includes a Bible Heading Override System, pre-processing headings via `server/data/headingOverrides.json` and AI analysis to ensure accurate section titles.
-  - **First-Time Chat Experience**: Quick-select buttons ("Study a specific passage", "I'm confused about a verse", "I'm struggling with something", "Ask anything") with spring/bounce animations appear below Pastor Brett's greeting. Hidden after first interaction; reappear on new chats.
-  - **Guest Free Messages**: Unauthenticated users get 2 free messages (client-side localStorage key: `vagabondGuestMsgCount`). Server-side rate limit via `/api/chat/guest` endpoint (5 messages per 24 hours per session cookie). Login required on 3rd client-side attempt. Guest chat uses `sendMessageWithText(overrideText?)` refactored from `sendMessage`. Only applies to Pastor Chat — other features require immediate login.
-  - **Tab Order**: Chat tab is first (leftmost), Bible tab second. Default tab is Chat when no URL parameter specified.
-- **Subscription Management**: Implements Free and Pro SaaS tiers using Stripe for web and RevenueCat for native in-app purchases. Pro plans offer unlimited AI Bible Buddy access and other premium features.
-- **Regional Pricing**: Two-tier pricing model ($7.99 Premium for developed markets, $1.99 Emerging for developing markets).
-  - **Web**: Server-side IP-based country detection only (cf-ipcountry, x-vercel-ip-country headers). Defaults to premium pricing when no IP headers available. NO client-side locale detection (removed to prevent mismatched pricing for users with foreign locales). Config: `shared/regionalPricing.ts`, endpoints: `/api/pricing/tier`, `/api/stripe/regional-checkout`. Checkout accepts `displayedTier` param for consistency. Requires: `STRIPE_PRICE_PRO_PREMIUM` and `STRIPE_PRICE_PRO_EMERGING` environment variables.
-  - **Purchase flow**: Web always uses Stripe checkout (determined by `Capacitor.isNativePlatform()`, not context `isNative`). Native iOS uses RevenueCat/Apple IAP, native Android uses RevenueCat/Google Play.
-  - **iOS**: Two separate App Store products (`vagabond_bible_pro_monthly` at $7.99, `pro_monthly_emerging` at $1.99). RevenueCat Targeting automatically shows correct offering based on App Store country. See `docs/NATIVE_REGIONAL_PRICING_SETUP.md`.
-  - **Android**: Single product with Google Play regional pricing (TODO).
-- **User Authentication**: Integrates Replit's OpenID Connect for user sign-in (Google, GitHub, email/password), linking subscriptions to user accounts. Authenticated Pro users can manage subscriptions via Stripe Customer Portal.
-- **Email Automation**: Uses Resend (free tier: 3,000 emails/month) for automated emails:
-  - **Welcome Email**: Sent automatically when a new user signs up, introducing AI Bible Buddy features.
-  - **Subscription Confirmation**: Sent when a user subscribes to Pro, confirming benefits and thanking them.
-  - Implementation: `server/email.ts`, triggered from auth storage (welcome) and Stripe webhooks (subscription).
-- **PWA Install**: Android/desktop alternative to Google Play Store. Minimal service worker (`client/public/sw.js`) registered in `client/src/main.tsx` (web only, skipped on Capacitor native). `usePWAInstall` hook (`client/src/hooks/usePWAInstall.ts`) captures `beforeinstallprompt` event. "Get it on Android" button on landing page triggers native PWA install prompt on Chromium browsers; shows Chrome redirect message on Safari/Firefox; shows manual install instructions if Chromium but prompt unavailable. iOS App Store button unchanged. Bilingual (English/Amharic) messaging throughout.
-- **Native App (Capacitor)**: Supports iOS and Android via Capacitor, with platform-specific UI/UX adaptations like native tab bars, full-screen modals, and safe area handling. API calls from native platforms prepend the production URL and handle session cookies securely. App Transport Security (ATS) is configured for broader compatibility.
-  - **Android Safe Area Fix**: Uses `@capacitor-community/safe-area` plugin to fix Android WebView's broken `env(safe-area-inset-*)` CSS variables (Chromium <140 bug). MainActivity.java enables edge-to-edge mode via `EdgeToEdge.enable(this)`. The plugin auto-detects Chromium version and applies correct padding.
-  - **Native-Only Plugin Imports**: Plugins like `capacitor-music-controls-plugin-v3`, `@capacitor/haptics`, and `@capacitor/local-notifications` use dynamic imports via `Function('m', 'return import(m)')` to prevent Vite from statically analyzing them during build. This avoids "Failed to resolve import" errors since these plugins only exist at runtime on native platforms. See `client/src/contexts/prayer-audio-context.tsx` for the pattern.
-- **Verse Sharing**: Canvas-based image generation with 21 background options. Native Share API integration for iOS/Android. Custom share format with verse reference and Vagabond Bible branding. See `client/src/components/verse-share-sheet.tsx`.
-- **Prayer Timer**: Background meditation music with crossfade between tracks. Features:
-  - **Lock Screen Controls**: iOS/Android lock screen displays track info, artwork ("Music by Pastor Brett"), and play/pause controls via `capacitor-music-controls-plugin-v3`.
-  - **Persistent Timer State**: Timer continues running when navigating away from the prayer timer page. Global timer state managed in `PrayerAudioContext` persists across route changes. When user returns, page syncs with global timer.
-  - **Floating Prayer Button**: Persistent circular golden button (`#c08e00`, matching CTA buttons) with animated audio bars appears when navigating away while audio plays. iOS PiP-style physics (velocity-based momentum, friction, spring animation). Draggable to any corner with position memory via localStorage. Cross-platform compatible (web/iOS/Android) with safe area support.
-  - **Timer Completion Alarm**: Plays a gentle chime sound and haptic feedback when timer ends. Uses `@capacitor/local-notifications` for native iOS/Android with sound file in native bundles (`timer_chime.wav`). Falls back to HTMLAudioElement or Web Audio API for web. Android 8+ uses notification channel `timer_complete`. iOS requires sound file added to Xcode project bundle manually.
-  - **Implementation**: `client/src/contexts/prayer-audio-context.tsx` (global audio + timer state), `client/src/components/floating-prayer-button.tsx`, `client/src/pages/prayer-timer.tsx`.
-- **Push Notifications**: Firebase Cloud Messaging (FCM) integration for verse reminders.
-  - **Timezone-aware delivery**: Hourly cron job sends notifications at user's local time.
-  - **Verse of the Week**: AI-selected verse with graphic, sent Tuesdays 8am local. Uses GPT-4o with 8 rotating themes.
-  - **Daily Verse**: 365 curated verses from `server/dailyVerseData.ts`, sent daily 8am local (skipped on weekly verse day).
-  - **Collision detection**: Per-user, per-timezone - daily verse skips only for users who would receive weekly verse that day AND have weekly enabled.
-  - **Priority system**: `notification_types.priority` column (weekly=10, daily=5, announcement=1). Higher priority wins on collision.
-  - **World English Bible (WEB)**: Uses public domain translation to avoid copyright issues.
-  - **Deep linking**: Tapping notification opens directly to the verse with highlight animation.
-  - **Database tables**: `push_tokens`, `notification_types`, `user_notification_preferences`, `notification_log`.
-  - **Configurable types**: Each notification type has separate day/time settings in database. Schedule changes via DB auto-adapt collision logic.
-  - **User preferences**: Toggle on/off per notification type in Profile settings.
-  - **Firebase setup**: APNs key S48F6S762Z (Sandbox & Production), Team ID FBD94PWXT2. Service account key in FIREBASE_SERVICE_ACCOUNT_KEY secret.
-  - **Localized notifications**: Notifications are translated per user's language preference. English users get English; Amharic (or any other language) users get AI-translated verses via Gemini at send time with in-memory cache. Falls back to English if translation fails. Scalable to any language — just add user's language code. Translation logic: `server/notificationTranslation.ts`. Notification titles pre-translated for known languages (e.g., "የዕለት ጥቅስ" for Amharic daily verse).
-  - **Implementation**: `server/notificationCron.ts`, `server/firebaseAdmin.ts`, `server/verseSelection.ts`, `server/dailyVerseData.ts`, `server/notificationTranslation.ts`, `client/src/hooks/usePushNotifications.ts`.
-- **Apple Sign-In Configuration** (for native iOS):
-  - **Required in Apple Developer Console**:
-    1. App ID (`com.vagabondbible.app`) must have "Sign in with Apple" capability enabled
-    2. Services ID (e.g., `com.vagabondbible.app.service`) with Firebase callback URL: `https://travelingchurch-1b4ab.firebaseapp.com/__/auth/handler`
-    3. Private Key (.p8 file) for OAuth code flow - download Key ID and save securely
-  - **Required in Firebase Console** (Authentication → Sign-in method → Apple):
-    - Services ID (from step 2 above)
-    - Apple Team ID: FBD94PWXT2
-    - Key ID (from step 3 above)
-    - Private Key contents (paste from .p8 file)
-  - **Required in Xcode**:
-    - "Sign in with Apple" capability in Signing & Capabilities
-    - URL Type with REVERSED_CLIENT_ID: `com.googleusercontent.apps.120766949732-5fu6t0hegaaaf8fdqenn2gu0mplghh5e`
-  - **Troubleshooting**: See `docs/APPLE_SIGNIN_TROUBLESHOOTING.md`
+### Technical Implementations
+- **AI Bible Buddy**: Integrates OpenAI (GPT-4o-mini/GPT-4o) for English content and Google Gemini 2.5 Flash for non-English (Amharic) content, managed by `server/aiRouter.ts`. Features chat, a multi-translation Bible reader, smart search, and conversational verse insights. Includes a Bible Heading Override System and a first-time chat experience with quick-select buttons. Guest users receive limited free messages before requiring login.
+- **Subscription Management**: Implements Free and Pro SaaS tiers using Stripe for web and RevenueCat for native in-app purchases. Features regional pricing with server-side IP-based detection for web (Stripe) and RevenueCat targeting for iOS.
+- **User Authentication**: Integrates Replit's OpenID Connect (Google, GitHub, email/password) for user sign-in and links subscriptions.
+- **Email Automation**: Uses Resend for automated welcome and subscription confirmation emails.
+- **PWA Install**: Provides a Progressive Web App (PWA) installation option with a minimal service worker and a custom hook for `beforeinstallprompt` event handling.
+- **Verse Sharing**: Generates shareable images of Bible verses with various backgrounds and integrates with native Share APIs.
+- **Prayer Timer**: Features background meditation music with lock screen controls, persistent timer state across navigation, a draggable floating prayer button, and an alarm with haptic feedback upon completion.
+- **Push Notifications**: Utilizes Firebase Cloud Messaging (FCM) for timezone-aware daily and weekly verse reminders. Supports localized notifications through AI-driven translation for non-English users, with a configurable priority system for collision detection.
+- **Apple Sign-In**: Configured for native iOS applications, requiring specific settings in Apple Developer Console, Firebase Console, and Xcode.
 
 ## External Dependencies
 
 ### Core Services
 - **Neon Database**: Serverless PostgreSQL.
-- **Google Cloud Storage**: For custom images via Replit Object Storage.
+- **Google Cloud Storage**: Used for custom images.
 
 ### UI & Component Libraries
 - **Radix UI**: Accessible component primitives.
@@ -111,6 +59,9 @@ The application uses a component-based frontend architecture and an Express.js b
 - **connect-pg-simple**: PostgreSQL session store.
 
 ### API Integrations
-- **OpenAI**: Powers the AI Bible Buddy (GPT-4o).
-- **Stripe**: For web subscription billing and management (`stripe-replit-sync`).
-- **RevenueCat**: For native iOS/Android in-app purchases and subscriptions (`@revenuecat/purchases-capacitor`).
+- **OpenAI**: Powers the AI Bible Buddy.
+- **Google Gemini**: Powers Amharic AI translations.
+- **Stripe**: For web subscription billing and management.
+- **RevenueCat**: For native iOS/Android in-app purchases and subscriptions.
+- **Resend**: For automated email sending.
+- **Firebase Cloud Messaging (FCM)**: For push notifications.
