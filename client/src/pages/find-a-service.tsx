@@ -255,18 +255,9 @@ export default function FindAService() {
               >
                 Bible-centered worship and community, no matter where you are in the world.
               </p>
-              <a
-                href="#services"
-                onClick={() => { window.gtag?.('event', 'click_view_services'); }}
-                className="donateSectionBtn inline-flex items-center justify-center gap-2 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg w-full sm:w-fit animate-bounce-rotate relative z-[60]"
-                data-testid="button-view-services"
-              >
-                View Service Times
-                <ChevronRight className="w-5 h-5" />
-              </a>
             </div>
 
-            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-8 md:-mt-16 md:scale-[0.85] transform-gpu md:origin-right">
+            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-0 md:-mt-16 md:scale-[0.85] transform-gpu md:origin-right">
               <div className="space-y-4 md:space-y-5">
                 {[0, 1].map(i => (
                   <div
