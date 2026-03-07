@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X, LogIn, LogOut, User, Award, Timer } from "lucide-react";
+import { Menu, X, LogIn, LogOut, User, Award, Timer, Download } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { usePlatform } from "@/contexts/platform-context";
+import { usePWAInstall } from "@/hooks/usePWAInstall";
 import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
 
 interface NavigationProps {
@@ -20,6 +21,34 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
   const isHomePage = location === "/";
   const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
   const { isNative, platform } = usePlatform();
+  const { canInstall, promptInstall, isInstalled, isIOS, isChromium } = usePWAInstall();
+
+  const handleGetApp = async () => {
+    window.gtag?.('event', 'click_get_app', { source: 'navigation' });
+    const isIOSDevice = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isIOSDevice) {
+      window.open("https://apps.apple.com/us/app/vagabond-bible/id6757680520", "_blank");
+      return;
+    }
+    if (canInstall) {
+      await promptInstall();
+      return;
+    }
+    if (isInstalled) {
+      alert("Vagabond Bible is already installed!");
+      return;
+    }
+    if (isChromium) {
+      alert("To install, tap the browser menu (⋮) and select 'Install app' or 'Add to Home screen'.");
+      return;
+    }
+    const isMac = /Macintosh|Mac OS X/i.test(navigator.userAgent);
+    if (isMac) {
+      window.open("https://apps.apple.com/us/app/vagabond-bible/id6757680520", "_blank");
+      return;
+    }
+    alert("To install Vagabond Bible, open this page in Google Chrome.");
+  };
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -195,6 +224,16 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     </Link>
                     <Button
                       type="button"
+                      variant="default"
+                      size="sm"
+                      onClick={handleGetApp}
+                      data-testid="button-get-app"
+                    >
+                      <Download className="w-4 h-4 mr-1" />
+                      Get the App
+                    </Button>
+                    <Button
+                      type="button"
                       variant="outline"
                       size="sm"
                       onClick={() => logout()}
@@ -205,18 +244,29 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                     </Button>
                   </div>
                 ) : (
-                  <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
+                  <div className="flex items-center gap-2 ml-2">
                     <Button
                       type="button"
                       variant="default"
                       size="sm"
-                      className="ml-2"
-                      data-testid="button-login"
+                      onClick={handleGetApp}
+                      data-testid="button-get-app"
                     >
-                      <LogIn className="w-4 h-4 mr-1" />
-                      Login
+                      <Download className="w-4 h-4 mr-1" />
+                      Get the App
                     </Button>
-                  </Link>
+                    <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"}>
+                      <Button
+                        type="button"
+                        variant="default"
+                        size="sm"
+                        data-testid="button-login"
+                      >
+                        <LogIn className="w-4 h-4 mr-1" />
+                        Login
+                      </Button>
+                    </Link>
+                  </div>
                 )}
               </>
             )}
@@ -327,6 +377,16 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                       </Link>
                       <Button
                         type="button"
+                        variant="default"
+                        className="w-full justify-start"
+                        onClick={() => { handleGetApp(); setMobileMenuOpen(false); }}
+                        data-testid="button-mobile-get-app"
+                      >
+                        <Download className="w-4 h-4 mr-2" />
+                        Get the App
+                      </Button>
+                      <Button
+                        type="button"
                         variant="outline"
                         className="w-full justify-start"
                         onClick={() => logout()}
@@ -337,16 +397,27 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
                       </Button>
                     </div>
                   ) : (
-                    <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
+                    <div className="flex flex-col gap-2">
                       <Button
                         type="button"
                         className="w-full bg-[#b8860b] hover:bg-[#9a7209] text-white"
-                        data-testid="button-mobile-login"
+                        onClick={() => { handleGetApp(); setMobileMenuOpen(false); }}
+                        data-testid="button-mobile-get-app"
                       >
-                        <LogIn className="w-4 h-4 mr-2" />
-                        Login
+                        <Download className="w-4 h-4 mr-2" />
+                        Get the App
                       </Button>
-                    </Link>
+                      <Link href={location !== "/" ? `/login?redirect=${encodeURIComponent(location)}` : "/login"} onClick={() => setMobileMenuOpen(false)}>
+                        <Button
+                          type="button"
+                          className="w-full bg-[#b8860b] hover:bg-[#9a7209] text-white"
+                          data-testid="button-mobile-login"
+                        >
+                          <LogIn className="w-4 h-4 mr-2" />
+                          Login
+                        </Button>
+                      </Link>
+                    </div>
                   )}
                 </div>
               )}
