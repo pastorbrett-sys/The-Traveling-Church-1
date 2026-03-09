@@ -257,7 +257,7 @@ export default function FindAService() {
               </p>
             </div>
 
-            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-0 md:-mt-16 md:scale-[0.85] transform-gpu md:origin-right">
+            <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-4 md:-mt-16 md:scale-[0.85] transform-gpu md:origin-right">
               <div className="space-y-4 md:space-y-5">
                 {[0, 1].map(i => (
                   <div
