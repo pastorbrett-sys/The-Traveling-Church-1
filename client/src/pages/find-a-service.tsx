@@ -28,7 +28,7 @@ const SERVICES: ServiceInfo[] = [
   {
     id: "bible-study-east",
     name: "Bible Study (East)",
-    description: "Weekly Bible study for the East Coast. Join us for deep dives into scripture, fellowship, and spiritual growth together.",
+    description: "Weekly Bible study for the East. Join us for deep dives into scripture, fellowship, and spiritual growth together.",
     day: "Thursdays",
     timeUTC: "13:00",
     hourUTC: 13,
@@ -56,7 +56,7 @@ const SERVICES: ServiceInfo[] = [
   {
     id: "bible-study-west",
     name: "Bible Study (West)",
-    description: "Weekly Bible study for the West Coast. Explore God's word together in fellowship, discussion, and prayer.",
+    description: "Weekly Bible study for the West. Explore God's word together in fellowship, discussion, and prayer.",
     day: "Thursdays",
     timeUTC: "18:00",
     hourUTC: 18,
