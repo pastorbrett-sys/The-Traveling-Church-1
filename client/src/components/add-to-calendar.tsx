@@ -92,24 +92,28 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
 
   const handleGoogleCalendar = () => {
     window.gtag?.('event', 'click_add_calendar');
+    window.gtag?.('event', 'service_registration', { service_name: event.title, method: 'google_calendar' });
     window.open(generateGoogleCalendarUrl(event), "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
   const handleAppleCalendar = () => {
     window.gtag?.('event', 'click_add_calendar');
+    window.gtag?.('event', 'service_registration', { service_name: event.title, method: 'apple_calendar' });
     window.location.href = getICSUrl(event);
     setIsOpen(false);
   };
 
   const handleOutlook = () => {
     window.gtag?.('event', 'click_add_calendar');
+    window.gtag?.('event', 'service_registration', { service_name: event.title, method: 'outlook' });
     window.open(generateOutlookUrl(event), "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
   const handleOtherCalendar = () => {
     window.gtag?.('event', 'click_add_calendar');
+    window.gtag?.('event', 'service_registration', { service_name: event.title, method: 'other_calendar' });
     window.location.href = getICSUrl(event);
     setIsOpen(false);
   };

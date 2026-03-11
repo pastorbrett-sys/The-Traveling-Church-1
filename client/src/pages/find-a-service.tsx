@@ -229,6 +229,7 @@ export default function FindAService() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 inline-flex items-center gap-1.5 bg-[#c08e00] hover:bg-[#a67a00] text-white px-4 py-1.5 rounded-full text-sm font-semibold transition-colors whitespace-nowrap"
+              onClick={() => { window.gtag?.('event', 'service_registration', { service_name: liveService.name }); }}
               data-testid="btn-join-live"
             >
               <Radio className="w-3.5 h-3.5" />
