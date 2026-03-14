@@ -1,6 +1,9 @@
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { Link } from "wouter";
-import { Clock, Globe, Calendar, MessageCircle, Video, Users, ChevronRight, Radio } from "lucide-react";
+import { Clock, Globe, Calendar, MessageCircle, Video, Users, ChevronRight, ChevronDown, Radio, Mail, Phone, Check } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import AddToCalendar from "@/components/add-to-calendar";
@@ -191,6 +194,32 @@ export default function FindAService() {
   const [detectedTimezone, setDetectedTimezone] = useState("");
   const [liveService, setLiveService] = useState<ServiceInfo | null>(null);
   const { setRef, transforms, showTransition, visible } = useImageShuffle();
+  const [reminderEmail, setReminderEmail] = useState("");
+  const [reminderSuccess, setReminderSuccess] = useState(false);
+  const [expandedCalendars, setExpandedCalendars] = useState<Record<string, boolean>>({});
+  const { toast } = useToast();
+
+  const reminderMutation = useMutation({
+    mutationFn: async (email: string) => {
+      const res = await apiRequest("POST", "/api/service-reminders", {
+        email,
+        timezone: getUserTimezone(),
+      });
+      return res.json();
+    },
+    onSuccess: (data) => {
+      setReminderSuccess(true);
+      window.gtag?.('event', 'service_registration', { method: 'email_reminder' });
+      if (data.message === "already_subscribed") {
+        toast({ title: "You're already signed up!", description: "Check your email on Thursdays for reminders." });
+      } else {
+        toast({ title: "You're signed up!", description: "You'll get a reminder every Thursday morning." });
+      }
+    },
+    onError: () => {
+      toast({ title: "Something went wrong", description: "Please check your email and try again.", variant: "destructive" });
+    },
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -207,6 +236,16 @@ export default function FindAService() {
       localTime: formatTimeInUserTimezone(s.hourUTC, s.minuteUTC),
     }));
   }, []);
+
+  const handleReminderSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!reminderEmail || !reminderEmail.includes("@")) return;
+    reminderMutation.mutate(reminderEmail);
+  };
+
+  const toggleCalendar = (serviceId: string) => {
+    setExpandedCalendars(prev => ({ ...prev, [serviceId]: !prev[serviceId] }));
+  };
 
   return (
     <div className="bg-background text-foreground antialiased min-h-screen">
@@ -229,7 +268,7 @@ export default function FindAService() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 inline-flex items-center gap-1.5 bg-[#c08e00] hover:bg-[#a67a00] text-white px-4 py-1.5 rounded-full text-sm font-semibold transition-colors whitespace-nowrap"
-              onClick={() => { window.gtag?.('event', 'service_registration', { service_name: liveService.name }); }}
+              onClick={() => { window.gtag?.('event', 'service_registration', { service_name: liveService.name, method: 'join_live' }); }}
               data-testid="btn-join-live"
             >
               <Radio className="w-3.5 h-3.5" />
@@ -297,7 +336,84 @@ export default function FindAService() {
           </div>
         </div>
       </section>
-      <section id="services" className="py-16 md:py-24 bg-muted/50 scroll-mt-20 md:-mt-[100px] relative z-10">
+
+      <section className="py-12 md:py-16 bg-muted/50 md:-mt-[100px] relative z-10">
+        <div className="max-w-2xl mx-auto px-6 md:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2" data-testid="heading-join-community">
+              Join the Community
+            </h2>
+            <p className="text-muted-foreground text-sm">
+              Two easy ways to stay connected — pick what works for you.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                window.gtag?.('event', 'service_registration', { method: 'whatsapp' });
+                window.gtag?.('event', 'click_whatsapp_join');
+              }}
+              className="flex items-center gap-4 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl p-5 transition-colors shadow-sm"
+              data-testid="button-whatsapp-join"
+            >
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="font-semibold text-lg block">Join the WhatsApp Group</span>
+                <span className="text-white/80 text-sm">Get reminders, updates, and connect with the community</span>
+              </div>
+              <ChevronRight className="w-5 h-5 flex-shrink-0 opacity-70" />
+            </a>
+
+            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="font-semibold text-lg block mb-1" data-testid="heading-email-reminder">Get Weekly Email Reminders</span>
+                  <span className="text-muted-foreground text-sm block mb-3">
+                    Every Thursday morning — Bible study times in your timezone + a join link
+                  </span>
+                  {reminderSuccess ? (
+                    <div className="flex items-center gap-2 text-green-600 dark:text-green-400" data-testid="text-reminder-success">
+                      <Check className="w-5 h-5" />
+                      <span className="font-medium">You're signed up! Check your inbox.</span>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleReminderSubmit} className="flex gap-2" data-testid="form-email-reminder">
+                      <input
+                        type="email"
+                        placeholder="your@email.com"
+                        value={reminderEmail}
+                        onChange={(e) => setReminderEmail(e.target.value)}
+                        required
+                        className="flex-1 min-w-0 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        data-testid="input-reminder-email"
+                      />
+                      <button
+                        type="submit"
+                        disabled={reminderMutation.isPending}
+                        className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium text-sm transition-colors whitespace-nowrap disabled:opacity-50"
+                        data-testid="button-submit-reminder"
+                      >
+                        {reminderMutation.isPending ? "..." : "Remind Me"}
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="py-16 md:py-24 bg-background scroll-mt-20">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2
@@ -317,13 +433,14 @@ export default function FindAService() {
           <div className="grid gap-5">
             {localizedServices.map((service) => {
               const Icon = service.icon;
+              const calendarExpanded = expandedCalendars[service.id] || false;
               return (
                 <div
                   key={service.id}
                   className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
                   data-testid={`card-service-${service.id}`}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
@@ -331,10 +448,10 @@ export default function FindAService() {
                       <h3 className="text-lg font-semibold mb-1" data-testid={`text-service-name-${service.id}`}>
                         {service.name}
                       </h3>
-                      <p className="text-muted-foreground text-sm mb-2">
+                      <p className="text-muted-foreground text-sm mb-3">
                         {service.description}
                       </p>
-                      <div className="flex flex-wrap items-center gap-3 text-sm">
+                      <div className="flex flex-wrap items-center gap-3 text-sm mb-3">
                         <span className="inline-flex items-center gap-1.5 font-medium text-primary">
                           <Calendar className="w-4 h-4" />
                           {service.day}
@@ -347,20 +464,56 @@ export default function FindAService() {
                           via {service.platform}
                         </span>
                       </div>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <AddToCalendar
-                        serviceId={service.id}
-                        event={{
-                          title: `${service.name} — The Traveling Church`,
-                          description: service.description,
-                          location: service.meetLink || "Online",
-                          hourUTC: service.hourUTC,
-                          minuteUTC: service.minuteUTC,
-                          dayOfWeekUTC: service.dayOfWeekUTC,
-                          durationMinutes: 60,
-                        }}
-                      />
+
+                      {service.meetLink && (
+                        <a
+                          href={service.meetLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => { window.gtag?.('event', 'service_registration', { service_name: service.name, method: 'meet_link' }); }}
+                          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors mb-2"
+                          data-testid={`link-meet-${service.id}`}
+                        >
+                          <Video className="w-4 h-4" />
+                          Join on Google Meet
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+
+                      {service.dialIn && (
+                        <div className="flex items-start gap-2 text-sm text-muted-foreground mt-1" data-testid={`text-dialin-${service.id}`}>
+                          <Phone className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                          <span>Dial in: <span className="font-mono text-foreground">{service.dialIn}</span></span>
+                        </div>
+                      )}
+
+                      <div className="mt-3 pt-3 border-t border-border/50">
+                        <button
+                          onClick={() => toggleCalendar(service.id)}
+                          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          data-testid={`button-toggle-calendar-${service.id}`}
+                        >
+                          <Calendar className="w-3.5 h-3.5" />
+                          Add to calendar
+                          <ChevronDown className={`w-3.5 h-3.5 transition-transform ${calendarExpanded ? "rotate-180" : ""}`} />
+                        </button>
+                        {calendarExpanded && (
+                          <div className="mt-2" data-testid={`calendar-options-${service.id}`}>
+                            <AddToCalendar
+                              serviceId={service.id}
+                              event={{
+                                title: `${service.name} — The Traveling Church`,
+                                description: service.description,
+                                location: service.meetLink || "Online",
+                                hourUTC: service.hourUTC,
+                                minuteUTC: service.minuteUTC,
+                                dayOfWeekUTC: service.dayOfWeekUTC,
+                                durationMinutes: 60,
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -369,7 +522,8 @@ export default function FindAService() {
           </div>
         </div>
       </section>
-      <section className="py-16 md:py-24 bg-background -mt-[50px] md:mt-0">
+
+      <section className="py-16 md:py-24 bg-muted/50">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
           <h2
             className="text-3xl md:text-4xl font-bold mb-6"
@@ -408,6 +562,7 @@ export default function FindAService() {
           </div>
         </div>
       </section>
+
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3" data-testid="heading-meet-leadership">
@@ -428,22 +583,8 @@ export default function FindAService() {
           </div>
         </div>
       </section>
+
       <Footer />
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border p-3 md:p-4 md:bg-transparent md:border-0 md:bottom-6 md:right-6 md:left-auto md:w-auto" data-testid="sticky-footer-cta">
-        <div className="flex items-center justify-center md:justify-end">
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => { window.gtag?.('event', 'click_whatsapp_join'); }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,32%)] text-white px-8 py-3 rounded-full font-medium text-sm transition-colors md:shadow-lg"
-            data-testid="button-sticky-whatsapp"
-          >
-            <MessageCircle className="w-4 h-4" />
-            Checkout the WhatsApp Group
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

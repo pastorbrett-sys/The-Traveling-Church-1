@@ -6,6 +6,7 @@ import { runMigrations } from 'stripe-replit-sync';
 import { getStripeSync } from './stripeClient';
 import { WebhookHandlers } from './webhookHandlers';
 import { initNotificationCron } from './notificationCron';
+import { initServiceReminderCron } from './serviceReminderCron';
 
 const app = express();
 
@@ -206,8 +207,8 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Initialize notification cron job
   initNotificationCron();
+  initServiceReminderCron();
 
   const port = parseInt(process.env.PORT || '5000', 10);
   server.listen({

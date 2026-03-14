@@ -31,6 +31,7 @@ The UI/UX prioritizes accessibility and customization, leveraging Shadcn/ui and 
 - **Verse Sharing**: Generates shareable images of Bible verses with various backgrounds and integrates with native Share APIs.
 - **Prayer Timer**: Features background meditation music with lock screen controls, persistent timer state across navigation, a draggable floating prayer button, and an alarm with haptic feedback upon completion.
 - **Push Notifications**: Utilizes Firebase Cloud Messaging (FCM) for timezone-aware daily and weekly verse reminders. Supports localized notifications through AI-driven translation for non-English users, with a configurable priority system for collision detection.
+- **Service Reminders**: Weekly email reminders for Bible study services, sent every Thursday at 9 AM UTC via `server/serviceReminderCron.ts`. Subscribers sign up via `/api/service-reminders` with email and auto-detected timezone. Emails show localized service times and Google Meet links. DB table: `service_reminders`.
 - **Apple Sign-In**: Configured for native iOS applications, requiring specific settings in Apple Developer Console, Firebase Console, and Xcode.
 
 ## External Dependencies
@@ -63,5 +64,5 @@ The UI/UX prioritizes accessibility and customization, leveraging Shadcn/ui and 
 - **Google Gemini**: Powers Amharic AI translations.
 - **Stripe**: For web subscription billing and management.
 - **RevenueCat**: For native iOS/Android in-app purchases and subscriptions.
-- **Resend**: For automated email sending.
+- **Resend**: For automated email sending (welcome, subscription, weekly Bible study reminders).
 - **Firebase Cloud Messaging (FCM)**: For push notifications.

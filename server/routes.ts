@@ -36,6 +36,9 @@ import notificationRoutes from "./notificationRoutes";
 import { registerRevenueCatWebhook } from "./revenueCatWebhook";
 import { isUserPro } from "./proStatusService";
 import { registerNativeAuthRoutes } from "./nativeAuthRoutes";
+import { sendConfirmationEmail } from "./serviceReminderCron";
+import { serviceReminders, insertServiceReminderSchema } from "@shared/schema";
+import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first (before other routes)
@@ -429,6 +432,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(201).json(member);
     } catch (error) {
       res.status(400).json({ message: "Invalid member data" });
+    }
+  });
+
+  // Service Reminders (email signup for weekly Bible study reminders)
+  const reminderRateLimit = new Map<string, number>();
+  app.post("/api/service-reminders", async (req, res) => {
+    try {
+      const ip = req.ip || req.socket.remoteAddress || 'unknown';
+      const now = Date.now();
+      const lastAttempt = reminderRateLimit.get(ip);
+      if (lastAttempt && now - lastAttempt < 10000) {
+        return res.status(429).json({ message: "Too many requests. Please wait a moment." });
+      }
+      reminderRateLimit.set(ip, now);
+
+      const emailSchema = insertServiceReminderSchema.extend({
+        email: z.string().email("Please enter a valid email address"),
+      });
+      const validated = emailSchema.parse(req.body);
+      const existing = await db.select().from(serviceReminders).where(eq(serviceReminders.email, validated.email)).limit(1);
+      if (existing.length > 0) {
+        return res.status(200).json({ message: "already_subscribed" });
+      }
+      const [reminder] = await db.insert(serviceReminders).values(validated).returning();
+      sendConfirmationEmail(validated.email, validated.timezone).catch(err => {
+        console.error('[ServiceReminder] Confirmation email error:', err);
+      });
+      res.status(201).json({ message: "subscribed", id: reminder.id });
+    } catch (error) {
+      console.error('[ServiceReminder] Error:', error);
+      res.status(400).json({ message: "Invalid email" });
     }
   });
 

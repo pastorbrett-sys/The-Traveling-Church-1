@@ -439,5 +439,20 @@ export type PrayerSession = typeof prayerSessions.$inferSelect;
 export type InsertCandleDonation = z.infer<typeof insertCandleDonationSchema>;
 export type CandleDonation = typeof candleDonations.$inferSelect;
 
+export const serviceReminders = pgTable("service_reminders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  timezone: text("timezone").notNull().default("UTC"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const insertServiceReminderSchema = createInsertSchema(serviceReminders).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertServiceReminder = z.infer<typeof insertServiceReminderSchema>;
+export type ServiceReminder = typeof serviceReminders.$inferSelect;
+
 export * from "./models/chat";
 export * from "./models/bible";

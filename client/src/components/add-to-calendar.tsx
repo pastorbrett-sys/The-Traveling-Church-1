@@ -100,7 +100,7 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
   const handleAppleCalendar = () => {
     window.gtag?.('event', 'click_add_calendar');
     window.gtag?.('event', 'service_registration', { service_name: event.title, method: 'apple_calendar' });
-    window.location.href = getICSUrl(event);
+    window.open(getICSUrl(event), "_blank");
     setIsOpen(false);
   };
 
@@ -114,7 +114,7 @@ export default function AddToCalendar({ event, serviceId }: AddToCalendarProps) 
   const handleOtherCalendar = () => {
     window.gtag?.('event', 'click_add_calendar');
     window.gtag?.('event', 'service_registration', { service_name: event.title, method: 'other_calendar' });
-    window.location.href = getICSUrl(event);
+    window.open(getICSUrl(event), "_blank");
     setIsOpen(false);
   };
 
