@@ -448,7 +448,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       reminderRateLimit.set(ip, now);
 
       const emailSchema = insertServiceReminderSchema.extend({
-        email: z.string().email("Please enter a valid email address"),
+        email: z.string().email("Please enter a valid email address").transform(e => e.trim().toLowerCase()),
       });
       const validated = emailSchema.parse(req.body);
       const existing = await db.select().from(serviceReminders).where(eq(serviceReminders.email, validated.email)).limit(1);
