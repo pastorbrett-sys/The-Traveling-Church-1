@@ -456,7 +456,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(200).json({ message: "already_subscribed" });
       }
       const [reminder] = await db.insert(serviceReminders).values(validated).returning();
-      sendConfirmationEmail(validated.email, validated.timezone).catch(err => {
+      sendConfirmationEmail(validated.email, validated.timezone || 'UTC').catch(err => {
         console.error('[ServiceReminder] Confirmation email error:', err);
       });
       res.status(201).json({ message: "subscribed", id: reminder.id });

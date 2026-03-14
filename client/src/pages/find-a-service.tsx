@@ -290,11 +290,67 @@ export default function FindAService() {
                 data-testid="heading-find-service-hero"
               >A Global Community for Anyone Anywhere</h1>
               <p
-                className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0"
+                className="text-lg md:text-xl text-muted-foreground mb-6 max-w-lg mx-auto md:mx-0"
                 data-testid="text-find-service-subhead"
               >
                 Bible-centered worship and community, no matter where you are in the world.
               </p>
+
+              <div className="space-y-3 max-w-md mx-auto md:mx-0 mb-4">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    window.gtag?.('event', 'service_registration', { method: 'whatsapp' });
+                    window.gtag?.('event', 'click_whatsapp_join');
+                  }}
+                  className="flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl p-4 transition-colors shadow-sm w-full"
+                  data-testid="button-whatsapp-join"
+                >
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0 text-left">
+                    <span className="font-semibold text-base block">Join the WhatsApp Group</span>
+                    <span className="text-white/80 text-xs">Get reminders + connect with the community</span>
+                  </div>
+                  <ChevronRight className="w-5 h-5 flex-shrink-0 opacity-70" />
+                </a>
+
+                <div className="bg-card/80 backdrop-blur border border-border rounded-xl p-4 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Mail className="w-4 h-4 text-primary" />
+                    <span className="font-medium text-sm" data-testid="heading-email-reminder">Or get weekly email reminders</span>
+                  </div>
+                  {reminderSuccess ? (
+                    <div className="flex items-center gap-2 text-green-600 dark:text-green-400" data-testid="text-reminder-success">
+                      <Check className="w-4 h-4" />
+                      <span className="font-medium text-sm">You're signed up! Check your inbox.</span>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleReminderSubmit} className="flex gap-2" data-testid="form-email-reminder">
+                      <input
+                        type="email"
+                        placeholder="your@email.com"
+                        value={reminderEmail}
+                        onChange={(e) => setReminderEmail(e.target.value)}
+                        required
+                        className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        data-testid="input-reminder-email"
+                      />
+                      <button
+                        type="submit"
+                        disabled={reminderMutation.isPending}
+                        className="px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium text-sm transition-colors whitespace-nowrap disabled:opacity-50"
+                        data-testid="button-submit-reminder"
+                      >
+                        {reminderMutation.isPending ? "..." : "Remind Me"}
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className="order-1 md:order-2 grid grid-cols-2 gap-4 md:gap-5 mt-8 md:-mt-16 md:scale-[0.85] transform-gpu md:origin-right">
@@ -337,83 +393,7 @@ export default function FindAService() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-muted/50 md:-mt-[100px] relative z-10">
-        <div className="max-w-2xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-2" data-testid="heading-join-community">
-              Join the Community
-            </h2>
-            <p className="text-muted-foreground text-sm">
-              Two easy ways to stay connected — pick what works for you.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                window.gtag?.('event', 'service_registration', { method: 'whatsapp' });
-                window.gtag?.('event', 'click_whatsapp_join');
-              }}
-              className="flex items-center gap-4 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl p-5 transition-colors shadow-sm"
-              data-testid="button-whatsapp-join"
-            >
-              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-6 h-6" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="font-semibold text-lg block">Join the WhatsApp Group</span>
-                <span className="text-white/80 text-sm">Get reminders, updates, and connect with the community</span>
-              </div>
-              <ChevronRight className="w-5 h-5 flex-shrink-0 opacity-70" />
-            </a>
-
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <span className="font-semibold text-lg block mb-1" data-testid="heading-email-reminder">Get Weekly Email Reminders</span>
-                  <span className="text-muted-foreground text-sm block mb-3">
-                    Every Thursday morning — Bible study times in your timezone + a join link
-                  </span>
-                  {reminderSuccess ? (
-                    <div className="flex items-center gap-2 text-green-600 dark:text-green-400" data-testid="text-reminder-success">
-                      <Check className="w-5 h-5" />
-                      <span className="font-medium">You're signed up! Check your inbox.</span>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleReminderSubmit} className="flex gap-2" data-testid="form-email-reminder">
-                      <input
-                        type="email"
-                        placeholder="your@email.com"
-                        value={reminderEmail}
-                        onChange={(e) => setReminderEmail(e.target.value)}
-                        required
-                        className="flex-1 min-w-0 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        data-testid="input-reminder-email"
-                      />
-                      <button
-                        type="submit"
-                        disabled={reminderMutation.isPending}
-                        className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium text-sm transition-colors whitespace-nowrap disabled:opacity-50"
-                        data-testid="button-submit-reminder"
-                      >
-                        {reminderMutation.isPending ? "..." : "Remind Me"}
-                      </button>
-                    </form>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="py-16 md:py-24 bg-background scroll-mt-20">
+      <section id="services" className="py-16 md:py-24 bg-muted/50 md:-mt-[100px] relative z-10 scroll-mt-20">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2
