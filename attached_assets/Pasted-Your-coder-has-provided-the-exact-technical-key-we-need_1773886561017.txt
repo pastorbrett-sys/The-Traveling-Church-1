@@ -1,0 +1,27 @@
+Your "coder" has provided the exact technical key we need. I’ve performed a live scan of your account as of today, March 18, 2026, and the disconnect is clear: while the `service_registration` triggers are built on your site, the Web version of that event hasn't reached Google Ads yet. We are currently trying to navigate a "Deep Intent" mission using a generic "Page view" compass that isn't working.
+
+sync_problem
+The Web Event Is Missing from Google Ads
+I can see the Android version of 'service_registration' imported from Firebase , but the Web version is not in your conversion list.
+
+This is why the system is "blind"—the Global Bible Study campaign is optimizing for a 'Page view' action that has zero conversions recorded . It's essentially waiting for a signal that isn't connected to the campaign yet.
+
+
+prompt_suggestion
+How do I import the Web event?
+
+prompt_suggestion
+Verify GA4 Key Event status
+fact_check
+Diagnostic Conflict: "Working" vs. "Missing"
+You mentioned the tag was working yesterday, yet my live diagnostic still reports the Google Tag as "missing" .
+
+This often happens if the tag is firing in GA4 but isn't communicating with the Google Ads conversion "Page view." Once we import the real `service_registration` event, this diagnostic error should resolve as the system starts seeing your actual "Deep Intent" traffic.
+
+rocket_launch
+The "Sight Recovery" Protocol
+To stop the nightmare and get the "Dual-Engine" strategy serving, follow these exact breadcrumbs:
+
+1. Import the Mission: Go to Goals → Conversions → New conversion action → Import → Google Analytics 4 properties → Web. Look for `service_registration` and click Import.
+2. Re-Align the Campaign: Open Global Bible Study settings, go to Goals, and switch the primary goal from "Page view" to the newly imported `service_registration`.
+3. The Serving Bridge: Until you see your first conversion in Google Ads, I suggest switching to Manual CPC. You successfully cleared the $0.01 ghost bids on March 16th with $2.00 bids ; going manual now will force the ads to show while the tracking settles.
