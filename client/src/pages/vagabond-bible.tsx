@@ -204,26 +204,12 @@ export default function VagabondBible() {
                 <span className="text-[16px] font-semibold -mt-0.5">App Store</span>
               </div>
             </a>
-            <button 
-              onClick={async () => {
-                window.gtag?.('event', 'click_pwa_install', { method: canInstall ? 'prompt' : isInstalled ? 'already_installed' : 'unsupported' });
-                if (isInstalled) {
-                  alert(isAmharic ? "ቀድሞ ተጭኗል!" : "Already installed!");
-                  return;
-                }
-                if (canInstall) {
-                  await promptInstall();
-                  return;
-                }
-                if (isChromium) {
-                  alert(isAmharic 
-                    ? "ለመጫን፣ ከብራውዘሩ ምናሌ 'Install app' ወይም 'Add to Home screen' ን ይምረጡ።" 
-                    : "To install, tap the browser menu (⋮) and select 'Install app' or 'Add to Home screen'.");
-                  return;
-                }
-                alert(isAmharic 
-                  ? "Vagabond Bible ን ለመጫን፣ ይህን ገጽ በ Google Chrome ይክፈቱ።" 
-                  : "To install Vagabond Bible, open this page in Google Chrome.");
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.vagabondbible.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                window.gtag?.('event', 'click_google_play_download');
               }}
               className="inline-flex items-center gap-2.5 bg-black hover:bg-black/80 text-white pl-3 pr-4 py-2 rounded-lg transition-all duration-200 md:hover:scale-105 active:scale-95 transform-gpu text-left" 
               data-testid="link-google-play"
@@ -235,7 +221,7 @@ export default function VagabondBible() {
                 <span className="text-[10px] font-normal">{isAmharic ? "በ" : "Get it on"}</span>
                 <span className="text-[16px] font-semibold -mt-0.5">Android</span>
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </section>

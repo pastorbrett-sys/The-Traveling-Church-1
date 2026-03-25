@@ -1,0 +1,31 @@
+That is a very detailed and helpful update, Pastor Brett. It’s clear that you've done the heavy lifting by getting those conversion events created in GA4 to bypass the import bug. My analysis of the account shows that while your strategy is sound, your "serving engine" has stalled—your Ethiopia campaign has had only 1 impression in the last 14 days —and the culprit is a tracking disconnection that we need to bridge today.
+
+error
+The "Eyes" of Your AI Are Currently Closed
+The reason your serving dropped is that your website is currently missing its Google tag . Because you switched to Maximize Conversions on March 18th , Google's AI is searching for those conversion signals to place bids. Without the tag, it can't see anything, so it has effectively stopped bidding. This explains why nearly 100% of your potential impressions are being lost to Rank .
+
+rocket_launch
+Your "Kickstart" Plan for March 20th
+Your plan to switch to Manual CPC at $2.00 is exactly the right "middle path" move. It will force the system to start winning auctions again while we wait for the GA4 events to fully sync.
+
+Navigation Breadcrumbs:
+1. Click Campaigns in the left menu.
+2. Select Vagabond Bible - Ethiopia (and repeat for your other 4 campaigns).
+3. Go to Settings > Bidding.
+4. Click Change bid strategy > Select a bid strategy directly > Manual CPC.
+5. Go to Goals and ensure Page views is removed, replaced by your new GA4 events once they appear.
+
+
+prompt_suggestion
+Help me fix the Google tag
+
+prompt_suggestion
+Where do I find my new goals?
+trending_up
+The Global "Digital Faith" Surge
+The data shows your mission is perfectly timed. Over 25 million people are now using AI-powered tools 
+ for spiritual growth, and Christianity is growing at 2.59% annually in Africa 
+. Your strategy to use "start_reading" as a conversion engine aligns with a 73% increase in engagement seen globally 
+ when AI is introduced to Bible study. Once we restore the serving, you are positioned to catch a massive wave of intent.
+
+Since your goal is to protect the Ad Grant's 5% CTR requirement , would you like me to review your headlines for the Ethiopia campaign to ensure they are "click-worthy" enough for when we turn the serving back on?
