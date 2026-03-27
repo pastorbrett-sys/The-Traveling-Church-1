@@ -478,6 +478,40 @@ router.post("/admin/pause/:id", isAuthenticated, async (req: any, res) => {
   }
 });
 
+router.post("/admin/bootstrap-super-admin", isAuthenticated, async (req: any, res) => {
+  try {
+    const userId = req.user?.uid;
+    if (!userId) {
+      return res.status(401).json({ error: "Authentication required" });
+    }
+
+    // Check if any super admins exist
+    const existingSuperAdmins = await db.select().from(ambassadors).where(eq(ambassadors.isSuperAdmin, true)).limit(1);
+    
+    if (existingSuperAdmins.length > 0) {
+      return res.status(403).json({ error: "Super admin already exists. Contact the existing admin to grant access." });
+    }
+
+    // Get the requesting user's ambassador record
+    const [ambassador] = await db.select().from(ambassadors).where(eq(ambassadors.userId, userId)).limit(1);
+    
+    if (!ambassador) {
+      return res.status(404).json({ error: "Ambassador record not found. Please register as an ambassador first." });
+    }
+
+    // Set this user as super admin
+    const [updated] = await db.update(ambassadors)
+      .set({ isSuperAdmin: true })
+      .where(eq(ambassadors.id, ambassador.id))
+      .returning();
+
+    res.json({ ambassador: updated, message: "You have been set as super admin" });
+  } catch (error) {
+    console.error("Bootstrap super admin error:", error);
+    res.status(500).json({ error: "Failed to bootstrap super admin" });
+  }
+});
+
 router.post("/admin/set-super-admin/:id", isAuthenticated, async (req: any, res) => {
   try {
     const userId = req.user?.uid;
