@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "120766949732-1l0bq4v2hg5h0420nmisvflrt7vedk1e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vagabondbible.app",
+            "certificate_hash": "e99391198f239b9cce40d8f44f68a1d2352247cf"
+          }
+        },
+        {
+          "client_id": "120766949732-31sapq0bdnompvjvcpcspqbgtpt41ncn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vagabondbible.app",
+            "certificate_hash": "27e1940e5222d7c7305241b776ad222b8b4288ac"
+          }
+        },
+        {
           "client_id": "120766949732-8q6gfphegvq8kjrnq754uvmjtdslq6lt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
