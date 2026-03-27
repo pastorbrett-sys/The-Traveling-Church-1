@@ -45,6 +45,7 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [debugInfo, setDebugInfo] = useState<string | null>(null);
   
   // For native flow: track if user wants to use a different account
   const [nativeWantsDifferentAccount, setNativeWantsDifferentAccount] = useState(false);
