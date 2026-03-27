@@ -208,8 +208,23 @@ export default function Login() {
       if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') {
         return;
       }
-      console.error("Sign in error:", err);
-      setError(getFirebaseErrorMessage(err.code));
+      console.error("Google sign in error:", err);
+      console.error("Error details - code:", err.code, "message:", err.message, "full:", JSON.stringify(err));
+      
+      // Provide better error messages for common Android issues
+      if (err.message?.includes("NETWORK_ERROR") || err.message?.includes("network")) {
+        setError("Network error. Please check your internet connection and try again.");
+      } else if (err.message?.includes("SIGN_IN_CANCELLED")) {
+        return; // User cancelled
+      } else if (err.message?.includes("Google Play")) {
+        setError("Google Play Services not available. Please update Google Play Services and try again.");
+      } else if (err.message?.includes("Activity result")) {
+        setError("Unable to complete sign in. Please try again.");
+      } else if (err.code?.includes("DEVELOPER_ERROR")) {
+        setError("Developer error with Google Sign-In configuration. Please contact support.");
+      } else {
+        setError(getFirebaseErrorMessage(err.code) || err.message || "Google sign in failed. Please try again.");
+      }
     } finally {
       setIsGoogleSubmitting(false);
     }
@@ -233,14 +248,19 @@ export default function Login() {
         return;
       }
       console.error("Apple sign in error:", err);
+      console.error("Apple error details - code:", err.code, "message:", err.message, "full:", JSON.stringify(err));
       
       // Check for specific Apple sign-in errors
       if (err.message?.includes("timed out")) {
         setError("Apple sign-in timed out. Please try again.");
+      } else if (err.message?.includes("SIGN_IN_CANCELLED")) {
+        return; // User cancelled
       } else if (err.code === 'auth/operation-not-allowed') {
         setError("Apple sign-in is not configured. Please use another sign-in method.");
       } else if (err.message?.includes("Sign in with Apple")) {
         setError("Apple sign-in failed. Please ensure Sign in with Apple is enabled in your device settings.");
+      } else if (err.message?.includes("NETWORK_ERROR") || err.message?.includes("network")) {
+        setError("Network error. Please check your internet connection and try again.");
       } else {
         setError(getFirebaseErrorMessage(err.code) || err.message || "Apple sign-in failed. Please try again.");
       }
