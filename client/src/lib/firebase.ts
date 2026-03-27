@@ -73,13 +73,18 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
   try {
     // On native apps, use native Firebase Authentication plugin
     // This shows the native iOS/Android Google account picker (like Suno)
+    console.log("[NATIVE AUTH] signInWithGoogle called, isNativePlatform:", Capacitor.isNativePlatform());
+    
     if (Capacitor.isNativePlatform()) {
       console.log("[NATIVE AUTH] Starting native Google sign-in...");
       
       const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+      console.log("[NATIVE AUTH] FirebaseAuthentication imported successfully");
       
       // Use the native Google Sign-In flow
+      console.log("[NATIVE AUTH] Calling FirebaseAuthentication.signInWithGoogle()...");
       const result = await FirebaseAuthentication.signInWithGoogle();
+      console.log("[NATIVE AUTH] signInWithGoogle() completed");
       
       console.log("[NATIVE AUTH] Native sign-in result:", result.user?.email);
       
@@ -133,12 +138,16 @@ export async function signInWithGoogle(): Promise<FirebaseUser | null> {
 export async function signInWithApple(): Promise<FirebaseUser | null> {
   try {
     // On native apps, use native Firebase Authentication plugin
+    console.log("[NATIVE AUTH] signInWithApple called, isNativePlatform:", Capacitor.isNativePlatform());
+    
     if (Capacitor.isNativePlatform()) {
       console.log("[NATIVE AUTH] Starting native Apple sign-in...");
       
       const { FirebaseAuthentication } = await import("@capacitor-firebase/authentication");
+      console.log("[NATIVE AUTH] FirebaseAuthentication imported successfully");
       
       // Use the native Apple Sign-In flow with timeout to prevent infinite spinner
+      console.log("[NATIVE AUTH] Calling FirebaseAuthentication.signInWithApple()...");
       const signInPromise = FirebaseAuthentication.signInWithApple();
       const timeoutPromise = new Promise<never>((_, reject) => {
         setTimeout(() => reject(new Error("Apple sign-in timed out. Please check your internet connection and try again.")), 30000);
