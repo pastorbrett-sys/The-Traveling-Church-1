@@ -13,7 +13,7 @@ export default function MusicMinistrySection() {
           streaming continuously to believers around the world.
         </p>
 
-        <div className="relative overflow-hidden rounded-t-2xl rounded-b-[2rem] shadow-2xl max-w-3xl mx-auto bg-transparent">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl max-w-3xl mx-auto">
           <img
             src={lionsAndRams}
             alt="Of Lions & Rams - New Album from Pastor Brett"
