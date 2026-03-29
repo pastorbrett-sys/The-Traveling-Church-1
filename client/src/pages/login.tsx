@@ -196,7 +196,6 @@ export default function Login() {
     setError(null);
     setDebugInfo(null);
     try {
-      setDebugInfo(`Starting Google sign-in... isNative: ${Capacitor.isNativePlatform()}, platform: ${Capacitor.getPlatform()}`);
       const signedInUser = await signInWithGoogle();
       if (signedInUser) {
         // Always try to track referral - backend handles duplicates
@@ -241,7 +240,6 @@ export default function Login() {
     setError(null);
     setDebugInfo(null);
     try {
-      setDebugInfo(`Starting Apple sign-in... isNative: ${Capacitor.isNativePlatform()}, platform: ${Capacitor.getPlatform()}`);
       const signedInUser = await signInWithApple();
       if (signedInUser) {
         // Always try to track referral - backend handles duplicates
