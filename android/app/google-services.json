@@ -38,6 +38,14 @@
           }
         },
         {
+          "client_id": "120766949732-bohopniulnpif97cfb3bakk6pnlmhkn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vagabondbible.app",
+            "certificate_hash": "43eabb0492d2d5d76d8cd178f7ba86fa84f8df47"
+          }
+        },
+        {
           "client_id": "120766949732-e63bqaju4jcjnvfndnlrf3f2bq3ddf6l.apps.googleusercontent.com",
           "client_type": 3
         }
