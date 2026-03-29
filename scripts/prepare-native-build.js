@@ -65,7 +65,47 @@ function cleanDirectory(dir) {
   return { removed, kept, savedMB: savedBytes / 1024 / 1024 };
 }
 
-console.log('\n🎬 Preparing native build (removing non-essential videos)...\n');
+function cleanDuplicateFiles(baseDir) {
+  if (!fs.existsSync(baseDir)) return 0;
+  let count = 0;
+
+  function walk(dir) {
+    let entries;
+    try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return; }
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (/\s/.test(entry.name) || / \d+\./.test(entry.name)) {
+        console.log(`  ✗ Removing duplicate: ${fullPath}`);
+        fs.unlinkSync(fullPath);
+        count++;
+      }
+    }
+  }
+
+  walk(baseDir);
+  return count;
+}
+
+console.log('\n🧹 Cleaning macOS duplicate files (spaces in names)...\n');
+
+const ANDROID_RES = 'android/app/src/main/res';
+const IOS_APP = 'ios/App/App';
+let dupsRemoved = 0;
+
+for (const dir of [ANDROID_RES, IOS_APP]) {
+  console.log(`Checking ${dir}:`);
+  dupsRemoved += cleanDuplicateFiles(dir);
+}
+
+if (dupsRemoved > 0) {
+  console.log(`\n  Removed ${dupsRemoved} duplicate file(s)\n`);
+} else {
+  console.log('  No duplicates found\n');
+}
+
+console.log('🎬 Preparing native build (removing non-essential videos)...\n');
 
 let totalRemoved = 0;
 let totalKept = 0;
