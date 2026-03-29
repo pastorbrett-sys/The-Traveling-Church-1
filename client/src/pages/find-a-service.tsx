@@ -53,8 +53,8 @@ const SERVICES: ServiceInfo[] = [
     dayOfWeekUTC: 4,
     icon: Globe,
     platform: "Google Meet",
-    meetLink: "https://meet.google.com/yhn-fbgs-ibw",
-    dialIn: "+1 502-498-8797 PIN: 615065026",
+    meetLink: "https://meet.google.com/fbb-bnmx-cbz",
+    dialIn: "+1 484-272-7768 PIN: 225168469",
   },
   {
     id: "bible-study-west",
@@ -84,6 +84,15 @@ function formatTimeInUserTimezone(hourUTC: number, minuteUTC: number): string {
   const now = new Date();
   const utcDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hourUTC, minuteUTC, 0));
   return utcDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit", hour12: true, timeZoneName: "short" });
+}
+
+function getDayNameInUserTimezone(dayOfWeekUTC: number, hourUTC: number, minuteUTC: number): string {
+  const days = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"];
+  const now = new Date();
+  const diff = dayOfWeekUTC - now.getUTCDay();
+  const nextDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + diff, hourUTC, minuteUTC, 0));
+  const localDay = nextDate.getDay();
+  return days[localDay];
 }
 
 function getShortTimezone(): string {
@@ -233,6 +242,7 @@ export default function FindAService() {
   const localizedServices = useMemo(() => {
     return SERVICES.map((s) => ({
       ...s,
+      day: getDayNameInUserTimezone(s.dayOfWeekUTC, s.hourUTC, s.minuteUTC),
       localTime: formatTimeInUserTimezone(s.hourUTC, s.minuteUTC),
     }));
   }, []);
