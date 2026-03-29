@@ -1,4 +1,4 @@
-import edmBanner from "@assets/EDM_BANNER_1_1766962031883.png";
+import lionsAndRams from "@assets/lions_and_rams_album.jpg";
 
 export default function MusicMinistrySection() {
   return (
@@ -15,8 +15,8 @@ export default function MusicMinistrySection() {
 
         <div className="relative overflow-hidden rounded-t-2xl rounded-b-[2rem] shadow-2xl max-w-3xl mx-auto bg-transparent">
           <img
-            src={edmBanner}
-            alt="After The Fire - Electronic Music Ministry"
+            src={lionsAndRams}
+            alt="Of Lions & Rams - New Album from Pastor Brett"
             className="w-full h-auto object-cover block"
             data-testid="img-music-banner"
             loading="lazy"
