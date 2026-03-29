@@ -194,7 +194,9 @@ export default function Login() {
   const handleGoogleSignIn = async () => {
     setIsGoogleSubmitting(true);
     setError(null);
+    setDebugInfo(null);
     try {
+      setDebugInfo(`Starting Google sign-in... isNative: ${Capacitor.isNativePlatform()}, platform: ${Capacitor.getPlatform()}`);
       const signedInUser = await signInWithGoogle();
       if (signedInUser) {
         // Always try to track referral - backend handles duplicates
@@ -212,11 +214,14 @@ export default function Login() {
       console.error("Google sign in error:", err);
       console.error("Error details - code:", err.code, "message:", err.message, "full:", JSON.stringify(err));
       
-      // Provide better error messages for common Android issues
+      if (Capacitor.isNativePlatform()) {
+        setDebugInfo(`Google Error: ${err.code || 'no-code'} | ${err.message || 'no-message'} | isNative: true | ${JSON.stringify(err).substring(0, 300)}`);
+      }
+      
       if (err.message?.includes("NETWORK_ERROR") || err.message?.includes("network")) {
         setError("Network error. Please check your internet connection and try again.");
       } else if (err.message?.includes("SIGN_IN_CANCELLED")) {
-        return; // User cancelled
+        return;
       } else if (err.message?.includes("Google Play")) {
         setError("Google Play Services not available. Please update Google Play Services and try again.");
       } else if (err.message?.includes("Activity result")) {
@@ -234,7 +239,9 @@ export default function Login() {
   const handleAppleSignIn = async () => {
     setIsAppleSubmitting(true);
     setError(null);
+    setDebugInfo(null);
     try {
+      setDebugInfo(`Starting Apple sign-in... isNative: ${Capacitor.isNativePlatform()}, platform: ${Capacitor.getPlatform()}`);
       const signedInUser = await signInWithApple();
       if (signedInUser) {
         // Always try to track referral - backend handles duplicates
@@ -251,11 +258,14 @@ export default function Login() {
       console.error("Apple sign in error:", err);
       console.error("Apple error details - code:", err.code, "message:", err.message, "full:", JSON.stringify(err));
       
-      // Check for specific Apple sign-in errors
+      if (Capacitor.isNativePlatform()) {
+        setDebugInfo(`Apple Error: ${err.code || 'no-code'} | ${err.message || 'no-message'} | isNative: true | ${JSON.stringify(err).substring(0, 300)}`);
+      }
+      
       if (err.message?.includes("timed out")) {
         setError("Apple sign-in timed out. Please try again.");
       } else if (err.message?.includes("SIGN_IN_CANCELLED")) {
-        return; // User cancelled
+        return;
       } else if (err.code === 'auth/operation-not-allowed') {
         setError("Apple sign-in is not configured. Please use another sign-in method.");
       } else if (err.message?.includes("Sign in with Apple")) {
@@ -465,6 +475,12 @@ export default function Login() {
               {error && (
                 <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md" data-testid="error-message">
                   {error}
+                </div>
+              )}
+              
+              {debugInfo && (
+                <div className="bg-yellow-900/30 text-yellow-200 text-xs p-2 rounded-md font-mono break-all" data-testid="debug-info">
+                  {debugInfo}
                 </div>
               )}
               
