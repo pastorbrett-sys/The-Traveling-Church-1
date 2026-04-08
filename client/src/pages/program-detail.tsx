@@ -109,7 +109,7 @@ export default function ProgramDetail() {
 
           <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
             {videoMap[program.image] ? (
-              <div className="w-full h-48 md:h-64 overflow-hidden bg-black">
+              <div className="w-full h-64 md:h-96 overflow-hidden bg-black">
                 <video
                   className="w-full h-full object-cover block"
                   autoPlay
