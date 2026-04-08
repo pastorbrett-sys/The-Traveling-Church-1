@@ -34,9 +34,6 @@ const videoMap: Record<string, string> = {
   "community-feeding": "/videos/community-food-distribution.mp4",
 };
 
-const secondaryVideoMap: Record<string, string> = {
-  "community-feeding": "/videos/community-food-v2.mp4",
-};
 
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -191,21 +188,6 @@ export default function ProgramDetail() {
                 <p className="text-muted-foreground leading-relaxed" data-testid="text-use-of-funds">
                   {program.useOfFunds}
                 </p>
-                {secondaryVideoMap[program.image] && (
-                  <div className="mt-6 rounded-xl overflow-hidden shadow-md">
-                    <video
-                      className="w-full h-auto block"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      data-testid="video-use-of-funds"
-                    >
-                      <source src={secondaryVideoMap[program.image]} type="video/mp4" />
-                    </video>
-                  </div>
-                )}
               </section>
 
               <section>
