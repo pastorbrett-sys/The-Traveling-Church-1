@@ -30,6 +30,10 @@ const imageMap: Record<string, string> = {
   "animal-conservation": animalConservationImage,
 };
 
+const videoMap: Record<string, string> = {
+  "community-feeding": "/videos/community-food-distribution.mov",
+};
+
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
   const program = programs.find((p) => p.slug === slug);
@@ -100,7 +104,22 @@ export default function ProgramDetail() {
           </Link>
 
           <div className="bg-card rounded-lg shadow-md border border-border overflow-hidden">
-            {imageMap[program.image] && (
+            {videoMap[program.image] ? (
+              <div className="w-full h-48 md:h-64 overflow-hidden bg-black">
+                <video
+                  className="w-full h-full object-cover block"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={imageMap[program.image]}
+                  data-testid="video-program-banner"
+                >
+                  <source src={videoMap[program.image]} type="video/quicktime" />
+                </video>
+              </div>
+            ) : imageMap[program.image] && (
               <div className="relative">
                 <div className="w-full h-48 md:h-64 overflow-hidden">
                   <img
