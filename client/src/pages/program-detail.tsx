@@ -8,7 +8,9 @@ import Footer from "@/components/footer";
 import ironMenImage from "@assets/generated_images/men's_support_group_meeting.png";
 import persecutedChristiansImage from "@assets/generated_images/christians_receiving_humanitarian_aid.png";
 import globalMinistryImage from "@assets/generated_images/traveling_minister_meeting_people.png";
-import communityFeedingImage from "@assets/image_1775640257848.png";
+import communityFeedingImage from "@assets/generated_images/community_food_distribution_volunteers.png";
+import communityActivitiesImage from "@assets/image_1775640257848.png";
+import communityFundsImage from "@assets/IMG_4716_1775640462445.JPG";
 import economicEmpowermentImage from "@assets/generated_images/business_training_entrepreneurs_workshop.png";
 import animalConservationImage from "@assets/generated_images/animal_conservation_volunteers_caring.png";
 
@@ -179,6 +181,11 @@ export default function ProgramDetail() {
                     </li>
                   ))}
                 </ul>
+                {program.image === "community-feeding" && (
+                  <div className="mt-6 rounded-xl overflow-hidden shadow-md">
+                    <img src={communityActivitiesImage} alt="Community feeding activities" className="w-full h-auto block" data-testid="img-activities-supplement" />
+                  </div>
+                )}
               </section>
 
               <section>
@@ -188,6 +195,11 @@ export default function ProgramDetail() {
                 <p className="text-muted-foreground leading-relaxed" data-testid="text-use-of-funds">
                   {program.useOfFunds}
                 </p>
+                {program.image === "community-feeding" && (
+                  <div className="mt-6 rounded-xl overflow-hidden shadow-md">
+                    <img src={communityFundsImage} alt="Global Kids Bible Study Pakistan - food distribution" className="w-full h-auto block" data-testid="img-funds-supplement" />
+                  </div>
+                )}
               </section>
 
               <section>
