@@ -31,7 +31,7 @@ const imageMap: Record<string, string> = {
 };
 
 const videoMap: Record<string, string> = {
-  "community-feeding": "/videos/community-food-distribution.mp4",
+  "community-feeding": "/videos/community-food-v2.mp4",
 };
 
 export default function ProgramDetail() {
