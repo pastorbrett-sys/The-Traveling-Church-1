@@ -31,7 +31,7 @@ const imageMap: Record<string, string> = {
 };
 
 const videoMap: Record<string, string> = {
-  "community-feeding": "/videos/community-food-distribution.mov",
+  "community-feeding": "/videos/community-food-distribution.mp4",
 };
 
 export default function ProgramDetail() {
@@ -116,7 +116,7 @@ export default function ProgramDetail() {
                   poster={imageMap[program.image]}
                   data-testid="video-program-banner"
                 >
-                  <source src={videoMap[program.image]} type="video/quicktime" />
+                  <source src={videoMap[program.image]} type="video/mp4" />
                 </video>
               </div>
             ) : imageMap[program.image] && (
