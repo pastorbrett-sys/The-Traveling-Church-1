@@ -34,7 +34,7 @@ const SERVICES = [
   {
     name: 'Bible Study (East)',
     day: 'Thursday',
-    hourUTC: 13,
+    hourUTC: 12,
     minuteUTC: 0,
     meetLink: 'https://meet.google.com/mya-phhf-qag',
     dialIn: '+1 424-265-1291 PIN: 106812980',
@@ -42,7 +42,7 @@ const SERVICES = [
   {
     name: 'Bible Study (Central)',
     day: 'Thursday',
-    hourUTC: 18,
+    hourUTC: 16,
     minuteUTC: 0,
     meetLink: 'https://meet.google.com/yhn-fbgs-ibw',
     dialIn: '+1 502-498-8797 PIN: 615065026',
@@ -50,7 +50,7 @@ const SERVICES = [
   {
     name: 'Bible Study (West)',
     day: 'Thursday',
-    hourUTC: 17,
+    hourUTC: 18,
     minuteUTC: 0,
     meetLink: 'https://meet.google.com/gmm-skpt-xri',
     dialIn: '+1 720-500-3075 PIN: 158815756',
