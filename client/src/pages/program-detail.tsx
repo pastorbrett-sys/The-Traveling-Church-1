@@ -139,6 +139,10 @@ export default function ProgramDetail() {
             </div>
 
             <div className="p-6 md:p-10 space-y-8">
+              <div className="max-w-md mx-auto">
+                <DonationWidget programName={program.title} compact />
+              </div>
+
               <section>
                 <h2 className="text-xl font-semibold text-foreground mb-4" data-testid="heading-purpose">
                   Purpose
@@ -190,14 +194,6 @@ export default function ProgramDetail() {
                 </p>
               </section>
 
-              <div className="pt-6 border-t border-border">
-                <p className="text-lg text-foreground mb-6 text-center">
-                  Your generosity makes this program possible.
-                </p>
-                <div className="max-w-md mx-auto">
-                  <DonationWidget programName={program.title} compact />
-                </div>
-              </div>
             </div>
           </div>
         </div>
