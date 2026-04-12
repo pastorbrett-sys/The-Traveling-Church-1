@@ -1250,3 +1250,166 @@ export async function sendAmbassadorAdminNotificationEmail(
     throw error;
   }
 }
+
+export function getDonationReceiptEmailHtml(
+  donorName: string,
+  amountFormatted: string,
+  frequency: string,
+  donationDate: string,
+  note?: string
+): string {
+  const isMonthly = frequency === 'monthly';
+  const frequencyLabel = isMonthly ? 'Monthly Recurring' : 'One-Time';
+
+  return `
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="color-scheme" content="light">
+      <meta name="supported-color-schemes" content="light">
+      <style>
+        :root { color-scheme: light; }
+        u + .body .gm-screen { background: #000; mix-blend-mode: screen; }
+        u + .body .gm-diff { background: #000; mix-blend-mode: difference; }
+        @media (prefers-color-scheme: dark) {
+          .dark-footer { background-color: #000000 !important; }
+          .dark-footer td { background-color: #000000 !important; }
+        }
+        [data-ogsc] .footer-text { color: #888888 !important; }
+        [data-ogsb] .dark-footer { background-color: #000000 !important; }
+      </style>
+    </head>
+    <body class="body" style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <div style="text-align: center;">
+          <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 60px; width: auto; margin: 30px auto; display: block;">
+        </div>
+        
+        <div style="padding: 10px 30px 50px; background-color: #FAF9F6;">
+          <h1 style="color: #1a1a1a; font-size: 26px; font-weight: bold; margin: 0 0 8px 0; font-family: Georgia, 'Times New Roman', serif; text-align: center;">
+            Thank You for Your Gift
+          </h1>
+          <p style="font-size: 15px; line-height: 1.6; color: #555; margin: 0 0 28px 0; text-align: center;">
+            Your generosity supports The Traveling Church's mission worldwide.
+          </p>
+
+          <div style="background-color: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; margin-bottom: 28px;">
+            <h2 style="color: #1a1a1a; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px 0; border-bottom: 1px solid #eee; padding-bottom: 12px;">
+              Donation Receipt
+            </h2>
+            <table style="width: 100%; font-size: 15px; color: #333;" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding: 8px 0; color: #888;">Organization</td>
+                <td style="padding: 8px 0; text-align: right; font-weight: 600;">The Traveling Church</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #888;">EIN</td>
+                <td style="padding: 8px 0; text-align: right; font-weight: 600;">41-3093491</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #888;">Date</td>
+                <td style="padding: 8px 0; text-align: right; font-weight: 600;">${donationDate}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #888;">Amount</td>
+                <td style="padding: 8px 0; text-align: right; font-weight: 600; color: #C99A2E; font-size: 18px;">${amountFormatted}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #888;">Type</td>
+                <td style="padding: 8px 0; text-align: right; font-weight: 600;">${frequencyLabel}</td>
+              </tr>
+              ${note ? `
+              <tr>
+                <td style="padding: 8px 0; color: #888;">Note</td>
+                <td style="padding: 8px 0; text-align: right; font-style: italic;">${note}</td>
+              </tr>
+              ` : ''}
+            </table>
+          </div>
+
+          <div style="background-color: #f8f6f0; border-radius: 12px; padding: 20px; margin-bottom: 28px; border-left: 4px solid #C99A2E;">
+            <p style="font-size: 13px; line-height: 1.7; color: #555; margin: 0;">
+              <strong style="color: #333;">Tax-Deductibility Statement:</strong><br>
+              The Traveling Church is a registered 501(c)(3) nonprofit organization (EIN: 41-3093491). 
+              No goods or services were provided in exchange for this contribution. 
+              This letter serves as your official receipt for tax purposes. 
+              Please retain this receipt for your tax records.
+            </p>
+          </div>
+
+          <p style="font-size: 14px; line-height: 1.6; color: #555; text-align: center; margin: 0 0 24px 0;">
+            ${isMonthly ? 'Your monthly gift will continue to make an impact. You can manage your recurring donation anytime.' : 'Your one-time gift makes a real difference. Thank you for standing with us.'}
+          </p>
+
+          <div style="text-align: center;">
+            <a href="https://thetravelingchurch.com/programs" 
+               style="background-color: #C99A2E; color: #ffffff; padding: 14px 36px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 15px;">
+              See Our Programs
+            </a>
+          </div>
+        </div>
+        
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="dark-footer" style="background-color: #000000; background-image: linear-gradient(#000000, #000000);" bgcolor="#000000">
+          <tr>
+            <td align="center" style="background-color: #000000; background-image: linear-gradient(#000000, #000000); padding: 24px;" bgcolor="#000000">
+              <a href="https://thetravelingchurch.com" style="display: inline-block;">
+                <img src="${BASE_URL}/email-assets/traveling-church-logo.png" alt="The Traveling Church" style="height: 40px; width: auto; min-height: 54px;">
+              </a>
+              <p class="footer-text" style="color: #888888; font-size: 12px; margin: 16px 0 0 0;">
+                <span class="gm-screen"><span class="gm-diff">
+                  <a href="https://thetravelingchurch.com" style="color: #888888; text-decoration: none;">thetravelingchurch.com</a>
+                  <span style="color: #555555; margin: 0 8px;">•</span>
+                  EIN: 41-3093491
+                </span></span>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+export async function sendDonationReceiptEmail(
+  donorEmail: string,
+  amountCents: number,
+  frequency: string,
+  note?: string
+) {
+  console.log(`[Email] Sending donation receipt to ${donorEmail} ($${(amountCents / 100).toFixed(2)}, ${frequency})...`);
+
+  try {
+    const client = await getResendClient();
+    const fromEmail = await getFromEmail();
+
+    const amountFormatted = `$${(amountCents / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+    const donationDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    const isMonthly = frequency === 'monthly';
+    const subject = isMonthly
+      ? `Monthly Donation Receipt — ${amountFormatted}/mo | The Traveling Church`
+      : `Donation Receipt — ${amountFormatted} | The Traveling Church`;
+
+    const result = await client.emails.send({
+      from: fromEmail,
+      to: donorEmail,
+      subject,
+      html: getDonationReceiptEmailHtml('Donor', amountFormatted, frequency, donationDate, note),
+    });
+
+    console.log('[Email] Donation receipt sent:', JSON.stringify(result));
+    return result;
+  } catch (error) {
+    console.error('[Email] Error sending donation receipt:', error);
+    throw error;
+  }
+}

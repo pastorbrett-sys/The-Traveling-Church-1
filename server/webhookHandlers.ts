@@ -3,7 +3,7 @@ import { storage, db } from './storage';
 import { referralSignups } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
-import { sendSubscriptionConfirmationEmail } from './email';
+import { sendSubscriptionConfirmationEmail, sendDonationReceiptEmail } from './email';
 import { getUserLanguage } from './replit_integrations/auth/storage';
 
 async function trackAmbassadorConversion(userId: string, source: string, referralCode?: string, email?: string): Promise<void> {
@@ -172,7 +172,22 @@ export class WebhookHandlers {
   static async handleCheckoutCompleted(session: Stripe.Checkout.Session): Promise<void> {
     const customerId = session.customer as string;
     const subscriptionId = session.subscription as string;
-    
+
+    if (session.metadata?.type === 'general_donation') {
+      console.log('[Webhook] 🎁 Handling donation checkout');
+      const donorEmail = session.customer_details?.email || session.metadata?.email;
+      const amountCents = session.amount_total || 0;
+      const frequency = session.metadata?.frequency || 'one-time';
+      const note = session.metadata?.note;
+
+      if (donorEmail && amountCents > 0) {
+        sendDonationReceiptEmail(donorEmail, amountCents, frequency, note || undefined).catch(error => {
+          console.error('[Webhook] Failed to send donation receipt:', error);
+        });
+      }
+      return;
+    }
+
     if (!customerId) {
       console.log('No customer ID in checkout session');
       return;
