@@ -1,9 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import { useParams, Link } from "wouter";
 import { programs } from "@/data/programs";
 import { Heart, ArrowLeft, CheckCircle, Shield, HandHeart, Globe, Utensils, Briefcase, Leaf } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { DonationWidget } from "@/components/donation-widget";
 
 import ironMenImage from "@assets/generated_images/men's_support_group_meeting.png";
 import persecutedChristiansImage from "@assets/generated_images/christians_receiving_humanitarian_aid.png";
@@ -40,32 +41,10 @@ const videoMap: Record<string, string> = {
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
   const program = programs.find((p) => p.slug === slug);
-  const [isButtonDocked, setIsButtonDocked] = useState(false);
-  const buttonTargetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setIsButtonDocked(false);
   }, [slug]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (buttonTargetRef.current) {
-        const rect = buttonTargetRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        // When the target position is visible in viewport (with some offset)
-        if (rect.top < windowHeight - 100) {
-          setIsButtonDocked(true);
-        } else {
-          setIsButtonDocked(false);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial position
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   if (!program) {
     return (
@@ -211,38 +190,18 @@ export default function ProgramDetail() {
                 </p>
               </section>
 
-              <div className="pt-6 border-t border-border text-center">
-                <p className="text-lg text-foreground mb-6">
+              <div className="pt-6 border-t border-border">
+                <p className="text-lg text-foreground mb-6 text-center">
                   Your generosity makes this program possible.
                 </p>
-                <div ref={buttonTargetRef} className="relative h-14">
-                  {isButtonDocked && (
-                    <Link
-                      href="/donate"
-                      className="programGiveNowBtn inline-flex items-center gap-2 md:gap-3 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-base md:text-lg animate-dock-in whitespace-nowrap"
-                      data-testid="button-donate-program"
-                    >
-                      <Heart className="w-5 h-5" />
-                      Give Now
-                    </Link>
-                  )}
+                <div className="max-w-md mx-auto">
+                  <DonationWidget programName={program.title} compact />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </main>
-
-      {!isButtonDocked && (
-        <Link
-          href="/donate"
-          className="programGiveNowBtn fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2 md:gap-3 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-base md:text-lg shadow-lg animate-float-up whitespace-nowrap"
-          data-testid="button-donate-program-sticky"
-        >
-          <Heart className="w-5 h-5" />
-          Give Now
-        </Link>
-      )}
 
       <Footer />
     </div>
