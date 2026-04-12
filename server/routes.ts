@@ -29,7 +29,7 @@ import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integra
 import { stripeStorage } from "./stripeStorage";
 import { stripeService } from "./stripeService";
 import { getTierForCountry, getPricingForCountry, PRICING_TIERS, type PricingTier } from "@shared/regionalPricing";
-import { getStripePublishableKey } from "./stripeClient";
+import { getStripePublishableKey, getUncachableStripeClient } from "./stripeClient";
 import bibleRoutes from "./bibleRoutes";
 import ambassadorRoutes from "./ambassadorRoutes";
 import notificationRoutes from "./notificationRoutes";
@@ -925,7 +925,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Please contact us for large donations" });
       }
 
-      const stripe = await stripeService.getClient();
+      const stripe = await getUncachableStripeClient();
       const origin = req.headers.origin || 'https://thetravelingchurch.com';
       const isMonthly = frequency === "monthly";
 
