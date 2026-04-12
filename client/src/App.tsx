@@ -52,6 +52,7 @@ import DeleteAccount from "@/pages/delete-account";
 import JoinChurch from "@/pages/join-church";
 import FindAService from "@/pages/find-a-service";
 import SecretBible from "@/pages/secret-bible";
+import Donate from "@/pages/donate";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -134,6 +135,7 @@ function ChurchRouter() {
       <Route path="/prayer-requests" component={PrayerRequests} />
       <Route path="/vagabond-bible" component={VagabondBible} />
       <Route path="/keep-us-alive" component={KeepUsAlive} />
+      <Route path="/donate" component={Donate} />
       <Route path="/find-a-service" component={FindAService} />
       <Route path="/secretbible" component={SecretBible} />
       <Route component={NotFound} />

@@ -30,7 +30,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor and male leadership within the church.",
     icon: "shield",
     image: "iron-men",
-    donateLink: "https://givebutter.com/eQnDVy"
+    donateLink: "/donate"
   },
   {
     id: "2",
@@ -49,7 +49,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with careful attention to legal compliance, safety considerations, and appropriate stewardship of resources.",
     icon: "hand-heart",
     image: "persecuted-christians",
-    donateLink: "https://givebutter.com/OUWSZN"
+    donateLink: "/donate"
   },
   {
     id: "3",
@@ -68,7 +68,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen directly by the Senior Pastor.",
     icon: "globe",
     image: "global-ministry",
-    donateLink: "https://givebutter.com/iM7H3h"
+    donateLink: "/donate"
   },
   {
     id: "4",
@@ -87,7 +87,7 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with financial accountability maintained through standard church recordkeeping.",
     icon: "utensils",
     image: "community-feeding",
-    donateLink: "https://givebutter.com/RMT2UG"
+    donateLink: "/donate"
   },
   {
     id: "5",
@@ -106,7 +106,7 @@ export const programs: Program[] = [
     oversight: "This program operates in coordination with our business arm and is overseen by the Senior Pastor and Treasurer or their appointed designee.",
     icon: "briefcase",
     image: "economic-empowerment",
-    donateLink: "https://givebutter.com/CIYYAv"
+    donateLink: "/donate"
   },
   {
     id: "6",
@@ -125,8 +125,8 @@ export const programs: Program[] = [
     oversight: "This program is overseen by the Senior Pastor, with careful attention to ethical practices, local partnerships, and appropriate stewardship of resources.",
     icon: "leaf",
     image: "animal-conservation",
-    donateLink: "https://givebutter.com/dWeKTj"
+    donateLink: "/donate"
   }
 ];
 
-export const DONATE_LINK = "https://givebutter.com/HupdUB";
+export const DONATE_LINK = "/donate";

@@ -913,6 +913,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/donate/create-checkout", async (req: any, res) => {
+    try {
+      const { amountCents, frequency, note } = req.body;
+      const userId = req.user?.uid || req.session?.userId || null;
+
+      if (!amountCents || amountCents < 100) {
+        return res.status(400).json({ message: "Minimum donation is $1.00" });
+      }
+      if (amountCents > 99999900) {
+        return res.status(400).json({ message: "Please contact us for large donations" });
+      }
+
+      const stripe = await stripeService.getClient();
+      const origin = req.headers.origin || 'https://thetravelingchurch.com';
+      const isMonthly = frequency === "monthly";
+
+      const productName = isMonthly
+        ? "Monthly Donation to The Traveling Church"
+        : "Donation to The Traveling Church";
+
+      const priceData: any = {
+        currency: 'usd',
+        product_data: {
+          name: productName,
+          description: note || 'Supporting The Traveling Church ministry worldwide',
+        },
+        unit_amount: amountCents,
+      };
+
+      if (isMonthly) {
+        priceData.recurring = { interval: 'month' as const };
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          price_data: priceData,
+          quantity: 1,
+        }],
+        mode: isMonthly ? 'subscription' : 'payment',
+        success_url: `${origin}/donate?success=true`,
+        cancel_url: `${origin}/donate?cancelled=true`,
+        metadata: {
+          type: 'general_donation',
+          frequency: frequency || 'one-time',
+          userId: userId || 'guest',
+          note: note || '',
+        },
+      });
+
+      console.log(`[Donate] ${isMonthly ? 'Monthly' : 'One-time'} checkout created: $${(amountCents / 100).toFixed(2)}, session: ${session.id}`);
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Error creating donation checkout:", error);
+      res.status(500).json({ message: "Failed to create donation checkout" });
+    }
+  });
+
   // Create Stripe checkout for candle donation
   app.post("/api/candle-donation/create-checkout", async (req: any, res) => {
     try {

@@ -2,7 +2,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { DONATE_LINK } from "@/data/programs";
+import { Link } from "wouter";
 import pastorBrettImage from "@assets/Mask_group_1770059326771.png";
 
 const faqItems = [
@@ -71,26 +71,22 @@ export default function KeepUsAlive() {
             
             {/* CTA Buttons - Above the fold */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a
-                href={DONATE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/donate"
                 className="inline-flex items-center justify-center gap-2 bg-[#b8860b] hover:bg-[#9a7209] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-monthly-supporter-top"
                 onClick={() => { window.gtag?.('event', 'click_give_monthly'); }}
               >
                 Become a Monthly Supporter
-              </a>
-              <a
-                href={DONATE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+              </Link>
+              <Link
+                href="/donate"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#b8860b] text-[#b8860b] hover:bg-[#b8860b]/10 px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-one-time-gift-top"
                 onClick={() => { window.gtag?.('event', 'click_give_onetime'); }}
               >
                 Give a One-Time Gift
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -147,26 +143,22 @@ export default function KeepUsAlive() {
           <div className="max-w-2xl mx-auto text-center">
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-              <a
-                href={DONATE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/donate"
                 className="inline-flex items-center justify-center gap-2 bg-[#b8860b] hover:bg-[#9a7209] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-monthly-supporter-bottom"
                 onClick={() => { window.gtag?.('event', 'click_give_monthly'); }}
               >
                 Become a Monthly Supporter
-              </a>
-              <a
-                href={DONATE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+              </Link>
+              <Link
+                href="/donate"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#b8860b] text-[#b8860b] hover:bg-[#b8860b]/10 px-8 py-4 rounded-full font-medium text-lg transition-colors"
                 data-testid="button-one-time-gift-bottom"
                 onClick={() => { window.gtag?.('event', 'click_give_onetime'); }}
               >
                 Give a One-Time Gift
-              </a>
+              </Link>
             </div>
             
             {/* Thank you message */}

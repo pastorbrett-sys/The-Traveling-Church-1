@@ -217,16 +217,14 @@ export default function ProgramDetail() {
                 </p>
                 <div ref={buttonTargetRef} className="relative h-14">
                   {isButtonDocked && (
-                    <a
-                      href={program.donateLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href="/donate"
                       className="programGiveNowBtn inline-flex items-center gap-2 md:gap-3 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-base md:text-lg animate-dock-in whitespace-nowrap"
                       data-testid="button-donate-program"
                     >
                       <Heart className="w-5 h-5" />
                       Give Now
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -236,16 +234,14 @@ export default function ProgramDetail() {
       </main>
 
       {!isButtonDocked && (
-        <a
-          href={program.donateLink}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/donate"
           className="programGiveNowBtn fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2 md:gap-3 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-base md:text-lg shadow-lg animate-float-up whitespace-nowrap"
           data-testid="button-donate-program-sticky"
         >
           <Heart className="w-5 h-5" />
           Give Now
-        </a>
+        </Link>
       )}
 
       <Footer />

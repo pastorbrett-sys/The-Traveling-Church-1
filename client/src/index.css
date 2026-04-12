@@ -395,6 +395,39 @@
   box-shadow: 0 14px 40px rgba(0,0,0,0.24);
 }
 
+/* Donate Page Styles */
+.donatePageIcon {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 13.6s linear infinite;
+}
+
+.donateFreqActive {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 13.6s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border-bottom: 2px solid hsl(var(--primary));
+}
+
+.donateAmountActive {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--secondary) / 0.08));
+}
+
+.donateContinueBtn {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 600% 600%;
+  animation: floatingDonateGradient 13.6s linear infinite;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+
+.donateContinueBtn:hover:not(:disabled) {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.24);
+  transform: translateY(-1px);
+}
+
 /* Learn More Button - Subtle hover bounce */
 .learnMoreBtn {
   transition: transform 0.2s ease, background-color 0.2s ease;
