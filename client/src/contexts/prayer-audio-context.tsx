@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useRef, useCallback, useEffect, ty
 import { Capacitor } from "@capacitor/core";
 import { queryClient } from "@/lib/queryClient";
 import { t } from "@/lib/i18n";
+import { PRAYER_TRACKS } from "./prayer-tracks";
 
 // Native-only plugin helpers - these are no-ops on web
 // The actual imports happen at runtime only on native platforms via Capacitor's native bridge
@@ -46,19 +47,6 @@ const getLocalNotifications = async (): Promise<any> => {
 
 const R2_BUCKET_URL = "https://pub-9a4a185151ef43a7a34948cd665a8e5c.r2.dev";
 const ARTWORK_URL = "https://vagabondbible.com/prayer-artwork.png";
-
-export const PRAYER_TRACKS = [
-  "Breath Like Quiet Water.mp3",
-  "Floating Above The Morning.mp3",
-  "Sky Slowly Opens.mp3",
-  "Soft Cloud Prayer.mp3",
-  "Soft River of Prayer.mp3",
-  "Soft Sky Breathing.mp3",
-  "Soft Sky, Slow Heart.mp3",
-  "Soft Still Waters.mp3",
-  "Stillness Between Breaths.mp3",
-  "Stillness Between Heartbeats.mp3",
-];
 
 const CROSSFADE_DURATION = 3000;
 const END_FADE_DURATION = 5000;
