@@ -3,8 +3,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageCircle, Search, Heart, Users, MapPin, Mail, Sparkles, Menu, X } from "lucide-react";
-import vagabondLogo from "@/assets/vagabond-logo.png";
-import vagabondLogoWhite from "@assets/Bigger_White_Logo_1767824644015.png";
+import vagabondLogo from "@assets/Vagabond_Faith_Black_1778324785021.png";
+import vagabondLogoWhite from "@assets/Vagabond_Faith_1778324731627.png";
 import heroVideo from "@assets/text-to-video-28b9692b_1767558425367.mp4";
 import camperImage from "@assets/generated_images/person_in_camper_van.png";
 import campfireImage from "@assets/generated_images/travelers_around_campfire.png";
@@ -81,7 +81,7 @@ export default function VagabondBible() {
             data-testid="native-header-logo"
           >
             <div className="flex-1 h-px bg-gray-400/15" />
-            <img src={vagabondLogoWhite} alt="Vagabond Bible" className="h-8 mx-4" />
+            <img src={vagabondLogoWhite} alt="Vagabond Faith" className="h-8 mx-4" />
             <div className="flex-1 h-px bg-gray-400/15" />
           </div>
         </section>
@@ -102,7 +102,7 @@ export default function VagabondBible() {
           <div className="flex items-center justify-between h-16">
             <img 
               src={(isScrolled || mobileMenuOpen) ? vagabondLogo : vagabondLogoWhite} 
-              alt="Vagabond Bible AI" 
+              alt="Vagabond Faith AI" 
               className="h-11 transition-opacity duration-300" 
               data-testid="img-vagabond-logo" 
             />
@@ -410,7 +410,7 @@ export default function VagabondBible() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12">
             <div>
-              <img src={vagabondLogo} alt="Vagabond Bible AI" className="h-10 mb-4" />
+              <img src={vagabondLogo} alt="Vagabond Faith AI" className="h-10 mb-4" />
               <p className="text-[hsl(20,10%,40%)] leading-relaxed">
                 {t("landing.footer_tagline")}
               </p>

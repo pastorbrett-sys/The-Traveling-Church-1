@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, Trash2, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@/assets/vagabond-logo.png";
+import vagabondLogo from "@assets/Vagabond_Faith_Black_1778324785021.png";
 
 export default function DeleteAccount() {
   useEffect(() => {
-    document.title = "Delete Account | Vagabond Bible";
+    document.title = "Delete Account | Vagabond Faith";
   }, []);
 
   return (
@@ -15,7 +15,7 @@ export default function DeleteAccount() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <img src={vagabondLogo} alt="Vagabond Bible" className="h-10" />
+              <img src={vagabondLogo} alt="Vagabond Faith" className="h-10" />
             </Link>
             <Link href="/">
               <Button variant="ghost" size="sm" className="text-[hsl(20,10%,40%)]">
@@ -53,10 +53,10 @@ export default function DeleteAccount() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">How to Delete Your Account</h2>
             <p className="mb-4">
-              You can delete your Vagabond Bible account directly from within the app by following these steps:
+              You can delete your Vagabond Faith account directly from within the app by following these steps:
             </p>
             <ol className="list-decimal list-inside space-y-3 mb-4 ml-2">
-              <li className="text-[hsl(20,10%,30%)]">Open the Vagabond Bible app</li>
+              <li className="text-[hsl(20,10%,30%)]">Open the Vagabond Faith app</li>
               <li className="text-[hsl(20,10%,30%)]">Sign in to your account</li>
               <li className="text-[hsl(20,10%,30%)]">Tap on your <strong>Profile</strong> (person icon in the bottom navigation)</li>
               <li className="text-[hsl(20,10%,30%)]">Scroll to the bottom of the Profile page</li>
@@ -119,7 +119,7 @@ export default function DeleteAccount() {
 
       <footer className="border-t border-[hsl(30,20%,88%)] bg-white/50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-[hsl(20,10%,50%)]">
-          <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Vagabond Faith. All rights reserved.</p>
           <div className="flex justify-center gap-4 mt-2">
             <Link href="/privacy-policy" className="hover:text-[hsl(35,80%,45%)] underline">Privacy Policy</Link>
             <Link href="/terms-of-service" className="hover:text-[hsl(35,80%,45%)] underline">Terms of Service</Link>

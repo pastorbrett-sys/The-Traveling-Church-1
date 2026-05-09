@@ -201,7 +201,7 @@ async function processNotificationType(
     } else {
       payload = {
         title: type.name,
-        body: type.description || 'Check out Vagabond Bible',
+        body: type.description || 'Check out Vagabond Faith',
         data: { type: type.id },
       };
     }

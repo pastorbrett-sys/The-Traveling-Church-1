@@ -18,7 +18,7 @@ import {
   handleRedirectResult,
   logoutFirebase
 } from "@/lib/firebase";
-import vagabondLogoWhite from "@assets/White_Logo_Big_1767755759050.png";
+import vagabondLogoWhite from "@assets/Vagabond_Faith_1778324731627.png";
 import { trackReferralSignup } from "@/hooks/use-referral";
 import { apiFetch } from "@/lib/queryClient";
 import { t } from "@/lib/i18n";
@@ -59,7 +59,7 @@ export default function Login() {
   const [signUpPassword, setSignUpPassword] = useState("");
 
   useEffect(() => {
-    document.title = "Sign In | Vagabond Bible";
+    document.title = "Sign In | Vagabond Faith";
   }, []);
 
   useEffect(() => {
@@ -383,7 +383,7 @@ export default function Login() {
             <Card className="border-0 shadow-none bg-transparent animate-fade-up" style={{ animationDuration: '0.4s' }}>
               <CardHeader className="text-center pb-4 pt-0">
                 <div className="flex justify-center mb-4">
-                  <img src={vagabondLogoWhite} alt="Vagabond Bible" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
+                  <img src={vagabondLogoWhite} alt="Vagabond Faith" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
                 </div>
                 <h2 className="text-xl font-semibold text-white mt-4">{t("login.welcome_back")}</h2>
               </CardHeader>
@@ -465,7 +465,7 @@ export default function Login() {
           <Card className="border-0 shadow-none bg-transparent animate-fade-up" style={{ animationDuration: '0.4s' }}>
             <CardHeader className="text-center pb-4 pt-0">
               <div className="flex justify-center mb-4">
-                <img src={vagabondLogoWhite} alt="Vagabond Bible" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
+                <img src={vagabondLogoWhite} alt="Vagabond Faith" className="object-contain h-16" style={{ marginLeft: '-13px' }} />
               </div>
             </CardHeader>
 

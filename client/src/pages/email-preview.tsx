@@ -109,7 +109,7 @@ function getWelcomeEmailHtmlAmharic(): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -119,10 +119,10 @@ function getWelcomeEmailHtmlAmharic(): string {
         
         <!-- Content -->
         <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">እንኳን ወደ Vagabond Bible በደህና መጡ</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">እንኳን ወደ Vagabond Faith በደህና መጡ</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Vagabond Bible በ AI የተደገፉ ማስተዋወቂያዎች፣ ታሪካዊ አውድ እና 24/7 የሚገኝ ፓስተር በመጽሐፍ ቅዱስ ውስጥ እንዲመሩዎት ዝግጁ ነው፣ በየትኛውም ቦታ ቢሆኑ።
+            Vagabond Faith በ AI የተደገፉ ማስተዋወቂያዎች፣ ታሪካዊ አውድ እና 24/7 የሚገኝ ፓስተር በመጽሐፍ ቅዱስ ውስጥ እንዲመሩዎት ዝግጁ ነው፣ በየትኛውም ቦታ ቢሆኑ።
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
@@ -168,7 +168,7 @@ function getSubscriptionEmailHtmlAmharic(): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -199,7 +199,7 @@ function getSubscriptionEmailHtmlAmharic(): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
-            Vagabond Bible ይክፈቱ
+            Vagabond Faith ይክፈቱ
           </a>
         </div>
         
@@ -240,7 +240,7 @@ function getWelcomeEmailHtml(): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -250,10 +250,10 @@ function getWelcomeEmailHtml(): string {
         
         <!-- Content -->
         <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Vagabond Bible</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Vagabond Faith</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Vagabond Bible brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word, wherever you are.
+            Vagabond Faith brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word, wherever you are.
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
@@ -299,7 +299,7 @@ function getSubscriptionEmailHtml(): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Bible" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -330,7 +330,7 @@ function getSubscriptionEmailHtml(): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
-            Open Vagabond Bible
+            Open Vagabond Faith
           </a>
         </div>
         
@@ -371,7 +371,7 @@ function getAmbassadorAppliedEmailHtmlAmharic(): string {
         
         <!-- Header with Ambassador Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -384,7 +384,7 @@ function getAmbassadorAppliedEmailHtmlAmharic(): string {
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">ማመልከቻዎ ደርሷል!</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            የ Vagabond Bible አምባሳደር ለመሆን ስለአመለከቱ እናመሰግናለን፣ ሳራ። ማመልከቻዎን ለመገምገም ጓጉተናል!
+            የ Vagabond Faith አምባሳደር ለመሆን ስለአመለከቱ እናመሰግናለን፣ ሳራ። ማመልከቻዎን ለመገምገም ጓጉተናል!
           </p>
           
           <!-- What Happens Next Section -->
@@ -442,7 +442,7 @@ function getAmbassadorAppliedEmailHtmlAmharic(): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
-            Vagabond Bible ያስሱ
+            Vagabond Faith ያስሱ
           </a>
         </div>
         
@@ -483,7 +483,7 @@ function getAmbassadorAppliedEmailHtml(): string {
         
         <!-- Header with Ambassador Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image - Different from Approved email -->
@@ -496,7 +496,7 @@ function getAmbassadorAppliedEmailHtml(): string {
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Application Received!</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Thank you for applying to become a Vagabond Bible Ambassador, Sarah. We're excited to review your application!
+            Thank you for applying to become a Vagabond Faith Ambassador, Sarah. We're excited to review your application!
           </p>
           
           <!-- What Happens Next Section - Stacked Cards -->
@@ -554,7 +554,7 @@ function getAmbassadorAppliedEmailHtml(): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; line-height: 1;">
-            Explore Vagabond Bible
+            Explore Vagabond Faith
           </a>
         </div>
         
@@ -597,7 +597,7 @@ function getAmbassadorApprovedEmailHtmlAmharic(): string {
         
         <!-- Header with Ambassador Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -611,7 +611,7 @@ function getAmbassadorApprovedEmailHtmlAmharic(): string {
           <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">ወደ ቡድኑ እንኳን በደህና መጡ፣ ሳራ</p>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            አሁን የ Vagabond Bible አምባሳደር ነዎት። ልዩ ማገናኛዎን ከጓደኞችና ከቤተሰብ ጋር ያጋሩ፣ Pro ሲመዘገቡ ሽልማቶችን ያግኙ።
+            አሁን የ Vagabond Faith አምባሳደር ነዎት። ልዩ ማገናኛዎን ከጓደኞችና ከቤተሰብ ጋር ያጋሩ፣ Pro ሲመዘገቡ ሽልማቶችን ያግኙ።
           </p>
           
           <!-- Pro Tip -->
@@ -713,7 +713,7 @@ function getAmbassadorApprovedEmailHtml(): string {
         
         <!-- Header with Ambassador Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Bible Ambassador" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -727,7 +727,7 @@ function getAmbassadorApprovedEmailHtml(): string {
           <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">Welcome to the Team, Sarah</p>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            You're now a Vagabond Bible Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
+            You're now a Vagabond Faith Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
           </p>
           
           <!-- Pro Tip - Above referral link -->
@@ -865,7 +865,7 @@ function getAmbassadorAdminEmailHtml(): string {
         <!-- Content -->
         <div style="padding: 30px;">
           <p style="font-size: 16px; color: #333; margin: 0 0 24px 0;">
-            <strong>Tadesse Bekele</strong> has applied to become a Vagabond Bible Ambassador.
+            <strong>Tadesse Bekele</strong> has applied to become a Vagabond Faith Ambassador.
           </p>
           
           <!-- Applicant Details -->
@@ -893,7 +893,7 @@ function getAmbassadorAdminEmailHtml(): string {
             
             <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e5e5;">
               <p style="font-size: 14px; color: #666; margin: 0 0 8px 0;">Why they want to be an ambassador:</p>
-              <p style="font-size: 14px; color: #333; margin: 0; font-style: italic;">"I lead tours for Christian travelers in Ethiopia and want to share Vagabond Bible with my guests to help them connect with the biblical history of our country."</p>
+              <p style="font-size: 14px; color: #333; margin: 0; font-style: italic;">"I lead tours for Christian travelers in Ethiopia and want to share Vagabond Faith with my guests to help them connect with the biblical history of our country."</p>
             </div>
           </div>
           
@@ -927,7 +927,7 @@ function getAmbassadorAdminEmailHtml(): string {
         <!-- Footer -->
         <div style="background-color: #f9f9f9; padding: 16px; text-align: center; border-top: 1px solid #e5e5e5;">
           <p style="font-size: 12px; color: #888; margin: 0;">
-            Vagabond Bible Ambassador Program
+            Vagabond Faith Ambassador Program
           </p>
         </div>
         
@@ -962,8 +962,8 @@ const emailConfig: Record<EmailType, {
   'welcome': {
     title: 'Welcome Email',
     subject: {
-      en: 'Welcome to Vagabond Bible, Friend!',
-      am: 'እንኳን ወደ Vagabond Bible በደህና መጡ፣ ወዳጅ!'
+      en: 'Welcome to Vagabond Faith, Friend!',
+      am: 'እንኳን ወደ Vagabond Faith በደህና መጡ፣ ወዳጅ!'
     },
     getHtml: {
       en: getWelcomeEmailHtml,

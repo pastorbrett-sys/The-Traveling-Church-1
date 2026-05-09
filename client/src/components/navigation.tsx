@@ -35,7 +35,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       return;
     }
     if (isInstalled) {
-      alert("Vagabond Bible is already installed!");
+      alert("Vagabond Faith is already installed!");
       return;
     }
     if (isChromium) {
@@ -47,7 +47,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       window.open("https://apps.apple.com/us/app/vagabond-bible/id6757680520", "_blank");
       return;
     }
-    alert("To install Vagabond Bible, open this page in Google Chrome.");
+    alert("To install Vagabond Faith, open this page in Google Chrome.");
   };
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "secret-bible", label: "Secret Bible", type: "link", href: "/secretbible" },
-    { id: "pastor-chat", label: "Vagabond Bible", type: "link", href: "/vagabond-bible" },
+    { id: "pastor-chat", label: "Vagabond Faith", type: "link", href: "/vagabond-bible" },
     { id: "find-a-service", label: "Find a Bible Study", type: "link", href: "/find-a-service" },
     { id: "contact", label: "Contact", type: "scroll" },
     { id: "support", label: "Support", type: "link", href: "/keep-us-alive" },
@@ -130,7 +130,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
             >
               <img 
                 src={customLogo} 
-                alt="Vagabond Bible AI" 
+                alt="Vagabond Faith AI" 
                 className="h-11"
               />
             </div>

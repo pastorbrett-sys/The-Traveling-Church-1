@@ -43,7 +43,7 @@ export default function AmbassadorLogin() {
   const [signUpName, setSignUpName] = useState("");
 
   useEffect(() => {
-    document.title = "Ambassador Login | Vagabond Bible";
+    document.title = "Ambassador Login | Vagabond Faith";
   }, []);
 
   useEffect(() => {
@@ -193,7 +193,7 @@ export default function AmbassadorLogin() {
         <CardHeader className="text-center pb-2">
           <img 
             src={ambassadorLogo} 
-            alt="Vagabond Bible Ambassador" 
+            alt="Vagabond Faith Ambassador" 
             className="h-24 mx-auto mb-4 object-contain"
           />
           {inviteCode && (

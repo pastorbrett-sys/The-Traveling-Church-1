@@ -304,7 +304,7 @@ export function PrayerAudioProvider({ children }: { children: ReactNode }) {
         await MusicControls.create({
           track: getDisplayName(trackName),
           artist: "Pastor Brett",
-          album: "Vagabond Bible",
+          album: "Vagabond Faith",
           cover: ARTWORK_URL,
           hasPrev: false,
           hasNext: true,

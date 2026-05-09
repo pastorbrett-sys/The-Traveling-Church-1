@@ -193,7 +193,7 @@ export default function AmbassadorPage() {
   const [signupsOpen, setSignupsOpen] = useState(false);
 
   useEffect(() => {
-    document.title = "Ambassador Program | Vagabond Bible";
+    document.title = "Ambassador Program | Vagabond Faith";
   }, []);
 
   useEffect(() => {
@@ -419,7 +419,7 @@ export default function AmbassadorPage() {
           <CardHeader className="text-center">
             <img 
               src={ambassadorLogo} 
-              alt="Vagabond Bible Ambassador" 
+              alt="Vagabond Faith Ambassador" 
               className="h-24 mx-auto mb-4 object-contain"
             />
             <CardTitle className="text-xl text-white">{t("ambassador.join_program")}</CardTitle>
@@ -475,7 +475,7 @@ export default function AmbassadorPage() {
           <CardHeader className="text-center">
             <img 
               src={ambassadorLogo} 
-              alt="Vagabond Bible Ambassador" 
+              alt="Vagabond Faith Ambassador" 
               className="h-24 mx-auto mb-4 object-contain"
             />
             <CardTitle className="text-xl text-white">{t("ambassador.become_ambassador")}</CardTitle>
@@ -639,7 +639,7 @@ export default function AmbassadorPage() {
           <CardHeader className="text-center">
             <img 
               src={ambassadorLogo} 
-              alt="Vagabond Bible Ambassador" 
+              alt="Vagabond Faith Ambassador" 
               className="h-20 mx-auto mb-4 object-contain"
             />
             <div className="flex items-center justify-center gap-2 text-[#c08e00]">
@@ -715,7 +715,7 @@ export default function AmbassadorPage() {
             </Button>
             <img 
               src={ambassadorLogo} 
-              alt="Vagabond Bible Ambassador" 
+              alt="Vagabond Faith Ambassador" 
               className="h-[72px] md:h-[104px] object-contain"
             />
           </div>

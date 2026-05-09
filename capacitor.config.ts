@@ -3,7 +3,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.vagabondbible.app',
-  appName: 'Vagabond Bible',
+  appName: 'Vagabond Faith',
   webDir: 'dist/public',
   server: {
     androidScheme: 'https',

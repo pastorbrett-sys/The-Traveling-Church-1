@@ -74,18 +74,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
 <head>
   <meta charset="UTF-8">
   <title>You're Invited to Become an Ambassador</title>
-  <meta name="description" content="You've been invited to join the Vagabond Bible Ambassador Program. Share the AI-powered Bible and earn rewards.">
+  <meta name="description" content="You've been invited to join the Vagabond Faith Ambassador Program. Share the AI-powered Bible and earn rewards.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vagabondbible.com/ambassador?invite=${inviteCode}">
   <meta property="og:title" content="You're Invited to Become an Ambassador">
-  <meta property="og:description" content="You've been invited to join the Vagabond Bible Ambassador Program. Share the AI-powered Bible and earn rewards.">
+  <meta property="og:description" content="You've been invited to join the Vagabond Faith Ambassador Program. Share the AI-powered Bible and earn rewards.">
   <meta property="og:image" content="https://vagabondbible.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://vagabondbible.com/ambassador?invite=${inviteCode}">
   <meta name="twitter:title" content="You're Invited to Become an Ambassador">
-  <meta name="twitter:description" content="You've been invited to join the Vagabond Bible Ambassador Program. Share the AI-powered Bible and earn rewards.">
+  <meta name="twitter:description" content="You've been invited to join the Vagabond Faith Ambassador Program. Share the AI-powered Bible and earn rewards.">
   <meta name="twitter:image" content="https://vagabondbible.com/og-image.png">
 </head>
 <body></body>
@@ -103,19 +103,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${firstName} invited you to Vagabond Bible</title>
-  <meta name="description" content="${firstName} has invited you to try Vagabond Bible - the AI-powered Bible that makes you feel like you were there.">
+  <title>${firstName} invited you to Vagabond Faith</title>
+  <meta name="description" content="${firstName} has invited you to try Vagabond Faith - the AI-powered Bible that makes you feel like you were there.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vagabondbible.com/?ref=${refCode}">
-  <meta property="og:title" content="${firstName} invited you to Vagabond Bible">
-  <meta property="og:description" content="${firstName} has invited you to try Vagabond Bible - the AI-powered Bible that makes you feel like you were there.">
+  <meta property="og:title" content="${firstName} invited you to Vagabond Faith">
+  <meta property="og:description" content="${firstName} has invited you to try Vagabond Faith - the AI-powered Bible that makes you feel like you were there.">
   <meta property="og:image" content="https://vagabondbible.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://vagabondbible.com/?ref=${refCode}">
-  <meta name="twitter:title" content="${firstName} invited you to Vagabond Bible">
-  <meta name="twitter:description" content="${firstName} has invited you to try Vagabond Bible - the AI-powered Bible that makes you feel like you were there.">
+  <meta name="twitter:title" content="${firstName} invited you to Vagabond Faith">
+  <meta name="twitter:description" content="${firstName} has invited you to try Vagabond Faith - the AI-powered Bible that makes you feel like you were there.">
   <meta name="twitter:image" content="https://vagabondbible.com/og-image.png">
 </head>
 <body></body>
@@ -131,18 +131,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vagabond Bible - AI-Powered Study Bible</title>
+  <title>Vagabond Faith - AI-Powered Study Bible</title>
   <meta name="description" content="The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vagabondbible.com/">
-  <meta property="og:title" content="Vagabond Bible - AI-Powered Study Bible">
+  <meta property="og:title" content="Vagabond Faith - AI-Powered Study Bible">
   <meta property="og:description" content="The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.">
   <meta property="og:image" content="https://vagabondbible.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://vagabondbible.com/">
-  <meta name="twitter:title" content="Vagabond Bible - AI-Powered Study Bible">
+  <meta name="twitter:title" content="Vagabond Faith - AI-Powered Study Bible">
   <meta name="twitter:description" content="The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.">
   <meta name="twitter:image" content="https://vagabondbible.com/og-image.png">
 </head>

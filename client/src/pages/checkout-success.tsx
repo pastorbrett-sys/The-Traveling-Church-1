@@ -29,13 +29,13 @@ export default function CheckoutSuccess() {
           </h1>
           
           <p className="text-lg text-gray-600 mb-8" data-testid="text-success-message">
-            Thank you for subscribing to The Traveling Church Pro plan. You now have unlimited access to Vagabond Bible for spiritual guidance and support.
+            Thank you for subscribing to The Traveling Church Pro plan. You now have unlimited access to Vagabond Faith for spiritual guidance and support.
           </p>
           
           <Link href="/pastor-chat">
             <Button size="lg" className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground" data-testid="button-go-to-chat">
               <MessageCircle className="w-5 h-5 mr-2" />
-              Continue to Vagabond Bible
+              Continue to Vagabond Faith
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>

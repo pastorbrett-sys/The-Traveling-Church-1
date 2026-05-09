@@ -47,7 +47,7 @@ export default function AdminPanel() {
   const [statusFilter, setStatusFilter] = useState<string>(highlightId ? "pending" : "all");
 
   useEffect(() => {
-    document.title = "Admin Panel | Vagabond Bible";
+    document.title = "Admin Panel | Vagabond Faith";
   }, []);
 
   useEffect(() => {

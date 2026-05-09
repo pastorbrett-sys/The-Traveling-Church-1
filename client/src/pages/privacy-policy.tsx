@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@/assets/vagabond-logo.png";
+import vagabondLogo from "@assets/Vagabond_Faith_Black_1778324785021.png";
 
 export default function PrivacyPolicy() {
   useEffect(() => {
-    document.title = "Privacy Policy | Vagabond Bible";
+    document.title = "Privacy Policy | Vagabond Faith";
   }, []);
 
   return (
@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <img src={vagabondLogo} alt="Vagabond Bible" className="h-10" />
+              <img src={vagabondLogo} alt="Vagabond Faith" className="h-10" />
             </Link>
             <Link href="/">
               <Button variant="ghost" size="sm" className="text-[hsl(20,10%,40%)]">
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">1. Introduction</h2>
             <p className="mb-4">
-              Vagabond Bible ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application and website.
+              Vagabond Faith ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application and website.
             </p>
           </section>
 
@@ -139,7 +139,7 @@ export default function PrivacyPolicy() {
       </main>
 
       <footer className="py-8 text-center text-sm text-[hsl(20,10%,40%)] border-t border-[hsl(30,20%,88%)]">
-        <p>&copy; {new Date().getFullYear()} Vagabond Bible. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Vagabond Faith. All rights reserved.</p>
       </footer>
     </div>
   );

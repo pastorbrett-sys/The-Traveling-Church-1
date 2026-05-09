@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import vagabondLogo from "@/assets/vagabond-logo.png";
+import vagabondLogo from "@assets/Vagabond_Faith_Black_1778324785021.png";
 
 interface AuthGateProps {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ export function AuthGate({ children }: AuthGateProps) {
   if (isLoading) {
     return (
       <div className="bg-[hsl(40,30%,96%)] min-h-screen flex flex-col items-center justify-center">
-        <img src={vagabondLogo} alt="Vagabond Bible" className="h-16 w-auto mb-4 animate-pulse" />
+        <img src={vagabondLogo} alt="Vagabond Faith" className="h-16 w-auto mb-4 animate-pulse" />
         <div className="w-8 h-8 border-4 border-[hsl(25,35%,45%)] border-t-transparent rounded-full animate-spin" />
       </div>
     );

@@ -34,7 +34,7 @@ interface UpgradeDialogProps {
 const uiText = {
   en: {
     upgradeTitle: "Upgrade to Pro",
-    description: "Enjoy Vagabond Bible for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.",
+    description: "Enjoy Vagabond Faith for free, anytime. Upgrade to Pro to unlock optional advanced AI features for deeper study and insight.",
     descriptionNativeSuffix: "",
     descriptionWebSuffix: " Cancel anytime.",
     upgradeFor: "Upgrade to Pro for:",
@@ -73,7 +73,7 @@ const uiText = {
   },
   am: {
     upgradeTitle: "ወደ ፕሮ አሻሽል",
-    description: "Vagabond Bible በነጻ በማንኛውም ጊዜ ይደሰቱ። ለጥልቅ ጥናትና ግንዛቤ የላቀ የAI ባህሪያትን ለመክፈት ወደ ፕሮ ያሻሽሉ።",
+    description: "Vagabond Faith በነጻ በማንኛውም ጊዜ ይደሰቱ። ለጥልቅ ጥናትና ግንዛቤ የላቀ የAI ባህሪያትን ለመክፈት ወደ ፕሮ ያሻሽሉ።",
     descriptionNativeSuffix: "",
     descriptionWebSuffix: " በማንኛውም ጊዜ ይሰርዙ።",
     upgradeFor: "ወደ ፕሮ ያሻሽሉ ለ፡",

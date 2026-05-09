@@ -29,7 +29,7 @@ import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
 import BibleReader, { type BibleReaderHandle } from "@/components/bible-reader";
 import pastorBrettIcon from "@assets/Pastor_Brett_Chat_Icon_1767476985840.png";
-import vagabondLogo from "@/assets/vagabond-logo.png";
+import vagabondLogo from "@assets/Vagabond_Faith_Black_1778324785021.png";
 import { usePlatform } from "@/contexts/platform-context";
 import { useRevenueCat } from "@/contexts/revenuecat-context";
 import { getBottomNavOffset, getBottomInset } from "@/lib/native-spacing";

@@ -37,7 +37,7 @@ export default function AmbassadorDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Dashboard | Vagabond Bible Ambassador";
+    document.title = "Dashboard | Vagabond Faith Ambassador";
   }, []);
 
   useEffect(() => {
@@ -125,7 +125,7 @@ export default function AmbassadorDashboard() {
         <div className="flex items-center justify-between">
           <img 
             src={ambassadorLogo} 
-            alt="Vagabond Bible Ambassador" 
+            alt="Vagabond Faith Ambassador" 
             className="h-14 object-contain"
           />
           <div className="text-right">
