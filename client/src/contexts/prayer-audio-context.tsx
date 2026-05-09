@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
+import { createContext, useState, useRef, useCallback, useEffect, type ReactNode } from "react";
 import { Capacitor } from "@capacitor/core";
 import { queryClient } from "@/lib/queryClient";
 import { t } from "@/lib/i18n";
@@ -214,15 +214,7 @@ interface PrayerAudioContextType {
   stopGlobalTimer: () => void;
 }
 
-const PrayerAudioContext = createContext<PrayerAudioContextType | null>(null);
-
-export function usePrayerAudioContext(): PrayerAudioContextType {
-  const context = useContext(PrayerAudioContext);
-  if (!context) {
-    throw new Error("usePrayerAudioContext must be used within PrayerAudioProvider");
-  }
-  return context;
-}
+export const PrayerAudioContext = createContext<PrayerAudioContextType | null>(null);
 
 export function PrayerAudioProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);

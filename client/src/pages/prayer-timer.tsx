@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { ChevronLeft, X, Loader2, Play, Pause, ChevronDown, Heart } from "lucide-react";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import maryImage from "@assets/Mary_1769243057081.png";
-import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
+import { usePrayerAudioContext } from "@/contexts/use-prayer-audio";
 import { useTranslation } from "@/lib/i18n";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useLocation } from "wouter";
-import { usePrayerAudioContext } from "@/contexts/prayer-audio-context";
+import { usePrayerAudioContext } from "@/contexts/use-prayer-audio";
 
 const BUTTON_SIZE = 56;
 const EDGE_PADDING = 16;
