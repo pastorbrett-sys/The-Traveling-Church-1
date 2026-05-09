@@ -26,7 +26,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import vagabondLogo from "@assets/Vagabond_Faith_Black_Transparent.png";
+import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 import { NotificationSettings } from "@/components/notification-settings";
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import vagabondLogo from "@assets/Vagabond_Faith_Black_Transparent.png";
+import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
 
 interface AuthGateProps {
   children: React.ReactNode;

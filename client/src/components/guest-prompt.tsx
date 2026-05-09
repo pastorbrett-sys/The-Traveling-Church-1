@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";
-import vagabondLogo from "@assets/Vagabond_Faith_Black_Transparent.png";
+import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
 
 interface GuestPromptProps {
   featureDescription: string;
