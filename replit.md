@@ -9,6 +9,16 @@ The Traveling Church is a full-stack web application for a global, traveling min
 Preferred communication style: Simple, everyday language.
 Git/GitHub: NEVER commit chat screenshots to git. Screenshots shared during conversation go to attached_assets/ but should be excluded from commits via .gitignore patterns.
 
+## CRITICAL — DO NOT RENAME
+
+The following strings are intentionally kept as "Vagabond Bible" even though the user-facing brand is "Vagabond Faith". DO NOT rename these without explicit user approval AND coordinated dashboard changes — renaming will break paying subscribers and production infrastructure:
+
+- **`"Vagabond Bible Pro"`** — RevenueCat entitlement identifier. Configured in App Store Connect, Google Play, and RevenueCat dashboards. Used in `server/revenueCatWebhook.ts` and `client/src/contexts/revenuecat-context.tsx`. Renaming breaks Pro access for every paying user instantly.
+- **`vagabondbible.com`** — production domain (webhooks, email links).
+- **`com.vagabondbible.app`** — iOS/Android bundle ID. Tied to App Store / Play Store listings.
+- **Asset filenames** containing `vagabond-bible-*` (e.g. `vagabond-bible-header.png`) — internal file references; rename would require re-uploading assets.
+- **Test IDs and gtag/analytics event names** — keep historical names so analytics continuity is preserved.
+
 ## System Architecture
 
 ### Technology Stack
