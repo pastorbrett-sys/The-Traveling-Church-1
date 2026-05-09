@@ -18,7 +18,7 @@ import {
   handleRedirectResult,
   logoutFirebase
 } from "@/lib/firebase";
-import vagabondLogoWhite from "@assets/Vagabond_Faith_1778324731627.png";
+import vagabondLogoWhite from "@assets/Vagabond_Faith_White_Transparent.png";
 import { trackReferralSignup } from "@/hooks/use-referral";
 import { apiFetch } from "@/lib/queryClient";
 import { t } from "@/lib/i18n";
