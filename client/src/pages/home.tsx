@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Navigation from "@/components/navigation";
+import vagabondLogo from "@assets/vagabond-just-vagabond-logo-black_1778490033325.png";
 import HeroSection from "@/components/hero-section";
 import MissionSection from "@/components/mission-section";
 import JourneyGallery from "@/components/journey-gallery";
@@ -32,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="bg-background text-foreground antialiased">
-      <Navigation />
+      <Navigation customLogo={vagabondLogo} />
       <HeroSection />
       <MissionSection />
       <WhatsAppSection />
