@@ -197,7 +197,6 @@ function App() {
               <Router />
               <NativeTabBar />
               <FloatingPrayerButton />
-              <PlatformToggle />
             </TooltipProvider>
           </PrayerAudioProvider>
         </RevenueCatProvider>
