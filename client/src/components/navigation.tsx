@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { usePlatform } from "@/contexts/platform-context";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import seaScrollDarkLogo from "@assets/Sea Scroll Logo Black.svg";
-import travelingChurchLogo from "@assets/Traveling Church Logo_1760305238166.png";
+import travelingChurchLogo from "@assets/Traveling_Church_Logo_Black_Text_1766868484383.png";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 interface NavigationProps {
