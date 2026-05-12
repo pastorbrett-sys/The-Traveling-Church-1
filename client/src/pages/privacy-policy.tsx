@@ -2,12 +2,18 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
+import seaScrollLogo from "@assets/Sea Scroll Logo Black.svg";
+import travelingChurchLogo from "@assets/Traveling Church Logo_1760305238166.png";
+import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 export default function PrivacyPolicy() {
+  const isVagabond = isVagabondBibleDomain();
+  const brandName = isVagabond ? "Sea Scroll" : "The Traveling Church";
+  const brandLogo = isVagabond ? seaScrollLogo : travelingChurchLogo;
+
   useEffect(() => {
-    document.title = "Privacy Policy | Sea Scroll";
-  }, []);
+    document.title = `Privacy Policy | ${brandName}`;
+  }, [brandName]);
 
   return (
     <div className="min-h-screen bg-[hsl(30,20%,97%)]">
@@ -15,7 +21,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <img src={vagabondLogo} alt="Sea Scroll" className="h-10" />
+              <img src={brandLogo} alt={brandName} className="h-10" />
             </Link>
             <Link href="/">
               <Button variant="ghost" size="sm" className="text-[hsl(20,10%,40%)]">
@@ -38,7 +44,7 @@ export default function PrivacyPolicy() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">1. Introduction</h2>
             <p className="mb-4">
-              Sea Scroll ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application and website.
+              {brandName} ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application and website.
             </p>
           </section>
 
@@ -139,7 +145,7 @@ export default function PrivacyPolicy() {
       </main>
 
       <footer className="py-8 text-center text-sm text-[hsl(20,10%,40%)] border-t border-[hsl(30,20%,88%)]">
-        <p>&copy; {new Date().getFullYear()} Sea Scroll. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {brandName}. All rights reserved.</p>
       </footer>
     </div>
   );

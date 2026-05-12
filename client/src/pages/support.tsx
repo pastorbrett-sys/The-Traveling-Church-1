@@ -2,12 +2,18 @@ import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ArrowLeft, Mail, MessageCircle, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
+import seaScrollLogo from "@assets/Sea Scroll Logo Black.svg";
+import travelingChurchLogo from "@assets/Traveling Church Logo_1760305238166.png";
+import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 export default function Support() {
+  const isVagabond = isVagabondBibleDomain();
+  const brandName = isVagabond ? "Sea Scroll" : "The Traveling Church";
+  const brandLogo = isVagabond ? seaScrollLogo : travelingChurchLogo;
+
   useEffect(() => {
-    document.title = "Support | Sea Scroll";
-  }, []);
+    document.title = `Support | ${brandName}`;
+  }, [brandName]);
 
   return (
     <div className="min-h-screen bg-[hsl(30,20%,97%)]">
@@ -15,7 +21,7 @@ export default function Support() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <img src={vagabondLogo} alt="Sea Scroll" className="h-10" />
+              <img src={brandLogo} alt={brandName} className="h-10" />
             </Link>
             <Button 
               variant="ghost" 
@@ -35,7 +41,7 @@ export default function Support() {
           Support
         </h1>
         <p className="text-lg text-[hsl(20,10%,50%)] mb-12">
-          We're here to help you on your spiritual journey with Sea Scroll.
+          We're here to help you on your spiritual journey with {brandName}.
         </p>
         
         <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -81,7 +87,7 @@ export default function Support() {
             <div>
               <h3 className="font-medium text-[hsl(20,10%,20%)] mb-2">How do I upgrade to Pro?</h3>
               <p className="text-[hsl(20,10%,40%)]">
-                You can upgrade to Sea Scroll Pro from within the app. Look for the upgrade option in the menu or when accessing premium features.
+                You can upgrade to {isVagabond ? "Sea Scroll" : "Bible Buddy"} Pro from within the app. Look for the upgrade option in the menu or when accessing premium features.
               </p>
             </div>
             
@@ -109,8 +115,8 @@ export default function Support() {
         </div>
 
         <div className="text-center text-[hsl(20,10%,50%)]">
-          <p className="mb-2">Sea Scroll</p>
-          <p className="text-sm">A ministry of The Traveling Church</p>
+          <p className="mb-2">{brandName}</p>
+          {isVagabond && <p className="text-sm">A ministry of The Traveling Church</p>}
         </div>
       </main>
     </div>

@@ -2,12 +2,18 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
+import seaScrollLogo from "@assets/Sea Scroll Logo Black.svg";
+import travelingChurchLogo from "@assets/Traveling Church Logo_1760305238166.png";
+import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 export default function TermsOfService() {
+  const isVagabond = isVagabondBibleDomain();
+  const brandName = isVagabond ? "Sea Scroll" : "The Traveling Church";
+  const brandLogo = isVagabond ? seaScrollLogo : travelingChurchLogo;
+
   useEffect(() => {
-    document.title = "Terms of Service | Sea Scroll";
-  }, []);
+    document.title = `Terms of Service | ${brandName}`;
+  }, [brandName]);
 
   return (
     <div className="min-h-screen bg-[hsl(30,20%,97%)]">
@@ -15,7 +21,7 @@ export default function TermsOfService() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <img src={vagabondLogo} alt="Sea Scroll" className="h-10" />
+              <img src={brandLogo} alt={brandName} className="h-10" />
             </Link>
             <Link href="/">
               <Button variant="ghost" size="sm" className="text-[hsl(20,10%,40%)]">
@@ -38,14 +44,14 @@ export default function TermsOfService() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">1. Acceptance of Terms</h2>
             <p className="mb-4">
-              By accessing or using Sea Scroll, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.
+              By accessing or using {brandName}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">2. Description of Service</h2>
             <p className="mb-4">
-              Sea Scroll is a Bible study application that provides access to Scripture, AI-powered study tools, note-taking features, and pastoral chat assistance. The service is available as a web application and mobile app.
+              {brandName} provides access to Scripture, AI-powered study tools, note-taking features, and pastoral chat assistance. The service is available as a web application and mobile app.
             </p>
           </section>
 
@@ -114,7 +120,7 @@ export default function TermsOfService() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">7. Intellectual Property</h2>
             <p className="mb-4">
-              The Sea Scroll app, including its design, features, and content (excluding Bible text), is protected by copyright and other intellectual property laws. Bible translations are used under appropriate licenses.
+              The {brandName} app, including its design, features, and content (excluding Bible text), is protected by copyright and other intellectual property laws. Bible translations are used under appropriate licenses.
             </p>
           </section>
 
@@ -135,7 +141,7 @@ export default function TermsOfService() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-[hsl(20,10%,20%)] mb-4">10. Limitation of Liability</h2>
             <p className="mb-4">
-              Sea Scroll is provided "as is" without warranties of any kind. We are not liable for any indirect, incidental, or consequential damages arising from your use of the service.
+              {brandName} is provided "as is" without warranties of any kind. We are not liable for any indirect, incidental, or consequential damages arising from your use of the service.
             </p>
           </section>
 
@@ -159,7 +165,7 @@ export default function TermsOfService() {
       </main>
 
       <footer className="py-8 text-center text-sm text-[hsl(20,10%,40%)] border-t border-[hsl(30,20%,88%)]">
-        <p>&copy; {new Date().getFullYear()} Sea Scroll. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {brandName}. All rights reserved.</p>
       </footer>
     </div>
   );
