@@ -109,7 +109,7 @@ export function getWelcomeEmailHtml(displayName: string): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Sea Scroll" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -119,10 +119,10 @@ export function getWelcomeEmailHtml(displayName: string): string {
         
         <!-- Content -->
         <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Vagabond Faith</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Welcome to Sea Scroll</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Vagabond Faith brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word, wherever you are.
+            Sea Scroll brings Scripture to life with AI-powered insights, historical context, and a 24/7 pastor ready to guide you through God's Word, wherever you are.
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
@@ -182,7 +182,7 @@ export function getWelcomeEmailHtmlAmharic(displayName: string): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Sea Scroll" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -192,10 +192,10 @@ export function getWelcomeEmailHtmlAmharic(displayName: string): string {
         
         <!-- Content -->
         <div style="padding: 50px 30px 55px; text-align: center; background-color: #FAF9F6;">
-          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">እንኳን ወደ Vagabond Faith በደህና መጡ</h1>
+          <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">እንኳን ወደ Sea Scroll በደህና መጡ</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Vagabond Faith በ AI የተጎለበተ ግንዛቤዎች፣ ታሪካዊ ዐውድ፣ እና በየትም ቦታ ሆነው በእግዚአብሔር ቃል ውስጥ የሚመራዎት 24/7 ፓስተር በማቅረብ መጽሐፍ ቅዱስን ሕያው ያደርገዋል።
+            Sea Scroll በ AI የተጎለበተ ግንዛቤዎች፣ ታሪካዊ ዐውድ፣ እና በየትም ቦታ ሆነው በእግዚአብሔር ቃል ውስጥ የሚመራዎት 24/7 ፓስተር በማቅረብ መጽሐፍ ቅዱስን ሕያው ያደርገዋል።
           </p>
           
           <a href="${BASE_URL}/vagabond-bible" 
@@ -239,8 +239,8 @@ export async function sendWelcomeEmail(userEmail: string, firstName?: string | n
     
     // Choose subject and template based on language
     const subject = isAmharic 
-      ? `እንኳን ወደ Vagabond Faith በደህና መጡ፣ ${displayName}!`
-      : `Welcome to Vagabond Faith, ${displayName}!`;
+      ? `እንኳን ወደ Sea Scroll በደህና መጡ፣ ${displayName}!`
+      : `Welcome to Sea Scroll, ${displayName}!`;
     
     const html = isAmharic 
       ? getWelcomeEmailHtmlAmharic(displayName)
@@ -290,7 +290,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Sea Scroll" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -321,7 +321,7 @@ export function getSubscriptionEmailHtml(displayName: string): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
-            Open Vagabond Faith
+            Open Sea Scroll
           </a>
         </div>
         
@@ -376,7 +376,7 @@ export function getSubscriptionEmailHtmlAmharic(displayName: string): string {
         
         <!-- Header with Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Vagabond Faith" style="width: 100%; height: auto; display: block;">
+          <img src="${BASE_URL}/email-assets/vagabond-bible-header.png" alt="Sea Scroll" style="width: 100%; height: auto; display: block;">
         </div>
         
         <!-- Hero Image -->
@@ -407,7 +407,7 @@ export function getSubscriptionEmailHtmlAmharic(displayName: string): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
-            Vagabond Faith ክፈት
+            Sea Scroll ክፈት
           </a>
         </div>
         
@@ -501,7 +501,7 @@ export function getAmbassadorApplicationEmailHtml(displayName: string): string {
         
         <!-- Header with Ambassador Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Sea Scroll Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
         </div>
         
         <!-- Hero Image - Different from Approved email -->
@@ -514,7 +514,7 @@ export function getAmbassadorApplicationEmailHtml(displayName: string): string {
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">Application Received!</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            Thank you for applying to become a Vagabond Faith Ambassador, ${displayName}. We're excited to review your application!
+            Thank you for applying to become a Sea Scroll Ambassador, ${displayName}. We're excited to review your application!
           </p>
           
           <!-- What Happens Next Section - Stacked Cards -->
@@ -572,7 +572,7 @@ export function getAmbassadorApplicationEmailHtml(displayName: string): string {
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
-            Explore Vagabond Faith
+            Explore Sea Scroll
           </a>
         </div>
         
@@ -626,7 +626,7 @@ export function getAmbassadorApplicationEmailHtmlAmharic(displayName: string): s
         
         <!-- Header with Ambassador Logo -->
         <div style="text-align: center;">
-          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
+          <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Sea Scroll Ambassador" style="width: 100%; height: auto; display: block; min-height: 54px;">
         </div>
         
         <!-- Hero Image -->
@@ -639,7 +639,7 @@ export function getAmbassadorApplicationEmailHtmlAmharic(displayName: string): s
           <h1 style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; letter-spacing: -0.5px;">ማመልከቻዎ ደርሷል!</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-            የ Vagabond Faith አምባሳደር ለመሆን ስለአመለከቱ እናመሰግናለን፣ ${displayName}። ማመልከቻዎን ለመገምገም ጓጉተናል!
+            የ Sea Scroll አምባሳደር ለመሆን ስለአመለከቱ እናመሰግናለን፣ ${displayName}። ማመልከቻዎን ለመገምገም ጓጉተናል!
           </p>
           
           <!-- What Happens Next Section -->
@@ -697,7 +697,7 @@ export function getAmbassadorApplicationEmailHtmlAmharic(displayName: string): s
           
           <a href="${BASE_URL}/vagabond-bible" 
              style="background-color: #C99A2E; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; font-size: 16px; text-align: center; mso-padding-alt: 0; line-height: 1;">
-            Vagabond Faith ያስሱ
+            Sea Scroll ያስሱ
           </a>
         </div>
         
@@ -780,7 +780,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
             <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff;" bgcolor="#ffffff">
               <tr>
                 <td>
-                  <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block;">
+                  <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Sea Scroll Ambassador" style="width: 100%; height: auto; display: block;">
                 </td>
               </tr>
               <tr>
@@ -794,7 +794,7 @@ export function getAmbassadorApprovedEmailHtml(displayName: string, referralCode
               <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">Welcome to the Team, ${displayName}</p>
               
               <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-                You're now a Vagabond Faith Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
+                You're now a Sea Scroll Ambassador. Share your unique link with friends and family, and earn rewards when they subscribe to Pro.
               </p>
               
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FFF8E7; border-radius: 12px; border-left: 4px solid #C99A2E; margin: 0 0 24px 0;">
@@ -941,7 +941,7 @@ export function getAmbassadorApprovedEmailHtmlAmharic(displayName: string, refer
             <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff;" bgcolor="#ffffff">
               <tr>
                 <td>
-                  <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Vagabond Faith Ambassador" style="width: 100%; height: auto; display: block;">
+                  <img src="${BASE_URL}/email-assets/vagabond-ambassador-header.png" alt="Sea Scroll Ambassador" style="width: 100%; height: auto; display: block;">
                 </td>
               </tr>
               <tr>
@@ -955,7 +955,7 @@ export function getAmbassadorApprovedEmailHtmlAmharic(displayName: string, refer
               <p style="color: #C99A2E; font-size: 16px; font-weight: 600; margin: 0 0 20px 0;">ወደ ቡድኑ እንኳን በደህና መጡ፣ ${displayName}</p>
               
               <p style="font-size: 16px; line-height: 1.6; color: #333; margin: 0 0 30px 0;">
-                አሁን የ Vagabond Faith አምባሳደር ነዎት። ልዩ ማገናኛዎን ከጓደኞችና ከቤተሰብ ጋር ያጋሩ፣ Pro ሲመዘገቡ ሽልማቶችን ያግኙ።
+                አሁን የ Sea Scroll አምባሳደር ነዎት። ልዩ ማገናኛዎን ከጓደኞችና ከቤተሰብ ጋር ያጋሩ፣ Pro ሲመዘገቡ ሽልማቶችን ያግኙ።
               </p>
               
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FFF8E7; border-radius: 12px; border-left: 4px solid #C99A2E; margin: 0 0 24px 0;">
@@ -1145,7 +1145,7 @@ export function getAmbassadorAdminNotificationEmailHtml(
         <!-- Content -->
         <div style="padding: 30px;">
           <p style="font-size: 16px; color: #333; margin: 0 0 24px 0;">
-            <strong>${applicantName}</strong> has applied to become a Vagabond Faith Ambassador.
+            <strong>${applicantName}</strong> has applied to become a Sea Scroll Ambassador.
           </p>
           
           <!-- Applicant Details -->
@@ -1213,7 +1213,7 @@ export function getAmbassadorAdminNotificationEmailHtml(
         <!-- Footer -->
         <div style="background-color: #f9f9f9; padding: 16px; text-align: center; border-top: 1px solid #e5e5e5;">
           <p style="font-size: 12px; color: #888; margin: 0;">
-            Vagabond Faith Ambassador Program
+            Sea Scroll Ambassador Program
           </p>
         </div>
         

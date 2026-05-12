@@ -25,13 +25,13 @@ export default function CheckoutCancel() {
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8" data-testid="text-cancel-message">
-            No worries! Your payment was not processed. You can still enjoy 10 free messages with Vagabond Faith, or subscribe anytime to get unlimited access.
+            No worries! Your payment was not processed. You can still enjoy 10 free messages with Sea Scroll, or subscribe anytime to get unlimited access.
           </p>
           
           <Link href="/pastor-chat">
             <Button size="lg" className="w-full sm:w-auto" data-testid="button-back-to-chat">
               <MessageCircle className="w-5 h-5 mr-2" />
-              Back to Vagabond Faith
+              Back to Sea Scroll
             </Button>
           </Link>
         </div>

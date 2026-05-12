@@ -233,7 +233,7 @@ export default function Notes() {
   const t = getNotesLocalizedText(translation);
 
   useEffect(() => {
-    document.title = `${t.myNotes} | Vagabond Faith AI`;
+    document.title = `${t.myNotes} | Sea Scroll AI`;
   }, [t.myNotes]);
 
   const { data: notesData, isLoading } = useQuery<NotesResponse>({

@@ -171,7 +171,7 @@ router.post("/admin/test", async (req: Request, res: Response) => {
         )
       : {
           title: title || "Test Notification",
-          body: body || "This is a test notification from Vagabond Faith",
+          body: body || "This is a test notification from Sea Scroll",
           data: { type: "test" },
         };
 

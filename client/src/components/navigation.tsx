@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { usePlatform } from "@/contexts/platform-context";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
-import logoImage from "@assets/Traveling_Church_Vector_SVG_1766874390629.png";
+import seaScrollDarkLogo from "@assets/Sea Scroll Logo Black.svg";
+import seaScrollLightLogo from "@assets/Sea Scroll Logo White.svg";
 
 interface NavigationProps {
   customLogo?: string;
@@ -35,7 +36,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       return;
     }
     if (isInstalled) {
-      alert("Vagabond Faith is already installed!");
+      alert("Sea Scroll is already installed!");
       return;
     }
     if (isChromium) {
@@ -47,7 +48,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
       window.open("https://apps.apple.com/us/app/vagabond-bible/id6757680520", "_blank");
       return;
     }
-    alert("To install Vagabond Faith, open this page in Google Chrome.");
+    alert("To install Sea Scroll, open this page in Google Chrome.");
   };
 
   useEffect(() => {
@@ -101,7 +102,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
     { id: "missions", label: "Missions", type: "link", href: "/missions" },
     { id: "programs", label: "Programs", type: "link", href: "/programs" },
     { id: "secret-bible", label: "Secret Bible", type: "link", href: "/secretbible" },
-    { id: "pastor-chat", label: "Vagabond Faith", type: "link", href: "/vagabond-bible" },
+    { id: "pastor-chat", label: "Sea Scroll", type: "link", href: "/vagabond-bible" },
     { id: "find-a-service", label: "Find a Bible Study", type: "link", href: "/find-a-service" },
     { id: "contact", label: "Contact", type: "scroll" },
     { id: "support", label: "Support", type: "link", href: "/keep-us-alive" },
@@ -130,7 +131,7 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
             >
               <img 
                 src={customLogo} 
-                alt="Vagabond Faith AI" 
+                alt="Sea Scroll AI" 
                 className="h-11"
               />
             </div>
@@ -141,8 +142,8 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
               data-testid="link-home"
             >
               <img 
-                src={logoImage} 
-                alt="The Traveling Church" 
+                src={seaScrollDarkLogo} 
+                alt="Sea Scroll" 
                 className="h-11"
               />
             </button>

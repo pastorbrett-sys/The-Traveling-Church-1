@@ -81,7 +81,7 @@ export default function VagabondBible() {
             data-testid="native-header-logo"
           >
             <div className="flex-1 h-px bg-gray-400/15" />
-            <img src={vagabondLogoWhite} alt="Vagabond Faith" className="h-8 mx-4" />
+            <img src={vagabondLogoWhite} alt="Sea Scroll" className="h-8 mx-4" />
             <div className="flex-1 h-px bg-gray-400/15" />
           </div>
         </section>
@@ -102,7 +102,7 @@ export default function VagabondBible() {
           <div className="flex items-center justify-between h-16">
             <img 
               src={(isScrolled || mobileMenuOpen) ? vagabondLogo : vagabondLogoWhite} 
-              alt="Vagabond Faith AI" 
+              alt="Sea Scroll AI" 
               className="h-11 transition-opacity duration-300" 
               data-testid="img-vagabond-logo" 
             />
@@ -410,7 +410,7 @@ export default function VagabondBible() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12">
             <div>
-              <img src={vagabondLogo} alt="Vagabond Faith AI" className="h-10 mb-4" />
+              <img src={vagabondLogo} alt="Sea Scroll AI" className="h-10 mb-4" />
               <p className="text-[hsl(20,10%,40%)] leading-relaxed">
                 {t("landing.footer_tagline")}
               </p>

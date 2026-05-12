@@ -15,7 +15,7 @@ export default function AmbassadorPending() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    document.title = "Application Pending | Vagabond Faith Ambassador";
+    document.title = "Application Pending | Sea Scroll Ambassador";
   }, []);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export default function AmbassadorPending() {
         <CardHeader className="text-center">
           <img 
             src={ambassadorLogo} 
-            alt="Vagabond Faith Ambassador" 
+            alt="Sea Scroll Ambassador" 
             className="h-20 mx-auto mb-4 object-contain"
           />
           <div className="flex items-center justify-center gap-2 text-[#c08e00]">

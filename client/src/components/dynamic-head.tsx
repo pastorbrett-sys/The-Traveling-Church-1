@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 const VAGABOND_META = {
-  title: "Vagabond Faith - AI-Powered Study Bible",
+  title: "Sea Scroll - AI-Powered Study Bible",
   description: "The AI-powered Bible that makes you feel like you were there. Chat with a 24/7 Pastor, explore Scripture, and gain deeper insights into God's Word.",
   url: "https://vagabondbible.com/",
   themeColor: "#be9009",

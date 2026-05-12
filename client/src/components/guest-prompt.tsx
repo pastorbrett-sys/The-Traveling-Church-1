@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";
-import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
+import seaScrollDarkLogo from "@assets/Sea Scroll Logo Black.svg";
 
 interface GuestPromptProps {
   featureDescription: string;
@@ -49,7 +49,7 @@ const VagabondHeader = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/">
-            <img src={vagabondLogo} alt="Vagabond Faith AI" className="h-10" data-testid="img-vagabond-logo" />
+            <img src={seaScrollDarkLogo} alt="Sea Scroll AI" className="h-10" data-testid="img-vagabond-logo" />
           </Link>
         </div>
       </div>

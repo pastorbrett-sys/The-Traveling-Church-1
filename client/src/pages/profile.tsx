@@ -123,7 +123,7 @@ const profileUiText = {
     personalStudyNotes: "Personal study notes",
     wantUnlimitedAccess: "Want unlimited access to all features?",
     ambassadorProgram: "Ambassadors",
-    ambassadorDescription: "Become an Ambassador to earn rewards by sharing Vagabond Faith with others.",
+    ambassadorDescription: "Become an Ambassador to earn rewards by sharing Sea Scroll with others.",
     becomeAmbassador: "Become an Ambassador",
     applicationPending: "Application Pending",
     pendingApproval: "Your application is being reviewed",
@@ -443,7 +443,7 @@ export default function Profile() {
   );
 
   useEffect(() => {
-    document.title = `${t.myProfile} | Vagabond Faith`;
+    document.title = `${t.myProfile} | Sea Scroll`;
     console.log('[Profile] platform:', platform, 'isNative:', isNative);
   }, [platform, isNative, t.myProfile]);
 
@@ -542,7 +542,7 @@ export default function Profile() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/vagabond-bible">
-            <img src={vagabondLogo} alt="Vagabond Faith AI" className="h-10" data-testid="img-vagabond-logo" />
+            <img src={vagabondLogo} alt="Sea Scroll AI" className="h-10" data-testid="img-vagabond-logo" />
           </Link>
         </div>
       </div>
