@@ -87,7 +87,7 @@ export default function Support() {
             <div>
               <h3 className="font-medium text-[hsl(20,10%,20%)] mb-2">How do I upgrade to Pro?</h3>
               <p className="text-[hsl(20,10%,40%)]">
-                You can upgrade to {isVagabond ? "Sea Scroll" : "Bible Buddy"} Pro from within the app. Look for the upgrade option in the menu or when accessing premium features.
+                You can upgrade to {brandName} Pro from within the app. Look for the upgrade option in the menu or when accessing premium features.
               </p>
             </div>
             
