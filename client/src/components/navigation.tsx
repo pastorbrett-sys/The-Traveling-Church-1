@@ -6,6 +6,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { usePlatform } from "@/contexts/platform-context";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import seaScrollDarkLogo from "@assets/Sea Scroll Logo Black.svg";
+import travelingChurchLogo from "@assets/Traveling Church Logo_1760305238166.png";
+import { isVagabondBibleDomain } from "@/lib/host-detection";
 
 interface NavigationProps {
   customLogo?: string;
@@ -140,11 +142,19 @@ export default function Navigation({ customLogo, showAuth = false, hideNavLinks 
               className="flex items-center"
               data-testid="link-home"
             >
-              <img 
-                src={seaScrollDarkLogo} 
-                alt="Sea Scroll" 
-                className="h-11"
-              />
+              {isVagabondBibleDomain() ? (
+                <img 
+                  src={seaScrollDarkLogo} 
+                  alt="Sea Scroll" 
+                  className="h-11"
+                />
+              ) : (
+                <img 
+                  src={travelingChurchLogo} 
+                  alt="The Traveling Church" 
+                  className="h-11"
+                />
+              )}
             </button>
           )}
           
