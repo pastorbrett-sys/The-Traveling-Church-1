@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
+import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
 
 export default function PrivacyPolicy() {
   useEffect(() => {

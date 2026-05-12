@@ -46,7 +46,7 @@ import Navigation from "@/components/navigation";
 import { usePlatform } from "@/contexts/platform-context";
 import { getBottomNavOffset } from "@/lib/native-spacing";
 import { useAuth } from "@/hooks/use-auth";
-import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
+import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
 import scrollImage from "@assets/Scroll_Image_1767410029173.png";
 import type { Note } from "@shared/schema";
 import { UpgradeDialog } from "@/components/upgrade-dialog";

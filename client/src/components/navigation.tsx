@@ -6,7 +6,6 @@ import { useAuth } from "@/hooks/use-auth";
 import { usePlatform } from "@/contexts/platform-context";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import seaScrollDarkLogo from "@assets/Sea Scroll Logo Black.svg";
-import seaScrollLightLogo from "@assets/Sea Scroll Logo White.svg";
 
 interface NavigationProps {
   customLogo?: string;

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ArrowLeft, Mail, MessageCircle, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import vagabondLogo from "@assets/Black_Logo_1778325312242.png";
+import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
 
 export default function Support() {
   useEffect(() => {
