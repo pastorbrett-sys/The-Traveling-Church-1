@@ -12,3 +12,9 @@ id = "ZMoZSsXVvcgzYbhLOJel7"
 uri = "file://client/public/verse-of-the-week-android.png"
 type = "image"
 title = "Verse of the Week — Android notification image (verse-of-the-week-android.png)"
+
+[[outputs]]
+id = "F86LO3WLUPNPg2fsscthO"
+uri = "file://attached_assets/Sea Scroll Logo White.svg"
+type = "image"
+title = "Sea Scroll Logo (white) — used on shared verse images"

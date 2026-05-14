@@ -28,7 +28,7 @@ import darkOcean from "@/assets/share-backgrounds/dark-ocean.jpg";
 import lightningStorm from "@/assets/share-backgrounds/lightning-storm.jpg";
 import darkRock from "@/assets/share-backgrounds/dark-rock.jpg";
 import fireEmbers from "@/assets/share-backgrounds/fire-embers.jpg";
-import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
+import vagabondLogo from "@assets/Sea Scroll Logo White.svg";
 
 const BACKGROUNDS = [
   { id: "sunset-ocean", src: sunsetOcean, name: "Sunset Ocean" },
