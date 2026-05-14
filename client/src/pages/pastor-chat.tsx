@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { apiRequest, apiFetch, getApiUrl } from "@/lib/queryClient";
 import { renderTextWithVerseLinks, type VerseRef } from "@/lib/verse-linker";
+import { XpLevelBar } from "@/components/xp-level-bar";
+import { grantXp } from "@/hooks/use-xp";
 import { setGlobalActiveTab, getGlobalActiveTab, subscribeToActiveTab } from "@/lib/active-tab-store";
 import { useAuth } from "@/hooks/use-auth";
 import Navigation from "@/components/navigation";
@@ -285,6 +287,7 @@ export default function PastorChat() {
   const handleVerseClick = useCallback((ref: VerseRef) => {
     setActiveTab("bible");
     setGlobalActiveTab("bible");
+    grantXp("verse-opened");
     setTimeout(() => {
       bibleReaderRef.current?.navigateToVerse(ref.bookName, ref.chapter, ref.verse);
     }, 100);
@@ -739,6 +742,8 @@ export default function PastorChat() {
           };
           return newMessages;
         });
+      } else {
+        grantXp("chat-message");
       }
     } catch (error) {
       console.error("Error sending message:", error);
@@ -819,19 +824,26 @@ export default function PastorChat() {
         customLogo={vagabondLogo} 
         showAuth={true} 
         hideNavLinks={true}
-        rightContent={isNative && activeTab === "bible" ? (
-          <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
-            <SelectTrigger className="w-20" data-testid="select-bible-translation-nav">
-              <SelectValue placeholder={bibleTranslation} />
-            </SelectTrigger>
-            <SelectContent>
-              {bibleTranslations?.map((t) => (
-                <SelectItem key={t.short_name} value={t.short_name}>
-                  {t.display_name || t.short_name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        rightContent={isNative ? (
+          <div className="flex items-center gap-2">
+            <div className={activeTab === "bible" ? "hidden min-[380px]:inline-flex" : "inline-flex"}>
+              <XpLevelBar compact />
+            </div>
+            {activeTab === "bible" && (
+              <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
+                <SelectTrigger className="w-20" data-testid="select-bible-translation-nav">
+                  <SelectValue placeholder={bibleTranslation} />
+                </SelectTrigger>
+                <SelectContent>
+                  {bibleTranslations?.map((t) => (
+                    <SelectItem key={t.short_name} value={t.short_name}>
+                      {t.display_name || t.short_name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          </div>
         ) : undefined}
       />
 
@@ -885,22 +897,20 @@ export default function PastorChat() {
             </div>
             <div className="flex items-center gap-2">
               {activeTab === "bible" && (
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground hidden sm:inline">{t.bibleVersion}</span>
-                  <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
-                    <SelectTrigger className="w-20" data-testid="select-bible-translation">
-                      <SelectValue placeholder={bibleTranslation} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {bibleTranslations?.map((t) => (
-                        <SelectItem key={t.short_name} value={t.short_name}>
-                          {t.display_name || t.short_name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                <Select value={bibleTranslation} onValueChange={setBibleTranslation}>
+                  <SelectTrigger className="w-20" data-testid="select-bible-translation">
+                    <SelectValue placeholder={bibleTranslation} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {bibleTranslations?.map((t) => (
+                      <SelectItem key={t.short_name} value={t.short_name}>
+                        {t.display_name || t.short_name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               )}
+              <XpLevelBar compact={activeTab === "bible"} />
             </div>
           </div>
         </div>
