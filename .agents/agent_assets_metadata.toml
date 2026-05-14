@@ -1,0 +1,14 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "eUv-J-UlekzvHdiUr4Bnb"
+uri = "file://client/public/verse-of-the-week-notification.png"
+type = "image"
+title = "Verse of the Week — iOS notification image (verse-of-the-week-notification.png)"
+
+[[outputs]]
+id = "ZMoZSsXVvcgzYbhLOJel7"
+uri = "file://client/public/verse-of-the-week-android.png"
+type = "image"
+title = "Verse of the Week — Android notification image (verse-of-the-week-android.png)"
