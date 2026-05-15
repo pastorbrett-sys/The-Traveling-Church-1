@@ -8,6 +8,7 @@ The Traveling Church is a full-stack web application for a global, traveling min
 
 Preferred communication style: Simple, everyday language.
 Git/GitHub: NEVER commit chat screenshots to git. Screenshots shared during conversation go to attached_assets/ but should be excluded from commits via .gitignore patterns.
+Native build commands (Android Studio / Xcode): ALWAYS include `node scripts/prepare-native-build.js` in the command sequence before `npx cap sync`. This script strips large Traveling-Church-only assets that aren't needed in the Sea Scroll native app, keeping the bundle size down. Correct order is: `npm install` → `npm run build` → `node scripts/prepare-native-build.js` → `npx cap sync android` (or `ios`) → `npx cap open android` (or `ios`).
 
 ## CRITICAL — DO NOT RENAME
 
