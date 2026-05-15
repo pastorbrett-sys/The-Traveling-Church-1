@@ -1,5 +1,5 @@
 import { SiInstagram, SiTiktok } from "react-icons/si";
-import pastorImage from "@assets/Pastor Brett_1760674999817.png";
+import pastorImage from "@assets/Pastor_Brett_1760674999817.png";
 
 export default function PastorSection() {
   return (

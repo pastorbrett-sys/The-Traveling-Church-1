@@ -1,0 +1,78 @@
+Synopsis for Replit: Android build failure & cleanup
+TL;DR
+The Android Studio build was failing with:
+
+' ' is not a valid file-based resource name character: File-based resource names must contain only lowercase a-z, 0-9, or underscore
+
+The cause was local-only — a stray duplicate file config 2.xml (plus 22 other " 2." duplicates) inside android/app/src/main/. None of these files were tracked in git, so the repo itself was always clean. The duplicates only existed on the local Mac checkout at ~/Desktop/The-Traveling-Church-1/.
+What broke the build
+Android's Asset Packaging Tool (AAPT2) refuses to compile any resource under res/ whose filename contains characters outside [a-z0-9_.]. The file android/app/src/main/res/xml/config 2.xml violated this because of the space. Build stopped at :app:mergeDebugResources.
+Where the duplicates came from
+The " 2." suffix is what macOS Finder appends when a file is duplicated in-place (e.g., when a copy/move operation lands in a folder that already contains a file with the same name, and the user picks "keep both"). 23 files were affected, all inside android/app/src/main/:
+
+1 resource file: res/xml/config 2.xml
+22 asset files in assets/public/ (icons, manifests, cordova.js, index.html, service worker, etc.)
+
+Almost all of the affected assets/public/ files are the web bundle that npx cap sync android copies in from dist/public/. So the chain was probably: dist/public/ got Finder duplicates first (likely from an over-the-top extraction or a re-sync where Finder merged folders), then cap sync propagated them into the Android assets folder. The config 2.xml in res/xml/ is the only one that's not part of the web bundle — that one was duplicated directly inside android/.
+What was done
+
+Confirmed the repo on GitHub (pastorbrett-sys/The-Traveling-Church-1, branch main) does not track any " 2." files.
+Deleted all 23 duplicate source files from android/app/src/:
+
+android/app/src/main/res/xml/config 2.xml
+android/app/src/main/assets/public/vagabond-icon-maskable-512 2.png
+android/app/src/main/assets/public/android-chrome-192x192 2.png
+android/app/src/main/assets/public/cordova 2.js
+android/app/src/main/assets/public/android-chrome-512x512 2.png
+android/app/src/main/assets/public/favicon-32x32 2.png
+android/app/src/main/assets/public/apple-touch-icon 2.png
+android/app/src/main/assets/public/vagabond-icon-512 2.png
+android/app/src/main/assets/public/church-og-image 2.png
+android/app/src/main/assets/public/og-image 2.png
+android/app/src/main/assets/public/favicon-16x16 2.png
+android/app/src/main/assets/public/cordova_plugins 2.js
+android/app/src/main/assets/public/vagabond-apple-touch-icon 2.png
+android/app/src/main/assets/public/prayer-artwork 2.png
+android/app/src/main/assets/public/vagabond-icon-maskable-192 2.png
+android/app/src/main/assets/public/index 2.html
+android/app/src/main/assets/public/sw 2.js
+android/app/src/main/assets/public/verse-of-the-week-android 2.png
+android/app/src/main/assets/public/church-manifest 2.json
+android/app/src/main/assets/public/manifest 2.json
+android/app/src/main/assets/public/vagabond-icon-192 2.png
+android/app/src/main/assets/public/verse-of-the-week-notification 2.png
+
+
+Deleted android/app/build/ and android/build/ (832 MB of stale Gradle output that had also accumulated " 2." duplicates) so Gradle would regenerate cleanly.
+Verified ios/ folder has zero " 2." duplicates (it was already clean).
+Verified the original config.xml and file_paths.xml in res/xml/ are untouched.
+
+Pending git state (informational)
+Only these were modified or unstaged before our cleanup; none relate to the build error:
+ M android/app/build.gradle
+ M package-lock.json
+ M package.json
+?? android/.idea/
+The duplicate deletions don't show up in git status because the files weren't tracked. No commit/push needed for the cleanup itself.
+Action items for Replit
+
+No repo changes required. The cleanup was local-only; the GitHub repo doesn't need a PR.
+Do not "merge" or "keep both" when overwriting the local checkout. Any tooling that copies files into ~/Desktop/The-Traveling-Church-1/ should overwrite or skip on collision, never rename-with-suffix. If Replit's sync mechanism is rsync-like, ensure it isn't passing --backup or any conflict-preserving flag when targeting the Mac directory.
+Check the source of the web bundle (dist/public/ or its source in client//attached_assets/) for Finder duplicates before running npx cap sync android. cap sync will faithfully copy whatever is in dist/public/ into android/app/src/main/assets/public/, including any " 2." files. If duplicates re-appear there, run this from project root to wipe them before syncing:
+
+bash   find dist android/app/src ios -type f -name "* 2.*" -delete
+
+One pre-existing non-duplicate filename has a space: Pastor Brett_1760674999817-Dm1o6lT-.png. Android tolerates it because it lives under assets/ (raw assets, not res/ resources) — but it's brittle and could break a future toolchain change. Recommend renaming the original at its source (likely in attached_assets/ or the Vite asset pipeline) to use underscores instead of spaces. Find the source with:
+
+bash   grep -r "Pastor Brett_1760674999817" client/ attached_assets/ shared/
+
+Android resource naming rule (for future awareness): anything destined for android/app/src/main/res/** must have a filename matching ^[a-z0-9_.]+$. No spaces, no uppercase, no hyphens. AAPT2 enforces this strictly. The assets/ folder is more permissive (raw bundling), but it's still a good idea to keep names ASCII-lowercase-underscore there too for portability.
+
+Next steps on the user's machine
+
+In Android Studio: File → Sync Project with Gradle Files, then hit the green Run button.
+After Android is green, for iOS:
+
+bash   cd ~/Desktop/The-Traveling-Church-1
+   npx cap sync ios
+   npx cap open ios
