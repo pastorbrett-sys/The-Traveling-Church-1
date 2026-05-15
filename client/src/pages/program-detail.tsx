@@ -10,7 +10,7 @@ import ironMenImage from "@assets/generated_images/men's_support_group_meeting.p
 import persecutedChristiansImage from "@assets/generated_images/christians_receiving_humanitarian_aid.png";
 import globalMinistryImage from "@assets/generated_images/traveling_minister_meeting_people.png";
 import communityFeedingImage from "@assets/generated_images/community_food_distribution_volunteers.png";
-import communityActivitiesImage from "@assets/image_1775640257848.png";
+import communityActivitiesImage from "@assets/community-activities_1775640257848.png";
 import communityFundsImage from "@assets/IMG_4716_1775640462445.jpg";
 import economicEmpowermentImage from "@assets/generated_images/business_training_entrepreneurs_workshop.png";
 import animalConservationImage from "@assets/generated_images/animal_conservation_volunteers_caring.png";
