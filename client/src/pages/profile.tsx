@@ -29,6 +29,7 @@ import {
 import vagabondLogo from "@assets/Sea Scroll Logo Black.svg";
 import upgradeIcon from "@assets/Uppgrade_icon_1767730633674.png";
 import { NotificationSettings } from "@/components/notification-settings";
+import { TraditionSettings } from "@/components/tradition-settings";
 
 interface PricingTierResponse {
   tier: 'premium' | 'emerging';
@@ -878,6 +879,9 @@ export default function Profile() {
                 )}
               </CardContent>
             </Card>
+
+            {/* Tradition preference */}
+            <TraditionSettings isAuthenticated={!!user?.id} />
 
             {/* Notification Settings - only shown on native platforms */}
             {user?.id && (

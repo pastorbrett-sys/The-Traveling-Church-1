@@ -31,7 +31,9 @@ export const users = pgTable("users", {
   hasSeenVerseTooltip: boolean("has_seen_verse_tooltip").default(false),
   hasSeenActionBarTooltip: boolean("has_seen_action_bar_tooltip").default(false),
   language: varchar("language").default("en"),
-  tradition: varchar("tradition"),
+  tradition: varchar("tradition"), // freeform/display label (e.g. "Catholic", "Anglican Communion")
+  traditionCategory: varchar("tradition_category"), // "catholic" | "orthodox" | "protestant" | "other"
+  personaTitle: varchar("persona_title"), // "Pastor" | "Father"
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

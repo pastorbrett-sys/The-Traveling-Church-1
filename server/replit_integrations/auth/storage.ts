@@ -21,21 +21,42 @@ export async function getUserLanguage(userId: string): Promise<string> {
   return user?.language || 'en';
 }
 
-// Tradition (Protestant/Catholic/Orthodox/Other)
-export const VALID_TRADITIONS = ["protestant", "catholic", "orthodox", "other"] as const;
-export type Tradition = typeof VALID_TRADITIONS[number];
+// Tradition profile (label + category + persona title)
+import { type TraditionProfile, isValidCategory, isValidPersonaTitle } from "@shared/traditions";
 
-export function isValidTradition(value: unknown): value is Tradition {
-  return typeof value === "string" && (VALID_TRADITIONS as readonly string[]).includes(value);
+export function isValidTraditionProfile(value: unknown): value is TraditionProfile {
+  if (!value || typeof value !== "object") return false;
+  const v = value as Record<string, unknown>;
+  return typeof v.tradition === "string"
+    && v.tradition.trim().length > 0
+    && v.tradition.length <= 80
+    && isValidCategory(v.traditionCategory)
+    && isValidPersonaTitle(v.personaTitle);
 }
 
-export async function updateUserTradition(userId: string, tradition: Tradition | null): Promise<void> {
-  await db.update(users).set({ tradition, updatedAt: new Date() }).where(eq(users.id, userId));
+export async function updateUserTradition(userId: string, profile: TraditionProfile | null): Promise<void> {
+  await db.update(users).set({
+    tradition: profile?.tradition ?? null,
+    traditionCategory: profile?.traditionCategory ?? null,
+    personaTitle: profile?.personaTitle ?? null,
+    updatedAt: new Date(),
+  }).where(eq(users.id, userId));
 }
 
-export async function getUserTradition(userId: string): Promise<Tradition | null> {
-  const [user] = await db.select({ tradition: users.tradition }).from(users).where(eq(users.id, userId));
-  return (user?.tradition && isValidTradition(user.tradition)) ? user.tradition : null;
+export async function getUserTradition(userId: string): Promise<TraditionProfile | null> {
+  const [user] = await db.select({
+    tradition: users.tradition,
+    traditionCategory: users.traditionCategory,
+    personaTitle: users.personaTitle,
+  }).from(users).where(eq(users.id, userId));
+  if (!user || !user.tradition || !isValidCategory(user.traditionCategory) || !isValidPersonaTitle(user.personaTitle)) {
+    return null;
+  }
+  return {
+    tradition: user.tradition,
+    traditionCategory: user.traditionCategory,
+    personaTitle: user.personaTitle,
+  };
 }
 
 // Interface for auth storage operations

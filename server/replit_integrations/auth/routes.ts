@@ -1,6 +1,8 @@
 import type { Express } from "express";
-import { authStorage, updateUserLanguage, updateUserTradition, getUserTradition, isValidTradition } from "./storage";
+import { authStorage, updateUserLanguage, updateUserTradition, getUserTradition, isValidTraditionProfile } from "./storage";
 import { verifyFirebaseToken, upsertFirebaseUser } from "../../firebaseAdmin";
+import { openaiClient } from "../../aiRouter";
+import { isValidCategory, isValidPersonaTitle, type TraditionProfile } from "@shared/traditions";
 
 export function registerAuthRoutes(app: Express): void {
   // Update user language preference (called by frontend on app load)
@@ -76,15 +78,85 @@ export function registerAuthRoutes(app: Express): void {
     try {
       const userId = await resolveUserId(req);
       if (!userId) return res.status(401).json({ message: "Not authenticated" });
-      const { tradition } = req.body || {};
-      if (tradition !== null && !isValidTradition(tradition)) {
-        return res.status(400).json({ message: "Invalid tradition" });
+      const body = req.body || {};
+      if (body.tradition === null) {
+        await updateUserTradition(userId, null);
+        return res.json({ success: true, profile: null });
       }
-      await updateUserTradition(userId, tradition);
-      res.json({ success: true, tradition });
+      const profile = {
+        tradition: typeof body.tradition === "string" ? body.tradition.trim() : "",
+        traditionCategory: body.traditionCategory,
+        personaTitle: body.personaTitle,
+      };
+      if (!isValidTraditionProfile(profile)) {
+        return res.status(400).json({ message: "Invalid tradition profile" });
+      }
+      await updateUserTradition(userId, profile);
+      res.json({ success: true, profile });
     } catch (error) {
       console.error("Error updating tradition:", error);
       res.status(500).json({ message: "Failed to update tradition" });
+    }
+  });
+
+  // Classify a free-form "Other" tradition description into our category + persona.
+  // Open to guests; lightly rate-limited per IP to prevent OpenAI credit drain.
+  const classifyHits = new Map<string, { count: number; resetAt: number }>();
+  const CLASSIFY_WINDOW_MS = 60_000;
+  const CLASSIFY_MAX = 5;
+  app.post("/api/user/tradition/classify", async (req: any, res) => {
+    try {
+      const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip || "unknown";
+      const now = Date.now();
+      const entry = classifyHits.get(ip);
+      if (!entry || entry.resetAt < now) {
+        classifyHits.set(ip, { count: 1, resetAt: now + CLASSIFY_WINDOW_MS });
+      } else {
+        entry.count += 1;
+        if (entry.count > CLASSIFY_MAX) {
+          return res.status(429).json({ message: "Too many requests, please wait a moment." });
+        }
+      }
+      // Opportunistic cleanup
+      if (classifyHits.size > 5000) {
+        for (const [k, v] of classifyHits) if (v.resetAt < now) classifyHits.delete(k);
+      }
+      const text = typeof req.body?.text === "string" ? req.body.text.trim() : "";
+      if (!text || text.length > 200) {
+        return res.status(400).json({ message: "Text is required (max 200 chars)" });
+      }
+      const completion = await openaiClient.chat.completions.create({
+        model: "gpt-4o-mini",
+        response_format: { type: "json_object" },
+        max_completion_tokens: 200,
+        messages: [
+          {
+            role: "system",
+            content: `You classify a user-described Christian tradition into a JSON object with exactly these fields:
+  - "tradition": a short canonical display name (1-5 words), e.g. "Anglican Communion", "Coptic Orthodox", "Reformed Baptist".
+  - "traditionCategory": one of "catholic" | "orthodox" | "protestant" | "other".
+      - "catholic" for Roman Catholic and Eastern Catholic churches in communion with Rome (e.g. Maronite, Melkite).
+      - "orthodox" for Eastern Orthodox AND Oriental Orthodox (Coptic, Ethiopian Tewahedo, Armenian Apostolic, Syriac, Eritrean).
+      - "protestant" for all Reformation and post-Reformation Protestant traditions (Anglican/Episcopal, Lutheran, Methodist, Presbyterian, Reformed, Baptist, Pentecostal, Adventist, Non-denominational, etc.).
+      - "other" only for non-Trinitarian / restorationist / unclear (e.g. LDS, Jehovah's Witnesses, Quakers without clergy, or descriptions you cannot place).
+  - "personaTitle": exactly "Father" if the tradition's clergy are commonly addressed as "Father" (Catholic, Eastern Orthodox, Oriental Orthodox, Anglican/Episcopal, Maronite, etc.), otherwise "Pastor".
+Return only the JSON object. No prose.`,
+          },
+          { role: "user", content: text },
+        ],
+      });
+      const raw = completion.choices?.[0]?.message?.content || "{}";
+      let parsed: any;
+      try { parsed = JSON.parse(raw); } catch { parsed = {}; }
+      const profile: TraditionProfile = {
+        tradition: typeof parsed.tradition === "string" && parsed.tradition.trim() ? parsed.tradition.trim().slice(0, 80) : text.slice(0, 80),
+        traditionCategory: isValidCategory(parsed.traditionCategory) ? parsed.traditionCategory : "other",
+        personaTitle: isValidPersonaTitle(parsed.personaTitle) ? parsed.personaTitle : "Pastor",
+      };
+      res.json({ profile });
+    } catch (error) {
+      console.error("Error classifying tradition:", error);
+      res.status(500).json({ message: "Failed to classify tradition" });
     }
   });
 

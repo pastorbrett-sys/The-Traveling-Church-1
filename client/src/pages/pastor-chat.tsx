@@ -41,26 +41,33 @@ function isAmharicTranslation(translation: string): boolean {
 }
 
 // Tradition selection — persona mapping and localStorage helpers
-export type Tradition = "protestant" | "catholic" | "orthodox" | "other";
+import { type TraditionProfile, type TraditionCategory, type PersonaTitle, PRESET_TRADITIONS } from "@shared/traditions";
 const TRADITION_KEY = "userTradition";
 
-function getStoredTradition(): Tradition | null {
+function getStoredTradition(): TraditionProfile | null {
   try {
     const v = localStorage.getItem(TRADITION_KEY);
-    if (v === "protestant" || v === "catholic" || v === "orthodox" || v === "other") return v;
+    if (!v) return null;
+    // Back-compat: old format was a bare string like "catholic"
+    if (v === "protestant" || v === "catholic" || v === "orthodox" || v === "other") {
+      const preset = v === "other" ? PRESET_TRADITIONS.not_sure : PRESET_TRADITIONS[v as keyof typeof PRESET_TRADITIONS];
+      return preset ?? null;
+    }
+    const parsed = JSON.parse(v);
+    if (parsed && typeof parsed.tradition === "string" && parsed.traditionCategory && parsed.personaTitle) {
+      return parsed as TraditionProfile;
+    }
   } catch {}
   return null;
 }
 
-function setStoredTradition(t: Tradition): void {
-  try { localStorage.setItem(TRADITION_KEY, t); } catch {}
+function setStoredTradition(p: TraditionProfile): void {
+  try { localStorage.setItem(TRADITION_KEY, JSON.stringify(p)); } catch {}
 }
 
-function getPersonaTitle(tradition: Tradition | null, translation: string): string {
+function getPersonaTitle(profile: TraditionProfile | null, translation: string): string {
   const isAmharic = isAmharicTranslation(translation);
-  if (tradition === "catholic" || tradition === "orthodox") {
-    return isAmharic ? "አባ ብሬት" : "Father Brett";
-  }
+  if (profile?.personaTitle === "Father") return isAmharic ? "አባ ብሬት" : "Father Brett";
   return isAmharic ? "ፓስተር ብሬት" : "Pastor Brett";
 }
 
@@ -73,7 +80,11 @@ const chatUiText = {
     traditionProtestant: "Protestant",
     traditionCatholic: "Catholic",
     traditionOrthodox: "Orthodox",
-    traditionOther: "Other tradition",
+    traditionOther: "Other",
+    traditionNotSure: "I'm not sure",
+    traditionOtherPlaceholder: "Type your tradition (e.g. Anglican, Coptic, Reformed Baptist)…",
+    traditionOtherSubmit: "Continue",
+    traditionClassifying: "Got it, setting that up…",
     pastorBrett: "Pastor Brett",
     askAnything: "Ask Pastor Brett anything...",
     send: "Send",
@@ -108,7 +119,11 @@ const chatUiText = {
     traditionProtestant: "ፕሮቴስታንት",
     traditionCatholic: "ካቶሊክ",
     traditionOrthodox: "ኦርቶዶክስ",
-    traditionOther: "ሌላ ወግ",
+    traditionOther: "ሌላ",
+    traditionNotSure: "እርግጠኛ አይደለሁም",
+    traditionOtherPlaceholder: "የራስዎን ወግ ይጻፉ (ለምሳሌ አንግሊካን፣ ኮፕቲክ)…",
+    traditionOtherSubmit: "ቀጥል",
+    traditionClassifying: "በማዘጋጀት ላይ…",
     pastorBrett: "ፓስተር ብሬት",
     askAnything: "ፓስተር ብሬትን ማንኛውንም ነገር ይጠይቁ...",
     send: "ላክ",
@@ -142,18 +157,24 @@ function getChatLocalizedText(translation: string) {
   return isAmharicTranslation(translation) ? chatUiText.am : chatUiText.en;
 }
 
+type TraditionChoice = "protestant" | "catholic" | "orthodox" | "other" | "not_sure";
+
 interface WelcomeMessageProps {
   translation: string;
   onQuickSelect?: (message: string) => void;
   showQuickSelects?: boolean;
-  tradition: Tradition | null;
-  onTraditionSelect: (t: Tradition) => void;
+  tradition: TraditionProfile | null;
+  onTraditionChoice: (choice: TraditionChoice) => void;
+  onTraditionOtherSubmit: (text: string) => void;
+  otherMode: boolean;
+  isClassifying: boolean;
 }
 
 const quickSelectIcons = [BookOpenText, HelpCircle, Heart, Sparkles];
 
-const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation, onQuickSelect, showQuickSelects = true, tradition, onTraditionSelect }, ref) => {
+const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation, onQuickSelect, showQuickSelects = true, tradition, onTraditionChoice, onTraditionOtherSubmit, otherMode, isClassifying }, ref) => {
   const t = getChatLocalizedText(translation);
+  const [otherText, setOtherText] = useState("");
   const quickOptions = [
     { label: t.quickStruggling, icon: quickSelectIcons[2] },
     { label: t.quickStudy, icon: quickSelectIcons[0] },
@@ -161,17 +182,18 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
     { label: t.quickAnything, icon: quickSelectIcons[3] },
   ];
 
-  const traditionOptions: { value: Tradition; label: string }[] = [
+  const traditionOptions: { value: TraditionChoice; label: string }[] = [
     { value: "protestant", label: t.traditionProtestant },
     { value: "catholic", label: t.traditionCatholic },
     { value: "orthodox", label: t.traditionOrthodox },
     { value: "other", label: t.traditionOther },
+    { value: "not_sure", label: t.traditionNotSure },
   ];
 
   const personaName = getPersonaTitle(tradition, translation);
-  const isFather = tradition === "catholic" || tradition === "orthodox";
+  const isFather = tradition?.personaTitle === "Father";
   const welcomeText = tradition === null
-    ? t.traditionPrompt
+    ? (isClassifying ? t.traditionClassifying : t.traditionPrompt)
     : (isFather ? t.welcomeMessageFather : t.welcomeMessage);
 
   return (
@@ -197,7 +219,7 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
         </div>
       </motion.div>
 
-      {tradition === null && (
+      {tradition === null && !otherMode && !isClassifying && (
         <div className="flex flex-wrap gap-2 justify-start" data-testid="tradition-picker">
           {traditionOptions.map((opt, i) => (
             <motion.button
@@ -210,7 +232,7 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
                 ease: [0.34, 1.56, 0.64, 1],
               }}
               whileTap={{ scale: 0.93 }}
-              onClick={() => onTraditionSelect(opt.value)}
+              onClick={() => onTraditionChoice(opt.value)}
               className="inline-flex items-center gap-2 bg-[#b8860b]/10 border border-[#b8860b]/30 text-[#9a7209] dark:text-[#d4a843] rounded-full px-4 py-2.5 text-sm font-medium hover:bg-[#b8860b]/20 active:bg-[#b8860b]/25 transition-colors"
               data-testid={`tradition-${opt.value}`}
             >
@@ -218,6 +240,40 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
             </motion.button>
           ))}
         </div>
+      )}
+
+      {tradition === null && otherMode && !isClassifying && (
+        <motion.form
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            const trimmed = otherText.trim();
+            if (trimmed.length > 0) onTraditionOtherSubmit(trimmed);
+          }}
+          className="flex gap-2 max-w-md"
+          data-testid="tradition-other-form"
+        >
+          <input
+            type="text"
+            value={otherText}
+            onChange={(e) => setOtherText(e.target.value)}
+            placeholder={t.traditionOtherPlaceholder}
+            maxLength={120}
+            autoFocus
+            className="flex-1 rounded-full border border-[#b8860b]/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#b8860b]/40"
+            data-testid="input-tradition-other"
+          />
+          <Button
+            type="submit"
+            disabled={otherText.trim().length === 0}
+            className="rounded-full bg-[#b8860b] hover:bg-[#9a7209] text-white"
+            data-testid="button-tradition-other-submit"
+          >
+            {t.traditionOtherSubmit}
+          </Button>
+        </motion.form>
       )}
 
       {tradition !== null && showQuickSelects && (
@@ -449,21 +505,59 @@ export default function PastorChat() {
   const [hasSeeded, setHasSeeded] = useState(false);
   const [animateFromIndex, setAnimateFromIndex] = useState<number>(Infinity);
   const [showQuickSelects, setShowQuickSelects] = useState(true);
-  const [tradition, setTradition] = useState<Tradition | null>(() => getStoredTradition());
+  const [tradition, setTradition] = useState<TraditionProfile | null>(() => getStoredTradition());
+  const [traditionOtherMode, setTraditionOtherMode] = useState(false);
+  const [traditionClassifying, setTraditionClassifying] = useState(false);
 
-  const handleTraditionSelect = useCallback((value: Tradition) => {
-    setStoredTradition(value);
-    setTradition(value);
-    // Persist server-side for authenticated users so other features can reference it
+  const persistTradition = useCallback((profile: TraditionProfile) => {
+    setStoredTradition(profile);
+    setTradition(profile);
     apiFetch("/api/user/tradition", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tradition: value }),
+      body: JSON.stringify(profile),
     }).catch((err) => {
-      // Best-effort sync; localStorage remains source of truth offline / unauthenticated
       console.warn("[Tradition] Failed to sync to server:", err);
     });
   }, []);
+
+  const handleTraditionChoice = useCallback((choice: TraditionChoice) => {
+    if (choice === "other") {
+      setTraditionOtherMode(true);
+      return;
+    }
+    const preset = choice === "not_sure"
+      ? PRESET_TRADITIONS.not_sure
+      : PRESET_TRADITIONS[choice];
+    persistTradition(preset);
+  }, [persistTradition]);
+
+  const handleTraditionOtherSubmit = useCallback(async (text: string) => {
+    setTraditionClassifying(true);
+    try {
+      const res = await apiFetch("/api/user/tradition/classify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.profile?.tradition) {
+          persistTradition(data.profile);
+          setTraditionOtherMode(false);
+          return;
+        }
+      }
+      // Fallback: store as "other" with raw text
+      persistTradition({ tradition: text.slice(0, 80), traditionCategory: "other", personaTitle: "Pastor" });
+      setTraditionOtherMode(false);
+    } catch {
+      persistTradition({ tradition: text.slice(0, 80), traditionCategory: "other", personaTitle: "Pastor" });
+      setTraditionOtherMode(false);
+    } finally {
+      setTraditionClassifying(false);
+    }
+  }, [persistTradition]);
   
   // Track the seed params to detect when they change (for same-page navigation)
   const [lastSeedParams, setLastSeedParams] = useState<string | null>(null);
@@ -498,17 +592,22 @@ export default function PastorChat() {
       try {
         const res = await apiFetch("/api/user/tradition");
         if (!res.ok) return;
-        const data: { tradition: Tradition | null } = await res.json();
+        const data: { tradition: TraditionProfile | null } = await res.json();
         if (cancelled) return;
         const local = getStoredTradition();
-        if (data.tradition && data.tradition !== local) {
-          setStoredTradition(data.tradition);
-          setTradition(data.tradition);
-        } else if (!data.tradition && local) {
+        const serverProfile = data.tradition;
+        const sameAsLocal = serverProfile && local
+          && serverProfile.tradition === local.tradition
+          && serverProfile.traditionCategory === local.traditionCategory
+          && serverProfile.personaTitle === local.personaTitle;
+        if (serverProfile && !sameAsLocal) {
+          setStoredTradition(serverProfile);
+          setTradition(serverProfile);
+        } else if (!serverProfile && local) {
           apiFetch("/api/user/tradition", {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ tradition: local }),
+            body: JSON.stringify(local),
           }).catch(() => {});
         }
       } catch {
@@ -786,7 +885,7 @@ export default function PastorChat() {
       const response = await apiFetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: savedInput, translation: bibleTranslation, tradition }),
+        body: JSON.stringify({ content: savedInput, translation: bibleTranslation, traditionProfile: tradition }),
       });
 
       if (response.status === 402 || response.status === 429) {
@@ -1057,7 +1156,7 @@ export default function PastorChat() {
                 const isWelcomeMessage = index === 0 && messages.length === 0 && message.role === "assistant";
                 
                 if (isWelcomeMessage) {
-                  return <WelcomeMessage key="welcome-message" translation={bibleTranslation} onQuickSelect={handleQuickSelect} showQuickSelects={showQuickSelects} tradition={tradition} onTraditionSelect={handleTraditionSelect} />;
+                  return <WelcomeMessage key="welcome-message" translation={bibleTranslation} onQuickSelect={handleQuickSelect} showQuickSelects={showQuickSelects} tradition={tradition} onTraditionChoice={handleTraditionChoice} onTraditionOtherSubmit={handleTraditionOtherSubmit} otherMode={traditionOtherMode} isClassifying={traditionClassifying} />;
                 }
                 
                 const shouldAnimate = index >= animateFromIndex;

@@ -105,32 +105,23 @@ async function checkUserProStatus(req: any): Promise<boolean> {
 }
 
 
-type Tradition = "protestant" | "catholic" | "orthodox" | "other";
+import { type TraditionProfile, isValidCategory, isValidPersonaTitle, getTraditionInstruction } from "@shared/traditions";
 
-function normalizeTradition(value: unknown): Tradition | null {
-  if (value === "protestant" || value === "catholic" || value === "orthodox" || value === "other") {
-    return value;
-  }
-  return null;
+function normalizeTraditionProfile(value: unknown): TraditionProfile | null {
+  if (!value || typeof value !== "object") return null;
+  const v = value as Record<string, unknown>;
+  if (typeof v.tradition !== "string" || !v.tradition.trim()) return null;
+  if (!isValidCategory(v.traditionCategory)) return null;
+  if (!isValidPersonaTitle(v.personaTitle)) return null;
+  return {
+    tradition: v.tradition.trim().slice(0, 80),
+    traditionCategory: v.traditionCategory,
+    personaTitle: v.personaTitle,
+  };
 }
 
-function getPersonaName(tradition: Tradition | null): "Pastor Brett" | "Father Brett" {
-  return tradition === "catholic" || tradition === "orthodox" ? "Father Brett" : "Pastor Brett";
-}
-
-function getTraditionInstruction(tradition: Tradition | null): string {
-  switch (tradition) {
-    case "catholic":
-      return `\n\nThe user identifies as Catholic. Address yourself as "Father Brett". Flavor responses with the Catholic tradition: cite the Catechism of the Catholic Church when relevant, reference Church Fathers (Augustine, Aquinas, Jerome), the Magisterium, sacred Tradition alongside Scripture, the seven sacraments, the communion of saints, and Marian devotion where appropriate. Use the Catholic biblical canon (including the deuterocanonical books). Be respectful of papal teaching.`;
-    case "orthodox":
-      return `\n\nThe user identifies as Eastern Orthodox. Address yourself as "Father Brett". Flavor responses with Orthodox tradition: draw on the Church Fathers (especially the Cappadocians, John Chrysostom, Maximus the Confessor, Gregory Palamas), patristic theology, theosis (deification), the Divine Liturgy, the seven Ecumenical Councils, icons and the Theotokos. Honor sacred Tradition alongside Scripture. Use the Orthodox biblical canon (including the deuterocanonical/anagignoskomena).`;
-    case "protestant":
-      return `\n\nThe user identifies as Protestant. Address yourself as "Pastor Brett". Flavor responses with the Protestant tradition: emphasize sola scriptura, justification by faith, the priesthood of all believers, and Reformation theology (Luther, Calvin, Wesley) where relevant. Use the Protestant biblical canon (66 books). Center responses on the gospel and a personal relationship with Christ.`;
-    case "other":
-      return `\n\nThe user identifies with a tradition outside mainstream Protestant, Catholic, or Orthodox Christianity (or none). Address yourself as "Pastor Brett". Be ecumenical and non-sectarian. Focus on shared Christian essentials, the person of Jesus, and Scripture itself without leaning on any one denomination's distinctives. Be especially open and welcoming.`;
-    default:
-      return "";
-  }
+function getPersonaName(profile: TraditionProfile | null): string {
+  return `${profile?.personaTitle ?? "Pastor"} Brett`;
 }
 
 const SYSTEM_PROMPT_BASE = `You are {{PERSONA}}, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
@@ -146,10 +137,10 @@ Remember: You are here to support, not to replace professional counseling or in-
 
 const SYSTEM_PROMPT_AMHARIC_BASE = `አንተ {{PERSONA_AM}} ነህ፣ ርኅሩኅ የመጽሐፍ ቅዱስ ጓደኛ። በአማርኛ (ፊደል) ብቻ መልስ ስጥ። ጥቅሶችን አብራራ፣ ታሪካዊ ዳራ ስጥ፣ ለዛሬ ተግባራዊ ትርጉም አካትት። ምላሽህ ተፈጥሯዊ አማርኛ ይሁን።`;
 
-function getSystemPrompt(translation: string, tradition: Tradition | null = null): string {
-  const persona = getPersonaName(tradition);
-  const personaAm = persona === "Father Brett" ? "አባ ብሬት" : "ፓስተር ብሬት";
-  const traditionInstruction = getTraditionInstruction(tradition);
+function getSystemPrompt(translation: string, profile: TraditionProfile | null = null): string {
+  const persona = getPersonaName(profile);
+  const personaAm = profile?.personaTitle === "Father" ? "አባ ብሬት" : "ፓስተር ብሬት";
+  const traditionInstruction = getTraditionInstruction(profile);
   if (isNonEnglish(translation)) {
     return SYSTEM_PROMPT_AMHARIC_BASE.replace("{{PERSONA_AM}}", personaAm) + traditionInstruction;
   }
@@ -297,7 +288,7 @@ export function registerChatRoutes(app: Express): void {
 
       const content = req.body?.content;
       const translation = req.body?.translation || "KJV";
-      let tradition = normalizeTradition(req.body?.tradition);
+      let tradition = normalizeTraditionProfile(req.body?.traditionProfile ?? req.body?.tradition);
       if (typeof content !== "string" || !content.trim()) {
         return res.status(400).json({ error: "Message content is required" });
       }
@@ -438,7 +429,7 @@ export function registerChatRoutes(app: Express): void {
     try {
       const content = req.body?.content;
       const translation = req.body?.translation || "KJV";
-      const tradition = normalizeTradition(req.body?.tradition);
+      const tradition = normalizeTraditionProfile(req.body?.traditionProfile ?? req.body?.tradition);
       if (typeof content !== "string" || !content.trim()) {
         return res.status(400).json({ error: "Message content is required" });
       }
