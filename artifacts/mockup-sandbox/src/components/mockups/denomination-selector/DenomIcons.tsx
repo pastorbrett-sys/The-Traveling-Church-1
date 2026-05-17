@@ -1,17 +1,30 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Church, Cross, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 const denominations = [
   {
     id: "protestant",
     label: "Protestant",
-    icon: Church,
+    icon: () => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+        <path d="M12 3v18" />
+        <path d="M6 8h12" />
+        <path d="M8 12h8" />
+        <path d="M6 16h12" />
+        <path d="M10 3l2-1 2 1" />
+      </svg>
+    ),
   },
   {
     id: "catholic",
     label: "Catholic",
-    icon: Cross,
+    icon: () => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+        <path d="M12 3v18" />
+        <path d="M6 9h12" />
+      </svg>
+    ),
   },
   {
     id: "orthodox",
@@ -37,7 +50,13 @@ export function DenomIcons() {
       {/* Header */}
       <div className="px-6 pt-12 pb-6 text-center">
         <div className="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style={{ background: "#B78D00" }}>
-          <Church className="w-8 h-8 text-white" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+            <path d="M12 3v18" />
+            <path d="M6 8h12" />
+            <path d="M8 12h8" />
+            <path d="M6 16h12" />
+            <path d="M10 3l2-1 2 1" />
+          </svg>
         </div>
         <h1 className="text-2xl font-bold leading-tight mb-2" style={{ color: "hsl(20, 10%, 15%)" }}>
           Pick Your Tradition

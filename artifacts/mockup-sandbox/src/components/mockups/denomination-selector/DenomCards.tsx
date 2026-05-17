@@ -1,20 +1,33 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Church, Cross, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 const denominations = [
   {
     id: "protestant",
     label: "Protestant",
     subtitle: "Baptist, Methodist, Pentecostal, Lutheran, & more",
-    icon: Church,
+    icon: () => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <path d="M12 3v18" />
+        <path d="M6 8h12" />
+        <path d="M8 12h8" />
+        <path d="M6 16h12" />
+        <path d="M10 3l2-1 2 1" />
+      </svg>
+    ),
   },
   {
     id: "catholic",
     label: "Catholic",
     subtitle: "Roman Catholic, Eastern Catholic, & more",
-    icon: Cross,
+    icon: () => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+        <path d="M12 3v18" />
+        <path d="M6 9h12" />
+      </svg>
+    ),
   },
   {
     id: "orthodox",
