@@ -215,7 +215,7 @@ const profileUiText = {
     personalStudyNotes: "የግል ጥናት ማስታወሻዎች",
     wantUnlimitedAccess: "ወደ ሁሉም ባህሪያት ያልተገደበ መዳረሻ ይፈልጋሉ?",
     ambassadorProgram: "አምባሳደሮች",
-    ambassadorDescription: "ቫጋቦንድ መጽሐፍ ቅዱስን ለሌሎች በማጋራት ሽልማቶችን ለማግኘት አምባሳደር ይሁኑ።",
+    ambassadorDescription: "ሲ ስክሮልን ለሌሎች በማጋራት ሽልማቶችን ለማግኘት አምባሳደር ይሁኑ።",
     becomeAmbassador: "አምባሳደር ይሁኑ",
     applicationPending: "ማመልከቻ በመጠባበቅ ላይ",
     pendingApproval: "ማመልከቻዎ በመገምገም ላይ ነው",
