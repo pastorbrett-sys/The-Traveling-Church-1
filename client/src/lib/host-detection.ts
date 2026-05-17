@@ -26,9 +26,12 @@ export function isVagabondBibleDomain(): boolean {
   }
   
   const hostname = window.location.hostname.toLowerCase();
-  return hostname === 'vagabondbible.com' || 
+  return hostname === 'vagabondbible.com' ||
          hostname === 'www.vagabondbible.com' ||
-         hostname.endsWith('.vagabondbible.com');
+         hostname.endsWith('.vagabondbible.com') ||
+         hostname === 'seascroll.org' ||
+         hostname === 'www.seascroll.org' ||
+         hostname.endsWith('.seascroll.org');
 }
 
 export function isTravelingChurchDomain(): boolean {
