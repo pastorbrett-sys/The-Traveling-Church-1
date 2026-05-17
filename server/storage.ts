@@ -92,6 +92,9 @@ export interface IStorage {
 
   // Pricing tier
   updateUserPricingTier(userId: string, tier: string): Promise<void>;
+
+  // Tradition (Protestant/Catholic/Orthodox/Other) for AI persona flavoring
+  updateUserTradition(userId: string, tradition: string | null): Promise<User | undefined>;
 }
 
 export class DbStorage implements IStorage {
@@ -485,6 +488,16 @@ export class DbStorage implements IStorage {
       .update(schema.users)
       .set({ pricingTier: tier })
       .where(eq(schema.users.id, userId));
+  }
+
+  // Tradition
+  async updateUserTradition(userId: string, tradition: string | null): Promise<User | undefined> {
+    const result = await db
+      .update(schema.users)
+      .set({ tradition })
+      .where(eq(schema.users.id, userId))
+      .returning();
+    return result[0];
   }
 }
 

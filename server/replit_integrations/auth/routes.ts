@@ -1,5 +1,5 @@
 import type { Express } from "express";
-import { authStorage, updateUserLanguage } from "./storage";
+import { authStorage, updateUserLanguage, updateUserTradition, getUserTradition, isValidTradition } from "./storage";
 import { verifyFirebaseToken, upsertFirebaseUser } from "../../firebaseAdmin";
 
 export function registerAuthRoutes(app: Express): void {
@@ -45,6 +45,46 @@ export function registerAuthRoutes(app: Express): void {
     } catch (error) {
       console.error("Error updating user language:", error);
       res.status(500).json({ message: "Failed to update language" });
+    }
+  });
+
+  // Get/update user tradition (Protestant/Catholic/Orthodox/Other) for AI persona flavoring
+  async function resolveUserId(req: any): Promise<string | null> {
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      try {
+        const decoded = await verifyFirebaseToken(authHeader.split("Bearer ")[1]);
+        if (decoded) return decoded.uid;
+      } catch {}
+    }
+    return (req.session as any)?.userId || (req.user as any)?.claims?.sub || null;
+  }
+
+  app.get("/api/user/tradition", async (req: any, res) => {
+    try {
+      const userId = await resolveUserId(req);
+      if (!userId) return res.status(401).json({ message: "Not authenticated" });
+      const tradition = await getUserTradition(userId);
+      res.json({ tradition });
+    } catch (error) {
+      console.error("Error fetching tradition:", error);
+      res.status(500).json({ message: "Failed to fetch tradition" });
+    }
+  });
+
+  app.patch("/api/user/tradition", async (req: any, res) => {
+    try {
+      const userId = await resolveUserId(req);
+      if (!userId) return res.status(401).json({ message: "Not authenticated" });
+      const { tradition } = req.body || {};
+      if (tradition !== null && !isValidTradition(tradition)) {
+        return res.status(400).json({ message: "Invalid tradition" });
+      }
+      await updateUserTradition(userId, tradition);
+      res.json({ success: true, tradition });
+    } catch (error) {
+      console.error("Error updating tradition:", error);
+      res.status(500).json({ message: "Failed to update tradition" });
     }
   });
 

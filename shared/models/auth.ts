@@ -31,6 +31,7 @@ export const users = pgTable("users", {
   hasSeenVerseTooltip: boolean("has_seen_verse_tooltip").default(false),
   hasSeenActionBarTooltip: boolean("has_seen_action_bar_tooltip").default(false),
   language: varchar("language").default("en"),
+  tradition: varchar("tradition"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

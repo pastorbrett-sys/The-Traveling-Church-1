@@ -21,6 +21,23 @@ export async function getUserLanguage(userId: string): Promise<string> {
   return user?.language || 'en';
 }
 
+// Tradition (Protestant/Catholic/Orthodox/Other)
+export const VALID_TRADITIONS = ["protestant", "catholic", "orthodox", "other"] as const;
+export type Tradition = typeof VALID_TRADITIONS[number];
+
+export function isValidTradition(value: unknown): value is Tradition {
+  return typeof value === "string" && (VALID_TRADITIONS as readonly string[]).includes(value);
+}
+
+export async function updateUserTradition(userId: string, tradition: Tradition | null): Promise<void> {
+  await db.update(users).set({ tradition, updatedAt: new Date() }).where(eq(users.id, userId));
+}
+
+export async function getUserTradition(userId: string): Promise<Tradition | null> {
+  const [user] = await db.select({ tradition: users.tradition }).from(users).where(eq(users.id, userId));
+  return (user?.tradition && isValidTradition(user.tradition)) ? user.tradition : null;
+}
+
 // Interface for auth storage operations
 // (IMPORTANT) These user operations are mandatory for Replit Auth.
 export interface IAuthStorage {

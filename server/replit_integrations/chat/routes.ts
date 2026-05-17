@@ -5,6 +5,7 @@ import { storage } from "../../storage";
 import { stripeStorage } from "../../stripeStorage";
 import { checkUsageLimit, incrementUsage } from "../../usageService";
 import { getAIClient, getChatModel, getMultilingualInstruction, isNonEnglish, geminiStreamContent } from "../../aiRouter";
+import { getUserTradition } from "../auth/storage";
 import { verifyFirebaseToken } from "../../firebaseAdmin";
 import { FEATURE_LIMITS, PRO_LIMITS_PREMIUM, PRO_LIMITS_EMERGING } from "@shared/schema";
 
@@ -104,7 +105,35 @@ async function checkUserProStatus(req: any): Promise<boolean> {
 }
 
 
-const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
+type Tradition = "protestant" | "catholic" | "orthodox" | "other";
+
+function normalizeTradition(value: unknown): Tradition | null {
+  if (value === "protestant" || value === "catholic" || value === "orthodox" || value === "other") {
+    return value;
+  }
+  return null;
+}
+
+function getPersonaName(tradition: Tradition | null): "Pastor Brett" | "Father Brett" {
+  return tradition === "catholic" || tradition === "orthodox" ? "Father Brett" : "Pastor Brett";
+}
+
+function getTraditionInstruction(tradition: Tradition | null): string {
+  switch (tradition) {
+    case "catholic":
+      return `\n\nThe user identifies as Catholic. Address yourself as "Father Brett". Flavor responses with the Catholic tradition: cite the Catechism of the Catholic Church when relevant, reference Church Fathers (Augustine, Aquinas, Jerome), the Magisterium, sacred Tradition alongside Scripture, the seven sacraments, the communion of saints, and Marian devotion where appropriate. Use the Catholic biblical canon (including the deuterocanonical books). Be respectful of papal teaching.`;
+    case "orthodox":
+      return `\n\nThe user identifies as Eastern Orthodox. Address yourself as "Father Brett". Flavor responses with Orthodox tradition: draw on the Church Fathers (especially the Cappadocians, John Chrysostom, Maximus the Confessor, Gregory Palamas), patristic theology, theosis (deification), the Divine Liturgy, the seven Ecumenical Councils, icons and the Theotokos. Honor sacred Tradition alongside Scripture. Use the Orthodox biblical canon (including the deuterocanonical/anagignoskomena).`;
+    case "protestant":
+      return `\n\nThe user identifies as Protestant. Address yourself as "Pastor Brett". Flavor responses with the Protestant tradition: emphasize sola scriptura, justification by faith, the priesthood of all believers, and Reformation theology (Luther, Calvin, Wesley) where relevant. Use the Protestant biblical canon (66 books). Center responses on the gospel and a personal relationship with Christ.`;
+    case "other":
+      return `\n\nThe user identifies with a tradition outside mainstream Protestant, Catholic, or Orthodox Christianity (or none). Address yourself as "Pastor Brett". Be ecumenical and non-sectarian. Focus on shared Christian essentials, the person of Jesus, and Scripture itself without leaning on any one denomination's distinctives. Be especially open and welcoming.`;
+    default:
+      return "";
+  }
+}
+
+const SYSTEM_PROMPT_BASE = `You are {{PERSONA}}, a compassionate AI Bible Buddy providing spiritual guidance and pastoral support. Your role is to:
 - Offer comfort, encouragement, and biblical wisdom
 - Listen with empathy and understanding
 - Share relevant scripture when appropriate
@@ -115,13 +144,16 @@ const SYSTEM_PROMPT = `You are Pastor Brett, a compassionate AI Bible Buddy prov
 
 Remember: You are here to support, not to replace professional counseling or in-person pastoral care. For serious mental health concerns, always encourage seeking professional help. Keep responses concise but meaningful.`;
 
-const SYSTEM_PROMPT_AMHARIC = `አንተ ፓስተር ብሬት ነህ፣ ርኅሩኅ የመጽሐፍ ቅዱስ ጓደኛ። በአማርኛ (ፊደል) ብቻ መልስ ስጥ። ጥቅሶችን አብራራ፣ ታሪካዊ ዳራ ስጥ፣ ለዛሬ ተግባራዊ ትርጉም አካትት። ምላሽህ ተፈጥሯዊ አማርኛ ይሁን።`;
+const SYSTEM_PROMPT_AMHARIC_BASE = `አንተ {{PERSONA_AM}} ነህ፣ ርኅሩኅ የመጽሐፍ ቅዱስ ጓደኛ። በአማርኛ (ፊደል) ብቻ መልስ ስጥ። ጥቅሶችን አብራራ፣ ታሪካዊ ዳራ ስጥ፣ ለዛሬ ተግባራዊ ትርጉም አካትት። ምላሽህ ተፈጥሯዊ አማርኛ ይሁን።`;
 
-function getSystemPrompt(translation: string): string {
+function getSystemPrompt(translation: string, tradition: Tradition | null = null): string {
+  const persona = getPersonaName(tradition);
+  const personaAm = persona === "Father Brett" ? "አባ ብሬት" : "ፓስተር ብሬት";
+  const traditionInstruction = getTraditionInstruction(tradition);
   if (isNonEnglish(translation)) {
-    return SYSTEM_PROMPT_AMHARIC;
+    return SYSTEM_PROMPT_AMHARIC_BASE.replace("{{PERSONA_AM}}", personaAm) + traditionInstruction;
   }
-  return SYSTEM_PROMPT;
+  return SYSTEM_PROMPT_BASE.replace("{{PERSONA}}", persona) + traditionInstruction;
 }
 
 export function registerChatRoutes(app: Express): void {
@@ -265,12 +297,21 @@ export function registerChatRoutes(app: Express): void {
 
       const content = req.body?.content;
       const translation = req.body?.translation || "KJV";
+      let tradition = normalizeTradition(req.body?.tradition);
       if (typeof content !== "string" || !content.trim()) {
         return res.status(400).json({ error: "Message content is required" });
       }
 
       const sessionId = getSessionId(req, res);
       const authUserId = await getAuthenticatedUserId(req);
+
+      // Server-side fallback: if client didn't send a tradition (e.g. sync delay,
+      // older client), use the value persisted on the user's profile.
+      if (!tradition && authUserId) {
+        try {
+          tradition = await getUserTradition(authUserId);
+        } catch {}
+      }
       
       // Check if this is a feature-specific conversation (bypass chat limit for these)
       const conversation = await chatStorage.getConversation(conversationId, sessionId, authUserId);
@@ -336,7 +377,7 @@ export function registerChatRoutes(app: Express): void {
 
       const messages = await chatStorage.getMessagesByConversation(conversationId);
       const chatMessages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
-        { role: "system", content: getSystemPrompt(translation) },
+        { role: "system", content: getSystemPrompt(translation, tradition) },
         ...messages.map((m) => ({
           role: m.role as "user" | "assistant",
           content: m.content,
@@ -397,6 +438,7 @@ export function registerChatRoutes(app: Express): void {
     try {
       const content = req.body?.content;
       const translation = req.body?.translation || "KJV";
+      const tradition = normalizeTradition(req.body?.tradition);
       if (typeof content !== "string" || !content.trim()) {
         return res.status(400).json({ error: "Message content is required" });
       }
@@ -424,7 +466,7 @@ export function registerChatRoutes(app: Express): void {
       res.setHeader("Connection", "keep-alive");
 
       const chatMessages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
-        { role: "system", content: getSystemPrompt(translation) },
+        { role: "system", content: getSystemPrompt(translation, tradition) },
         { role: "user", content: content.trim() },
       ];
 

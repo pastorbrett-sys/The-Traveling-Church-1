@@ -40,10 +40,40 @@ function isAmharicTranslation(translation: string): boolean {
   return translation === "ETH" || translation === "AMPROT";
 }
 
+// Tradition selection — persona mapping and localStorage helpers
+export type Tradition = "protestant" | "catholic" | "orthodox" | "other";
+const TRADITION_KEY = "userTradition";
+
+function getStoredTradition(): Tradition | null {
+  try {
+    const v = localStorage.getItem(TRADITION_KEY);
+    if (v === "protestant" || v === "catholic" || v === "orthodox" || v === "other") return v;
+  } catch {}
+  return null;
+}
+
+function setStoredTradition(t: Tradition): void {
+  try { localStorage.setItem(TRADITION_KEY, t); } catch {}
+}
+
+function getPersonaTitle(tradition: Tradition | null, translation: string): string {
+  const isAmharic = isAmharicTranslation(translation);
+  if (tradition === "catholic" || tradition === "orthodox") {
+    return isAmharic ? "አባ ብሬት" : "Father Brett";
+  }
+  return isAmharic ? "ፓስተር ብሬት" : "Pastor Brett";
+}
+
 // Localized UI text for Pastor Chat
 const chatUiText = {
   en: {
     welcomeMessage: "Hey I'm Pastor Brett your AI Pastor. How can I help you?",
+    welcomeMessageFather: "Hey, I'm Father Brett, your AI companion for faith and Scripture. How can I help you?",
+    traditionPrompt: "Hey there! I'm Brett, your AI companion for faith and Scripture. To tailor how I address you, which tradition do you call home?",
+    traditionProtestant: "Protestant",
+    traditionCatholic: "Catholic",
+    traditionOrthodox: "Orthodox",
+    traditionOther: "Other tradition",
     pastorBrett: "Pastor Brett",
     askAnything: "Ask Pastor Brett anything...",
     send: "Send",
@@ -73,6 +103,12 @@ const chatUiText = {
   },
   am: {
     welcomeMessage: "ሰላም! እኔ ፓስተር ብሬት ነኝ፣ የእርስዎ AI ፓስተር። እንዴት ልረዳዎት?",
+    welcomeMessageFather: "ሰላም! እኔ አባ ብሬት ነኝ፣ የእምነት እና የቅዱሳት መጻሕፍት AI አጋርዎ። እንዴት ልረዳዎት?",
+    traditionPrompt: "ሰላም! እኔ ብሬት ነኝ፣ የእምነትና የቅዱሳት መጻሕፍት AI አጋርዎ። እንዴት እንደምጠራዎት ለማወቅ፣ የትኛውን ወግ ይከተላሉ?",
+    traditionProtestant: "ፕሮቴስታንት",
+    traditionCatholic: "ካቶሊክ",
+    traditionOrthodox: "ኦርቶዶክስ",
+    traditionOther: "ሌላ ወግ",
     pastorBrett: "ፓስተር ብሬት",
     askAnything: "ፓስተር ብሬትን ማንኛውንም ነገር ይጠይቁ...",
     send: "ላክ",
@@ -110,11 +146,13 @@ interface WelcomeMessageProps {
   translation: string;
   onQuickSelect?: (message: string) => void;
   showQuickSelects?: boolean;
+  tradition: Tradition | null;
+  onTraditionSelect: (t: Tradition) => void;
 }
 
 const quickSelectIcons = [BookOpenText, HelpCircle, Heart, Sparkles];
 
-const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation, onQuickSelect, showQuickSelects = true }, ref) => {
+const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ translation, onQuickSelect, showQuickSelects = true, tradition, onTraditionSelect }, ref) => {
   const t = getChatLocalizedText(translation);
   const quickOptions = [
     { label: t.quickStruggling, icon: quickSelectIcons[2] },
@@ -122,6 +160,20 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
     { label: t.quickConfused, icon: quickSelectIcons[1] },
     { label: t.quickAnything, icon: quickSelectIcons[3] },
   ];
+
+  const traditionOptions: { value: Tradition; label: string }[] = [
+    { value: "protestant", label: t.traditionProtestant },
+    { value: "catholic", label: t.traditionCatholic },
+    { value: "orthodox", label: t.traditionOrthodox },
+    { value: "other", label: t.traditionOther },
+  ];
+
+  const personaName = getPersonaTitle(tradition, translation);
+  const isFather = tradition === "catholic" || tradition === "orthodox";
+  const welcomeText = tradition === null
+    ? t.traditionPrompt
+    : (isFather ? t.welcomeMessageFather : t.welcomeMessage);
+
   return (
     <div ref={ref} className="space-y-4">
       <motion.div
@@ -136,16 +188,39 @@ const WelcomeMessage = forwardRef<HTMLDivElement, WelcomeMessageProps>(({ transl
         >
           <img
             src={pastorBrettIcon}
-            alt={t.pastorBrett}
+            alt={personaName}
             className="w-12 h-12 rounded-full flex-shrink-0"
           />
-          <p className="text-sm text-foreground">
-            {t.welcomeMessage}
+          <p className="text-sm text-foreground" data-testid="text-welcome-message">
+            {welcomeText}
           </p>
         </div>
       </motion.div>
 
-      {showQuickSelects && (
+      {tradition === null && (
+        <div className="flex flex-wrap gap-2 justify-start" data-testid="tradition-picker">
+          {traditionOptions.map((opt, i) => (
+            <motion.button
+              key={opt.value}
+              initial={{ opacity: 0, scale: 0.8, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{
+                duration: 0.35,
+                delay: 0.4 + i * 0.1,
+                ease: [0.34, 1.56, 0.64, 1],
+              }}
+              whileTap={{ scale: 0.93 }}
+              onClick={() => onTraditionSelect(opt.value)}
+              className="inline-flex items-center gap-2 bg-[#b8860b]/10 border border-[#b8860b]/30 text-[#9a7209] dark:text-[#d4a843] rounded-full px-4 py-2.5 text-sm font-medium hover:bg-[#b8860b]/20 active:bg-[#b8860b]/25 transition-colors"
+              data-testid={`tradition-${opt.value}`}
+            >
+              {opt.label}
+            </motion.button>
+          ))}
+        </div>
+      )}
+
+      {tradition !== null && showQuickSelects && (
         <>
           <div className="flex flex-wrap gap-2 justify-start">
             {quickOptions.map((opt, i) => {
@@ -374,6 +449,21 @@ export default function PastorChat() {
   const [hasSeeded, setHasSeeded] = useState(false);
   const [animateFromIndex, setAnimateFromIndex] = useState<number>(Infinity);
   const [showQuickSelects, setShowQuickSelects] = useState(true);
+  const [tradition, setTradition] = useState<Tradition | null>(() => getStoredTradition());
+
+  const handleTraditionSelect = useCallback((value: Tradition) => {
+    setStoredTradition(value);
+    setTradition(value);
+    // Persist server-side for authenticated users so other features can reference it
+    apiFetch("/api/user/tradition", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tradition: value }),
+    }).catch((err) => {
+      // Best-effort sync; localStorage remains source of truth offline / unauthenticated
+      console.warn("[Tradition] Failed to sync to server:", err);
+    });
+  }, []);
   
   // Track the seed params to detect when they change (for same-page navigation)
   const [lastSeedParams, setLastSeedParams] = useState<string | null>(null);
@@ -397,6 +487,36 @@ export default function PastorChat() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const queryClient = useQueryClient();
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth();
+
+  // Sync tradition with server when authenticated:
+  //   - If server has a value and local doesn't, adopt the server value (cross-device)
+  //   - If local has a value and server doesn't, push local to server (first-time auth)
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await apiFetch("/api/user/tradition");
+        if (!res.ok) return;
+        const data: { tradition: Tradition | null } = await res.json();
+        if (cancelled) return;
+        const local = getStoredTradition();
+        if (data.tradition && data.tradition !== local) {
+          setStoredTradition(data.tradition);
+          setTradition(data.tradition);
+        } else if (!data.tradition && local) {
+          apiFetch("/api/user/tradition", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tradition: local }),
+          }).catch(() => {});
+        }
+      } catch {
+        // Non-fatal; tradition stays as localStorage value
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [isAuthenticated]);
 
   // Handle upgrade param to show paywall modal
   useEffect(() => {
@@ -666,7 +786,7 @@ export default function PastorChat() {
       const response = await apiFetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: savedInput, translation: bibleTranslation }),
+        body: JSON.stringify({ content: savedInput, translation: bibleTranslation, tradition }),
       });
 
       if (response.status === 402 || response.status === 429) {
@@ -937,7 +1057,7 @@ export default function PastorChat() {
                 const isWelcomeMessage = index === 0 && messages.length === 0 && message.role === "assistant";
                 
                 if (isWelcomeMessage) {
-                  return <WelcomeMessage key="welcome-message" translation={bibleTranslation} onQuickSelect={handleQuickSelect} showQuickSelects={showQuickSelects} />;
+                  return <WelcomeMessage key="welcome-message" translation={bibleTranslation} onQuickSelect={handleQuickSelect} showQuickSelects={showQuickSelects} tradition={tradition} onTraditionSelect={handleTraditionSelect} />;
                 }
                 
                 const shouldAnimate = index >= animateFromIndex;
