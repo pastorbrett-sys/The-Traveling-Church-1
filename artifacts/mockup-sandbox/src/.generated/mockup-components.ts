@@ -3,5 +3,9 @@ type ModuleMap = Record<string, () => Promise<Record<string, unknown>>>;
 export const modules: ModuleMap = {
   "./components/mockups/denomination-selector/DenomCards.tsx": () => import("../components/mockups/denomination-selector/DenomCards.tsx"),
   "./components/mockups/denomination-selector/DenomIcons.tsx": () => import("../components/mockups/denomination-selector/DenomIcons.tsx"),
-  "./components/mockups/denomination-selector/DenomStepFlow.tsx": () => import("../components/mockups/denomination-selector/DenomStepFlow.tsx")
+  "./components/mockups/denomination-selector/DenomStepFlow.tsx": () => import("../components/mockups/denomination-selector/DenomStepFlow.tsx"),
+  "./components/mockups/onboarding-flow/OnboardingBible.tsx": () => import("../components/mockups/onboarding-flow/OnboardingBible.tsx"),
+  "./components/mockups/onboarding-flow/OnboardingPastor.tsx": () => import("../components/mockups/onboarding-flow/OnboardingPastor.tsx"),
+  "./components/mockups/onboarding-flow/OnboardingTradition.tsx": () => import("../components/mockups/onboarding-flow/OnboardingTradition.tsx"),
+  "./components/mockups/onboarding-flow/OnboardingWelcome.tsx": () => import("../components/mockups/onboarding-flow/OnboardingWelcome.tsx")
 };
