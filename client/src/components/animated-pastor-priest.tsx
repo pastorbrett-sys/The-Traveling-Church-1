@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 
 interface AnimatedPastorPriestProps {
   words: [string, string];
@@ -21,20 +21,34 @@ export default function AnimatedPastorPriest({
     return () => clearInterval(timer);
   }, [words.length, interval]);
 
+  // Fixed width so layout never shifts — sized to the longest word
+  const longestWord = useMemo(
+    () => words.reduce((a, b) => (a.length > b.length ? a : b)),
+    [words]
+  );
+
   return (
-    <span className={`relative inline-block ${className}`}>
-      <AnimatePresence mode="wait">
+    <span className={`relative inline-block align-bottom ${className}`}>
+      {/* Hidden measuring span to reserve the exact width of the longest word */}
+      <span className="invisible inline-block" aria-hidden="true">
+        {longestWord}
+      </span>
+
+      {/* Both words stacked absolutely; only the active one is visible */}
+      {words.map((word, i) => (
         <motion.span
-          key={words[index]}
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
+          key={word}
+          className="absolute inset-0 inline-block text-center"
+          initial={false}
+          animate={{
+            opacity: i === index ? 1 : 0,
+            filter: i === index ? "blur(0px)" : "blur(4px)",
+          }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="inline-block"
         >
-          {words[index]}
+          {word}
         </motion.span>
-      </AnimatePresence>
+      ))}
     </span>
   );
 }
