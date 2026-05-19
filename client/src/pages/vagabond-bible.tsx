@@ -55,7 +55,7 @@ export default function VagabondBible() {
           >
             <div className="max-w-md mx-auto text-center">
               <h1 className={`font-heading mb-4 text-white font-extrabold leading-[1.12] ${isAmharic ? 'text-[28px] sm:text-4xl' : 'text-[36px] sm:text-5xl'}`}>
-                {t("landing.hero_title_1")} <AnimatedPastorPriest words={[t("landing.hero_animated_pastor"), t("landing.hero_animated_priest")]} className="text-[hsl(35,65%,55%)]" /><br /><span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span> {t("landing.hero_title_3")}
+                <span className="inline-block -translate-x-[6px]">{t("landing.hero_title_1")} <AnimatedPastorPriest words={[t("landing.hero_animated_pastor"), t("landing.hero_animated_priest")]} className="text-[hsl(35,65%,55%)]" /></span><br /><span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span> {t("landing.hero_title_3")}
               </h1>
               <p className="text-[15px] text-white/90 mb-10 leading-relaxed">
                 {t("landing.hero_subtitle_1")} {t("landing.hero_subtitle_2")}
@@ -170,7 +170,7 @@ export default function VagabondBible() {
               <span className="text-sm font-medium">{t("landing.badge")}</span>
             </div>
             <h1 className={`font-heading mb-6 text-white font-extrabold leading-[1.12] sm:leading-[1.06] ${isAmharic ? 'text-[32px] sm:text-4xl lg:text-[52px]' : 'text-[40px] sm:text-5xl lg:text-[68px]'}`}>
-              {t("landing.hero_title_1")} <AnimatedPastorPriest words={[t("landing.hero_animated_pastor"), t("landing.hero_animated_priest")]} className="text-[hsl(35,65%,55%)]" /><br /><span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span> {t("landing.hero_title_3")}
+              <span className="inline-block -translate-x-[6px]">{t("landing.hero_title_1")} <AnimatedPastorPriest words={[t("landing.hero_animated_pastor"), t("landing.hero_animated_priest")]} className="text-[hsl(35,65%,55%)]" /></span><br /><span className="text-[hsl(35,65%,55%)]">{t("landing.hero_title_2")}</span> {t("landing.hero_title_3")}
             </h1>
             <p className="sm:text-xl lg:text-[18px] text-white/90 mb-8 text-[16px]">
               {t("landing.hero_subtitle_1")} <br className="hidden lg:inline" />{t("landing.hero_subtitle_2")}
