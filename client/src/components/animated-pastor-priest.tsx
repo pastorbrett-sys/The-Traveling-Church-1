@@ -28,7 +28,7 @@ export default function AnimatedPastorPriest({
   );
 
   return (
-    <span className={`relative inline-block ${className}`}>
+    <span className={`relative inline-block -translate-x-0.5 ${className}`}>
       {/* Hidden measuring span to reserve the exact width of the longest word */}
       <span className="invisible inline-block" aria-hidden="true">
         {longestWord}
